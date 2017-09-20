@@ -129,6 +129,7 @@ h3 {
     body {
         font-size: 14px;
     }
+
 }
 
 @media screen and (min-width: 1366px) and (max-width: 1440px) {
@@ -142,9 +143,13 @@ h3 {
         font-size: 18px;
     }
 }
-
 @media screen and (min-width: 1920px) and (max-width: 2560px) {
     body {
         font-size: 25px;
+    }
+}
+@media screen and (min-width: 2560px) and (max-width: 3840px) {
+    body {
+        font-size: 50px;
     }
 }

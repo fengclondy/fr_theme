@@ -9,10 +9,11 @@ body {
     height: 10%;
     background-color: rgba(13, 23, 80, 0.4);
     box-shadow: 0 0 5px rgba(0,0,0,0.6);
+    position: relative;
 }
 
 .header-logo {
-    width: 14%;
+    width: 21%;
     height: 100%;
     /*background: url("../imgs/logo.png") no-repeat;*/
     /*background-size: 100% 100%;*/
@@ -20,47 +21,80 @@ body {
 }
 
 .header-logo img {
-    width: 75%;
-    height: 60%;
-    margin-top: 6%;
-    margin-left: 6%;
+    width: 100%;
+    height: 50%;
+    margin-top: 7%;
+    margin-left: 0.8em;
 }
 
 /*头部目录切换*/
 
 .header_tabs {
-    width: 59%;
+    width: 57%;
     height: 100%;
     float: left;
+    margin-left: 3em;
 }
-
-.header_tabs ul {
+/*.header_tabs>span{*/
+    /*height: 80%;*/
+    /*line-height: 250%;*/
+    /*display: inline-block;*/
+    /*text-align: center;*/
+    /*vertical-align: middle;*/
+    /*margin: 0 auto;*/
+    /*color: rgba(255,255,255,1);*/
+    /*font-size: 1.2em;*/
+    /*margin-top: 1%;*/
+    /*padding-left: 2%;*/
+    /*border-left: 1px solid rgba(255,255,255,0.3);*/
+/*}*/
+.header_tabs>ul {
     width: 100%;
     height: 100%;
     color: white;
-    font-size: 1.06em;
+    font-size: 0.96em;
 }
 
-.header_tabs ul li {
+.header_tabs>ul>li {
     height: 100%;
     float: left;
     vertical-align: middle;
     padding: 2%;
-    padding-top: 3%;
+    padding-top: 3.5%;
     cursor: pointer;
-    /*background-color: pink;*/
 }
-.header_tabs ul li>span{
-    width: 0.6em;
-    height: 0.4em;
+.header_tabs>ul>li.jypt ul{
+    width: 8.5%;
+    position: absolute;
+    top: 4.5em;
+    left: 23.2%;
+    background-color: rgba(13, 23, 80, 0.8);
+    box-shadow: 0 0 5px rgba(0,0,0,0.6);
+    text-align:center;
+    padding: 0 0.1em;
+    display: none;
+}
+.header_tabs>ul>li.jypt ul li{
+    padding: 0.4em 0;
+    margin-top: 0.2em;
+}
+.header_tabs>ul>li.jypt>span{
+    width: 0.5em;
+    height: 0.5em;
     display: inline-block;
-    background: url(../imgs/dropdown.png) no-repeat;
+    background: url("../imgs/icon.png") no-repeat;
     background-size: 100% 100%;
+    margin-left: 0.5em;
+}
+.dropdown-menu_li_active{
+    border: 1px solid #00B2F8;
+    color: #00B2F8;
 }
 .header_tabs_active{
     background: url("../imgs/top-select.png") no-repeat;
     background-size: 100% 100%;
 }
+
 .date_time {
     width: 10%;
     height: 100%;
@@ -80,10 +114,10 @@ body {
 }
 
 .header_btns {
-    width: 14%;
-    height: 63%;
-    margin-top: 1.2%;
-    margin-right: 2%;
+    width: 12.8em;
+    height: 3.36em;
+    margin-top: 0.5%;
+    margin-right: 0.8em;
     background: url("../imgs/header_right.png") no-repeat;
     background-size: 100% 100%;
     float: right;
@@ -107,7 +141,7 @@ body {
     width: 100%;
     padding: 10% 0;
     text-align: center;
-    font-size: 1.06em;
+    font-size: 0.96em;
     border-bottom: 1px solid rgb(13, 23, 80);
 
 }
@@ -116,6 +150,7 @@ body {
     height: 90%;
     text-align: left;
     margin-top: 5%;
+    font-size: 0.88em;
 }
 
 .content .slider .menus li {
@@ -147,7 +182,7 @@ body {
 .li_active {
     background: url("../imgs/side-select.png") no-repeat;
     background-size: 100% 100%;
-    color: #00B2F8;
+    /*color: #00B2F8;*/
 }
 
 .content .slider .menus > li {
@@ -174,13 +209,16 @@ body {
 
 /*内容部分*/
 
-.main {
+.main,.quanyilei{
     width: 86%;
     height: 100%;
     display: none;
     float: left;
 }
-
+.quanyilei img{
+    width: 100%;
+    height: 100%;
+}
 .active {
     display: block;
 }
@@ -193,21 +231,25 @@ body {
 .main .box>img{
     width: 100%;
     height: 100%;
+    display: inline-block;
 }
 .main .box_active {
     display: block;
 }
 
 .main .box1{
-    width: 97%;
-    height: 96%;
+    width: 98%;
+    height: 97%;
     margin: 0 auto;
 }
-
+.box2,.box3,.box4,.box5{
+    width: 100%;
+    height: 100%;
+}
 .main .box .box_header {
     width: 100%;
     height: 10%;
-    margin: 1.5% auto;
+    margin: 1% auto;
     background-color: rgba(13, 23, 80, 0.4);
     box-shadow: 0 0 5px rgba(0,0,0,0.6);
 }
@@ -215,7 +257,7 @@ body {
 .main .box .box_header ul {
     width: 100%;
     height: 100%;
-    font-size: 1.06em;
+    font-size: 0.96em;
 }
 
 .main .box .box_header ul li {
@@ -229,7 +271,7 @@ body {
 }
 
 .main .box .box_header ul li span {
-    font-size: 1.5em;
+    font-size: 1.67em;
     color: #ffd769;
     margin-right: 0.5em;
 }
@@ -240,10 +282,14 @@ body {
 
 .main .box .box_content {
     width: 100%;
-    height: 86%;
-    font-size: 1.06em;
+    height: 88%;
+    font-size: 0.96em;
 }
-
+.main img{
+    width: 98%;
+    height: 98%;
+    display: inline-block;
+}
 .main .box1 .box_content .box1_left {
     width: 39%;
     height: 100%;
@@ -258,11 +304,46 @@ body {
     height: 100%;
     background: url("../imgs/map.png") no-repeat;
     background-size: 100% 100%;
+    position: relative;
+}
+.jgfbt>img{
+    position: absolute;
+    width: 10em;
+    height: 12em;
+    background-color: transparent;
+
+    left: 40%;
+    top: 20%;
+    cursor: pointer;
+    display: inline-block;
+}
+img[src=""]{
+    opacity: 0;
+}
+.jgfbt>img:first-of-type{
+    left: 31%;
+    top: 48%;
+}
+.jgfbt>img:nth-of-type(2){
+    left: 28%;
+    top: 17%;
+}
+.jgfbt>img:nth-of-type(3){
+    left: 52%;
+    top: 15%;
+}
+.jgfbt>img:nth-of-type(4){
+    left: 63%;
+    top:47%;
+}
+.jgfbt>img:nth-of-type(5){
+    left: 46%;
+    top: 33%;
 }
 .jgfbt_header,.fxzlzb_header,.yhs_header,.cdzj_header{
     color: white;
     text-align: left;
-    padding-left: 3%;
+    padding-left: 6%;
     padding-top: 1%;
     width: 100%;
     height: 5.5%;
@@ -281,6 +362,7 @@ body {
 }
 .cdzj_header{
     height: 22%;
+    padding-top: 1.2%;
 }
 .main .box1 .box_content span {
     position: absolute;
@@ -292,6 +374,7 @@ body {
     /*background-color: red;*/
     background: url("../imgs/enlarge.png") no-repeat;
     background-size: 100% 100%;
+    cursor: pointer;
 }
 .main .box1 .box_content .box1_left>span{
     top: 1%;
@@ -308,7 +391,7 @@ body {
     width: 98%;
     height: 98%;
     margin-left: 1%;
-    margin-top: 0.5%;
+    margin-top: 1%;
 }
 .bottom-right_top_left .modal-body img{
     width: 55%;
@@ -392,8 +475,8 @@ body {
 
 /*修改弹出框样式*/
 .modal-dialog{
-    width: 90%;
-    height: 100%;
+    width: 70%;
+    height: 90%;
     margin: 0 auto;
 }
 .modal-body{
@@ -415,16 +498,8 @@ body {
     border-bottom: none;
 }
 .main .box1 .box_content .modal-header>.close span{
-    /*background: none;*/
-    background: url("../imgs/modal_close.png") no-repeat;
-    background-size: 100% 100%;
-    width: 3em;
-    height: 3em;
+    background: none;
+    width: 2em;
+    height: 2em;
     z-index: 9999;
 }
-/*.main .box1 .box_content span .modal-header>.close img{*/
-    /*width: 100%;*/
-    /*height: 100%;*/
-    /*display: inline-block;*/
-    /*z-index: 999;*/
-/*}*/
