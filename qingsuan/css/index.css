@@ -13,24 +13,24 @@ body {
 }
 
 .header-logo {
-    width: 21%;
+    width: 29%;
     height: 100%;
     /*background: url("../imgs/logo.png") no-repeat;*/
     /*background-size: 100% 100%;*/
     float: left;
 }
 
-.header-logo img {
-    width: 100%;
-    height: 50%;
-    margin-top: 7%;
+.header-logo>img {
+    width: 90%;
+    height: 51%;
+    margin-top: 4.5%;
     margin-left: 0.8em;
 }
 
 /*头部目录切换*/
 
 .header_tabs {
-    width: 57%;
+    width: 45%;
     height: 100%;
     float: left;
     margin-left: 3em;
@@ -52,7 +52,7 @@ body {
     width: 100%;
     height: 100%;
     color: white;
-    font-size: 0.96em;
+    font-size: 1.2em;
 }
 
 .header_tabs>ul>li {
@@ -141,7 +141,7 @@ body {
     width: 100%;
     padding: 10% 0;
     text-align: center;
-    font-size: 0.96em;
+    font-size: 1.2em;
     border-bottom: 1px solid rgb(13, 23, 80);
 
 }
@@ -150,7 +150,7 @@ body {
     height: 90%;
     text-align: left;
     margin-top: 5%;
-    font-size: 0.88em;
+    font-size: 0.96em;
 }
 
 .content .slider .menus li {
@@ -257,19 +257,21 @@ body {
 .main .box .box_header ul {
     width: 100%;
     height: 100%;
-    font-size: 0.96em;
+    font-size: 1.2em;
 }
 
 .main .box .box_header ul li {
     float: left;
-    width: 25%;
+     width: 21%;
     height: 100%;
     text-align: center;
     vertical-align: middle;
-    padding-top: 1%;
+    padding-top: 0.5%;
     color: white;
 }
-
+.main .box .box_header ul li:nth-of-type(2){
+    width: 35%;
+}
 .main .box .box_header ul li span {
     font-size: 1.67em;
     color: #ffd769;
@@ -283,7 +285,7 @@ body {
 .main .box .box_content {
     width: 100%;
     height: 88%;
-    font-size: 0.96em;
+    font-size: 1.1em;
 }
 .main img{
     width: 98%;
@@ -340,29 +342,36 @@ img[src=""]{
     left: 46%;
     top: 33%;
 }
+
 .jgfbt_header,.fxzlzb_header,.yhs_header,.cdzj_header{
     color: white;
     text-align: left;
     padding-left: 6%;
-    padding-top: 1%;
     width: 100%;
     height: 5.5%;
+    /*padding-top: 0.2%;*/
     background-color: rgba(0,0,0,0.2);
     position: absolute;
     top:0;
     left: 0;
+    vertical-align: middle;
+    margin: 0 auto;
 }
-.fxzlzb_header,.yhs_header,.cdzj_header{
-    height: 11%;
+.fxzlzb_header,.yhs_header,.cdzj_header,.cdzj_header{
+    height: 1.8em;
+    vertical-align: middle;
+
+}
+.fxzlzb_header p,.yhs_header p,.cdzj_header p,.cdzj_header p{
+    height: 1em;
+    width: 100%;
+    margin-top: 0.2em;
+    display: inline-block;
 }
 .yhs_header b ,.cdzj_header b{
     position: static;
     color: #ffd769;
     margin-left: 3%;
-}
-.cdzj_header{
-    height: 22%;
-    padding-top: 1.2%;
 }
 .main .box1 .box_content span {
     position: absolute;
