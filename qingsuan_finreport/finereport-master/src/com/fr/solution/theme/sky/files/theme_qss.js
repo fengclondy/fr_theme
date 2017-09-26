@@ -1,12 +1,21 @@
 var topMenuImage=["1.png","2.png","3.png","4.png","5.png"];//菜单对应图标名称 具体文件放到com.fr.solution.theme.sky.files.image包下面
 (function ($) {
    FS.THEME = $.extend(true, FS.THEME, {
-   			/*config4MenuTree: {
+   			config4MenuTree: {
 	   			onAfterNodeExpand: function(node, $node, $li){
 		   			if(node.level >= 1){
 			   			$li.children('ul').css({
 				   			'background': 'rgb(45,63,78)'	
 			   			});
+			   			if(node.level ==2){
+			   				var $treeIcon=$li.children('ul').find(".tree-icon");
+			   				$.each($treeIcon,function(index,item){
+			   					$(item).removeClass("icon-tree-leaf icon-tree-frm icon-tree-cpt");
+			   					//放图片
+			   					$(item).css({"width":"1.2em","height":"1.2em","background":"url(${servletURL}?op=resource&resource=/com/fr/solution/theme/sky/files/image/"+topMenuImage[0]+")"});
+			   					$(item).css({"position": "absolute","left": "2em","top":".5em","background-size":"contain"});
+			   				});
+			   			}
 		   			}
 	   			},
 	   			onAfterNodeCollapse: function(node, $node, $li){
@@ -14,24 +23,25 @@ var topMenuImage=["1.png","2.png","3.png","4.png","5.png"];//菜单对应图标�
 			   			$li.children('ul').css({
 				   			'background': 'none'	
 			   			});
-		   			}
+			   		 //$('<i class="tree-icon" style="width:1.3em;height:1.3em;background:url(${servletURL}?op=resource&resource=/com/fr/solution/theme/sky/files/image/'+topMenuImage[0]+')"/>').appendTo($icon);//.addClass('icon-tree-'+icon);
+		   			};
 	   			},
 	   			onAfterNodeCreate: function(node, $node, $li){
 		   			node.level>1&&$node.css({'border-bottom': 'solid 1px rgb(59,79,98)'});
 		   			
 	   			}
-   			},*/
+   			},
    			
-   		 config4MenuTree: {
+   		/* config4MenuTree: {
              onAfterNodeCreate:function(node, $node, $li){
             	 node.level>1&&$node.css({'border-bottom': 'solid 1px rgb(59,79,98)'});
-                /* if(node.isModule){*/
+                 if(node.isModule){
                      //console.log($node.html());
                      var icon = !node.nodeicon ? 'leaf' : node.nodeicon;
                      var $icon = $node.find(".fs-menu-icon");
                      $icon.empty();
                      $('<i class="tree-icon" style="width:1.3em;height:1.3em;background:url(${servletURL}?op=resource&resource=/com/fr/solution/theme/sky/files/image/'+topMenuImage[0]+')"/>').appendTo($icon);//.addClass('icon-tree-'+icon);
-                /* }*/
+                 }
                  $node.find('.icon-menu-b').removeClass('fui-fhc');
                  var hasChildren = node.hasChildren && node.ChildNodes && node.ChildNodes.length>0;
                  $node.attr('data-has-children',hasChildren);
@@ -86,7 +96,7 @@ var topMenuImage=["1.png","2.png","3.png","4.png","5.png"];//菜单对应图标�
 			   			});
 		   			}
              }
-         },
+         },*/
    			
             config4tabPane: {
                 style: 'alpha',
