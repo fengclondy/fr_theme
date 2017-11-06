@@ -11,8 +11,8 @@
     <meta name="description" content="FineReport--Web Reporting Tool">
     <meta name="keywords" content="FineReport,Web Reporting Tool">
 
-<script type="text/javascript" src="/hailian/js/finereport.js"></script>
-<script type="text/javascript" src="/WebReport/hailian/js/finereport.js"></script>
+<script type="text/javascript" src="/QDCH/js/finereport.js"></script>
+<script type="text/javascript" src="/WebReport/QDCH/js/finereport.js"></script>
 <script>
 
     var dynamicLoading = {
@@ -40,20 +40,20 @@
     }
     var domain=FR.serverURL+FR.servletURL;
      domain=domain.replace("/ReportServer","");
-     dynamicLoading.css(domain+"/hailian/css/bootstrap.min.css");
-     dynamicLoading.css(domain+"/hailian/css/bi_login.css");
-     dynamicLoading.css(domain+"/hailian/css/finereport.css");
+     dynamicLoading.css(domain+"/QDCH/css/bootstrap.min.css");
+     dynamicLoading.css(domain+"/QDCH/css/bi_login.css");
+     dynamicLoading.css(domain+"/QDCH/css/finereport.css");
      
      
-     dynamicLoading.js(domain+"/hailian/js/jquery-2.2.4.js");
-     dynamicLoading.js(domain+"/hailian/js/bootstrap.min.js");
-     dynamicLoading.js(domain+"/hailian/js/hl_login.js");
+     dynamicLoading.js(domain+"/QDCH/js/jquery-2.2.4.js");
+     dynamicLoading.js(domain+"/QDCH/js/bootstrap.min.js");
+     dynamicLoading.js(domain+"/QDCH/js/hl_login.js");
      
      document.onreadystatechange = subSomething;//当页面加载状态改变的时候执行这个方法. 
      function subSomething() { 
      if(document.readyState == "complete") //当页面加载状态 
 	     var html='<span style=" display: inline-block; position: relative;top: 0.1em;left: .2em;';
-	     html+='width: 1em; height: 1em;background-image: url('+domain+'/hailian/img/jiantou.png);';
+	     html+='width: 1em; height: 1em;background-image: url('+domain+'/QDCH/img/jiantou.png);';
 	     html+='background-size: contain; background-repeat: no-repeat;"></span>';
 	     $("#fs-login-btn").append(html);
      } 

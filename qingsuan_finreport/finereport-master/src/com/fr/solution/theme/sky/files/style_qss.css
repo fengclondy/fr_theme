@@ -70,3 +70,42 @@
 	color: #6fd3ff;
 	font-weight: bold;
 }
+.fui-seb{
+	background-color:transparent;
+}
+  
+#fs-frame-menu{
+	background:none;
+	
+}
+#fs-frame-content{
+    background-color: rgba(255,255,255,0.1);
+}
+.fui-bsb{  
+  background-color: rgba(13,23,80,0.5);  
+}  
+.fui-bsc{  
+  color: red;  
+}  
+.fui-bsd{  
+  border-color: red;  
+}   
+.fui-fhc{
+  color: transparent;
+}
+.fui-fht{
+  text-shadow: 0;
+}
+
+.fs-menutree，。ui-state-enabled{
+	padding-top:10px;
+
+}
+
+#monitor_box_table{
+	width:100%;
+	color:red;
+	text-align:center;
+	display:table;
+	font-size:1.2em
+}

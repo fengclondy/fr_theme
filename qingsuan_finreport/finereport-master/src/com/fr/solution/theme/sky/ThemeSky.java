@@ -39,12 +39,12 @@ public class ThemeSky extends AbstractThemeVariousProvider
 
   public String text()
   {
-    return getText("西北院主题");
+    return getText("清算所主题");
   }
 
   public String coverPath()
   {
-    return getFilePath("/files/cover.png");
+    return getFilePath("/files/cover.jpg");
   }
 
   public String scriptPath()

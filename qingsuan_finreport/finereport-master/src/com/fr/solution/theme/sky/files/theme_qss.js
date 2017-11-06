@@ -1,4 +1,4 @@
-var topMenuImage=["fxhx_icon.png","zbdb_icon.png","khyd_icon.png","zjyd_icon.png","kyjy_icon.png","scyq_icon.png","jysp_icon.png","ywyc_icon.png","gsxx_icon.png"];//菜单对应图标名称 具体文件放到com.fr.solution.theme.sky.files.image包下面
+var topMenuImage=["fxhx_icon.png","zbdb_icon.png","zjyd_icon.png","kyjy_icon.png","scyq_icon.png","jysp_icon.png","ywyc_icon.png","gsxx_icon.png"];//菜单对应图标名称 具体文件放到com.fr.solution.theme.sky.files.image包下面
 (function ($) {
    FS.THEME = $.extend(true, FS.THEME, {
    			config4MenuTree: {
@@ -9,7 +9,7 @@ var topMenuImage=["fxhx_icon.png","zbdb_icon.png","khyd_icon.png","zjyd_icon.png
 			   					$(item).removeClass("icon-tree-leaf icon-tree-frm icon-tree-cpt");
 			   					//放图片
 			   					$(item).css({"width":"1.2em","height":"1.2em","background":"url(${servletURL}?op=resource&resource=/com/fr/solution/theme/sky/files/image/"+topMenuImage[index]+")"});
-			   					$(item).css({"position": "absolute","left": "2em","top":".5em","background-size":"contain"});
+			   					$(item).css({"position": "absolute","left": "2em","top":".5em","background-size":"100% 100%","background-repeat":"no-repeat"});
 			   					$(item).html('');
 			   					$(item).next().css("padding-left","25px");
 			   				});
@@ -113,10 +113,45 @@ var topMenuImage=["fxhx_icon.png","zbdb_icon.png","khyd_icon.png","zjyd_icon.png
                 $("#fs-navi-message").remove();
                 $("#fs-frame-search").remove();
                 $("#fs-navi-favorite").remove();
+                $('#fs-frame-menu').css('background-color','transparent');
+                $('.fui-bsb').css('background-color','rgba(13,23,80,0.5)');
+                $('.fui-fhc').css('color','transparent');
+                $('.fui-fht').css('text-shadow','0');  
+               /* 添加风险预警按钮*/
+                var html='<li class="fs-navibar-item" id="monitor"><i class="icon-navi-message"></i><span class="fs-navi-msgnum fui-bsc">0</span></li>'
+                $("#fs-navi-admin").before(html);
+              /*  添加风险预警弹出框
+                var monitor_box='<div id="monitor_box" style="position:absolute;margin:auto;width:60%;height:60%;top:20%;left:20%;background:url(${servletURL}?op=resource&resource=/com/fr/solution/theme/sky/files/image/tanchuangbg.png);background-repeat:no-repeat;z-index:99999;display:block;overflow-y:scroll"></div>'
+                $('#fs-frame-body').after(monitor_box);
+             	创建弹出框内的表格
+                var monitor_box_table=$('<table id="monitor_box_table"><thead><tr><th>风险类别</th><th>风险指标</th><th>风险指标值</th><th>阀值</th><th>超出额</th></tr></thead><tbody id="J_TbData"></tbody></table>');
+                monitor_box_table.appendTo("#monitor_box");
+                var $trTemp = $("<tr></tr>");
+                //往行里面追加 td单元格
+                $trTemp.append("<td>"+ 资金风险 +"</td>");
+                $trTemp.append("<td>"+ 大额出金 +"</td>");
+                $trTemp.append("<td>"+ 30 +"</td>");
+                $trTemp.append("<td>"+ 20 +"</td>");
+                $trTemp.append("<td>"+ 50% +"</td>");
+          
+                $trTemp.appendTo("#J_TbData");
+                $("#J_TbData").append($trTemp);
                 
-               
+                $('#monitor').click(function(){
+                	$('#monitor_box').toggle()
+                })*/
             }
-           }
+           },
+          //框架布局配置属性  
+           config4frame: {
+		        resizable: false,
+		        west: {
+		            width: '12%' 
+		        },
+		        east: {
+			        width: '88%'
+		        }
+		    },
    			
         });
 })(jQuery);
