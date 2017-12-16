@@ -159,6 +159,19 @@ var judgeRole = '决策人';
 				$('.emails_bac').on("click",function(){
 					$(this).toggleClass('emails_bac_click');
 				});
+				/* 添加返回导航页的Li*/
+				$("#fs-navi-admin").on("click",function(){
+					var $nav_a = $("<a href='/WebReport/navigation/navigation.html' class='mynav'>导航页</a>");
+					if($(".mynav")){
+						$(".mynav").remove();
+					}
+					setTimeout(function(){
+						$(".fs-admin-combo").children().first().after($nav_a);
+					},100)
+				});
+					
+				
+				//console.log(navLi);
 				
 				$('body').on('click','#monitor',function(){
 					

@@ -49,14 +49,14 @@
      dynamicLoading.js(domain+"/QDCH/js/bootstrap.min.js");
      dynamicLoading.js(domain+"/QDCH/js/hl_login.js");
      
-     document.onreadystatechange = subSomething;//当页面加载状态改变的时候执行这个方法. 
-     function subSomething() { 
-     if(document.readyState == "complete") //当页面加载状态 
+     /* document.onreadystatechange = subSomething;//当页面加载状态改变的时候执行这个方法. 
+    	function subSomething() { 
+     	if(document.readyState == "complete") //当页面加载状态 
 	     var html='<span style=" display: inline-block; position: relative;top: 0.1em;left: .2em;';
 	     html+='width: 1em; height: 1em;background-image: url('+domain+'/QDCH/img/jiantou.png);';
 	     html+='background-size: contain; background-repeat: no-repeat;"></span>';
 	     $("#fs-login-btn").append(html);
-     } 
+     }  */
 </script>
 </head>
 <body>
@@ -78,9 +78,9 @@
             <div class="item">
                 <img alt="image" class="img-responsive" src="img/login2.jpg" style="height: 100%;width: 100%">
             </div>
-            <div class="item">
+           <!--  <div class="item">
                 <img alt="image" class="img-responsive" src="img/login3.jpg" style="height: 100%;width: 100%">
-            </div>
+            </div> -->
         </div>
     </div>
 

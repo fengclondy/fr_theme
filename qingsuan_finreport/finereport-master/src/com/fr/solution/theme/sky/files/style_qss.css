@@ -1,3 +1,9 @@
+
+#fs-login-btn span {
+	display:none;
+}
+
+
 .node-navi{
 	position: relative;
 	float: right;
