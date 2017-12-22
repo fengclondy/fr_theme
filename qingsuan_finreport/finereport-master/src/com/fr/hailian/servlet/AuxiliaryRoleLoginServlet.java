@@ -66,6 +66,7 @@ public class AuxiliaryRoleLoginServlet extends BaseServlet {
 			password = java.net.URLDecoder.decode(hrequest.getParameter(Constants.FR_PASSWORD), "UTF-8");
 			//System.out.println("name:" + name + ",password:" + password);
 			User user = UserControl.getInstance().getByUserName(name);//获取用户对象
+			RoleUtil.judgeAuxiliaryRole(user);
 			//System.out.println("pwd:" + user.getPassword());
 			if (user != null) {
 				System.out.println("user:" + user);
@@ -87,38 +88,42 @@ public class AuxiliaryRoleLoginServlet extends BaseServlet {
 						r.put("msg", "密码错误!");
 					}
 				} else {
-					/**
-					 * 不是超级管理员
-					 * step1:统一身份认证userValidate 
-					 * step2:辅助决策系统权限认证
-					 * step3:生成登陆凭证
-					 */
-					//step1:统一身份认证userValidate 
-					Map<String, Object> userValid = PortalService.userValidate(name, password);
-					//System.out.println("userValid:" + userValid);
-					if (userValid != null && "1".equals(userValid.get("Result").toString())) {
-						//step2:辅助决策系统权限认证
-						if (RoleUtil.judgeAuxiliaryRole(user)) {
-							//step3:生成登陆凭证
-							/**
-							 * 两个系统密码或许不同 所以只要统一认证成功 本地更新密码 然后本地认证
-							 */
-							UserModel m = UserService.getInstance().getExistsUser(name);
-							m.setPassword(password);
-							UserService.getInstance().updateUser(m);
-							hrequest.setAttribute(Constants.FR_PASSWORD, m.getPassword());
-							//System.out.println(m.getPassword());
-							RoleUtil.loginCMD(hrequest, response);
-							r.put("fail", false);
-							r.put("msg", "登陆成功");
-						} else {
-							r.put("fail", true);
-							r.put("msg", "该用户没有辅助决策系统权限，请联系管理员!");
-						}
-					} else {
-						r.put("fail", true);
-						r.put("msg", "统一身份认证验证失败!");
-					}
+					RoleUtil.loginCMD(hrequest, response);
+					r.put("fail", false);
+					r.put("msg", "登陆成功");
+					//取消之前的判断逻辑
+//					/**
+//					 * 不是超级管理员
+//					 * step1:统一身份认证userValidate 
+//					 * step2:辅助决策系统权限认证
+//					 * step3:生成登陆凭证
+//					 */
+//					//step1:统一身份认证userValidate 
+//					Map<String, Object> userValid = PortalService.userValidate(name, password);
+//					//System.out.println("userValid:" + userValid);
+//					if (userValid != null && "1".equals(userValid.get("Result").toString())) {
+//						//step2:辅助决策系统权限认证
+//						if (RoleUtil.judgeAuxiliaryRole(user)) {
+//							//step3:生成登陆凭证
+//							/**
+//							 * 两个系统密码或许不同 所以只要统一认证成功 本地更新密码 然后本地认证
+//							 */
+//							UserModel m = UserService.getInstance().getExistsUser(name);
+//							m.setPassword(password);
+//							UserService.getInstance().updateUser(m);
+//							hrequest.setAttribute(Constants.FR_PASSWORD, m.getPassword());
+//							//System.out.println(m.getPassword());
+//							RoleUtil.loginCMD(hrequest, response);
+//							r.put("fail", false);
+//							r.put("msg", "登陆成功");
+//						} else {
+//							r.put("fail", true);
+//							r.put("msg", "该用户没有辅助决策系统权限，请联系管理员!");
+//						}
+//					} else {
+//						r.put("fail", true);
+//						r.put("msg", "统一身份认证验证失败!");
+//					}
 
 				}
 			} else {
@@ -129,7 +134,7 @@ public class AuxiliaryRoleLoginServlet extends BaseServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		responseOutWithJson(response, r);
+		//responseOutWithJson(response, r);
 	}
 
 	public void init() throws ServletException {

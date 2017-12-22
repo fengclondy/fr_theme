@@ -117,6 +117,7 @@ public class HlLoadLoginAction extends FSLoadLoginAction {
 		//return TemplateUtils.renderParameter4Tpl("${serverURL}${servletURL}?op=fs", para);
 		//        return TemplateUtils.renderParameter4Tpl("/WebReport/ReportServer?op=fs", para);
 		//tomcat做了虚拟目录配置，此处跳转地址去掉/WebReport
-		return TemplateUtils.renderParameter4Tpl(com.fr.hailian.core.Constants.CTX_PATH + "/ReportServer?op=fs", para);
+		//return TemplateUtils.renderParameter4Tpl(com.fr.hailian.core.Constants.CTX_PATH + "/ReportServer?op=fs", para);
+		return TemplateUtils.renderParameter4Tpl(com.fr.hailian.core.Constants.CTX_PATH + "/navigation/navigation.html", para);
 	}
 }

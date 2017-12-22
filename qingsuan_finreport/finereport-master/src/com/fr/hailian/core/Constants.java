@@ -39,4 +39,40 @@ public class Constants {
 	
 	public static final String RTX_TITLE = "多级上报未处理信息提醒";//RTX发送标题
 	public static final String RTX_CONTENT = "BI平台";//RTX发送内容
+	//连接GP数据库信息
+	public final static String JDBC_HUB = "jdbc:postgresql://172.16.6.61:5432/qdchedw";
+	public final static String JDBC_USER_HUB = "hub";
+	public final static String JDBC_USER_PWD_HUB = "hub@2017";
+	
+	public final static String FXSJ_AUDITING = "审批中";
+	public final static String FXSJ_AUDIT_FINISH = "审批完成";
+	public final static String FXSJ_AUDIT_REJECT = "审批驳回";
+	
+	public final static String MSG_USER = "qdqszx";
+	
+	public final static String MSG_USER_PWD = "b0ecbc94863ba01db82b67a3a4b01c7f";
+	
+	public final static String MSG_USER_SIGN = "监管预警平台";
+	
+	//测试的url地址
+	public final static String MSG_API_URL = "http://manager.wxtxsms.cn/smsport/feePost.aspx";
+	
+	//正式的url地址
+	//public final static String MSG_API_URL = "http://manager.wxtxsms.cn/smsport/sendPost.aspx";
+	//访问网址
+	public final static String WEB_URL = "http://144.123.36.214:10080/WebReport/QDCH/login.html ";
+	
+	public final static String[] MSG_MODEL = {
+			"防控预警平台提示：风险预警事件（编号NUM）已提交，请登录"+WEB_URL+"查看处理。",
+			"防控预警平台提示：您提交的风险预警事件（编号NUM）已驳回，请登录"+WEB_URL+"查看处理。",
+			"防控预警平台提示：一条风险预警事件（编号NUM）已上报，请登录系统"+WEB_URL+"查看处理。" };
+	//微信appid
+	public final static String APP_ID = "wx74f14108b8d653fa";
+	//微信appsecret
+	public final static String APP_SECRET = "39658d1df85ba6b515981611578c7270";
+	
+	public  final static String FTP_USER = "mysftp";
+	
+	public  final static String FTP_PWD = "MYsftp@123";
+	
 	}
