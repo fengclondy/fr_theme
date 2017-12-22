@@ -5,7 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+
+import com.fr.hailian.model.RoleMenuModel;
 import com.fr.hailian.util.C3P0Utils;
 
 /***
@@ -130,6 +134,38 @@ public class UserDataFromRoleService {
         rs.close();
         con.close();
 		return roleName;
+	}
+	/**
+	 * 根据自定义角色名称获取相应菜单信息
+	 * zuoqb
+	 * @param roleName:角色名称
+	 * @return
+	 * @throws SQLException
+	 */
+	public static List<RoleMenuModel> getMenuByRoleName(String roleName) throws SQLException{
+		Connection con = null;
+		List<RoleMenuModel> list=new ArrayList<RoleMenuModel>();
+        con = C3P0Utils.getInstance().getConnection();
+        String sql = "select p.name as pname,a.type||b.id as id,'0'||b.parent as pid,b.name,b.reportletpath ";
+        sql+=" from fr_t_customroleentryprivilege a inner join fr_reportletentry b ";
+        sql+=" on b.id=a.entryid left join fr_folderentry p on p.id=b.parent left join fr_t_customrole r on r.id=a.roleid ";
+        if(StringUtils.isNotBlank(roleName)){
+        	sql+=" where r.rolename like '%"+roleName+"%' ";
+        }
+        PreparedStatement ps = con.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+        	RoleMenuModel m=new RoleMenuModel();
+        	m.setId(rs.getString("id"));
+        	m.setName(rs.getString("name"));
+        	m.setPid(rs.getString("pid"));
+        	m.setPname(rs.getString("pname"));
+        	m.setReportletpath(rs.getString("reportletpath"));
+        	list.add(m);
+        }
+        rs.close();
+        con.close();
+		return list;
 	}
 
 }

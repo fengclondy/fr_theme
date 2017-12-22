@@ -14,15 +14,20 @@ var dealRole = '处理人';
 var auditRole = '审核人';
 //决策人角色
 var judgeRole = '决策人';
-
-
+var selectType=["大宗","权益","地方金融预警"];//选择类别角色名称
+var rolemenu;//当前大类对应菜单
 (function ($) {
+	getMenuByRoleName();
    FS.THEME = $.extend(true, FS.THEME, {
    			config4MenuTree: {
+   				/*onBeforeInit:function(element){
+   					//获取大宗 权益相应菜单
+   					getMenuByRoleName();
+   				},*/
 	   			onAfterNodeExpand: function(node, $node, $li){
 			   			if(node.level ==1){
 			   				var $treeIcon=$li.children('ul').find(".tree-icon");
-			   				//console.log(node)
+			   				console.log(node)
 			   				$.each($treeIcon,function(index,item){
 			   					$(item).removeClass("icon-tree-leaf icon-tree-frm icon-tree-cpt");
 			   					//放图片
@@ -64,75 +69,13 @@ var judgeRole = '决策人';
 	   			}*/
 	   		 onAfterNodeCreate:function(node, $node, $li){
 	               $li.attr("id","menu_id_"+node.id);
-	          
+	               //进行移除
+	               	if(!FS.config.isAdmin&&!judgeExsit(node)){
+	               		//删除
+	               		$li.remove();
+	               	}
 	            },
    			},
-   			
-   		/* config4MenuTree: {
-             onAfterNodeCreate:function(node, $node, $li){
-            	 node.level>1&&$node.css({'border-bottom': 'solid 1px rgb(59,79,98)'});
-                 if(node.isModule){
-                     //console.log($node.html());
-                     var icon = !node.nodeicon ? 'leaf' : node.nodeicon;
-                     var $icon = $node.find(".fs-menu-icon");
-                     $icon.empty();
-                     $('<i class="tree-icon" style="width:1.3em;height:1.3em;background:url(${servletURL}?op=resource&resource=/com/fr/solution/theme/sky/files/image/'+topMenuImage[0]+')"/>').appendTo($icon);//.addClass('icon-tree-'+icon);
-                 }
-                 $node.find('.icon-menu-b').removeClass('fui-fhc');
-                 var hasChildren = node.hasChildren && node.ChildNodes && node.ChildNodes.length>0;
-                 $node.attr('data-has-children',hasChildren);
-                 $node.find('span').not(".fs-menu-icon").not(".menutree-text").css("font-size","15px");
-                 if(hasChildren){
-                     $node.find('.fs-menu-icon').empty().html('<i class="icon-tree-fork"></i>');
-                 }
-             },
-          
-             onAfterInit:function(element){ // add menu collapse button
-                 var collapseBtn = $('<div id="fs-menu-collapse-btn" class="fs-menu-hide"/>')
-                     .click(function () {
-                         FS.CONSTS.Regions["west"].css("width", 0);
-                         FS._doResize();
-                         $(this).hide();
-                         $('#fs-menu-expend-btn').show();
-                     }).appendTo(FS.CONSTS.Regions["west"]);
-                 var collapseBtn = $('<div id="fs-menu-expend-btn" class="fs-menu-show"/>')
-                     .click(function () {
-                         FS.CONSTS.Regions["west"].css("width", FS.THEME.config4frame.west.width);
-                         FS._doResize();
-                         $(this).hide();
-                         $('#fs-menu-collapse-btn').show();
-                     })
-                     .appendTo(FS.CONSTS.Regions["east"]).hide();
-
-                 $('iframe').attr({allowtransparency:true,frameborder:'0',border:'0',marginheight:'0',marginwidth:'0'});
-             },
-             onAfterNodeExpand : function(node, $node, $li){
-                 //console.log("[onAfterNodeExpand]"+$node);
-                 if($node){
-                     $node.addClass('on');
-                     $node.find('.tree-icon').html('');
-                     //console.log($node.html());
-                 }
-                 if(node.level >= 1){
-			   			$li.children('ul').css({
-				   			'background': 'rgb(45,63,78)'	
-			   			});
-		   			}
-             },
-             onAfterNodeCollapse : function(node, $node, $li){
-                 //console.log("[onAfterNodeCollapse]"+$node);
-                 if($node){
-                     $node.find('.tree-icon').html('');
-                     $node.removeClass('on');
-                     //console.log($node.html());
-                 }
-                 if(node.level >= 1){
-			   			$li.children('ul').css({
-				   			'background': 'none'	
-			   			});
-		   			}
-             }
-         },*/
    			
             config4tabPane: {
                 style: 'alpha',
@@ -427,6 +370,47 @@ function setAllUnReadToRead(fr_path) {
 	}); 
 	return result;
 };
-
-
+/**
+ * 根据自定义角色名称获取对应菜单节点
+ */
+function getMenuByRoleName() {
+	var result=new Object();
+    var domain = path + '/getMenuByRoleName';
+	$.ajax({  
+		type: "POST",  
+		url: domain,  
+		data:{"roleName": encodeURIComponent(selectType[getQueryString("type")])},
+		dataType:"json", 
+		success: function(data){  
+			rolemenu = data.rolemenu;
+			console.log(rolemenu);
+			/*alert('调取成功')*/
+		},  
+		error: function(json){  
+			console.log(json);
+			result = json;
+		  /*  alert("调取失败");  */
+		}  
+	}); 
+	return result;
+};
+/**
+ * 判断当前节点是否应该显示
+ */
+function judgeExsit(node){
+	var isExist=false;
+	$.each(rolemenu,function(index,item){
+		if((node.id+"")==(item.pid+"")||(node.id+"")==(item.id+"")){
+			isExist=true;
+			return isExist
+		}
+	});
+	console.log(isExist)
+	return isExist;
+}
+function getQueryString(name){
+     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+     var r = window.location.search.substr(1).match(reg);
+     if(r!=null)return  unescape(r[2]); return null;
+}
 })(jQuery);
