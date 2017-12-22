@@ -18,6 +18,7 @@ var selectType=["大宗","权益","地方金融预警"];//选择类别角色名�
 var rolemenu;//当前大类对应菜单
 (function ($) {
 	getMenuByRoleName();
+	init();
    FS.THEME = $.extend(true, FS.THEME, {
    			config4MenuTree: {
    				/*onBeforeInit:function(element){
@@ -84,7 +85,6 @@ var rolemenu;//当前大类对应菜单
             },
             config4navigation: {
             	onAfterInit: function () {
-				init();
                 $("#fs-navi-message").remove();
                 $("#fs-frame-search").remove();
                 $("#fs-navi-favorite").remove();
@@ -258,9 +258,12 @@ function getUnReadFxsjCount(fr_path) {
     var domain = fr_path + '/notReadMsg';
     var audio=$("#audio").get(0);
 	console.log(domain);
+	var type=getQueryString("type");
+	type++;
 	$.ajax({  
 		type: "POST",  
 		url: domain,  
+		data:{"type":type},
 		dataType:"json", 
 		async:'false',
 		success: function(data){ 
@@ -268,6 +271,7 @@ function getUnReadFxsjCount(fr_path) {
 			var fxsj_num=alarmUnread;
 			console.log('beforefxsj_num------'+fxsj_num);
 			alarmUnread = data.unReadCount;
+			$(".fx_num").html(alarmUnread);
 			console.log('afters------'+alarmUnread);
 			/*风险事件增加时触发报警*/
 			if(fxsj_num<alarmUnread){
@@ -320,9 +324,12 @@ function getAllUnReadCount(fr_path) {
 	var result=new Object();
     var domain = fr_path + '/getAllUnReadMsg';
     console.log(domain);
+    var type=getQueryString("type");
+	type++;
 	$.ajax({  
 		type: "POST",  
 		url: domain,  
+		data:{"type":type},
 		dataType:"json", 
 		async:'false',
 		success: function(data){  
