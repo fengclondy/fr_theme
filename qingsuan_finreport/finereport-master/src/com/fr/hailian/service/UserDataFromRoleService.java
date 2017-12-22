@@ -149,7 +149,7 @@ public class UserDataFromRoleService {
         String sql = "select p.name as pname,a.type||b.id as id,'0'||b.parent as pid,b.name,b.reportletpath ";
         sql+=" from fr_t_customroleentryprivilege a inner join fr_reportletentry b ";
         sql+=" on b.id=a.entryid left join fr_folderentry p on p.id=b.parent left join fr_t_customrole r on r.id=a.roleid ";
-        if(StringUtils.isNotBlank(roleName)){
+        if(!"".equals(roleName)&&roleName!=null){
         	sql+=" where r.rolename like '%"+roleName+"%' ";
         }
         PreparedStatement ps = con.prepareStatement(sql);
