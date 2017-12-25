@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
 
+import com.alibaba.fastjson.JSONArray;
 import com.fr.hailian.core.BaseServlet;
 import com.fr.hailian.model.RoleMenuModel;
 import com.fr.hailian.service.UserDataFromRoleService;
@@ -51,12 +52,19 @@ public class RoleMenuServlet extends BaseServlet {
 	private void overwriteRoleMenu(HttpServletRequest request, HttpServletResponse response) {
 		JSONObject r = new JSONObject();
 		HttpServletRequest hrequest = (HttpServletRequest) request;//web资源
-		String roleName = "";
+		String roleType = "";
 		try {
-			roleName = java.net.URLDecoder.decode(hrequest.getParameter("roleName"), "UTF-8");
-			System.err.println(roleName);
+			//"大宗","权益"
+			roleType = hrequest.getParameter("roleType");
+			System.err.println(roleType);
+			String roleName="";
+			if("0".equals(roleType)){
+				roleName="大宗";
+			}else if("1".equals(roleType)){
+				roleName="权益";
+			}
 			List<RoleMenuModel> list=UserDataFromRoleService.getMenuByRoleName(roleName);
-			r.put("rolemenu", list);
+			r.put("rolemenu", JSONArray.toJSONString(list));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -14,7 +14,6 @@ var dealRole = '处理人';
 var auditRole = '审核人';
 //决策人角色
 var judgeRole = '决策人';
-var selectType=["大宗","权益","地方金融预警"];//选择类别角色名称
 var rolemenu;//当前大类对应菜单
 (function ($) {
 	getMenuByRoleName();
@@ -386,16 +385,17 @@ function getMenuByRoleName() {
 	$.ajax({  
 		type: "POST",  
 		url: domain,  
-		data:{"roleName": encodeURIComponent(selectType[getQueryString("type")])},
+		data:{"roleType": getQueryString("type")},
 		dataType:"json", 
 		success: function(data){  
-			rolemenu = data.rolemenu;
+			//rolemenu = eval("("+data.rolemenu+")");
+			rolemenu=JSON.parse(data.rolemenu);
 			console.log(rolemenu);
 			/*alert('调取成功')*/
 		},  
 		error: function(json){  
-			console.log(json);
-			result = json;
+			//console.log(json);
+			//result = json;
 		  /*  alert("调取失败");  */
 		}  
 	}); 
