@@ -24,7 +24,7 @@ var rolemenu;//当前大类对应菜单
    					getMenuByRoleName();
    				},*/
 	   			onAfterNodeExpand: function(node, $node, $li){
-			   			if(node.level ==1){
+			   			if(node.level==1){
 			   				var $treeIcon=$li.children('ul').find(".tree-icon");
 			   				console.log(node)
 			   				$.each($treeIcon,function(index,item){
@@ -97,10 +97,39 @@ var rolemenu;//当前大类对应菜单
                 var user_name=FS.config.username;
                 /*user_position 用户所属部门*/
 				var user_position=FS.config.position;
-				$('.emails_bac').on("click",function(){
-					$(this).toggleClass('emails_bac_click');
+				
+				var flag = false;
+				$('#qs_emails').on("click",function(){
+					flag = !flag;
+					$(".emails_bac").toggleClass('emails_bac_click');
+					if(flag){
+						console.log(flag);
+						$(".mail_num").css("color","rgb(0,176,244)");
+						
+					}else{
+						console.log(flag);
+						$(".mail_num").css("color","#fff");
+					}
+					
 				});
-				/* 添加返回导航页的Li*/
+				
+				$("#fs-navi-admin").on("click",function(){
+					if($('.emails_bac').hasClass("emails_bac_click")){
+						$('.emails_bac').removeClass("emails_bac_click");
+					}
+				
+					$(".mail_num").css("color","#fff");
+					flag = false;
+				});
+				$("#monitor").on("click",function(){
+					if($('.emails_bac').hasClass("emails_bac_click")){
+						$('.emails_bac').removeClass("emails_bac_click");
+					}
+				
+					$(".mail_num").css("color","#fff");
+					flag = false;
+				});
+				/* 添加返回导航页的 Li*/
 				$("#fs-navi-admin").on("click",function(){
 					var $nav_a = $("<a href='/WebReport/navigation/navigation.html' class='mynav'>导航页</a>");
 					if($(".mynav")){
@@ -199,16 +228,15 @@ function init(){
 function getRoleNameByUserName(fr_path) {
 	var result=new Object();
     var domain = fr_path + '/getRole';
-    console.log(domain);
+   // console.log(domain);
 	$.ajax({  
 		type: "POST",  
 		url: domain,  
 		dataType:"json", 
 		success: function(data){  
-			//console.log(data);
 			result = data;
 			roleName = data.roleName;
-			console.log(roleName);
+		//	console.log(roleName);
 			/*alert('调取成功')*/
 		},  
 		error: function(json){  
@@ -228,7 +256,6 @@ function getUnReadFxsjCount(fr_path) {
 	//fr_path为空使用默认地址
     var domain = fr_path + '/notReadMsg';
     var audio=$("#audio").get(0);
-	//console.log(domain);
 	var type=getQueryString("type");
 	type++;
 	$.ajax({  
@@ -239,10 +266,10 @@ function getUnReadFxsjCount(fr_path) {
 		success: function(data){ 
 			result = data;
 			var fxsj_num=alarmUnread;
-			console.log('beforefxsj_num------'+fxsj_num);
+			//console.log('beforefxsj_num------'+fxsj_num);
 			alarmUnread = data.unReadCount;
 			$(".fx_num").html(alarmUnread);
-			console.log('afters------'+alarmUnread);
+			//console.log('afters------'+alarmUnread);
 			/*风险事件增加时触发报警*/
 			if(fxsj_num<alarmUnread){
 				audio.play();
@@ -263,8 +290,6 @@ function getUnReadFxsjCount(fr_path) {
 function setUnReadFxsjToRead(fr_path) {
 	var result=new Object();
     var domain = fr_path + '/readMsg';
-    var type=getQueryString("type");
-	type++;
 	$.ajax({  
 		type: "POST",  
 		url: domain,  
@@ -278,10 +303,8 @@ function setUnReadFxsjToRead(fr_path) {
 			$(".fx_num").html(alarmUnread);
 			//console.log('风险事件未读数变0');
 			//console.log(alarmUnread);
-			/*alert('调取成功')*/
 		},  
 		error: function(json){  
-			//console.log(json);
 			result = json;
 		  /*  alert("调取失败");  */
 		}  
@@ -295,7 +318,6 @@ function setUnReadFxsjToRead(fr_path) {
 function getAllUnReadCount(fr_path) {
 	var result=new Object();
     var domain = fr_path + '/getAllUnReadMsg';
-    //console.log(domain);
     var type=getQueryString("type");
 	type++;
 	$.ajax({  
