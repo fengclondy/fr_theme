@@ -16,8 +16,7 @@ var auditRole = '审核人';
 var judgeRole = '决策人';
 var rolemenu;//当前大类对应菜单
 (function ($) {
-	getMenuByRoleName();
-	init();
+   init();
    FS.THEME = $.extend(true, FS.THEME, {
    			config4MenuTree: {
    				/*onBeforeInit:function(element){
@@ -132,7 +131,7 @@ var rolemenu;//当前大类对应菜单
 					
 					//将未读消息变已读
 					setUnReadFxsjToRead(path);
-					getUnReadFxsjCount(path);    
+					//getUnReadFxsjCount(path);    
 					
 				})
 			/*	
@@ -151,31 +150,21 @@ var rolemenu;//当前大类对应菜单
 					$('#menu_id_097').find('a').trigger('click');
 				}
 				$(".mail_num").html(0);
-				if(roleName==dealRole){
-					$('#menu_id_2689').find('a').trigger('click');
-				}else if(roleName==auditRole){
-					$('#menu_id_2685').find('a').trigger('click');
-				}else if(roleName==judgeRole){
-					$('#menu_id_2690').find('a').trigger('click');
-				}else{
-					console.log('角色不匹配');
-				
+				if(roleName!=null){
+					if(roleName.indexOf(dealRole)!=-1){
+						$('#menu_id_2689').find('a').trigger('click');
+					}else if(roleName.indexOf(auditRole)!=-1){
+						$('#menu_id_2685').find('a').trigger('click');
+					}else if(roleName.indexOf(judgeRole)!=-1){
+						$('#menu_id_2690').find('a').trigger('click');
+					}else{
+						console.log('角色不匹配');
+						
+					}
 				}
-				getAllUnReadCount(path);
+				//getAllUnReadCount(path);
 				setAllUnReadToRead(path);
                });
-				
-				/* $('#menu_id_2689 a').addEventListener('click',function(){
-					 setAllUnReadToRead(path);
-	             });
-	             
-				 $('#menu_id_2685 a').addEventListener('click',function(){
-					 setAllUnReadToRead(path);
-	             });
-	             
-				 $('#menu_id_2689 a').addEventListener('click',function(){
-					 setAllUnReadToRead(path);
-	             });*/
             }
            },
           //框架布局配置属性  
@@ -191,33 +180,16 @@ var rolemenu;//当前大类对应菜单
    			
         });
    
-   /*定时调取数据  风险事件条数*/
-   setInterval(function(){
-	   var fxsj_num=alarmUnread;
-	 
-	   console.log('*********'+fxsj_num)
-	   getUnReadFxsjCount(path);
-			/*var audio=$("#audio").get(0);
-			console.log(audio);
-			
-			console.log('@@@@@@@@@@@'+alarmUnread)
-			if(fxsj_num!=alarmUnread){
-				console.log("++++++++++++++++++++++")
-				audio.play();
-			}
-	*/
-		getAllUnReadCount(path);
-		
-		$(".fx_num").html(alarmUnread);
-		$(".mail_num").html(mailUnread);
-		
-   },10000);
 function init(){
-	getRoleNameByUserName(path); 
+	getMenuByRoleName();
+	getRoleNameByUserName(path);
 	getUnReadFxsjCount(path);
 	getAllUnReadCount(path);
-	$(".fx_num").html(alarmUnread);
-	$(".mail_num").html(mailUnread);
+	/*定时调取数据  风险事件条数*/
+	setInterval(function(){
+		getUnReadFxsjCount(path);
+		getAllUnReadCount(path);
+	},10000);
 };
 /**
  * 通过username获取角色名
@@ -233,7 +205,7 @@ function getRoleNameByUserName(fr_path) {
 		url: domain,  
 		dataType:"json", 
 		success: function(data){  
-			console.log(data);
+			//console.log(data);
 			result = data;
 			roleName = data.roleName;
 			console.log(roleName);
@@ -256,7 +228,7 @@ function getUnReadFxsjCount(fr_path) {
 	//fr_path为空使用默认地址
     var domain = fr_path + '/notReadMsg';
     var audio=$("#audio").get(0);
-	console.log(domain);
+	//console.log(domain);
 	var type=getQueryString("type");
 	type++;
 	$.ajax({  
@@ -264,7 +236,6 @@ function getUnReadFxsjCount(fr_path) {
 		url: domain,  
 		data:{"type":type},
 		dataType:"json", 
-		async:'false',
 		success: function(data){ 
 			result = data;
 			var fxsj_num=alarmUnread;
@@ -292,23 +263,25 @@ function getUnReadFxsjCount(fr_path) {
 function setUnReadFxsjToRead(fr_path) {
 	var result=new Object();
     var domain = fr_path + '/readMsg';
-	console.log(domain);
+    var type=getQueryString("type");
+	type++;
 	$.ajax({  
 		type: "POST",  
 		url: domain,  
 		dataType:"json", 
-		async:'false',
+		data:{"type":type},
 		success: function(data){  
-			console.log(data);
+			//console.log(data);
 			result = data;
 			//成功变0
 			alarmUnread = 0;
-			console.log('风险事件未读数变0');
-			console.log(alarmUnread);
+			$(".fx_num").html(alarmUnread);
+			//console.log('风险事件未读数变0');
+			//console.log(alarmUnread);
 			/*alert('调取成功')*/
 		},  
 		error: function(json){  
-			console.log(json);
+			//console.log(json);
 			result = json;
 		  /*  alert("调取失败");  */
 		}  
@@ -322,7 +295,7 @@ function setUnReadFxsjToRead(fr_path) {
 function getAllUnReadCount(fr_path) {
 	var result=new Object();
     var domain = fr_path + '/getAllUnReadMsg';
-    console.log(domain);
+    //console.log(domain);
     var type=getQueryString("type");
 	type++;
 	$.ajax({  
@@ -330,16 +303,13 @@ function getAllUnReadCount(fr_path) {
 		url: domain,  
 		data:{"type":type},
 		dataType:"json", 
-		async:'false',
 		success: function(data){  
-			console.log(data);
 			result = data;
 			mailUnread = data.unReadAllCount;
-			console.log(mailUnread);
+			$(".mail_num").html(mailUnread);
 			/*alert('调取成功')*/
 		},  
 		error: function(json){  
-			console.log(json);
 			result = json;
 		  /*  alert("调取失败");  */
 		}  
@@ -353,7 +323,7 @@ function getAllUnReadCount(fr_path) {
 function setAllUnReadToRead(fr_path) {
 	var result=new Object();
     var domain = fr_path + '/readAllUnReadMsg';
-    console.log(domain);
+    //console.log(domain);
 	$.ajax({  
 		type: "POST",  
 		url: domain,  
@@ -364,8 +334,8 @@ function setAllUnReadToRead(fr_path) {
 			result = data;
 			//成功变0
 			mailUnread = 0;
-			console.log('信息未读数变0');
-			console.log(mailUnread);
+			//console.log('信息未读数变0');
+			//console.log(mailUnread);
 			/*alert('调取成功')*/
 		},  
 		error: function(json){  
@@ -412,7 +382,7 @@ function judgeExsit(node){
 			return isExist
 		}
 	});
-	console.log(isExist)
+	//console.log(isExist)
 	return isExist;
 }
 function getQueryString(name){
