@@ -63,7 +63,7 @@ public class RoleMenuServlet extends BaseServlet {
 			}else if("1".equals(roleType)){
 				roleName="权益";
 			}
-			List<RoleMenuModel> list=UserDataFromRoleService.getMenuByRoleName(roleName);
+			List<RoleMenuModel> list=UserDataFromRoleService.getMenuByRoleName(request,roleName);
 			r.put("rolemenu", JSONArray.toJSONString(list));
 		} catch (Exception e) {
 			e.printStackTrace();

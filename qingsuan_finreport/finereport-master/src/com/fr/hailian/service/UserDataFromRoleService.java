@@ -7,10 +7,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang.StringUtils;
 
 import com.fr.hailian.model.RoleMenuModel;
 import com.fr.hailian.util.C3P0Utils;
+import com.fr.hailian.util.RoleUtil;
 
 /***
  * 通过角色获取用户信息
@@ -142,16 +145,19 @@ public class UserDataFromRoleService {
 	 * @return
 	 * @throws SQLException
 	 */
-	public static List<RoleMenuModel> getMenuByRoleName(String roleName) throws SQLException{
+	public static List<RoleMenuModel> getMenuByRoleName(HttpServletRequest request,String roleName) throws SQLException{
 		Connection con = null;
 		List<RoleMenuModel> list=new ArrayList<RoleMenuModel>();
         con = C3P0Utils.getInstance().getConnection();
         String sql = "select p.name as pname,a.type||b.id as id,'0'||b.parent as pid,b.name,b.reportletpath ";
         sql+=" from fr_t_customroleentryprivilege a inner join fr_reportletentry b ";
         sql+=" on b.id=a.entryid left join fr_folderentry p on p.id=b.parent left join fr_t_customrole r on r.id=a.roleid ";
+        sql+=" left join fr_t_customrole_user t on r.id = t.customroleid  where 1=1 ";
         if(!"".equals(roleName)&&roleName!=null){
-        	sql+=" where r.rolename like '%"+roleName+"%' ";
+        	sql+="  and r.rolename like '%"+roleName+"%' ";
         }
+        long userId = RoleUtil.getCurrentUser(request).getId();
+        sql+=" and t.userid='"+userId+"'";
         PreparedStatement ps = con.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
