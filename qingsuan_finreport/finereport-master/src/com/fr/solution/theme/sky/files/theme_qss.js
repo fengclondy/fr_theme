@@ -98,36 +98,37 @@ var rolemenu;//当前大类对应菜单
                 /*user_position 用户所属部门*/
 				var user_position=FS.config.position;
 				
-				var flag = false;
 				$('#qs_emails').on("click",function(){
-					flag = !flag;
-					$(".emails_bac").toggleClass('emails_bac_click');
-					if(flag){
-						console.log(flag);
-						$(".mail_num").css("color","rgb(0,176,244)");
-						
-					}else{
-						console.log(flag);
-						$(".mail_num").css("color","#fff");
-					}
+					$(".mail_num").css("color","rgb(0,176,244)");
+					$(".emails_bac").addClass('emails_bac_click');
 					
-				});
-				
-				$("#fs-navi-admin").on("click",function(){
-					if($('.emails_bac').hasClass("emails_bac_click")){
-						$('.emails_bac').removeClass("emails_bac_click");
-					}
-				
+				}).on("mouseleave",function(){
 					$(".mail_num").css("color","#fff");
-					flag = false;
+					$(".emails_bac").removeClass('emails_bac_click');
 				});
-				$("#monitor").on("click",function(){
-					if($('.emails_bac').hasClass("emails_bac_click")){
-						$('.emails_bac').removeClass("emails_bac_click");
+				$('#monitor').on("click",function(){
+					$(".fx_num").css("color","rgb(0,176,244)");
+					$(this).addClass('fui-bsc');
+					console.log("zuo");
+					//如果存在二级目录
+					if($('#menu_id_097').find('ul').length!=0){
+						//将二级菜单显示
+						$('#menu_id_097').find('ul').css('display','block');
+					}else{
+						//如果没有则触发
+						$('#menu_id_097').find('a').trigger('click');										
 					}
+					$(".fx_num").html(0);
 				
-					$(".mail_num").css("color","#fff");
-					flag = false;
+					//风险事件不需要判断角色类型
+					$('#menu_id_2683').find('a').trigger('click');
+					
+					//将未读消息变已读
+					setUnReadFxsjToRead(path);
+					
+				}).on("mouseleave",function(){
+					$(".fx_num").css("color","#fff");
+					$(this).removeClass('fui-bsc');
 				});
 				/* 添加返回导航页的 Li*/
 				$("#fs-navi-admin").on("click",function(){
@@ -143,7 +144,7 @@ var rolemenu;//当前大类对应菜单
 				
 				//console.log(navLi);
 				
-				$('body').on('click','#monitor',function(){
+				/*$('body').on('click','#monitor',function(){
 					
 					//如果存在二级目录
 					if($('#menu_id_097').find('ul').length!=0){
@@ -162,7 +163,7 @@ var rolemenu;//当前大类对应菜单
 					setUnReadFxsjToRead(path);
 					//getUnReadFxsjCount(path);    
 					
-				})
+				})*/
 			/*	
             $('#menu_id_2683 a').addEventListener('click',function(){
 		            	 setUnReadFxsjToRead(path);
