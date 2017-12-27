@@ -291,6 +291,8 @@ function getUnReadFxsjCount(fr_path) {
 function setUnReadFxsjToRead(fr_path) {
 	var result=new Object();
     var domain = fr_path + '/readMsg';
+    var type=getQueryString("type");
+	type++;
 	$.ajax({  
 		type: "POST",  
 		url: domain,  
