@@ -9,6 +9,8 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
+import com.fr.hailian.service.SplitWordsService;
+
 /**
  * 
  * @className FRFilter.java
@@ -29,14 +31,18 @@ public class FRFilter implements Filter {
 
 	public void init(FilterConfig arg0) throws ServletException {
 		System.out.println("拦截器例子初始化.....");
+		
+		
 		// run in a second  
-        final long timeInterval = 1000*60*5;  
+        final long timeInterval = 2000;  
         Runnable runnable = new Runnable() {  
             public void run() {  
                 while (true) {  
                     // ------- code for task to run  
                     //System.out.println("Hello !!");  
                     // ------- ends here  
+                	SplitWordsService split = new SplitWordsService();
+            		split.doSplitWords();
                     try {  
                         Thread.sleep(timeInterval);  
                     } catch (InterruptedException e) {  
