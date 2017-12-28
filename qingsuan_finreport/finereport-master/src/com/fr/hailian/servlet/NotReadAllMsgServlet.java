@@ -58,15 +58,19 @@ public class NotReadAllMsgServlet extends BaseServlet{
 			long count = 0L;
 			//判断当前用户为何种角色，通过角色去寻找当前的用户
 			//如果是处理人，总的未读数应该加上风险事件数
-			if(KeyUtil.getKeyValue("DZ").equals(roleName)){
+			if(KeyUtil.getKeyValue("DZCLR").equals(roleName)){
 				count = notReadAllMsg.getUnReadAllMsgCount("DEAL",type);
 				count += notReadMsg.getUnReadMsgCount(userName,type);
-			}else if(KeyUtil.getKeyValue("QY").equals(roleName)){
+			}else if(KeyUtil.getKeyValue("QYCLR").equals(roleName)){
 				count = notReadAllMsg.getUnReadAllMsgCount("DEAL",type);
 				count += notReadMsg.getUnReadMsgCount(userName,type);
-			}else if(KeyUtil.getKeyValue("SH").equals(roleName)){
+			}else if(KeyUtil.getKeyValue("DZSHR").equals(roleName)){
 				count = notReadAllMsg.getUnReadAllMsgCount("AUDIT",type);
-			}else if(KeyUtil.getKeyValue("JC").equals(roleName)){
+			}else if(KeyUtil.getKeyValue("QYSHR").equals(roleName)){
+				count = notReadAllMsg.getUnReadAllMsgCount("AUDIT",type);
+			}else if(KeyUtil.getKeyValue("DZJCR").equals(roleName)){
+				count = notReadAllMsg.getUnReadAllMsgCount("JUDGE",type);
+			}else if(KeyUtil.getKeyValue("QYJCR").equals(roleName)){
 				count = notReadAllMsg.getUnReadAllMsgCount("JUDGE",type);
 			}
 			//先获取消息总数

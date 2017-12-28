@@ -118,13 +118,15 @@ var rolemenu;//当前大类对应菜单
 						//如果没有则触发
 						$('#menu_id_097').find('a').trigger('click');										
 					}
-					$(".fx_num").html(0);
+					//显示不清零
+					//$(".fx_num").html(0);
 				
 					//风险事件不需要判断角色类型
 					$('#menu_id_2683').find('a').trigger('click');
 					
 					//将未读消息变已读
-					setUnReadFxsjToRead(path);
+					//显示不清零
+					//setUnReadFxsjToRead(path);
 					
 				}).on("mouseleave",function(){
 					$(".fx_num").css("color","#fff");
@@ -179,7 +181,8 @@ var rolemenu;//当前大类对应菜单
 					//如果没有则触发
 					$('#menu_id_097').find('a').trigger('click');
 				}
-				$(".mail_num").html(0);
+				//显示数不清零
+				//$(".mail_num").html(0);
 				if(roleName!=null){
 					if(roleName.indexOf(dealRole)!=-1){
 						$('#menu_id_2689').find('a').trigger('click');
@@ -193,7 +196,8 @@ var rolemenu;//当前大类对应菜单
 					}
 				}
 				//getAllUnReadCount(path);
-				setAllUnReadToRead(path);
+				//显示数不清零
+				//setAllUnReadToRead(path);
                });
             }
            },
