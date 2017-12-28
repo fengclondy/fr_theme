@@ -52,6 +52,8 @@ public class NotReadMsgService {
 	}
 	/***
 	 * 获取未读的条数
+	 * 
+	 * 2017-12-28 17:40:56 变更为只根据状态查询风险事件数
 	 * @param userid
 	 * @return
 	 * @throws ClassNotFoundException
@@ -60,20 +62,21 @@ public class NotReadMsgService {
 	public long getUnReadMsgCount(String userid,String type) throws ClassNotFoundException, SQLException{
 		Connection conn = JDBCUtil.getConnection();
 		Statement st = conn.createStatement();
-		String sql = "select count(0) from hub_fxsj where jysfl = '"+type+"'";
-		String sql2 = "select count(0) from hub_fxsj_read where userid='"+userid+"' and jysfl='"+type+"'";
+		String sql = "select count(0) from hub_fxsj where clzt='未处理' and jysfl = '"+type+"'";
+		//String sql2 = "select count(0) from hub_fxsj_read where userid='"+userid+"' and jysfl='"+type+"'";
 		ResultSet rs = st.executeQuery(sql);
 		rs.next();
 		long all = rs.getLong(1);
 		rs.close();
-		ResultSet rs2 = st.executeQuery(sql2);
+		/*ResultSet rs2 = st.executeQuery(sql2);
 		rs2.next();
 		long read = rs2.getLong(1);
 		rs2.close();
-		long unRead = all - read;
+		long unRead = all - read;*/
 		st.close();
 		JDBCUtil.closeConnection(conn);
-		return (unRead<0)?0L:unRead;
+		//return (unRead<0)?0L:unRead;
+		return all;
 	}
 	
 
