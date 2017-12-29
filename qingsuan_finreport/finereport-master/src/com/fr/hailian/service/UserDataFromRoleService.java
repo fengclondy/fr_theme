@@ -131,9 +131,9 @@ public class UserDataFromRoleService {
         ResultSet rs = ps.executeQuery();
         String roleName = "";
         while (rs.next()) {
-            System.out.println("获取到的用户角色名："+rs.getString("ROLENAME"));
-            roleName = rs.getString("ROLENAME");
+            roleName += rs.getString("ROLENAME");
         }
+        System.out.println("获取到的用户角色名："+roleName);
         rs.close();
         con.close();
 		return roleName;

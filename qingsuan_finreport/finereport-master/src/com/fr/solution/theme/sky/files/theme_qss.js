@@ -8,12 +8,18 @@ var roleName;
 var alarmUnread = 0;
 //信封未读数
 var mailUnread = 0;
-//处理人角色
-var dealRole = '处理人';
-//审核人角色
-var auditRole = '审核人';
-//决策人角色
-var judgeRole = '决策人';
+//大宗处理人角色
+var dealRole = '大宗风控经理';
+//大宗审核人角色
+var auditRole = '大宗风控总监';
+//大宗决策人角色
+var judgeRole = '大宗政府';
+//权益处理人角色
+var qyDealRole = '权益风控经理';
+//权益审核人角色
+var qyAuditRole = '权益风控总监';
+//权益决策人角色
+var qyJudgeRole = '权益政府';
 var rolemenu;//当前大类对应菜单
 (function ($) {
    init();
@@ -111,18 +117,25 @@ var rolemenu;//当前大类对应菜单
 					$(this).addClass('fui-bsc');
 					console.log("zuo");
 					//如果存在二级目录
-					if($('#menu_id_097').find('ul').length!=0){
+					if($('#menu_id_098').find('ul').length!=0){
 						//将二级菜单显示
-						$('#menu_id_097').find('ul').css('display','block');
+						$('#menu_id_098').find('ul').css('display','block');
 					}else{
 						//如果没有则触发
-						$('#menu_id_097').find('a').trigger('click');										
+						$('#menu_id_098').find('a').trigger('click');										
 					}
 					//显示不清零
 					//$(".fx_num").html(0);
 				
 					//风险事件不需要判断角色类型
-					$('#menu_id_2683').find('a').trigger('click');
+					//需要判断大宗还是权益
+					var type=getQueryString("type");
+					if(type==0){
+						$('#menu_id_2710').find('a').trigger('click');
+					}else if(type==1){
+						$('#menu_id_2748').find('a').trigger('click');
+					}
+					
 					
 					//将未读消息变已读
 					//显示不清零
@@ -174,25 +187,31 @@ var rolemenu;//当前大类对应菜单
                $("#qs_emails").click(function(){
             	   
 				//如果存在二级目录
-				if($('#menu_id_097').find('ul').length!=0){
+				if($('#menu_id_098').find('ul').length!=0){
 					//将二级菜单显示
-					$('#menu_id_097').find('ul').css('display','block');
+					$('#menu_id_098').find('ul').css('display','block');
 				}else{
 					//如果没有则触发
-					$('#menu_id_097').find('a').trigger('click');
+					$('#menu_id_098').find('a').trigger('click');
 				}
 				//显示数不清零
 				//$(".mail_num").html(0);
 				if(roleName!=null){
 					if(roleName.indexOf(dealRole)!=-1){
-						$('#menu_id_2689').find('a').trigger('click');
+						$('#menu_id_2712').find('a').trigger('click');
 					}else if(roleName.indexOf(auditRole)!=-1){
-						$('#menu_id_2685').find('a').trigger('click');
+						$('#menu_id_2714').find('a').trigger('click');
 					}else if(roleName.indexOf(judgeRole)!=-1){
-						$('#menu_id_2690').find('a').trigger('click');
+						$('#menu_id_2713').find('a').trigger('click');
+					}else if(roleName.indexOf(qyDealRole)!=-1){
+						$('#menu_id_2750').find('a').trigger('click');
+					}else if(roleName.indexOf(qyAuditRole)!=-1){
+						$('#menu_id_2751').find('a').trigger('click');
+					}else if(roleName.indexOf(qyJudgeRole)!=-1){
+						$('#menu_id_2752').find('a').trigger('click');
 					}else{
 						console.log('角色不匹配');
-						
+						FR.Msg.toast('您没有要处理的事件');
 					}
 				}
 				//getAllUnReadCount(path);
