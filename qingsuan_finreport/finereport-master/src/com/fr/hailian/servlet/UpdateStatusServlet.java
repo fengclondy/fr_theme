@@ -62,10 +62,10 @@ public class UpdateStatusServlet extends BaseServlet{
 				System.out.println("发送号码："+phoneNum);
 				System.out.println("状态驳回");
 				//发送驳回短信
-				//SendMsgUtil.sentMsg(fxsjId, 1, phoneNum);
+				SendMsgUtil.sentMsg(fxsjId, 1, phoneNum);
 			}else if(KeyUtil.getKeyValue("SB").equals(status)){
 				//通过直接给上级发送短信 2
-				phoneNum = user.getUserPhoneByRoleName(KeyUtil.getKeyValue("JC"));
+				phoneNum = user.getUserPhoneByRoleName(KeyUtil.getKeyValue("DZJCR"));
 				//String phoneNum = "123";
 				//SendMsgUtil.sentMsg(fxsjId, 2, phoneNum);
 				//System.out.println("发送号码："+phoneNum);
@@ -90,12 +90,12 @@ public class UpdateStatusServlet extends BaseServlet{
 				//String phoneNum = update.doUpdateStatus(fxsjId);
 				System.out.println("发送号码："+phoneNum);
 				//发送驳回短信
-				SendMsgUtil.sentMsg(fxsjId, 1, phoneNum);
+				//SendMsgUtil.sentMsg(fxsjId, 1, phoneNum);
 			}else if(KeyUtil.getKeyValue("SB").equals(status)){
 				//通过直接给上级发送短信 2
 				//phoneNum = user.getUserPhoneByRoleName(KeyUtil.getKeyValue("JC"));
 				//String phoneNum = "123";
-				SendMsgUtil.sentMsg(fxsjId, 2, phoneNum);
+				//SendMsgUtil.sentMsg(fxsjId, 2, phoneNum);
 				System.out.println("发送号码："+phoneNum);
 			}else{
 				System.out.println("已排查，不用发送");

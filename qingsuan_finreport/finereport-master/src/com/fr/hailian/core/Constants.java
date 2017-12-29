@@ -55,10 +55,10 @@ public class Constants {
 	public final static String MSG_USER_SIGN = "监管预警平台";
 	
 	//测试的url地址
-	public final static String MSG_API_URL = "http://manager.wxtxsms.cn/smsport/feePost.aspx";
+	//public final static String MSG_API_URL = "http://manager.wxtxsms.cn/smsport/feePost.aspx";
 	
 	//正式的url地址
-	//public final static String MSG_API_URL = "http://manager.wxtxsms.cn/smsport/sendPost.aspx";
+	public final static String MSG_API_URL = "http://manager.wxtxsms.cn/smsport/sendPost.aspx";
 	//访问网址
 	public final static String WEB_URL = "http://144.123.36.214:10080/WebReport/QDCH/login.html ";
 	

@@ -27,7 +27,7 @@ public class SendMsgUtil {
 	}
 	
 	public static void main(String[] args){
-		String result = sentMsg("111",1,"");
+		String result = sentMsg("123",2,"18660286401");
 		System.out.println(result);
 	}
 

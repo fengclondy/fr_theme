@@ -49,13 +49,15 @@ public class SendMsgServlet extends BaseServlet{
 			String status = update.getStatusById(fxsjId);
 			//如果状态已提交，发给审核人
 			if(KeyUtil.getKeyValue("YTJ").equals(status)){
-				String phoneNum = user.getUserPhoneByRoleName(KeyUtil.getKeyValue("SH"));
+				String phoneNum = user.getUserPhoneByRoleName(KeyUtil.getKeyValue("DZSHR"));
 				System.out.println("获取手机号码："+phoneNum);
-				SendMsgUtil.sentMsg(fxsjId, 0, phoneNum);
+				String res = SendMsgUtil.sentMsg(fxsjId, 0, phoneNum);
+				System.out.println("短信返回值："+res);
 			}else if(KeyUtil.getKeyValue("YSB").equals(status)){
-				String phoneNum = user.getUserPhoneByRoleName(KeyUtil.getKeyValue("JC"));
+				String phoneNum = user.getUserPhoneByRoleName(KeyUtil.getKeyValue("DZJCR"));
 				System.out.println("获取手机号码："+phoneNum);
-				SendMsgUtil.sentMsg(fxsjId, 2, phoneNum);
+				String res = SendMsgUtil.sentMsg(fxsjId, 2, phoneNum);
+				System.out.println("短信返回值："+res);
 			}else{
 				System.out.println("-------没有匹配到状态"+status+"---------");
 				System.out.println("-------风险事件id"+fxsjId+"---------");
