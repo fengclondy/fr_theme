@@ -27,7 +27,7 @@ public class NotReadAllMsgService {
 		Connection conn = JDBCUtil.getConnection();
 		Statement st = conn.createStatement();
 		String sqlin = KeyUtil.getKeyValue(key);
-		String sql = "select count(0) from hub_fxsj_audit_new WHERE clzt in ("+sqlin+") and jysfl = '"+type+"'";
+		String sql = "select count(0) from hub_fxsj WHERE clzt in ("+sqlin+") and jysfl = '"+type+"'";
 		//String sql2 = "select count(0) from hub_fxsj_audit_new_read WHERE clzt in ("+sqlin+") and type = '"+type+"'";
 		ResultSet rs = st.executeQuery(sql);
 		rs.next();

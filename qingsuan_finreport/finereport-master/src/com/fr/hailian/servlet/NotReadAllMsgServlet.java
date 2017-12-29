@@ -10,7 +10,6 @@ import org.json.JSONObject;
 
 import com.fr.hailian.core.BaseServlet;
 import com.fr.hailian.service.NotReadAllMsgService;
-import com.fr.hailian.service.NotReadMsgService;
 import com.fr.hailian.service.UserDataFromRoleService;
 import com.fr.hailian.util.KeyUtil;
 import com.fr.hailian.util.RoleUtil;
@@ -43,9 +42,9 @@ public class NotReadAllMsgServlet extends BaseServlet{
 		JSONObject r = new JSONObject();
 		NotReadAllMsgService notReadAllMsg = new NotReadAllMsgService();
 		UserDataFromRoleService user = new UserDataFromRoleService();
-		NotReadMsgService notReadMsg = new NotReadMsgService();
+		//NotReadMsgService notReadMsg = new NotReadMsgService();
 		long userId = RoleUtil.getCurrentUser(hrequest).getId();
-		String userName = RoleUtil.getCurrentUser(hrequest).getUsername();
+		//String userName = RoleUtil.getCurrentUser(hrequest).getUsername();
 		//String userName = "Test";
 		try {
 			//name = java.net.URLDecoder.decode(hrequest.getParameter("username"), "UTF-8");
@@ -60,10 +59,10 @@ public class NotReadAllMsgServlet extends BaseServlet{
 			//如果是处理人，总的未读数应该加上风险事件数
 			if(roleName.contains(KeyUtil.getKeyValue("DZCLR"))){
 				count = notReadAllMsg.getUnReadAllMsgCount("DEAL",type);
-				count += notReadMsg.getUnReadMsgCount(userName,type);
+				//count += notReadMsg.getUnReadMsgCount(userName,type);
 			}else if(roleName.contains(KeyUtil.getKeyValue("QYCLR"))){
 				count = notReadAllMsg.getUnReadAllMsgCount("DEAL",type);
-				count += notReadMsg.getUnReadMsgCount(userName,type);
+				//count += notReadMsg.getUnReadMsgCount(userName,type);
 			}else if(roleName.contains(KeyUtil.getKeyValue("DZSHR"))){
 				count = notReadAllMsg.getUnReadAllMsgCount("AUDIT",type);
 			}else if(roleName.contains(KeyUtil.getKeyValue("QYSHR"))){
