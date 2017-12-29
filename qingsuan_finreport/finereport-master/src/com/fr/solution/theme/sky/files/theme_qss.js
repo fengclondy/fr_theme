@@ -21,6 +21,7 @@ var qyAuditRole = '权益风控总监';
 //权益决策人角色
 var qyJudgeRole = '权益政府';
 var rolemenu;//当前大类对应菜单
+var menuId;//获取所有菜单的id，通过json文件
 (function ($) {
    init();
    FS.THEME = $.extend(true, FS.THEME, {
@@ -117,12 +118,12 @@ var rolemenu;//当前大类对应菜单
 					$(this).addClass('fui-bsc');
 					console.log("zuo");
 					//如果存在二级目录
-					if($('#menu_id_098').find('ul').length!=0){
+					if($(menuId.ROOT).find('ul').length!=0){
 						//将二级菜单显示
-						$('#menu_id_098').find('ul').css('display','block');
+						$(menuId.ROOT).find('ul').css('display','block');
 					}else{
 						//如果没有则触发
-						$('#menu_id_098').find('a').trigger('click');										
+						$(menuId.ROOT).find('a').trigger('click');										
 					}
 					//显示不清零
 					//$(".fx_num").html(0);
@@ -131,9 +132,9 @@ var rolemenu;//当前大类对应菜单
 					//需要判断大宗还是权益
 					var type=getQueryString("type");
 					if(type==0){
-						$('#menu_id_2710').find('a').trigger('click');
+						$(menuId.DZFXSJ).find('a').trigger('click');
 					}else if(type==1){
-						$('#menu_id_2748').find('a').trigger('click');
+						$(menuId.QYFXSJ).find('a').trigger('click');
 					}
 					
 					
@@ -187,28 +188,28 @@ var rolemenu;//当前大类对应菜单
                $("#qs_emails").click(function(){
             	   
 				//如果存在二级目录
-				if($('#menu_id_098').find('ul').length!=0){
+				if($(menuId.ROOT).find('ul').length!=0){
 					//将二级菜单显示
-					$('#menu_id_098').find('ul').css('display','block');
+					$(menuId.ROOT).find('ul').css('display','block');
 				}else{
 					//如果没有则触发
-					$('#menu_id_098').find('a').trigger('click');
+					$(menuId.ROOT).find('a').trigger('click');
 				}
 				//显示数不清零
 				//$(".mail_num").html(0);
 				if(roleName!=null){
 					if(roleName.indexOf(dealRole)!=-1){
-						$('#menu_id_2712').find('a').trigger('click');
+						$(menuId.DZCLR).find('a').trigger('click');
 					}else if(roleName.indexOf(auditRole)!=-1){
-						$('#menu_id_2714').find('a').trigger('click');
+						$(menuId.DZSHR).find('a').trigger('click');
 					}else if(roleName.indexOf(judgeRole)!=-1){
-						$('#menu_id_2713').find('a').trigger('click');
+						$(menuId.DZJCR).find('a').trigger('click');
 					}else if(roleName.indexOf(qyDealRole)!=-1){
-						$('#menu_id_2750').find('a').trigger('click');
+						$(menuId.QYCLR).find('a').trigger('click');
 					}else if(roleName.indexOf(qyAuditRole)!=-1){
-						$('#menu_id_2751').find('a').trigger('click');
+						$(menuId.QYSHR).find('a').trigger('click');
 					}else if(roleName.indexOf(qyJudgeRole)!=-1){
-						$('#menu_id_2752').find('a').trigger('click');
+						$(menuId.QYJCR).find('a').trigger('click');
 					}else{
 						console.log('角色不匹配');
 						FR.Msg.toast('您没有要处理的事件');
@@ -238,6 +239,8 @@ function init(){
 	getRoleNameByUserName(path);
 	getUnReadFxsjCount(path);
 	getAllUnReadCount(path);
+	//获取菜单id
+	getMenuIdByJson();
 	/*定时调取数据  风险事件条数*/
 	setInterval(function(){
 		getUnReadFxsjCount(path);
@@ -418,6 +421,35 @@ function getMenuByRoleName() {
 		}  
 	}); 
 	return result;
+};
+/**
+ * 通过文件获取各个菜单对应的id
+ */
+function getMenuIdByJson() {
+	var result=new Object();
+    var domain = path + '/menuId.json';
+	// $.ajax({  
+	// 	type: "GET",  
+	// 	url: domain,  
+	// 	dataType:"json", 
+	// 	success: function(data){
+	// 		rolemenu=JSON.parse(data);
+	// 		console.log(rolemenu);
+	// 	},  
+	// 	error: function(json){  
+	// 	}  
+	// }); 
+	$.ajax({  
+		url : domain,  
+		datatype: "json",        
+		async : false,  
+		data :{},  
+		success : function(result) {  
+			menuId=result;
+			console.log(result);
+		}  
+	 }); 
+	return menuId;
 };
 /**
  * 判断当前节点是否应该显示
