@@ -114,7 +114,7 @@
     height: 0.85em;
     display: block;
     float: left;
-    margin-top: 67%; 
+    margin-top: 1em; 
 }
 .emails_bac_click{
 	background: url(picture/emails_click.png) no-repeat;
@@ -123,7 +123,7 @@
     height: 0.85em;
     display: block;
     float: left;
-    margin-top: 67%;
+    margin-top: 1em;
 }
 /* 
 #monitor_box{
