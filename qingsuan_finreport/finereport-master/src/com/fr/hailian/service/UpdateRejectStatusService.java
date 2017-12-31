@@ -81,4 +81,35 @@ public class UpdateRejectStatusService {
 		JDBCUtil.closeConnection(conn);
 		return status;
 	}
+	/***
+	 * 根据风险事件id获取类别（大宗和权益）
+	 * @param fxsjId
+	 * @return
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 */
+	public String  getTypeById(String fxsjId) throws ClassNotFoundException, SQLException{
+		Connection conn = JDBCUtil.getConnection();
+		Statement st = conn.createStatement();
+		//获取最大时间
+		/*String sql = "select max(update_time) from hub_fxsj_audit_new where status = '"+KeyUtil.getKeyValue("REJECT")+"'";
+		ResultSet rs = st.executeQuery(sql);
+		rs.next();
+		String maxTime = rs.getString(1);*/
+		//获取处理人id
+		String sql = "select jysfl from hub_fxsj_audit_new where fxsj_id = '"+fxsjId+"' order by update_time desc";
+		ResultSet rs = st.executeQuery(sql);
+		//状态只获取最新的
+		String type = "";
+		if(rs.next()){
+			type = rs.getString(1);
+		}else{
+			//若没有数据，置0
+			type = "0";
+		}
+		rs.close();
+		st.close();
+		JDBCUtil.closeConnection(conn);
+		return type;
+	}
 }

@@ -53,8 +53,12 @@ public class UpdateStatusServlet extends BaseServlet{
 			String fxsjId = java.net.URLDecoder.decode(hrequest.getParameter("fxsj_id"), "UTF-8");
 			String status = java.net.URLDecoder.decode(hrequest.getParameter("status"), "UTF-8");
 			System.out.println("status:"+status);
+			//获取类型，大宗或者权益
+			String type = update.getTypeById(fxsjId);
+			System.out.println("获取到的type："+type);
 			String phoneNum = "";
 			//驳回，更新，发送短信 1
+			//type=1是大宗，type=2是权益
 			if(KeyUtil.getKeyValue("BH").equals(status)){
 				//System.out.println("name:" + name);
 				System.out.println("状态是驳回");
@@ -62,12 +66,25 @@ public class UpdateStatusServlet extends BaseServlet{
 				System.out.println("发送号码："+phoneNum);
 				System.out.println("状态驳回");
 				//发送驳回短信
+				System.out.println("-----------发送短信开始-------------");
 				SendMsgUtil.sentMsg(fxsjId, 1, phoneNum);
-			}else if(KeyUtil.getKeyValue("SB").equals(status)){
+				System.out.println("-----------发送短信结束-------------");
+			}else if(KeyUtil.getKeyValue("SB").equals(status)&&"1".equals(type)){
 				//通过直接给上级发送短信 2
 				phoneNum = user.getUserPhoneByRoleName(KeyUtil.getKeyValue("DZJCR"));
 				//String phoneNum = "123";
-				//SendMsgUtil.sentMsg(fxsjId, 2, phoneNum);
+				System.out.println("-----------发送短信开始-------------");
+				SendMsgUtil.sentMsg(fxsjId, 2, phoneNum);
+				System.out.println("-----------发送短信结束-------------");
+				//System.out.println("发送号码："+phoneNum);
+				System.out.println("状态是已上报");
+			}else if(KeyUtil.getKeyValue("SB").equals(status)&&"2".equals(type)){
+				//通过直接给上级发送短信 2
+				phoneNum = user.getUserPhoneByRoleName(KeyUtil.getKeyValue("QYJCR"));
+				//String phoneNum = "123";
+				System.out.println("-----------发送短信开始-------------");
+				SendMsgUtil.sentMsg(fxsjId, 2, phoneNum);
+				System.out.println("-----------发送短信结束-------------");
 				//System.out.println("发送号码："+phoneNum);
 				System.out.println("状态是已上报");
 			}else{
@@ -85,7 +102,7 @@ public class UpdateStatusServlet extends BaseServlet{
 				System.out.println("未查询到相关数据");
 			}
 			//驳回，更新，发送短信 1
-			if(KeyUtil.getKeyValue("BH").equals(status)){
+			/*if(KeyUtil.getKeyValue("BH").equals(status)){
 				//System.out.println("name:" + name);
 				//String phoneNum = update.doUpdateStatus(fxsjId);
 				System.out.println("发送号码："+phoneNum);
@@ -99,7 +116,7 @@ public class UpdateStatusServlet extends BaseServlet{
 				System.out.println("发送号码："+phoneNum);
 			}else{
 				System.out.println("已排查，不用发送");
-			}
+			}*/
 			r.put("success", true);
 		} catch (Exception e) {
 			e.printStackTrace();
