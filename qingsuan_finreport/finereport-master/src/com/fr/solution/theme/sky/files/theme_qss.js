@@ -1,4 +1,4 @@
-var topMenuImage=["fxhx_icon.png","zbdb_icon.png","zjyd_icon.png","kyjy_icon.png","scyq_icon.png","jysp_icon.png","ywyc_icon.png","gsxx_icon.png"];//菜单对应图标名称 具体文件放到com.fr.solution.theme.sky.files.image包下面
+var topMenuImage=["fxhx_icon.png","zbdb_icon.png","zjyd_icon.png","kyjy_icon.png","scyq_icon.png","jysp_icon.png","ywyc_icon.png","gsxx_icon.png","fxhx_icon.png","zbdb_icon.png","zjyd_icon.png","kyjy_icon.png","scyq_icon.png","jysp_icon.png","ywyc_icon.png","gsxx_icon.png"];//菜单对应图标名称 具体文件放到com.fr.solution.theme.sky.files.image包下面
 
 //路径
 var path = '/WebReport';
