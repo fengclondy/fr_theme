@@ -51,10 +51,10 @@ public class ReadAllMsgServlet extends BaseServlet{
 			//name = java.net.URLDecoder.decode(hrequest.getParameter("username"), "UTF-8");
 			//System.out.println("name:" + name);
 			String type = java.net.URLDecoder.decode(hrequest.getParameter("type"), "UTF-8");
-			System.out.println("type:" + type);
+			//System.out.println("type:" + type);
 			String roleName = user.getRoleNameByUserId(userId+"");
 			//String roleName = KeyUtil.getKeyValue("DZ");
-			System.out.println("roleName:" + roleName);
+			//System.out.println("roleName:" + roleName);
 			//判断当前用户为何种角色，通过角色去寻找当前的用户
 			//如果角色为处理人,把未读的风险事件也置为已读
 			if(KeyUtil.getKeyValue("DZ").equals(roleName)){

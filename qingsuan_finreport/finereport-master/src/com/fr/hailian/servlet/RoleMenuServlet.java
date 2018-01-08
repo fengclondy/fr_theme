@@ -11,6 +11,7 @@ import org.json.JSONObject;
 
 import com.alibaba.fastjson.JSONArray;
 import com.fr.hailian.core.BaseServlet;
+import com.fr.hailian.core.Constants;
 import com.fr.hailian.model.RoleMenuModel;
 import com.fr.hailian.service.UserDataFromRoleService;
 
@@ -56,13 +57,13 @@ public class RoleMenuServlet extends BaseServlet {
 		try {
 			//"大宗","权益"
 			roleType = hrequest.getParameter("roleType");
-			System.err.println(roleType);
 			String roleName="";
 			if("0".equals(roleType)){
 				roleName="大宗";
 			}else if("1".equals(roleType)){
 				roleName="权益";
 			}
+			Constants.ROLE_NAME=roleName;
 			List<RoleMenuModel> list=UserDataFromRoleService.getMenuByRoleName(request,roleName);
 			r.put("rolemenu", JSONArray.toJSONString(list));
 		} catch (Exception e) {
