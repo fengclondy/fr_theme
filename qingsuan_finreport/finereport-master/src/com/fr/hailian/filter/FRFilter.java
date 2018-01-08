@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
+import com.fr.hailian.service.KeyWordsCountService;
 import com.fr.hailian.service.SplitWordsService;
 
 /**
@@ -32,7 +33,6 @@ public class FRFilter implements Filter {
 	public void init(FilterConfig arg0) throws ServletException {
 		System.out.println("拦截器例子初始化.....");
 		
-		
 		// run in a second  
         final long timeInterval = 2000;  
         Runnable runnable = new Runnable() {  
@@ -51,8 +51,28 @@ public class FRFilter implements Filter {
                 }  
             }  
         };  
+        final long timeInterval2 = 1000*60*60*6; 
         Thread thread = new Thread(runnable);  
         thread.start();  
+        Runnable runnable2 = new Runnable() {  
+            public void run() {  
+                while (true) {  
+                    // ------- code for task to run  
+                    //System.out.println("Hello !!");  
+                    // ------- ends here  
+                	//分词统计功能
+                	KeyWordsCountService key = new KeyWordsCountService();
+            		key.doCount();
+                    try {  
+                        Thread.sleep(timeInterval2);  
+                    } catch (InterruptedException e) {  
+                        e.printStackTrace();  
+                    }  
+                }  
+            }  
+        };  
+        Thread thread2 = new Thread(runnable2);  
+        thread2.start();  
 	}
 
 }
