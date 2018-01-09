@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,8 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.fr.hailian.core.Constants;
 import com.fr.hailian.model.RoleMenuModel;
 import com.fr.hailian.util.C3P0Utils;
+import com.fr.hailian.util.JDBCUtil;
 import com.fr.hailian.util.RoleUtil;
 
 /***
@@ -133,7 +136,7 @@ public class UserDataFromRoleService {
         while (rs.next()) {
             roleName += rs.getString("ROLENAME");
         }
-        System.out.println("获取到的用户角色名："+roleName);
+        //System.out.println("获取到的用户角色名："+roleName);
         rs.close();
         con.close();
 		return roleName;
@@ -172,6 +175,52 @@ public class UserDataFromRoleService {
         rs.close();
         con.close();
 		return list;
+	}
+	/**
+	 * 
+	 * @param userName
+	 * @return 数据权限 获取交易所信息
+	 * @throws SQLException
+	 */
+	public static String getDepartMenByUserName(String userName) throws Exception{
+		Connection con = null;
+        con = C3P0Utils.getInstance().getConnection();
+        String sql = "select p.postname,d.name from fr_t_post p left join fr_t_department_post_user du on du.postid=p.id ";
+        sql+=" left join fr_t_department d on d.id=du.departmentid left join fr_t_user u on u.id=du.userid ";
+        sql+=" where 1=1  ";
+        if(!"".equals(userName)&&userName!=null){
+        	sql+="  and u.username ='"+userName+"' ";
+        }
+        if(!"".equals(Constants.ROLE_NAME)&&Constants.ROLE_NAME!=null){
+        	sql+=" and p.postname like '%"+Constants.ROLE_NAME+"%' ";
+        }
+        PreparedStatement ps = con.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        String jysIds="";
+        while (rs.next()) {
+        	jysIds=jysIds+"'"+rs.getString("postname").split("_")[2]+"',";
+        }
+        if(jysIds.length()>0){
+        	jysIds=jysIds.substring(0,jysIds.length()-1);
+        }
+        if(StringUtils.isBlank(jysIds)){
+        	//如果是空 查询所有
+        	Connection conn = JDBCUtil.getConnection();
+			Statement st = conn.createStatement();
+			String gpSql = "select jys from hub_dd_tqs_jys";
+			ResultSet gprs=st.executeQuery(gpSql);
+			while (gprs.next()) {
+				jysIds=jysIds+"'"+gprs.getString("jys")+"',";
+			}
+			if(jysIds.length()>0){
+	        	jysIds=jysIds.substring(0,jysIds.length()-1);
+	        }
+			st.close();
+			JDBCUtil.closeConnection(conn);
+        }
+        rs.close();
+        con.close();
+		return jysIds;
 	}
 
 }

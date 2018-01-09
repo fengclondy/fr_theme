@@ -38,7 +38,7 @@ public class RoleUtil {
 			Iterator<CustomRole> it = roles.iterator();  
 			while (it.hasNext()) {  
 				CustomRole role = it.next();
-				System.out.println("role id:"+role.getId()+" roleName:"+role.getRolename()+" roleDisplayName:"+role.getDisplayName());
+				//System.out.println("role id:"+role.getId()+" roleName:"+role.getRolename()+" roleDisplayName:"+role.getDisplayName());
 				if(role.getDisplayName().equals(com.fr.hailian.core.Constants.AUXILIARYROLE_NAME)){
 					hasRole=true;
 					break;

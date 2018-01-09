@@ -41,9 +41,9 @@ public class RolePageServlet extends BaseServlet{
 		UserDataFromRoleService user = new UserDataFromRoleService();
 		try {
 			//name = java.net.URLDecoder.decode(hrequest.getParameter("username"), "UTF-8");
-			System.out.println("userId:" + userId);
+			//System.out.println("userId:" + userId);
 			String roleName = user.getRoleNameByUserId(userId);
-			System.out.println("roleName:" + roleName);
+			//System.out.println("roleName:" + roleName);
 			r.put("roleName", roleName);
 			r.put("success", true);
 		} catch (Exception e) {

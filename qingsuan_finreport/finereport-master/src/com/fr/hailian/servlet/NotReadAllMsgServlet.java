@@ -52,8 +52,8 @@ public class NotReadAllMsgServlet extends BaseServlet{
 			String type = java.net.URLDecoder.decode(hrequest.getParameter("type"), "UTF-8");
 			String roleName = user.getRoleNameByUserId(userId+"");
 			//String roleName = KeyUtil.getKeyValue("DZ");
-			System.out.println("roleName:" + roleName);
-			System.out.println("type:" + type);
+			//System.out.println("roleName:" + roleName);
+			//System.out.println("type:" + type);
 			long count = 0L;
 			//判断当前用户为何种角色，通过角色去寻找当前的用户
 			//如果是处理人，总的未读数应该加上风险事件数
