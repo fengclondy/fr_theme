@@ -10,7 +10,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.lang.StringUtils;
 
 import com.fr.hailian.core.Constants;
 import com.fr.hailian.model.RoleMenuModel;
@@ -203,7 +202,7 @@ public class UserDataFromRoleService {
         if(jysIds.length()>0){
         	jysIds=jysIds.substring(0,jysIds.length()-1);
         }
-        if(StringUtils.isBlank(jysIds)){
+        if("".equals(jysIds)||jysIds==null){
         	//如果是空 查询所有
         	Connection conn = JDBCUtil.getConnection();
 			Statement st = conn.createStatement();
