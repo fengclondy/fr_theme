@@ -23,11 +23,11 @@ public class NotReadAllMsgService {
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
-	public long getUnReadAllMsgCount(String key,String type) throws ClassNotFoundException, SQLException{
+	public long getUnReadAllMsgCount(String key,String type,String sqls) throws ClassNotFoundException, SQLException{
 		Connection conn = JDBCUtil.getConnection();
 		Statement st = conn.createStatement();
 		String sqlin = KeyUtil.getKeyValue(key);
-		String sql = "select count(0) from hub_fxsj WHERE clzt in ("+sqlin+") and jysfl = '"+type+"'";
+		String sql = "select count(0) from hub_fxsj WHERE clzt in ("+sqlin+") and jysfl = '"+type+"' and jgdm in "+sqls;
 		//String sql2 = "select count(0) from hub_fxsj_audit_new_read WHERE clzt in ("+sqlin+") and type = '"+type+"'";
 		ResultSet rs = st.executeQuery(sql);
 		rs.next();

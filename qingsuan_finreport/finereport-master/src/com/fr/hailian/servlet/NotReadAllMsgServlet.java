@@ -44,7 +44,7 @@ public class NotReadAllMsgServlet extends BaseServlet{
 		UserDataFromRoleService user = new UserDataFromRoleService();
 		//NotReadMsgService notReadMsg = new NotReadMsgService();
 		long userId = RoleUtil.getCurrentUser(hrequest).getId();
-		//String userName = RoleUtil.getCurrentUser(hrequest).getUsername();
+		String userName = RoleUtil.getCurrentUser(hrequest).getUsername();
 		//String userName = "Test";
 		try {
 			//name = java.net.URLDecoder.decode(hrequest.getParameter("username"), "UTF-8");
@@ -54,23 +54,26 @@ public class NotReadAllMsgServlet extends BaseServlet{
 			//String roleName = KeyUtil.getKeyValue("DZ");
 			//System.out.println("roleName:" + roleName);
 			//System.out.println("type:" + type);
+			//获取角色具有查看信息的交易所
+			String jys=UserDataFromRoleService.getDepartMenByUserName(userName);
+			jys = "("+jys+")";
 			long count = 0L;
 			//判断当前用户为何种角色，通过角色去寻找当前的用户
 			//如果是处理人，总的未读数应该加上风险事件数
 			if(roleName.contains(KeyUtil.getKeyValue("DZCLR"))){
-				count = notReadAllMsg.getUnReadAllMsgCount("DEAL",type);
+				count = notReadAllMsg.getUnReadAllMsgCount("DEAL",type,jys);
 				//count += notReadMsg.getUnReadMsgCount(userName,type);
 			}else if(roleName.contains(KeyUtil.getKeyValue("QYCLR"))){
-				count = notReadAllMsg.getUnReadAllMsgCount("DEAL",type);
+				count = notReadAllMsg.getUnReadAllMsgCount("DEAL",type,jys);
 				//count += notReadMsg.getUnReadMsgCount(userName,type);
 			}else if(roleName.contains(KeyUtil.getKeyValue("DZSHR"))){
-				count = notReadAllMsg.getUnReadAllMsgCount("AUDIT",type);
+				count = notReadAllMsg.getUnReadAllMsgCount("AUDIT",type,jys);
 			}else if(roleName.contains(KeyUtil.getKeyValue("QYSHR"))){
-				count = notReadAllMsg.getUnReadAllMsgCount("AUDIT",type);
+				count = notReadAllMsg.getUnReadAllMsgCount("AUDIT",type,jys);
 			}else if(roleName.contains(KeyUtil.getKeyValue("DZJCR"))){
-				count = notReadAllMsg.getUnReadAllMsgCount("JUDGE",type);
+				count = notReadAllMsg.getUnReadAllMsgCount("JUDGE",type,jys);
 			}else if(roleName.contains(KeyUtil.getKeyValue("QYJCR"))){
-				count = notReadAllMsg.getUnReadAllMsgCount("JUDGE",type);
+				count = notReadAllMsg.getUnReadAllMsgCount("JUDGE",type,jys);
 			}
 			//先获取消息总数
 			r.put("unReadAllCount", count);
