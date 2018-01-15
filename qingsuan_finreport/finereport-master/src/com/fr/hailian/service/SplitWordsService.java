@@ -1,5 +1,6 @@
 package com.fr.hailian.service;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.fr.hailian.util.HanlpUtil;
 import com.fr.hailian.util.JDBCUtil;
 import com.fr.hailian.util.NLPIRUtil;
 
@@ -26,7 +28,8 @@ public class SplitWordsService {
 		Connection conn = JDBCUtil.getConnection();
 		Statement st = conn.createStatement();
 		//分词以1000条为单位进行
-		String sql = "SELECT info_id,summary FROM hub_commerce_meiya_sentiment_news WHERE split_status='0' order by info_id limit 1000";
+		//String sql = "SELECT info_id,summary FROM hub_commerce_meiya_sentiment_news WHERE split_status='0' order by info_id limit 1000";
+		String sql = "SELECT info_id,summary FROM hub_commerce_meiya_sentiment_news WHERE split_status='1' and create_time='20180108' order by info_id";
 		ResultSet rs = st.executeQuery(sql);
 		ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String,String>>();
 		while(rs.next()){
@@ -106,17 +109,32 @@ public class SplitWordsService {
 	public String doSplitWords(){
 		try {
 			//如果有未分词的词条，就继续分词
-			long splitNum = getUnSplitNum();
+			//long splitNum = getUnSplitNum();
+			long splitNum = 1L;
 			long count = 1;
 			while(splitNum > 0){
 				ArrayList<HashMap<String, String>> list = getUnSplitMsg();
 				for(int i = 0 ; i < list.size() ; i ++){
 					//分词
-					HashMap<String, String> map = NLPIRUtil.splitWords(list.get(i).get("msg"));
+					System.out.println(list.get(i).get("msg"));
+					//HashMap<String, String> map = NLPIRUtil.splitWords(msgWords);
+					HashMap<String, String> map = HanlpUtil.doSplitWords(list.get(i).get("msg"));
+					//过滤乱码字符
+					String words = map.get("keyWords");
+					words = words.replaceAll("�", "");
+					//去掉空的字符
+					words = words.replaceAll(" ", "");
+					words = words.replaceAll("##", "#");
+					//去除第一个#
+					if(!words.isEmpty()){
+						if(words.substring(0, 1).equals("#")){
+							words=words.substring(1, words.length());
+						}
+					}
+					System.out.println(words);
 					//更新
-					System.out.println(list.get(i).get("id"));
-					updateSplitMsg(list.get(i).get("id"),map.get("words"),map.get("keyWords"));
-					System.out.println("第"+(count++)+"条更新成功");
+					updateSplitMsg(list.get(i).get("id"),map.get("words"),words);
+					System.out.println("第"+(count++)+"条,"+list.get(i).get("id")+"更新成功");
 				}
 				//System.out.println("100条分词成功");
 				splitNum = getUnSplitNum();

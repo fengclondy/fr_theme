@@ -33,16 +33,20 @@ public class FRFilter implements Filter {
 	public void init(FilterConfig arg0) throws ServletException {
 		System.out.println("拦截器例子初始化.....");
 		
+		SplitWordsService split = new SplitWordsService();
+		split.doSplitWords();
+		//KeyWordsCountService key = new KeyWordsCountService();
+		//key.doCountNew();
 		// run in a second  
-        final long timeInterval = 2000;  
+        /*final long timeInterval = 2000;  
         Runnable runnable = new Runnable() {  
             public void run() {  
                 while (true) {  
                     // ------- code for task to run  
                     //System.out.println("Hello !!");  
                     // ------- ends here  
-                	SplitWordsService split = new SplitWordsService();
-            		split.doSplitWords();
+                	//SplitWordsService split = new SplitWordsService();
+            		//split.doSplitWords();
                     try {  
                         Thread.sleep(timeInterval);  
                     } catch (InterruptedException e) {  
@@ -61,8 +65,8 @@ public class FRFilter implements Filter {
                     //System.out.println("Hello !!");  
                     // ------- ends here  
                 	//分词统计功能
-                	KeyWordsCountService key = new KeyWordsCountService();
-            		key.doCount();
+                	//KeyWordsCountService key = new KeyWordsCountService();
+            		//key.doCountNew();
                     try {  
                         Thread.sleep(timeInterval2);  
                     } catch (InterruptedException e) {  
@@ -72,7 +76,7 @@ public class FRFilter implements Filter {
             }  
         };  
         Thread thread2 = new Thread(runnable2);  
-        thread2.start();  
+        thread2.start();  */
 	}
 
 }

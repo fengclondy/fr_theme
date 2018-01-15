@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.regex.Pattern;
 
 import com.fr.hailian.util.JDBCUtil;
 
@@ -92,6 +93,26 @@ public class KeyWordsCountService {
 		return result;
 	}
 	/***
+	 * 获取关键词的数据的数据不根据日期，查询全部
+	 * @return
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 */
+	public String getSplitKeywordsNodate(String id) throws ClassNotFoundException, SQLException{
+		Connection conn = JDBCUtil.getConnection();
+		Statement st = conn.createStatement();
+		String sql = "SELECT split_key_words FROM hub_commerce_meiya_sentiment_news WHERE enterprise_id='"+id+"'";
+		ResultSet rs = st.executeQuery(sql);
+		String result = "";
+		while(rs.next()){
+			result += rs.getString("split_key_words");
+		}
+		rs.close();
+		st.close();
+		JDBCUtil.closeConnection(conn);
+		return result;
+	}
+	/***
 	 * 获取需要统计词频的交易所信息
 	 * @return
 	 * @throws SQLException 
@@ -129,6 +150,21 @@ public class KeyWordsCountService {
 		Connection conn = JDBCUtil.getConnection();
 		Statement st = conn.createStatement();
 		String sql = "DELETE FROM hub_commerce_meiya_sentiment_keywords WHERE enterprise_id='"+id+"' AND modifydate='"+date+"'";
+		int result = st.executeUpdate(sql);
+		st.close();
+		JDBCUtil.closeConnection(conn);
+		return result;
+	}
+	/***
+	 * 按交易所删除词频统计信息
+	 * @return
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
+	 */
+	public int deleteKeywordsInfoNoDate(String id) throws ClassNotFoundException, SQLException{
+		Connection conn = JDBCUtil.getConnection();
+		Statement st = conn.createStatement();
+		String sql = "DELETE FROM hub_commerce_meiya_sentiment_keywords_new WHERE enterprise_id='"+id+"'";
 		int result = st.executeUpdate(sql);
 		st.close();
 		JDBCUtil.closeConnection(conn);
@@ -193,11 +229,11 @@ public class KeyWordsCountService {
 		//获取当天日期
 		Date now = new Date(); 
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
-		String date = dateFormat.format(now); 
-		//String date = "20171215"; 
+		//String date = dateFormat.format(now); 
+		String date = "20180110"; 
 		
 		try {
-			System.out.println("结束开始");
+			System.out.println(date+"统计开始");
 			//1.先获取需要获取词频的交易所
 			ArrayList<HashMap<String, String>> list = getJYSInfo();
 			//2.然后遍历交易所
@@ -218,7 +254,8 @@ public class KeyWordsCountService {
 				ArrayList<String> sqls = new ArrayList<String>();
 				for (int j = 0; j < result.size(); j++) {
 					//判断关键字是否为空,为空则不插入
-					if(result.get(j).get("keyword").replaceAll("  ", "")==""||result.get(j).get("keyword").replaceAll("  ", "")==null){
+					if(result.get(j).get("keyword").replaceAll(" ", "").equals("")||result.get(j).get("keyword").replaceAll(" ", "").equals(null)){
+					//if(Pattern.compile("\\s*|\t|\r|\n").matcher(result.get(j).get("keyword")).replaceAll("").replaceAll("\\s+", "")==""||Pattern.compile("\\s*|\t|\r|\n").matcher(result.get(j).get("keyword")).replaceAll("").replaceAll("\\s+", "")==null){
 						System.out.println("关键字为空");
 						break;
 					}
@@ -245,7 +282,76 @@ public class KeyWordsCountService {
 				insertKeywords(sqls);
 				System.out.println("------------"+i+"------------");
 			}
-			System.out.println("结束统计");
+			System.out.println(date+"统计结束");
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	/***
+	 * 新统计方法,对全表的舆情数据进行统计
+	 * @return
+	 */
+	public String doCountNew(){
+		//获取当天日期
+		Date now = new Date(); 
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+		String date = dateFormat.format(now); 
+		
+		try {
+			System.out.println("全局统计开始");
+			//1.先获取需要获取词频的交易所
+			ArrayList<HashMap<String, String>> list = getJYSInfo();
+			//2.然后遍历交易所
+			for(int i = 0 ; i < list.size() ; i++){
+				String id = list.get(i).get("enterprise_id");
+				//2.1先删除该交易所有词频信息
+				System.out.println("------------"+i+"------------");
+				System.out.println("删除交易所---"+list.get(i).get("jysinfo")+"---开始");
+				deleteKeywordsInfoNoDate(id);
+				System.out.println("删除交易所---"+list.get(i).get("jysinfo")+"---结束");
+				//2.2根据id和日期获取关键词
+				String keywords = getSplitKeywordsNodate(id);
+				System.out.println(list.get(i).get("jysinfo"));
+				System.out.println(keywords);
+				//2.3对关键词统计词频
+				ArrayList<HashMap<String, String>> result = countKeywords(keywords);
+				//2.4生成sql语句
+				ArrayList<String> sqls = new ArrayList<String>();
+				for (int j = 0; j < result.size(); j++) {
+					//判断关键字是否为空,为空则不插入
+					if(result.get(j).get("keyword").replaceAll(" ", "").equals("")||result.get(j).get("keyword").replaceAll(" ", "").equals(null)){
+					//if(Pattern.compile("\\s*|\t|\r|\n").matcher(result.get(j).get("keyword")).replaceAll("").replaceAll("\\s+", "")==""||Pattern.compile("\\s*|\t|\r|\n").matcher(result.get(j).get("keyword")).replaceAll("").replaceAll("\\s+", "")==null){
+						System.out.println("关键字为空");
+						break;
+					}
+					String sql = "INSERT INTO hub_commerce_meiya_sentiment_keywords_new VALUES('"
+							+ list.get(i).get("jys")
+							+ "','"
+							+ list.get(i).get("jysinfo")
+							+ "','"
+							+ list.get(i).get("jysmc")
+							+ "','"
+							+ list.get(i).get("company_name")
+							+ "','"
+							+ list.get(i).get("enterprise_id")
+							+ "','"
+							+ date
+							+ "','"
+							+ result.get(j).get("keyword")
+							+ "','"
+							+ result.get(j).get("count") + "')";
+					System.out.println(sql);
+					sqls.add(sql);
+				}
+				//2.5提交insert语句
+				insertKeywords(sqls);
+				System.out.println("------------"+i+"------------");
+			}
+			System.out.println("全局统计结束");
 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();

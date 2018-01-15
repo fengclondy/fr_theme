@@ -48,13 +48,15 @@ public class NLPIRUtil {
 		String sInput = "↑点击上方“福建交易市场登记结算中心”关注我们 信息来源���澎湃新闻 发布时间：2017年10月12日 “全国金融工作会议之后，我们一直在研究要不要加挂金融监督管理局的牌子，”一位地方金融办人士对澎湃新闻表示。10月10日，深圳召开全市金融工作会议，决定在市金融...在四川之前，北京、天津和宁夏分别于2009年、2015年、2015年设置金融工作局，并将以前金融办的职能并入其中。";
 		
 		sInput = words;
+		System.out.println("分词前： " + sInput);
 		//String nativeBytes = null;
 		HashMap<String, String> result = new HashMap<String, String>();
 		try {
-			nativeBytes = CLibrary.Instance.NLPIR_ParagraphProcess(sInput, 1);
+			//nativeBytes = CLibrary.Instance.NLPIR_ParagraphProcess(sInput, 1);
 
 			//System.out.println("分词结果为： " + nativeBytes);
-			result.put("words", nativeBytes.replace("'", ""));
+			//result.put("words", nativeBytes.replace("'", ""));
+			result.put("words", "");
 			
 			//CLibrary.Instance.NLPIR_AddUserWord("要求美方加强对输 n");
 			//CLibrary.Instance.NLPIR_AddUserWord("华玉米的产地来源 n");
@@ -66,7 +68,7 @@ public class NLPIRUtil {
 			//System.out.println("删除用户词典后分词结果为： " + nativeBytes);
 			//int nCountKey = 0;
 			String nativeByte = CLibrary.Instance.NLPIR_GetKeyWords(sInput, 10,false);
-			//System.out.print("关键词提取结果是：" + nativeByte);
+			System.out.print("关键词提取结果是：" + nativeByte);
 			result.put("keyWords", nativeByte);
 			CLibrary.Instance.NLPIR_Exit();
 
@@ -96,7 +98,7 @@ public class NLPIRUtil {
 			return;
 		}
 
-		String sInput = "11月再见，12月你好!2017-12-01 美文共享* #切尔西体育杂志# *Melody Fair-Bee Gees-专辑《The 60's Collection》 * 2017年最后一个月。告别秋凉和炎热...信心能够帮你重获新生，一定不要怀疑自己，不要忘了为自己喝彩。* 圆融通达，懂方与圆的生存智慧 伸出你的友爱之手，帮助他人就是帮助自己。用宽容之心打动别人，照亮别人，也照亮了自己。";
+		String sInput = "滨海理石 财务文员 岗位要求:女，熟练操作办公软件，懂财务，已婚已育者优先。工作时间:早7:30到晚4:40，月休两天。薪资待遇:...薪资待遇：2300元+提成（300-500元），有工作餐。地��:老白天鹅对面尚水浴池 电话：13941765683 久信投资 客户经理10名 岗位要求：男女不限，有良好的沟通能力和服务意识，有无经验者均可。工作时间：早9：00-晚4：30，周末双休。";
 
 		//String nativeBytes = null;
 		try {
@@ -109,7 +111,7 @@ public class NLPIRUtil {
 			//nativeBytes = CLibrary.Instance.NLPIR_ParagraphProcess(sInput, 1);
 			//System.out.println("增加用户词典后分词结果为： " + nativeBytes);
 			
-			//CLibrary.Instance.NLPIR_DelUsrWord("要求美方加强对输");
+			//CLibrary.Instance.NLPIR_DelUsrWord("��");
 			//nativeBytes = CLibrary.Instance.NLPIR_ParagraphProcess(sInput, 1);
 			//System.out.println("删除用户词典后分词结果为： " + nativeBytes);
 			
