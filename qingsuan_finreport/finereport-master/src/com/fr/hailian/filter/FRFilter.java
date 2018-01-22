@@ -33,8 +33,8 @@ public class FRFilter implements Filter {
 	public void init(FilterConfig arg0) throws ServletException {
 		System.out.println("拦截器例子初始化.....");
 		
-		SplitWordsService split = new SplitWordsService();
-		split.doSplitWordsByMultitaskNew();
+		//SplitWordsService split = new SplitWordsService();
+		//split.doSplitWordsByMultitaskNew();
 		//KeyWordsCountService key = new KeyWordsCountService();
 		//key.doCountNew();
 		// run in a second  
