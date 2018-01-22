@@ -34,7 +34,7 @@ public class FRFilter implements Filter {
 		System.out.println("拦截器例子初始化.....");
 		
 		SplitWordsService split = new SplitWordsService();
-		split.doSplitWords();
+		split.doSplitWordsByMultitaskNew();
 		//KeyWordsCountService key = new KeyWordsCountService();
 		//key.doCountNew();
 		// run in a second  
@@ -45,8 +45,8 @@ public class FRFilter implements Filter {
                     // ------- code for task to run  
                     //System.out.println("Hello !!");  
                     // ------- ends here  
-                	//SplitWordsService split = new SplitWordsService();
-            		//split.doSplitWords();
+                	SplitWordsService split = new SplitWordsService();
+            		split.doSplitWordsByMultitaskNew();
                     try {  
                         Thread.sleep(timeInterval);  
                     } catch (InterruptedException e) {  

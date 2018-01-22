@@ -1,6 +1,5 @@
 package com.fr.hailian.service;
 
-import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,7 +9,6 @@ import java.util.HashMap;
 
 import com.fr.hailian.util.HanlpUtil;
 import com.fr.hailian.util.JDBCUtil;
-import com.fr.hailian.util.NLPIRUtil;
 
 /***
  * 分词
@@ -28,14 +26,14 @@ public class SplitWordsService {
 		Connection conn = JDBCUtil.getConnection();
 		Statement st = conn.createStatement();
 		//分词以1000条为单位进行
-		//String sql = "SELECT info_id,summary FROM hub_commerce_meiya_sentiment_news WHERE split_status='0' order by info_id limit 1000";
-		String sql = "SELECT info_id,summary FROM hub_commerce_meiya_sentiment_news WHERE split_status='1' and create_time='20180108' order by info_id";
+		String sql = "SELECT info_id,content FROM hub_commerce_meiya_sentiment_news_bak WHERE split_status='0' order by info_id limit 10";
+		//String sql = "SELECT info_id,summary FROM hub_commerce_meiya_sentiment_news WHERE split_status='1' and create_time='20180115' order by info_id";
 		ResultSet rs = st.executeQuery(sql);
 		ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String,String>>();
 		while(rs.next()){
 			HashMap<String,String> map = new HashMap<String, String>();
 			map.put("id", rs.getString("info_id"));
-			map.put("msg", rs.getString("summary"));
+			map.put("msg", rs.getString("content"));
 			list.add(map);
 		}
 		rs.close();
@@ -78,7 +76,7 @@ public class SplitWordsService {
 		Connection conn = JDBCUtil.getConnection();
 		Statement st = conn.createStatement();
 		//更新分词，状态置为1
-		String sql = "UPDATE hub_commerce_meiya_sentiment_news set split_key_words = '"+keyWords+"' , split_status='1',split_words='"+words+"' WHERE info_id='"+infoId+"'";
+		String sql = "UPDATE hub_commerce_meiya_sentiment_news_bak set split_key_words = '"+keyWords+"' , split_status='1',split_words='"+words+"' WHERE info_id='"+infoId+"'";
 		int result = st.executeUpdate(sql);
 		st.close();
 		JDBCUtil.closeConnection(conn);
@@ -93,7 +91,7 @@ public class SplitWordsService {
 	public long getUnSplitNum() throws ClassNotFoundException, SQLException{
 		Connection conn = JDBCUtil.getConnection();
 		Statement st = conn.createStatement();
-		String sql = "SELECT count(0) FROM hub_commerce_meiya_sentiment_news WHERE split_status='0'";
+		String sql = "SELECT count(0) FROM hub_commerce_meiya_sentiment_news_bak WHERE split_status='0'";
 		ResultSet rs = st.executeQuery(sql);
 		rs.next();
 		long result = rs.getLong(1);
@@ -109,14 +107,14 @@ public class SplitWordsService {
 	public String doSplitWords(){
 		try {
 			//如果有未分词的词条，就继续分词
-			//long splitNum = getUnSplitNum();
-			long splitNum = 1L;
+			long splitNum = getUnSplitNum();
+			//long splitNum = 1L;
 			long count = 1;
 			while(splitNum > 0){
 				ArrayList<HashMap<String, String>> list = getUnSplitMsg();
 				for(int i = 0 ; i < list.size() ; i ++){
 					//分词
-					System.out.println(list.get(i).get("msg"));
+					//System.out.println(list.get(i).get("msg"));
 					//HashMap<String, String> map = NLPIRUtil.splitWords(msgWords);
 					HashMap<String, String> map = HanlpUtil.doSplitWords(list.get(i).get("msg"));
 					//过滤乱码字符
@@ -172,6 +170,25 @@ public class SplitWordsService {
 			}*/
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	/***
+	 * 通过多任务更新
+	 * @return
+	 */
+	public String doSplitWordsByMultitaskNew(){
+		try {		
+			for(int i= 0; i < 10 ; i++){
+				//Thread rthread = new Thread(new UpdateTask(list.subList((page-1)*size, page*size)));
+				Thread rthread = new Thread(new MultiTask(i+""));
+				rthread.start();
+				//必须休眠 不然线程太多会报错
+				Thread.sleep(2000);
+			}
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
