@@ -250,5 +250,15 @@
 		<url-pattern>/getMenuByRoleName</url-pattern>
 	</servlet-mapping>
 	
+	<!-- 根据标题获取舆情原始url -->
+	<servlet>
+		<servlet-name>NewsServlet</servlet-name>
+		<servlet-class>com.fr.hailian.servlet.NewsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NewsServlet</servlet-name>
+		<url-pattern>/getNewsByTitle</url-pattern>
+	</servlet-mapping>
+	
 
 </web-app>

@@ -75,5 +75,5 @@ public class Constants {
 	
 	public  final static String FTP_PWD = "MYsftp@123";
 	public static String ROLE_NAME="";
-	
+	public static String COMPANY_ID="";
 	}

@@ -250,3 +250,38 @@ function synchStatus(fr_path,fxsj_id) {
 	});
 	return result;
 };
+function getNewsByTitle(fr_path,title,type) {
+	var result=new Object();
+	//fr_path为空使用默认地址
+    var domain = fr_path + '/getNewsByTitle';
+	FR.ajax({
+		url: domain,
+		type: 'POST',
+		 data: FR.cjkEncodeDO({
+			 title: encodeURIComponent(title),
+			 type:encodeURIComponent(type)
+	        }),
+		async: false,
+		error: function () {
+			result.fail = true;
+			result.msg = "服务器异常！";
+		},
+		complete: function (res, status) {
+			if (res.responseText != "") {
+				var signResult = FR.jsonDecode(res.responseText);
+				if (signResult.url!="") {
+					result.success = true;
+					if(type==0){
+						result.url = signResult.url;
+					}else{
+						result.company_id = signResult.company_id;
+					}
+					
+				} else {
+					result.success = false;
+				}
+			}
+		}
+	});
+	return result;
+};
