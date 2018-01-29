@@ -7,10 +7,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONObject;
-
 import com.fr.hailian.core.BaseServlet;
 import com.fr.hailian.service.OrgInfoService;
+import com.fr.json.JSONObject;
 /***
  * 获取机构的信息
  * @author Tom

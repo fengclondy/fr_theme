@@ -7,14 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.JSONObject;
-
 import com.fr.fs.base.entity.User;
 import com.fr.fs.control.UserControl;
 import com.fr.fs.web.FSConstants;
 import com.fr.hailian.core.BaseServlet;
 import com.fr.hailian.util.PortalService;
 import com.fr.hailian.util.RoleUtil;
+import com.fr.json.JSONObject;
 import com.fr.stable.Constants;
 
 /**

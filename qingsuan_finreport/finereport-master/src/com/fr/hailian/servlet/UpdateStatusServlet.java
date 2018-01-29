@@ -7,14 +7,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONObject;
-
 import com.fr.hailian.core.BaseServlet;
 import com.fr.hailian.service.SynchronizeStatusService;
 import com.fr.hailian.service.UpdateRejectStatusService;
 import com.fr.hailian.service.UserDataFromRoleService;
 import com.fr.hailian.util.KeyUtil;
 import com.fr.hailian.util.SendMsgUtil;
+import com.fr.json.JSONObject;
 /***
  * 更新驳回时，添加处理人，并发送短信
  * 更新处理逻辑
@@ -120,7 +119,11 @@ public class UpdateStatusServlet extends BaseServlet{
 			r.put("success", true);
 		} catch (Exception e) {
 			e.printStackTrace();
-			r.put("success", false);
+			try {
+				r.put("success", false);
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
 		}
 		responseOutWithJson(response, r);
 	}

@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.poi.ss.usermodel.Row;
-import org.json.JSONObject;
 
 import com.fr.data.impl.NameDatabaseConnection;
 import com.fr.hailian.core.Constants;
 import com.fr.hailian.core.DataBaseToolService;
 import com.fr.hailian.excel.ImportExcel;
 import com.fr.hailian.model.UserModel;
+import com.fr.json.JSONObject;
 
 /**
  * 
@@ -311,8 +311,12 @@ public class UserService {
 	private JSONObject operateDbForUser(List<UserModel> userList) {
 		JSONObject o = new JSONObject();
 		if (userList == null || userList.size() == 0) {
-			o.put("fail", true);
-			o.put("msg", "Excel内容不能为空！");
+			try {
+				o.put("fail", true);
+				o.put("msg", "Excel内容不能为空！");
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
 		} else {
 			List<String> updateUser = new ArrayList<String>();//原系统已经存在的用户
 			List<String> insertUserList = new ArrayList<String>();
@@ -351,8 +355,12 @@ public class UserService {
 				o.put("msg", msg);
 			} catch (Exception e) {
 				e.printStackTrace();
-				o.put("fail", true);
-				o.put("msg", "导入失败，请检查Excel格式以及导入类型");
+				try {
+					o.put("fail", true);
+					o.put("msg", "导入失败，请检查Excel格式以及导入类型");
+				} catch (Exception e2) {
+					// TODO: handle exception
+				}
 			}
 
 		}

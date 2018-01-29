@@ -13,7 +13,7 @@ import java.util.List;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONObject;
+import com.fr.json.JSONObject;
 
 public class BaseServlet extends HttpServlet {
 	/**

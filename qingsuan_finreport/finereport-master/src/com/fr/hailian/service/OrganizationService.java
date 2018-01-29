@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.poi.ss.usermodel.Row;
-import org.json.JSONObject;
 
 import com.fr.hailian.core.DataBaseToolService;
 import com.fr.hailian.excel.ImportExcel;
 import com.fr.hailian.model.OrganizationModel;
+import com.fr.json.JSONObject;
 
 /**
  * 
@@ -216,8 +216,12 @@ public class OrganizationService {
 	private JSONObject operateDbForOrganization(List<OrganizationModel> orgList) {
 		JSONObject o = new JSONObject();
 		if (orgList == null || orgList.size() == 0) {
-			o.put("fail", true);
-			o.put("msg", "Excel内容不能为空！");
+			try {
+				o.put("fail", true);
+				o.put("msg", "Excel内容不能为空！");
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
 		} else {
 			List<String> insertList = new ArrayList<String>();
 			List<String> updateList = new ArrayList<String>();//原系统已经存在的组织机构
@@ -246,8 +250,12 @@ public class OrganizationService {
 				o.put("msg", msg);
 			} catch (Exception e) {
 				e.printStackTrace();
-				o.put("fail", true);
-				o.put("msg", "导入失败，请检查Excel格式以及导入类型");
+				try {
+					o.put("fail", true);
+					o.put("msg", "导入失败，请检查Excel格式以及导入类型");
+				} catch (Exception e2) {
+					// TODO: handle exception
+				}
 			}
 
 		}

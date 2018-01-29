@@ -8,8 +8,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONObject;
-
 import com.fr.fs.base.entity.User;
 import com.fr.general.web.ParameterConsts;
 import com.fr.hailian.core.BaseServlet;
@@ -18,6 +16,7 @@ import com.fr.hailian.service.TaskService;
 import com.fr.hailian.util.DESSymmetricEncoder;
 import com.fr.hailian.util.PortalService;
 import com.fr.hailian.util.RoleUtil;
+import com.fr.json.JSONObject;
 import com.fr.web.utils.WebUtils;
 
 /**

@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.json.JSONObject;
 
 import com.fr.hailian.core.BaseServlet;
 import com.fr.hailian.service.OrganizationService;
 import com.fr.hailian.service.UserService;
+import com.fr.json.JSONObject;
 
 /**
  * 
@@ -94,8 +94,12 @@ public class ImportByFormServlet extends BaseServlet {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			r.put("fail", true);
-			r.put("msg", e.getStackTrace());
+			try {
+				r.put("fail", true);
+				r.put("msg", e.getStackTrace());
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
 		}
 		responseOutWithJson(response, r);
 	}

@@ -6,11 +6,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONObject;
-
 import com.fr.hailian.core.BaseServlet;
 import com.fr.hailian.service.ReadMsgService;
 import com.fr.hailian.util.RoleUtil;
+import com.fr.json.JSONException;
+import com.fr.json.JSONObject;
 /***
  * 读消息
  * @author Tom
@@ -50,7 +50,12 @@ public class ReadMsgServlet extends BaseServlet{
 			r.put("success", true);
 		} catch (Exception e) {
 			e.printStackTrace();
-			r.put("success", false);
+			try {
+				r.put("success", false);
+			} catch (JSONException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 		responseOutWithJson(response, r);
 	}

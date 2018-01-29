@@ -6,12 +6,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONObject;
-
 import com.fr.hailian.core.BaseServlet;
 import com.fr.hailian.service.NotReadMsgService;
 import com.fr.hailian.service.UserDataFromRoleService;
 import com.fr.hailian.util.RoleUtil;
+import com.fr.json.JSONObject;
 /***
  * 获取未读条数
  * @author Tom

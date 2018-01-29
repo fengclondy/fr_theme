@@ -6,13 +6,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONObject;
-
 import com.fr.fs.base.entity.User;
 import com.fr.hailian.core.BaseServlet;
 import com.fr.hailian.service.OrganizationService;
 import com.fr.hailian.service.UserService;
 import com.fr.hailian.util.RoleUtil;
+import com.fr.json.JSONObject;
 import com.fr.stable.StringUtils;
 
 /**

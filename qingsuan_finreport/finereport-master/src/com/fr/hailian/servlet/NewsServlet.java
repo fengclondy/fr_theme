@@ -11,11 +11,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONObject;
-
 import com.fr.hailian.core.BaseServlet;
 import com.fr.hailian.core.Constants;
 import com.fr.hailian.util.JDBCUtil;
+import com.fr.json.JSONObject;
 
 /**
  * 

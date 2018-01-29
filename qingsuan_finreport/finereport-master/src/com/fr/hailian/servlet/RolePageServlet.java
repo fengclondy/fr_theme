@@ -6,11 +6,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONObject;
-
 import com.fr.hailian.core.BaseServlet;
 import com.fr.hailian.service.UserDataFromRoleService;
 import com.fr.hailian.util.RoleUtil;
+import com.fr.json.JSONObject;
 /***
  * 通过username返回的角色名
  * @author Tom
@@ -48,7 +47,11 @@ public class RolePageServlet extends BaseServlet{
 			r.put("success", true);
 		} catch (Exception e) {
 			e.printStackTrace();
-			r.put("success", false);
+			try {
+				r.put("success", false);
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
 		}
 		responseOutWithJson(response, r);
 	}

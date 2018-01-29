@@ -6,8 +6,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.namespace.QName;
 
-import org.json.JSONObject;
-
 import com.fr.fs.base.entity.User;
 import com.fr.fs.web.FSConstants;
 import com.fr.hailian.core.Constants;
@@ -15,6 +13,7 @@ import com.fr.hailian.rtxWebService.IMService;
 import com.fr.hailian.rtxWebService.IMServiceSoap;
 import com.fr.hailian.ssoWebService.SSOService;
 import com.fr.hailian.ssoWebService.SSOServiceSoap;
+import com.fr.json.JSONObject;
 import com.fr.stable.StringUtils;
 
 public class PortalService {
@@ -147,7 +146,7 @@ public class PortalService {
 	public static String joisnSendMessageToUserPara(HttpServletRequest request,String dealUrl,String toUserIds){
 		User user=RoleUtil.getCurrentUser(request);
 		JSONObject r=new JSONObject();
-		r.put("TaskTitle","多级上报未处理信息提醒");//消息标题
+		try {r.put("TaskTitle","多级上报未处理信息提醒");//消息标题
 		r.put("MsgContent",dealUrl);//消息内容
 		r.put("TransUrl", dealUrl);//可以为空（消息通知对应的信息系统任务办理界面）
 		r.put("UserName",user.getUsername());//发送人姓名
@@ -172,6 +171,10 @@ public class PortalService {
 			RTX)
 		 */
 		r.put("Rank",6);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		return r.toString();
 	}
 	public static void main(String[] args) {

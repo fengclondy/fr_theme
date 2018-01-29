@@ -6,14 +6,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONObject;
-
 import com.fr.hailian.core.BaseServlet;
 import com.fr.hailian.service.ReadAllMsgService;
 import com.fr.hailian.service.ReadMsgService;
 import com.fr.hailian.service.UserDataFromRoleService;
 import com.fr.hailian.util.KeyUtil;
 import com.fr.hailian.util.RoleUtil;
+import com.fr.json.JSONObject;
 /***
  * 将所有的消息未读数置0
  * @author Tom
@@ -72,7 +71,11 @@ public class ReadAllMsgServlet extends BaseServlet{
 			r.put("success", true);
 		} catch (Exception e) {
 			e.printStackTrace();
-			r.put("success", false);
+			try {
+				r.put("success", false);
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
 		}
 		responseOutWithJson(response, r);
 	}

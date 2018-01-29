@@ -1,29 +1,17 @@
 package com.fr.hailian.servlet;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONObject;
-
 import com.fr.fs.base.entity.User;
 import com.fr.hailian.core.BaseServlet;
-import com.fr.hailian.core.Constants;
-import com.fr.hailian.service.FXSJAuditService;
 import com.fr.hailian.service.UserDataFromRoleService;
-import com.fr.hailian.util.C3P0Utils;
 import com.fr.hailian.util.KeyUtil;
 import com.fr.hailian.util.RoleUtil;
-import com.fr.privilege.authentication.RoleAuthentication;
-import com.fr.privilege.providers.dao.DaoAuthenticationProvider.RoleConfig;
+import com.fr.json.JSONObject;
 /***
  * 审核使用的servlet
  * @author Tom
