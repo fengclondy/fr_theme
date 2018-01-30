@@ -71,7 +71,7 @@ public class MultiTask implements Runnable{
 	public long getUnSplitNum(String type) throws ClassNotFoundException, SQLException{
 		Connection conn = JDBCUtil.getConnection();
 		Statement st = conn.createStatement();
-		String sql = "SELECT count(0) FROM hub_commerce_meiya_sentiment_news_bak WHERE split_status='0' and to_number(info_id,'99999999999')%10="+type;
+		String sql = "SELECT count(0) FROM hub_commerce_meiya_sentiment_news WHERE split_status='0' and to_number(info_id,'99999999999')%10="+type;
 		ResultSet rs = st.executeQuery(sql);
 		rs.next();
 		long result = rs.getLong(1);
@@ -90,7 +90,7 @@ public class MultiTask implements Runnable{
 		Connection conn = JDBCUtil.getConnection();
 		Statement st = conn.createStatement();
 		//分词以1000条为单位进行
-		String sql = "SELECT info_id,content FROM hub_commerce_meiya_sentiment_news_bak WHERE split_status='0' and to_number(info_id,'99999999999')%10="+type+" order by info_id limit 100";
+		String sql = "SELECT info_id,content FROM hub_commerce_meiya_sentiment_news WHERE split_status='0' and to_number(info_id,'99999999999')%10="+type+" order by info_id limit 100";
 		//String sql = "SELECT info_id,summary FROM hub_commerce_meiya_sentiment_news WHERE split_status='1' and create_time='20180115' order by info_id";
 		ResultSet rs = st.executeQuery(sql);
 		ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String,String>>();
@@ -116,7 +116,7 @@ public class MultiTask implements Runnable{
 		Connection conn = JDBCUtil.getConnection();
 		Statement st = conn.createStatement();
 		//更新分词，状态置为1
-		String sql = "UPDATE hub_commerce_meiya_sentiment_news_bak set split_key_words = '"+keyWords+"' , split_status='1',split_words='"+words+"' WHERE info_id='"+infoId+"'";
+		String sql = "UPDATE hub_commerce_meiya_sentiment_news set split_key_words = '"+keyWords+"' , split_status='1',split_words='"+words+"' WHERE info_id='"+infoId+"'";
 		int result = st.executeUpdate(sql);
 		st.close();
 		JDBCUtil.closeConnection(conn);
@@ -134,7 +134,7 @@ public class MultiTask implements Runnable{
 		Statement st = conn.createStatement();
 		//更新分词，状态置为1
 		for(int i = 0 ; i < list2.size() ; i++){
-			String sql = "UPDATE hub_commerce_meiya_sentiment_news_bak set split_key_words = '"+list2.get(i).get("keyWords")+"' , split_status='1',split_words='"+list2.get(i).get("words")+"' WHERE info_id='"+list2.get(i).get("id")+"'";
+			String sql = "UPDATE hub_commerce_meiya_sentiment_news set split_key_words = '"+list2.get(i).get("keyWords")+"' , split_status='1',split_words='"+list2.get(i).get("words")+"' WHERE info_id='"+list2.get(i).get("id")+"'";
 			st.addBatch(sql);
 		}
 		st.executeBatch();

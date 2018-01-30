@@ -8,7 +8,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.regex.Pattern;
 
 import com.fr.hailian.util.JDBCUtil;
 
@@ -229,8 +228,8 @@ public class KeyWordsCountService {
 		//获取当天日期
 		Date now = new Date(); 
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
-		//String date = dateFormat.format(now); 
-		String date = "20180110"; 
+		String date = dateFormat.format(now); 
+		//String date = "20180110"; 
 		
 		try {
 			System.out.println(date+"统计开始");
