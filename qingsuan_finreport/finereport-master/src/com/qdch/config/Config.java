@@ -6,6 +6,7 @@ import com.jfinal.config.Interceptors;
 import com.jfinal.config.JFinalConfig;
 import com.jfinal.config.Plugins;
 import com.jfinal.config.Routes;
+import com.jfinal.core.JFinal;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.activerecord.dialect.PostgreSqlDialect;
@@ -20,10 +21,13 @@ public class Config extends JFinalConfig {
 	}
 
 	public void configRoute(Routes me) {
-		me.add("/jfinal/demo", DemoController.class);
+		//设置根页面路径
+		me.setBaseViewPath("/WEB-INF/qss");
+		me.add("jfinal/demo", DemoController.class,"/");
 	}
 
 	public void configEngine(Engine me) {
+		me.setDevMode(true);
 	}
 
 	public void configPlugin(Plugins me) {
@@ -34,7 +38,7 @@ public class Config extends JFinalConfig {
 		DruidPlugin dp = new DruidPlugin(jdbc, user, pwd);
 //		DruidPlugin dp = new DruidPlugin("jdbc:postgresql://172.16.6.61:5432/qdchedw", "hub", "hub@2017");
 		me.add(dp);
-		ActiveRecordPlugin arp = new ActiveRecordPlugin(dp);
+		ActiveRecordPlugin arp = new ActiveRecordPlugin(com.qdch.core.Constants.QSS_GP_HUB,dp);
 		me.add(arp);
 		// 配置Postgresql方言
 	    arp.setDialect(new PostgreSqlDialect());
@@ -48,4 +52,7 @@ public class Config extends JFinalConfig {
 	public void configHandler(Handlers me) {
 	}
 
+	public static void main(String[] args){
+		JFinal.start("WebRoot", 8080, "/", 5);
+	}
 }
