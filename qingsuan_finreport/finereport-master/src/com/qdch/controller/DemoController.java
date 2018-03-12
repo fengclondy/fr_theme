@@ -30,6 +30,7 @@ public class DemoController extends Controller {
     }
     
     public void test() {
+    	setAttr("name", "value");
         render("p2p/test/login.html");
      }
 

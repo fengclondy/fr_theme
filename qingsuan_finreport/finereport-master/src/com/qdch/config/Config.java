@@ -1,5 +1,8 @@
 package com.qdch.config;
 
+import org.beetl.core.GroupTemplate;
+import org.beetl.ext.jfinal3.JFinal3BeetlRenderFactory;
+
 import com.jfinal.config.Constants;
 import com.jfinal.config.Handlers;
 import com.jfinal.config.Interceptors;
@@ -18,6 +21,11 @@ import com.qdch.model.DemoModel;
 public class Config extends JFinalConfig {
 	public void configConstant(Constants me) {
 		me.setDevMode(true);
+		//添加beetl配置
+		JFinal3BeetlRenderFactory rf = new JFinal3BeetlRenderFactory();
+		rf.config();
+		me.setRenderFactory(rf);
+		GroupTemplate gt = rf.groupTemplate;
 	}
 
 	public void configRoute(Routes me) {
