@@ -17,6 +17,7 @@ import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.template.Engine;
 import com.qdch.controller.DemoController;
 import com.qdch.model.DemoModel;
+import com.qdch.util.TemplteLayoutTag;
 
 public class Config extends JFinalConfig {
 	public void configConstant(Constants me) {
@@ -26,6 +27,7 @@ public class Config extends JFinalConfig {
 		rf.config();
 		me.setRenderFactory(rf);
 		GroupTemplate gt = rf.groupTemplate;
+		gt.registerTag("layout", TemplteLayoutTag.class);
 	}
 
 	public void configRoute(Routes me) {
