@@ -10,6 +10,7 @@ import com.jfinal.config.JFinalConfig;
 import com.jfinal.config.Plugins;
 import com.jfinal.config.Routes;
 import com.jfinal.core.JFinal;
+import com.jfinal.kit.PathKit;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.activerecord.dialect.PostgreSqlDialect;
@@ -49,6 +50,9 @@ public class Config extends JFinalConfig {
 //		DruidPlugin dp = new DruidPlugin("jdbc:postgresql://172.16.6.61:5432/qdchedw", "hub", "hub@2017");
 		me.add(dp);
 		ActiveRecordPlugin arp = new ActiveRecordPlugin(com.qdch.core.Constants.QSS_GP_HUB,dp);
+		arp.setBaseSqlTemplatePath(PathKit.getRootClassPath());
+		arp.addSqlTemplate("all.sql");
+		arp.setShowSql(true);
 		me.add(arp);
 		// 配置Postgresql方言
 	    arp.setDialect(new PostgreSqlDialect());
