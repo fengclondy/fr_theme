@@ -8,6 +8,8 @@ public class Constants {
 	
 	//清算所gp库hub用户
 	public static final String QSS_GP_HUB = "qss_gp_hub";
+	//清算所gp库insight用户
+	public static final String QSS_GP_INSIGHT = "qss_gp_insight";
 	
 	//layout模板路径
 	public static final String LAYOUT_TEMPLTE_DIR = "/WEB-INF/pages/layout/";

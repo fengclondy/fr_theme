@@ -43,11 +43,12 @@ public class Config extends JFinalConfig {
 
 	public void configPlugin(Plugins me) {
 		PropKit.use("config.txt");
+		//----qdchedw hub用户连接方式 start----
 		String jdbc = PropKit.get("jdbc");
 		String user = PropKit.get("user");
 		String pwd = PropKit.get("pwd");
 		DruidPlugin dp = new DruidPlugin(jdbc, user, pwd);
-//		DruidPlugin dp = new DruidPlugin("jdbc:postgresql://172.16.6.61:5432/qdchedw", "hub", "hub@2017");
+		//DruidPlugin dp = new DruidPlugin("jdbc:postgresql://172.16.6.61:5432/qdchedw", "hub", "hub@2017");
 		me.add(dp);
 		ActiveRecordPlugin arp = new ActiveRecordPlugin(com.qdch.core.Constants.QSS_GP_HUB,dp);
 		arp.setBaseSqlTemplatePath(PathKit.getRootClassPath());
@@ -58,6 +59,24 @@ public class Config extends JFinalConfig {
 	    arp.setDialect(new PostgreSqlDialect());
 		//arp.addMapping("user", User.class);
 		arp.addMapping("hub_commerce_ref_jys", DemoModel.class);
+		//----qdchedw hub用户连接方式 end----
+		
+		
+		//----qdchedw insight用户连接方式 start----
+		String insight_jdbc = PropKit.get("insight_jdbc");
+		String insight_user = PropKit.get("insight_user");
+		String insight_pwd = PropKit.get("insight_pwd");
+		DruidPlugin insight_dp = new DruidPlugin(insight_jdbc, insight_user, insight_pwd);
+		me.add(insight_dp);
+		ActiveRecordPlugin insight_arp = new ActiveRecordPlugin(com.qdch.core.Constants.QSS_GP_INSIGHT,insight_dp);
+		insight_arp.setBaseSqlTemplatePath(PathKit.getRootClassPath());
+		insight_arp.addSqlTemplate("all.sql");
+		insight_arp.setShowSql(true);
+		me.add(insight_arp);
+		// 配置Postgresql方言
+		insight_arp.setDialect(new PostgreSqlDialect());
+		//insight_arp.addMapping("hub_commerce_ref_jys", DemoModel.class);
+		//----qdchedw insight用户连接方式 end----
 	}
 
 	public void configInterceptor(Interceptors me) {
