@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="../img/com/logo.png">
+    <link rel="stylesheet" href="../asserts/css/normalize.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/pageCom.css">
+    <style>
+        .top {
+            display: flex;
+            flex: 3.5;
+        }
+        .top > div {
+            flex: 1;
+        }
+        table {
+            width: 100%
+        }
+    </style>
+</head>
+<body id="03_03zichanfengxian" data-title="管理风险">
+<div class="container">
+    <h2 hidden>发展能力</h2>
+    <header class="pageHeader">
+        <div class="inputGroup">
+            <label for="pingtai">平台：</label>
+            <div class="mySelect" id="pingtai">
+                <div class="myOption selected"><span class="text"></span><span class="icon"></span></div>
+                <ul class="myOptionBox">
+                    <li class="myOption selected">鲁金宝</li>
+                    <li class="myOption">鲁金宝1</li>
+                    <li class="myOption">鲁金宝2</li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="top">
+        <div class="top-l">
+            <div class="chartBox ec001">
+                <div class="chartTitle">
+                    <h3>注册资本</h3>
+                </div>
+                <div class="chartContent">
+                    <div class="chartBody">
+                        <div id="ec0302_fznl001"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="top-2">
+            <div class="chartBox ec0302">
+                <div class="chartTitle">
+                    <h3>资本能力</h3>
+                </div>
+                <div class="chartContent">
+                    <div class="chartBody">
+                        <div id="ec0302_fznl002"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="top-3">
+            <div class="chartBox ec0302">
+                <div class="chartTitle">
+                    <h3>贷款情况</h3>
+                </div>
+                <div class="chartContent">
+                    <div class="chartBody">
+                        <div id="ec0302_fznl003"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="top">
+        <div class="top-4">
+            <div class="chartBox ec001">
+                <div class="chartTitle">
+                    <h3>客户数量</h3>
+                </div>
+                <div class="chartContent">
+                    <div class="chartBody">
+                        <div id="ec0302_fznl004"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="top-5">
+            <div class="chartBox ec002">
+                <div class="chartTitle">
+                    <h3>员工数量</h3>
+                </div>
+                <div class="chartContent">
+                    <div class="chartBody">
+                        <div id="ec0302_fznl005"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="top-6">
+            <div class="chartBox ec0302">
+                <div class="chartTitle">
+                    <h3>获奖能力</h3>
+                </div>
+                <div class="chartContent">
+                    <div class="chartBody">
+                        <div id="ec0302_fznl006"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../asserts/js/echarts-4.0.js"></script>
+<script src="../asserts/js/jquery-2.2.4.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/chartsCom.js"></script>
+<script>
+    var allCharts = [];
+    $(function () {
+//注册资本  模块一
+        var myChart1 = echarts.init($("#ec0302_fznl001")[0]);
+        myChart1.setOption(opt_line);
+        myChart1.setOption(opt_bar_vertical);
+        myChart1.setOption({
+            grid: {
+                left: '10%',
+                right: '10%',
+                bottom: '10%',
+                top: '11%'
+            },
+            legend: {
+                show: false
+            },
+            xAxis: [
+                {
+                    name: '年',
+                    type: 'category',
+                    data: ['2012', '2013', '2014', '2015', '2016', '2017']
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    name: '金额',
+                    interval: 15,
+                    nameGap: 4 * bodyScale
+                }
+            ],
+            series: [
+                {
+                    name: '资产',
+                    type: 'bar',
+                    data: [57, 63, 38, 57, 60, 49],
+                    barWidth: 15
+                }
+            ]
+        });
+//资本能力  模块二
+        var myChart2 = echarts.init($("#ec0302_fznl002")[0]);
+        myChart2.setOption(opt_bar_horizon);
+        myChart2.setOption(opt_line);
+        myChart2.setOption({
+            grid: {
+                left: '10%',
+                right: '10%',
+                bottom: '10%',
+                top: '13%'
+            },
+            xAxis: [
+                {
+                    name: '年',
+                    type: 'category',
+                    data: ['2012', '2013', '2014', '2015', '2016', '2017'],
+                    axisTick: {
+                        alignWithLabel: true
+                    }
+                }
+            ],
+            yAxis: [
+                {
+                    name: '金额',
+                    type: 'value',
+                    interval: 15
+                }
+            ],
+            series: [
+                {
+                    name: '总资产',
+                    type: 'bar',
+                    data: [60, 45, 39, 28, 47, 65],
+                    barWidth: 15
+                },
+                {
+                    name: '期末货款余额',
+                    type: 'line',
+                    data: [39, 30, 22, 17, 36, 49],
+                    symbol: 'circle'
+                },
+                {
+                    name: '融资额',
+                    type: 'line',
+                    data: [37, 28, 20, 16, 33, 40],
+                    symbol: 'circle'
+                }
+            ]
+        });
+// 贷款情况  模块三
+        var myChart3 = echarts.init($("#ec0302_fznl003")[0]);
+        myChart3.setOption(opt_bar_horizon);
+        myChart3.setOption(opt_line);
+        myChart3.setOption({
+            grid: {
+                left: '10%',
+                right: '10%',
+                bottom: '10%',
+                top: '13%'
+            },
+            xAxis: [
+                {
+                    name: '年',
+                    type: 'category',
+                    data: ['2012', '2013', '2014', '2015', '2016', '2017']
+                }
+            ],
+            yAxis: [
+                {
+                    name: '金额',
+                    type: 'value',
+                    interval: 15,
+                    right: '15%'
+                }
+            ],
+            series: [
+                {
+                    name: '累计货款余额',
+                    type: 'line',
+                    data: [60, 45, 39, 28, 47, 69],
+                    barWidth: 15
+                },
+                {
+                    name: '累计放款额',
+                    type: 'line',
+                    data: [55, 39, 22, 15, 41, 59],
+                    color: '#ffd769',
+                    symbol: 'circle'
+                }
+            ]
+
+        });
+
+//客户数量  模块四
+        var myChart4 = echarts.init($("#ec0302_fznl004")[0]);
+        myChart4.setOption(opt_bar_horizon);
+        myChart4.setOption(opt_line);
+        myChart4.setOption({
+            grid: {
+                left: '10%',
+                right: '10%',
+                bottom: '10%',
+                top: '13%'
+            },
+            xAxis: [
+                {
+                    name: '年',
+                    type: 'category',
+                    data: ['2012', '2013', '2014', '2015', '2016', '2017'],
+                    axisTick: {
+                        alignWithLabel: true
+                    }
+                }
+            ],
+            yAxis: [
+                {
+                    name: '人数',
+                    type: 'value',
+                    interval: 15
+                }
+            ],
+            series: [
+                {
+                    name: '当期累计客户数量',
+                    type: 'bar',
+                    data: [60, 45, 39, 38, 47, 65],
+                    barWidth: 15
+                },
+
+                {
+                    name: '当期活跃客户数量',
+                    type: 'line',
+                    data: [29, 31, 29, 34, 33, 40],
+                    symbol: 'circle'
+                }
+            ]
+
+        });
+//员工数量  模块五
+        var myChart5 = echarts.init($("#ec0302_fznl005")[0]);
+        myChart5.setOption(opt_bar_horizon);
+        myChart5.setOption(opt_line);
+        myChart5.setOption({
+            grid: {
+                left: '10%',
+                right: '10%',
+                bottom: '10%',
+                top: '13%'
+            },
+            xAxis: [
+                {
+                    name: '年',
+                    type: 'category',
+                    data: ['2012', '2013', '2014', '2015', '2016', '2017'],
+                    axisTick: {
+                        alignWithLabel: true
+                    }
+                }
+            ],
+            yAxis: [
+                {
+                    name: '人数',
+                    type: 'value',
+                    interval: 15
+                }
+            ],
+            series: [
+                {
+                    name: '当期累计员工数量',
+                    type: 'bar',
+                    data: [60, 45, 39, 38, 47, 65],
+                    barWidth: 15
+                },
+
+                {
+                    name: '当期流失员工数量',
+                    type: 'line',
+                    data: [29, 31, 29, 34, 33, 40],
+                    symbol: 'circle'
+                }
+            ]
+
+        });
+// 获奖能力  模块六
+        var myChart6 = echarts.init($("#ec0302_fznl006")[0]);
+        myChart6.setOption(opt_bar_horizon);
+        myChart6.setOption(opt_line);
+        myChart6.setOption({
+            legend: {
+                show: false
+            },
+            grid: {
+                left: '10%',
+                right: '10%',
+                bottom: '10%',
+                top: '13%'
+            },
+            xAxis: {
+                name: '年',
+                type: 'category',
+                data: ['2012', '2013', '2014', '2015', '2016', '2017']
+            },
+            yAxis: {
+                name: '分数',
+                type: 'value'
+            },
+            series: [
+                {
+                    name: '担保方式1',
+                    type: 'line',
+                    data: [32, 34, 36, 38, 40, 43]
+                }
+            ]
+        });
+//本页所有图表
+        allCharts = [myChart1, myChart2, myChart3, myChart4, myChart5, myChart6];
+    });
+</script>
+</body>
+</html>

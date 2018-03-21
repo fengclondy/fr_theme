@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="${contextPath}/static/img/com/logo.png">
+    <title>小贷</title>
+    <link rel="stylesheet" href="${contextPath}/static/asserts/css/normalize.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/style.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/index.css">
+</head>
+<body id="index">
+
+<!--规范约定-->
+<!--本页面的布局样式和图表的js代码都写本页面内-->
+<!--body的直接子元素是.container，-->
+<!--每个页面都有全局变量allCharts用来存放所有图表-->
+
+<header id="mainHeader">
+    <div class="logoBox">
+        <div class="logo"></div>
+        <h1>地方金融风险防控预警平台</h1>
+    </div>
+    <ul>
+        <li class="notice"><a href=""><span class="icon"></span><span class="number">3</span></a></li>
+        <li class="message"><a href=""><span class="icon"></span><span class="number">0</span></a></li>
+        <li class="user"><a href=""><span class="icon"></span><span class="name">man</span></a></li>
+    </ul>
+</header>
+<div class="navContent">
+    <nav id="mainNav">
+        <ul>
+            <li class="">
+                <a class="dropdown-toggle">监管全景<span class="icon"></span> </a>
+                <ul>
+                    <li data-id="${contextPath}/jfinal/demo/fxzl" data="01_01fengxianzonglan">风险总览</li>
+                    <li data-id="${contextPath}/jfinal/demo/ywzl" data="01_02yewuzonglan">业务总览</li>
+                </ul>
+            </li>
+<!--
+            <li class="">
+                <a class="dropdown-toggle">市场画像</a>
+                <ul>
+                    <li data-id="">市场画像</li>
+                </ul>
+            </li>
+-->
+            <li class="">
+                <a class="dropdown-toggle">风险分析<span class="icon"></span></a>
+                <ul>
+                    <li data-id="${contextPath}/jfinal/demo/xyfx" data="03_01xinyongfengxian">信用风险</li>
+                    <li data-id="03_02guanlifengxian">管理风险</li>
+                    <li data-id="03_03zichanfengxian">资产风险</li>
+                    <li data-id="03_04heguifengxian">合规风险</li>
+                    <li data-id="03_05shengyufengxian">声誉风险</li>
+                </ul>
+            </li>
+            <li class="">
+                <a class="dropdown-toggle">竞争力<span class="icon"></span></a>
+                <ul>
+                    <li data-id="04_01jingyingnengli">经营能力</li>
+                    <li data-id="04_02yinglinengli">盈利能力</li>
+                    <li data-id="04_03fazhannengli">发展能力</li>
+                </ul>
+            </li>
+            <li class="">
+                <a class="dropdown-toggle">风险管理<span class="icon"></span></a>
+                <ul>
+                    <li>风险事件处理</li>
+                    <li data-id="05_02fengxianshijianchakan">风险事件查看</li>
+                    <li data-id="05_03fengxianshijianshenhe">风险事件审核</li>
+                    <li>风险事件决策</li>
+                </ul>
+            </li>
+            <li class="">
+                <a class="dropdown-toggle">监管报告<span class="icon"></span></a>
+                <ul>
+                    <li data-id="06_01jianguanyuebao">监管月报</li>
+                </ul>
+            </li>
+            <li class="">
+                <a class="dropdown-toggle">业务数据<span class="icon"></span></a>
+                <ul>
+                    <li><a href="">客户信息</a></li>
+                    <li><a href="">产品信息</a></li>
+                    <li><a href="">交易信息</a></li>
+                </ul>
+            </li>
+            <li class="">
+                <a class="dropdown-toggle">数据录入<span class="icon"></span></a>
+                <ul>
+                    <li><a href="">待定</a></li>
+                    <li data-id="alert">alert</li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="mainNavFoldCtr">
+        <div class="icon"></div>
+    </div>
+    <div class="container">
+        <div class="nav-tabs" id="navTabs">
+            <ul>
+                <li class="active" data-id="00_01home">
+                    <a title="首页" ><span class="text"></span><span class="close">×</span> </a>
+                    <span class="tab-tip">
+                        <a class="refresh"><span class="icon"></span>刷新</a>
+                        <span class="separator">|</span>
+                        <a class="favorite"><span class="icon"></span>收藏</a>
+                    </span>
+                </li>
+            </ul>
+        </div>
+        <div class="pageBox">
+            <div class="pageContent current" id="00_01home" data-title="主页">
+                <iframe src="00_01home.html"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${contextPath}/static/asserts/js/jquery-2.2.4.js"></script>
+<script src="${contextPath}/static/js/index.js"></script>
+<script>
+</script>
+</body>
+</html>

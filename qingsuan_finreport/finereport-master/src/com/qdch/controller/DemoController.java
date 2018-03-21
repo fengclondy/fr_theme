@@ -87,5 +87,18 @@ public class DemoController extends Controller {
     	setAttr("name", "value");
         render("p2p/test/login.html");
      }
-
+    
+    public void xd() {
+    	setAttr("name", "value");
+        render("xd/pages/index.html");
+     }
+    public void fxzl() {
+        render("xd/pages/01_01fengxianzonglan.html");
+     }
+    public void ywzl() {
+        render("xd/pages/01_02yewuzonglan.html");
+     }
+    public void xyfx() {
+        render("xd/pages/03_01xinyongfengxian.html");
+     }
 }

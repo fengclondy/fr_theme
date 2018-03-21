@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="${contextPath}/static/img/com/logo.png">
+    <title></title>
+    <link rel="stylesheet" href="${contextPath}/static/asserts/css/normalize.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/style.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/pageCom.css">
+    <style>
+        .container > div,
+        .top > div,
+        .bottom > div {
+            flex: 1;
+        }
+        .top, .bottom {
+            display: flex;
+        }
+        .chartBox>.chartContent1{
+            display: flex;
+            flex: 12;
+        }
+        /*第二部分*/
+        .fl{
+            float: left;
+        }
+        .fr{
+            float: right;
+        }
+        .pingtaileft{
+            width: 50%;
+            height: 100%;
+        }
+        .pingtairight{
+            width: 50%;
+            height: 100%;
+            padding: 1em 0.2em;
+        }
+        .pingtairight-1{
+            position: relative;
+            display: table;
+            min-width: 6%;
+            height: 100%;
+            background: #00b0f4;
+        }
+        .pingtairight-1 .textContent{
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
+        .pingtairight-1>p{
+            display: inline-block;
+            text-align: center;
+            padding: 5% 0;
+        }
+        .pingtairightup{
+            width: 94%;
+            height: 50%;
+            padding: .5em 19%;
+        }
+        .pingtairightdown{
+            width: 94%;
+            height: 50%;
+            /*background: orange;*/
+            padding: .5em;
+        }
+        .pingtairightdown-1{
+            width: 30%;
+            height: 75%;
+            background-color: rgba(0,0,0,.2);
+            margin-left: 0.9em;
+            margin-top: 2%;
+        }
+        .uphezi {
+            position: relative;
+            width: 46%;
+            height: 100%;
+            background-color: rgba(0,0,0,.2);
+            margin-right: 3%;
+        }
+        .downhezi{
+            position: relative;
+            width: 29%;
+            height: 100%;
+            background-color: rgba(0,0,0,.2);
+            margin-right: 2%;
+        }
+        /*五个盒子*/
+        .heziContent{
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            transform: translateY(-50%);
+            text-align: center;
+        }
+        .uphezi:hover,.downhezi:hover{
+            background-color: rgba(0,0,0,.05);
+
+        }
+        .hezitextContent span:nth-child(1){
+            font-size: 18px;
+            font-weight: 500;
+        }
+        .hezitextContent span:nth-child(2){
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .heziContent a span:hover{
+            color: var(--themeBlue);
+        }
+        .hezipic img{
+            width: 1em;
+            height: 1em;
+            vertical-align: middle;
+        }
+        /*模块三  tab*/
+        #box{
+            width:100%;
+            height: 100%;
+        }
+        #tit{
+            width: 80%;
+            height: 2rem;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        #tit span{
+            float: left;
+            width: 30%;
+            padding: .2rem .8rem;
+            font-size: .8rem;
+            color: var(--themeBlue);
+            background-color: transparent;
+            border: 1px solid var(--themeBlue);
+            border-radius: .2rem;
+        }
+        #con{
+            width: 100%;
+            height: 100%;
+        }
+        #con li{
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            line-height: 350px;
+            font-size: 40px;
+            display: none;
+        }
+        #con .show{
+            display: block;
+        }
+        #tit .select{
+            color: #fff;
+            background-color: var(--themeBlue);
+
+        }
+        .mySelect{
+            width: 6rem;
+        }
+        .btnGroup>span{
+            margin-left: 0.5rem;
+        }
+    </style>
+</head>
+<body id="01_01fengxianzonglan">
+<div class="container">
+    <h2 hidden>业务总览</h2>
+    <!-- 第一部分 三个盒子 -->
+    <div class="top">
+        <!-- 风险指数排名 -->
+        <div class="top-l">
+            <div class="chartBox ec005">
+                <div class="chartTitle">
+                    <h3>风险指数排名</h3>
+                </div>
+                <div class="chartContent">
+                    <!--<header></header>-->
+                    <div class="chartBody">
+                        <div id="ec005_currentFengxianzhishu"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 风险趋势 -->
+        <div class="top-m">
+            <div class="chartBox ec006">
+                <div class="chartTitle">
+                    <h3>风险趋势</h3>
+                </div>
+                <div class="chartContent">
+                    <header>
+                        <div class="inputGroup">
+                            <label for="fengxianpingtai1">平台：</label>
+                            <div class="mySelect" id="fengxianpingtai1">
+                                <div class="myOption selected"><span class="text"></span><span class="icon"></span>
+                                </div>
+                                <ul class="myOptionBox">
+                                    <li class="myOption selected">好易贷</li>
+                                    <li class="myOption">中金所</li>
+                                    <li class="myOption">鲁金宝</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="inputGroup">
+                            <label for="fengxianpingtai2">风险类型：</label>
+                            <div class="mySelect" id="fengxianpingtai2">
+                                <div class="myOption selected"><span class="text"></span><span class="icon"></span>
+                                </div>
+                                <ul class="myOptionBox">
+                                    <li class="myOption selected">信用风险</li>
+                                    <li class="myOption">信用风险</li>
+                                    <li class="myOption">信用风险</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </header>
+                    <div class="chartBody">
+                        <div id="ec006_marketFengxianqushi"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 关键指数排名 -->
+        <div class="top-r">
+            <div class="chartBox ec007">
+                <div class="chartTitle">
+                    <h3>关键指标排名</h3>
+                </div>
+                <div class="chartContent">
+                    <header>
+                            <div id="tit" class="btnGroup">
+                                <span class="select">最高利率</span>
+                                <span>杠杆</span>
+                                <span>不良率</span>
+                            </div>
+                    </header>
+                    <div class="chartBody">
+                        <!--<div id="ec007_zhishupaiming"></div>-->
+                        <ul id="con">
+                            <li class="show" id="ec007_zhishupaiming"></li>
+                            <li id="ec008_zhishupaiming">内容二</li>
+                            <li id="ec009_zhishupaiming">内容三</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 第二部分 -->
+    <div class="bottom">
+        <div class="top-l">
+            <div class="chartBox ec005">
+                <div class="chartTitle">
+                    <h3>平台运营监控</h3>
+                </div>
+                <div class="chartContent1">
+                    <!--底部左侧  -->
+                    <div class="pingtaileft">
+                        <div id="pie1" style="width: 100%;height:100%;"></div>
+                    </div>
+                    <!-- 底部右侧 -->
+                    <div class="pingtairight">
+                        <!-- 右侧上面两盒子 -->
+                        <!-- 注意哦~~盒子是从右侧向左侧浮动的！注意顺序 -->
+                        <div class="pingtairightup fr">
+                            <div class="uphezi fr">
+                                <div class="heziContent">
+                                    <div class="hezitextContent">
+                                        <a href="#"> <span id="guanlifengxian" class="zhi">890</span></a><span>个</span>
+                                    </div>
+                                    <div class="hezipic">
+                                        <img src="../img/01_01fengxianzonglan/guanli.png" alt="">
+                                        <span>管理风险</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="uphezi fr">
+                                <div class="heziContent">
+                                    <div class="hezitextContent">
+                                        <a href="alert.html"><span id="xinyongfengxian" class="zhi">1210</span></a><span>个</span>
+                                    </div>
+                                    <div class="hezipic">
+                                        <img src="../img/01_01fengxianzonglan/xinyong.png" alt="">
+                                        <span>信用风险</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 右侧下面三个盒子 -->
+                        <div class="pingtairightdown fr">
+                            <div class="downhezi fr">
+                                <div class="heziContent">
+                                    <div class="hezitextContent">
+                                        <a href="#"><span id="zichanfengxian" class="zhi">910</span></a><span>个</span>
+                                    </div>
+                                    <div class="hezipic">
+                                        <img src="../img/01_01fengxianzonglan/zichan.png" alt="">
+                                        <span>资产风险</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="downhezi fr">
+                                <div class="heziContent">
+                                    <div class="hezitextContent">
+                                        <a href="#"><span id="shengyufengxian" class="zhi">209</span></a><span>个</span>
+                                    </div>
+                                    <div class="hezipic">
+                                        <img src="../img/01_01fengxianzonglan/shengyu.png" alt="">
+                                        <span>声誉风险</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="downhezi fr">
+                                <div class="heziContent">
+                                    <div class="hezitextContent">
+                                        <a href="#"><span id="heguifengxian" class="zhi">601</span></a><span>个</span>
+                                    </div>
+                                    <div class="hezipic">
+                                        <img src="../img/01_01fengxianzonglan/guanli.png" alt="">
+                                        <span>合规风险</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 运行异常 -->
+                        <div class="pingtairight-1">
+                            <div class="textContent">
+                                <p>运</p>
+                                <p>行</p>
+                                <p>异</p>
+                                <p>常</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script src="${contextPath}/static/asserts/js/echarts-4.0.js"></script>
+<script src="${contextPath}/static/asserts/js/jquery-2.2.4.js"></script>
+<script src="${contextPath}/static/js/main.js"></script>
+<script src="${contextPath}/static/js/chartsCom.js"></script>
+
+
+
+<script>
+    var allCharts = [];
+    $(function () {
+        var ec005 = echarts.init($("#ec005_currentFengxianzhishu")[0]);
+        ec005.setOption(opt_bar_horizon);
+        ec005.setOption({
+            tooltip:{
+                position: function (pos, params, dom, rect, size) {
+                    // 鼠标在左侧时 tooltip 显示到右侧，鼠标在右侧时 tooltip 显示到左侧。
+                    var obj = {top: 60};
+                    obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
+                    return obj;
+                },
+                formatter: '{b0}: {c0}<br/>信用风险:1<br>管理风险:2<br>资产风险:3<br>合规风险:4<br>声誉风险:5'
+
+            },
+            grid:{
+                left:"22%",
+                right:"16%",
+                top:"15%"
+            },
+            //X轴
+            xAxis: {
+                name:'指数',
+                data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+            },
+            // Y轴
+            yAxis: {
+                name:'平台',
+                data: ['互帮贷', '大家投', '中金所', '好易贷', '鲁金宝']
+            },
+            series: [{
+                data: [1, 3, 5, 7, 10],
+                type: 'bar',
+                barWidth:barWidth
+            }]
+        });
+
+        // 风险趋势  模块二
+        var ec006 = echarts.init($("#ec006_marketFengxianqushi")[0]);
+        ec006.setOption(opt_line);
+        ec006.setOption({
+            grid:{
+                left:"12%",
+                right:"12%",
+                top:"14%"
+            },
+            xAxis: {
+                name:'月份',
+                data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+            },
+            yAxis: {
+                name:'竞争力',
+                type: 'value'
+            },
+            series: [{
+                data: [2,  5, 7.2, 4,10, 7.2, 10, 5, 5, 7.2, 10, 5, 6],
+                type: 'line'
+            }]
+        });
+        //关键指标排名 模块三
+        var ec007 = echarts.init($("#ec007_zhishupaiming")[0]);
+        ec007.setOption(opt_bar_horizon);
+        ec007.setOption({
+            grid:{
+                left:"17%",
+                right:"16%",
+                top:"12%"
+            },
+            xAxis: {
+                name:'金额\n/万元',
+                type: 'value'
+            },
+            yAxis: {
+                name:'市场',
+                type: 'category',
+                data: ['互帮贷', '大家投', '中金所', '好易贷', '鲁金宝']
+            },
+            series: [{
+                data: [1, 3, 5, 7.2, 10],
+                type: 'bar',
+                barWidth:barWidth
+            }]
+        });
+
+        var ec008 = echarts.init($("#ec008_zhishupaiming")[0]);
+        ec008.setOption(opt_bar_horizon);
+        ec008.setOption({
+            grid:{
+                left:"17%",
+                right:"16%",
+                top:"12%"
+            },
+            xAxis: {
+                name:'金额\n/万元',
+                type: 'value'
+            },
+            yAxis: {
+                name:'市场',
+                type: 'category',
+                data: ['互帮贷', '大家投', '中金所', '好易贷', '鲁金宝']
+            },
+            series: [{
+                data: [1, 3, 5, 7.2, 10],
+                type: 'bar',
+                barWidth:barWidth
+            }]
+        });
+
+        var ec009 = echarts.init($("#ec009_zhishupaiming")[0]);
+        ec009.setOption(opt_bar_horizon);
+        ec009.setOption({
+            grid:{
+                left:"17%",
+                right:"16%",
+                top:"12%"
+            },
+            xAxis: {
+                name:'金额\n/万元',
+                type: 'value'
+            },
+            yAxis: {
+                name:'市场',
+                type: 'category',
+                data: ['互帮贷', '大家投', '中金所', '好易贷', '鲁金宝']
+            },
+            series: [{
+                data: [1, 3, 5, 7.2, 10],
+                type: 'bar',
+                barWidth:barWidth
+            }]
+        });
+// 第二部分
+        // 环形图
+        var myChart1 = echarts.init(document.getElementById('pie1'));
+        myChart1.setOption(opt_pie);
+        var option1 = {
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b}: {c} ({d}%)"
+            },
+            legend: {
+                show: false
+            },
+            graphic:{
+                type:'text',
+                left:'center',
+                top:'center',
+                style:{
+                    text:'平台总数(个)\n  24',
+                    textAlign:'center',
+                    fill:'#fff',
+                    width:30,
+                    height:30
+                }
+            },
+            series: [
+                {
+                    name:'访问来源',
+                    type: 'pie',
+                    radius: ['50%', '65%'],
+                    itemStyle: {
+                        normal:{
+                            label:{
+                                show:true,
+                                textStyle:{color:'#fff',fontSize:"18"},
+                                formatter:function(val){   //让series 中的文字进行换行
+                                    return val.name.split("-").join("\n");}
+                            }
+                        }
+                    },
+                    data: [
+                        {value: 1260, name: '停运平台-55%'},
+                        {value: 678, name: '运营平台-45%'}
+                    ]
+                }
+            ]
+        };
+        myChart1.setOption(option1);
+
+        //本页所有图表
+        allCharts = [ec005, ec006, ec007,ec008,ec009,myChart1];
+        //模块三 关键指标排名 tab切换
+        $("#tit span").click(function () {
+            var i=$("#tit span").index(this);
+            $(this).addClass('select').siblings().removeClass('select');
+            $("#con li").eq(i).show().siblings().hide();
+            ec008.resize();
+            ec009.resize();
+
+        })
+    });
+
+</script>
+</body>
+</html>

@@ -10,6 +10,7 @@ import com.jfinal.config.JFinalConfig;
 import com.jfinal.config.Plugins;
 import com.jfinal.config.Routes;
 import com.jfinal.core.JFinal;
+import com.jfinal.ext.handler.ContextPathHandler;
 import com.jfinal.kit.PathKit;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
@@ -83,6 +84,7 @@ public class Config extends JFinalConfig {
 	}
 
 	public void configHandler(Handlers me) {
+		me.add(new ContextPathHandler("contextPath"));
 	}
 
 	public static void main(String[] args){
