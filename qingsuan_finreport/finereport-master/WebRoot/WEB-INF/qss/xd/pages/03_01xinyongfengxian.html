@@ -408,13 +408,13 @@
 
      
         $("#dbfs").click(function(){
-        	$.post("/jfinal/Defrate/getByDBFS","dkcs",function(data){
+        	$.post("/qdch/defrate/getByDBFS","dkcs",function(data){
         		console.log("--------",data)
         		result=data;
         	});
         	//console.log($(this)[0])
         })
-        $.post("/jfinal/Defrate/getByDBFS","dkcs",function(data){
+        $.post("/qdch/defrate/getByDBFS","dkcs",function(data){
     		console.log("--------",data)
     		result=data;
 			var model = {
@@ -481,7 +481,7 @@
        } */
       //根据贷款次数查询
    	 function getRanking(){
-       	 $.post("${contextPath}/jfinal/IndexRanking/getByLoanCount",{"jys":jysCode},function(data){
+       	 $.post("${contextPath}/qdch/indexranking/getByLoanCount",{"jys":jysCode},function(data){
         		result=data;  
         		var yAxisData=[];
         		var seriesData=[];
@@ -521,7 +521,7 @@
         	});
        }
        function getRankByAmount(){
-         	 $.post("${contextPath}/jfinal/IndexRanking/getByLoanAmount",{"jys":jysCode},function(data){
+         	 $.post("${contextPath}/qdch/indexranking/getByLoanAmount",{"jys":jysCode},function(data){
          		console.log("--------",data)
           		result=data;  
           		var yAxisData=[];
