@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.jfinal.core.Controller;
 import com.qdch.model.DemoModel;
+import com.qdch.p2p.model.JyscModel;
 //@ControllerBind(controllerKey = "/jfinal/demo", viewPath = "/p2p")
 /***
  * demo controller
@@ -99,6 +100,7 @@ public class DemoController extends Controller {
         render("xd/pages/01_02yewuzonglan.html");
      }
     public void xyfx() {
+    	setAttr("jyslist", JyscModel.dao.getJysc());
         render("xd/pages/03_01xinyongfengxian.html");
      }
 }

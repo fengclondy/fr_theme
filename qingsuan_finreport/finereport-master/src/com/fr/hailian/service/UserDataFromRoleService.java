@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang.StringUtils;
 
 import com.fr.hailian.core.Constants;
 import com.fr.hailian.model.RoleMenuModel;
@@ -181,44 +182,51 @@ public class UserDataFromRoleService {
 	 * @return 数据权限 获取交易所信息
 	 * @throws SQLException
 	 */
-	public static String getDepartMenByUserName(String userName) throws Exception{
+	public static String getDepartMenByUserName(String userName){
+		if(userName==null||StringUtils.isBlank(userName)){
+			return null;
+		}
+		String jysIds="";
 		Connection con = null;
-        con = C3P0Utils.getInstance().getConnection();
-        String sql = "select p.postname,d.name from fr_t_post p left join fr_t_department_post_user du on du.postid=p.id ";
-        sql+=" left join fr_t_department d on d.id=du.departmentid left join fr_t_user u on u.id=du.userid ";
-        sql+=" where 1=1  ";
-        if(!"".equals(userName)&&userName!=null){
-        	sql+="  and u.username ='"+userName+"' ";
-        }
-        if(!"".equals(Constants.ROLE_NAME)&&Constants.ROLE_NAME!=null){
-        	sql+=" and p.postname like '%"+Constants.ROLE_NAME+"%' ";
-        }
-        PreparedStatement ps = con.prepareStatement(sql);
-        ResultSet rs = ps.executeQuery();
-        String jysIds="";
-        while (rs.next()) {
-        	jysIds=jysIds+"'"+rs.getString("postname").split("_")[2]+"',";
-        }
-        if(jysIds.length()>0){
-        	jysIds=jysIds.substring(0,jysIds.length()-1);
-        }
-        if("".equals(jysIds)||jysIds==null){
-        	//如果是空 查询所有
-        	Connection conn = JDBCUtil.getConnection();
-			Statement st = conn.createStatement();
-			String gpSql = "select jys from hub_dd_tqs_jys";
-			ResultSet gprs=st.executeQuery(gpSql);
-			while (gprs.next()) {
-				jysIds=jysIds+"'"+gprs.getString("jys")+"',";
-			}
-			if(jysIds.length()>0){
-	        	jysIds=jysIds.substring(0,jysIds.length()-1);
-	        }
-			st.close();
-			JDBCUtil.closeConnection(conn);
-        }
-        rs.close();
-        con.close();
+        try {
+        	con = C3P0Utils.getInstance().getConnection();
+            String sql = "select p.postname,d.name from fr_t_post p left join fr_t_department_post_user du on du.postid=p.id ";
+            sql+=" left join fr_t_department d on d.id=du.departmentid left join fr_t_user u on u.id=du.userid ";
+            sql+=" where 1=1  ";
+            if(!"".equals(userName)&&userName!=null){
+            	sql+="  and u.username ='"+userName+"' ";
+            }
+            if(!"".equals(Constants.ROLE_NAME)&&Constants.ROLE_NAME!=null){
+            	sql+=" and p.postname like '%"+Constants.ROLE_NAME+"%' ";
+            }
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+            	jysIds=jysIds+"'"+rs.getString("postname").split("_")[2]+"',";
+            }
+            if(jysIds.length()>0){
+            	jysIds=jysIds.substring(0,jysIds.length()-1);
+            }
+            if("".equals(jysIds)||jysIds==null){
+            	//如果是空 查询所有
+            	Connection conn = JDBCUtil.getConnection();
+    			Statement st = conn.createStatement();
+    			String gpSql = "select jys from hub_dd_tqs_jys";
+    			ResultSet gprs=st.executeQuery(gpSql);
+    			while (gprs.next()) {
+    				jysIds=jysIds+"'"+gprs.getString("jys")+"',";
+    			}
+    			if(jysIds.length()>0){
+    	        	jysIds=jysIds.substring(0,jysIds.length()-1);
+    	        }
+    			st.close();
+    			JDBCUtil.closeConnection(conn);
+            }
+            rs.close();
+            con.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		return jysIds;
 	}
 

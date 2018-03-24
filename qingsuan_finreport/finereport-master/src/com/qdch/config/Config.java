@@ -19,6 +19,15 @@ import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.template.Engine;
 import com.qdch.controller.DemoController;
 import com.qdch.model.DemoModel;
+import com.qdch.p2p.controller.CustCountController;
+import com.qdch.p2p.controller.DefrateController;
+import com.qdch.p2p.controller.IncomeAndLossrateController;
+import com.qdch.p2p.controller.IndexRankingController;
+import com.qdch.p2p.controller.JyscController;
+import com.qdch.p2p.model.DefrateModel;
+import com.qdch.p2p.model.IncomeAndLossrateModel;
+import com.qdch.p2p.model.IndexRankingModel;
+import com.qdch.p2p.model.JyscModel;
 import com.qdch.util.TemplteLayoutTag;
 
 public class Config extends JFinalConfig {
@@ -35,7 +44,13 @@ public class Config extends JFinalConfig {
 	public void configRoute(Routes me) {
 		//设置根页面路径
 		me.setBaseViewPath("/WEB-INF/qss");
-		me.add("jfinal/demo", DemoController.class,"/");
+		me.add("qdch/jysc", JyscController.class,"/");
+		me.add("qdch/indexranking", IndexRankingController.class,"/");
+		me.add("qdch/defrate", DefrateController.class,"/");
+		me.add("qdch/custcount", CustCountController.class,"/");
+		me.add("qdch/incomeandlossrate", IncomeAndLossrateController.class,"/");
+		me.add("qdch/demo", DemoController.class,"/");
+		
 	}
 
 	public void configEngine(Engine me) {
@@ -60,6 +75,7 @@ public class Config extends JFinalConfig {
 	    arp.setDialect(new PostgreSqlDialect());
 		//arp.addMapping("user", User.class);
 		arp.addMapping("hub_commerce_ref_jys", DemoModel.class);
+		arp.addMapping("hub_xd_jysc", JyscModel.class);
 		//----qdchedw hub用户连接方式 end----
 		
 		
@@ -76,7 +92,16 @@ public class Config extends JFinalConfig {
 		me.add(insight_arp);
 		// 配置Postgresql方言
 		insight_arp.setDialect(new PostgreSqlDialect());
-		//insight_arp.addMapping("hub_commerce_ref_jys", DemoModel.class);
+		insight_arp.addMapping("insight_xd_loan_count", IndexRankingModel.class);
+		insight_arp.addMapping("insight_xd_fkamount", IndexRankingModel.class);
+		insight_arp.addMapping("insight_xd_yeamount", IndexRankingModel.class);
+		insight_arp.addMapping("insight_xd_defrate", DefrateModel.class);
+		insight_arp.addMapping("insight_xd_income", IncomeAndLossrateModel.class);
+		insight_arp.addMapping("insight_xd_lossrate", IncomeAndLossrateModel.class);
+		
+		
+		
+		
 		//----qdchedw insight用户连接方式 end----
 	}
 

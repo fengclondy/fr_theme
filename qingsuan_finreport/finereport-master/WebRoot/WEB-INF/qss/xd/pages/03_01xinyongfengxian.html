@@ -49,10 +49,11 @@
                         <label>筛选条件:</label>
                         <div class="mySelect" id="jingzhenglizhibiao">
                             <div class="myOption selected"><span class="text"></span><span class="icon"></span></div>
-                            <ul class="myOptionBox">
-                                <li class="myOption selected">青岛国际版权</li>
-                                <li class="myOption">青岛国际版权2</li>
-                                <li class="myOption">青岛国际版权3</li>
+                            <ul class="myOptionBox" id="jysselect">
+                               <li data="" class="myOption selected">全部</li>
+                               ##for(j in jyslist!){
+                                <li id="${j.jysc!}" onclick=changeJysData(this) class="myOption">${j.jyscmc!}</li>
+                               ##}
                             </ul>
                         </div>
                     </div>
@@ -65,10 +66,10 @@
                 <div class="chartContent">
                     <header>
                         <div class="btnGroup">
-                            <button class="active">贷款次数</button>
-                            <button>累计贷款额-个人</button>
+                            <button class="active" id="dkcs">贷款次数</button>
+                            <button id="">累计贷款额-个人</button>
                             <br>
-                            <button>累计贷款额-企业</button>
+                            <button id="">累计贷款额-企业</button>
                             <button>贷款余额-企业</button>
                             <button>贷款余额-个人</button>
                         </div>
@@ -92,7 +93,7 @@
                                 <div class="mySelect" id="jingzhenglizhibiao2">
                                     <div class="myOption selected"><span class="text"></span><span class="icon"></span>
                                     </div>
-                                    <ul class="myOptionBox">
+                                    <ul class="myOptionBox" id="dbfs">
                                         <li class="myOption selected">担保方式</li>
                                         <li class="myOption">担保方式2</li>
                                         <li class="myOption">担保方式3</li>
@@ -220,31 +221,12 @@
 <script src="${contextPath}/static/js/chartsCom.js"></script>
 <script>
     var allCharts = [];
-    $(function () {
-        var ec001 = echarts.init($("#ec001")[0]);
-        ec001.setOption(opt_bar_horizon);
-        ec001.setOption({
-            grid: {
-                left: "22%",
-                right: "16%",
-                top: "15%"
-            },
-            xAxis: {
-                type: 'value',
-                name: '指数'
-            },
-            yAxis: {
-                name: '市场',
-                data: ['青岛国\n际版权', '青岛国\n际版权', '青岛国\n际版权', '青岛国\n际版权', '青岛国\n际版权'],
-            },
-            series: [{
-                data: [1, 3, 5, 7.2, 10],
-                type: 'bar',
-                barWidth: "60%"
-            }]
-        });
+    var ec001 = echarts.init($("#ec001")[0]);
+    
 
-        var ec002 = echarts.init($("#ec002")[0]);
+    var ec002 = echarts.init($("#ec002")[0]);
+    $(function () {
+    	ec001.setOption(opt_bar_horizon);
         ec002.setOption(opt_line);
         ec002.setOption({
             grid: {
@@ -424,9 +406,163 @@
         //本页所有图表
         allCharts = [ec001, ec002, ec003, ec004, ec005];
 
+     
+        $("#dbfs").click(function(){
+        	$.post("/jfinal/Defrate/getByDBFS","dkcs",function(data){
+        		console.log("--------",data)
+        		result=data;
+        	});
+        	//console.log($(this)[0])
+        })
+        $.post("/jfinal/Defrate/getByDBFS","dkcs",function(data){
+    		console.log("--------",data)
+    		result=data;
+			var model = {
+					name: '最高',
+                    type: 'line',
+                    symbol: 'circle',
+                    data: result[0].month,
+                    areaStyle: lineAreaStyle(0)
+    		}
+			var arry = new Array();
+    		for(i=0;i<result.length;i++){
+    			model.name=result[i].name;
+    			model.data=result[i].arry;
+    			arry.push(model);
+    		}
+    		console.log(arry);
+			
+    		
+    		ec002.setOption({
+                grid: {
+                    top: "24%",
+                    right:'16%',
+                    bottom: '30%'
+                },
+                legend: {
+                    show: false
+                },
+                xAxis: {
+                    name: '月份',
+                    data: result[0].month
+                },
+                yAxis: {
+                    name: '不良率',
+                },
+                series: arry
+            });
+    	});
+        ////点击指标排名中的贷款次数触发查询
+        $("#dkcs").click(function(){
+        	getRanking()
+        })
+        //getJysSelected();
+		getRanking();
     });
+	
+     var jysCode;
+	//切换交易所 刷新全部数据
+	function changeJysData(obj){
+		//获取交易所现在下拉选择值
+		jysCode=$(obj).attr("id");
+		alert(jysCode)
+		getRanking();
+	}
+	//获取交易所下拉数据
+	/*  function getJysSelected(){
+       	 $.post("${contextPath}/jfinal/jysc/getJyscmc",{},function(data){
+       		  var htmls='<li data="" class="myOption selected">全部</li>';
+        		$.each(data,function(index,item){
+        			htmls+='<li onchange=changeJysData(this) data="'+item.jysc+'" class="myOption">'+item.jyscmc+'</li>';
+        		});
+        		console.log(htmls)
+        		$("#jysselect").html(htmls);
+        	});
+       } */
+      //根据贷款次数查询
+   	 function getRanking(){
+       	 $.post("${contextPath}/jfinal/IndexRanking/getByLoanCount",{"jys":jysCode},function(data){
+        		result=data;  
+        		var yAxisData=[];
+        		var seriesData=[];
+        		$.each(data,function(index,item){
+        			var name="";
+        			var page=parseInt(item.jyscmc.length/3);
+        			if(item.jyscmc.length%3>0){
+        				page++;
+        			}
+        			for(var x=1;x<parseInt(page)+1;x++){
+        				name+=item.jyscmc.substr((x-1)*3,x*3)+"\n";
+        			}
+        			yAxisData.push(name);
+        			seriesData.push(item.sum);
+        		});
+        		ec001.setOption({
+                    grid: {
+                        left: "22%",
+                        right: "16%",
+                        top: "15%"
+                    },
+                    xAxis: {
+                        type: 'value',
+                        name: '指数'
+                    },
+                    yAxis: {
+                        name: '市场',
+                       // data: ['青岛国\n际版权', '青岛国\n际版权', '青岛国\n际版权', '青岛国\n际版权', '青岛国\n际版权'],
+                       data:yAxisData
+                    },
+                    series: [{
+                        data: seriesData,
+                        type: 'bar',
+                        barWidth: "60%"
+                    }]
+                }); 
+        	});
+       }
+       function getRankByAmount(){
+         	 $.post("${contextPath}/jfinal/IndexRanking/getByLoanAmount",{"jys":jysCode},function(data){
+         		console.log("--------",data)
+          		result=data;  
+          		var yAxisData=[];
+          		var seriesData=[];
+          		$.each(data,function(index,item){
+          			var name="";
+          			var page=parseInt(item.jyscmc.length/3);
+          			if(item.jyscmc.length%3>0){
+          				page++;
+          			}
+          			for(var x=1;x<parseInt(page)+1;x++){
+          				name+=item.jyscmc.substr((x-1)*3,x*3)+"\n";
+          			}
+          			yAxisData.push(name);
+          			seriesData.push(item.sum);
+          		});
+          		ec001.setOption({
+                      grid: {
+                          left: "22%",
+                          right: "16%",
+                          top: "15%"
+                      },
+                      xAxis: {
+                          type: 'value',
+                          name: '指数'
+                      },
+                      yAxis: {
+                          name: '市场',
+                         // data: ['青岛国\n际版权', '青岛国\n际版权', '青岛国\n际版权', '青岛国\n际版权', '青岛国\n际版权'],
+                         data:yAxisData
+                      },
+                      series: [{
+                          data: seriesData,
+                          type: 'bar',
+                          barWidth: "60%"
+                      }]
+                  }); 
+          	});
+         }
 
-
+   
 </script>
 </body>
 </html>
