@@ -40,8 +40,14 @@ public class IndexRankingModel extends Model<IndexRankingModel>{
 	
 		/*return dao.find(Db.getSqlPara("test.getByLoanAmount",map));*/
 	}
-	public List<IndexRankingModel> getByYeamount(HashMap<String, String> map){
-		return dao.find(Db.getSqlPara("test.getByYeamount",map));
+	public List<IndexRankingModel> getByYeamount(String jys,String type){
+		String sql="select t.jyscmc as name,sum(t.fvalue) as value from insight_xd_yeamount t where ";
+		if(StringUtils.isNotBlank(jys)){
+			sql+=" jysc in("+jys+") and";
+		} 
+		sql+=" custype = "+type+" group by t.jyscmc order by t.jyscmc";
+		//return dao.find(Db.getSqlPara("index.getByDBFS"));
+		return dao.find(sql);
 	}
 	
 	

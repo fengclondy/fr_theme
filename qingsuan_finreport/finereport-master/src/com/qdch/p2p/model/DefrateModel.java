@@ -27,12 +27,14 @@ public class DefrateModel extends Model<DefrateModel>{
 	
 	public static final DefrateModel dao = new DefrateModel();
 	
-	public List<DefrateModel> getByDBFS(String jys,String type){
-		String sql="select substr(t.vday,0,7) as vmonth,t.dbfs,sum(t.loantotal) from insight_xd_defrate_test t where substr(t.vday,0,7) is not null and";
+	public List<DefrateModel> getDefrate(String jys,String type){
+		String sql="select vday_ym as month,"+type+",round(SUM(deftotal)/SUM(loantotal)*100,2)||'%' as value from insight_xd_defrate"; 
 		if(StringUtils.isNotBlank(jys)){
-			sql+=" jysc in("+jys+") ";
+			sql+=" where jysc in("+jys+") and loantotal !=0";
+		}else{
+			sql+=" where loantotal !=0";
 		}
-		sql+="  GROUP BY vmonth,"+type+" ORDER BY "+type+",substr(t.vday,0,7)";
+		sql+=" GROUP BY vday_ym,"+type+" order by vday_ym,"+type;
 		//return dao.find(Db.getSqlPara("index.getByDBFS"));
 		return dao.find(sql);
 	}

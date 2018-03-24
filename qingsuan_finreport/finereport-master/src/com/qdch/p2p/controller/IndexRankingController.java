@@ -23,9 +23,9 @@ public class IndexRankingController extends Controller{
 	  //根据指数排名中的累计贷款额返回数据
 	    public void getByLoanAmount(){
 	    	getResponse().addHeader("Access-Control-Allow-Origin", "*");	
-	    	String cusType = getPara("cusType");
-	    	 cusType="1";
-	    	List<IndexRankingModel> model=IndexRankingModel.dao.getByLoanAmount(UserDataFromRoleService.getDepartMenByUserName(null),cusType);
+	    	String custype = getPara("custype");
+	    	System.out.println("custypecustype:"+custype);
+	    	List<IndexRankingModel> model=IndexRankingModel.dao.getByLoanAmount(UserDataFromRoleService.getDepartMenByUserName(null),custype);
 	    	renderJson(model);
 	    	
 	    }
@@ -33,10 +33,10 @@ public class IndexRankingController extends Controller{
 	    public void getByYeamount(){
 	    	getResponse().addHeader("Access-Control-Allow-Origin", "*");	
 	    	
-	    	String cusType = getPara("cusType");
-	    	HashMap<String, String> map = new HashMap<String, String>();
-	    	map.put("cusType", cusType);
-	    	renderJson(IndexRankingModel.dao.getByYeamount(map));
+	    	String custype = getPara("custype");
+	    	
+	    	List<IndexRankingModel> model=IndexRankingModel.dao.getByYeamount(UserDataFromRoleService.getDepartMenByUserName(null),custype);
+	    	renderJson(model);
 	    	
 	    }
 }
