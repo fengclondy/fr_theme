@@ -3,17 +3,14 @@ package com.qdch.p2p.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-
 import java.util.List;
 
 import com.fr.hailian.service.UserDataFromRoleService;
-import com.jfinal.core.Controller;
-import com.jfinal.plugin.activerecord.Record;
+import com.qdch.core.BaseController;
 import com.qdch.p2p.model.DefrateModel;
 
 
-public class DefrateController extends Controller{
+public class DefrateController extends BaseController{
 	 public void index() {
 	        renderText("This is a demo.");
 	     }
@@ -25,7 +22,7 @@ public class DefrateController extends Controller{
 	    	String dbfs = getPara("dbfs");
 //	    	HashMap<String, String> map = new HashMap<String, String>();
 //	    	map.put("dbfs", dbfs);
-	    	List<DefrateModel> list =  DefrateModel.dao.getByDBFS(UserDataFromRoleService.getDepartMenByUserName(null),dbfs);
+	    	List<DefrateModel> list =  DefrateModel.dao.getByDBFS(getDataScopeByUserName(),dbfs);
 	    	HashMap<String, Object> reslut = new HashMap<String, Object>();
 	    	ArrayList<HashMap<String, Object>> resultList = new ArrayList<HashMap<String,Object>>();
 	    	ArrayList<String> arry = new ArrayList<String>();

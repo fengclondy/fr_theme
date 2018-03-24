@@ -2,12 +2,10 @@ package com.qdch.p2p.controller;
 
 
 import java.util.HashMap;
-import java.util.List;
 
-import com.jfinal.core.Controller;
-import com.qdch.p2p.model.IndexRankingModel;
+import com.qdch.core.BaseController;
 
-public class CustCountController extends Controller{
+public class CustCountController extends BaseController{
 	 public void index() {
 	        renderText("This is a demo.");
 	     }

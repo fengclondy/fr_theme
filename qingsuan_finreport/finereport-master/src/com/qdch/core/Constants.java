@@ -15,5 +15,5 @@ public class Constants {
 	public static final String LAYOUT_TEMPLTE_DIR = "/WEB-INF/pages/layout/";
 	
 	public static final String ATTR_TEMPLTE_DIR = "tpl_dir";
-
+	public final static String SESSION_USER = "login_user";
 }

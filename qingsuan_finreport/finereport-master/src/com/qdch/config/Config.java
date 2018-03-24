@@ -29,6 +29,10 @@ import com.qdch.p2p.model.IncomeAndLossrateModel;
 import com.qdch.p2p.model.IndexRankingModel;
 import com.qdch.p2p.model.JyscModel;
 import com.qdch.util.TemplteLayoutTag;
+import com.qdch.xd.controller.BusinessOverviewController;
+import com.qdch.xd.controller.RiskOverviewController;
+import com.qdch.xd.model.RiskCountModel;
+import com.qdch.xd.model.ScabilityModel;
 
 public class Config extends JFinalConfig {
 	public void configConstant(Constants me) {
@@ -51,6 +55,15 @@ public class Config extends JFinalConfig {
 		me.add("qdch/incomeandlossrate", IncomeAndLossrateController.class,"/");
 		me.add("qdch/demo", DemoController.class,"/");
 		
+		
+		
+		/***小贷zuoqb Controller START***/
+		
+		
+		me.add("qdch/riskOverview", RiskOverviewController.class,"/");//小贷-风险总览
+		me.add("qdch/businessOverview", BusinessOverviewController.class,"/");//小贷-业务总览
+		
+		/***小贷zuoqb Controller END***/
 	}
 
 	public void configEngine(Engine me) {
@@ -100,7 +113,12 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("insight_xd_lossrate", IncomeAndLossrateModel.class);
 		
 		
+		/***小贷zuoqb Model START***/
 		
+		insight_arp.addMapping("insight_xd_fxsj_count", RiskCountModel.class);//小贷风险指数
+		insight_arp.addMapping("insight_xd_scability", ScabilityModel.class);//小贷-业务总览-市场竞争力趋势
+		
+		/***小贷zuoqb Model START***/
 		
 		//----qdchedw insight用户连接方式 end----
 	}

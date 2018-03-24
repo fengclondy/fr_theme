@@ -5,10 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.fr.hailian.service.UserDataFromRoleService;
-import com.jfinal.core.Controller;
+import com.qdch.core.BaseController;
 import com.qdch.p2p.model.IndexRankingModel;
 
-public class IndexRankingController extends Controller{
+public class IndexRankingController extends BaseController{
 	 public void index() {
 	        renderText("This is a demo.");
 	     }
@@ -25,7 +25,7 @@ public class IndexRankingController extends Controller{
 	    	getResponse().addHeader("Access-Control-Allow-Origin", "*");	
 	    	String cusType = getPara("cusType");
 	    	 cusType="1";
-	    	List<IndexRankingModel> model=IndexRankingModel.dao.getByLoanAmount(UserDataFromRoleService.getDepartMenByUserName(null),cusType);
+	    	List<IndexRankingModel> model=IndexRankingModel.dao.getByLoanAmount(getDataScopeByUserName(),cusType);
 	    	renderJson(model);
 	    	
 	    }

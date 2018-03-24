@@ -1,14 +1,12 @@
 package com.qdch.p2p.controller;
 
 
-import java.util.HashMap;
 import java.util.List;
 
-import com.jfinal.core.Controller;
+import com.qdch.core.BaseController;
 import com.qdch.p2p.model.IncomeAndLossrateModel;
-import com.qdch.p2p.model.IndexRankingModel;
 
-public class IncomeAndLossrateController extends Controller{
+public class IncomeAndLossrateController extends BaseController{
 	 public void index() {
 	        renderText("This is a demo.");
 	     }
