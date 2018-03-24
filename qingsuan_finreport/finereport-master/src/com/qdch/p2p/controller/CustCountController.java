@@ -2,17 +2,14 @@ package com.qdch.p2p.controller;
 
 
 import java.util.HashMap;
-import java.util.List;
 
-import com.jfinal.core.Controller;
-import com.qdch.p2p.model.IndexRankingModel;
+import com.qdch.core.BaseController;
 
-public class CustCountController extends Controller{
+public class CustCountController extends BaseController{
 	 public void index() {
-	        renderText("This is a demo.");
-	     }
+        renderText("This is a demo.");
+     }
 	
-
 	  //根据指数排名中的累计贷款额返回数据
 	    public void getByCustCount(){
 	    	getResponse().addHeader("Access-Control-Allow-Origin", "*");	

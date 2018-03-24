@@ -1,15 +1,11 @@
 package com.qdch.p2p.model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.jfinal.kit.Kv;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Model;
-import com.qdch.model.DemoModel;
 
 //@TableBind(tableName="hub_commerce_ref_jys")
 /***
@@ -30,11 +26,11 @@ public class IndexRankingModel extends Model<IndexRankingModel>{
 		return dao.find(Db.getSqlPara("index.getByLoanCount"));
 	}
 	public List<IndexRankingModel> getByLoanAmount(String jys,String type){
-		String sql="select t.jyscmc as name,sum(t.fvalue) as value from insight_xd_fkamount t where ";
+		String sql="select t.jyscmc as name,sum(t.fvalue) as value from insight_xd_fkamount t where 1=1 ";
 		if(StringUtils.isNotBlank(jys)){
-			sql+=" jysc in("+jys+") and";
+			sql+=" jysc in "+jys+" ";
 		} 
-		sql+=" custype = "+type+" group by t.jyscmc order by t.jyscmc";
+		sql+=" and custype = "+type+" group by t.jyscmc order by t.jyscmc";
 		//return dao.find(Db.getSqlPara("index.getByDBFS"));
 		return dao.find(sql);
 	
@@ -43,7 +39,7 @@ public class IndexRankingModel extends Model<IndexRankingModel>{
 	public List<IndexRankingModel> getByYeamount(String jys,String type){
 		String sql="select t.jyscmc as name,sum(t.fvalue) as value from insight_xd_yeamount t where ";
 		if(StringUtils.isNotBlank(jys)){
-			sql+=" jysc in("+jys+") and";
+			sql+=" jysc in "+jys+" and";
 		} 
 		sql+=" custype = "+type+" group by t.jyscmc order by t.jyscmc";
 		//return dao.find(Db.getSqlPara("index.getByDBFS"));

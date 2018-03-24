@@ -1,14 +1,13 @@
 package com.qdch.p2p.controller;
 
 
-import java.util.HashMap;
 import java.util.List;
 
 import com.fr.hailian.service.UserDataFromRoleService;
-import com.jfinal.core.Controller;
+import com.qdch.core.BaseController;
 import com.qdch.p2p.model.IndexRankingModel;
 
-public class IndexRankingController extends Controller{
+public class IndexRankingController extends BaseController{
 	 public void index() {
 	        renderText("This is a demo.");
 	     }
@@ -25,7 +24,7 @@ public class IndexRankingController extends Controller{
 	    	getResponse().addHeader("Access-Control-Allow-Origin", "*");	
 	    	String custype = getPara("custype");
 	    	System.out.println("custypecustype:"+custype);
-	    	List<IndexRankingModel> model=IndexRankingModel.dao.getByLoanAmount(UserDataFromRoleService.getDepartMenByUserName(null),custype);
+	    	List<IndexRankingModel> model=IndexRankingModel.dao.getByLoanAmount(getDataScopeByUserName(),custype);
 	    	renderJson(model);
 	    	
 	    }

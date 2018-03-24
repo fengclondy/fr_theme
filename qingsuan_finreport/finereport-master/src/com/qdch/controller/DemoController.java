@@ -93,12 +93,12 @@ public class DemoController extends Controller {
     	setAttr("name", "value");
         render("xd/pages/index.html");
      }
-    public void fxzl() {
+    /*public void fxzl() {
         render("xd/pages/01_01fengxianzonglan.html");
-     }
-    public void ywzl() {
+     }*/
+   /* public void ywzl() {
         render("xd/pages/01_02yewuzonglan.html");
-     }
+     }*/
     public void xyfx() {
     	setAttr("jyslist", JyscModel.dao.getJysc());
         render("xd/pages/03_01xinyongfengxian.html");
