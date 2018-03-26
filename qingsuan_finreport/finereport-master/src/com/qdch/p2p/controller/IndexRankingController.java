@@ -15,7 +15,7 @@ public class IndexRankingController extends BaseController{
 	    //根据指数排名中的贷款次数返回数据
 	    public void getByLoanCount(){
 	    	getResponse().addHeader("Access-Control-Allow-Origin", "*");	    	
-	    	List<IndexRankingModel> model=IndexRankingModel.dao.getByLoanCount();
+	    	List<IndexRankingModel> model=IndexRankingModel.dao.getByLoanCount(getDataScopeByUserName());
 	    	
 	    	renderJson(model);
 	    }

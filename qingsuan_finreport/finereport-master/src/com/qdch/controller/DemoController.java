@@ -100,7 +100,7 @@ public class DemoController extends Controller {
         render("xd/pages/01_02yewuzonglan.html");
      }*/
     public void xyfx() {
-    	setAttr("jyslist", JyscModel.dao.getJysc());
+    	setAttr("jyslist", JyscModel.dao.getJysc(""));
         render("xd/pages/03_01xinyongfengxian.html");
      }
 }

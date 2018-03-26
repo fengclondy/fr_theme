@@ -471,7 +471,7 @@
         })
         $("#Yeamount1").click(function(){
         	 var custype="1";
-        	 getRankByYeamount(custype)
+        	 getRankByAmount(custype)
         })
          $("#Yeamount2").click(function(){
         	 var custype="2";
@@ -502,7 +502,7 @@
        } */
       //根据贷款次数查询指数排名
    	 function getRanking(){
-       	 $.post("${contextPath}/qdch/indexranking/getByLoanCount",{"jys":jysCode},function(data){
+       	 $.post("${contextPath}/qdch/creditrisk/getRankByLoanCount",{"jys":jysCode},function(data){
        		console.log("--------",jysCode)
         		result=data;  
         		var yAxisData=[];
@@ -544,7 +544,7 @@
        }
        //根据累计贷款额查询指数排名
        function getRankByAmount(custype){
-         	 $.post("${contextPath}/qdch/indexranking/getByLoanAmount",{"jys":jysCode,"custype":custype},function(data){
+         	 $.post("${contextPath}/qdch/creditrisk/getRankByLoanAmount",{"jys":jysCode,"custype":custype},function(data){
          		console.log("--------",data)
          		console.log("--------",jysCode)
           		result=data;  
@@ -587,7 +587,7 @@
          }
        //根据贷款余额查询指数排名
        function getRankByYeamount(custype){
-         	 $.post("${contextPath}/qdch/indexranking/getByYeamount",{"jys":jysCode,"custype":custype},function(data){
+         	 $.post("${contextPath}/qdch/creditrisk/getRankByYeamount",{"jys":jysCode,"custype":custype},function(data){
          		console.log("--------",data)
           		var yAxisData=[];
           		var seriesData=[];

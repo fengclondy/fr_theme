@@ -19,6 +19,7 @@ import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.template.Engine;
 import com.qdch.controller.DemoController;
 import com.qdch.model.DemoModel;
+import com.qdch.p2p.controller.CreditRiskController;
 import com.qdch.p2p.controller.CustCountController;
 import com.qdch.p2p.controller.DefrateController;
 import com.qdch.p2p.controller.IncomeAndLossrateController;
@@ -49,13 +50,14 @@ public class Config extends JFinalConfig {
 		//设置根页面路径
 		me.setBaseViewPath("/WEB-INF/qss");
 		me.add("qdch/jysc", JyscController.class,"/");
-		me.add("qdch/indexranking", IndexRankingController.class,"/");
-		me.add("qdch/defrate", DefrateController.class,"/");
+
 		me.add("qdch/custcount", CustCountController.class,"/");
 		me.add("qdch/incomeandlossrate", IncomeAndLossrateController.class,"/");
 		me.add("qdch/demo", DemoController.class,"/");
 		
-		
+		/***小贷 doushuihai Controller START***/
+		me.add("qdch/creditrisk", CreditRiskController.class,"/");	//信用风险
+		/***小贷doushuihai Controller START***/
 		
 		/***小贷zuoqb Controller START***/
 		
@@ -106,14 +108,14 @@ public class Config extends JFinalConfig {
 		// 配置Postgresql方言
 		insight_arp.setDialect(new PostgreSqlDialect());
 		
-		
+		/***doushuiahi Model START***/
 		insight_arp.addMapping("insight_xd_loan_count", IndexRankingModel.class);
 		insight_arp.addMapping("insight_xd_fkamount", IndexRankingModel.class);
 		insight_arp.addMapping("insight_xd_yeamount", IndexRankingModel.class);
 		insight_arp.addMapping("insight_xd_defrate", DefrateModel.class);
 		insight_arp.addMapping("insight_xd_income", IncomeAndLossrateModel.class);
 		insight_arp.addMapping("insight_xd_lossrate", IncomeAndLossrateModel.class);
-		
+		/***doushuiahi Model START***/
 		
 		/***小贷zuoqb Model START***/
 		

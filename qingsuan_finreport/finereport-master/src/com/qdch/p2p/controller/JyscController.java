@@ -16,7 +16,7 @@ public class JyscController extends BaseController{
 	    	getResponse().addHeader("Access-Control-Allow-Origin", "*");	    	
 	    	List<JyscModel> model=null;
 	    	try {
-	    		model=JyscModel.dao.getJysc();
+	    		model=JyscModel.dao.getJysc("");
 			} catch (Exception e) {				
 				// TODO: handle exception
 				e.printStackTrace();

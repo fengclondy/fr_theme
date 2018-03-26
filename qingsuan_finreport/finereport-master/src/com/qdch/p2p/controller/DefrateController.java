@@ -15,7 +15,7 @@ public class DefrateController extends BaseController{
 	
 	   
 	  //根据前端不同筛选条件查询不良率
-	    public void getByDBFS(){
+	    public void getByCondition(){
 	    	getResponse().addHeader("Access-Control-Allow-Origin", "*");	
 	    	String type = getPara("dbfs");
 	    	type="dbfs";

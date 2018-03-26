@@ -7,16 +7,14 @@ import org.apache.commons.lang.StringUtils;
 import com.jfinal.plugin.activerecord.Model;
 
 //@TableBind(tableName="hub_commerce_ref_jys")
-/***
- * demo model
- * @author Tom
- *
+/**
+ * 
+ * @author doush
+ * @date 2018年3月26日
+ * @TODO 获取不良率
  */
 public class DefrateModel extends Model<DefrateModel>{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	public static final DefrateModel dao = new DefrateModel();
@@ -29,7 +27,6 @@ public class DefrateModel extends Model<DefrateModel>{
 			sql+=" where loantotal !=0";
 		}
 		sql+=" GROUP BY vday_ym,"+type+" order by vday_ym,"+type;
-		//return dao.find(Db.getSqlPara("index.getByDBFS"));
 		return dao.find(sql);
 	}
 
