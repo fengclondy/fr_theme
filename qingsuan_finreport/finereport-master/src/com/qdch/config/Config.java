@@ -29,6 +29,7 @@ import com.qdch.p2p.model.DefrateModel;
 import com.qdch.p2p.model.IncomeAndLossrateModel;
 import com.qdch.p2p.model.IndexRankingModel;
 import com.qdch.p2p.model.JyscModel;
+import com.qdch.p2p.model.MigrationRateModel;
 import com.qdch.util.TemplteLayoutTag;
 import com.qdch.xd.controller.BusinessOverviewController;
 import com.qdch.xd.controller.RiskOverviewController;
@@ -113,6 +114,7 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("insight_xd_fkamount", IndexRankingModel.class);
 		insight_arp.addMapping("insight_xd_yeamount", IndexRankingModel.class);
 		insight_arp.addMapping("insight_xd_defrate", DefrateModel.class);
+		insight_arp.addMapping("insight_xd_mobiratio", MigrationRateModel.class);
 		insight_arp.addMapping("insight_xd_income", IncomeAndLossrateModel.class);
 		insight_arp.addMapping("insight_xd_lossrate", IncomeAndLossrateModel.class);
 		/***doushuiahi Model START***/

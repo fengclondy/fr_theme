@@ -20,7 +20,7 @@ public class DefrateModel extends Model<DefrateModel>{
 	public static final DefrateModel dao = new DefrateModel();
 	
 	public List<DefrateModel> getDefrate(String jys,String type){
-		String sql="select vday_ym as month,"+type+",round(sum(deftotal)/sum(loantotal)*100,2)||'%' as value from insight_xd_defrate"; 
+		String sql="select vday_ym as month,"+type+" as condition,round(sum(deftotal)/sum(loantotal)*100,2)||'%' as value from insight_xd_defrate"; 
 		if(StringUtils.isNotBlank(jys)){
 			sql+=" where jysc in "+jys+" and loantotal !=0";
 		}else{

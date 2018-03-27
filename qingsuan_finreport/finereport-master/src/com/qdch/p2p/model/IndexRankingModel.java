@@ -36,11 +36,11 @@ public class IndexRankingModel extends Model<IndexRankingModel>{
 		return dao.find(sql);
 	}
 	public List<IndexRankingModel> getByYeamount(String jys,String type){
-		String sql="select t.jyscmc as name,sum(t.fvalue) as value from insight_xd_yeamount t where";
+		String sql="select t.jyscmc as name,sum(t.fvalue) as value from insight_xd_yeamount t where vday=(select max(vday) from insight_xd_yeamount)";
 		if(StringUtils.isNotBlank(jys)){
-			sql+=" jysc in "+jys+" and";
+			sql+=" jysc in "+jys;
 		} 
-		sql+=" custype = "+type+" group by t.jyscmc order by t.jyscmc";
+		sql+=" and custype = "+type+" group by t.jyscmc order by t.jyscmc";
 		//return dao.find(Db.getSqlPara("index.getByDBFS"));
 		return dao.find(sql);
 	}
