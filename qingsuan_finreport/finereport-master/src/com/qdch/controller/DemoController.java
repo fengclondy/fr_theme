@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.jfinal.core.Controller;
+import com.qdch.core.BaseController;
 import com.qdch.model.DemoModel;
 import com.qdch.p2p.model.JyscModel;
 //@ControllerBind(controllerKey = "/jfinal/demo", viewPath = "/p2p")
@@ -13,7 +14,7 @@ import com.qdch.p2p.model.JyscModel;
  * @author Tom
  *
  */
-public class DemoController extends Controller {
+public class DemoController extends BaseController {
 	//默认方法
     public void index() {
         renderText("This is a demo.");
@@ -92,15 +93,5 @@ public class DemoController extends Controller {
     public void xd() {
     	setAttr("name", "value");
         render("xd/pages/index.html");
-     }
-    /*public void fxzl() {
-        render("xd/pages/01_01fengxianzonglan.html");
-     }*/
-   /* public void ywzl() {
-        render("xd/pages/01_02yewuzonglan.html");
-     }*/
-    public void xyfx() {
-    	setAttr("jyslist", JyscModel.dao.getJysc(""));
-        render("xd/pages/03_01xinyongfengxian.html");
      }
 }

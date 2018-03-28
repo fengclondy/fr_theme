@@ -25,7 +25,7 @@ public class RiskCountModel extends Model<RiskCountModel>{
 	public List<RiskCountModel> getRiskRanking(String dataSql){
 		String sql="select vday_ym,jysc,jyscmc,nums,vday from insight_xd_fxsj_count where 1=1 ";
 		if(StringUtils.isNotBlank(dataSql)){
-			sql+=" jysc in"+ dataSql+" ";
+			sql+=" and jysc in"+ dataSql+" ";
 		}
 		sql+=" and vday='"+DateUtil.format(new Date(-1), "yyyyMMdd")+"' order by nums";
 		return dao.find(sql);

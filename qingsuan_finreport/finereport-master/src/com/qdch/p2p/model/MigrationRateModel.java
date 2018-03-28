@@ -19,10 +19,13 @@ public class MigrationRateModel extends Model<MigrationRateModel>{
 	
 	public static final MigrationRateModel dao = new MigrationRateModel();
 	
-	public List<MigrationRateModel> getMigrationRate(String jys,String type){
-		String sql="select ym as name,"+type+" as value from insight_xd_mobiratio"; 
-		if(StringUtils.isNotBlank(jys)){
-			sql+=" where jysc in "+jys;
+	public List<MigrationRateModel> getMigrationRate(String bisjys,String jyscode,String type){
+		String sql="select ym as name,"+type+" as value from insight_xd_mobiratio where 1=1 "; 
+		if(StringUtils.isNotBlank(bisjys)){
+			sql+=" and jysc in "+bisjys;
+		}
+		if(StringUtils.isNotBlank(jyscode)){
+			sql+=" and jysc = '"+jyscode+"'";
 		}
 		sql+=" order by ym";
 		return dao.find(sql);

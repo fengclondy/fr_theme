@@ -37,6 +37,11 @@
         .right-top > div, .right-bottom > div {
             flex: 1;
         }
+        .myOptionBox{
+			height:60px;
+			overflow:auto;        
+        }
+        
     </style>
 </head>
 <body id="03_01xinyongfengxian" data-title="信用风险">
@@ -146,10 +151,12 @@
                                 <div class="mySelect" id="jingzhenglizhibiao4">
                                     <div class="myOption selected"><span class="text"></span><span class="icon"></span>
                                     </div>
-                                    <ul class="myOptionBox">
-                                        <li class="myOption selected">开户人数</li>
-                                        <li class="myOption">开户人数2</li>
-                                        <li class="myOption">开户人数3</li>
+                                    <ul class="myOptionBox" >
+                                        <li class="myOption selected" id="conratioByCustCount">开户人数集中度</li>
+                                        <li class="myOption" id="conratioByTime">时间集中度</li>
+                                        <li class="myOption" id="conratioByAge">年龄集中度</li>
+                                        <li class="myOption" id="conratioByRegion">地域集中度</li>
+                                        <li class="myOption" id="conratioByIndustry">行业集中度</li>
                                     </ul>
                                 </div>
                             </div>
@@ -228,6 +235,7 @@
 
     var ec002 = echarts.init($("#ec002")[0]);
     var ec003 = echarts.init($("#ec003")[0]);
+    var ec004 = echarts.init($("#ec004_ConcentrationDegree")[0]);
      $(function () {
     	ec001.setOption(opt_bar_horizon);
         ec002.setOption(opt_line);
@@ -271,70 +279,13 @@
        
 
         //热力图
-        var ec004 = echarts.init($("#ec004_ConcentrationDegree")[0]);
+       
         var data = [
             [[1600, 1500, 1700, '山东', 1990], [600, 500, 700, '江苏', 1990]],
             [[1200, 1100, 1300, '山东', 2015], [200, 100, 300, '江苏', 2015]]
         ];
         ec004.setOption(opt_scatter)
-        ec004.setOption(
-            {
-                legend: {
-                    show: false
-                },
-                grid: {
-                    top: "20%",
-                    bottom: "26%"
-                },
-                series: [{
-                    name: '1990',
-                    data: data[0],
-                    type: 'scatter',
-                    symbolSize: function (data) {
-                        return scatterSymbolSize(data)
-                    },
-                    label: {
-                        emphasis: {
-                            show: true,
-                            formatter: function (param) {
-                                return param.data[3];
-                            },
-                            position: 'top'
-                        }
-                    },
-                    itemStyle: {
-                        normal: {
-                            shadowBlur: 10*bodyScale,
-                            shadowColor: 'rgba(120, 36, 50, 0.5)',
-                            shadowOffsetY: 5,
-                        }
-                    }
-                },
-                    {
-                        name: '1991',
-                        data: data[1],
-                        type: 'scatter',
-                        symbolSize: function (data) {
-                            return scatterSymbolSize(data)
-                        },
-                        label: {
-                            emphasis: {
-                                show: true,
-                                formatter: function (param) {
-                                    return param.data[3];
-                                },
-                                position: 'top'
-                            }
-                        },
-                        itemStyle: {
-                            normal: {
-                                shadowBlur: 10*bodyScale,
-                                shadowColor: 'rgba(120, 36, 50, 0.5)',
-                                shadowOffsetY: 5,
-                            }
-                        }
-                    }]
-            });
+        
         var ec005 = echarts.init($("#ec005")[0]);
         ec005.setOption(opt_line);
         ec005.setOption({
@@ -385,7 +336,7 @@
         })
         //获取不良率
        
-        ////点击指标排名中的贷款次数触发查询
+        ////根据不同条件获取指标排名
         $("#dkcs").click(function(){
         	getRanking()
         })
@@ -405,6 +356,7 @@
         	 var custype="2";
         	 getRankByYeamount(custype)
         })
+        //根据不同条件获取迁徙率
         $("#migrationrrate .myOption").click(function(){
         	var condition=$(this).attr("data");
         	//var contion=$("#jingzhenglizhibiao3").val();
@@ -416,42 +368,53 @@
         //根据不同条件获取不良率
         $("#defrate .myOption").click(function(){
         	var condition=$(this).attr("data");
-        	//var contion=$("#jingzhenglizhibiao3").val();
-        	alert(condition);
         	console.log("=========================",condition);
         	getDefrate(condition);
         
         		
+        })
+        //获取开户人数集中度
+         $("#conratioByCustCount").click(function(){
+        	 conratioByCustCount();
+        })
+        //获取时间集中度
+         $("#conratioByTime").click(function(){
+        	 conratioByTime();
+        })
+        //获取年龄集中度
+         $("#conratioByAge").click(function(){
+        	 conratioByAge();
+        })
+        //获取地域集中度
+         $("#conratioByRegion").click(function(){
+        	 conratioByRegion();
+        })
+        //获取行业集中度
+         $("#conratioByIndustry").click(function(){
+        	 conratioByIndustry();
         })
         //getJysSelected();
         //初始化信用风险页面时默认加载所有相关模块数据
 		getRanking();
 		getDefrate("dbfs")
         getMigrationRrate("m1");
+		conratioByCustCount();
     });
 	
      var jysCode;
 	//切换交易所 刷新全部数据
-	function changeJysData(obj){
+	 function changeJysData(obj){
 		//获取交易所现在下拉选择值
 		jysCode=$(obj).attr("id");
-		alert(jysCode)
 		getRanking();
-	}
-	//获取交易所下拉数据
-	/*  function getJysSelected(){
-       	 $.post("${contextPath}/jfinal/jysc/getJyscmc",{},function(data){
-       		  var htmls='<li data="" class="myOption selected">全部</li>';
-        		$.each(data,function(index,item){
-        			htmls+='<li onchange=changeJysData(this) data="'+item.jysc+'" class="myOption">'+item.jyscmc+'</li>';
-        		});
-        		console.log(htmls)
-        		$("#jysselect").html(htmls);
-        	});
-       } */
+		getDefrate("dbfs")
+        getMigrationRrate("m1");
+		conratioByCustCount();
+	 }
       //根据贷款次数查询指数排名
    	 function getRanking(){
        	 $.post("${contextPath}/qdch/creditrisk/getRankByLoanCount",{"jys":jysCode},function(data){
+       		
        		console.log("--------",jysCode)
         		result=data;  
         		var yAxisData=[];
@@ -463,7 +426,7 @@
         				page++;
         			}
         			for(var x=1;x<parseInt(page)+1;x++){
-        				name+=item.jyscmc.substr((x-1)*3,x*3)+"\n";
+        				name+=item.jyscmc.substr((x-1)*3,3)+"\n";
         			}
         			yAxisData.push(name);
         			seriesData.push(item.sum);
@@ -480,7 +443,6 @@
                     },
                     yAxis: {
                         name: '市场',
-                       // data: ['青岛国\n际版权', '青岛国\n际版权', '青岛国\n际版权', '青岛国\n际版权', '青岛国\n际版权'],
                        data:yAxisData
                     },
                     series: [{
@@ -494,9 +456,6 @@
        //根据累计贷款额查询指数排名
        function getRankByAmount(custype){
          	 $.post("${contextPath}/qdch/creditrisk/getRankByLoanAmount",{"jys":jysCode,"custype":custype},function(data){
-         		console.log("--------",data)
-         		console.log("--------",jysCode)
-          		result=data;  
           		var yAxisData=[];
           		var seriesData=[];
           		$.each(data,function(index,item){
@@ -525,7 +484,6 @@
                       },
                       yAxis: {
                           name: '市场',
-                         // data: ['青岛国\n际版权', '青岛国\n际版权', '青岛国\n际版权', '青岛国\n际版权', '青岛国\n际版权'],
                          data:yAxisData
                       },
                       series: [{
@@ -621,46 +579,272 @@
        //获取不良率
        function getDefrate(condition){
 	        $.post("/qdch/creditrisk/getDefrateByCondition",{"jys":jysCode,"condition":condition},function(data){
-	    		console.log("--------",data)				
-	    		
+	    		console.log("----不良率----",data)					    		
 	    		var yAxisData=[];
         		var seriesData=[];
         		var condition=[];
+        		var points=[];
+        		$.each(data,function(index,item){
+        			
+        			$.each(item.data,function(ind,it){
+        				if(index==0){
+        					yAxisData.push(it.month);
+        				}
+        				points.push(it.value);
+        				
+        			});
+
+        			var  ser={
+    	                    name: item.condition,
+    	                    type: 'line',
+    	                    symbol: 'circle',
+    	                    data: points,
+    	                    areaStyle: lineAreaStyle(index)
+
+    	                };
+	        		//yAxisData.push(item.month);
+	        		var seriesData=[];
+	    			seriesData.push(ser);
+	    			
+       	 		});
+        		 ec002.setOption({
+        	            grid: {
+        	                top: "24%",
+        	                right:'16%',
+        	                bottom: '30%'
+        	            },
+        	            legend: {
+        	                show: false
+        	            },
+        	            xAxis: {
+        	                name: '月份',
+        	                data: yAxisData
+        	            },
+        	            yAxis: {
+        	                name: '不良率',
+        	            },
+        	            series: seriesData,
+        	        }); 
+	    	});
+       }
+       function conratioByCustCount(){
+         	 $.post("${contextPath}/qdch/creditrisk/getConRatioByCustCount",{"jys":jysCode},function(data){
+         		console.log("---集中度-----",data)
+          		var yAxisData=[];
+          		var seriesData=[];
+          		$.each(data,function(index,item){
+  	        		yAxisData.push(item.month);
+  	    			seriesData.push(item.value);
+  	    			
+         	 		});
+          		 ec004.setOption(opt_scatter)
+                 ec004.setOption(
+                     {
+                         grid: {
+                             top: "24%",
+                             right:'16%',
+                             bottom: '30%'
+                         },
+                         legend: {
+                             show: false
+                         },
+                         xAxis: {
+                             name: '月份',
+                             data: yAxisData,
+                         },
+                         yAxis: {
+                             name: '集中度',
+                         },
+                         series: [
+                             {
+                                 name: '集中度',
+                                 type: 'line',
+                                 symbol: 'circle',
+                                 data: seriesData,
+                                 areaStyle: lineAreaStyle(0)
+                             }
+                         ]
+                     });
+          		
+          		
+          	});
+         } 
+       function conratioByTime(){
+       	 $.post("${contextPath}/qdch/creditrisk/getConRatioByTime",{"jys":jysCode},function(data){
+       		console.log("---集中度-----",data)
+        		var yAxisData=[];
+        		var seriesData=[];
         		$.each(data,function(index,item){
 	        		yAxisData.push(item.month);
 	    			seriesData.push(item.value);
-	    			condition.push(item.condition);
+	    			
        	 		});
-	    		ec002.setOption({
-	                grid: {
-	                    top: "24%",
-	                    right:'16%',
-	                    bottom: '30%'
-	                },
-	                legend: {
-	                    show: false
-	                },
-	                xAxis: {
-	                    name: '月份',
-	                    data: yAxisData
-	                },
-	                yAxis: {
-	                    name: '不良率',
-	                },
-	                series: [
-	                         {
-	                             name: condition,
-	                             type: 'line',
-	                             symbol: 'circle',
-	                             data: seriesData,
-	                             areaStyle: lineAreaStyle(0)
-
-	                         }
-	                     ]
-	            }); 
-	    	});
-       }
-   
+        		console.log("---书坐标-----",seriesData)
+        		console.log("---月份坐标-----",yAxisData)
+        		 ec004.setOption(opt_scatter)
+               ec004.setOption(
+                   {
+                       grid: {
+                           top: "24%",
+                           right:'16%',
+                           bottom: '30%'
+                       },
+                       legend: {
+                           show: false
+                       },
+                       xAxis: {
+                           name: '月份',
+                           data: yAxisData,
+                       },
+                       yAxis: {
+                           name: '集中度',
+                       },
+                       series: [
+                           {
+                               name: '集中度',
+                               type: 'line',
+                               symbol: 'circle',
+                               data: seriesData,
+                               areaStyle: lineAreaStyle(0)
+                           }
+                       ]
+                   });
+        		
+        		
+        	});
+       } 
+       function conratioByAge(){
+         	 $.post("${contextPath}/qdch/creditrisk/getConRatioByAge",{"jys":jysCode},function(data){
+         		console.log("---集中度-----",data)
+          		var yAxisData=[];
+          		var seriesData=[];
+          		$.each(data,function(index,item){
+  	        		yAxisData.push(item.agestage);
+  	    			seriesData.push(item.nums);
+  	    			
+         	 		});
+          		console.log("---书坐标-----",seriesData)
+          		console.log("---月份坐标-----",yAxisData)
+          		 ec004.setOption(opt_scatter)
+                 ec004.setOption(
+                     {
+                         grid: {
+                             top: "24%",
+                             right:'16%',
+                             bottom: '30%'
+                         },
+                         legend: {
+                             show: false
+                         },
+                         xAxis: {
+                             name: '月份',
+                             data: yAxisData,
+                         },
+                         yAxis: {
+                             name: '集中度',
+                         },
+                         series: [
+                             {
+                                 name: '集中度',
+                                 type: 'line',
+                                 symbol: 'circle',
+                                 data: seriesData,
+                                 areaStyle: lineAreaStyle(0)
+                             }
+                         ]
+                     });
+          		
+          		
+          	});
+         } 
+       function conratioByRegion(){
+       	 $.post("${contextPath}/qdch/creditrisk/getConRatioByRegion",{"jys":jysCode},function(data){
+       		console.log("---集中度-----",data)
+        		var yAxisData=[];
+        		var seriesData=[];
+        		$.each(data,function(index,item){
+	        		yAxisData.push(item.provice);
+	    			seriesData.push(item.nums);
+	    			
+       	 		});
+        		console.log("---书坐标-----",seriesData)
+        		console.log("---月份坐标-----",yAxisData)
+        		 ec004.setOption(opt_scatter)
+               ec004.setOption(
+                   {
+                       grid: {
+                           top: "24%",
+                           right:'16%',
+                           bottom: '30%'
+                       },
+                       legend: {
+                           show: false
+                       },
+                       xAxis: {
+                           name: '月份',
+                           data: yAxisData,
+                       },
+                       yAxis: {
+                           name: '集中度',
+                       },
+                       series: [
+                           {
+                               name: '集中度',
+                               type: 'line',
+                               symbol: 'circle',
+                               data: seriesData,
+                               areaStyle: lineAreaStyle(0)
+                           }
+                       ]
+                   });
+        		
+        		
+        	});
+       } 
+       function conratioByIndustry(){
+         	 $.post("${contextPath}/qdch/creditrisk/getConRatioByIndustry",{"jys":jysCode},function(data){
+         		console.log("---集中度-----",data)
+          		var yAxisData=[];
+          		var seriesData=[];
+          		$.each(data,function(index,item){
+  	        		yAxisData.push(item.waykind);
+  	    			seriesData.push(item.nums);
+  	    			
+         	 		});
+          		console.log("---书坐标-----",seriesData)
+          		console.log("---月份坐标-----",yAxisData)
+          		 ec004.setOption(opt_scatter)
+                 ec004.setOption(
+                     {
+                         grid: {
+                             top: "24%",
+                             right:'16%',
+                             bottom: '30%'
+                         },
+                         legend: {
+                             show: false
+                         },
+                         xAxis: {
+                             name: '月份',
+                             data: yAxisData,
+                         },
+                         yAxis: {
+                             name: '集中度',
+                         },
+                         series: [
+                             {
+                                 name: '集中度',
+                                 type: 'line',
+                                 symbol: 'circle',
+                                 data: seriesData,
+                                 areaStyle: lineAreaStyle(0)
+                             }
+                         ]
+                     });
+          		
+          		
+          	});
+         } 
 </script>
 </body>
 </html>

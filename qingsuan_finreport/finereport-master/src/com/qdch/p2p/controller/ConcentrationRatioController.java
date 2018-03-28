@@ -8,7 +8,6 @@ import org.apache.commons.lang.StringUtils;
 
 import com.jfinal.kit.JsonKit;
 import com.qdch.core.BaseController;
-import com.qdch.p2p.model.ConRatioModel;
 import com.qdch.p2p.model.DefrateModel;
 import com.qdch.p2p.model.IndexRankingModel;
 import com.qdch.p2p.model.JyscModel;
@@ -20,7 +19,7 @@ import com.qdch.p2p.model.MigrationRateModel;
  * @date 2018年3月25日
  * @TODO 风险分析-信用风险
  */
-public class CreditRiskController extends BaseController {
+public class ConcentrationRatioController extends BaseController {
 	public void index() {
 		setAttr("jyslist", JyscModel.dao.getJysc(getDataScopeByUserName()));
 		render("xd/pages/03_01xinyongfengxian.html");
@@ -164,93 +163,6 @@ public class CreditRiskController extends BaseController {
 			renderJson(jsonp);
 		}else{
 			renderJson(MigrationRate);
-		}
-	}
-	//获取开户人数集中度
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public void getConRatioByCustCount(){
-		String jys=getPara("jys");//获取信用风险总体限制的筛选条件参数
-		List<ConRatioModel> ConRatioByCustCount=ConRatioModel.dao.getConRatioByCustCount(getDataScopeByUserName(), jys);
-		if(StringUtils.isNotBlank(getPara("jsonp"))){
-			//跨域处理
-			getResponse().addHeader("Access-Control-Allow-Origin", "*");
-			Map json = new HashMap();
-			String callback = getPara("callback");
-			json.put("data", ConRatioByCustCount);
-			String jsonp = callback + "(" + JsonKit.toJson(json) + ")";//返回的json 格式要加callback()
-			renderJson(jsonp);
-		}else{
-			renderJson(ConRatioByCustCount);
-		}
-	}
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public void getConRatioByTime(){
-		String jys=getPara("jys");//获取信用风险总体限制的筛选条件参数
-		List<ConRatioModel> ConRatioBytime=ConRatioModel.dao.getConRatioByTime(getDataScopeByUserName(), jys);
-		if(StringUtils.isNotBlank(getPara("jsonp"))){
-			//跨域处理
-			getResponse().addHeader("Access-Control-Allow-Origin", "*");
-			Map json = new HashMap();
-			String callback = getPara("callback");
-			json.put("data", ConRatioBytime);
-			String jsonp = callback + "(" + JsonKit.toJson(json) + ")";//返回的json 格式要加callback()
-			renderJson(jsonp);
-		}else{
-			renderJson(ConRatioBytime);
-		}
-	}
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public void getConRatioByAge(){
-		String jys=getPara("jys");//获取信用风险总体限制的筛选条件参数
-		List<ConRatioModel> ConRatioByAge=ConRatioModel.dao.getConRatioByAge(getDataScopeByUserName(), jys);
-		if(StringUtils.isNotBlank(getPara("jsonp"))){
-			//跨域处理
-			getResponse().addHeader("Access-Control-Allow-Origin", "*");
-			Map json = new HashMap();
-			String callback = getPara("callback");
-			json.put("data", ConRatioByAge);
-			String jsonp = callback + "(" + JsonKit.toJson(json) + ")";//返回的json 格式要加callback()
-			renderJson(jsonp);
-		}else{
-			renderJson(ConRatioByAge);
-		}
-	}
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public void getConRatioByRegion(){
-		String jys=getPara("jys");//获取信用风险总体限制的筛选条件参数
-		List<ConRatioModel> ConRatioByRegion=ConRatioModel.dao.getConRatioByRegion(getDataScopeByUserName(), jys);
-		if(StringUtils.isNotBlank(getPara("jsonp"))){
-			//跨域处理
-			getResponse().addHeader("Access-Control-Allow-Origin", "*");
-			Map json = new HashMap();
-			String callback = getPara("callback");
-			json.put("data", ConRatioByRegion);
-			String jsonp = callback + "(" + JsonKit.toJson(json) + ")";//返回的json 格式要加callback()
-			renderJson(jsonp);
-		}else{
-			renderJson(ConRatioByRegion);
-		}
-	}
-	/**
-	 * h获取行业集中度
-	 * @author doush
-	 * @date 2018年3月28日
-	 * @TODO
-	 */
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public void getConRatioByIndustry(){
-		String jys=getPara("jys");//获取信用风险总体限制的筛选条件参数
-		List<ConRatioModel> ConRatioByIndustry=ConRatioModel.dao.getConRatioByIndustry(getDataScopeByUserName(), jys);
-		if(StringUtils.isNotBlank(getPara("jsonp"))){
-			//跨域处理
-			getResponse().addHeader("Access-Control-Allow-Origin", "*");
-			Map json = new HashMap();
-			String callback = getPara("callback");
-			json.put("data", ConRatioByIndustry);
-			String jsonp = callback + "(" + JsonKit.toJson(json) + ")";//返回的json 格式要加callback()
-			renderJson(jsonp);
-		}else{
-			renderJson(ConRatioByIndustry);
 		}
 	}
 

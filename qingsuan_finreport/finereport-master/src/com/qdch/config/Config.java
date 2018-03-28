@@ -21,10 +21,8 @@ import com.qdch.controller.DemoController;
 import com.qdch.model.DemoModel;
 import com.qdch.p2p.controller.CreditRiskController;
 import com.qdch.p2p.controller.CustCountController;
-import com.qdch.p2p.controller.DefrateController;
 import com.qdch.p2p.controller.IncomeAndLossrateController;
-import com.qdch.p2p.controller.IndexRankingController;
-import com.qdch.p2p.controller.JyscController;
+import com.qdch.p2p.model.ConRatioModel;
 import com.qdch.p2p.model.DefrateModel;
 import com.qdch.p2p.model.IncomeAndLossrateModel;
 import com.qdch.p2p.model.IndexRankingModel;
@@ -50,7 +48,7 @@ public class Config extends JFinalConfig {
 	public void configRoute(Routes me) {
 		//设置根页面路径
 		me.setBaseViewPath("/WEB-INF/qss");
-		me.add("qdch/jysc", JyscController.class,"/");
+		
 
 		me.add("qdch/custcount", CustCountController.class,"/");
 		me.add("qdch/incomeandlossrate", IncomeAndLossrateController.class,"/");
@@ -110,13 +108,13 @@ public class Config extends JFinalConfig {
 		insight_arp.setDialect(new PostgreSqlDialect());
 		
 		/***doushuiahi Model START***/
-		insight_arp.addMapping("insight_xd_loan_count", IndexRankingModel.class);
+		insight_arp.addMapping("insight_xd_loan_count", IndexRankingModel.class);//指标排名
 		insight_arp.addMapping("insight_xd_fkamount", IndexRankingModel.class);
 		insight_arp.addMapping("insight_xd_yeamount", IndexRankingModel.class);
-		insight_arp.addMapping("insight_xd_defrate", DefrateModel.class);
-		insight_arp.addMapping("insight_xd_mobiratio", MigrationRateModel.class);
-		insight_arp.addMapping("insight_xd_income", IncomeAndLossrateModel.class);
-		insight_arp.addMapping("insight_xd_lossrate", IncomeAndLossrateModel.class);
+		insight_arp.addMapping("insight_xd_defrate", DefrateModel.class);//不良率
+		insight_arp.addMapping("insight_xd_mobiratio", MigrationRateModel.class);//迁徙率
+		insight_arp.addMapping("insight_xd_cust_count", ConRatioModel.class);//开户人数集中度
+		
 		/***doushuiahi Model START***/
 		
 		/***小贷zuoqb Model START***/
