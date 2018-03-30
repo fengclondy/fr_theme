@@ -175,7 +175,7 @@ function lineAreaStyle(index) {
             colorStops: [{
                 offset: 0, color: colors[index] // 0% 处的颜色
             }, {
-                offset: 1, color: '#00adef11' // 100% 处的颜色
+                offset: 1, color: 'rgba(0,173,239,.06)' // 100% 处的颜色
             }]
         }
     }

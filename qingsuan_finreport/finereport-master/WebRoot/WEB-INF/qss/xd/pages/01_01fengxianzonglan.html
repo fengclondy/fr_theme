@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="shortcut icon" href="${contextPath}/static/img/com/logo.png">
+    <link rel="shortcut icon" href="../img/com/logo.png">
     <title></title>
-    <link rel="stylesheet" href="${contextPath}/static/asserts/css/normalize.css">
-    <link rel="stylesheet" href="${contextPath}/static/css/style.css">
-    <link rel="stylesheet" href="${contextPath}/static/css/pageCom.css">
+    <link rel="stylesheet" href="../asserts/css/normalize.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/pageCom.css">
     <style>
         .container > div,
         .top > div,
@@ -43,11 +43,13 @@
             min-width: 6%;
             height: 100%;
             background: #00b0f4;
+            border-radius: 0.2rem;
         }
         .pingtairight-1 .textContent{
             display: table-cell;
             vertical-align: middle;
             text-align: center;
+
         }
         .pingtairight-1>p{
             display: inline-block;
@@ -99,11 +101,11 @@
 
         }
         .hezitextContent span:nth-child(1){
-            font-size: 18px;
+            font-size: 1.15rem;
             font-weight: 500;
         }
         .hezitextContent span:nth-child(2){
-            font-size: 16px;
+            font-size: 0.8rem;
             font-weight: 500;
         }
         .heziContent a span:hover{
@@ -113,6 +115,9 @@
             width: 1em;
             height: 1em;
             vertical-align: middle;
+        }
+        .hezipic span{
+            font-size: 0.8rem;
         }
         /*模块三  tab*/
         #box{
@@ -229,14 +234,13 @@
                 </div>
                 <div class="chartContent">
                     <header>
-                            <div id="tit" class="btnGroup">
-                                <span class="select">最高利率</span>
-                                <span>杠杆</span>
-                                <span>不良率</span>
-                            </div>
+                        <div id="tit" class="btnGroup ">
+                            <span class="select">最高利率</span>
+                            <span>杠杆</span>
+                            <span>不良率</span>
+                        </div>
                     </header>
                     <div class="chartBody">
-                        <!--<div id="ec007_zhishupaiming"></div>-->
                         <ul id="con">
                             <li class="show" id="ec007_zhishupaiming"></li>
                             <li id="ec008_zhishupaiming">内容二</li>
@@ -334,16 +338,14 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 </div>
-</div>
-<script src="${contextPath}/static/asserts/js/echarts-4.0.js"></script>
-<script src="${contextPath}/static/asserts/js/jquery-2.2.4.js"></script>
-<script src="${contextPath}/static/js/main.js"></script>
-<script src="${contextPath}/static/js/chartsCom.js"></script>
+<script src="../asserts/js/echarts-4.0.js"></script>
+<script src="../asserts/js/jquery-2.2.4.js"></script>
+<script src="../js/pageCom.js"></script>
+<script src="../js/chartsCom.js"></script>
 
 
 
@@ -397,6 +399,7 @@
             xAxis: {
                 name:'月份',
                 data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+
             },
             yAxis: {
                 name:'竞争力',
@@ -404,7 +407,8 @@
             },
             series: [{
                 data: [2,  5, 7.2, 4,10, 7.2, 10, 5, 5, 7.2, 10, 5, 6],
-                type: 'line'
+                type: 'line',
+                symbol:'circle'
             }]
         });
         //关键指标排名 模块三
@@ -417,11 +421,11 @@
                 top:"12%"
             },
             xAxis: {
-                name:'金额\n/万元',
+                name:'指数',
                 type: 'value'
             },
             yAxis: {
-                name:'市场',
+                name:'平台',
                 type: 'category',
                 data: ['互帮贷', '大家投', '中金所', '好易贷', '鲁金宝']
             },
@@ -441,11 +445,11 @@
                 top:"12%"
             },
             xAxis: {
-                name:'金额\n/万元',
+                name:'指数',
                 type: 'value'
             },
             yAxis: {
-                name:'市场',
+                name:'平台',
                 type: 'category',
                 data: ['互帮贷', '大家投', '中金所', '好易贷', '鲁金宝']
             },
@@ -465,11 +469,11 @@
                 top:"12%"
             },
             xAxis: {
-                name:'金额\n/万元',
+                name:'指数',
                 type: 'value'
             },
             yAxis: {
-                name:'市场',
+                name:'平台',
                 type: 'category',
                 data: ['互帮贷', '大家投', '中金所', '好易贷', '鲁金宝']
             },
@@ -496,11 +500,12 @@
                 left:'center',
                 top:'center',
                 style:{
-                    text:'平台总数(个)\n  24',
+                    text:'平台总数(个)\n \n 24',
                     textAlign:'center',
                     fill:'#fff',
                     width:30,
-                    height:30
+                    height:30,
+                    fontsize:44
                 }
             },
             series: [
@@ -519,8 +524,8 @@
                         }
                     },
                     data: [
-                        {value: 1260, name: '停运平台-55%'},
-                        {value: 678, name: '运营平台-45%'}
+                        {value: 1260, name: '停运平台-65%'},
+                        {value: 678, name: '运营平台-35%'}
                     ]
                 }
             ]

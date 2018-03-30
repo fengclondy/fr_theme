@@ -7,8 +7,63 @@
     <link rel="stylesheet" href="${contextPath}/static/asserts/css/normalize.css">
     <link rel="stylesheet" href="${contextPath}/static/css/style.css">
     <link rel="stylesheet" href="${contextPath}/static/css/pageCom.css">
+    <style>
+        .model{
+
+            background: url("${contextPath}/static/img/com/bg_main.jpg") no-repeat;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            /*width: 600px;*/
+            /*height: 400px;*/
+            /*margin-left: -300px;*/
+            /*margin-top: -200px;*/
+            border-radius: .5rem .5rem 0 0;
+            width: 50%;
+            height: 60%;
+            margin-left: -25%;
+            margin-top: -15%;
+
+        }
+        .header{
+            position: relative;
+            height: 2rem;
+            height: 8%;
+            border-radius: .5rem .5rem 0 0;
+            background-color: #0000ff;
+        }
+        .header span{
+            position: absolute;
+            right: .8rem;
+            top: 0.3rem;
+            width: 1rem;
+            height: 1rem;
+            text-align: center;
+            background-color: #fff;
+            border-radius: 50%;
+            line-height: 1rem;
+        }
+        .model_content{
+            height: 94%;
+            padding: 0rem 1rem;
+
+        }
+        .mySelect,label{
+            font-size: 0.7rem;
+        }
+        .model_content_information1,.model_content_information2{
+            height: 30%;
+            border-bottom: 2px solid #00abde;
+        }
+        .model_content_informationleft, .model_content_informationmiddle{
+            width: 30%;
+        }
+        .tableBox tbody tr td:nth-child(1) a{
+            color: red;
+        }
+    </style>
 </head>
-<body class="whitePage" id="05_03fengxianshijianshenhe" data-title="风险事件查看">
+<body class="whitePage" id="05_01fengxianshijianchuli" data-title="风险事件处理">
 <div class="container">
     <nav class="pagination">
         <ul>
@@ -148,7 +203,7 @@
             </thead>
             <tbody>
             <tr>
-                <td><a href="">449684</a></td>
+                <td><a href="" class="fengxian001">449684</a></td>
                 <td>20180124 06:01:43</td>
                 <td>资金风险</td>
                 <td>出入金异常</td>
@@ -189,7 +244,6 @@
                 <td>已提交</td>
                 <td>20180124 16:07:39</td>
                 <td class="more"><a href="">查看</a></td>
-
             </tr>
             <tr>
                 <td><a href="">449684</a></td>
@@ -211,25 +265,54 @@
                 <td>已提交</td>
                 <td>20180124 16:07:39</td>
                 <td class="more"><a href="">查看</a></td>
-
             </tr>
-
             </tbody>
         </table>
     </div>
-</div>
+    <!--模态框 弹出框-->
+    <div class="model" style="display: none">
+        <div class="header"><span>X</span></div>
+        <div class="model_content">
 
+        </div>
+    </div>
+</div>
+<!--<script src="http://www.jq22.com/jquery/jquery-2.1.1.js"></script>-->
 <script src="../asserts/js/echarts-4.0.js"></script>
 <script src="../asserts/js/jquery-2.2.4.js"></script>
 <script src="../js/pageCom.js"></script>
 <script src="../js/chartsCom.js"></script>
+
 <script>
 
     $(function () {
         $(".formFoldHandle").click(function () {
             $(".formBox").toggleClass("open")
+        });
+
+        //显示model
+        $(".tableBox tbody tr td:nth-child(1) a").click(function(e){
+            e.preventDefault();
+
+            $(".model").css("display","block");
+
+        });
+        //异常model
+        $(".header span").click(function (e) {
+            e.preventDefault();
+            $(".model").hide();
         })
+
+
     });
+
+
+
+
+
+
+
+
 
 
 </script>

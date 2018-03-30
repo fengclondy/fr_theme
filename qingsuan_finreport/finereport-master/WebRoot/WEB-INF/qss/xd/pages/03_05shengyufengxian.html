@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="shortcut icon" href="../img/com/logo.png">
-    <link rel="stylesheet" href="../asserts/css/normalize.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/pageCom.css">
-    <link rel="stylesheet" href="../css/laydate.css">
+    <link rel="shortcut icon" href="${contextPath}/static/img/com/logo.png">
+    <link rel="stylesheet" href="${contextPath}/static/asserts/css/normalize.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/style.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/pageCom.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/laydate.css">
     <style>
         .pageBody {
             display: flex;
@@ -43,12 +43,12 @@
         /*newsInformation 最新资讯*/
         .newsInformation {
             width: 100%;
-            margin: 5% 10%;
+            margin: 6% 10%;
             height: 100%;
         }
-        .newsInformation li {
-            height: 30%;
-            line-height: 30%;
+        .newsInformation li{
+            height: 33.33%;
+            line-height: 33.33%;
         }
         .newsInformation li a, .newsInformation li span {
             font-size: 0.9rem;
@@ -69,10 +69,10 @@
         .timeUstyle {
             background: transparent;
             border: 2px solid #00abde;
-            width: 11rem;
+            width: 9rem;
+            border-radius: 0.1rem;
             height: 28%;
             line-height: 28%;
-            border-radius: 0.1rem;
         }
         .endTimeContent {
             margin-left: 5%;
@@ -92,10 +92,6 @@
         textarea::-webkit-input-placeholder {
             color: #fff;
             vertical-align: middle;
-        }
-        .keyword {
-            margin-left: 14%;
-            margin-right: 2%;
         }
         /*修改输入框 placeholder字体颜色 END*/
         /*customerInformationList start*/
@@ -163,18 +159,14 @@
             color: #fff;
         }
         /*查询*/
-        .active{
+        .yuqingsearch{
             padding:0rem 2rem;
-            /*margin-left: 1%;*/
             background: #00abde;
+            border: 2px solid #00abde;
+            margin-top: 50%;
+            border-radius: 0.1rem;
         }
-        /*舆情详情 输入框*/
-        .customerInformation {
-            width: 100%;
-            height: 25%;
-            padding: 0 1rem;
-            border-bottom: 1px solid #00adef;
-        }
+
         /*舆情详情 图片展示区*/
         .customerInformationList {
             width: 100%;
@@ -186,6 +178,29 @@
             height: 20rem;
             overflow: auto;
         }
+
+        /*舆情详情 输入框*/
+        .customerInformation {
+            width: 100%;
+            height: 25%;
+            padding: 1rem 0rem;
+            border-bottom: 2px solid #00adef;
+        }
+        .customerInformationleft,.customerInformationmiddle{
+            width: 33.33%;
+            height: 100%;
+        }
+        .mySelect{
+            width: 9rem;
+        }
+        /*关键字输入框*/
+        .gjz{
+            width: 9rem;
+            background: transparent;
+            border: 2px solid #00abde;
+            border-radius: 0.1rem;
+        }
+
     </style>
 </head>
 <body id="03_05shengyufengxian" data-title="管理风险">
@@ -310,28 +325,45 @@
                     <div class="chartContent">
                         <div class="chartBody chartBody1">
                             <div class="customerInformation">
-                                <br>
-                                <label for="fangkuanedu1">交易市场：</label>
-                                <div class="mySelect" id="fangkuanedu1">
-                                    <div class="myOption selected inputWidth" style="width: 11rem;"><span
-                                            class="text"></span><span
-                                            class="icon"></span></div>
-                                    <ul class="myOptionBox">
-                                        <li class="myOption selected">青岛华银有限公司</li>
-                                        <li class="myOption">青岛华银有限公司2</li>
-                                        <li class="myOption">青岛华银有限公司3</li>
-                                    </ul>
+                                <div class="customerInformationleft fl">
+                                    <div class="inputGroup fl">
+                                        <label class="jiaoyishichang">交易市场:</label>&nbsp;&nbsp;
+                                        <div class="mySelect" id="jiaoyishichang">
+                                            <div class="myOption selected"><span class="text"></span><span class="icon"></span></div>
+                                            <ul class="myOptionBox">
+                                                <li class="myOption selected">青岛华银有限公司</li>
+                                                <li class="myOption">青岛华银有限公司</li>
+                                                <li class="myOption">青岛华银有限公司</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div class="inputGroup fl">
+                                        <label for="BeginTime">开始时间：</label>
+                                        <input placeholder="请输入开始日期" id="BeginTime" class="laydate-icon timeUstyle stateUTime"
+                                               onclick="laydate({istime: true,format:'YYYY-MM-DD hh:mm'})">
+                                    </div>
                                 </div>
-                                <label for="fangkuanedu1" class="keyword">关键字：</label>
-                                <input type="text" placeholder="青岛华银有限公司" class="timeUstyle">
-                                <br>
-                                <label for="fangkuanedu1">开始时间：</label>
-                                <input placeholder="请输入开始日期" id="BeginTime" class="laydate-icon timeUstyle stateUTime"
-                                       onclick="laydate({istime: true,format:'YYYY-MM-DD hh:mm'})">
-                                <label class="endTimeContent">结束时间：</label>
-                                <input placeholder="请输入结束日期" class="laydate-icon timeUstyle endUTime"
-                                       onclick="laydate({istime: true,format:'YYYY-MM-DD hh:mm'})">
-                                <button class="active">查询</button>
+                                <div class="customerInformationmiddle fl">
+                                    <div class="inputGroup fl">
+                                        <label class="guanjianzi">关键字:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="text" class="gjz" placeholder="青岛华银有限公司">
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div class="inputGroup fl">
+                                        <label for="EndTime">结束时间：</label>
+                                        <input placeholder="请输入开始日期" id="EndTime" class="laydate-icon timeUstyle stateUTime"
+                                               onclick="laydate({istime: true,format:'YYYY-MM-DD hh:mm'})">
+                                    </div>
+                                </div>
+                                <div class="customerInformationright fl">
+
+                                    <div class="inputGroup">
+                                        <button class="yuqingsearch">查询</button>
+                                    </div>
+                                </div>
                             </div>
                             <div class="customerInformationList">
                                 <div class="left fl">
@@ -421,7 +453,7 @@
 
 <script src="../asserts/js/echarts-4.0.js"></script>
 <script src="../asserts/js/jquery-2.2.4.js"></script>
-<script src="../js/main.js"></script>
+<script src="../js/pageCom.js"></script>
 <script src="../js/chartsCom.js"></script>
 <script src="../js/laydate.js"></script>
 <script>
@@ -469,14 +501,14 @@
             },
             yAxis: {
                 name: '热度值',
-                type: 'value',
-                interval: 250
+                type: 'value'
+
             },
             series: [
                 {
                     name: '平均单笔贷款',
                     type: 'line',
-                    // symbol: 'circle',
+                    symbol: 'circle',
                     data: [200, 255, 290, 320, 380, 430, 470, 490],
                     areaStyle: {
                         color: {

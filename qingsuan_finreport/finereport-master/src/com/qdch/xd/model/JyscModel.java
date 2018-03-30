@@ -1,4 +1,4 @@
-package com.qdch.p2p.model;
+package com.qdch.xd.model;
 
 import java.util.ArrayList;
 import java.util.Date;

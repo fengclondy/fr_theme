@@ -1,4 +1,4 @@
-package com.qdch.p2p.controller;
+package com.qdch.xd.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -8,12 +8,12 @@ import org.apache.commons.lang.StringUtils;
 
 import com.jfinal.kit.JsonKit;
 import com.qdch.core.BaseController;
-import com.qdch.p2p.model.ConRatioModel;
-import com.qdch.p2p.model.DefrateModel;
-import com.qdch.p2p.model.IncomeAndLossrateModel;
-import com.qdch.p2p.model.IndexRankingModel;
-import com.qdch.p2p.model.JyscModel;
-import com.qdch.p2p.model.MigrationRateModel;
+import com.qdch.xd.model.ConRatioModel;
+import com.qdch.xd.model.DefrateModel;
+import com.qdch.xd.model.IncomeAndLossrateModel;
+import com.qdch.xd.model.IndexRankingModel;
+import com.qdch.xd.model.JyscModel;
+import com.qdch.xd.model.MigrationRateModel;
 
 /**
  * 

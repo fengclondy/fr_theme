@@ -1,15 +1,6 @@
 package com.qdch.xd.controller;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.commons.lang.StringUtils;
-
-import com.jfinal.kit.JsonKit;
 import com.qdch.core.BaseController;
-import com.qdch.p2p.model.ConRatioModel;
-import com.qdch.p2p.model.IndexRankingModel;
 /**
  * 
  * @todo   监管全景-业务总览

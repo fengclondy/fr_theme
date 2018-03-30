@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="shortcut icon" href="../img/com/logo.png">
+    <link rel="shortcut icon" href="${contextPath}/static/img/com/logo.png">
     <link rel="stylesheet" href="${contextPath}/static/asserts/css/normalize.css">
     <link rel="stylesheet" href="${contextPath}/static/css/style.css">
     <link rel="stylesheet" href="${contextPath}/static/css/pageCom.css">
@@ -112,10 +112,10 @@
     </div>
 </div>
 
-<script src="${contextPath}/static/asserts/js/echarts-4.0.js"></script>
-<script src="${contextPath}/static/asserts/js/jquery-2.2.4.js"></script>
-<script src="${contextPath}/static/js/main.js"></script>
-<script src="${contextPath}/static/js/chartsCom.js"></script>
+<script src="../asserts/js/echarts-4.0.js"></script>
+<script src="../asserts/js/jquery-2.2.4.js"></script>
+<script src="../js/pageCom.js"></script>
+<script src="../js/chartsCom.js"></script>
 <script>
     var allCharts = [];
 
@@ -133,7 +133,7 @@
                 name: '竞争力'
             },
             yAxis: {
-                name: '市场',
+                name: '平台',
                 data: ['小贷D', '小贷C', '小贷B', '小贷A', '海尔小额贷款']
             },
             series: [{

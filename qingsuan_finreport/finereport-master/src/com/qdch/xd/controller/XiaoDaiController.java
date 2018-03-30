@@ -1,4 +1,4 @@
-package com.qdch.controller;
+package com.qdch.xd.controller;
 
 import com.qdch.core.BaseController;
 //@ControllerBind(controllerKey = "/jfinal/demo", viewPath = "/p2p")
@@ -7,7 +7,7 @@ import com.qdch.core.BaseController;
  * @author Tom
  *
  */
-public class DemoController extends BaseController {
+public class XiaoDaiController extends BaseController {
 	//默认方法
     public void index() {
         renderText("This is a demo.");

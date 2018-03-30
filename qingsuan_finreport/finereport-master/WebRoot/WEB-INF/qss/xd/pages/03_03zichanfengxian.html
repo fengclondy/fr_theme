@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="shortcut icon" href="../img/com/logo.png">
-    <link rel="stylesheet" href="../asserts/css/normalize.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/pageCom.css">
+    <link rel="shortcut icon" href="${contextPath}/static/img/com/logo.png">
+    <link rel="stylesheet" href="${contextPath}/static/asserts/css/normalize.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/style.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/pageCom.css">
     <style>
         .top {
             display: flex;
@@ -168,7 +168,7 @@
 </div>
 <script src="../asserts/js/echarts-4.0.js"></script>
 <script src="../asserts/js/jquery-2.2.4.js"></script>
-<script src="../js/main.js"></script>
+<script src="../js/pageCom.js"></script>
 <script src="../js/chartsCom.js"></script>
 <script>
     var allCharts = [];
@@ -181,7 +181,7 @@
             grid: {
                 left: '10%',
                 right: '15%',
-                bottom: '15%',
+                bottom: '18%',
                 top: '30%'
             },
             xAxis: [
@@ -202,7 +202,6 @@
                 {
                     type: 'value',
                     name: '利率',
-                    interval: 15,
                     axisLine: { //坐标轴
                         lineStyle: {
                             color: "#369"
@@ -212,7 +211,8 @@
                         lineStyle: {
                             color: "#369"
                         }
-                    }
+                    },
+                    nameGap:3
                 }
             ],
             series: [
@@ -220,7 +220,7 @@
                     name: '资产',
                     type: 'bar',
                     data: [57, 60, 38, 57, 60, 65],
-                    barWidth: 15
+                    barWidth: barWidth
                 },
                 {
                     name: '负债金额',
@@ -253,7 +253,7 @@
             grid: {
                 left: '10%',
                 right: '15%',
-                bottom: '15%',
+                bottom: '18%',
                 top: '20%'
             },
             xAxis: [
@@ -278,7 +278,7 @@
                     name: '风险货款额',
                     type: 'bar',
                     data: [60, 45, 39, 28, 47, 65],
-                    barWidth: 15
+                    barWidth: barWidth
                 },
                 {
                     name: '拨备金金额',
@@ -297,7 +297,7 @@
             grid: {
                 left: '10%',
                 right: '15%',
-                bottom: '15%',
+                bottom: '18%',
                 top: '20%'
             },
             xAxis: [
@@ -311,7 +311,6 @@
                 {
                     name: '金额',
                     type: 'value',
-                    interval: 15,
                     right: '15%'
                 }
             ],
@@ -320,7 +319,7 @@
                     name: '本月货款发生额',
                     type: 'bar',
                     data: [60, 45, 39, 28, 47, 65],
-                    barWidth: 15
+                    barWidth: barWidth
                 },
                 {
                     name: '本期展期货款额度',
@@ -339,7 +338,7 @@
             grid: {
                 left: '10%',
                 right: '15%',
-                bottom: '15%',
+                bottom: '18%',
                 top: '20%'
             },
             xAxis: [
@@ -356,7 +355,6 @@
                 {
                     name: '金额',
                     type: 'value',
-                    interval: 15
                 }
             ],
             series: [
@@ -364,7 +362,7 @@
                     name: '资本额',
                     type: 'bar',
                     data: [60, 45, 39, 38, 47, 65],
-                    barWidth: 15
+                    barWidth: barWidth
                 },
                 {
                     name: '投资额',
@@ -411,14 +409,11 @@
         myChart6.setOption({
             legend: {
                 // orient: 'vertical',
-                right: 0,
-                itemGap: 2,
-                data: ['担保方式1', '担保方式2', '担保方式3']
             },
             grid: {
                 left: '10%',
                 right: '15%',
-                bottom: '15%',
+                bottom: '22%',
                 top: '20%'
             },
             xAxis: {
@@ -441,7 +436,7 @@
                             color: '#00adef'
                         }
                     },
-                    barWidth: 15,
+                    barWidth: barWidth,
                     data: [120, 102, 101, 134, 190, 130]
                 },
                 {

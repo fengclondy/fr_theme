@@ -19,17 +19,28 @@ import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.template.Engine;
 import com.qdch.controller.DemoController;
 import com.qdch.model.DemoModel;
-import com.qdch.p2p.controller.CreditRiskController;
-import com.qdch.p2p.controller.CustCountController;
-import com.qdch.p2p.model.ConRatioModel;
-import com.qdch.p2p.model.DefrateModel;
-import com.qdch.p2p.model.IncomeAndLossrateModel;
-import com.qdch.p2p.model.IndexRankingModel;
-import com.qdch.p2p.model.JyscModel;
-import com.qdch.p2p.model.MigrationRateModel;
 import com.qdch.util.TemplteLayoutTag;
+import com.qdch.xd.controller.AssetRiskController;
 import com.qdch.xd.controller.BusinessOverviewController;
+import com.qdch.xd.controller.ComplianceRiskController;
+import com.qdch.xd.controller.CreditRiskController;
+import com.qdch.xd.controller.DevelopmentCapacityController;
+import com.qdch.xd.controller.EventAuditController;
+import com.qdch.xd.controller.EventDecisionController;
+import com.qdch.xd.controller.EventProcessingController;
+import com.qdch.xd.controller.EventViewController;
+import com.qdch.xd.controller.ManagementRiskController;
+import com.qdch.xd.controller.MonthlyReportController;
+import com.qdch.xd.controller.OperationalCapabilityController;
+import com.qdch.xd.controller.ProfitabilityController;
+import com.qdch.xd.controller.ReputationRiskController;
 import com.qdch.xd.controller.RiskOverviewController;
+import com.qdch.xd.model.ConRatioModel;
+import com.qdch.xd.model.DefrateModel;
+import com.qdch.xd.model.IncomeAndLossrateModel;
+import com.qdch.xd.model.IndexRankingModel;
+import com.qdch.xd.model.JyscModel;
+import com.qdch.xd.model.MigrationRateModel;
 import com.qdch.xd.model.RiskCountModel;
 import com.qdch.xd.model.ScabilityModel;
 
@@ -49,12 +60,24 @@ public class Config extends JFinalConfig {
 		me.setBaseViewPath("/WEB-INF/qss");
 		
 
-		me.add("qdch/custcount", CustCountController.class,"/");
+	
 	
 		me.add("qdch/demo", DemoController.class,"/");
 		
 		/***小贷 doushuihai Controller START***/
 		me.add("qdch/creditrisk", CreditRiskController.class,"/");	//信用风险
+		me.add("qdch/managementrisk", ManagementRiskController.class,"/");	//管理风险
+		me.add("qdch/assetrisk", AssetRiskController.class,"/");	//资产风险
+		me.add("qdch/compliancerisk", ComplianceRiskController.class,"/");	//合规风险
+		me.add("qdch/reputationrisk", ReputationRiskController.class,"/");	//声誉风险
+		me.add("qdch/operationalcapability", OperationalCapabilityController.class,"/");	//经营能力
+		me.add("qdch/profitability", ProfitabilityController.class,"/");	//盈利能力
+		me.add("qdch/developmentcapacity", DevelopmentCapacityController.class,"/");	//发展能力
+		me.add("qdch/eventprocessing", EventProcessingController.class,"/");	//风险事件处理
+		me.add("qdch/eventview", EventViewController.class,"/");	//风险事件查看
+		me.add("qdch/eventaudit", EventAuditController.class,"/");	//风险事件审核
+		me.add("qdch/eventdecision", EventDecisionController.class,"/");	//风险事件决策
+		me.add("qdch/monthlyrepor", MonthlyReportController.class,"/");	//监管月报
 		/***小贷doushuihai Controller START***/
 		
 		/***小贷zuoqb Controller START***/

@@ -49,33 +49,33 @@
                 <a class="dropdown-toggle">风险分析<span class="icon"></span></a>
                 <ul>
                     <li data-id="${contextPath}/qdch/creditrisk" data="03_01xinyongfengxian">信用风险</li>
-                    <li data-id="03_02guanlifengxian">管理风险</li>
-                    <li data-id="03_03zichanfengxian">资产风险</li>
-                    <li data-id="03_04heguifengxian">合规风险</li>
-                    <li data-id="03_05shengyufengxian">声誉风险</li>
+                    <li data-id="${contextPath}/qdch/managementrisk" data="03_02guanlifengxian">管理风险</li>
+                    <li data-id="${contextPath}/qdch/assetrisk" data="03_03zichanfengxian">资产风险</li>
+                    <li data-id="${contextPath}/qdch/compliancerisk" data="03_04heguifengxian">合规风险</li>
+                    <li data-id="${contextPath}/qdch/reputationrisk" data="03_05shengyufengxian">声誉风险</li>
                 </ul>
             </li>
             <li class="">
                 <a class="dropdown-toggle">竞争力<span class="icon"></span></a>
                 <ul>
-                    <li data-id="04_01jingyingnengli">经营能力</li>
-                    <li data-id="04_02yinglinengli">盈利能力</li>
-                    <li data-id="04_03fazhannengli">发展能力</li>
+                    <li data-id="${contextPath}/qdch/operationalcapability" data="04_01jingyingnengli">经营能力</li>
+                    <li data-id="${contextPath}/qdch/profitability" data="04_02yinglinengli">盈利能力</li>
+                    <li data-id="${contextPath}/developmentcapacity" data="04_03fazhannengli">发展能力</li>
                 </ul>
             </li>
             <li class="">
                 <a class="dropdown-toggle">风险管理<span class="icon"></span></a>
                 <ul>
-                    <li>风险事件处理</li>
-                    <li data-id="05_02fengxianshijianchakan">风险事件查看</li>
-                    <li data-id="05_03fengxianshijianshenhe">风险事件审核</li>
-                    <li>风险事件决策</li>
+                    <li data-id="${contextPath}/qdch/eventprocessing" data="05_01fengxianshijianchuli">风险事件处理</li>
+                    <li data-id="${contextPath}/qdch/eventview" data="05_02fengxianshijianchakan">风险事件查看</li>
+                    <li data-id="${contextPath}/qdch/eventaudit" data="05_03fengxianshijianshenhe">风险事件审核</li>
+                    <li data-id="${contextPath}/qdch/eventdecision" data="05_04fengxianshijianjuece">风险事件决策</li>
                 </ul>
             </li>
             <li class="">
                 <a class="dropdown-toggle">监管报告<span class="icon"></span></a>
                 <ul>
-                    <li data-id="06_01jianguanyuebao">监管月报</li>
+                    <li data-id="${contextPath}/qdch/monthlyrepor" data="06_01jianguanyuebao">监管月报</li>
                 </ul>
             </li>
             <li class="">
@@ -114,7 +114,7 @@
         </div>
         <div class="pageBox">
             <div class="pageContent current" id="00_01home" data-title="主页">
-                <iframe src="00_01home.html"></iframe>
+                <iframe src="${contextPath}/00_01home.html"></iframe>
             </div>
         </div>
     </div>
