@@ -112,10 +112,10 @@
     </div>
 </div>
 
-<script src="../asserts/js/echarts-4.0.js"></script>
-<script src="../asserts/js/jquery-2.2.4.js"></script>
-<script src="../js/pageCom.js"></script>
-<script src="../js/chartsCom.js"></script>
+<script src="${contextPath}/static/asserts/js/echarts-4.0.js"></script>
+<script src="${contextPath}/static/asserts/js/jquery-2.2.4.js"></script>
+<script src="${contextPath}/static/js/pageCom.js"></script>
+<script src="${contextPath}/static/js/chartsCom.js"></script>
 <script>
     var allCharts = [];
 
@@ -147,14 +147,14 @@
         var ec002 = echarts.init($("#ec002_competitivenessIndicators")[0]);
         // ec002.setOption(opt_com);
         ec002.setOption(opt_bar_vertical);
-        var ec002_data1 = [],
+      /*   var ec002_data1 = [],
             ec002_data2 = [],
             ec002_data3 = [];
         for (var i = 0; i < 5; i++) {
             ec002_data1.push(rdm(3,10));
             ec002_data2.push(rdm(4,7));
             ec002_data3.push(rdm(3,8))
-        }
+        } */
         ec002.setOption({
             legend: {
                 show: true
@@ -178,18 +178,18 @@
                 {
                     name: '经营能力',
                     type: 'bar',
-                    data: ec002_data1
+                    data: [1,2,6,3,4]
                 },
                 {
                     name: '盈利能力',
                     type: 'bar',
-                    data: ec002_data2
+                    data: [1,2,3,4,5]
                 },
                 {
                     name: '发展能力',
                     type: 'bar',
                     barCategoryGap: '36%',
-                    data: ec002_data3
+                    data: [2,4,7,3,6]
                 }
             ]
         });

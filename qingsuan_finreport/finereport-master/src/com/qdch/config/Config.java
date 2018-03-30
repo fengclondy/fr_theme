@@ -17,7 +17,6 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.activerecord.dialect.PostgreSqlDialect;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.template.Engine;
-import com.qdch.controller.DemoController;
 import com.qdch.model.DemoModel;
 import com.qdch.util.TemplteLayoutTag;
 import com.qdch.xd.controller.AssetRiskController;
@@ -35,6 +34,7 @@ import com.qdch.xd.controller.OperationalCapabilityController;
 import com.qdch.xd.controller.ProfitabilityController;
 import com.qdch.xd.controller.ReputationRiskController;
 import com.qdch.xd.controller.RiskOverviewController;
+import com.qdch.xd.controller.XiaoDaiController;
 import com.qdch.xd.model.ConRatioModel;
 import com.qdch.xd.model.DefrateModel;
 import com.qdch.xd.model.IncomeAndLossrateModel;
@@ -62,7 +62,7 @@ public class Config extends JFinalConfig {
 
 	
 	
-		me.add("qdch/demo", DemoController.class,"/");
+		me.add("qdch/xiaodai", XiaoDaiController.class,"/");
 		
 		/***小贷 doushuihai Controller START***/
 		me.add("qdch/creditrisk", CreditRiskController.class,"/");	//信用风险
