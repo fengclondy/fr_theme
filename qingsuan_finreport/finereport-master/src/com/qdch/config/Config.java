@@ -21,7 +21,6 @@ import com.qdch.controller.DemoController;
 import com.qdch.model.DemoModel;
 import com.qdch.p2p.controller.CreditRiskController;
 import com.qdch.p2p.controller.CustCountController;
-import com.qdch.p2p.controller.IncomeAndLossrateController;
 import com.qdch.p2p.model.ConRatioModel;
 import com.qdch.p2p.model.DefrateModel;
 import com.qdch.p2p.model.IncomeAndLossrateModel;
@@ -51,7 +50,7 @@ public class Config extends JFinalConfig {
 		
 
 		me.add("qdch/custcount", CustCountController.class,"/");
-		me.add("qdch/incomeandlossrate", IncomeAndLossrateController.class,"/");
+	
 		me.add("qdch/demo", DemoController.class,"/");
 		
 		/***小贷 doushuihai Controller START***/
@@ -114,6 +113,8 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("insight_xd_defrate", DefrateModel.class);//不良率
 		insight_arp.addMapping("insight_xd_mobiratio", MigrationRateModel.class);//迁徙率
 		insight_arp.addMapping("insight_xd_cust_count", ConRatioModel.class);//开户人数集中度
+		insight_arp.addMapping("insight_xd_income", IncomeAndLossrateModel.class);
+		insight_arp.addMapping("insight_xd_lossrate", IncomeAndLossrateModel.class);
 		
 		/***doushuiahi Model START***/
 		

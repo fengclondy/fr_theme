@@ -37,10 +37,10 @@
         .right-top > div, .right-bottom > div {
             flex: 1;
         }
-        .myOptionBox{
+       /*  .myOptionBox{
 			height:60px;
 			overflow:auto;        
-        }
+        } */
         
     </style>
 </head>
@@ -236,47 +236,10 @@
     var ec002 = echarts.init($("#ec002")[0]);
     var ec003 = echarts.init($("#ec003")[0]);
     var ec004 = echarts.init($("#ec004_ConcentrationDegree")[0]);
+    var ec005 = echarts.init($("#ec005")[0]);
      $(function () {
     	ec001.setOption(opt_bar_horizon);
         ec002.setOption(opt_line);
-        ec002.setOption({
-            grid: {
-                top: "24%",
-                right:'16%',
-                bottom: '30%'
-            },
-            legend: {
-                show: false
-            },
-            xAxis: {
-                name: '月份',
-                data: [1,2,3,4,5,6]
-            },
-            yAxis: {
-                name: '不良率',
-            },
-            series: [
-                {
-                    name: '最高',
-                    type: 'line',
-                    symbol: 'circle',
-                    data: [11, 11, 15, 13, 12, 13, 10],
-                    areaStyle: lineAreaStyle(0)
-
-                },
-                {
-                    name: '最低',
-                    type: 'line',
-                    symbol: 'circle',
-                    data: [1, 5, 2, 5, 3, 2, 0],
-                    areaStyle: lineAreaStyle(1)
-
-                }
-            ]
-        }); 
-
-        
-       
 
         //热力图
        
@@ -286,43 +249,8 @@
         ];
         ec004.setOption(opt_scatter)
         
-        var ec005 = echarts.init($("#ec005")[0]);
+        
         ec005.setOption(opt_line);
-        ec005.setOption({
-            grid: {
-                top: "25%",
-                right:'16%',
-                bottom:"20%"
-            },
-            legend: {
-                show: false
-            },
-            xAxis: {
-                name: '月份',
-                data: [1,2,3,4,5,6]
-            },
-            yAxis: {
-                name: '损失率',
-            },
-            series: [
-		{
-                    name: '最高',
-                    type: 'line',
-                    symbol: 'circle',
-                    data: [11, 11, 15, 13, 18, 16, 10],
-                    areaStyle: lineAreaStyle(0)
-                },
-                {
-                    name: '最低',
-                    type: 'line',
-                    symbol: 'circle',
-                    data: [1, 5, 2, 5, 3, 2, 0],
-                    areaStyle: lineAreaStyle(1)
-                }
-            ]
-        });
-
-
         //本页所有图表
         allCharts = [ec001, ec002, ec003, ec004, ec005];
 
@@ -395,10 +323,7 @@
         })
         //getJysSelected();
         //初始化信用风险页面时默认加载所有相关模块数据
-		getRanking();
-		getDefrate("dbfs")
-        getMigrationRrate("m1");
-		conratioByCustCount();
+        initData();
     });
 	
      var jysCode;
@@ -406,11 +331,15 @@
 	 function changeJysData(obj){
 		//获取交易所现在下拉选择值
 		jysCode=$(obj).attr("id");
+		initData();
+	 }
+	function initData(){
 		getRanking();
 		getDefrate("dbfs")
         getMigrationRrate("m1");
 		conratioByCustCount();
-	 }
+		getIncomeAndLoss();
+	}
       //根据贷款次数查询指数排名
    	 function getRanking(){
        	 $.post("${contextPath}/qdch/creditrisk/getRankByLoanCount",{"jys":jysCode},function(data){
@@ -578,14 +507,12 @@
        } 
        //获取不良率
        function getDefrate(condition){
-	        $.post("/qdch/creditrisk/getDefrateByCondition",{"jys":jysCode,"condition":condition},function(data){
-	    		console.log("----不良率----",data)					    		
+	        $.post("${contextPath}/qdch/creditrisk/getDefrateByCondition",{"jys":jysCode,"condition":condition},function(data){				    		
 	    		var yAxisData=[];
         		var seriesData=[];
-        		var condition=[];
-        		var points=[];
+        		var con=[];
         		$.each(data,function(index,item){
-        			
+	        		var points=[];
         			$.each(item.data,function(ind,it){
         				if(index==0){
         					yAxisData.push(it.month);
@@ -593,7 +520,7 @@
         				points.push(it.value);
         				
         			});
-
+        			con.push(item.condition);
         			var  ser={
     	                    name: item.condition,
     	                    type: 'line',
@@ -603,7 +530,6 @@
 
     	                };
 	        		//yAxisData.push(item.month);
-	        		var seriesData=[];
 	    			seriesData.push(ser);
 	    			
        	 		});
@@ -627,6 +553,7 @@
         	        }); 
 	    	});
        }
+       //获取开户人数集中度
        function conratioByCustCount(){
          	 $.post("${contextPath}/qdch/creditrisk/getConRatioByCustCount",{"jys":jysCode},function(data){
          		console.log("---集中度-----",data)
@@ -669,6 +596,7 @@
           		
           	});
          } 
+       //获取时间集中度
        function conratioByTime(){
        	 $.post("${contextPath}/qdch/creditrisk/getConRatioByTime",{"jys":jysCode},function(data){
        		console.log("---集中度-----",data)
@@ -713,6 +641,7 @@
         		
         	});
        } 
+       //获取年龄集中度
        function conratioByAge(){
          	 $.post("${contextPath}/qdch/creditrisk/getConRatioByAge",{"jys":jysCode},function(data){
          		console.log("---集中度-----",data)
@@ -757,6 +686,7 @@
           		
           	});
          } 
+       //获取地域集中度
        function conratioByRegion(){
        	 $.post("${contextPath}/qdch/creditrisk/getConRatioByRegion",{"jys":jysCode},function(data){
        		console.log("---集中度-----",data)
@@ -801,6 +731,7 @@
         		
         	});
        } 
+       //获取行业集中度
        function conratioByIndustry(){
          	 $.post("${contextPath}/qdch/creditrisk/getConRatioByIndustry",{"jys":jysCode},function(data){
          		console.log("---集中度-----",data)
@@ -845,6 +776,58 @@
           		
           	});
          } 
+     //获取贷款收入和损失率
+       function getIncomeAndLoss(){
+	        $.post("${contextPath}/qdch/creditrisk/getIncomeAndLoss",{"jys":jysCode},function(data){
+	    							    		
+	    		var yAxisData=[];
+        		var seriesData1=[];
+        		var seriesData2=[];
+        		$.each(data,function(index,item){
+        			
+        			yAxisData.push(item.month);
+        			seriesData1.push(item.value1);
+        			seriesData2.push(item.value2);
+	    			
+       	 		});
+        		
+        		  ec005.setOption({
+        	            grid: {
+        	                top: "25%",
+        	                right:'16%',
+        	                bottom:"20%"
+        	            },
+        	            legend: {
+        	                show: false
+        	            },
+        	            xAxis: {
+        	                name: '月份',
+        	                data:yAxisData
+        	            },
+        	            yAxis: {
+        	                name: '损失率',
+        	            },
+        	            series: [{
+        	                    name: '贷款收入',
+        	                    type: 'line',
+        	                    symbol: 'circle',
+        	                    data: seriesData1,
+        	                    areaStyle: lineAreaStyle(0)
+        	                },
+        	                {
+        	                    name: '逾期贷款损失率',
+        	                    type: 'line',
+        	                    symbol: 'circle',
+        	                    data: seriesData2,
+        	                    areaStyle: lineAreaStyle(1)
+        	                }
+        	            ]
+        	        });
+        		
+        		
+        	
+	    	});
+       }
 </script>
 </body>
 </html>

@@ -10,6 +10,7 @@ import com.jfinal.kit.JsonKit;
 import com.qdch.core.BaseController;
 import com.qdch.p2p.model.ConRatioModel;
 import com.qdch.p2p.model.DefrateModel;
+import com.qdch.p2p.model.IncomeAndLossrateModel;
 import com.qdch.p2p.model.IndexRankingModel;
 import com.qdch.p2p.model.JyscModel;
 import com.qdch.p2p.model.MigrationRateModel;
@@ -127,9 +128,10 @@ public class CreditRiskController extends BaseController {
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void getDefrateByCondition(){
+		String jys=getPara("jys");//获取信用风险总体限制的筛选条件参数
 		String condition = getPara("condition");
     	System.out.println("condition:"+condition);
-		List<DefrateModel> DefrateByCondition=DefrateModel.dao.getDefrate(getDataScopeByUserName(),condition);
+		List<DefrateModel> DefrateByCondition=DefrateModel.dao.getDefrate(getDataScopeByUserName(),jys,condition);
 		if(StringUtils.isNotBlank(getPara("jsonp"))){
 			//跨域处理
 			getResponse().addHeader("Access-Control-Allow-Origin", "*");
@@ -215,6 +217,12 @@ public class CreditRiskController extends BaseController {
 			renderJson(ConRatioByAge);
 		}
 	}
+	/**
+	 * 获取地域集中度
+	 * @author doush
+	 * @date 2018年3月28日
+	 * @TODO
+	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void getConRatioByRegion(){
 		String jys=getPara("jys");//获取信用风险总体限制的筛选条件参数
@@ -252,6 +260,23 @@ public class CreditRiskController extends BaseController {
 		}else{
 			renderJson(ConRatioByIndustry);
 		}
+	}
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public void getIncomeAndLoss(){
+		String jys=getPara("jys");//获取信用风险总体限制的筛选条件参数
+		
+		List<IncomeAndLossrateModel> IncomeAndLoss=IncomeAndLossrateModel.dao.getIncomeAndLoss(getDataScopeByUserName(),jys);
+		if(StringUtils.isNotBlank(getPara("jsonp"))){
+			//跨域处理
+			getResponse().addHeader("Access-Control-Allow-Origin", "*");
+			Map json = new HashMap();
+			String callback = getPara("callback");
+			json.put("data", IncomeAndLoss);
+			String jsonp = callback + "(" + JsonKit.toJson(json) + ")";//返回的json 格式要加callback()
+			renderJson(jsonp);
+		}else{
+			renderJson(IncomeAndLoss);
+		}		
 	}
 
 }

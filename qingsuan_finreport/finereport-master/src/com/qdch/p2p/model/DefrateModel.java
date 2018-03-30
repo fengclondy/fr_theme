@@ -19,17 +19,8 @@ public class DefrateModel extends Model<DefrateModel>{
 	
 	public static final DefrateModel dao = new DefrateModel();
 	
-	public List<DefrateModel> getDefrate(String jys,String type){
-		/*
-		String sql="select vday_ym as month,"+type+" as condition,round(sum(deftotal)/sum(loantotal)*100,2)||'%' as value from insight_xd_defrate"; 
-		if(StringUtils.isNotBlank(jys)){
-			sql+=" where jysc in "+jys+" and loantotal !=0";
-		}else{
-			sql+=" where loantotal !=0";
-		}
-		sql+=" GROUP BY vday_ym,"+type+" order by vday_ym,"+type;
-		return dao.find(sql);*/
-		
+	public List<DefrateModel> getDefrate(String bigjys,String jyscode,String type){
+
 		
 	/*	String sql="select dbfs as name from insight_xd_defrate where dbfs is not null group by dbfs order by dbfs";
 		List<DefrateModel> lines=dao.find(sql);
@@ -39,12 +30,29 @@ public class DefrateModel extends Model<DefrateModel>{
 			model.put("data", list);
 		}
 		return lines;*/
-		String sql="select "+type+" as condition from insight_xd_defrate where "+type+" is not null group by "+type
-				+" order by "+type;
+		/*String sql="select "+type+" as condition from insight_xd_defrate where "+type+" is not null group by "+type
+				+" order by "+type;*/
+		String sql="select "+type+" as condition from insight_xd_defrate where 1=1 and "+type+" is not null ";
+		if(StringUtils.isNotBlank(bigjys)){
+			sql+=" and jysc in "+bigjys;
+		} 
+		if(StringUtils.isNotBlank(jyscode)){
+			sql+=" and jysc = '"+jyscode+"'";
+		}
+		sql+=" group by "+type+" order by "+type;
 		List<DefrateModel> lines=dao.find(sql);
 		for(DefrateModel model:lines){
+			/*String innerSql="select vday_ym as month,round(sum(deftotal)/sum(loantotal),2) as value from insight_xd_defrate where loantotal !=0 and "
+					+type+" = '"+model.get("condition")+"'"+" group by vday_ym,"+type+" order by vday_ym";*/
 			String innerSql="select vday_ym as month,round(sum(deftotal)/sum(loantotal),2) as value from insight_xd_defrate where loantotal !=0 and "
-					+type+" = '"+model.get("condition")+"'"+" group by vday_ym,"+type+" order by vday_ym";
+					+type+" = '"+model.get("condition")+"'";
+			if(StringUtils.isNotBlank(bigjys)){
+				innerSql+=" and jysc in "+bigjys;
+			} 
+			if(StringUtils.isNotBlank(jyscode)){
+				innerSql+=" and jysc = '"+jyscode+"'";
+			}
+			innerSql+=" group by vday_ym,"+type+" order by vday_ym";
 			List<DefrateModel> list=dao.find(innerSql);
 			model.put("data", list);
 		}
