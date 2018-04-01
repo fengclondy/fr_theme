@@ -3,11 +3,16 @@ package com.qdch.core;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.jfinal.core.Controller;
+import com.jfinal.kit.JsonKit;
 /**
  * 
  * @todo  p2p 小贷公共父类
@@ -123,8 +128,27 @@ public class BaseController extends Controller{
 		}
 		return value;
 	}
-
-	
+	/**
+	 * 
+	 * @todo   统一json数据返回
+	 * @time   2018年4月1日 上午10:04:17
+	 * @author zuoqb
+	 * @return_type   void
+	 */
+	@SuppressWarnings("unchecked")
+	public void mRenderJson(Object result){
+		if(StringUtils.isNotBlank(getPara("jsonp"))){
+			//跨域处理
+			getResponse().addHeader("Access-Control-Allow-Origin", "*");
+			Map json = new HashMap();
+			String callback = getPara("callback");
+			json.put("data", result);
+			String jsonp = callback + "(" + JsonKit.toJson(json) + ")";//返回的json 格式要加callback()
+			renderJson(jsonp);
+		}else{
+			renderJson(result);
+		}
+	}
 	
 	
 	
