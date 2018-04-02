@@ -44,6 +44,7 @@ import com.qdch.xd.model.IndexRankingModel;
 import com.qdch.xd.model.JyscModel;
 import com.qdch.xd.model.KeyIndicatorsModel;
 import com.qdch.xd.model.MigrationRateModel;
+import com.qdch.xd.model.ProportionModel;
 import com.qdch.xd.model.RiskCountModel;
 import com.qdch.xd.model.ScabilityModel;
 
@@ -185,8 +186,8 @@ public class Config extends JFinalConfig {
 		
 		
 		
-		/***小贷 李晓伊 insight层 Model START ***/
-		
+		/***小贷 李晓依 insight层 Model START ***/
+		insight_arp.addMapping("insight_xd_jysc_info", ProportionModel.class);//小贷-管理风险-占比
 		
 		
 		
