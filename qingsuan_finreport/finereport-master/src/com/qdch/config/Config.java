@@ -35,11 +35,14 @@ import com.qdch.xd.controller.ProfitabilityController;
 import com.qdch.xd.controller.ReputationRiskController;
 import com.qdch.xd.controller.RiskOverviewController;
 import com.qdch.xd.controller.XiaoDaiController;
+import com.qdch.xd.model.ComparisonOfCompeModel;
 import com.qdch.xd.model.ConRatioModel;
+import com.qdch.xd.model.CurrentComRankingModel;
 import com.qdch.xd.model.DefrateModel;
 import com.qdch.xd.model.IncomeAndLossrateModel;
 import com.qdch.xd.model.IndexRankingModel;
 import com.qdch.xd.model.JyscModel;
+import com.qdch.xd.model.KeyIndicatorsModel;
 import com.qdch.xd.model.MigrationRateModel;
 import com.qdch.xd.model.RiskCountModel;
 import com.qdch.xd.model.ScabilityModel;
@@ -130,15 +133,16 @@ public class Config extends JFinalConfig {
 		insight_arp.setDialect(new PostgreSqlDialect());
 		
 		/***doushuiahi Model START***/
-		insight_arp.addMapping("insight_xd_loan_count", IndexRankingModel.class);//指标排名
-		insight_arp.addMapping("insight_xd_fkamount", IndexRankingModel.class);
-		insight_arp.addMapping("insight_xd_yeamount", IndexRankingModel.class);
+		insight_arp.addMapping("insight_xd_loan_count", IndexRankingModel.class);//指标排名		
 		insight_arp.addMapping("insight_xd_defrate", DefrateModel.class);//不良率
 		insight_arp.addMapping("insight_xd_mobiratio", MigrationRateModel.class);//迁徙率
 		insight_arp.addMapping("insight_xd_cust_count", ConRatioModel.class);//开户人数集中度
 		insight_arp.addMapping("insight_xd_income", IncomeAndLossrateModel.class);
 		insight_arp.addMapping("insight_xd_lossrate", IncomeAndLossrateModel.class);
-		
+		insight_arp.addMapping("insight_xd_yeamount", KeyIndicatorsModel.class);//业务总览的关键指标排名-贷款余额
+		insight_arp.addMapping("insight_xd_fkamount", KeyIndicatorsModel.class);//业务总览的关键指标排名-放款额和日均放款额
+		insight_arp.addMapping("insight_xd_scability", CurrentComRankingModel.class);//业务总览的当前竞争力排名
+		insight_arp.addMapping("insight_xd_scability", ComparisonOfCompeModel.class);//业务总览的竞争力对比
 		/***doushuiahi Model START***/
 		
 		/***小贷zuoqb Model START***/
