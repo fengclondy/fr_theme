@@ -1,5 +1,6 @@
 package com.qdch.config;
 
+import com.jfinal.render.ViewType;
 import org.beetl.core.GroupTemplate;
 import org.beetl.ext.jfinal3.JFinal3BeetlRenderFactory;
 
@@ -50,6 +51,7 @@ public class Config extends JFinalConfig {
 		//添加beetl配置
 		JFinal3BeetlRenderFactory rf = new JFinal3BeetlRenderFactory();
 		rf.config();
+		me.setViewType(ViewType.JSP);
 		me.setRenderFactory(rf);
 		GroupTemplate gt = rf.groupTemplate;
 		gt.registerTag("layout", TemplteLayoutTag.class);

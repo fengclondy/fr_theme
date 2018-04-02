@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	<display-name>finereport</display-name>
+	
+	<!-- 以下注释在发布服务时需要释放注释 -->
+	<!-- <mime-mapping>
+		<extension>msi</extension>
+		<mime-type>application/x-msi</mime-type>
+	</mime-mapping>
+
+	<servlet>
+		<servlet-name>ReportServer</servlet-name>
+		<servlet-class>com.fr.web.ReportServlet</servlet-class>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ReportServer</servlet-name>
+		<url-pattern>/ReportServer</url-pattern>
+	</servlet-mapping> -->
+	
+	<!-- jfinal拦截器 -->
+	<filter>
+		<filter-name>qdch</filter-name>
+		<filter-class>com.jfinal.core.JFinalFilter</filter-class>
+		<init-param>
+			<param-name>configClass</param-name>
+			<param-value>com.qdch.config.Config</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>qdch</filter-name>
+		<url-pattern>/qdch/*</url-pattern>
+	</filter-mapping>
+	<!-- 定义拦截器 -->
+	
+	<filter>
+		<filter-name>FRFilter</filter-name>
+		<filter-class>com.fr.hailian.filter.FRFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>FRFilter</filter-name>
+		<url-pattern>/index.jsp</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+	
+	<!-- WebService注入类 -->
+	<!-- <filter>
+		<filter-name>WebServiceFilter</filter-name>
+		<filter-class>com.fr.hailian.filter.WebServiceFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>WebServiceFilter</filter-name>
+		<url-pattern>/webservice</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping> -->
+
+	<!-- 定义servlet -->
+
+	<!-- 辅助决策登陆改造 -->
+	<servlet>
+		<servlet-name>AuxiliaryRoleLogin</servlet-name>
+		<servlet-class>com.fr.hailian.servlet.AuxiliaryRoleLoginServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AuxiliaryRoleLogin</servlet-name>
+		<url-pattern>/auxiliaryRoleLogin</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 获取未读信息 -->
+	<servlet>
+		<servlet-name>NotReadMsgServlet</servlet-name>
+		<servlet-class>com.fr.hailian.servlet.NotReadMsgServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NotReadMsgServlet</servlet-name>
+		<url-pattern>/notReadMsg</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 将未读信息变已读 -->
+	<servlet>
+		<servlet-name>ReadMsgServlet</servlet-name>
+		<servlet-class>com.fr.hailian.servlet.ReadMsgServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ReadMsgServlet</servlet-name>
+		<url-pattern>/readMsg</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 审核 -->
+	<servlet>
+		<servlet-name>FXSJAuditServlet</servlet-name>
+		<servlet-class>com.fr.hailian.servlet.FXSJAuditServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FXSJAuditServlet</servlet-name>
+		<url-pattern>/audit</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 发送短信 -->
+	<servlet>
+		<servlet-name>SendMsgServlet</servlet-name>
+		<servlet-class>com.fr.hailian.servlet.SendMsgServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SendMsgServlet</servlet-name>
+		<url-pattern>/sendMsg</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 获取所有未读消息数 -->
+	<servlet>
+		<servlet-name>NotReadAllMsgServlet</servlet-name>
+		<servlet-class>com.fr.hailian.servlet.NotReadAllMsgServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NotReadAllMsgServlet</servlet-name>
+		<url-pattern>/getAllUnReadMsg</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 将所有未读消息变为已读 -->
+	<servlet>
+		<servlet-name>ReadAllMsgServlet</servlet-name>
+		<servlet-class>com.fr.hailian.servlet.ReadAllMsgServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ReadAllMsgServlet</servlet-name>
+		<url-pattern>/readAllUnReadMsg</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 更新状态 -->
+	<servlet>
+		<servlet-name>UpdateStatusServlet</servlet-name>
+		<servlet-class>com.fr.hailian.servlet.UpdateStatusServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdateStatusServlet</servlet-name>
+		<url-pattern>/doAudit</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 获取角色名 -->
+	<servlet>
+		<servlet-name>RolePageServlet</servlet-name>
+		<servlet-class>com.fr.hailian.servlet.RolePageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RolePageServlet</servlet-name>
+		<url-pattern>/getRole</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 同步状态 -->
+	<servlet>
+		<servlet-name>SynchronizeStatusServlet</servlet-name>
+		<servlet-class>com.fr.hailian.servlet.SynchronizeStatusServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SynchronizeStatusServlet</servlet-name>
+		<url-pattern>/synchStatus</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 交易所信息 -->
+	<servlet>
+		<servlet-name>OrgInfoServlet</servlet-name>
+		<servlet-class>com.fr.hailian.servlet.OrgInfoServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>OrgInfoServlet</servlet-name>
+		<url-pattern>/orgInfo</url-pattern>
+	</servlet-mapping>
+
+	<!-- 获取openId -->
+	<servlet>
+		<servlet-name>WXGetOpenIdServlet</servlet-name>
+		<servlet-class>com.fr.hailian.servlet.WXGetOpenIdServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>WXGetOpenIdServlet</servlet-name>
+		<url-pattern>/getOpenId</url-pattern>
+	</servlet-mapping>
+
+
+	<!-- 单点登录逻辑改造 -->
+	<servlet>
+		<servlet-name>PortalLoginServlet</servlet-name>
+		<servlet-class>com.fr.hailian.servlet.PortalLoginServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PortalLoginServlet</servlet-name>
+		<url-pattern>/portalLoginServlet</url-pattern>
+	</servlet-mapping>
+	
+	<!-- RTX改造 -->
+	<servlet>
+		<servlet-name>RTXShareServlet</servlet-name>
+		<servlet-class>com.fr.hailian.servlet.RTXShareServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RTXShareServlet</servlet-name>
+		<url-pattern>/rtxShareServlet</url-pattern>
+	</servlet-mapping>
+	
+	<!-- RTX集成 当用户从RTX点击收到信息时  进行免登陆校验 -->
+	<servlet>
+		<servlet-name>RTXSecurityServlet</servlet-name>
+		<servlet-class>com.fr.hailian.servlet.RTXSecurityServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RTXSecurityServlet</servlet-name>
+		<url-pattern>/rtxSecurityServlet</url-pattern>
+	</servlet-mapping>
+	
+	
+	<!-- 修改密码 -->
+	<servlet>
+		<servlet-name>ChangePwdServlet</servlet-name>
+		<servlet-class>com.fr.hailian.servlet.ChangePwdServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ChangePwdServlet</servlet-name>
+		<url-pattern>/changePwdServlet</url-pattern>
+	</servlet-mapping>
+	
+	<!--注销 -->
+	<servlet>
+		<servlet-name>LogoutServlet</servlet-name>
+		<servlet-class>com.fr.hailian.servlet.LogoutServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LogoutServlet</servlet-name>
+		<url-pattern>/logoutServlet</url-pattern>
+	</servlet-mapping>
+	
+	
+	<!--导入人员 机构信息 -->
+	<servlet>
+		<servlet-name>ImportInfoServlet</servlet-name>
+		<servlet-class>com.fr.hailian.servlet.ImportInfoServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ImportInfoServlet</servlet-name>
+		<url-pattern>/importInfoServlet</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 通过form表单导入信息 -->
+	<servlet>
+		<servlet-name>ImportByFormServlet</servlet-name>
+		<servlet-class>com.fr.hailian.servlet.ImportByFormServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ImportByFormServlet</servlet-name>
+		<url-pattern>/importByFormServlet</url-pattern>
+	</servlet-mapping>
+		<!-- 根据自定义角色获取菜单-->
+	<servlet>
+		<servlet-name>RoleMenuServlet</servlet-name>
+		<servlet-class>com.fr.hailian.servlet.RoleMenuServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RoleMenuServlet</servlet-name>
+		<url-pattern>/getMenuByRoleName</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 根据标题获取舆情原始url -->
+	<servlet>
+		<servlet-name>NewsServlet</servlet-name>
+		<servlet-class>com.fr.hailian.servlet.NewsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NewsServlet</servlet-name>
+		<url-pattern>/getNewsByTitle</url-pattern>
+	</servlet-mapping>
+	
+
+</web-app>

@@ -15,7 +15,9 @@ public class EventProcessingController extends BaseController {
 	* @TODO 风险事件页面
 	 */
 	public void index() {
-		 render("xd/pages/05_01fengxianshijianchuli.html");
+		System.out.println("33ccc33");
+		renderJsp("xd/pages/riskSolve.jsp");
+//		 render("xd/pages/riskSolve");
 	}
 	
 
