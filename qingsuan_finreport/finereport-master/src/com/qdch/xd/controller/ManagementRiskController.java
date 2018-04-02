@@ -31,7 +31,7 @@ public class ManagementRiskController extends BaseController {
 	 */
 	public void gainSenior(){
 		 List<ProportionModel> senior= ProportionModel.dao.getSeniorProportion(getDataScopeByUserName());
-		 
+		 mRenderJson(senior);
 	}
 	
 	/**
@@ -41,8 +41,8 @@ public class ManagementRiskController extends BaseController {
 	 * @TODO 管理风险学历占比
 	 */
 	public void gainEduction(){
-		 List<ProportionModel> senior= ProportionModel.dao.getEducationProportion(getDataScopeByUserName());
-		 
+		 List<ProportionModel> eduction= ProportionModel.dao.getEducationProportion(getDataScopeByUserName());
+		 mRenderJson(eduction);
 	}
   
 }
