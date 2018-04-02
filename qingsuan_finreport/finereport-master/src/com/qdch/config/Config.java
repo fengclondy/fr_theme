@@ -132,6 +132,11 @@ public class Config extends JFinalConfig {
 		// 配置Postgresql方言
 		insight_arp.setDialect(new PostgreSqlDialect());
 		
+		
+		/**
+		 * 以下表实体映射配置按开发人员名字分块，不要随便写
+		 */
+		
 		/***doushuiahi Model START***/
 		insight_arp.addMapping("insight_xd_loan_count", IndexRankingModel.class);//指标排名		
 		insight_arp.addMapping("insight_xd_defrate", DefrateModel.class);//不良率
@@ -145,14 +150,48 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("insight_xd_scability", ComparisonOfCompeModel.class);//业务总览的竞争力对比
 		/***doushuiahi Model START***/
 		
-		/***小贷zuoqb Model START***/
+		
+		/***小贷zuoqb insight层 Model START***/
 		
 		insight_arp.addMapping("insight_xd_fxsj_count", RiskCountModel.class);//小贷风险指数
 		insight_arp.addMapping("insight_xd_scability", ScabilityModel.class);//小贷-业务总览-市场竞争力趋势
 		
-		/***小贷zuoqb Model START***/
+		/***小贷zuoqb insight层 Model START***/
 		
-		//----qdchedw insight用户连接方式 end----
+		
+		
+		
+		
+		/*** 小贷 王风 insight层 Model START ***/
+		
+		
+		
+		/***小贷 王风 insight层 Model START***/
+		
+		
+		
+		
+		
+		
+		
+		/***小贷 连纪明 insight层 Model START ***/
+		
+		
+		
+		/***小贷 王风 insight层 Model START***/
+		
+		
+		
+		
+		
+		
+		/***小贷 李晓伊 insight层 Model START ***/
+		
+		
+		
+		
+		/***小贷 王风 insight层 Model START***/
+		
 	}
 
 	public void configInterceptor(Interceptors me) {

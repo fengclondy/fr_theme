@@ -1,14 +1,6 @@
 package com.qdch.xd.controller;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.commons.lang.StringUtils;
-
-import com.jfinal.kit.JsonKit;
 import com.qdch.core.BaseController;
-import com.qdch.xd.model.RiskCountModel;
 /**
  * 
 * @author doushuihai  
