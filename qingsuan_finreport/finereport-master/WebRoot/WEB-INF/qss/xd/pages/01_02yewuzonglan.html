@@ -97,10 +97,10 @@
                 <div class="chartContent">
                     <header>
                         <div class="btnGroup">
-                            <button class="active">贷款余额</button>
-                            <button>放款额</button>
-                            <button>日均放款额</button>
-                            <button>三农比重</button>
+                            <button class="active" id="dkye">贷款余额</button>
+                            <button id="fke">放款额</button>
+                            <button id="rjfke">日均放款额</button>
+                            <button id="snbz">三农比重</button>
                         </div>
                     </header>
                     <div class="chartBody">
@@ -118,9 +118,10 @@
 <script src="${contextPath}/static/js/chartsCom.js"></script>
 <script>
     var allCharts = [];
-
+    var ec001 = echarts.init($("#ec001_currentCompetitiveness")[0]);
+    var ec004 = echarts.init($("#ec004_KeyIndexRanking")[0]);
     $(function () {
-        var ec001 = echarts.init($("#ec001_currentCompetitiveness")[0]);
+        
         ec001.setOption(opt_bar_horizon);
         ec001.setOption({
             grid: {
@@ -139,7 +140,7 @@
             series: [{
                 data: [1, 3, 5, 7.2, 10],
                 type: 'bar',
-                barWidth: "60%"
+                barWidth: "20%"
             }]
         });
         // console.log(ec001.getOption())
@@ -218,9 +219,9 @@
             }]
         });
 
-        var ec004 = echarts.init($("#ec004_KeyIndexRanking")[0]);
+       
         ec004.setOption(opt_bar_horizon);
-        ec004.setOption({
+       /*  ec004.setOption({
             grid: {
                 left: "20%",
                 right: "16%",
@@ -241,12 +242,267 @@
                 barWidth: "60%"
             }]
         });
-
+ */
         //本页所有图表
-        allCharts = [ec001, ec002, ec003, ec004];
+     allCharts = [ec001, ec002, ec003, ec004];
+    
 
+      $("#dkye").click(function(){
+    	 getKeyIndByYamount();
+     })
+      $("#fke").click(function(){
+    	 getKeyIndByAmount();
+     })
+      $("#rjfke").click(function(){
+    	  getKeyIndByDayAmount();
+     })
+      $("#snbz").click(function(){
+    	  getKeyIndByThreeRuralIssue();
+     })
+        	
+        
+	 init();
     });
+    //加载页面时初始化
+    function init(){
+    	getKeyIndByYamount();
+    	getCurrentComRanking();
+    }
+    //根据贷款余额查询关键指数排名
+    function getKeyIndByYamount(){
+      	 $.post("${contextPath}/qdch/businessOverview/getKeyIndByYeamount",function(data){
+      		
+      		console.log("----关键指标----",data);
+       		var yAxisData=[];
+       		var seriesData=[];
+       		$.each(data,function(index,item){
+       			var name="";
+       			var page=parseInt(item.name.length/6);
+       			if(item.name.length%6>0){
+       				page++;
+       			}
+       			var preName=item.name;
+       			for(var x=1;x<parseInt(page)+1;x++){
+       				console.log(preName.substr((x-1)*3,6)+"\n")
+       				name+=preName.substr((x-1)*6,6)+"\n";
+       			}
+       			yAxisData.push(name);
+       			seriesData.push(item.value);
+       		});
+       		
+       		 ec004.setOption(opt_bar_horizon);
+	       	 ec004.setOption({
+	             grid: {
+	                 left: "20%",
+	                 right: "16%",
+	                 top: "15%"
+	             },
+	             xAxis: {
+	                 name: '万',
+	                 type: 'value',
+	             },
+	             yAxis: {
+	                 name: '市场',
+	                 type: 'category',
+	                 data: yAxisData,
+	             },
+	             series: [{
+	                 data: seriesData,
+	                 type: 'bar',
+	                 barWidth: "20%"
+	             }]
+	         });
 
+       	});
+      }
+    //根据放款额查询关键指数排名
+    function getKeyIndByAmount(){
+      	 $.post("${contextPath}/qdch/businessOverview/getKeyIndByAmount",function(data){
+      		
+      		console.log("----关键指标----",data);
+       		var yAxisData=[];
+       		var seriesData=[];
+       		$.each(data,function(index,item){
+       			var name="";
+       			var page=parseInt(item.name.length/6);
+       			if(item.name.length%6>0){
+       				page++;
+       			}
+       			var preName=item.name;
+       			for(var x=1;x<parseInt(page)+1;x++){
+       				console.log(preName.substr((x-1)*3,6)+"\n")
+       				name+=preName.substr((x-1)*6,6)+"\n";
+       			}
+       			yAxisData.push(name);
+       			seriesData.push(item.value);
+       		});
+       		
+       		 ec004.setOption(opt_bar_horizon);
+	       	 ec004.setOption({
+	             grid: {
+	                 left: "20%",
+	                 right: "16%",
+	                 top: "15%"
+	             },
+	             xAxis: {
+	                 name: '万',
+	                 type: 'value',
+	             },
+	             yAxis: {
+	                 name: '市场',
+	                 type: 'category',
+	                 data: yAxisData,
+	             },
+	             series: [{
+	                 data: seriesData,
+	                 type: 'bar',
+	                 barWidth: "20%"
+	             }]
+	         });
+
+       	});
+      }
+    //根据日均放款额查询关键指数排名
+    function getKeyIndByDayAmount(){
+      	 $.post("${contextPath}/qdch/businessOverview/getKeyIndByDayAmount",function(data){
+      		
+      		console.log("----关键指标----",data);
+       		var yAxisData=[];
+       		var seriesData=[];
+       		$.each(data,function(index,item){
+       			var name="";
+       			var page=parseInt(item.name.length/6);
+       			if(item.name.length%6>0){
+       				page++;
+       			}
+       			var preName=item.name;
+       			for(var x=1;x<parseInt(page)+1;x++){
+       				console.log(preName.substr((x-1)*3,6)+"\n")
+       				name+=preName.substr((x-1)*6,6)+"\n";
+       			}
+       			yAxisData.push(name);
+       			seriesData.push(item.value);
+       		});
+       		
+       		 ec004.setOption(opt_bar_horizon);
+	       	 ec004.setOption({
+	             grid: {
+	                 left: "20%",
+	                 right: "16%",
+	                 top: "15%"
+	             },
+	             xAxis: {
+	                 name: '万',
+	                 type: 'value',
+	             },
+	             yAxis: {
+	                 name: '市场',
+	                 type: 'category',
+	                 data: yAxisData,
+	             },
+	             series: [{
+	                 data: seriesData,
+	                 type: 'bar',
+	                 barWidth: "20%"
+	             }]
+	         });
+
+       	});
+      }
+    //获取三农比重的关键指数排名
+    function getKeyIndByThreeRuralIssue(){
+     	 $.post("${contextPath}/qdch/businessOverview/getKeyIndByThreeRuralIssue",function(data){
+     		
+     		console.log("----关键指标----",data);
+      		var yAxisData=[];
+      		var seriesData=[];
+      		$.each(data,function(index,item){
+      			var name="";
+      			var page=parseInt(item.jyscmc.length/6);
+      			if(item.jyscmc.length%6>0){
+      				page++;
+      			}
+      			var preName=item.jyscmc;
+      			for(var x=1;x<parseInt(page)+1;x++){
+      				console.log(preName.substr((x-1)*3,6)+"\n")
+      				name+=preName.substr((x-1)*6,6)+"\n";
+      			}
+      			yAxisData.push(name);
+      			seriesData.push(item.nums);
+      		});
+      		
+      		 ec004.setOption(opt_bar_horizon);
+	       	 ec004.setOption({
+	             grid: {
+	                 left: "20%",
+	                 right: "16%",
+	                 top: "15%"
+	             },
+	             xAxis: {
+	                 name: '三农比重',
+	                 type: 'value',
+	             },
+	             yAxis: {
+	                 name: '市场',
+	                 type: 'category',
+	                 data: yAxisData,
+	             },
+	             series: [{
+	                 data: seriesData,
+	                 type: 'bar',
+	                 barWidth: "20%"
+	             }]
+	         });
+
+      	});
+     }
+    //获取当前竞争力排名
+    function getCurrentComRanking(){
+     	 $.post("${contextPath}/qdch/businessOverview/getCurrentComRanking",function(data){
+     		
+     		console.log("----关键指标----",data);
+      		var yAxisData=[];
+      		var seriesData=[];
+      		$.each(data,function(index,item){
+      			var name="";
+      			var page=parseInt(item.jyscmc.length/6);
+      			if(item.jyscmc.length%6>0){
+      				page++;
+      			}
+      			var preName=item.jyscmc;
+      			for(var x=1;x<parseInt(page)+1;x++){
+      				console.log(preName.substr((x-1)*3,6)+"\n")
+      				name+=preName.substr((x-1)*6,6)+"\n";
+      			}
+      			yAxisData.push(name);
+      			seriesData.push(item.jzl);
+      		});
+      		
+      		ec001.setOption(opt_bar_horizon);
+            ec001.setOption({
+                grid: {
+                    left: "22%",
+                    right: "16%",
+                    top: "18%"
+                },
+                xAxis: {
+                    type: 'value',
+                    name: '竞争力'
+                },
+                yAxis: {
+                    name: '平台',
+                    data: yAxisData
+                },
+                series: [{
+                    data: seriesData,
+                    type: 'bar',
+                    barWidth: "20%"
+                }]
+            });
+
+      	});
+     }
+      
 
 </script>
 </body>

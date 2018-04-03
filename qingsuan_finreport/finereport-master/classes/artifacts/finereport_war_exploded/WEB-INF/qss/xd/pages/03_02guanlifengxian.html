@@ -34,9 +34,10 @@
             <div class="mySelect" id="pingtai">
                 <div class="myOption selected"><span class="text"></span><span class="icon"></span></div>
                 <ul class="myOptionBox">
-                    <li class="myOption selected">鲁金宝</li>
-                    <li class="myOption">鲁金宝1</li>
-                    <li class="myOption">鲁金宝2</li>
+                   <li data="" class="myOption selected">全部</li>
+                               ##for(j in jyslist!){
+                                <li id="${j.jysc!}" onclick=changeJysData(this) class="myOption">${j.jyscmc!}</li>
+                               ##}
                 </ul>
             </div>
         </div>
