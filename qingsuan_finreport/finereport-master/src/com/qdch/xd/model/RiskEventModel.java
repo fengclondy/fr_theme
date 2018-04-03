@@ -30,7 +30,11 @@ public class RiskEventModel extends Model<RiskEventModel>{
 	public Page<RiskEventModel> getRiskEvent(String datascope,int num, int size, HttpServletRequest request){
 		StringBuffer sb = new StringBuffer();
 		sb.append(" from hub_fxsj a where 1=1 ");
+		sb.append(" and jysfl='3' ");//交易所分类 3--小贷 4--p2p
 //		String sql = " ";khmc
+		if(StringUtils.isNotBlank(request.getParameter("fxsj_id"))){ //风险事件id
+			sb.append(" and fxsj_id  like '%").append(request.getParameter("fxsj_id")).append("%'");
+		}
 		if(StringUtils.isNotBlank(request.getParameter("cust_id"))){ //客户号
 			sb.append(" and cust_id  like '%").append(request.getParameter("cust_id")).append("%'");
 		}
@@ -46,6 +50,19 @@ public class RiskEventModel extends Model<RiskEventModel>{
 		if(StringUtils.isNotBlank(request.getParameter("ywbm"))){ //客户号
 			sb.append(" and ywbm  like '%").append(request.getParameter("ywbm")).append("%'");
 		}
+		if(StringUtils.isNotBlank(request.getParameter("alarmTimeStart"))){ //报警时间起
+			sb.append(" and ywbm  like '%").append(request.getParameter("ywbm")).append("%'");
+		}
+		if(StringUtils.isNotBlank(request.getParameter("khmc"))){ //客户名称
+			sb.append(" and khmc  like '%").append(request.getParameter("khmc")).append("%'");
+		}
+		if(StringUtils.isNotBlank(request.getParameter("jgmc"))){ //机构名称/市场名称
+			sb.append(" and jgmc  like '%").append(request.getParameter("jgmc")).append("%'");
+		}
+		if(StringUtils.isNotBlank(request.getParameter("ywbm"))){ //业务编码
+			sb.append(" and ywbm  like '%").append(request.getParameter("ywbm")).append("%'");
+		}
+
 
 		return dao.paginate(num,size," select * ",sb.toString());
 

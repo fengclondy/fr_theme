@@ -170,9 +170,12 @@ public class Config extends JFinalConfig {
 		
 		/*** 小贷 王风 insight层 Model START ***/
 		insight_arp.addMapping("hub_fxsj", RiskEventModel.class);//风险事件
-		insight_arp.addMapping("hub_fxsj_audit_new", RiskEventHistoryModel.class);//风险事件
-		
-		
+		insight_arp.addMapping("hub_fxsj_audit_new", RiskEventHistoryModel.class);//风险事件历史信息
+		insight_arp.addMapping("hub_commerce_ref_jys", ExchangeInfoModel.class);//交易所信息
+		insight_arp.addMapping("hub_fxlb", RiskTypeModel.class);//风险类别
+
+
+
 		/***小贷 王风 insight层 Model START***/
 		
 		

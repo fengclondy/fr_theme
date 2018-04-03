@@ -5,6 +5,7 @@ import com.qdch.core.BaseController;
 import com.qdch.xd.model.ExchangeInfoModel;
 import com.qdch.xd.model.IndexRankingModel;
 import com.qdch.xd.model.RiskEventModel;
+import com.qdch.xd.model.RiskTypeModel;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -18,6 +19,7 @@ import java.util.List;
 public class EventProcessingController extends BaseController {
 	private static RiskEventModel riskEventModelDao = RiskEventModel.dao;
 	private static ExchangeInfoModel exchangeInfoModelDao = ExchangeInfoModel.dao;
+	private static RiskTypeModel riskTypeModelDao = RiskTypeModel.dao;
 	/**
 	 * 
 	* @author doushuihai  
@@ -44,6 +46,17 @@ public class EventProcessingController extends BaseController {
 //		getPara(getRequest());
 		Page<RiskEventModel> page = riskEventModelDao.getRiskEvent(getDataScopeByUserName(),pageNum,pageSize,getRequest());
 		mRenderJson(page);
+	}
+
+	public void getRiskType(){
+		mRenderJson(riskTypeModelDao.getByType("3")); //3--小贷 4--p2p
+	}
+
+	public void  getQueryCondition(){
+		List<RiskTypeModel> riskTypeModelList =  riskTypeModelDao.getByType("3");
+		List<ExchangeInfoModel> list = exchangeInfoModelDao.getList();
+
+
 	}
 
 

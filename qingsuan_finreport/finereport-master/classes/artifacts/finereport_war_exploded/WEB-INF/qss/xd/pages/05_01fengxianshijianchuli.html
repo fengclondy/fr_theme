@@ -161,7 +161,7 @@
                 <input id="alarmTimeStart" type="date">
             </div>
             <div class="inputGroup">
-                <label for="alarmTimeEnd">报警时间起：</label>
+                <label for="alarmTimeEnd">报警时间止：</label>
                 <input id="alarmTimeEnd" type="date">
             </div>
             <div class="inputGroup">
@@ -169,7 +169,7 @@
                 <input id="encode">
             </div>
             <div class="btnGroup search">
-                <button class="active">查询</button>
+                <button class="active" id="btnCheck">查询</button>
             </div>
         </form>
     </div>
@@ -291,9 +291,29 @@
             }
 
         })
+        $('#pageCurrent').bind('keypress',function(event){
+            console.log(11,event.keyCode)
+            if(event.keyCode == 13){
+                getTableBody($(this).val(),30)
+                }
+            });
+        $('#btnCheck').on('click',function () {
+            var eventId = $('#eventId').val();
+            var customerName = $('#customerName').val();
+            var marketName = $('#marketName').val();
+            var processingState = $('#processingState').val();
+            var riskCategories = $('#riskCategories').val();
+            var riskIndicators = $('#riskIndicators').val();
+            var alarmTimeStart = $('#alarmTimeStart').val();
+            var alarmTimeEnd = $('#alarmTimeEnd').val();
+            var encode = $('#encode').val();
+            var htmlstr = "";
+            htmlstr+=""
 
 
-    });
+
+        })
+        });
     function getTableBody(pageNum,pageSize) {
         $.ajax({
             type: "GET",
