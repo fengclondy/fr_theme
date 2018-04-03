@@ -29,7 +29,7 @@ public class RiskEventModel extends Model<RiskEventModel>{
 	 */
 	public Page<RiskEventModel> getRiskEvent(String datascope,int num, int size, HttpServletRequest request){
 		StringBuffer sb = new StringBuffer();
-		sb.append("select * from hub_fxsj a where 1=1 ");
+		sb.append(" from hub_fxsj a where 1=1 ");
 //		String sql = " ";khmc
 		if(StringUtils.isNotBlank(request.getParameter("cust_id"))){ //客户号
 			sb.append(" and cust_id  like '%").append(request.getParameter("cust_id")).append("%'");
@@ -47,7 +47,7 @@ public class RiskEventModel extends Model<RiskEventModel>{
 			sb.append(" and ywbm  like '%").append(request.getParameter("ywbm")).append("%'");
 		}
 
-		return dao.paginate(num,size,sb.toString(),"");
+		return dao.paginate(num,size," select * ",sb.toString());
 
 	}
 

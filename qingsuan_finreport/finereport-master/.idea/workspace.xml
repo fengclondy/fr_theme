@@ -30,8 +30,8 @@
       <file leaf-file-name="RiskTypeModel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/qdch/xd/model/RiskTypeModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="19" column="20" lean-forward="false" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
+            <state relative-caret-position="216">
+              <caret line="15" column="64" lean-forward="true" selection-start-line="15" selection-start-column="64" selection-end-line="15" selection-end-column="64" />
               <folding />
             </state>
           </provider>
@@ -40,8 +40,8 @@
       <file leaf-file-name="RiskEventModel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/qdch/xd/model/RiskEventModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="38" column="9" lean-forward="false" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
+            <state relative-caret-position="343">
+              <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -57,11 +57,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EventProcessingController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="EventProcessingController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/qdch/xd/controller/EventProcessingController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="44" column="56" lean-forward="false" selection-start-line="44" selection-start-column="56" selection-end-line="44" selection-end-column="56" />
+            <state relative-caret-position="195">
+              <caret line="42" column="91" lean-forward="true" selection-start-line="42" selection-start-column="91" selection-end-line="42" selection-end-column="91" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -82,28 +82,8 @@
       <file leaf-file-name="05_01fengxianshijianchuli.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WebRoot/WEB-INF/qss/xd/pages/05_01fengxianshijianchuli.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="277" column="13" lean-forward="false" selection-start-line="277" selection-start-column="13" selection-end-line="277" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CreditRiskController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/qdch/xd/controller/CreditRiskController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="20" column="45" lean-forward="false" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="45" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Config.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/qdch/config/Config.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-150">
-              <caret line="50" column="40" lean-forward="true" selection-start-line="50" selection-start-column="40" selection-end-line="50" selection-end-column="40" />
+            <state relative-caret-position="426">
+              <caret line="307" column="65" lean-forward="true" selection-start-line="307" selection-start-column="65" selection-end-line="307" selection-end-column="65" />
               <folding />
             </state>
           </provider>
@@ -142,12 +122,12 @@
       <list>
         <option value="$PROJECT_DIR$/src/com/qdch/xd/model/RiskEventHistoryModel.java" />
         <option value="$PROJECT_DIR$/src/com/qdch/xd/model/RiskTypeModel.java" />
-        <option value="$PROJECT_DIR$/src/com/qdch/xd/model/RiskEventModel.java" />
         <option value="$PROJECT_DIR$/src/com/qdch/xd/model/ExchangeInfoModel.java" />
         <option value="$PROJECT_DIR$/WebRoot/WEB-INF/qss/xd/pages/riskSolve.jsp" />
-        <option value="$PROJECT_DIR$/src/com/qdch/xd/controller/EventProcessingController.java" />
-        <option value="$PROJECT_DIR$/WebRoot/WEB-INF/qss/xd/pages/05_01fengxianshijianchuli.html" />
         <option value="$PROJECT_DIR$/src/com/qdch/config/Config.java" />
+        <option value="$PROJECT_DIR$/src/com/qdch/xd/model/RiskEventModel.java" />
+        <option value="$PROJECT_DIR$/WebRoot/WEB-INF/qss/xd/pages/05_01fengxianshijianchuli.html" />
+        <option value="$PROJECT_DIR$/src/com/qdch/xd/controller/EventProcessingController.java" />
       </list>
     </option>
   </component>
@@ -480,12 +460,12 @@
       <option name="presentableId" value="Default" />
       <updated>1522651002593</updated>
       <workItem from="1522651006052" duration="7030000" />
-      <workItem from="1522658393341" duration="9401000" />
+      <workItem from="1522658393341" duration="10389000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16431000" />
+    <option name="totallyTimeSpent" value="17419000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -565,7 +545,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="4" />
+      <option name="time" value="5" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -593,54 +573,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/jfinal-3.3.jar!/com/jfinal/plugin/activerecord/Model.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="189" column="19" lean-forward="false" selection-start-line="189" selection-start-column="19" selection-end-line="189" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/qdch/xd/model/RiskEventHistoryModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="744">
           <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/jfinal-3.3.jar!/com/jfinal/aop/Invocation.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1368">
-          <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
-          <folding>
-            <marker date="1520657790000" expanded="false" signature="0:104" ph="/.../" />
-            <marker date="1520657790000" expanded="false" signature="138:320" ph="..." />
-            <marker date="1520657790000" expanded="false" signature="703:714" ph=" { " />
-            <marker date="1520657790000" expanded="false" signature="733:739" ph=" }" />
-            <marker date="1520657790000" expanded="true" signature="801:951" ph="{...}" />
-            <marker date="1520657790000" expanded="true" signature="1067:1258" ph="{...}" />
-            <marker date="1520657790000" expanded="true" signature="1285:2286" ph="{...}" />
-            <marker date="1520657790000" expanded="true" signature="2324:2492" ph="{...}" />
-            <marker date="1520657790000" expanded="true" signature="2542:2711" ph="{...}" />
-            <marker date="1520657790000" expanded="false" signature="2742:2753" ph=" { " />
-            <marker date="1520657790000" expanded="false" signature="2770:2776" ph=" }" />
-            <marker date="1520657790000" expanded="false" signature="2806:2817" ph=" { " />
-            <marker date="1520657790000" expanded="false" signature="2836:2842" ph=" }" />
-            <marker date="1520657790000" expanded="false" signature="2873:2884" ph=" { " />
-            <marker date="1520657790000" expanded="false" signature="2951:2957" ph=" }" />
-            <marker date="1520657790000" expanded="false" signature="2992:3003" ph=" { " />
-            <marker date="1520657790000" expanded="false" signature="3084:3090" ph=" }" />
-            <marker date="1520657790000" expanded="false" signature="3125:3136" ph=" { " />
-            <marker date="1520657790000" expanded="false" signature="3160:3166" ph=" }" />
-            <marker date="1520657790000" expanded="false" signature="3218:3229" ph=" { " />
-            <marker date="1520657790000" expanded="false" signature="3260:3266" ph=" }" />
-            <marker date="1520657790000" expanded="true" signature="3306:3515" ph="{...}" />
-            <marker date="1520657790000" expanded="true" signature="3550:3762" ph="{...}" />
-            <marker date="1520657790000" expanded="true" signature="3801:4017" ph="{...}" />
-            <marker date="1520657790000" expanded="true" signature="4051:4262" ph="{...}" />
-            <marker date="1520657790000" expanded="false" signature="4303:4314" ph=" { " />
-            <marker date="1520657790000" expanded="false" signature="4341:4347" ph=" }" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -917,10 +854,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/qdch/config/Config.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="70" column="0" lean-forward="true" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/jfinal-3.3.jar!/com/jfinal/aop/Invocation.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/jfinal-3.3.jar!/com/jfinal/plugin/activerecord/Model.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="189" column="19" lean-forward="false" selection-start-line="189" selection-start-column="19" selection-end-line="189" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/qdch/xd/model/RiskTypeModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="19" column="20" lean-forward="false" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
+        <state relative-caret-position="216">
+          <caret line="15" column="64" lean-forward="true" selection-start-line="15" selection-start-column="64" selection-end-line="15" selection-end-column="64" />
           <folding />
         </state>
       </provider>
@@ -929,6 +892,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
           <caret line="8" column="22" lean-forward="false" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/qdch/xd/model/RiskEventModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -943,35 +914,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/WebRoot/WEB-INF/qss/xd/pages/05_01fengxianshijianchuli.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="277" column="13" lean-forward="false" selection-start-line="277" selection-start-column="13" selection-end-line="277" selection-end-column="13" />
+        <state relative-caret-position="426">
+          <caret line="307" column="65" lean-forward="true" selection-start-line="307" selection-start-column="65" selection-end-line="307" selection-end-column="65" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/qdch/xd/controller/EventProcessingController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="44" column="56" lean-forward="false" selection-start-line="44" selection-start-column="56" selection-end-line="44" selection-end-column="56" />
+        <state relative-caret-position="195">
+          <caret line="42" column="91" lean-forward="true" selection-start-line="42" selection-start-column="91" selection-end-line="42" selection-end-column="91" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/qdch/xd/model/RiskEventModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="38" column="9" lean-forward="false" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/qdch/config/Config.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-150">
-          <caret line="50" column="40" lean-forward="true" selection-start-line="50" selection-start-column="40" selection-end-line="50" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>

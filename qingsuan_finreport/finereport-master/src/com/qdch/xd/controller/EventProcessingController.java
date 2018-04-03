@@ -40,7 +40,7 @@ public class EventProcessingController extends BaseController {
 //	public
 	public void getList(){
 		int pageNum =Integer.parseInt(getPara("pageNum")==null?"1":getPara("pageNum"));
-		int pageSize =Integer.parseInt(getPara("pageSize")==null?"10":getPara("pageSize"));
+		int pageSize =Integer.parseInt(getPara("pageSize")==null?"30":getPara("pageSize"));
 //		getPara(getRequest());
 		Page<RiskEventModel> page = riskEventModelDao.getRiskEvent(getDataScopeByUserName(),pageNum,pageSize,getRequest());
 		mRenderJson(page);
