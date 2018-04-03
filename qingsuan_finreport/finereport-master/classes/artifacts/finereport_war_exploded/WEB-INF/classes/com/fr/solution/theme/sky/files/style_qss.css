@@ -1,0 +1,198 @@
+
+#fs-login-btn span {
+	display:none;
+}
+
+
+.node-navi{
+	position: relative;
+	float: right;
+	right: 30px;
+	list-style: none;
+	height: 60px;
+	top: 0;
+}
+
+.node-navi li{
+	position: relative;
+	float: left;
+	left: 0;
+	display: block;
+	height: 60px;
+	line-height: 60px;
+	color: #fff;
+	font-size: 14px;
+	padding: 0 15px;
+	cursor: pointer;
+}
+
+.node-navi li:hover{
+	color: #6fd3ff;
+}
+
+.node-pane{
+	position: absolute;
+	top: 60px;
+	left: 0;
+	-webkit-border-radius: 0 0 3px 3px;
+	-moz-border-radius: 0 0 3px 3px;
+	z-Index: 10000;
+}
+.node-pane-inner{
+	position: relative;
+	_height: 200px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	background: rgb(41, 90, 148);
+	background: rgba(41, 90, 148, 0.85);
+	*width:200px;
+}
+.node-select{
+	background: #295a94;
+}
+
+.node-pane a, .node-title{
+	position: relative;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	display: block;
+	min-width: 160px;
+	_width:180px;
+	height: 20px;
+	line-height: 20px;
+	font-size: 14px;
+	color: white;
+	padding: 3px 5px 3px 12px;
+	cursor: pointer;
+}
+
+.node-pane a:hover{
+	background: rgb(41, 90, 148);
+}
+.node-title{
+	padding: 5px 5px 5px 4px;
+	cursor: default;
+	color: #6fd3ff;
+	font-weight: bold;
+}
+.fui-seb{
+	background-color:transparent;
+}
+  
+#fs-frame-menu{
+	background:none;
+	
+}
+#fs-frame-content{
+    background-color: rgba(255,255,255,0.1);
+}
+.fui-bsb{  
+  background-color: rgba(13,23,80,0.5);  
+}  
+.fui-bsc{  
+  color: red;  
+}  
+.fui-bsd{  
+  border-color: red;  
+}   
+.fui-fhc{
+  color: transparent;
+}
+.fui-fht{
+  text-shadow: 0;
+}
+
+.fs-menutree，。ui-state-enabled{
+	padding-top:10px;
+
+}
+.emails_bac{
+	background: url(picture/emails.png) no-repeat;
+    background-size: 92% 100%;
+    width: 1em;
+    height: 0.85em;
+    display: block;
+    float: left;
+    margin-top: 1em; 
+}
+.emails_bac_click{
+	background: url(picture/emails_click.png) no-repeat;
+    background-size: 92% 100%;
+    width: 1em;
+    height: 0.85em;
+    display: block;
+    float: left;
+    margin-top: 1em;
+}
+/* 
+#monitor_box{
+	position:absolute;
+	margin:auto;
+	width:30%;
+	height:auto;
+	top:9%;
+	right:0;
+	z-index:99999;
+	display:none;
+	background-color:white;
+	border-radius: 8px;
+	box-shadow: 0px 0px 8px #333;
+	background:url("src/com/fr/solution/theme/sky/files/image/tanchuangbg.png") no-repeat;
+	color:white;
+}
+ */
+/* 头部铃铛和邮件样式 */
+
+
+
+.fs-navibar-item.fui-bsc {
+	background-color:transparent;
+}
+
+/* #monitor_box_table{
+	width:100%;
+	color:white;
+	text-align:center;
+	display:table;
+	font-size:1.1em;
+	height:auto;
+	border-collapse: collapse;
+}
+#monitor_box_table thead{
+	background-color:rgba(15,18,138,0.5);
+	padding:0.5em 0;
+}
+#monitor_box_table tr:nth-child(odd){
+	background-color:rgba(0,12,83,0.45);
+}
+#monitor_box_table tr:nth-child(even){
+	background-color:rgba(0,12,83,0.3);
+}
+#monitor_box_table th {
+	padding:0.5em 0.1em;
+	border-bottom:1px solid #d4d6e8;
+}
+#monitor_box_table td {
+	padding:0.5em 0.1em;
+	border-bottom:1px solid #d4d6e8;
+} */
+/* 
+#monitor_box ul{
+	width:100%;
+	height:100%;
+	
+}
+#monitor_box ul li{
+	width:100%;
+	padding:0.5em 0.2em;
+}
+
+
+.fs-navibar-item.fui-bsc{
+    background-color:transparent;
+}
+.fui-bsc{
+	background-color:transparent;
+	color:#00adef;
+} */

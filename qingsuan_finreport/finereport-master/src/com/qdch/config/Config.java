@@ -1,5 +1,7 @@
 package com.qdch.config;
 
+import com.jfinal.render.ViewType;
+import com.qdch.xd.model.*;
 import org.beetl.core.GroupTemplate;
 import org.beetl.ext.jfinal3.JFinal3BeetlRenderFactory;
 
@@ -35,6 +37,7 @@ import com.qdch.xd.controller.ProfitabilityController;
 import com.qdch.xd.controller.ReputationRiskController;
 import com.qdch.xd.controller.RiskOverviewController;
 import com.qdch.xd.controller.XiaoDaiController;
+
 import com.qdch.xd.model.ComparisonOfCompeModel;
 import com.qdch.xd.model.CompetitiveRrendModel;
 import com.qdch.xd.model.ConRatioModel;
@@ -45,8 +48,10 @@ import com.qdch.xd.model.IndexRankingModel;
 import com.qdch.xd.model.JyscModel;
 import com.qdch.xd.model.KeyIndicatorsModel;
 import com.qdch.xd.model.MigrationRateModel;
+import com.qdch.xd.model.ProportionModel;
 import com.qdch.xd.model.RiskCountModel;
 import com.qdch.xd.model.ScabilityModel;
+
 
 public class Config extends JFinalConfig {
 	public void configConstant(Constants me) {
@@ -54,6 +59,7 @@ public class Config extends JFinalConfig {
 		//添加beetl配置
 		JFinal3BeetlRenderFactory rf = new JFinal3BeetlRenderFactory();
 		rf.config();
+//		me.setViewType(ViewType.JSP);
 		me.setRenderFactory(rf);
 		GroupTemplate gt = rf.groupTemplate;
 		gt.registerTag("layout", TemplteLayoutTag.class);
@@ -165,7 +171,8 @@ public class Config extends JFinalConfig {
 		
 		
 		/*** 小贷 王风 insight层 Model START ***/
-		
+		insight_arp.addMapping("hub_fxsj", RiskEventModel.class);//风险事件
+		insight_arp.addMapping("hub_fxsj_audit_new", RiskEventHistoryModel.class);//风险事件
 		
 		
 		/***小贷 王风 insight层 Model START***/
@@ -187,8 +194,8 @@ public class Config extends JFinalConfig {
 		
 		
 		
-		/***小贷 李晓伊 insight层 Model START ***/
-		
+		/***小贷 李晓依 insight层 Model START ***/
+		insight_arp.addMapping("insight_xd_jysc_info", ProportionModel.class);//小贷-管理风险-占比
 		
 		
 		
