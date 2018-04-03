@@ -36,6 +36,7 @@ import com.qdch.xd.controller.ReputationRiskController;
 import com.qdch.xd.controller.RiskOverviewController;
 import com.qdch.xd.controller.XiaoDaiController;
 import com.qdch.xd.model.ComparisonOfCompeModel;
+import com.qdch.xd.model.CompetitiveRrendModel;
 import com.qdch.xd.model.ConRatioModel;
 import com.qdch.xd.model.CurrentComRankingModel;
 import com.qdch.xd.model.DefrateModel;
@@ -148,6 +149,7 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("insight_xd_fkamount", KeyIndicatorsModel.class);//业务总览的关键指标排名-放款额和日均放款额
 		insight_arp.addMapping("insight_xd_scability", CurrentComRankingModel.class);//业务总览的当前竞争力排名
 		insight_arp.addMapping("insight_xd_scability", ComparisonOfCompeModel.class);//业务总览的竞争力对比
+		insight_arp.addMapping("insight_xd_scability", CompetitiveRrendModel.class);//业务总览的竞争力对比
 		/***doushuiahi Model START***/
 		
 		

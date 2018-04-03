@@ -21,17 +21,6 @@ public class DefrateModel extends Model<DefrateModel>{
 	
 	public List<DefrateModel> getDefrate(String bigjys,String jyscode,String type){
 
-		
-	/*	String sql="select dbfs as name from insight_xd_defrate where dbfs is not null group by dbfs order by dbfs";
-		List<DefrateModel> lines=dao.find(sql);
-		for(DefrateModel model:lines){
-			String innerSql="SELECT * from insight_xd_defrate where dbfs='"+model.get("name")+"'  ";
-			List<DefrateModel> list=dao.find(innerSql);
-			model.put("data", list);
-		}
-		return lines;*/
-		/*String sql="select "+type+" as condition from insight_xd_defrate where "+type+" is not null group by "+type
-				+" order by "+type;*/
 		String sql="select "+type+" as condition from insight_xd_defrate where 1=1 and "+type+" is not null ";
 		if(StringUtils.isNotBlank(bigjys)){
 			sql+=" and jysc in "+bigjys;
