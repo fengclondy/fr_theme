@@ -9,7 +9,9 @@ import org.apache.commons.lang.StringUtils;
 import com.jfinal.kit.JsonKit;
 import com.qdch.core.BaseController;
 import com.qdch.xd.model.ComparisonOfCompeModel;
+import com.qdch.xd.model.CompetitiveRrendModel;
 import com.qdch.xd.model.CurrentComRankingModel;
+import com.qdch.xd.model.JyscModel;
 import com.qdch.xd.model.KeyIndicatorsModel;
 /**
  * 
@@ -25,7 +27,8 @@ public class BusinessOverviewController extends BaseController {
 	 * @author zuoqb
 	 */
 	public void index() {
-		 render("xd/pages/01_02yewuzonglan.html");
+		setAttr("jyslist", JyscModel.dao.getJysc(getDataScopeByUserName()));
+		render("xd/pages/01_02yewuzonglan.html");
 	}
 	/**
 	 * 获取贷款余额的关键指标排名
@@ -151,6 +154,31 @@ public class BusinessOverviewController extends BaseController {
 			renderJson(jsonp);
 		}else{
 			renderJson(comparisonofcompemodel);
+		}
+	}
+	/**
+	 * 获取业务总揽的市场竞争力趋势
+	* @author doushuihai  
+	* @date 2018年4月2日下午5:41:29  
+	* @TODO
+	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public void getCompetitiveRrend(){
+		String jys=getPara("jys");//获取第一个条件参数：交易市场
+		
+		String condition = getPara("condition");//获取第二个条件参数：竞争力指标
+		
+		List<CompetitiveRrendModel> competitiverrendmodel=CompetitiveRrendModel.dao.getCompetitiveRrend(getDataScopeByUserName(),jys,condition);
+		if(StringUtils.isNotBlank(getPara("jsonp"))){
+			//跨域处理
+			getResponse().addHeader("Access-Control-Allow-Origin", "*");
+			Map json = new HashMap();
+			String callback = getPara("callback");
+			json.put("data", competitiverrendmodel);
+			String jsonp = callback + "(" + JsonKit.toJson(json) + ")";//返回的json 格式要加callback()
+			renderJson(jsonp);
+		}else{
+			renderJson(competitiverrendmodel);
 		}
 	}
 
