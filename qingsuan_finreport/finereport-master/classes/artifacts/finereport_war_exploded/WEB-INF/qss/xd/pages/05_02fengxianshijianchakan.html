@@ -21,8 +21,8 @@
             <li class="split">|</li>
             <li class="pageNumber">
                 <label for="pageCurrent" hidden></label>
-                <input id="pageCurrent" type="number" value="1">&nbsp;/
-                <span class="pageTotal">30</span>
+                <input id="pageCurrent" type="number" >&nbsp;/
+                <span class="pageTotal"></span>
             </li>
             <li class="split">|</li>
             <li class="next" id="pagenext">下一页</li>
@@ -203,7 +203,7 @@
         $('#pageCurrent').bind('keypress',function(event){
             console.log(11,event.keyCode)
             if(event.keyCode == 13){
-                getTableBody($(this).val(),30)
+                getTableBody($(this).val(),10)
             }
         });
 
@@ -321,13 +321,15 @@
             success: function(data){
                 var  append = "";
                 console.log(data)
-                $(".number").text(data.totalRow);
+                $(".nuber").text(data.totalRow);
+                $('#pageCurrent').val(data.pageNumber);
+
                 $('.pageTotal').text(data.totalPage);
                 totalPage = data.totalPage;
                 pageNumber = data.pageNumber;
                 $.each(data.list, function(index, value, array) {
                     append +=
-                        "  <tr>            <td><a href=\"\" class=\"fengxian001\">"+value.fxsj_id+"</a></td>\n" +
+                        "  <tr>       <td><a href=\"\" class=\"fengxian001\">"+value.fxsj_id+"</a></td>\n" +
                         "                <td>"+value.bjsj+"</td>\n" +
                         "                <td>"+value.fxlb+"</td>\n" +
                         "               <td>"+value.fxzb+"</td>\n" +
@@ -348,7 +350,7 @@
                         "                <td class=\"more\"><a href=\"javascript:seeMore("+value.fxsj_id+");\">查看</a></td></tr>  " ;
                 });
                 // append +="</tr>";
-                $('tbody').html(append)
+                $('tbody').html(append);
 
             }
 

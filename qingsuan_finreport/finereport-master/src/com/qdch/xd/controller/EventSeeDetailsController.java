@@ -59,8 +59,21 @@ public class EventSeeDetailsController extends BaseController {
 		results.put("guarantee",guaranteeContrastModelDao.getPage(pageNum,pageSize)); //担保合同
 		results.put("limit",limitQueryModelDao.getPage(pageNum,pageSize)); //额度信息
         mRenderJson(results);
+	}
 
+	/**
+	 * 担保合同
+	 */
+	public void getGuarantee(){
+		int pageNum =Integer.parseInt(StringUtils.isBlank(getPara("pageNum"))||
+				getPara("pageNum").equals("undefined")==true?
+				"1":getPara("pageNum"));
+		int pageSize =Integer.parseInt(StringUtils.isBlank(getPara("pageSize"))||
+				getPara("pageSize").equals("undefined")
+						==true?
+				"10":getPara("pageSize"));
 
+		mRenderJson(guaranteeContrastModelDao.getPage(pageNum,pageSize));
 	}
 
 

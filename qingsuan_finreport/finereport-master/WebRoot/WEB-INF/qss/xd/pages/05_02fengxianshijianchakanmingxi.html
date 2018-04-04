@@ -145,12 +145,12 @@
     </div>
     <div id="box2">
         <div id="tit">
-            <span class="select" id="span1">个人客户</span>
-            <span id="span2">对公客户</span>
-            <span id="span3">基本合同信息</span>
-            <span id="span4">担保合同</span>
-            <span id="span5">明细查询</span>
-            <span id="span6">额度查询</span>
+            <span class="select" value="1" id="span1">个人客户</span>
+            <span value="2" id="span2">对公客户</span>
+            <span value="3" id="span3">基本合同信息</span>
+            <span value="4" id="span4">担保合同</span>
+            <span value="5" id="span5">明细查询</span>
+            <span value="6" id="span6">额度查询</span>
         </div>
         <ul id="con">
             <!-- 客户信息 start -->
@@ -269,7 +269,7 @@
                     <table>
                         <thead>
                         <tr>
-                            <th>额度管理_个人额度_额度调整_综合额度</th>
+                            <!--<th>额度管理_个人额度_额度调整_综合额度</th>-->
                             <th>客户编号</th>
                             <th>客户名称</th>
                             <th>抵押额度</th>
@@ -294,29 +294,7 @@
                         </tr>
                         </thead>
                         <tbody id="limit">
-                        <tr>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>3</td>
-                            <td>4</td>
-                            <td>5</td>
-                            <td>6</td>
-                            <td>7</td>
-                            <td>8</td>
-                            <td>9</td>
-                            <td>10</td>
-                            <td>11</td>
-                            <td>12</td>
-                            <td>13</td>
-                            <td>14</td>
-                            <td>15</td>
-                            <td>16</td>
-                            <td>17</td>
-                            <td>18</td>
-                            <td>19</td>
-                            <td>20</td>
-                            <td>21</td>
-                        </tr>
+
                         </tbody>
                     </table>
                 </div>
@@ -327,14 +305,17 @@
 </body>
 <script src="${contextPath}/static/asserts/js/echarts-4.0.js"></script>
 <script src="${contextPath}/static/asserts/js/jquery-2.2.4.js"></script>
+<script src="${contextPath}/static/js/page.js"></script>
 <!--<script src="../js/pageCom.js"></script>-->
 <script src="${contextPath}/static/js/chartsCom.js"></script>
 <script type="text/javascript">
-    var fxsj_id = '${fxsj_id}';
+    var fxsj_id = '${fxsj_id}',spantab = 1;
     $("#tit span").click(function () {
+
         var i= $("#tit span").index(this);
         $(this).addClass('select').siblings().removeClass('select');
         $("#con li").eq(i).show().siblings().hide();
+        spantab = $("#tit span.select").attr('value'); //切换的tab标签值
     })
     $(".whitePage").find(".tableBox").scroll(function () {
         var $table =  $(this).children("table");
@@ -402,7 +383,51 @@
                 });
                 $('#guarantee').html(guaranteehtml);
 
+                $.each(data.limit.list, function(index, value, array) {
+                    limithtml +=
+                        "  <tr>            <td><a href=\"\" class=\"fengxian001\">"+value.custid+"</a></td>\n" +
+                        "                <td>"+value.custname+"</td>\n" +
+                        "                <td>"+value.mortamt+"</td>\n" +
+                        "               <td>"+value.impaamt+"</td>\n" +
+                        "               <td>"+value.assuamt+"</td>\n" +
+                        "               <td>"+value.credamt+"</td>\n" +
+                        // "               <td>"+value.assucustname+"</td>\n" + //授信总额度
+                        // "               <td>"+value.LEFTAMT+"</td>\n" +
+                        // "               <td>"+value.CURRSIGN+"</td>\n" +
+                        // "               <td>"+value.CYCFLAG+"</td>\n" +
+                        // "               <td>"+value.begindate+"</td>\n" +
+                        // "               <td>"+value.enddate+"</td>\n" +
+                        // "               <td>"+value.contdate+"</td>\n" +
+                        // "               <td>"+value.bankidcont+"</td>\n" +
+                        "               <td>"+value.currsign+"</td></tr>" ;
+                });
+                $('#limit').html(limithtml);
+
                 // console.log(data)
+            }
+        });
+    }
+
+    function getTableBody() {
+        var linkstr ;
+        if(spantab == 1)
+            linkstr = "";
+        else if (spantab == 2)
+            linkstr = "";
+        else if (spantab == 3)
+            linkstr = "";
+        else if(spantab == 4)
+            linkstr = "getGuarantee";
+            else if(spantab == 5)
+                linkstr = "";
+
+        $.ajax({
+            type: "POST",
+            url: linkstr,
+            data: {},
+            dataType: "json",
+            success: function (data) {
+
             }
         });
     }
