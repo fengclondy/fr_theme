@@ -54,7 +54,7 @@ public class EventProcessingController extends BaseController {
 		int pageSize =Integer.parseInt(StringUtils.isBlank(getPara("pageSize"))||
 				getPara("pageSize").equals("undefined")
 				==true?
-				"30":getPara("pageSize"));
+				"10":getPara("pageSize"));
 //		getPara(getRequest());
 		getResponse().setCharacterEncoding("UTF-8");
 		Page<RiskEventModel> page = riskEventModelDao.getRiskEvent(getDataScopeByUserName(),pageNum,pageSize,getRequest());
@@ -82,26 +82,6 @@ public class EventProcessingController extends BaseController {
 	public void exportExcel(){
 
 		try {
-
-//		    <th>风险事件ID</th>
-//                <th>报警时间</th>
-//                <th>风险类别</th>
-//                <th>风险指标</th>
-//                <th>风险指标值</th>
-//                <th>阙值</th>
-//                <th>超出额</th>
-//                <th>市场代码</th>
-//                <th>市场名称</th>
-//                <th>客户号</th>
-//                <th>客户名称</th>
-//                <th>业务菜单编码</th>
-//                <th>业务菜单名称</th>
-//                <th>业务类型</th>
-//                <th>业务编码</th>
-//                <th>处理人</th>
-//                <th>处理状态</th>
-//                <th>处理时间</th>
-//                <th>风险说明</th>
 			String[] tablename = new String[]{"风险事件ID","报警时间","风险类别","风险指标","风险指标值","阙值","超出额",
             "市场代码","市场名称","客户号","客户名称","业务菜单编码","业务菜单名称","业务类型","业务编码",
             "处理人","处理状态","处理时间"};

@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * 
- * @todo   风险事件
+ * @todo   风险事件 hub_fxsj
  * @time   2018年4月2日14:59:19
  * @author wf
  */
@@ -25,8 +25,8 @@ public class RiskEventModel extends Model<RiskEventModel>{
 
 	/**
 	 * 风险事件列表
-	 * @param num
-	 * @param size
+	 * @param num  第几页
+	 * @param size 一页多少条
 	 * @return
 	 */
 	public Page<RiskEventModel> getRiskEvent(String datascope,int num, int size, HttpServletRequest request){
@@ -126,7 +126,9 @@ public class RiskEventModel extends Model<RiskEventModel>{
 		return URLDecoder.decode(str,"UTF-8");
 	}
 
-
-
-
+	@Override
+	public RiskEventModel findById(Object idValue) {
+		String sql = "select * from hub_fxsj where fxsj_id="+idValue;
+		return dao.findFirst(sql);
+	}
 }
