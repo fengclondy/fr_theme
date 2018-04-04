@@ -1040,5 +1040,6 @@
         <jarDirectory url="file://$MODULE_DIR$/WebRoot/WEB-INF/lib" recursive="false" type="SOURCES" />
       </library>
     </orderEntry>
+    <orderEntry type="library" scope="PROVIDED" name="Tomcat 7.0.85" level="application_server_libraries" />
   </component>
 </module>
