@@ -82,9 +82,8 @@ public class EventProcessingController extends BaseController {
 	public void exportExcel(){
 
 		try {
-//			ExportUtil.ExportNoResponse(sheetName, titleName, fileName,
-//                    columnNumber, columnWidth, columnName, dataList);
-//			<th>风险事件ID</th>
+
+//		    <th>风险事件ID</th>
 //                <th>报警时间</th>
 //                <th>风险类别</th>
 //                <th>风险指标</th>
@@ -103,41 +102,52 @@ public class EventProcessingController extends BaseController {
 //                <th>处理状态</th>
 //                <th>处理时间</th>
 //                <th>风险说明</th>
-			String[] tablename = new String[]{"风险事件ID","报警时间","风险类别","风险指标值"};
-//			List<String> tablelist = new ArrayList<>();
-//			tablelist.add("风险事件id");
-
+			String[] tablename = new String[]{"风险事件ID","报警时间","风险类别","风险指标","风险指标值","阙值","超出额",
+            "市场代码","市场名称","客户号","客户名称","业务菜单编码","业务菜单名称","业务类型","业务编码",
+            "处理人","处理状态","处理时间"};
             List<RiskEventModel> riskEventModels = riskEventModelDao.getRiskEventList(getRequest());
-
             String[][] content = new String[riskEventModels.size()][];
             List<String> list = new ArrayList<String>();
-//            for(RiskEventModel model:riskEventModels){
-//                List<String> list1 = new ArrayList<String>();
-//                list1.add(model.getStr("fxsj_id"));
-//                list1.add(model.getStr("bjsj"));
-//            }
-
             for (int i = 0; i < riskEventModels.size(); i++) {
                 content[i] = new String[tablename.length];
                 RiskEventModel obj = riskEventModels.get(i);
-                content[i][0] = obj.get("bjsj").toString();
-                content[i][1] = obj.get("bjsj").toString();
-                content[i][2] = obj.get("fxlb").toString();
-                content[i][3] = obj.get("fxzb").toString();
-//                content[i][4] = obj.get("stuClassName").toString();
+                content[i][0] = toString(obj.get("fxsj_id"));
+                content[i][1] = toString(obj.get("bjsj"));
+                content[i][2] = toString(obj.get("fxlb"));
+                content[i][3] = toString(obj.get("fxzb"));
+                content[i][4] = toString(obj.get("fxzbz"));
+                content[i][5] = toString(obj.get("yuzhi"));
+                content[i][6] = toString(obj.get("cce"));
+                content[i][7] = toString(obj.get("jgdm"));
+                content[i][8] = toString(obj.get("jgmc"));
+                content[i][9] = toString(obj.get("cust_id"));
+                content[i][10] = toString(obj.get("khmc"));
+                content[i][11] =toString(obj.get("ywcdbm"));
+                content[i][12] = toString(obj.get("ywcdmc"));
+                content[i][13] = toString(obj.get("ywlx"));
+                content[i][14] = toString(obj.get("ywbm"));
+                content[i][15] = toString(obj.get("shr"));
+                content[i][16] = toString(obj.get("clzt"));
+                content[i][17] = toString(obj.get("update_time"));
+
             }
 
 
 
-            ExportUtil.toexcel(tablename,content);
+            ExportUtil.toexcel(tablename,content,getResponse(),"风险事件");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		mRenderJson(null);
 	}
 
-
-
+	public String toString (Object object){
+	    if(object==null){
+	        return  "";
+        }else{
+	        return object.toString();
+        }
+    }
 
 
 }

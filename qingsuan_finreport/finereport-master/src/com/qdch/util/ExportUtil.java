@@ -27,7 +27,7 @@ import java.util.List;
 public class ExportUtil {
 
 
-    public static void  toexcel(String [] tablename, String [][] content) throws IOException, ClassNotFoundException {
+    public static void  toexcel(String [] tablename, String [][] content,HttpServletResponse response,String saveName) throws IOException, ClassNotFoundException {
         // 1.创建一个workbook，对应一个Excel文件
         HSSFWorkbook wb = new HSSFWorkbook();
         // 2.在workbook中添加一个sheet，对应Excel中的一个sheet
@@ -62,9 +62,19 @@ public class ExportUtil {
         }
 
 //        HSSFWorkbook wb = new HSSFWorkbook();
-        FileOutputStream out =new FileOutputStream("E:/XXX.xls");
-        wb.write(out);
-        out.close();
+
+        OutputStream output = null;
+
+        output = response.getOutputStream();
+        response.reset();
+        String headervar2 = "attachment; filename=\""+new String(saveName.getBytes("UTF-8"),"ISO8859-1")+".xls\"";
+        response.setHeader("Content-disposition", headervar2);
+        response.setContentType("application/x-download");
+        wb.write(output);
+
+//        FileOutputStream out =new FileOutputStream("E:/XXX.xls");
+//        wb.write(out);
+        output.close();
     }
 
 }

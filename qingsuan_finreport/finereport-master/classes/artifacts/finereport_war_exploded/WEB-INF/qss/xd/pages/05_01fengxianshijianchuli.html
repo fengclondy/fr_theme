@@ -295,40 +295,68 @@
             $('#riskIndicators').append(str);
         })
         $('#btnCheck').on('click',function () {
-            var eventId = $('#eventId').val();
-            var customerName = $('#customerName').val();
-            var marketName = $('#marketName option:selected').val();
-            var processingState = $('#processingState').val();
-            var riskCategories = $('#riskCategories option:selected').val();
-            var riskIndicators = $('#riskIndicators option:selected').val();
-            var alarmTimeStart = $('#alarmTimeStart').val().replace(/-/g,"");
-            var alarmTimeEnd = $('#alarmTimeEnd').val().replace(/-/g,"");
-            var encode = $('#encode').val();
-            var htmlstr = "";
-            if((alarmTimeStart==""&&alarmTimeEnd!="")||(alarmTimeStart!=""&&alarmTimeEnd=="")){
-                alert('预警时间段应选择全');
-                return;
-            }
-            if(alarmTimeEnd<alarmTimeStart){
-                alert('结束时间不能比开始时间小');
-                return;
-            }
-            htmlstr+="?fxsj_id="+eventId+"&khmc="+encodeURI(encodeURI(customerName))+
-                "&jgmc="+encodeURI(encodeURI(marketName))+"&clzt="+encodeURI(encodeURI(processingState))+
-                    "&fxlb="+encodeURI(encodeURI(riskCategories))+"&fxzb="+encodeURI(encodeURI(riskIndicators))
-                +"&alarmTimeStart="+alarmTimeStart+
-                    "&alarmTimeEnd="+alarmTimeEnd+"&ywbm="+encode;
-
+            // var eventId = $('#eventId').val();
+            // var customerName = $('#customerName').val();
+            // var marketName = $('#marketName option:selected').val();
+            // var processingState = $('#processingState').val();
+            // var riskCategories = $('#riskCategories option:selected').val();
+            // var riskIndicators = $('#riskIndicators option:selected').val();
+            // var alarmTimeStart = $('#alarmTimeStart').val().replace(/-/g,"");
+            // var alarmTimeEnd = $('#alarmTimeEnd').val().replace(/-/g,"");
+            // var encode = $('#encode').val();
+            // var htmlstr = "";
+            // if((alarmTimeStart==""&&alarmTimeEnd!="")||(alarmTimeStart!=""&&alarmTimeEnd=="")){
+            //     alert('预警时间段应选择全');
+            //     return;
+            // }
+            // if(alarmTimeEnd<alarmTimeStart){
+            //     alert('结束时间不能比开始时间小');
+            //     return;
+            // }
+            // htmlstr+="?fxsj_id="+eventId+"&khmc="+encodeURI(encodeURI(customerName))+
+            //     "&jgmc="+encodeURI(encodeURI(marketName))+"&clzt="+encodeURI(encodeURI(processingState))+
+            //         "&fxlb="+encodeURI(encodeURI(riskCategories))+"&fxzb="+encodeURI(encodeURI(riskIndicators))
+            //     +"&alarmTimeStart="+alarmTimeStart+
+            //         "&alarmTimeEnd="+alarmTimeEnd+"&ywbm="+encode;
+    var con = getCondition();
             // console.log(alarmTimeStart.replace(/-/g,"")) //注意 前面没有“”
-           getTableBody(null,null,htmlstr);
+           getTableBody(null,null,con);
         })
-        
+
+        //导出excel
         $('.excel').on('click',function () {
-            
+            var con = getCondition();
+            window.open("eventprocessing/exportExcel"+con)
         })
         
         
     });
+    function getCondition() {
+        var eventId = $('#eventId').val();
+        var customerName = $('#customerName').val();
+        var marketName = $('#marketName option:selected').val();
+        var processingState = $('#processingState').val();
+        var riskCategories = $('#riskCategories option:selected').val();
+        var riskIndicators = $('#riskIndicators option:selected').val();
+        var alarmTimeStart = $('#alarmTimeStart').val().replace(/-/g,"");
+        var alarmTimeEnd = $('#alarmTimeEnd').val().replace(/-/g,"");
+        var encode = $('#encode').val();
+        var htmlstr = "";
+        if((alarmTimeStart==""&&alarmTimeEnd!="")||(alarmTimeStart!=""&&alarmTimeEnd=="")){
+            alert('预警时间段应选择全');
+            return;
+        }
+        if(alarmTimeEnd<alarmTimeStart){
+            alert('结束时间不能比开始时间小');
+            return;
+        }
+       return htmlstr+="?fxsj_id="+eventId+"&khmc="+encodeURI(encodeURI(customerName))+
+            "&jgmc="+encodeURI(encodeURI(marketName))+"&clzt="+encodeURI(encodeURI(processingState))+
+            "&fxlb="+encodeURI(encodeURI(riskCategories))+"&fxzb="+encodeURI(encodeURI(riskIndicators))
+            +"&alarmTimeStart="+alarmTimeStart+
+            "&alarmTimeEnd="+alarmTimeEnd+"&ywbm="+encode;
+
+    }
 
     /**
      * 下拉框
