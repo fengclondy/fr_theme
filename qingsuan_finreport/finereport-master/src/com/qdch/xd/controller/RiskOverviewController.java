@@ -17,7 +17,27 @@ public class RiskOverviewController extends BaseController {
 	 * @return_type   void
 	 */
 	public void getRiskRanking(){
-		List<RiskCountModel> ranking=RiskCountModel.dao.getRiskRanking(getDataScopeByUserName());
+		List<RiskCountModel> ranking = RiskCountModel.dao.getRiskRanking(getDataScopeByUserName());
 		mRenderJson(ranking);
 	}
+	/**
+	 * @todo   平台运营监控 (环形图)
+	 * @time   2018年4月4日 下午14:40:09
+	 * @author ljm
+	 */
+	public void getAllPlatform(){
+		List<RiskCountModel> ranking = RiskCountModel.dao.getAllPlatform(getDataScopeByUserName());
+		mRenderJson(ranking);
+	}
+	
+	/**
+	 * @todo   平台运营监控 (风险种类，数量)
+	 * @time   2018年4月4日 下午14:40:09
+	 * @author ljm
+	 */
+	public void getRiskCount(){
+		List<RiskCountModel> ranking = RiskCountModel.dao.getRiskCount(getDataScopeByUserName());
+		mRenderJson(ranking);
+	}
+	
 }
