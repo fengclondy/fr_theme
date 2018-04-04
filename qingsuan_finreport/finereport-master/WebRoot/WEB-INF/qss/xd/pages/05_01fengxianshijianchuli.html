@@ -83,17 +83,17 @@
             <li class="output">
                 <a class="dropDown">输出</a>
                 <ul>
-                    <li class="pdf"><span class="icon"></span> PDF</li>
-                    <li class="excel"><span class="icon"></span>
-                        <a class="dropDown">EXCEL</a>
-                        <ul>
-                            <li>分页导出</li>
-                            <li>原样导出</li>
-                            <li>分页分sheet导出</li>
-                        </ul>
+                    <!--<li class="pdf"><span class="icon"></span> PDF</li>-->
+                    <li class="excel"><span class="icon"></span>EXCEL
+                        <!--<a class="dropDown">EXCEL</a>-->
+                        <!--<ul>-->
+                            <!--<li>分页导出</li>-->
+                            <!--<li>原样导出</li>-->
+                            <!--<li>分页分sheet导出</li>-->
+                        <!--</ul>-->
                     </li>
-                    <li class="word"><span class="icon"></span> WORD</li>
-                    <li class="picture"><span class="icon"></span> 图片</li>
+                    <!--<li class="word"><span class="icon"></span> WORD</li>-->
+                    <!--<li class="picture"><span class="icon"></span> 图片</li>-->
                 </ul>
             </li>
         </ul>
@@ -112,17 +112,6 @@
                 <label for="marketName">市场名称：</label>
                 <select id="marketName">
                     <option value=""></option>
-                    <option value="">青岛国际版权</option>
-                    <option value="">上海石油化工</option>
-                    <option value="">中韩文化产权</option>
-                    <option value="">山东天地红</option>
-                    <option value="">青岛国新大宗</option>
-                    <option value="">联合信用资产</option>
-                    <option value="">吉林文化产权</option>
-                    <option value="">青岛华银商品</option>
-                    <option value="">青岛华益金安</option>
-                    <option value="">中国国金(青岛)</option>
-
                 </select>
             </div>
             <br>
@@ -139,13 +128,7 @@
                 <label for="riskCategories">风险类别：</label>
                 <select id="riskCategories">
                     <option value=""></option>
-                    <option value="">舆情风险</option>
-                    <option value="">资金风险</option>
-                    <option value="">客户风险</option>
-                    <option value="">工商风险</option>
-                    <option value="">交易风险</option>
-                    <option value="">商品风险</option>
-                    <option value="">不选</option>
+
                 </select>
             </div>
             <div class="inputGroup">
@@ -161,7 +144,7 @@
                 <input id="alarmTimeStart" type="date">
             </div>
             <div class="inputGroup">
-                <label for="alarmTimeEnd">报警时间起：</label>
+                <label for="alarmTimeEnd">报警时间止：</label>
                 <input id="alarmTimeEnd" type="date">
             </div>
             <div class="inputGroup">
@@ -169,7 +152,7 @@
                 <input id="encode">
             </div>
             <div class="btnGroup search">
-                <button class="active">查询</button>
+                <button class="active" type="button" id="btnCheck">查询</button>
             </div>
         </form>
     </div>
@@ -245,6 +228,7 @@
 
 <script>
     var totalPage,totalNum,pageNumber;
+    var riskIndex
 
     $(function () {
         $(".formFoldHandle").click(function () {
@@ -264,6 +248,7 @@
             $(".model").hide();
         })
         getTableBody();
+        getPullDown();
         //第一页
         $('#pagehome').on('click',function(){
             getTableBody()
@@ -291,13 +276,122 @@
             }
 
         })
+        $('#pageCurrent').bind('keypress',function(event){
+            console.log(11,event.keyCode)
+            if(event.keyCode == 13){
+                getTableBody($(this).val(),30)
+                }
+            });
 
+        $('#riskCategories').on('blur',function () {
+            var a = $('#riskCategories option:selected').val();
+            var str  = "<option value=''></option>";
+            $.each(riskIndex, function(index, value, array) {
+                if(value.fxlb==a){
+                    str+="<option value='"+value.fxzb+"'>"+value.fxzb+"</option>";
+                }
+            });
+            $('#riskIndicators').html("")
+            $('#riskIndicators').append(str);
+        })
+        $('#btnCheck').on('click',function () {
+            // var eventId = $('#eventId').val();
+            // var customerName = $('#customerName').val();
+            // var marketName = $('#marketName option:selected').val();
+            // var processingState = $('#processingState').val();
+            // var riskCategories = $('#riskCategories option:selected').val();
+            // var riskIndicators = $('#riskIndicators option:selected').val();
+            // var alarmTimeStart = $('#alarmTimeStart').val().replace(/-/g,"");
+            // var alarmTimeEnd = $('#alarmTimeEnd').val().replace(/-/g,"");
+            // var encode = $('#encode').val();
+            // var htmlstr = "";
+            // if((alarmTimeStart==""&&alarmTimeEnd!="")||(alarmTimeStart!=""&&alarmTimeEnd=="")){
+            //     alert('预警时间段应选择全');
+            //     return;
+            // }
+            // if(alarmTimeEnd<alarmTimeStart){
+            //     alert('结束时间不能比开始时间小');
+            //     return;
+            // }
+            // htmlstr+="?fxsj_id="+eventId+"&khmc="+encodeURI(encodeURI(customerName))+
+            //     "&jgmc="+encodeURI(encodeURI(marketName))+"&clzt="+encodeURI(encodeURI(processingState))+
+            //         "&fxlb="+encodeURI(encodeURI(riskCategories))+"&fxzb="+encodeURI(encodeURI(riskIndicators))
+            //     +"&alarmTimeStart="+alarmTimeStart+
+            //         "&alarmTimeEnd="+alarmTimeEnd+"&ywbm="+encode;
+    var con = getCondition();
+            // console.log(alarmTimeStart.replace(/-/g,"")) //注意 前面没有“”
+           getTableBody(null,null,con);
+        })
 
+        //导出excel
+        $('.excel').on('click',function () {
+            var con = getCondition();
+            window.open("eventprocessing/exportExcel"+con)
+        })
+        
+        
     });
-    function getTableBody(pageNum,pageSize) {
+    function getCondition() {
+        var eventId = $('#eventId').val();
+        var customerName = $('#customerName').val();
+        var marketName = $('#marketName option:selected').val();
+        var processingState = $('#processingState').val();
+        var riskCategories = $('#riskCategories option:selected').val();
+        var riskIndicators = $('#riskIndicators option:selected').val();
+        var alarmTimeStart = $('#alarmTimeStart').val().replace(/-/g,"");
+        var alarmTimeEnd = $('#alarmTimeEnd').val().replace(/-/g,"");
+        var encode = $('#encode').val();
+        var htmlstr = "";
+        if((alarmTimeStart==""&&alarmTimeEnd!="")||(alarmTimeStart!=""&&alarmTimeEnd=="")){
+            alert('预警时间段应选择全');
+            return;
+        }
+        if(alarmTimeEnd<alarmTimeStart){
+            alert('结束时间不能比开始时间小');
+            return;
+        }
+       return htmlstr+="?fxsj_id="+eventId+"&khmc="+encodeURI(encodeURI(customerName))+
+            "&jgmc="+encodeURI(encodeURI(marketName))+"&clzt="+encodeURI(encodeURI(processingState))+
+            "&fxlb="+encodeURI(encodeURI(riskCategories))+"&fxzb="+encodeURI(encodeURI(riskIndicators))
+            +"&alarmTimeStart="+alarmTimeStart+
+            "&alarmTimeEnd="+alarmTimeEnd+"&ywbm="+encode;
+
+    }
+
+    /**
+     * 下拉框
+     */
+    function getPullDown() {
         $.ajax({
-            type: "GET",
-            url: "eventprocessing/getList",
+            type: "POST",
+            url: "eventprocessing/getPullDown",
+            data: {},
+            dataType: "json",
+            success: function(data){
+                console.log(data);
+                riskIndex = data.risk;
+                var exchangeHtml = "",typehtml,riskhtml;
+                $.each(data.exchange, function(index, value, array) {
+                    exchangeHtml+="<option value='"+value.jys+"'>"+value.jysinfo+"</option>";
+                });
+                $.each(data.type, function(index, value, array) {
+                    typehtml+="<option value='"+value.fxlb+"'>"+value.fxlb+"</option>";
+                });
+                $("#marketName").append(exchangeHtml);
+                $("#riskCategories").append(typehtml);
+
+            }
+        });
+
+    }
+    function getTableBody(pageNum,pageSize,appenddata) {
+        if(!appenddata){
+            appenddata = "";
+
+        }
+        $.ajax({
+            type: "POST",
+            url: "eventprocessing/getList"+appenddata,
             data: {"pageNum":pageNum,"pageSize":pageSize},
             dataType: "json",
             success: function(data){
@@ -334,15 +428,7 @@
 
             })
     }
-
-
-
-
-
-
-
-
-
+    
 
 </script>
 </body>

@@ -1,6 +1,8 @@
 package com.qdch.config;
 
+import com.fr.web.core.process.reportprocess.AlertControl;
 import com.jfinal.render.ViewType;
+import com.qdch.xd.controller.*;
 import com.qdch.xd.model.*;
 import org.beetl.core.GroupTemplate;
 import org.beetl.ext.jfinal3.JFinal3BeetlRenderFactory;
@@ -21,22 +23,6 @@ import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.template.Engine;
 import com.qdch.model.DemoModel;
 import com.qdch.util.TemplteLayoutTag;
-import com.qdch.xd.controller.AssetRiskController;
-import com.qdch.xd.controller.BusinessOverviewController;
-import com.qdch.xd.controller.ComplianceRiskController;
-import com.qdch.xd.controller.CreditRiskController;
-import com.qdch.xd.controller.DevelopmentCapacityController;
-import com.qdch.xd.controller.EventAuditController;
-import com.qdch.xd.controller.EventDecisionController;
-import com.qdch.xd.controller.EventProcessingController;
-import com.qdch.xd.controller.EventViewController;
-import com.qdch.xd.controller.ManagementRiskController;
-import com.qdch.xd.controller.MonthlyReportController;
-import com.qdch.xd.controller.OperationalCapabilityController;
-import com.qdch.xd.controller.ProfitabilityController;
-import com.qdch.xd.controller.ReputationRiskController;
-import com.qdch.xd.controller.RiskOverviewController;
-import com.qdch.xd.controller.XiaoDaiController;
 
 import com.qdch.xd.model.ComparisonOfCompeModel;
 import com.qdch.xd.model.CompetitiveRrendModel;
@@ -75,6 +61,7 @@ public class Config extends JFinalConfig {
 		me.add("qdch/xiaodai", XiaoDaiController.class,"/");
 		
 		/***小贷 doushuihai Controller START***/
+		
 		me.add("qdch/creditrisk", CreditRiskController.class,"/");	//信用风险
 		me.add("qdch/managementrisk", ManagementRiskController.class,"/");	//管理风险
 		me.add("qdch/assetrisk", AssetRiskController.class,"/");	//资产风险
@@ -97,6 +84,8 @@ public class Config extends JFinalConfig {
 		me.add("qdch/businessOverview", BusinessOverviewController.class,"/");//小贷-业务总览
 		
 		/***小贷zuoqb Controller END***/
+
+		me.add("qdch/alert", AlertController.class,"/");	//监管月报
 	}
 
 	public void configEngine(Engine me) {
@@ -161,7 +150,7 @@ public class Config extends JFinalConfig {
 		
 		/***小贷zuoqb insight层 Model START***/
 		
-		insight_arp.addMapping("insight_xd_fxsj_count", RiskCountModel.class);//小贷风险指数
+		/*insight_arp.addMapping("hub_xd_fxzs", RiskCountModel.class);//小贷风险指数*/		
 		insight_arp.addMapping("insight_xd_scability", ScabilityModel.class);//小贷-业务总览-市场竞争力趋势
 		
 		/***小贷zuoqb insight层 Model START***/
@@ -172,9 +161,12 @@ public class Config extends JFinalConfig {
 		
 		/*** 小贷 王风 insight层 Model START ***/
 		insight_arp.addMapping("hub_fxsj", RiskEventModel.class);//风险事件
-		insight_arp.addMapping("hub_fxsj_audit_new", RiskEventHistoryModel.class);//风险事件
-		
-		
+		insight_arp.addMapping("hub_fxsj_audit_new", RiskEventHistoryModel.class);//风险事件历史信息
+		insight_arp.addMapping("hub_commerce_ref_jys", ExchangeInfoModel.class);//交易所信息
+		insight_arp.addMapping("hub_fxlb", RiskTypeModel.class);//风险类别
+
+
+
 		/***小贷 王风 insight层 Model START***/
 		
 		
@@ -185,9 +177,10 @@ public class Config extends JFinalConfig {
 		
 		/***小贷 连纪明 insight层 Model START ***/
 		
+		insight_arp.addMapping("hub_xd_fxzs", RiskCountModel.class);//小贷风险指数
 		
 		
-		/***小贷 王风 insight层 Model START***/
+		/***小贷 连纪明 insight层 Model START***/
 		
 		
 		
