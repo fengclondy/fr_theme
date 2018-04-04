@@ -1,0 +1,267 @@
+.main {
+    width: 100%;
+    height: 100%;
+    background: url("../imgs/navagition/bg.jpg") no-repeat;
+    /*background-size: 100% 100%;*/
+    background-size: cover;
+}
+
+.content {
+    height: 100%;
+    width: 85%;
+    margin: 0 auto;
+}
+
+.logo {
+    height: 45%;
+    width: 100%;
+
+}
+
+.logo > img {
+    width: 49.48%;
+    /*height: 23%;*/
+    height: auto;
+    margin-top: 14%;
+    margin-left: 25.26%;
+    display: inline-block;
+}
+
+.navs {
+    height: 55%;
+    width: 100%;
+}
+
+.navs ul {
+    width: 100%;
+    height: 10.78em;
+}
+
+.navs ul li {
+    width: 25%;
+    height: 100%;
+    float: left;
+    text-align: center;
+}
+
+.navs ul li img {
+    width: 9.78em;
+    height: 9.78em;
+    cursor: pointer;
+    margin: 0 auto;
+}
+
+.navs .titles {
+    height: 10%;
+    color: white;
+    font-size: 1.2em;
+}
+
+.navs .titles li {
+    padding-top: 1%;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 1366px) and (max-width: 1440px) {
+    .content {
+        height: 100%;
+        width: 72%;
+        margin: 0 auto;
+    }
+
+}
+
+.modal-dialog {
+    width: 100%;
+    height: auto;
+}
+.modal-backdrop.in{
+    opacity: .2;
+}
+.modal-content {
+    width: 100%;
+    height: auto;
+    background: url("../imgs/navagition/bg_modalDialog.png") no-repeat;
+    background-size: 100% 100%;
+    display: inline-block;
+    padding-bottom: 1em;
+}
+
+.box_header {
+    width: 100%;
+    text-align: center;
+    padding: 0.3em 0;
+    background-color: #00adef;
+    letter-spacing: .15em;
+    color: white;
+    font-size: 1.4em;
+    /*border-radius: 6px 6px 0 0;*/
+}
+.box_header button.close{
+    position: relative;
+    border: .05em solid;
+    border-radius: 50%;
+    width: 1em;
+    height: 1em;
+    top: .1em;
+}
+.box_header button.close>span{
+    position: relative;
+    top: -.1em;
+    font-family: -webkit-pictograph, serif;
+}
+
+
+.box_content_left,
+.box_content_right,
+.box_content_bottom {
+    background-color: rgba(0, 0, 0, .15);
+}
+
+.box_content_top {
+    width: 100%;
+    /*height: 45%;*/
+    padding-top: 1em;
+    display: inline-block;
+}
+
+.box_content_left, .box_content_right {
+    /*height: 100%;*/
+    width: 48%;
+    margin-left: 1.2%;
+    /*box-shadow: 0 0 5px rgba(0,173,239,0.4);*/
+
+}
+
+.box_content_right {
+    margin-right: 1.2%;
+}
+
+.box_content table {
+    width: 100%;
+    /*height: 90%;*/
+    text-align: center;
+    font-size: 0.9em;
+    color: #00adef;
+
+}
+
+.box_content table tr:nth-of-type(2n) {
+    /*background-color: white;*/
+}
+.box_content table tr{
+    height: 2.7em;
+    transition: background-color .1s ease-in-out;
+}
+.box_content table tr:hover{
+    background-color: #fff3;
+}
+.box_content table tr:first-child{
+    height: 1.8em;
+}
+.box_content table tr ~ tr {
+    border-bottom: .1em solid #00adef55;
+}
+
+.box_content table tr th {
+    text-align: center;
+    background-color: #00adef;
+    color: white;
+    font-weight: 400;
+    padding: 0.5em 0;
+}
+
+.box_content table tr td {
+    padding: 0.2em 0;
+}
+
+.table_header {
+    /*height: 10%;*/
+    width: 100%;
+    /*color: #00adef;*/
+    color: #fff;
+    text-align: center;
+    font-size: 1.2em;
+    /*background-color: white;*/
+    padding: 0.8em 0;
+}
+
+.table_header span {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    font-weight: 700;
+}
+
+.table_header .table_header_name {
+    width: 14em;
+    height: 2.6em;
+    line-height: 2.6em;
+    font-weight: 400;
+    background: url("../imgs/navagition/bg_tableHeader.png") no-repeat;
+    background-size: 100% 100%;
+
+
+}
+
+.box_content_bottom {
+    width: 97.6%;
+    /*height: 44%;*/
+    margin-top: 1%;
+    /*box-shadow: 0 0 5px rgba(0,173,239,0.4);*/
+    margin-left: 1.2%;
+}
+
+.box_content_bottom table {
+    width: 100%;
+}
+
+.close {
+    color: white;
+    margin-right: 0.5em;
+    font-size: 1.2em;
+    font-weight: 100;
+    line-height: 1;
+    opacity: 0.9;
+}
+
+#find_btn1, #find_btn2, #find_btn3, #find_btn4, #find_btn5, #find_btn6, #find_btn7 {
+    background-color: transparent;
+    border: none;
+    padding: 0 0.5em;
+}
+
+.popover {
+    border: none;
+    box-shadow: 0 0 5px rgba(0, 173, 239, 0.4);
+    color: #00adef;
+}
+
+@media screen and (max-width: 768px) {
+    .logo {
+        height: 50%;
+    }
+
+    .logo > img {
+        margin: 60% auto;
+        margin-bottom: 0;
+        display: inline-block;
+        width: 100%;
+    }
+
+    .navs ul li img {
+        width: 4.5em;
+        height: auto;
+        cursor: pointer;
+        margin: 0 auto;
+    }
+
+    .navs ul {
+        height: 4.78em;
+    }
+
+    .titles {
+        font-size: 1.1em;
+    }
+
+}

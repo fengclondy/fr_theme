@@ -17,6 +17,8 @@ public class MonthlyReportController extends BaseController {
 	public void index() {
 		 render("xd/pages/06_01jianguanyuebao.html");
 	}
-	
+	public void getMonthlyReport(){
+		
+	}
 
 }

@@ -67,9 +67,9 @@
 <div class="container">
     <nav class="pagination">
         <ul>
-            <li class="home">首页</li>
+            <li class="home" id="pagehome">首页</li>
             <li class="split">|</li>
-            <li class="prev">上一页</li>
+            <li class="prev" id="pageprev">上一页</li>
             <li class="split">|</li>
             <li class="pageNumber">
                 <label for="pageCurrent" hidden></label>
@@ -77,9 +77,9 @@
                 <span class="pageTotal">30</span>
             </li>
             <li class="split">|</li>
-            <li class="next">下一页</li>
+            <li class="next" id="pagenext">下一页</li>
             <li class="split">|</li>
-            <li class="end">末页</li>
+            <li class="end" id="pageend">末页</li>
             <li class="output">
                 <a class="dropDown">输出</a>
                 <ul>
@@ -202,70 +202,30 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td><a href="" class="fengxian001">449684</a></td>
-                <td>20180124 06:01:43</td>
-                <td>资金风险</td>
-                <td>出入金异常</td>
-                <td>12</td>
-                <td>10</td>
-                <td>20%</td>
-                <td>0011</td>
-                <td>山东天地红</td>
-                <td>001100001130</td>
-                <td>黄啸</td>
-                <td>ZJXX</td>
-                <td>资金信息</td>
-                <td>市场编码</td>
-                <td>资金信息</td>
-                <td>man</td>
-                <td>已提交</td>
-                <td>20180124 16:07:39</td>
-                <td class="more"><a href="">查看</a></td>
+            <!--<tr>-->
+                <!--<td><a href="" class="fengxian001">449684</a></td>-->
+                <!--<td>20180124 06:01:43</td>-->
+                <!--<td>资金风险</td>-->
+                <!--<td>出入金异常</td>-->
+                <!--<td>12</td>-->
+                <!--<td>10</td>-->
+                <!--<td>20%</td>-->
+                <!--<td>0011</td>-->
+                <!--<td>山东天地红</td>-->
+                <!--<td>001100001130</td>-->
+                <!--<td>黄啸</td>-->
+                <!--<td>ZJXX</td>-->
+                <!--<td>资金信息</td>-->
+                <!--<td>市场编码</td>-->
+                <!--<td>资金信息</td>-->
+                <!--<td>man</td>-->
+                <!--<td>已提交</td>-->
+                <!--<td>20180124 16:07:39</td>-->
+                <!--<td class="more"><a href="">查看</a></td>-->
 
-            </tr>
-            <tr>
-                <td><a href="">449684</a></td>
-                <td>20180124 06:01:43</td>
-                <td>资金风险</td>
-                <td>出入金异常</td>
-                <td>12</td>
-                <td>10</td>
-                <td>20%</td>
-                <td>0011</td>
-                <td>山东天地红</td>
-                <td>001100001130</td>
-                <td>黄啸</td>
-                <td>ZJXX</td>
-                <td>资金信息</td>
-                <td>市场编码</td>
-                <td>资金信息</td>
-                <td>man</td>
-                <td>已提交</td>
-                <td>20180124 16:07:39</td>
-                <td class="more"><a href="">查看</a></td>
-            </tr>
-            <tr>
-                <td><a href="">449684</a></td>
-                <td>20180124 06:01:43</td>
-                <td>资金风险</td>
-                <td>出入金异常</td>
-                <td>12</td>
-                <td>10</td>
-                <td>20%</td>
-                <td>0011</td>
-                <td>山东天地红</td>
-                <td>001100001130</td>
-                <td>黄啸</td>
-                <td>ZJXX</td>
-                <td>资金信息</td>
-                <td>市场编码</td>
-                <td>资金信息</td>
-                <td>man</td>
-                <td>已提交</td>
-                <td>20180124 16:07:39</td>
-                <td class="more"><a href="">查看</a></td>
-            </tr>
+            <!--</tr>-->
+
+
             </tbody>
         </table>
     </div>
@@ -284,6 +244,7 @@
 <script src="${contextPath}/static/js/chartsCom.js"></script>
 
 <script>
+    var totalPage,totalNum,pageNumber;
 
     $(function () {
         $(".formFoldHandle").click(function () {
@@ -302,9 +263,77 @@
             e.preventDefault();
             $(".model").hide();
         })
+        getTableBody();
+        //第一页
+        $('#pagehome').on('click',function(){
+            getTableBody()
+        })
+        //最后一页
+        $('#pageend').on('click',function(){
+            getTableBody(totalPage)
+        })
+        //上一页
+        $('#pageprev').on('click',function(){
+            if(pageNumber==1){
+                alert("已经是第一页了")
+            }else{
+                getTableBody(pageNumber-1)
+            }
+
+        })
+        //下一页
+        $('#pagenext').on('click',function(){
+            console.log(pageNumber,totalPage)
+            if(pageNumber== totalPage){
+                alert("已经是最后一页了")
+            }else{
+                getTableBody(pageNumber+1)
+            }
+
+        })
 
 
     });
+    function getTableBody(pageNum,pageSize) {
+        $.ajax({
+            type: "GET",
+            url: "eventprocessing/getList",
+            data: {"pageNum":pageNum,"pageSize":pageSize},
+            dataType: "json",
+            success: function(data){
+                var  append = "";
+                console.log(data)
+                totalPage = data.totalPage;
+                pageNumber = data.pageNumber;
+                $.each(data.list, function(index, value, array) {
+                    append +=
+                        "  <tr>            <td><a href=\"\" class=\"fengxian001\">"+value.fxsj_id+"</a></td>\n" +
+                        "                <td>"+value.bjsj+"</td>\n" +
+                        "                <td>"+value.fxlb+"</td>\n" +
+                        "               <td>"+value.fxzb+"</td>\n" +
+                        "               <td>"+value.fxzbz+"</td>\n" +
+                        "               <td>"+value.yuzhi+"</td>\n" +
+                        "               <td>"+value.cce+"</td>\n" +
+                        "               <td>"+value.jgdm+"</td>\n" +
+                        "               <td>"+value.jgmc+"</td>\n" +
+                        "               <td>"+value.cust_id+"</td>\n" +
+                        "               <td>"+value.khmc+"</td>\n" +
+                        "               <td>"+value.ywcdbm+"</td>\n" +
+                        "               <td>"+value.ywcdmc+"</td>\n" +
+                        "               <td>"+value.ywlx+"</td>\n" +
+                        "               <td>"+value.ywbm+"</td>\n" +
+                        "               <td>"+value.shr+"</td>\n" +
+                        "               <td>"+value.clzt+"</td>\n" +
+                    "               <td>"+value.update_time+"</td>\n" +
+                        "                <td class=\"more\"><a href=\"\">查看</a></td></tr>  " ;
+                });
+                // append +="</tr>";
+                $('tbody').html(append)
+
+            }
+
+            })
+    }
 
 
 
