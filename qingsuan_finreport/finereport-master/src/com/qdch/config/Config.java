@@ -61,6 +61,7 @@ public class Config extends JFinalConfig {
 		me.add("qdch/xiaodai", XiaoDaiController.class,"/");
 		
 		/***小贷 doushuihai Controller START***/
+		
 		me.add("qdch/creditrisk", CreditRiskController.class,"/");	//信用风险
 		me.add("qdch/managementrisk", ManagementRiskController.class,"/");	//管理风险
 		me.add("qdch/assetrisk", AssetRiskController.class,"/");	//资产风险
@@ -149,7 +150,7 @@ public class Config extends JFinalConfig {
 		
 		/***小贷zuoqb insight层 Model START***/
 		
-		insight_arp.addMapping("insight_xd_fxsj_count", RiskCountModel.class);//小贷风险指数
+		/*insight_arp.addMapping("hub_xd_fxzs", RiskCountModel.class);//小贷风险指数*/		
 		insight_arp.addMapping("insight_xd_scability", ScabilityModel.class);//小贷-业务总览-市场竞争力趋势
 		
 		/***小贷zuoqb insight层 Model START***/
@@ -176,9 +177,10 @@ public class Config extends JFinalConfig {
 		
 		/***小贷 连纪明 insight层 Model START ***/
 		
+		insight_arp.addMapping("hub_xd_fxzs", RiskCountModel.class);//小贷风险指数
 		
 		
-		/***小贷 王风 insight层 Model START***/
+		/***小贷 连纪明 insight层 Model START***/
 		
 		
 		

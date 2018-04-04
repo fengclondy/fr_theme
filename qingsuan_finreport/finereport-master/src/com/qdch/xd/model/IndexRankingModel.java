@@ -32,7 +32,7 @@ public class IndexRankingModel extends Model<IndexRankingModel>{
 		return dao.find(sql);
 	}
 	public List<IndexRankingModel> getByLoanAmount(String bigjys,String jyscode,String type){
-		String sql="select t.jyscmc as name,sum(t.fvalue) as value from insight_xd_fkamount t where 1=1 ";
+		String sql="select t.jyscmc as name,round(sum(t.fvalue)/10000,0) as value from insight_xd_fkamount t where 1=1 ";
 		if(StringUtils.isNotBlank(bigjys)){
 			sql+="and jysc in "+bigjys;
 		} 
@@ -43,7 +43,7 @@ public class IndexRankingModel extends Model<IndexRankingModel>{
 		return dao.find(sql);
 	}
 	public List<IndexRankingModel> getByYeamount(String bigjys,String jyscode,String type){
-		String sql="select t.jyscmc as name,sum(t.fvalue) as value from insight_xd_yeamount t where vday=(select max(vday) from insight_xd_yeamount)";
+		String sql="select t.jyscmc as name,round(sum(t.fvalue)/10000,0) as value from insight_xd_yeamount t where vday=(select max(vday) from insight_xd_yeamount)";
 		if(StringUtils.isNotBlank(bigjys)){
 			sql+=" jysc in "+bigjys;
 		} 

@@ -21,7 +21,7 @@ public class ConRatioModel extends Model<ConRatioModel>{
 	public static final ConRatioModel dao = new ConRatioModel();
 	
 	public List<ConRatioModel> getConRatioByCustCount(String bigjys,String jyscode){
-		String sql="select vday_ym as month,round(cust_mm::NUMERIC/cust_yy,2)  as value from insight_xd_cust_count where cust_yy !=0 ";
+		String sql="select vday_ym as month,round(cust_mm::NUMERIC/cust_yy,4)*100  as value from insight_xd_cust_count where cust_yy !=0 ";
 		if(StringUtils.isNotBlank(bigjys)){
 			sql+=" and jysc in "+ bigjys;
 		}
@@ -33,7 +33,7 @@ public class ConRatioModel extends Model<ConRatioModel>{
 		return dao.find(sql);
 	}
 	public List<ConRatioModel> getConRatioByTime(String bigjys,String jyscode){
-		String sql="select vday_ym as month,round(fvalue::NUMERIC/fvalue1,2)  as value from insight_xd_loan_sjjzd where fvalue1 !=0 ";
+		String sql="select vday_ym as month,round(fvalue::NUMERIC/fvalue1,4)*100  as value from insight_xd_loan_sjjzd where fvalue1 !=0 ";
 		if(StringUtils.isNotBlank(bigjys)){
 			sql+=" and jysc in "+ bigjys;
 		}
@@ -45,7 +45,7 @@ public class ConRatioModel extends Model<ConRatioModel>{
 		return dao.find(sql);
 	}
 	public List<ConRatioModel> getConRatioByAge(String bigjys,String jyscode){
-		String sql=" SELECT jyscmc,agestage,round(SUM(custnum)::NUMERIC/(SELECT SUM(custnum) FROM insight_xd_cust_tongji WHERE jyscmc=t1.jyscmc),2) AS nums "
+		String sql=" SELECT jyscmc,agestage,round(SUM(custnum)::NUMERIC/(SELECT SUM(custnum) FROM insight_xd_cust_tongji WHERE jyscmc=t1.jyscmc),4)*100 AS nums "
 				+ "FROM insight_xd_cust_tongji t1 where 1=1 ";
 				
 		if(StringUtils.isNotBlank(bigjys)){
@@ -59,7 +59,7 @@ public class ConRatioModel extends Model<ConRatioModel>{
 		return dao.find(sql);
 	}
 	public List<ConRatioModel> getConRatioByRegion(String bigjys,String jyscode){
-		String sql=" SELECT jyscmc,provice,round(SUM(custnum)::NUMERIC/(SELECT SUM(custnum) FROM insight_xd_cust_tongji WHERE jyscmc=t1.jyscmc),2) AS nums "
+		String sql=" SELECT jyscmc,provice,round(SUM(custnum)::NUMERIC/(SELECT SUM(custnum) FROM insight_xd_cust_tongji WHERE jyscmc=t1.jyscmc),4)*100 AS nums "
 				+ "FROM insight_xd_cust_tongji t1 where 1=1 ";
 				
 		if(StringUtils.isNotBlank(bigjys)){
@@ -73,7 +73,7 @@ public class ConRatioModel extends Model<ConRatioModel>{
 		return dao.find(sql);
 	}
 	public List<ConRatioModel> getConRatioByIndustry(String bigjys,String jyscode){
-		String sql="SELECT jyscmc,waykind,round(SUM(custnum)::NUMERIC/(SELECT SUM(custnum) FROM insight_xd_cust_tongji WHERE jyscmc=t1.jyscmc),2) AS nums "
+		String sql="SELECT jyscmc,waykind,round(SUM(custnum)::NUMERIC/(SELECT SUM(custnum) FROM insight_xd_cust_tongji WHERE jyscmc=t1.jyscmc),4)*100 AS nums "
 				+ "FROM insight_xd_cust_tongji t1 where 1=1 ";
 				
 		if(StringUtils.isNotBlank(bigjys)){

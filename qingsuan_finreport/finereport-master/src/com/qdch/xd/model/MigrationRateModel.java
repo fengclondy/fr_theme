@@ -20,7 +20,7 @@ public class MigrationRateModel extends Model<MigrationRateModel>{
 	public static final MigrationRateModel dao = new MigrationRateModel();
 	
 	public List<MigrationRateModel> getMigrationRate(String bisjys,String jyscode,String type){
-		String sql="select ym as name,"+type+" as value from insight_xd_mobiratio where 1=1 "; 
+		String sql="select ym as name,"+type+"*100 as value from insight_xd_mobiratio where 1=1 "; 
 		if(StringUtils.isNotBlank(bisjys)){
 			sql+=" and jysc in "+bisjys;
 		}

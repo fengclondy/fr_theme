@@ -164,10 +164,8 @@ public class BusinessOverviewController extends BaseController {
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void getCompetitiveRrend(){
-		String jys=getPara("jys");//获取第一个条件参数：交易市场
-		
-		String condition = getPara("condition");//获取第二个条件参数：竞争力指标
-		
+		String jys=getPara("jys");//获取第一个条件参数：交易市场		
+		String condition = getPara("condition");//获取第二个条件参数：竞争力指标		
 		List<CompetitiveRrendModel> competitiverrendmodel=CompetitiveRrendModel.dao.getCompetitiveRrend(getDataScopeByUserName(),jys,condition);
 		if(StringUtils.isNotBlank(getPara("jsonp"))){
 			//跨域处理

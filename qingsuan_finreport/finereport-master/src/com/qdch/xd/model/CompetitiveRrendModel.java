@@ -32,7 +32,7 @@ public class CompetitiveRrendModel extends Model<CompetitiveRrendModel>{
 		sql+=" group by jyscmc order by jyscmc";
 		List<CompetitiveRrendModel> lines=dao.find(sql);
 		for(CompetitiveRrendModel model:lines){
-			String innerSql="select vday_ym,jysc,jyscmc,"+type+" from insight_xd_scability where 1=1 and jyscmc='"+model.get("condition")+"' ";
+			String innerSql="select vday_ym,jysc,jyscmc,"+type+" as zhibiao from insight_xd_scability where 1=1 and jyscmc='"+model.get("condition")+"' ";
 			innerSql+="group by vday_ym,jysc,jyscmc,"+type
 					+ " order by vday_ym,jysc,jyscmc,"+type;
 			List<CompetitiveRrendModel> list=dao.find(innerSql);
