@@ -21,8 +21,12 @@ public class ManagementRiskController extends BaseController {
 	 */
 	public void index() {
 		//获取该用户下的所有交易所
-		setAttr("jyslist", JyscModel.dao.getJysc(getDataScopeByUserName()));
-		 render("xd/pages/03_02guanlifengxian.html");
+		setAttr("jys", JyscModel.dao.getJysc(getDataScopeByUserName()));
+		String jys=getPara("jys");
+		//获取该交易所的管理风险警示列表
+		List<RiskShowModel> showModel = RiskShowModel.dao.gainShow(getDataScopeByUserName(),jys);
+		setAttr("show", showModel);
+		render("xd/pages/03_02guanlifengxian.html");
 	}
 	
 	/**
@@ -50,17 +54,12 @@ public class ManagementRiskController extends BaseController {
 		 List<ProportionModel> eduction = ProportionModel.dao.getEducationProportion(getDataScopeByUserName(),jys);
 		 mRenderJson(eduction);
 	}
-	/**
-	 * 
-	 * @author lixiaoyi
-	 * @date 2018年4月4日
-	 * @TODO 风险预警列表展示
-	 */
+	
 	public void gainShow(){
 		String jys=getPara("jys");
-		List<RiskShowModel> showModel = RiskShowModel.dao.gainShow(jys);
-		System.out.println(showModel);
-		setAttr("show", showModel);
- 		mRenderJson(showModel);
-	}  
+		//获取该交易所的管理风险警示列表
+		List<RiskShowModel> showModel = RiskShowModel.dao.gainShow(getDataScopeByUserName(),jys);
+		setAttr("show1", showModel);
+		mRenderJson(showModel);
+	}
 }

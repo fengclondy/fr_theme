@@ -30,7 +30,7 @@ public class ProportionModel extends Model<ProportionModel>{
 	   	
 		
 		if(StringUtils.isNotBlank(jys)){
-			sql+="and t1.jyscmc="+ jys+"";
+			sql+="and t1.jyscmc='"+ jys+"'  ";
 			
 		}
 		sql+="GROUP BY t1.vday,t1.jysc,t1.jyscmc,t1.cynx";
@@ -48,7 +48,7 @@ public class ProportionModel extends Model<ProportionModel>{
 	   String sql="SELECT t1.jysc,t1.jyscmc,t1.xuel,SUM(ygnum) AS fvalue "
 	   		+ "FROM insight_xd_jysc_info t1 WHERE t1.vday=(SELECT MAX(vday) FROM insight_xd_jysc_info )";		
 	   	if(StringUtils.isNotBlank(jys)){
-			sql+=" and t1.jyscmc="+ jys+"";
+			sql+=" and t1.jyscmc='"+ jys+"' ";
 		}
 		sql+="GROUP BY t1.vday,t1.jysc,t1.jyscmc,t1.xuel";
 		return dao.find(sql);
