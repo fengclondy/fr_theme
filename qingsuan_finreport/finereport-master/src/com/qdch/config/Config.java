@@ -1,6 +1,8 @@
 package com.qdch.config;
 
+import com.fr.web.core.process.reportprocess.AlertControl;
 import com.jfinal.render.ViewType;
+import com.qdch.xd.controller.*;
 import com.qdch.xd.model.*;
 import org.beetl.core.GroupTemplate;
 import org.beetl.ext.jfinal3.JFinal3BeetlRenderFactory;
@@ -21,22 +23,6 @@ import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.template.Engine;
 import com.qdch.model.DemoModel;
 import com.qdch.util.TemplteLayoutTag;
-import com.qdch.xd.controller.AssetRiskController;
-import com.qdch.xd.controller.BusinessOverviewController;
-import com.qdch.xd.controller.ComplianceRiskController;
-import com.qdch.xd.controller.CreditRiskController;
-import com.qdch.xd.controller.DevelopmentCapacityController;
-import com.qdch.xd.controller.EventAuditController;
-import com.qdch.xd.controller.EventDecisionController;
-import com.qdch.xd.controller.EventProcessingController;
-import com.qdch.xd.controller.EventViewController;
-import com.qdch.xd.controller.ManagementRiskController;
-import com.qdch.xd.controller.MonthlyReportController;
-import com.qdch.xd.controller.OperationalCapabilityController;
-import com.qdch.xd.controller.ProfitabilityController;
-import com.qdch.xd.controller.ReputationRiskController;
-import com.qdch.xd.controller.RiskOverviewController;
-import com.qdch.xd.controller.XiaoDaiController;
 
 import com.qdch.xd.model.ComparisonOfCompeModel;
 import com.qdch.xd.model.CompetitiveRrendModel;
@@ -97,6 +83,8 @@ public class Config extends JFinalConfig {
 		me.add("qdch/businessOverview", BusinessOverviewController.class,"/");//小贷-业务总览
 		
 		/***小贷zuoqb Controller END***/
+
+		me.add("qdch/alert", AlertController.class,"/");	//监管月报
 	}
 
 	public void configEngine(Engine me) {

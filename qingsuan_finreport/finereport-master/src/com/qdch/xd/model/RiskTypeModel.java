@@ -22,9 +22,14 @@ public class RiskTypeModel extends Model<RiskTypeModel>{
 	 * @return
 	 */
 	public List<RiskTypeModel> getByType(String type){
-	    String sql = "SELECT * FROM hub_fxlb WHERE jysfl=' "+type+"'";
+	    String sql = "SELECT * FROM hub_fxlb WHERE jysfl='"+type+"'";
         return dao.find(sql);
     }
+
+    public List<RiskTypeModel> getTypeKind(String type){
+		String sql = "select fxlb from hub_fxlb where jysfl='"+type+"' GROUP BY fxlb";
+		return dao.find(sql);
+	}
 
 
 
