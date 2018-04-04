@@ -30,11 +30,12 @@ public class KeyIndicatorsModel extends Model<KeyIndicatorsModel>{
 		return dao.find(sql);
 	}
 	public List<KeyIndicatorsModel> getByAmount(String bigjys){
-		String sql="select t.jyscmc as name,round(sum(t.fvalue)/10000,2) as value from insight_xd_fkamount t where 1=1 ";
+		String sql="select t.jysc,t.jyscmc as name,round(sum(t.fvalue)/10000,2) as value from insight_xd_fkamount t where 1=1 ";
+		String sql2="select jysc,jyscmc as name,round(SUM(fvalue),0) as value from insight_xd_fkamount WHERE vday>=to_char(now()-INTERVAL '31 day','yyyymmdd') and ";
 		if(StringUtils.isNotBlank(bigjys)){
 			sql+="and jysc in "+bigjys;
 		} 
-		sql+=" group by t.jyscmc order by t.jyscmc";
+		sql+=" GROUP BY jysc,jyscmc order by jysc,jyscmc";
 		return dao.find(sql);
 	}
 	public List<KeyIndicatorsModel> getByDayAmount(String bigjys){

@@ -176,7 +176,7 @@
         <!-- 风险指数排名 -->
         <div class="top-l">
             <div class="chartBox ec005">
-                <div class="chartTitle">
+                <div class="chartTitle" id="fxzh">
                     <h3>风险指数排名</h3>
                 </div>
                 <div class="chartContent">
@@ -282,7 +282,7 @@
                             <div class="uphezi fr">
                                 <div class="heziContent">
                                     <div class="hezitextContent">
-                                        <a href="alert.html"><span id="xinyongfengxian" class="zhi">1210</span></a><span>个</span>
+                                        <a href="05_02fengxianshijianchakanmingxi.html"><span id="xinyongfengxian" class="zhi">1210</span></a><span>个</span>
                                     </div>
                                     <div class="hezipic">
                                         <img src="${contextPath}/static/img/01_01fengxianzonglan/xinyong.png" alt="">
@@ -347,48 +347,16 @@
 <script src="${contextPath}/static/js/index.js"></script> 
 <script src="${contextPath}/static/js/chartsCom.js"></script>
 
-
-
 <script>
     var allCharts = [];
+    var ec005 = echarts.init($("#ec005_currentFengxianzhishu")[0]);
+    var ec006 = echarts.init($("#ec006_marketFengxianqushi")[0]);
     $(function () {
-        var ec005 = echarts.init($("#ec005_currentFengxianzhishu")[0]);
+    	// 风险趋势  模块一
         ec005.setOption(opt_bar_horizon);
-        ec005.setOption({
-            tooltip:{
-                position: function (pos, params, dom, rect, size) {
-                    // 鼠标在左侧时 tooltip 显示到右侧，鼠标在右侧时 tooltip 显示到左侧。
-                    var obj = {top: 60};
-                    obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
-                    return obj;
-                },
-                formatter: '{b0}: {c0}<br/>信用风险:1<br>管理风险:2<br>资产风险:3<br>合规风险:4<br>声誉风险:5'
-
-            },
-            grid:{
-                left:"22%",
-                right:"16%",
-                top:"15%"
-            },
-            //X轴
-            xAxis: {
-                name:'指数',
-                data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
-            },
-            // Y轴
-            yAxis: {
-                name:'平台',
-                data: ['互帮贷', '大家投', '中金所', '好易贷', '鲁金宝']
-            },
-            series: [{
-                data: [1, 3, 5, 7, 10],
-                type: 'bar',
-                barWidth:barWidth
-            }]
-        });
-
+       
         // 风险趋势  模块二
-        var ec006 = echarts.init($("#ec006_marketFengxianqushi")[0]);
+        ec006 = echarts.init($("#ec006_marketFengxianqushi")[0]);
         ec006.setOption(opt_line);
         ec006.setOption({
             grid:{
@@ -544,7 +512,138 @@
 
         })
     });
-
+    
+    
+    
+    //lianjiming
+     initData();
+    function initData(){
+    	getRanking();
+    }
+    /**  
+     * 描述：js实现的map方法 
+     * @returns {Map} 
+     */  
+    function Map(){  
+     var struct = function(key, value) {  
+      this.key = key;  
+      this.value = value;  
+     };  
+    // 添加map键值对  
+     var put = function(key, value){  
+       for (var i = 0; i < this.arr.length; i++) {  
+       if ( this.arr[i].key === key ) {  
+        this.arr[i].value = value;  
+        return;  
+       }  
+      };  
+      this.arr[this.arr.length] = new struct(key, value);  
+     };  
+    //  根据key获取value   
+     var get = function(key) {  
+      for (var i = 0; i < this.arr.length; i++) {  
+       if ( this.arr[i].key === key ) {  
+        return this.arr[i].value;  
+       }  
+      }  
+     return null;  
+     };  
+    //   根据key删除  
+     var remove = function(key) {  
+      var v;  
+      for (var i = 0; i < this.arr.length; i++) {  
+       v = this.arr.pop();  
+       if ( v.key === key ) {  
+        continue;  
+       }  
+       this.arr.unshift(v);  
+      }  
+     };  
+    //   获取map键值对个数  
+     var size = function() {  
+      return this.arr.length;  
+     };  
+    // 判断map是否为空    
+     var isEmpty = function() {  
+      return this.arr.length <= 0;  
+     };  
+     this.arr = new Array();  
+     this.get = get;  
+     this.put = put;  
+     this.remove = remove;  
+     this.size = size;  
+     this.isEmpty = isEmpty;  
+    }  
+     //根据	风险指数	 查询指数排名
+     function getRanking(){
+    	 $.post("${contextPath}/qdch/riskOverview/getRiskRanking",function(data){
+    		var yAxisData=[];
+      		var seriesData=[];
+ 			var map=new Map();
+      		$.each(data,function(index,item){
+      			var name="";
+      			var page=parseInt(item.jyscmc.length/6);
+      			var formatterStr=item.fxlb+':'+item.nums +"</br>";
+      			if(item.jyscmc.length%6>0){
+      				page++;
+      			}
+      			for(var x=1;x<parseInt(page)+1;x++){
+      				name+=item.jyscmc.substr((x-1)*6,6)+"\n";
+      			}
+      			if(map.get(name)==null){
+      				map.put(name,[formatterStr]);
+      			}else{
+      				var pre=map.get(name);
+      				if(pre.indexOf(formatterStr)==-1){
+      					pre.push(formatterStr);
+          				map.put(name,pre);
+      				}
+      				
+      			}
+      			
+      			if(yAxisData.indexOf(name)==-1){
+      				yAxisData.push(name);
+      				seriesData.push(item.fvalue);
+      			}
+      		});
+      		ec005.setOption({
+      			tooltip:{
+                    position: function (pos, params, dom, rect, size) {
+                        // 鼠标在左侧时 tooltip 显示到右侧，鼠标在右侧时 tooltip 显示到左侧。
+                        var obj = {top: 60};
+                        obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
+                        return obj;
+                    },
+                    
+                     formatter: function (params,ticket,callback) {
+			            var res = params[0].name;
+			            var tip=map.get(res);
+			            tip=params[0].name+ ' : ' + params[0].value+'</br>' +tip.join("");
+			            return tip;
+			        }
+                },
+                grid: {
+                    left: "26%",
+                    right: "16%",
+                    top: "15%"
+                },
+                xAxis: {
+                    type: 'value',
+                    name: '指数'
+                },
+                yAxis: {
+                    name: '平台',
+                   data: yAxisData,
+                },
+                series: [{
+                    data: seriesData,
+                    type: 'bar',
+                    barWidth: "60%"
+                }]
+       	 	});    	
+     	 });
+     }   	
 </script>
+
 </body>
 </html>
