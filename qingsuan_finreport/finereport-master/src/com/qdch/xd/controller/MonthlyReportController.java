@@ -38,7 +38,7 @@ public class MonthlyReportController extends BaseController {
 		String jys=getPara("jys");//获取第一个条件参数：交易市场		
 		String reportType = getPara("reportType");//获取第二个条件参数：报告类型
 		String date = getPara("date");//获取第二个条件参数：报告类型
-		jys="HYED";reportType="月报";date="2018-01-25";
+		
 		List<MonthlyReportModel> monthlyreportmodel=MonthlyReportModel.dao.getMonthlyReport(getDataScopeByUserName(),jys,reportType,date);
 		if(StringUtils.isNotBlank(getPara("jsonp"))){
 			//跨域处理
