@@ -116,46 +116,41 @@
             <table>
                 <thead>
                 <tr>
-                    <th>交易市场</th>
-                    <th>中心资金账户</th>
-                    <th>中心客户编码</th>
-                    <th>市场客户号</th>
-                    <th>市场资金账户</th>
-                    <th>姓名</th>
-                    <th>客户全称</th>
-                    <th>币种</th>
-                    <th>机构组织</th>
-                    <th>证件类别</th>
-                    <th>证件编号</th>
+                    <th>风险事件ID</th>
+                    <th>报警时间</th>
+                    <th>风险类别</th>
+                    <th>风险指标</th>
+                    <th>风险指标值</th>
+                    <th>阙值</th>
+                    <th>超出额</th>
+                    <th>市场代码</th>
+                    <th>市场名称</th>
+                    <th>客户号</th>
+                    <th>客户名称</th>
+                    <th>业务菜单编码</th>
+                    <th>业务菜单名称</th>
+                    <th>业务类型</th>
+                    <th>业务编码</th>
+                    <th>处理人</th>
+                    <th>处理状态</th>
+                    <th>处理时间</th>
 
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td>山东地红</td>
-                    <td>00114378353573</td>
-                    <td>43576867564583</td>
-                    <td>7867543234567</td>
-                    <td>45677674356</td>
-                    <td>王建国</td>
-                    <td>王建国</td>
-                    <td>RMB</td>
-                    <td>个人</td>
-                    <td>身份证</td>
-                    <td>34556755432134</td>
-                </tr>
+                <tbody id="riskEvent">
+
                 </tbody>
             </table>
         </div>
     </div>
     <div id="box2">
         <div id="tit">
-            <span class="select">个人客户</span>
-            <span>对公客户</span>
-            <span>基本合同信息</span>
-            <span>担保合同</span>
-            <span>明细查询</span>
-            <span>额度查询</span>
+            <span class="select" id="span1">个人客户</span>
+            <span id="span2">对公客户</span>
+            <span id="span3">基本合同信息</span>
+            <span id="span4">担保合同</span>
+            <span id="span5">明细查询</span>
+            <span id="span6">额度查询</span>
         </div>
         <ul id="con">
             <!-- 客户信息 start -->
@@ -236,7 +231,7 @@
                     <table>
                         <thead>
                         <tr>
-                            <th>合同管理-担保合同</th>
+                            <!--<th>合同管理-担保合同</th>-->
                             <th>担保合同编号</th>
                             <th>担保合同格式</th>
                             <th>业务编号</th>
@@ -254,25 +249,8 @@
                             <th>生效标志</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>3</td>
-                            <td>4</td>
-                            <td>5</td>
-                            <td>6</td>
-                            <td>7</td>
-                            <td>8</td>
-                            <td>9</td>
-                            <td>10</td>
-                            <td>11</td>
-                            <td>12</td>
-                            <td>13</td>
-                            <td>14</td>
-                            <td>15</td>
-                            <td>16</td>
-                        </tr>
+                        <tbody id="guarantee">
+
                         </tbody>
                     </table>
                 </div>
@@ -315,7 +293,7 @@
 
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="limit">
                         <tr>
                             <td>1</td>
                             <td>2</td>
@@ -352,7 +330,7 @@
 <!--<script src="../js/pageCom.js"></script>-->
 <script src="${contextPath}/static/js/chartsCom.js"></script>
 <script type="text/javascript">
-
+    var fxsj_id = '${fxsj_id}';
     $("#tit span").click(function () {
         var i= $("#tit span").index(this);
         $(this).addClass('select').siblings().removeClass('select');
@@ -364,6 +342,70 @@
         $table.find("th:eq(0),tr>td:nth-of-type(1)").css("left",-offsetLeft)
         console.log()
     });
+
+    $(function () {
+
+
+        getContent();
+    })
+
+    /**
+     * 风险事件本身
+     */
+    function getContent() {
+        $.ajax({
+            type: "POST",
+            url: "getContent",
+            data: {'fxsj_id':fxsj_id},
+            dataType: "json",
+            success: function (data) {
+                console.log(data)
+                var value = data.riskevent;
+                var append = "",guaranteehtml="",limithtml="";
+                append +=
+                    "  <tr>            <td><a href=\"\" class=\"fengxian001\">"+value.fxsj_id+"</a></td>\n" +
+                    "                <td>"+value.bjsj+"</td>\n" +
+                    "                <td>"+value.fxlb+"</td>\n" +
+                    "               <td>"+value.fxzb+"</td>\n" +
+                    "               <td>"+value.fxzbz+"</td>\n" +
+                    "               <td>"+value.yuzhi+"</td>\n" +
+                    "               <td>"+value.cce+"</td>\n" +
+                    "               <td>"+value.jgdm+"</td>\n" +
+                    "               <td>"+value.jgmc+"</td>\n" +
+                    "               <td>"+value.cust_id+"</td>\n" +
+                    "               <td>"+value.khmc+"</td>\n" +
+                    "               <td>"+value.ywcdbm+"</td>\n" +
+                    "               <td>"+value.ywcdmc+"</td>\n" +
+                    "               <td>"+value.ywlx+"</td>\n" +
+                    "               <td>"+value.ywbm+"</td>\n" +
+                    "               <td>"+value.shr+"</td>\n" +
+                    "               <td>"+value.clzt+"</td>\n" +
+                    "               <td>"+value.update_time+"</td>\n" ;
+                $('#riskEvent').html(append);
+                $.each(data.guarantee.list, function(index, guaranteevalue, array) {
+                    guaranteehtml +=
+                        "  <tr>            <td><a href=\"\" class=\"fengxian001\">"+guaranteevalue.assucontno+"</a></td>\n" +
+                        "                <td>"+guaranteevalue.assucontkind+"</td>\n" +
+                        "                <td>"+guaranteevalue.loanid+"</td>\n" +
+                        "               <td>"+guaranteevalue.contno+"</td>\n" +
+                        "               <td>"+guaranteevalue.maxassuflag+"</td>\n" +
+                        "               <td>"+guaranteevalue.assucustid+"</td>\n" +
+                        "               <td>"+guaranteevalue.assucustname+"</td>\n" +
+                        "               <td>"+guaranteevalue.regikind+"</td>\n" +
+                        "               <td>"+guaranteevalue.assuamt+"</td>\n" +
+                        "               <td>"+guaranteevalue.assurate+"</td>\n" +
+                        "               <td>"+guaranteevalue.begindate+"</td>\n" +
+                        "               <td>"+guaranteevalue.enddate+"</td>\n" +
+                        "               <td>"+guaranteevalue.contdate+"</td>\n" +
+                        "               <td>"+guaranteevalue.bankidcont+"</td>\n" +
+                        "               <td>"+guaranteevalue.validkind+"</td></tr>" ;
+                });
+                $('#guarantee').html(guaranteehtml);
+
+                // console.log(data)
+            }
+        });
+    }
 
 
 </script>

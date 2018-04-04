@@ -65,9 +65,9 @@
                             <div class="mySelect" id="jiaoyishichang">
                                 <div class="myOption selected"><span class="text"></span><span class="icon"></span> </div>
                                 <ul class="myOptionBox">
-                                	 <li data="" class="myOption selected">全部</li>
+                                	 <li data="" class="myOption selected" onclick="selectItem(this)">全部</li>
                                      ##for(j in jyslist!){
-                                    <li id="${j.jysc!}"  class="myOption">${j.jyscmc!}</li>
+                                    <li id="${j.jysc!}" data="${j.jysc!}" class="myOption" onclick="selectItem(this)">${j.jyscmc!}</li>
                                      ##}
                                 </ul>
                             </div>
@@ -77,10 +77,10 @@
                             <div class="mySelect" id="jingzhenglizhibiao">
                                 <div class="myOption selected"><span class="text"></span><span class="icon"></span> </div>
                                 <ul class="myOptionBox">
-                                	<li class="myOption selected">竞争力</li>
-                                    <li class="myOption">经营能力</li>
-                                    <li class="myOption">盈利能力</li>
-                                    <li class="myOption">发展能力</li>
+                                	<li class="myOption selected trend" data="jzl">竞争力</li>
+                                    <li class="myOption trend" data="jynl">经营能力</li>
+                                    <li class="myOption trend" data="ylnl">盈利能力</li>
+                                    <li class="myOption trend" data="fznl">发展能力</li>
                                 </ul>
                             </div>
                         </div>
@@ -123,98 +123,22 @@
     var ec001 = echarts.init($("#ec001_currentCompetitiveness")[0]);
     var ec004 = echarts.init($("#ec004_KeyIndexRanking")[0]);
     var ec002 = echarts.init($("#ec002_competitivenessIndicators")[0]);
+		var ec003 = echarts.init($("#ec003_marketCompetitivenessTrend")[0]);
     $(function () {
         
         ec001.setOption(opt_bar_horizon);
-        ec001.setOption({
-            grid: {
-                left: "22%",
-                right: "16%",
-                top: "18%"
-            },
-            xAxis: {
-                type: 'value',
-                name: '竞争力'
-            },
-            yAxis: {
-                name: '平台',
-                data: ['小贷D', '小贷C', '小贷B', '小贷A', '海尔小额贷款']
-            },
-            series: [{
-                data: [1, 3, 5, 7.2, 10],
-                type: 'bar',
-                barWidth: "20%"
-            }]
-        });
+       
         // console.log(ec001.getOption())
 
         
        
         ec002.setOption(opt_bar_vertical);
    
-        ec002.setOption({
-            legend: {
-                show: true
-            },
-            grid: {
-                left: "10%",
-                right: "10%",
-                top: "14%"
-            },
-            xAxis:
-                {
-                    name: '市场',
-                    type: 'category',
-                    data: ['小贷D', '小贷C', '小贷B', '小贷A', '海尔小额贷款']
-                },
-            yAxis: {
-                name: '竞争力',
-                type: 'value'
-            },
-            series: [
-                {
-                    name: '经营能力',
-                    type: 'bar',
-                    data: [1,2,6,3,4]
-                },
-                {
-                    name: '盈利能力',
-                    type: 'bar',
-                    data: [1,2,3,4,5]
-                },
-                {
-                    name: '发展能力',
-                    type: 'bar',
-                    barCategoryGap: '36%',
-                    data: [2,4,7,3,6]
-                }
-            ]
-        });
+        
 
 
-        var ec003 = echarts.init($("#ec003_marketCompetitivenessTrend")[0]);
         ec003.setOption(opt_line);
-        ec003.setOption({
-            grid: {
-                left: "12%",
-                right: "12%",
-                top: "15%"
-            },
-            xAxis: {
-                name: '月份',
-                data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
-            },
-            yAxis: {
-                name: '竞争力',
-            },
-            series: [{
-                data: [2, 5, 7.2, 4, 10, 7.2, 10, 5, 5, 7.2, 10, 5, 6],
-                type: 'line',
-                symbol:'circle',
-                areaStyle: lineAreaStyle(0)
-            }]
-        });
-
+        
        
         ec004.setOption(opt_bar_horizon);
        /*  ec004.setOption({
@@ -264,6 +188,7 @@
     	getKeyIndByYamount();
     	getCurrentComRanking();
     	getComparisonOfCompe();
+			selected('','jzl');
     }
     //根据贷款余额查询关键指数排名
     function getKeyIndByYamount(){
@@ -608,9 +533,58 @@
                }); 
        	});
       } 
-  
-      
-
+			//市场竞争力趋势
+			var trend = 'jzl'
+			var items = ''
+			$('.trend').click(function() {
+					trend = $(this).attr('data')
+					selected(items,trend)
+				})
+      function selectItem(item){
+				items = $(item).attr('data')
+				selected(items,trend)
+			}
+			var competitive = []
+			var month = []
+			function selected(item,trend){
+				console.log(item)
+				console.log(trend)
+				month=[]
+				$.post("${contextPath}/qdch/businessOverview/getCompetitiveRrend",{jys:item,condition:trend},
+					function(res){
+						competitive = []
+						$.each(res[0].data,function(index,item){
+							competitive.push(item.zhibiao)
+							month.push(item.vday_ym)
+						})
+						console.log(competitive)
+						ec003.setOption(opt_line);
+						ec003.setOption({
+								grid: {
+										left: "12%",
+										right: "12%",
+										top: "15%"
+								},
+								xAxis: {
+										name: '月份',
+										data: month,
+								},
+								yAxis: {
+										name: '竞争力',
+								},
+								series: [{
+										data: competitive,
+										type: 'line',
+										symbol:'circle',
+										areaStyle: lineAreaStyle(0)
+								}]
+						});
+					}
+				)
+				
+					
+			}
+			
 </script>
 </body>
 </html>

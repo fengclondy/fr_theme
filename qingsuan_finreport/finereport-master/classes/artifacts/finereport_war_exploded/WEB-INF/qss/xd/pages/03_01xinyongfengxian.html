@@ -55,7 +55,7 @@
                         <div class="mySelect" id="jingzhenglizhibiao">
                             <div class="myOption selected"><span class="text"></span><span class="icon"></span></div>
                             <ul class="myOptionBox" id="jysselect">
-                               <li data="" class="myOption selected">全部</li>
+                               <!-- <li data="" class="myOption selected">全部</li> -->
                                ##for(j in jyslist!){
                                 <li id="${j.jysc!}" onclick=changeJysData(this) class="myOption">${j.jyscmc!}</li>
                                ##}
@@ -334,6 +334,7 @@
 		initData();
 	 }
 	function initData(){
+		
 		getRanking();
 		getDefrate("dbfs")
         getMigrationRrate("m1");
@@ -368,7 +369,7 @@
                     },
                     xAxis: {
                         type: 'value',
-                        name: '指数'
+                        name: '次数'
                     },
                     yAxis: {
                         name: '市场',
@@ -377,7 +378,7 @@
                     series: [{
                         data: seriesData,
                         type: 'bar',
-                        barWidth: "60%"
+                        barWidth: "20%"
                     }]
                 }); 
         	});
@@ -409,7 +410,7 @@
                       },
                       xAxis: {
                           type: 'value',
-                          name: '指数'
+                          name: '万元'
                       },
                       yAxis: {
                           name: '市场',
@@ -418,7 +419,7 @@
                       series: [{
                           data: seriesData,
                           type: 'bar',
-                          barWidth: "60%"
+                          barWidth: "20%"
                       }]
                   }); 
           	});
@@ -449,7 +450,7 @@
                       },
                       xAxis: {
                           type: 'value',
-                          name: '指数'
+                          name: '万元'
                       },
                       yAxis: {
                           name: '市场',
@@ -458,7 +459,7 @@
                       series: [{
                           data: seriesData,
                           type: 'bar',
-                          barWidth: "60%"
+                          barWidth: "20%"
                       }]
                   }); 
           	});
@@ -474,6 +475,19 @@
        	 		});
         		ec003.setOption(opt_line);
         	    ec003.setOption({
+        	    	  tooltip:{
+        	    		  /* trigger: 'item', */
+        	             formatter: function (params,ticket,callback) {
+				            console.log(params)
+				            var res =  params[0].name;
+				            for (var i = 0, l = params.length; i < l; i++) {
+				                res += '<br/>' + params[i].seriesName + ' : ' + params[i].value+"%";
+				            }
+				          
+				            return res;
+				        }
+
+        	            },
         	            grid: {
         	                top: "24%",
         	                right:'16%',
@@ -487,7 +501,7 @@
         	                data: yAxisData
         	            },
         	            yAxis: {
-        	                name: '迁徙率',
+        	                name: '迁徙率(%)',
         	            },
         	            series: [
         	                {
@@ -534,6 +548,19 @@
 	    			
        	 		});
         		 ec002.setOption({
+        			 tooltip:{
+       	    		  /* trigger: 'item', */
+       	             formatter: function (params,ticket,callback) {
+				            console.log(params)
+				            var res =  params[0].name;
+				            for (var i = 0, l = params.length; i < l; i++) {
+				                res += '<br/>' + params[i].seriesName + ' : ' + params[i].value+"%";
+				            }
+				          
+				            return res;
+				        }
+
+       	            },
         	            grid: {
         	                top: "24%",
         	                right:'16%',
@@ -547,7 +574,7 @@
         	                data: yAxisData
         	            },
         	            yAxis: {
-        	                name: '不良率',
+        	                name: '不良率(%)',
         	            },
         	            series: seriesData,
         	        }); 
@@ -567,6 +594,19 @@
           		 ec004.setOption(opt_scatter)
                  ec004.setOption(
                      {
+                    	 tooltip:{
+              	    		  /* trigger: 'item', */
+              	             formatter: function (params,ticket,callback) {
+       				            console.log(params)
+       				            var res =  params[0].name;
+       				            for (var i = 0, l = params.length; i < l; i++) {
+       				                res += '<br/>' + params[i].seriesName + ' : ' + params[i].value+"%";
+       				            }
+       				          
+       				            return res;
+       				        }
+
+              	            },
                          grid: {
                              top: "24%",
                              right:'16%',
@@ -580,7 +620,7 @@
                              data: yAxisData,
                          },
                          yAxis: {
-                             name: '集中度',
+                             name: '集中度(%)',
                          },
                          series: [
                              {
@@ -612,6 +652,7 @@
         		 ec004.setOption(opt_scatter)
                ec004.setOption(
                    {
+                	   
                        grid: {
                            top: "24%",
                            right:'16%',
@@ -625,7 +666,7 @@
                            data: yAxisData,
                        },
                        yAxis: {
-                           name: '集中度',
+                           name: '集中度(%)',
                        },
                        series: [
                            {
@@ -657,6 +698,7 @@
           		 ec004.setOption(opt_scatter)
                  ec004.setOption(
                      {
+                    	 
                          grid: {
                              top: "24%",
                              right:'16%',
@@ -670,7 +712,7 @@
                              data: yAxisData,
                          },
                          yAxis: {
-                             name: '集中度',
+                             name: '集中度(%)',
                          },
                          series: [
                              {
@@ -702,6 +744,7 @@
         		 ec004.setOption(opt_scatter)
                ec004.setOption(
                    {
+                	   
                        grid: {
                            top: "24%",
                            right:'16%',
@@ -715,7 +758,7 @@
                            data: yAxisData,
                        },
                        yAxis: {
-                           name: '集中度',
+                           name: '集中度(%)',
                        },
                        series: [
                            {
@@ -747,6 +790,7 @@
           		 ec004.setOption(opt_scatter)
                  ec004.setOption(
                      {
+                    	  
                          grid: {
                              top: "24%",
                              right:'16%',
@@ -760,7 +804,7 @@
                              data: yAxisData,
                          },
                          yAxis: {
-                             name: '集中度',
+                             name: '集中度(%)',
                          },
                          series: [
                              {
@@ -792,6 +836,19 @@
        	 		});
         		
         		  ec005.setOption({
+        			  tooltip:{
+          	    		  /* trigger: 'item', */
+          	             formatter: function (params,ticket,callback) {
+   				            console.log(params)
+   				            var res =  params[0].name;
+   				            for (var i = 0, l = params.length; i < l; i++) {
+   				                res += '<br/>' + params[i].seriesName + ' : ' + params[i].value+"%";
+   				            }
+   				          
+   				            return res;
+   				        }
+
+          	            },
         	            grid: {
         	                top: "25%",
         	                right:'16%',
@@ -805,7 +862,7 @@
         	                data:yAxisData
         	            },
         	            yAxis: {
-        	                name: '损失率',
+        	                name: '损失率(%)',
         	            },
         	            series: [{
         	                    name: '贷款收入',
