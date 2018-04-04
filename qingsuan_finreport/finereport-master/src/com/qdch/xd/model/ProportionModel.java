@@ -25,8 +25,8 @@ public class ProportionModel extends Model<ProportionModel>{
 	 * @TODO 获取风险管理年限占比
 	 */
    public List<ProportionModel> getSeniorProportion(String datasql,String jys){
-	   String sql="SELECT t1.jysc,t1.jyscmc,t1.cynx,SUM(ggnum) AS fvalue FROM insight_xd_jysc_info t1"
-	   		+ "WHERE t1.vday=(SELECT MAX(vday) FROM insight_xd_jysc_info )";
+	   String sql="SELECT t1.jysc,t1.jyscmc,t1.cynx,SUM(ggnum) AS fvalue "
+	   		+ "FROM insight_xd_jysc_info t1 WHERE t1.vday=(SELECT MAX(vday) FROM insight_xd_jysc_info )";
 	   	
 		
 		if(StringUtils.isNotBlank(jys)){

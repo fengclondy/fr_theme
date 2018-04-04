@@ -111,6 +111,7 @@ public class Config extends JFinalConfig {
 		//arp.addMapping("user", User.class);
 		arp.addMapping("hub_commerce_ref_jys", DemoModel.class);
 		arp.addMapping("hub_xd_jysc", JyscModel.class);
+		arp.addMapping("hub_fxsj", RiskShowModel.class);
 		//----qdchedw hub用户连接方式 end----
 		
 		

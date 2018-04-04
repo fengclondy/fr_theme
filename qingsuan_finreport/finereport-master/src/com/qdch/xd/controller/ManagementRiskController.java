@@ -5,6 +5,7 @@ import java.util.List;
 import com.qdch.core.BaseController;
 import com.qdch.xd.model.JyscModel;
 import com.qdch.xd.model.ProportionModel;
+import com.qdch.xd.model.RiskShowModel;
 /**
  * 
 * @author doushuihai  
@@ -46,9 +47,20 @@ public class ManagementRiskController extends BaseController {
 	public void gainEduction(){
 		//获取当前交易所
 		String jys=getPara("jys");
-		System.out.println(jys+"====");
-		 List<ProportionModel> eduction= ProportionModel.dao.getEducationProportion(getDataScopeByUserName(),jys);
+		 List<ProportionModel> eduction = ProportionModel.dao.getEducationProportion(getDataScopeByUserName(),jys);
 		 mRenderJson(eduction);
 	}
-  
+	/**
+	 * 
+	 * @author lixiaoyi
+	 * @date 2018年4月4日
+	 * @TODO 风险预警列表展示
+	 */
+	public void gainShow(){
+		String jys=getPara("jys");
+		List<RiskShowModel> showModel = RiskShowModel.dao.gainShow(jys);
+		System.out.println(showModel);
+		setAttr("show", showModel);
+ 		mRenderJson(showModel);
+	}  
 }
