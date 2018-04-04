@@ -164,7 +164,11 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("hub_commerce_ref_jys", ExchangeInfoModel.class);//交易所信息
 		insight_arp.addMapping("hub_fxlb", RiskTypeModel.class);//风险类别
 		insight_arp.addMapping("hub_xd_cont_assu", GuaranteeContrastModel.class);//担保合同
+
+		arp.addMapping("hub_comm_param", DictModel.class);//字典表
 //
+		arp.addMapping("hub_xd_report_cont", CustomerInfoModel.class);//合同信息-基本信息
+
 		arp.addMapping("hub_xd_cust_corp", PublicCustomModel.class);//对公客户
 
 		arp.addMapping("hub_xd_cust_pers", PersonalCustomModel.class);//个人客户
