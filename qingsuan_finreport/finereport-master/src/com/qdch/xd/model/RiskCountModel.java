@@ -1,11 +1,8 @@
 package com.qdch.xd.model;
 
-import java.util.Date;
+
 import java.util.List;
-
 import org.apache.commons.lang.StringUtils;
-
-import com.fr.hailian.util.DateUtil;
 import com.jfinal.plugin.activerecord.Model;
 /**
  * 
@@ -24,16 +21,11 @@ public class RiskCountModel extends Model<RiskCountModel>{
 	 */
 	
 	public List<RiskCountModel> getRiskRanking(String dataSql){
-		/*String sql="SELECT x.jyscmc,x.vday,x.fvalue,y.fvalue0,y.fvalue1,y.fvalue2,y.fvalue3,y.fvalue4 "
-				+ "from (select a.jyscmc,a.vday,a.fvalue from hub_xd_fxzs a,"
-				+ "(select jyscmc,max(vday)max_vday from hub_xd_fxzs group by jyscmc) t "
-				+ "where a.jyscmc=t.jyscmc and a.vday=t.max_vday) x,hub_xd_fxzsmx y where x.jyscmc = y.jyscmc and x.vday = y.vday ";
-		*/
 		String sql = "SELECT x.jyscmc,x.vday,x.fvalue,y.jysinfo,y.fxlb,y.nums "
-					+ "from (select a.jyscmc,a.vday,a.fvalue from hub_xd_fxzs a,"
-						+ "(select jyscmc,max(vday)max_vday from hub_xd_fxzs group by jyscmc) t "
-					+ "where a.jyscmc=t.jyscmc and a.vday=t.max_vday) x,hub_xd_fxzsmx y where x.jyscmc = y.jyscmc and x.vday = y.vday";
-		
+				   + "from (select a.jyscmc,a.vday,a.fvalue "
+				   		 + "from hub_xd_fxzs a,(select jyscmc,max(vday)max_vday from hub_xd_fxzs group by jyscmc) t "
+				   		 + "where a.jyscmc=t.jyscmc and a.vday=t.max_vday) x,hub_xd_fxzsmx y "
+				   + "where x.jyscmc = y.jyscmc and x.vday = y.vday order by x.fvalue asc";
 		if(StringUtils.isNotBlank(dataSql)){
 			sql+=" and jysc in"+ dataSql+" ";
 		}
