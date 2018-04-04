@@ -20,5 +20,4 @@ public class RiskOverviewController extends BaseController {
 		List<RiskCountModel> ranking=RiskCountModel.dao.getRiskRanking(getDataScopeByUserName());
 		mRenderJson(ranking);
 	}
-
 }

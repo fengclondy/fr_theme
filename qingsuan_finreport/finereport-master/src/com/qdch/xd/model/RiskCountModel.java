@@ -22,12 +22,21 @@ public class RiskCountModel extends Model<RiskCountModel>{
 	 * @time   2018年3月24日 下午4:16:09
 	 * @author zuoqb
 	 */
+	
 	public List<RiskCountModel> getRiskRanking(String dataSql){
-		String sql="select vday_ym,jysc,jyscmc,nums,vday from insight_xd_fxsj_count where 1=1 ";
+		/*String sql="SELECT x.jyscmc,x.vday,x.fvalue,y.fvalue0,y.fvalue1,y.fvalue2,y.fvalue3,y.fvalue4 "
+				+ "from (select a.jyscmc,a.vday,a.fvalue from hub_xd_fxzs a,"
+				+ "(select jyscmc,max(vday)max_vday from hub_xd_fxzs group by jyscmc) t "
+				+ "where a.jyscmc=t.jyscmc and a.vday=t.max_vday) x,hub_xd_fxzsmx y where x.jyscmc = y.jyscmc and x.vday = y.vday ";
+		*/
+		String sql = "SELECT x.jyscmc,x.vday,x.fvalue,y.jysinfo,y.fxlb,y.nums "
+					+ "from (select a.jyscmc,a.vday,a.fvalue from hub_xd_fxzs a,"
+						+ "(select jyscmc,max(vday)max_vday from hub_xd_fxzs group by jyscmc) t "
+					+ "where a.jyscmc=t.jyscmc and a.vday=t.max_vday) x,hub_xd_fxzsmx y where x.jyscmc = y.jyscmc and x.vday = y.vday";
+		
 		if(StringUtils.isNotBlank(dataSql)){
 			sql+=" and jysc in"+ dataSql+" ";
 		}
-		sql+=" and vday='"+DateUtil.format(new Date(-1), "yyyyMMdd")+"' order by nums";
 		return dao.find(sql);
 	}
 }
