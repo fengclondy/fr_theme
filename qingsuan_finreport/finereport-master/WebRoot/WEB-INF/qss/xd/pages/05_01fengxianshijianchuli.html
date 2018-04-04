@@ -73,8 +73,8 @@
             <li class="split">|</li>
             <li class="pageNumber">
                 <label for="pageCurrent" hidden></label>
-                <input id="pageCurrent" type="number" value="1">&nbsp;/
-                <span class="pageTotal">30</span>
+                <input id="pageCurrent" type="number" >&nbsp;/
+                <span class="pageTotal"></span>
             </li>
             <li class="split">|</li>
             <li class="next" id="pagenext">下一页</li>
@@ -157,7 +157,7 @@
         </form>
     </div>
     <div class="formFoldHandle"></div>
-    <p class="queryResult">此次为您查询数据<span class="number">296</span>条</p>
+    <p class="queryResult">此次为您查询数据<span class="number"></span>条</p>
     <div class="tableBox">
         <table>
             <thead>
@@ -180,35 +180,11 @@
                 <th>处理人</th>
                 <th>处理状态</th>
                 <th>处理时间</th>
-                <th>风险说明</th>
+                <!--<th>风险说明</th>-->
 
             </tr>
             </thead>
             <tbody>
-            <!--<tr>-->
-                <!--<td><a href="" class="fengxian001">449684</a></td>-->
-                <!--<td>20180124 06:01:43</td>-->
-                <!--<td>资金风险</td>-->
-                <!--<td>出入金异常</td>-->
-                <!--<td>12</td>-->
-                <!--<td>10</td>-->
-                <!--<td>20%</td>-->
-                <!--<td>0011</td>-->
-                <!--<td>山东天地红</td>-->
-                <!--<td>001100001130</td>-->
-                <!--<td>黄啸</td>-->
-                <!--<td>ZJXX</td>-->
-                <!--<td>资金信息</td>-->
-                <!--<td>市场编码</td>-->
-                <!--<td>资金信息</td>-->
-                <!--<td>man</td>-->
-                <!--<td>已提交</td>-->
-                <!--<td>20180124 16:07:39</td>-->
-                <!--<td class="more"><a href="">查看</a></td>-->
-
-            <!--</tr>-->
-
-
             </tbody>
         </table>
     </div>
@@ -228,7 +204,7 @@
 
 <script>
     var totalPage,totalNum,pageNumber;
-    var riskIndex
+    var riskIndex;
 
     $(function () {
         $(".formFoldHandle").click(function () {
@@ -247,8 +223,8 @@
             e.preventDefault();
             $(".model").hide();
         })
-        getTableBody();
-        getPullDown();
+        getTableBody(); //表格内容
+        getPullDown(); //下拉框
         //第一页
         $('#pagehome').on('click',function(){
             getTableBody()
@@ -279,7 +255,7 @@
         $('#pageCurrent').bind('keypress',function(event){
             console.log(11,event.keyCode)
             if(event.keyCode == 13){
-                getTableBody($(this).val(),30)
+                getTableBody($(this).val(),10)
                 }
             });
 
@@ -396,7 +372,10 @@
             dataType: "json",
             success: function(data){
                 var  append = "";
-                console.log(data)
+                console.log(data);
+                $(".nuber").text(data.totalRow);
+                $('#pageCurrent').val(data.pageNumber);
+                $('.pageTotal').text(data.totalPage);
                 totalPage = data.totalPage;
                 pageNumber = data.pageNumber;
                 $.each(data.list, function(index, value, array) {
@@ -418,8 +397,8 @@
                         "               <td>"+value.ywbm+"</td>\n" +
                         "               <td>"+value.shr+"</td>\n" +
                         "               <td>"+value.clzt+"</td>\n" +
-                    "               <td>"+value.update_time+"</td>\n" +
-                        "                <td class=\"more\"><a href=\"\">查看</a></td></tr>  " ;
+                    "               <td>"+value.update_time+"</td> </tr>" ;
+                        // "                <td class=\"more\"><a href=\"\">查看</a></td></tr>  " ;
                 });
                 // append +="</tr>";
                 $('tbody').html(append)

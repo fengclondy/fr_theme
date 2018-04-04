@@ -1,7 +1,5 @@
 package com.qdch.config;
 
-import com.fr.web.core.process.reportprocess.AlertControl;
-import com.jfinal.render.ViewType;
 import com.qdch.xd.controller.*;
 import com.qdch.xd.model.*;
 import org.beetl.core.GroupTemplate;
@@ -85,7 +83,7 @@ public class Config extends JFinalConfig {
 		
 		/***小贷zuoqb Controller END***/
 
-		me.add("qdch/alert", AlertController.class,"/");	//监管月报
+		me.add("qdch/eventSeeDetails", EventSeeDetailsController.class,"/");	//监管月报
 	}
 
 	public void configEngine(Engine me) {
@@ -146,6 +144,7 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("insight_xd_scability", CurrentComRankingModel.class);//业务总览的当前竞争力排名
 		insight_arp.addMapping("insight_xd_scability", ComparisonOfCompeModel.class);//业务总览的竞争力对比
 		insight_arp.addMapping("insight_xd_scability", CompetitiveRrendModel.class);//业务总览的竞争力对比
+		insight_arp.addMapping("insight_regulatory_report", MonthlyReportModel.class);//监管月报
 		/***doushuiahi Model START***/
 		
 		
@@ -165,6 +164,19 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("hub_fxsj_audit_new", RiskEventHistoryModel.class);//风险事件历史信息
 		insight_arp.addMapping("hub_commerce_ref_jys", ExchangeInfoModel.class);//交易所信息
 		insight_arp.addMapping("hub_fxlb", RiskTypeModel.class);//风险类别
+		insight_arp.addMapping("hub_xd_cont_assu", GuaranteeContrastModel.class);//担保合同
+
+		arp.addMapping("hub_comm_param", DictModel.class);//字典表
+//
+		arp.addMapping("hub_xd_report_cont", CustomerInfoModel.class);//合同信息-基本信息
+
+		arp.addMapping("hub_xd_cust_corp", PublicCustomModel.class);//对公客户
+
+		arp.addMapping("hub_xd_cust_pers", PersonalCustomModel.class);//个人客户
+
+//		insight_arp.addMapping("hub_xd_loan_ledeger", DetailsQueryModel.class);//明细查询
+
+		arp.addMapping("hub_xd_cred_indus_info", LimitQueryModel.class);//额度查询
 
 
 

@@ -149,6 +149,20 @@ public class BaseController extends Controller{
 			renderJson(result);
 		}
 	}
+
+	public void mRenderError(Object result){
+		if(StringUtils.isNotBlank(getPara("jsonp"))){
+			//跨域处理
+			getResponse().addHeader("Access-Control-Allow-Origin", "*");
+			Map json = new HashMap();
+			String callback = getPara("callback");
+			json.put("data", result);
+			String jsonp = callback + "(" + JsonKit.toJson(json) + ")";//返回的json 格式要加callback()
+			renderText(result.toString());
+		}else{
+			renderJson(result);
+		}
+	}
 	
 	
 	
