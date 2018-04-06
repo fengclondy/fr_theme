@@ -229,7 +229,37 @@ public class UserDataFromRoleService {
 		}
 		return jysIds;
 	}
-
-	
+	/**
+	 * 
+	 * @todo   获取菜单详细
+	 * @time   2018年4月5日 下午3:15:57
+	 * @author zuoqb
+	 * @return_type   String
+	 */
+	public static RoleMenuModel getMenuDetail(String menuId){
+		if(menuId==null||"".equals(menuId)){
+			return null;
+		}
+		Connection con = null;
+		RoleMenuModel m=new RoleMenuModel();
+        try {
+        	con = C3P0Utils.getInstance().getConnection();
+            String sql = "select id,name,parent,reportletpath from fr_reportletentry where id='"+menuId.trim()+"'";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+            	m.setId(rs.getString("id"));
+            	m.setName(rs.getString("name"));
+            	m.setPid(rs.getString("parent"));
+            	m.setReportletpath(rs.getString("reportletpath"));
+            }
+            rs.close();
+            con.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return m;
+	}
 	
 }

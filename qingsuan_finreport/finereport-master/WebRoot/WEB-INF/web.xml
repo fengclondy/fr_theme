@@ -272,5 +272,15 @@
 		<url-pattern>/getNewsByTitle</url-pattern>
 	</servlet-mapping>
 	
+	
+	<!-- 获取菜单详情 -->
+	<servlet>
+		<servlet-name>MenuDetailServlet</servlet-name>
+		<servlet-class>com.fr.hailian.servlet.MenuDetailServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MenuDetailServlet</servlet-name>
+		<url-pattern>/getMenuDetail</url-pattern>
+	</servlet-mapping>
 
 </web-app>
