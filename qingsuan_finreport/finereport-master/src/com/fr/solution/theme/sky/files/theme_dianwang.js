@@ -4,38 +4,27 @@
         mwidth: 230,
         cheight: 0,
         initSize: function () {
-            $("#fs-frame-reg").remove();
             $("#fs-frame-body").css({ "z-index": "20px", "top": "0","background-color":"#323a6e" });
             $("#fs-frame-header").css({ "z-index": "25px" ,"position":"relitive","float":"right"});
             $("#fs-frame-search").css({ "top": "15px", "right": "8px", "width": "200px" });
             //$(".fs-favorite-combo,.fs-admin-combo").css({ "left": "0", "top": "0" });
             $(".fs-navibar-item").css({ "height": topHeight+"px", "line-height": topHeight+"px" });
             FS.TMP.cheight = $("#fs-frame-body").height();
-            $("#fs-frame-menu").append('<div class="fs-menu-hide"></div>');
-            $("#fs-frame-content").append('<div class="fs-menu-show"></div>');
+            //$("#fs-frame-menu").append('<div class="fs-menu-hide"></div>');
+           // $("#fs-frame-content").append('<div class="fs-menu-show"></div>');
             $(".fs-menu-show").hide();
-            $(".fs-tab-menu-item.nav-btn").eq(0).hide();
-            $(".fs-menu-hide").css("top","50%").bind("click", function () {
-                $("#fs-frame-header,#fs-frame-menu,#fs-navi-admin,#fs-navi-favorite,#fs-frame-search").hide();
-                $("#fs-frame-content").width($("#fs-frame-content").width() + FS.TMP.mwidth).css("left", "0px");
-                $(".fs-tab-content").width($("#fs-frame-content").width());
-                $(".fs-menu-show").show();
-            });
-            $(".fs-menu-show").bind("click", function () {
-                $("#fs-frame-header,#fs-frame-menu,#fs-navi-admin,#fs-navi-favorite,#fs-frame-search").show();
-                $("#fs-frame-content").width($("#fs-frame-content").width() - FS.TMP.mwidth).css("left", FS.TMP.mwidth + "px");
-                $(".fs-tab-content").width($("#fs-frame-content").width());
-                $(".fs-menu-show").hide();
-            });
             //$("#fs-frame-banner,#fs-navi-message").remove();
             $("#fs-frame-body").css("top", "0px").height(FS.TMP.cheight + topHeight);
             $("#fs-frame-menu").height(FS.TMP.cheight).css({"background-color":"#323a6e"});
            // $("#fs-frame-content").height(FS.TMP.cheight + topHeight);
-           // $(".fs-tab-content").height(FS.TMP.cheight + topHeight/2);
-            //$("#fs-frame-search").remove();
+            $(".fs-tab-content").height(FS.TMP.cheight + topHeight/2);
+            $(".fs-tab-content").css({"top":"0px"});
             $("#fs-frame-content").css("top",topHeight+"px");
             $("#fs-navi-admin").css({"background-color":"#323a6e"});
             $("#fs-navi-favorite").css({"background-color":"#323a6e"});
+            $(".fs-tag-pane").remove();
+            $("#fs-frame-search").remove();
+            $("#fs-frame-reg").remove();
         }
     };
     var _initFrameNavigationBar = function(){
@@ -65,7 +54,6 @@
         $.when(ajax1,ajax2).done(function(){
             var nodes = nav.report.res.concat(nav.module.res);
             _createFrameNavigationBar(nodes);//这个是关键
-            //console.log(nodes)
         });
     };
     //生成菜单
@@ -96,37 +84,42 @@
     				}
     				//三级
     				if(it2.hasChildren||it2.hasChildren=="true"){
-    					var third='<ul id="third_ul_'+it2.id+'">';
+    					var third='<div class="threeM" style="display:none" id="third_ul_'+it2.id+'"><ul>';
     					$.each(it2.ChildNodes,function(ind3,it3){
     						//菜单明细
     						_menu_detail(it3,"third_menu_id_"+it3.id);
     						third+='<li   id="third_menu_id_'+it3.id+'" haschildren="'+it3.hasChildren+'" data="'+it3.id+'" pid="third_menu_id_'+it3.parentId+'">'+it3.text+'</li>';
     					});
-    					third+='</ul>';
+    					third+='</ul></div>';
     					thirdArr.push(third);
+    				}else{
+    					//二级不需要查询访问路径
+    					//_menu_detail(it2,"senond_menu_id_"+it2.id);
     				}
     			});
     			//拼接三级
-    			htmls=htmls+' <li class="threeM" >'+thirdArr.join('')+'</li>';
+    			//htmls=htmls+' <li class="threeM" >'+thirdArr.join('')+'</li>';
+    		}else{
+    			_menu_detail(node,"first_menu_id_"+node.id);
     		}
     		htmls+='</ul>';
     	});
     	$(".slimScrollDiv").addClass("leftNav");
     	$(".fs-frame-scroll").prepend('<div class="logo"><a href=""></a></div>');//图标logo位置
-    	$(".fs-menutree").css("width","100%").addClass("mine_menu").html(htmls);
+    	$(".fs-menutree").css("width","100%").addClass("mine_menu").append(htmls);
     	//生成上方菜单
     	
     	var topHtml='';
-    	topHtml+='<div class="">';
+    	topHtml+='<div id="mine_title">';
     	topHtml+=' <span class="myTitle" style="position: absolute;top: 1em;left: 55%;line-height: 0.5rem;font-size: 2em;">'+firstName+'</span><nav aria-label="breadcrumb" style="left: 22%;">';
     	topHtml+=' <ol class="breadcrumb"><li class="breadcrumb-item">'+firstName+'</li>';
     	topHtml+='<li class="breadcrumb-item"></li><li class="breadcrumb-item"></li><li class="breadcrumb-item"></li></ol>';
     	topHtml+='</nav>';
-    	
     	topHtml+='</div>';
     	
-        
-    	$("#fs-frame-body").append(topHtml);
+    	$("#fs-frame-header").append(topHtml);
+    	//加入三级目录
+    	$("#fs-frame-body").append(thirdArr.join(''));
     	//生成钟表
     	_create_clock();
     	Index.init();
@@ -134,12 +127,10 @@
     };
     //获取菜单详情
     var _menu_detail=function(node,ids){
-    	//console.log(ids,node)
     	if(node.hasChildren=="false"||node.hasChildren==undefined){
     		//没有子节点
     		var menuId=node.id.substr(1);
     		$.post("/WebReport/getMenuDetail",{menuId: menuId},function(data){
-    			//console.log(data,menuId)
     			var m=eval("("+data.menu+")");
     			$("#"+ids).attr("reportletpath",m.reportletpath);
     		});
@@ -162,7 +153,7 @@
                   //FR.i18n['FS-Frame-Enter_Entry_Name']=FR.i18n['FS-FRAME-SEARCH-PLACEHOLDER'];
               },
               onAfterInit: function () {
-            	  $(".fs-menutree").html('');
+            	 // $(".fs-menutree").html('');
               }
           },
         config4MenuTree: {
@@ -176,11 +167,14 @@
                         'background': 'none'
                     });
                 }
+                $node.css('display',"none");
             },
             onAfterNodeCreate: function (node, $node, $li) {
-            	$(".fs-menutree").html('');
+            	$node.addClass('data-id-'+node.id);
+            	$(".fs-menutree>ul:not(.secondM)").hide();
             },
             onAfterInit: function (element) {
+            	$(".data-id-1").trigger("click");
             	_initFrameNavigationBar();
                 FS.TMP.initSize();
                 $(window).resize(function () { setTimeout(function () { FS.TMP.initSize(); }, 800) });
@@ -246,29 +240,35 @@
     	            $("#senond_ul_"+$(this).attr("data")).show().siblings().hide();
     	           // $(".leftNav>.mine_menu").children("ul").eq($(this).index() + 1).show().siblings().hide();
     	            $breadcrumbItem.eq(1).text($(this).children().text());
+    	            if($(this).attr("haschildren")=="false"||$(this).attr("haschildren")=="undefined"){
+    	            	$("iframe").attr("src","/WebReport/ReportServer?formlet="+encodeURIComponent($(this).attr("reportletpath")));
+    	            }
     	        });
     	    
     	        //返回一级菜单
     	        $(".resBox").click(function () {
     	            $(".ful").show().siblings().hide();
+    	            $(".threeM").removeClass("activeLi").hide();
     	            $breadcrumbItem.not(":first").empty();
     	        });
     	        //撑开三级菜单的背景
     	        $(".threeM>ul").css("height", function () {
     	            var n = $(this).children().length;
-    	            return n <= 5 ? $(this).children().length * 4.75 + .2 + "rem": "24rem";
+    	            return "auto";
+    	            //return n <= 5 ? $(this).children().length * 4.75 + .2 + "rem": "24rem";
     	        });
     	        //打开三级菜单
     	        $(".secondM>li:not(.resBox,.threeM)").on('mouseenter',function () {
-    	            $(this).addClass("activeLi").nextAll(".threeM").css("top", +4.5 * $(this).index() + .2 + "rem");
-    	                //.children("ul").eq($(this).index() - 1).show().siblings().hide();
-    	            console.log($(this).attr("id"));
-    	            $("#third_ul_"+$(this).attr("data")).show().siblings().hide();
+    	            //$(this).addClass("activeLi").nextAll(".threeM").css("top", +4.5 * $(this).index() + .2 + "rem");
+    	            $(".threeM").removeClass("activeLi").hide();
+    	            $("#third_ul_"+$(this).attr("data")).addClass("activeLi").css("top", +4.5 * $(this).index() + .2 + "rem").show();
+    	            $("#third_ul_"+$(this).attr("data")).find("ul").show();
     	            $(this).siblings().removeClass("activeLi");
     	        });
     	        //隐藏三级菜单
-    	        $(".secondM").parent().mouseleave(function () {
-    	            $(this).find(".threeM>ul").hide()
+    	        $(".threeM>ul").mouseleave(function () {
+    	        	$(".threeM").removeClass("activeLi").hide();
+    	            $(this).hide()
     	        });
     	        //点击三级菜单
     	        $(".threeM>ul>li").click(function () {
@@ -276,7 +276,28 @@
     	            $breadcrumbItem.eq(2).text(textMenu2)
     	                .end().eq(3).text($(this).text());
     	            $(".myTitle").text($(this).text());
-    	            $("iframe").attr("src",$(this).attr("reportletpath"));
+    	           // console.log($(this).attr("reportletpath"));
+    	            //系统设置切换后会多出额外代码 并且iframe隐藏 在切换其他菜单需要重置
+    	            $(".fs_design_container").remove();
+    	            $("iframe").show();
+    	            $("iframe").attr("src","/WebReport/ReportServer?formlet="+encodeURIComponent($(this).attr("reportletpath")));
+    	            $(".threeM").removeClass("activeLi").hide();
+    	        });
+    	        
+    	        //点击二级
+    	        $(".secondM>li").click(function () {
+    	        	 if($(this).attr("haschildren")=="false"||$(this).attr("haschildren")=="undefined"){
+    	        		 $(".data-id-"+$(this).attr("data")).trigger("click");
+     	            	//$("iframe").attr("src","/WebReport/ReportServer?formlet="+encodeURIComponent($(this).attr("reportletpath")));
+    	        		/* setTimeout(function () {
+    	        			 $("#fs-frame-content").css("top","0").css("top","60px"); 
+    	        			 var x=$("#fs-frame-banner").html();
+    	        			 $("#fs-frame-banner").html('').html(x);
+    	        			 $("#fs-frame-menu").height(FS.TMP.cheight).css({"background-color":"#323a6e"});
+    	        			 FS.TMP.initSize();
+    	        		}, 800) ;*/
+    	        		 FS.TMP.initSize();
+     	            }
     	        });
     	        
     	        //iframe切换

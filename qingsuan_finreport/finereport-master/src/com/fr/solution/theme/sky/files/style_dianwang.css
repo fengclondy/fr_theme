@@ -158,13 +158,14 @@ canvas {
 }
 
 /*三级菜单*/
-.leftNav .threeM {
+ .threeM {
     position: absolute;
-    left: 100%;
+    left: 16.87%;
     top: 55px;
     padding-left: 0;
     width: auto;
     height: auto;
+    z-index:9999;
 }
 
 .threeM > ul {
@@ -183,10 +184,14 @@ canvas {
     display: inline-block;
     border: solid 1px var(--green);
     background: #00a694;
-    width: 5.5em;
+    width: 6.5em;
     padding-left: 1em;
     padding-right: 3em;
     margin: -.0625rem .0625rem;
+    line-height: 4.5rem;
+    font-size: 1.125rem;
+    padding-left: 5rem;
+    cursor: pointer;
 }
 
 .threeM > ul > li:hover {
