@@ -7,19 +7,18 @@
     <link rel="stylesheet" href="${contextPath}/static/asserts/css/normalize.css">
     <link rel="stylesheet" href="${contextPath}/static/css/style.css">
     <link rel="stylesheet" href="${contextPath}/static/css/pageCom.css">
-    <script type="text/javascript" src="${contextPath}/QDCH/pdf/build//pdf.js"></script>
+   <!--  <script type="text/javascript" src="${contextPath}/QDCH/pdf/build//pdf.js"></script> -->
     <style>
         .pdf-container { height: 500px;}
         .pdf { border: 1px solid #666; }
-    </style
-    <style>
         .tableBox tbody tr td:last-child span:nth-child(1) a{
             margin-right: 6rem;
-        }
+        }        
         .tableBox tbody tr td:last-child{
             color: #00abde;
         }
-    </style>
+    </style
+ 
 </head>
 <body class="whitePage" id="06_01jianguanyuebao" data-title="风险事件查看">
 <div class="container">
@@ -63,20 +62,20 @@
                 <label for="marketName">市场名称：</label>
                 <select id="marketName">
                 
-                    <option value="">全部</option> 
+                    <option value="" selected>全部</option> 
                      ##for(j in jyslist!){
-                                    <option id="${j.jysc!}" data="${j.jysc!}" class="myOption" onclick="selectItem(this)">${j.jyscmc!}</li>
+                                    <option id="${j.jysc!}" value="${j.jyscmc!}" class="myOption" >${j.jyscmc!}</li>
                                      ##}
 
                 </select>
             </div>
             <div class="inputGroup">
-                <label for="riskCategories">报告类型：</label>
-                <select id="riskCategories">
-                    <option value="">不选</option>
-                    <option value="">月报</option>
-                    <option value="">季报</option>
-                    <option value="">年报</option>   
+                <label for="reportType">报告类型：</label>
+                <select id="reportType">
+                    <option value="" selected>不选</option>
+                    <option value="月报">月报</option>
+                    <option value="季报">季报</option>
+                    <option value="年报">年报</option>   
                     
                 </select>
             </div>
@@ -85,7 +84,7 @@
                 <input id="alarmTimeEnd" type="date">
             </div>
             <div class="btnGroup search">
-                <button class="active" id="getReport">查询</button>
+                <button class="active" type="button" onClick="getYuebBao();">查询</button>
             </div>
         </form>
     </div>
@@ -104,22 +103,7 @@
             </thead>
             <tbody>
 							
-            <!-- <tr>
-								##for(j in jyslist!){
-									<td>1</td>
-									<td>月报</td>
-									<td>青岛华益金安</td>
-									<td>时鸿岩</td>
-									<td>2018-01-25</td>
-									<td>
-											<span><a href="#">预览</a></span>
-											<span><a href="#">下载</a></span>
-									</td>
-								##}
-                
-            </tr> -->
-
-            </tr>
+          
             </tbody>
         </table>
     </div>
@@ -131,32 +115,38 @@
 <script src="${contextPath}/static/js/chartsCom.js"></script>
 <script>
 
-    $(function () {
+     $(function () {
         $(".formFoldHandle").click(function () {
 					$(".formBox").toggleClass("open")
         })
         init()
-    });
+    }); 
+    
     function init(){
     	getYuebBao()
     }
-		var tableList
-		var jys=''
-		var reportType=''
-		var date=''
+		
+		
 		function getYuebBao() {
+			var tableList = "";
 			console.log(1)
+			var jys = $('#marketName option:selected').val();
+			
+		 	var reportType = $('#reportType option:selected').val();
+       		/* var date = $('#alarmTimeEnd').val().replace(/-/g,""); */
+       		var date = $('#alarmTimeEnd').val();
 			$.post('${contextPath}/qdch/monthlyrepor/getMonthlyReport',{jys,reportType,date},function(res){
-				console.log(res)
+				alert(date);
 				$.each(res,function(index,item){
 						tableList+=
-								"  <tr>            <td>"+(index+1)+"</a></td>\n" +
+								"  <tr>            <td>"+(index+1)+"</td>\n" +
 								"                <td>"+item.type+"</td>\n" +
 								"                <td>"+item.jys+"</td>\n" +
 								"               <td>"+item.upload_user+"</td>\n" +
 								"               <td>"+item.upload_time+"</td>\n" +
-								"                <td><span><a href=\"\">预览</a></span><span><a href=\"\">下载</a></span></td></tr>  " ;
-				})
+								"                <td><span><a href='/QDCH/pdf/web/viewer.html?file=test.pdf' target='_Blank'>预览</a></span><span><a href='/QDCH/pdf/web/test.pdf' download='监管报告'>下载</a></span></td></tr>  " 
+ 		
+ })
 				$('tbody').html(tableList)
 			})
 		}
