@@ -144,6 +144,7 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("insight_xd_scability", ComparisonOfCompeModel.class);//业务总览的竞争力对比
 		insight_arp.addMapping("insight_xd_scability", CompetitiveRrendModel.class);//业务总览的竞争力对比
 		insight_arp.addMapping("insight_regulatory_report", MonthlyReportModel.class);//监管月报
+		insight_arp.addMapping("insight_regulatory_report", MonthlyReportListModel.class);//监管月报
 		/***doushuiahi Model START***/
 		
 		

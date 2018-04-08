@@ -2,10 +2,13 @@ package com.qdch.xd.model;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang.StringUtils;
 
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Model;
+import com.jfinal.plugin.activerecord.Page;
 
 //@TableBind(tableName="hub_commerce_ref_jys")
 /**
@@ -38,6 +41,8 @@ public class MonthlyReportModel extends Model<MonthlyReportModel>{
 		
 		return dao.find(sql);
 	}
+
+
 	
 	
 	
