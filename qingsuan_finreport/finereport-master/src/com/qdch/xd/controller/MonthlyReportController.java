@@ -33,24 +33,15 @@ public class MonthlyReportController extends BaseController {
 	* @date 2018年4月4日上午9:50:39  
 	* @TODO
 	 */
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void getMonthlyReport(){
 		String jys=getPara("jys");//获取第一个条件参数：交易市场		
 		String reportType = getPara("reportType");//获取第二个条件参数：报告类型
 		String date = getPara("date");//获取第二个条件参数：报告类型
-		jys="HYED";reportType="月报";date="2018-01-25";
+		
 		List<MonthlyReportModel> monthlyreportmodel=MonthlyReportModel.dao.getMonthlyReport(getDataScopeByUserName(),jys,reportType,date);
-		if(StringUtils.isNotBlank(getPara("jsonp"))){
-			//跨域处理
-			getResponse().addHeader("Access-Control-Allow-Origin", "*");
-			Map json = new HashMap();
-			String callback = getPara("callback");
-			json.put("data", monthlyreportmodel);
-			String jsonp = callback + "(" + JsonKit.toJson(json) + ")";//返回的json 格式要加callback()
-			renderJson(jsonp);
-		}else{
-			renderJson(monthlyreportmodel);
-		}
+		
+		mRenderJson(monthlyreportmodel);
+		
 	}
 
 }
