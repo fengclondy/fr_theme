@@ -35,4 +35,9 @@ public class RiskEventHistoryModel extends Model<RiskEventHistoryModel>{
 
 	}
 
+	public List<RiskEventHistoryModel> getByRiskEvent(String id){
+		String sql = "select report_id,clzt,update_time from hub_fxsj_audit_new WHERE fxsj_id="+id;
+		return dao.find(sql);
+	}
+
 }
