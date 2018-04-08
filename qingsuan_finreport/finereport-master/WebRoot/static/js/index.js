@@ -23,8 +23,8 @@ $(function () {
     tabNav();
 
 
-    $("#mainNav").find(".dropdown-toggle:eq(0)").click()
-        .next("ul").children("li:eq(1)").click();
+    $("#mainNav").find(".dropdown-toggle:eq(3)").click()
+        .next("ul").children("li:eq(3)").click();
 });
 
 function windowResize() {
@@ -35,7 +35,7 @@ function windowResize() {
         }, 500)
 
     }
-    //console.log("~~~~~~~~~bodyScale" , bodyScale)
+    console.log("~~~~~~~~~bodyScale" , bodyScale)
 }
 
 /*主导航点击切换*/
@@ -44,11 +44,11 @@ function mainNav() {
     $mainNavLi1A.click(function () {
         var $ul = $(this).next("ul");
         if ($ul.is(":visible")) {
-            //console.log($(this)[0])
+            console.log($(this)[0])
             $(this).children(".icon").css("background-image","url(../img/com/i_arrow_down.png)");
             $ul.slideUp(150);
         } else {
-            //console.log($(this)[0])
+            console.log($(this)[0])
             $(this).children(".icon").css("background-image","url(../img/com/i_arrow_up.png)")
                 .parents("li").siblings().find("a .icon").css("background-image","url(../img/com/i_arrow_down.png)")
             $ul.slideDown(150).parent().siblings().children("ul").slideUp(150);
@@ -56,7 +56,6 @@ function mainNav() {
     });
     var $mainNavLi2 = $mainNavLi1A.next("ul").find("li");
     $mainNavLi2.click(function () {
-    	var pageName=$(this).attr("data");
         $mainNavLi2.removeClass("active");
         $(this).addClass("active");
         var pageTitle = $(this).text();
@@ -64,28 +63,29 @@ function mainNav() {
         // tabNavActive(pageTitle);
         var pageAlreadyExists = false;
         $("#navTabs").children("ul").children("li").each(function () {
-        	//console.log(pageId,$(this).data("id"));
-            if (pageId == $(this).data("id")) {
-            	
+            if (pageId === $(this).data("id")) {
                 pageAlreadyExists = true;
             }
         });
         if (pageAlreadyExists) {
-            $("#navTabs").children().find("li[data-id='" + pageId + "']")
+            $("#navTabs").children().find("li[data-id=" + pageId + "]")
                 .addClass("active").siblings().removeClass("active");
-            pageSwitch($(this).data("pagename"));
+            pageSwitch(pageId);
         } else {
-            addTabNavBtn(pageId, pageTitle,pageName);
-            addPageContent(pageId, pageTitle,pageName);
+            addTabNavBtn(pageId, pageTitle);
+            addPageContent(pageId, pageTitle);
         }
     });
+    function addTabBtnAndPage() {
+
+    }
     $("#mainNav").next(".mainNavFoldCtr").click(function () {
         $("#mainNav").toggleClass("folded")
     })
-
 }
 
-// 添加tab按钮
+
+//添加tab按钮
 function addTabNavBtn(pageId, pageTitle,pageName) {
     var $navTabsUl = $("#navTabs").children("ul");
     $navTabsUl.append($navTabsUl.children("li:eq(0)").clone());
@@ -95,6 +95,19 @@ function addTabNavBtn(pageId, pageTitle,pageName) {
             "data-id": pageId,
             "data-title": pageTitle,
             "data-pagename": pageName
+        })
+        .children("a").attr("title", pageTitle)
+        .children(".text").text(pageTitle);
+}
+
+function addTabNavBtnFromPage(pageId, pageTitle) {
+    var $navTabsUl = $("#navTabs").children("ul");
+    $navTabsUl.append($navTabsUl.children("li:eq(0)").clone());
+    $navTabsUl.children("li").removeClass("active")
+        .last().addClass("active")
+        .attr({
+            "data-id": pageId,
+            "data-title": pageTitle
         })
         .children("a").attr("title", pageTitle)
         .children(".text").text(pageTitle);
@@ -117,19 +130,15 @@ function addPageContent(pageId, pageTitle,pageName) {
         console.log(pageId,$(".pageContent#"+pageId+">iframe").contents().find("html")[0]);
     },400)*/
 }
-
 /*tab页面切换和关闭*/
 function tabNav() {
     var $navTabUl = $("#navTabs").find("ul");
     $navTabUl.on("click", "li>a", function () {
         $navTabUl.children("li").removeClass("active");
         $(this).parent().addClass("active").mouseleave();
-        var selectedId = $navTabUl.find("li.active").data("pagename");
+        var selectedId = $navTabUl.find("li.active").data("id");
         pageSwitch(selectedId);
         windowResize();
-        //切换左侧菜单样式
-        $("#mainNav").find("li").removeClass("active");
-        $("li[data-id='"+$(this).parent().attr("data-id")+"']").addClass("active");
     });
     $navTabUl.on("click", ".refresh", function () {
         var id = $(this).parents("li").data("id");
@@ -140,7 +149,6 @@ function tabNav() {
         });
         windowResize();
     })
-
 
     $navTabUl.on("click", "li>a>.close", function (e) {
         var selectedId = "00_01home";
@@ -156,20 +164,26 @@ function tabNav() {
             } else {
                 $(this).parents("li").addClass("active");
             }
-            selectedId = $navTabUl.find("li.active").data("pagename");
+            selectedId = $navTabUl.find("li.active").data("id");
 
             pageSwitch(selectedId);
         }
-        $("div[data-pagename='" + $(this).parents("li").data("pagename")+"']").remove();
+        $("#" + $(this).parents("li").data("id")).remove();
         // if ($navTabUl.find("li").length !== 1) {//如果只剩一个则不能关闭
         $(this).parents("li").remove();
         // }
         e.stopPropagation();//阻止冒泡
     });
+    $(".nav-tabs > ul > li.collapse>button").click(function () {
+        $(this).next().slideToggle(200)
+    });
+    $(".nav-tabs > ul > li.collapse>ul>li").click(function () {
+        $(this).parent().slideUp(100);
+    });
 }
 
 function pageSwitch(selectedId) {
-    $("div[data-pagename='" + selectedId+"']").addClass("current").siblings().removeClass("current");
+    $("#" + selectedId).addClass("current").siblings().removeClass("current");
     currentPageChartsResize();
 }
 
@@ -180,5 +194,24 @@ function currentPageChartsResize() {
             item.resize();
         })
     }
+}
+/* 全屏按钮*/
+function FullScreen(el){
+    var isFullscreen=document.fullScreen||document.mozFullScreen||document.webkitIsFullScreen;
+    if(!isFullscreen){//进入全屏,多重短路表达式
+        (el.requestFullscreen&&el.requestFullscreen())||
+        (el.mozRequestFullScreen&&el.mozRequestFullScreen())||
+        (el.webkitRequestFullscreen&&el.webkitRequestFullscreen())||(el.msRequestFullscreen&&el.msRequestFullscreen());
+
+    }else{	//退出全屏,三目运算符
+        document.exitFullscreen?document.exitFullscreen():
+            document.mozCancelFullScreen?document.mozCancelFullScreen():
+                document.webkitExitFullscreen?document.webkitExitFullscreen():'';
+    }
+}
+function toggleFullScreen(e){
+    var el=e.srcElement||e.target;//target兼容Firefox
+    el.innerHTML=='全屏'?el.innerHTML='退出全屏':el.innerHTML='全屏';
+    FullScreen(el);
 }
 

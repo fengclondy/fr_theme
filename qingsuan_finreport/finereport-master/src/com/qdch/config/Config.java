@@ -2,6 +2,7 @@ package com.qdch.config;
 
 import com.qdch.xd.controller.*;
 import com.qdch.xd.model.*;
+
 import org.beetl.core.GroupTemplate;
 import org.beetl.ext.jfinal3.JFinal3BeetlRenderFactory;
 
@@ -20,8 +21,16 @@ import com.jfinal.plugin.activerecord.dialect.PostgreSqlDialect;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.template.Engine;
 import com.qdch.model.DemoModel;
+import com.qdch.p2p.controller.BorrowerController;
+import com.qdch.p2p.controller.BorrowerPhotoController;
+import com.qdch.p2p.controller.CompanyFeelController;
+import com.qdch.p2p.controller.DealplatformController;
+import com.qdch.p2p.controller.PlatformAlertController;
+import com.qdch.p2p.controller.PlatformController;
+import com.qdch.p2p.controller.ProjectplatformController;
+import com.qdch.p2p.controller.RiskController;
+import com.qdch.p2p.controller.SuperviseController;
 import com.qdch.util.TemplteLayoutTag;
-
 import com.qdch.xd.model.ComparisonOfCompeModel;
 import com.qdch.xd.model.CompetitiveRrendModel;
 import com.qdch.xd.model.ConRatioModel;
@@ -84,6 +93,17 @@ public class Config extends JFinalConfig {
 		/***小贷zuoqb Controller END***/
 
 		me.add("qdch/eventSeeDetails", EventSeeDetailsController.class,"/");	//监管月报
+		
+		/***p2p lixiaoyi Controller START ***/
+		me.add("qdch/borrower",BorrowerController.class,"/");    //p2p-借款人总览
+		me.add("qdch/platform",PlatformController.class,"/");    //p2p-平台总览
+		me.add("qdch/risk",RiskController.class,"/");  //风险总览
+		me.add("qdch/project",ProjectplatformController.class,"/"); //p2p-平台项目
+		me.add("qdch/deal",DealplatformController.class,"/"); //p2p-平台交易
+		me.add("qdch/borrowerphoto",BorrowerPhotoController.class,"/"); //p2p-借款人画像
+		me.add("qdch/companyfeel",CompanyFeelController.class,"/");  //p2p-企业舆情
+		me.add("qdch/supervise",SuperviseController.class,"/");  //p2p-监管月报
+		me.add("qdch/platformalert",PlatformAlertController.class,"/"); //p2p-平台总览弹出
 	}
 
 	public void configEngine(Engine me) {
