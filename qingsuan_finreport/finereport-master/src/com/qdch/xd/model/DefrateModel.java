@@ -32,7 +32,7 @@ public class DefrateModel extends Model<DefrateModel>{
 		List<DefrateModel> lines=dao.find(sql);
 		for(DefrateModel model:lines){
 			
-			String innerSql="select vday_ym as month,round(sum(deftotal)/sum(loantotal),2)*100 as value from insight_xd_defrate where loantotal !=0 and "
+			String innerSql="select vday_ym as month,round(sum(deftotal)/sum(loantotal),4)*100 as value from insight_xd_defrate where loantotal !=0 and "
 					+type+" = '"+model.get("condition")+"'";
 			if(StringUtils.isNotBlank(bigjys)){
 				innerSql+=" and jysc in "+bigjys;
