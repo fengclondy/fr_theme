@@ -100,16 +100,16 @@
             color: #fff;
 
         }
-        .modelTopleft  ul li span:nth-child(1),
-        .modelTopright  ul li span:nth-child(1){
-            width: 35%;
-            float: left;
-        }
-        .modelTopright  ul li span:nth-child(2),
-        .modelTopleft  ul li span:nth-child(2){
-            width: 65%;
-            float: left;
-        }
+        /*.modelTopleft  ul li span:nth-child(1),*/
+        /*.modelTopright  ul li span:nth-child(1){*/
+            /*width: 35%;*/
+            /*float: left;*/
+        /*}*/
+        /*.modelTopright  ul li span:nth-child(2),*/
+        /*.modelTopleft  ul li span:nth-child(2){*/
+            /*width: 65%;*/
+            /*float: left;*/
+        /*}*/
     </style>
 </head>
 <body class="whitePage" id="05_01fengxianshijianchuli" data-title="风险事件处理">
@@ -250,30 +250,30 @@
             <div class="modelTop">
                 <div class="modelTopleft fl">
                     <ul>
-                        <li><span>事件Id:</span><span class="shijianId">461845</span></li>
-                        <li><span>风险指标:</span><span class="fenxianzhibiao">频繁入金</span></li>
-                        <li><span>超出额:</span><span class="Beyond">66.67%</span></li>
-                        <li><span>客户号:</span><span class="CustomerNo">0000229098001</span></li>
-                        <li><span>业务类型:</span><span class="Business">客户号</span></li>
+                        <li><span>事件Id:</span><span class="shijianId"></span></li>
+                        <li><span>风险指标:</span><span class="fenxianzhibiao"></span></li>
+                        <li><span>超出额:</span><span class="Beyond"></span></li>
+                        <li><span>客户号:</span><span class="CustomerNo"></span></li>
+                        <li><span>业务类型:</span><span class="Business"></span></li>
                         <li><span>风险说明:</span><span class="riskThat"></span></li>
                     </ul>
                 </div>
                 <div class="modelTopleft fl">
                     <ul>
-                        <li><span>报警时间:</span><span class="policeTime">20180327 06:03:23</span></li>
-                        <li><span>指标值:</span><span class="indicatorsVal">5</span></li>
-                        <li><span>机构代码:</span><span class="organizationCode">008</span></li>
-                        <li><span>客户名称:</span><span class="CustomerName">刘晓明</span></li>
-                        <li><span>业务编码:</span><span class="BusinessNo">0000229098001</span></li>
+                        <li><span>报警时间:</span><span class="policeTime"></span></li>
+                        <li><span>指标值:</span><span class="indicatorsVal"></span></li>
+                        <li><span>机构代码:</span><span class="organizationCode"></span></li>
+                        <li><span>客户名称:</span><span class="CustomerName"></span></li>
+                        <li><span>业务编码:</span><span class="BusinessNo"></span></li>
                     </ul>
 
                 </div>
                 <div class="modelTopright fl">
                     <ul>
-                        <li><span>风险类别:</span><span class="riskCategories">资金风险</span></li>
-                        <li><span>阙值:</span><span class="threshold">3</span></li>
-                        <li><span>机构名称:</span><span class="organizationName">威海中韩文化产权交易中心有限公司</span></li>
-                        <li><span>业务菜单名称:</span><span class="menuName">客户信息</span></li>
+                        <li><span>风险类别:</span><span class="riskCategories"></span></li>
+                        <li><span>阙值:</span><span class="threshold"></span></li>
+                        <li><span>机构名称:</span><span class="organizationName"></span></li>
+                        <li><span>业务菜单名称:</span><span class="menuName"></span></li>
                     </ul>
                 </div>
             </div>
@@ -305,7 +305,23 @@
                     </li>
                 </ul>
             </div>
-            <div class="modelFooter"></div>
+            <div class="modelFooter">
+
+                <div class="inputGroup fl">
+                    <label class="jiaoyishichang"></label>&nbsp;&nbsp;
+                    <div class="mySelect" id="jiaoyishichang" style="width: 5rem">
+                        <div class="myOption selected"><span class="text"></span><span class="icon"></span></div>
+                        <ul class="myOptionBox">
+                            <li class="myOption selected">1</li>
+                            <li class="myOption">2</li>
+                            <li class="myOption">3</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="inputGroup">
+                    <button class="yuqingsearch" style="color: #fff; background-color:#00abde;padding: 0.1rem 1rem;border-radius: 0.2rem">提交</button>
+                </div>
+            </div>
         </div>
 </div>
 </div>
@@ -495,7 +511,7 @@
                 pageNumber = data.pageNumber;
                 $.each(data.list, function(index, value, array) {
                     append +=
-                        "  <tr>            <td><a href=\"\" class=\"fengxian001\">"+value.fxsj_id+"</a></td>\n" +
+                        "  <tr>            <td><a href=\"javascript:popupfuc("+value.fxsj_id+")\" class=\"fengxian001\">"+value.fxsj_id+"</a></td>\n" +
                         "                <td>"+value.bjsj+"</td>\n" +
                         "                <td>"+value.fxlb+"</td>\n" +
                         "               <td>"+value.fxzb+"</td>\n" +
@@ -521,6 +537,56 @@
             }
 
             })
+    }
+
+    function popupfuc() {
+        $('.model').show()
+        $.ajax({
+            type: "POST",
+            url: "eventview/getPopUp",
+            data: {"id": value},
+            dataType: "json",
+            success: function (data) {
+                // console.log(data);
+                // var value = data.risk;
+                // $(".shijianId").text(value.fxsj_id);
+                // $(".fenxianzhibiao").text(value.fxsj_id);
+                // $(".Beyond").text(value.cce);
+                // $(".CustomerNo").text(value.cust_id);
+                // $(".Business").text(value.ywlx);
+                // $(".policeTime").text(value.bjsj);
+                // $(".indicatorsVal").text(value.fxzbz);
+                // $(".organizationCode").text(value.jgdm);
+                // $(".indicatorsVal").text(value.fxzbz);
+                // $(".CustomerName").text(value.khmc);
+                // $(".BusinessNo").text(value.ywbm);
+                // $(".riskCategories").text(value.fxlb);
+                // $(".threshold").text(value.yuzhi);
+                // $(".organizationName").text(value.jgmc);
+                // $(".menuName").text(value.ywcdmc);
+                //
+
+
+            }
+        });
+
+    }
+
+    /**
+     * 提交审核
+     */
+
+    function submitcheck() {
+        $.ajax({
+            type: "POST",
+            url: "eventview/getPopUp",
+            data: {"id": value},
+            dataType: "json",
+            success: function (data) {
+
+            }
+        });
+
     }
     
 

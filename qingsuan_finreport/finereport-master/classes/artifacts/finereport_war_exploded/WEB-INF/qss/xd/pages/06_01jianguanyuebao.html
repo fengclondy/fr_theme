@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="${contextPath}/static/asserts/css/normalize.css">
     <link rel="stylesheet" href="${contextPath}/static/css/style.css">
     <link rel="stylesheet" href="${contextPath}/static/css/pageCom.css">
+    <script type="text/javascript" src="${contextPath}/QDCH/pdf/build//pdf.js"></script>
+    <style>
+        .pdf-container { height: 500px;}
+        .pdf { border: 1px solid #666; }
+    </style
     <style>
         .tableBox tbody tr td:last-child span:nth-child(1) a{
             margin-right: 6rem;
@@ -57,17 +62,8 @@
             <div class="inputGroup">
                 <label for="marketName">市场名称：</label>
                 <select id="marketName">
-                     <option value=""></option>
-                    <!--<option value="">青岛国际版权</option>
-                    <option value="">上海石油化工</option>
-                    <option value="">中韩文化产权</option>
-                    <option value="">山东天地红</option>
-                    <option value="">青岛国新大宗</option>
-                    <option value="">联合信用资产</option>
-                    <option value="">吉林文化产权</option>
-                    <option value="">青岛华银商品</option>
-                    <option value="">青岛华益金安</option>
-                    <option value="">中国国金(青岛)</option> -->
+                
+                    <option value="">全部</option> 
                      ##for(j in jyslist!){
                                     <option id="${j.jysc!}" data="${j.jysc!}" class="myOption" onclick="selectItem(this)">${j.jyscmc!}</li>
                                      ##}
@@ -77,11 +73,11 @@
             <div class="inputGroup">
                 <label for="riskCategories">报告类型：</label>
                 <select id="riskCategories">
-                    <option value=""></option>
+                    <option value="">不选</option>
                     <option value="">月报</option>
                     <option value="">季报</option>
                     <option value="">年报</option>   
-                    <option value="">不选</option>
+                    
                 </select>
             </div>
             <div class="inputGroup">
@@ -89,7 +85,7 @@
                 <input id="alarmTimeEnd" type="date">
             </div>
             <div class="btnGroup search">
-                <button class="active">查询</button>
+                <button class="active" id="getReport">查询</button>
             </div>
         </form>
     </div>
