@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="${contextPath}/static/asserts/css/normalize.css">
     <link rel="stylesheet" href="${contextPath}/static/css/style.css">
     <link rel="stylesheet" href="${contextPath}/static/css/pageCom.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/index.css">
     <style>
         .container > div,
         .top > div,
@@ -271,7 +272,7 @@
                             <div class="uphezi fr">
                                 <div class="heziContent">
                                     <div class="hezitextContent">
-                                        <a href="#"> <span id="guanlifengxian" class="zhi">890</span></a><span>个</span>
+                                        <a href="#"> <span id="guanlifengxian" class="zhi error_管理风险">0</span></a><span>个</span>
                                     </div>
                                     <div class="hezipic">
                                         <img src="${contextPath}/static/img/01_01fengxianzonglan/guanli.png" alt="">
@@ -282,7 +283,7 @@
                             <div class="uphezi fr">
                                 <div class="heziContent">
                                     <div class="hezitextContent">
-                                        <a href="05_02fengxianshijianchakanmingxi.html"><span id="xinyongfengxian" class="zhi">1210</span></a><span>个</span>
+                                        <a href="alert.html"><span id="xinyongfengxian" class="zhi error_信用风险">0</span></a><span>个</span>
                                     </div>
                                     <div class="hezipic">
                                         <img src="${contextPath}/static/img/01_01fengxianzonglan/xinyong.png" alt="">
@@ -296,7 +297,7 @@
                             <div class="downhezi fr">
                                 <div class="heziContent">
                                     <div class="hezitextContent">
-                                        <a href="#"><span id="zichanfengxian" class="zhi">910</span></a><span>个</span>
+                                        <a href="#"><span id="zichanfengxian" class="zhi error_资产风险">0</span></a><span>个</span>
                                     </div>
                                     <div class="hezipic">
                                         <img src="${contextPath}/static/img/01_01fengxianzonglan/zichan.png" alt="">
@@ -307,7 +308,7 @@
                             <div class="downhezi fr">
                                 <div class="heziContent">
                                     <div class="hezitextContent">
-                                        <a href="#"><span id="shengyufengxian" class="zhi">209</span></a><span>个</span>
+                                        <a href="#"><span id="shengyufengxian" class="zhi error_声誉风险">0</span></a><span>个</span>
                                     </div>
                                     <div class="hezipic">
                                         <img src="${contextPath}/static/img/01_01fengxianzonglan/shengyu.png" alt="">
@@ -318,7 +319,7 @@
                             <div class="downhezi fr">
                                 <div class="heziContent">
                                     <div class="hezitextContent">
-                                        <a href="#"><span id="heguifengxian" class="zhi">601</span></a><span>个</span>
+                                        <a href="#"><span id="heguifengxian" class="zhi error_合规风险">0</span></a><span>个</span>
                                     </div>
                                     <div class="hezipic">
                                         <img src="${contextPath}/static/img/01_01fengxianzonglan/guanli.png" alt="">
@@ -346,15 +347,18 @@
 <script src="${contextPath}/static/asserts/js/jquery-2.2.4.js"></script>
 <script src="${contextPath}/static/js/index.js"></script> 
 <script src="${contextPath}/static/js/chartsCom.js"></script>
-
+<script src="${contextPath}/static/js/main.js"></script>
 <script>
     var allCharts = [];
     var ec005 = echarts.init($("#ec005_currentFengxianzhishu")[0]);
     var ec006 = echarts.init($("#ec006_marketFengxianqushi")[0]);
+    var ec007 = echarts.init($("#ec007_zhishupaiming")[0]);
+    var ec008 = echarts.init($("#ec008_zhishupaiming")[0]);
+    var ec009 = echarts.init($("#ec009_zhishupaiming")[0]);
+    var myChart1 = echarts.init(document.getElementById('pie1'));
     $(function () {
     	// 风险趋势  模块一
         ec005.setOption(opt_bar_horizon);
-       
         // 风险趋势  模块二
         ec006 = echarts.init($("#ec006_marketFengxianqushi")[0]);
         ec006.setOption(opt_line);
@@ -380,7 +384,7 @@
             }]
         });
         //关键指标排名 模块三
-        var ec007 = echarts.init($("#ec007_zhishupaiming")[0]);
+        ec007 = echarts.init($("#ec007_zhishupaiming")[0]);
         ec007.setOption(opt_bar_horizon);
         ec007.setOption({
             grid:{
@@ -404,7 +408,7 @@
             }]
         });
 
-        var ec008 = echarts.init($("#ec008_zhishupaiming")[0]);
+        ec008 = echarts.init($("#ec008_zhishupaiming")[0]);
         ec008.setOption(opt_bar_horizon);
         ec008.setOption({
             grid:{
@@ -428,7 +432,7 @@
             }]
         });
 
-        var ec009 = echarts.init($("#ec009_zhishupaiming")[0]);
+        ec009 = echarts.init($("#ec009_zhishupaiming")[0]);
         ec009.setOption(opt_bar_horizon);
         ec009.setOption({
             grid:{
@@ -453,51 +457,8 @@
         });
 // 第二部分
         // 环形图
-        var myChart1 = echarts.init(document.getElementById('pie1'));
+        myChart1 = echarts.init(document.getElementById('pie1'));
         myChart1.setOption(opt_pie);
-        var option1 = {
-            tooltip: {
-                trigger: 'item',
-                formatter: "{a} <br/>{b}: {c} ({d}%)"
-            },
-            legend: {
-                show: false
-            },
-            graphic:{
-                type:'text',
-                left:'center',
-                top:'center',
-                style:{
-                    text:'平台总数(个)\n \n 24',
-                    textAlign:'center',
-                    fill:'#fff',
-                    width:30,
-                    height:30,
-                    fontsize:44
-                }
-            },
-            series: [
-                {
-                    name:'访问来源',
-                    type: 'pie',
-                    radius: ['50%', '65%'],
-                    itemStyle: {
-                        normal:{
-                            label:{
-                                show:true,
-                                textStyle:{color:'#fff',fontSize:"18"},
-                                formatter:function(val){   //让series 中的文字进行换行
-                                    return val.name.split("-").join("\n");}
-                            }
-                        }
-                    },
-                    data: [
-                        {value: 1260, name: '停运平台-65%'},
-                        {value: 678, name: '运营平台-35%'}
-                    ]
-                }
-            ]
-        };
         myChart1.setOption(option1);
 
         //本页所有图表
@@ -515,10 +476,14 @@
     
     
     
+    
+    
     //lianjiming
      initData();
     function initData(){
     	getRanking();
+    	getRiskCount();
+    	getAllPlatform();
     }
     /**  
      * 描述：js实现的map方法 
@@ -598,9 +563,7 @@
       					pre.push(formatterStr);
           				map.put(name,pre);
       				}
-      				
       			}
-      			
       			if(yAxisData.indexOf(name)==-1){
       				yAxisData.push(name);
       				seriesData.push(item.fvalue);
@@ -642,7 +605,76 @@
                 }]
        	 	});    	
      	 });
-     }   	
+     }
+     //平台运营监控(各种风险数量)
+     function getRiskCount(){
+		$.post("${contextPath}/qdch/riskOverview/getRiskCount",function(data){
+			$.each(data,function(index,item){
+				$(".error_"+item.fxlb).html(item.count);
+			});
+		});
+     }
+    
+     //平台运营监控(环形图)
+     function getAllPlatform(){
+    	 var zs=[];//总平台数
+ 		 var zc=[];//正常平台数
+ 		 var yc=[];//异常平台数
+    	 $.post("${contextPath}/qdch/riskOverview/getAllPlatform",function(data){
+    		$.each(data,function(index,item){
+    			zs.push(item.zs);
+    			zc.push(item.zc);
+    			yc.push(item.yc);
+    		});
+            myChart1.setOption(opt_pie);
+            var option1 = {
+                tooltip: {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b}: {c} ({d}%)"
+                },
+                legend: {
+                    show: false
+                },
+                graphic:{
+                    type:'text',
+                    left:'center',
+                    top:'center',
+                    style:{
+                        text:'平台总数(个)\n \n'+zs,
+                        textAlign:'center',
+                        fill:'#fff',
+                        width:30,
+                        height:30,
+                        fontsize:44
+                    }
+                },
+                series: [
+                    {
+                        name:'访问来源',
+                        type: 'pie',
+                        radius: ['50%', '65%'],
+                        itemStyle: {
+                            normal:{
+                                label:{
+                                    show:true,
+                                    textStyle:{color:'#fff',fontSize:"18"},
+                                    formatter:function(val){   //让series 中的文字进行换行
+                                        return val.name.split("-").join("\n");}
+                                }
+                            }
+                        },
+                        data: [
+                            {value: yc, name: '异常平台-'+(yc/zs)*100+'%'},
+                            {value: zc, name: '正常平台-'+(zc/zs)*100+'%'}
+                        ]
+                    }
+                ]
+            };
+            myChart1.setOption(option1);   		
+    	});
+    }
+		
+     
 </script>
 
 </body>
