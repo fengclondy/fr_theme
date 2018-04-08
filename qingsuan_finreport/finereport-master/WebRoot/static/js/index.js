@@ -136,9 +136,12 @@ function tabNav() {
     $navTabUl.on("click", "li>a", function () {
         $navTabUl.children("li").removeClass("active");
         $(this).parent().addClass("active").mouseleave();
-        var selectedId = $navTabUl.find("li.active").data("id");
+        var selectedId = $navTabUl.find("li.active").data("pagename");
         pageSwitch(selectedId);
         windowResize();
+        //切换左侧菜单样式
+        $("#mainNav").find("li").removeClass("active");
+        $("li[data-id='"+$(this).parent().attr("data-id")+"']").addClass("active");
     });
     $navTabUl.on("click", ".refresh", function () {
         var id = $(this).parents("li").data("id");
@@ -149,6 +152,7 @@ function tabNav() {
         });
         windowResize();
     })
+
 
     $navTabUl.on("click", "li>a>.close", function (e) {
         var selectedId = "00_01home";
@@ -164,11 +168,11 @@ function tabNav() {
             } else {
                 $(this).parents("li").addClass("active");
             }
-            selectedId = $navTabUl.find("li.active").data("id");
+            selectedId = $navTabUl.find("li.active").data("pagename");
 
             pageSwitch(selectedId);
         }
-        $("#" + $(this).parents("li").data("id")).remove();
+        $("div[data-pagename='" + $(this).parents("li").data("pagename")+"']").remove();
         // if ($navTabUl.find("li").length !== 1) {//如果只剩一个则不能关闭
         $(this).parents("li").remove();
         // }

@@ -97,7 +97,7 @@ public class Config extends JFinalConfig {
 		/***p2p lixiaoyi Controller START ***/
 		me.add("qdch/borrower",BorrowerController.class,"/");    //p2p-借款人总览
 		me.add("qdch/platform",PlatformController.class,"/");    //p2p-平台总览
-		me.add("qdch/risk",RiskController.class,"/");  //风险总览
+		me.add("qdch/risk",RiskController.class,"/");  // p2p-风险总览
 		me.add("qdch/project",ProjectplatformController.class,"/"); //p2p-平台项目
 		me.add("qdch/deal",DealplatformController.class,"/"); //p2p-平台交易
 		me.add("qdch/borrowerphoto",BorrowerPhotoController.class,"/"); //p2p-借款人画像
