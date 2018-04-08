@@ -7,9 +7,12 @@ import java.util.Map;
 import org.apache.commons.lang.StringUtils;
 
 import com.jfinal.kit.JsonKit;
+import com.jfinal.plugin.activerecord.Page;
 import com.qdch.core.BaseController;
 import com.qdch.xd.model.JyscModel;
+import com.qdch.xd.model.MonthlyReportListModel;
 import com.qdch.xd.model.MonthlyReportModel;
+import com.qdch.xd.model.RiskEventModel;
 /**
  * 
 * @author doushuihai  
@@ -33,24 +36,35 @@ public class MonthlyReportController extends BaseController {
 	* @date 2018年4月4日上午9:50:39  
 	* @TODO
 	 */
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void getMonthlyReport(){
 		String jys=getPara("jys");//获取第一个条件参数：交易市场		
 		String reportType = getPara("reportType");//获取第二个条件参数：报告类型
 		String date = getPara("date");//获取第二个条件参数：报告类型
-		jys="HYED";reportType="月报";date="2018-01-25";
+		
 		List<MonthlyReportModel> monthlyreportmodel=MonthlyReportModel.dao.getMonthlyReport(getDataScopeByUserName(),jys,reportType,date);
-		if(StringUtils.isNotBlank(getPara("jsonp"))){
-			//跨域处理
-			getResponse().addHeader("Access-Control-Allow-Origin", "*");
-			Map json = new HashMap();
-			String callback = getPara("callback");
-			json.put("data", monthlyreportmodel);
-			String jsonp = callback + "(" + JsonKit.toJson(json) + ")";//返回的json 格式要加callback()
-			renderJson(jsonp);
-		}else{
-			renderJson(monthlyreportmodel);
-		}
+		
+		mRenderJson(monthlyreportmodel);
+		
+	}
+	/**
+	 * 分页查询
+	* @author doushuihai  
+	* @date 2018年4月8日下午2:57:58  
+	* @TODO
+	 */
+	public void getMonthlyReportList(){
+		int pageNum =Integer.parseInt(StringUtils.isBlank(getPara("pageNum"))||
+				getPara("pageNum").equals("undefined")==true?
+				"1":getPara("pageNum"));
+		int pageSize =Integer.parseInt(StringUtils.isBlank(getPara("pageSize"))||
+				getPara("pageSize").equals("undefined")
+				==true?
+				"10":getPara("pageSize"));
+//		getPara(getRequest());
+		getResponse().setCharacterEncoding("UTF-8");
+		Page<MonthlyReportListModel> page = MonthlyReportListModel.getMonthlyReportList(getDataScopeByUserName(),pageNum,pageSize,getRequest());
+		mRenderJson(page);
+		
 	}
 
 }
