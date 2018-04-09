@@ -8,6 +8,7 @@ import com.qdch.xd.model.DefrateModel;
 import com.qdch.xd.model.IncomeAndLossrateModel;
 import com.qdch.xd.model.IndexRankingModel;
 import com.qdch.xd.model.JyscModel;
+import com.qdch.xd.model.ManagementRiskListModel;
 import com.qdch.xd.model.MigrationRateModel;
 
 /**
@@ -138,6 +139,18 @@ public class CreditRiskController extends BaseController {
 		String jys=getPara("jys");//获取信用风险总体限制的筛选条件参数
 		
 		List<IncomeAndLossrateModel> incomeAndLoss=IncomeAndLossrateModel.dao.getIncomeAndLoss(getDataScopeByUserName(),jys);
+		mRenderJson(incomeAndLoss);	
+	}
+	/**
+	 * 
+	* @author doushuihai  
+	* @date 2018年4月9日下午1:36:34  
+	* @TODO
+	 */
+	public void getManagementRiskList(){
+		String jys=getPara("jys");//获取信用风险总体限制的筛选条件参数
+		
+		List<ManagementRiskListModel> incomeAndLoss=ManagementRiskListModel.dao.getManagementRiskList(getDataScopeByUserName(),jys);
 		mRenderJson(incomeAndLoss);	
 	}
 
