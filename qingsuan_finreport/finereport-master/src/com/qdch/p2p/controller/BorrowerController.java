@@ -1,6 +1,9 @@
 package com.qdch.p2p.controller;
 
+import java.util.List;
+
 import com.qdch.core.BaseController;
+import com.qdch.p2p.model.BorrowerModel;
 /**
  * 
  * @author lixiaoyi
@@ -15,7 +18,6 @@ public class BorrowerController extends BaseController {
 	 * @TODO 借款人总览首页
 	 */
 	public void index(){
-		
 		render("p2p/pages/04_05jiekuanrenhuaxiang.html");
 	}
 
