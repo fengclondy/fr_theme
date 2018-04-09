@@ -44,6 +44,24 @@ public class BaseController extends Controller{
 		}
 		return jysIds;
 	}
+	
+	public String getDataScopeByUserNameForP2p(){
+		QdchUser user=getLoginUser();//从session或者UserUtil工具类（未封装）中获取
+		if(user==null||user.getJysList()==null||user.getJysList().size()==0){
+			return null;
+		}
+		String jysIds="";
+		for(String str:user.getJysList()){
+			jysIds+="'"+str+"',";
+		}
+		if(jysIds.length()>0){
+			jysIds=jysIds.substring(0,jysIds.length()-1);
+		}
+		if(jysIds.length()>0){
+			jysIds="("+jysIds+")";
+		}
+		return jysIds;
+	}
 	/**
 	 * 
 	 * @todo  获取当前登录人
