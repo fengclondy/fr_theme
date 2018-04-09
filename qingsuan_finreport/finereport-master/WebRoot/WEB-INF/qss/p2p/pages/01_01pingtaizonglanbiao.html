@@ -150,9 +150,9 @@
                                         class="text"></span><span
                                         class="icon"></span></div>
                                 <ul class="myOptionBox">
-                                    <li class="myOption selected" id="pingtaimingcheng01">青岛华银有限公司</li>
+                                    <!-- <li class="myOption selected" id="pingtaimingcheng01">青岛华银有限公司</li>
                                     <li class="myOption" id="pingtaimingcheng02">青岛华银有限公司2</li>
-                                    <li class="myOption" id="pingtaimingcheng03">青岛华银有限公司3</li>
+                                    <li class="myOption" id="pingtaimingcheng03">青岛华银有限公司3</li> -->
                                 </ul>
                             </div>
                         </div>
@@ -163,9 +163,9 @@
                                         class="text"></span><span
                                         class="icon"></span></div>
                                 <ul class="myOptionBox">
-                                    <li class="myOption selected" id="yinhangcunguan01">青岛华银有限公司</li>
+                                   <!--  <li class="myOption selected" id="yinhangcunguan01">青岛华银有限公司</li>
                                     <li class="myOption" id="yinhangcunguan02">青岛华银有限公司2</li>
-                                    <li class="myOption" id="yinhangcunguan03">青岛华银有限公司3</li>
+                                    <li class="myOption" id="yinhangcunguan03">青岛华银有限公司3</li> -->
                                 </ul>
                             </div>
                         </div>
@@ -176,9 +176,9 @@
                                         class="text"></span><span
                                         class="icon"></span></div>
                                 <ul class="myOptionBox">
-                                    <li class="myOption selected" id="zhuceziben01">青岛华银有限公司</li>
+                                    <!-- <li class="myOption selected" id="zhuceziben01">青岛华银有限公司</li>
                                     <li class="myOption" id="zhuceziben02">青岛华银有限公司2</li>
-                                    <li class="myOption" id="zhuceziben03">青岛华银有限公司3</li>
+                                    <li class="myOption" id="zhuceziben03">青岛华银有限公司3</li> -->
                                 </ul>
                             </div>
                         </div>
@@ -190,9 +190,9 @@
                                         class="text"></span><span
                                         class="icon"></span></div>
                                 <ul class="myOptionBox">
-                                    <li class="myOption selected" id="dengbao01">青岛华银有限公司</li>
+                                   <!--  <li class="myOption selected" id="dengbao01">青岛华银有限公司</li>
                                     <li class="myOption" id="dengbao02">青岛华银有限公司2</li>
-                                    <li class="myOption" id="dengbao03">青岛华银有限公司3</li>
+                                    <li class="myOption" id="dengbao03">青岛华银有限公司3</li> -->
                                 </ul>
                             </div>
                         </div>
@@ -203,9 +203,9 @@
                                         class="text"></span><span
                                         class="icon"></span></div>
                                 <ul class="myOptionBox">
-                                    <li class="myOption selected" id="pingtaishili01">青岛华银有限公司</li>
+                                   <!--  <li class="myOption selected" id="pingtaishili01">青岛华银有限公司</li>
                                     <li class="myOption" id="pingtaishili02">青岛华银有限公司2</li>
-                                    <li class="myOption" id="pingtaishili03">青岛华银有限公司3</li>
+                                    <li class="myOption" id="pingtaishili03">青岛华银有限公司3</li> -->
                                 </ul>
                             </div>
                         </div>
@@ -292,6 +292,70 @@
                 $("#current3").text(current)
             }
         });
-
+	   
+       init();
     });
+    //加载页面时初始化
+    function init() {
+    	 getJysc();
+         getCgyh();
+         getZczb();
+         getDb();
+         getPtsl();
+	}
+    //获取平台名称
+    function getJysc() {
+		$.post('${contextPath}/qdch/platform/getJysc',function(data){
+			var content = "";
+			$.each(data,function(index,item){
+				content = content
+				+'<li class="myOption" id="'+index+'">'+item.jysc+'</li>'
+			})
+			$(".myOptionBox").append(content);
+		})
+	}
+    //获取银行存管
+    function getCgyh() {
+		$.post('${contextPath}/qdch/platform/getCgyh',function(data){
+			var content = "";
+			$.each(data,function(index,item){
+				content = content
+				+'<li class="myOption" id="'+index+'">'+item.jysc+'</li>'
+			})
+			$(".myOptionBox").append(content);
+		})
+	}
+    //获取注册资本
+    function getZczb() {
+		$.post('${contextPath}/qdch/platform/getZczb',function(data){
+			var content = "";
+			$.each(data,function(index,item){
+				content = content
+				+'<li class="myOption" id="'+index+'">'+item.jysc+'</li>'
+			})
+			$(".myOptionBox").append(content);
+		})
+	}
+    //获取等保
+    function getDb() {
+		$.post('${contextPath}/qdch/platform/getDb',function(data){
+			var content = "";
+			$.each(data,function(index,item){
+				content = content
+				+'<li class="myOption" id="'+index+'">'+item.jysc+'</li>'
+			})
+			$(".myOptionBox").append(content);
+		})
+	}
+    //获取平台实力
+    function getPtsl() {
+		$.post('${contextPath}/qdch/platform/getPtsl',function(data){
+			var content = "";
+			$.each(data,function(index,item){
+				content = content
+				+'<li class="myOption" id="'+index+'">'+item.jysc+'</li>'
+			})
+			$(".myOptionBox").append(content);
+		})
+	}
 </script>
