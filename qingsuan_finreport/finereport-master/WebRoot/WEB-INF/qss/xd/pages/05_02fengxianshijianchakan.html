@@ -466,7 +466,7 @@
             success: function(data){
                 var  append = "";
                 console.log(data)
-                $(".nuber").text(data.totalRow);
+                $(".number").text(data.totalRow);
                 $('#pageCurrent').val(data.pageNumber);
 
                 $('.pageTotal').text(data.totalPage);
@@ -475,23 +475,23 @@
                 $.each(data.list, function(index, value, array) {
                     append +=
                         "  <tr>       <td><a href=\"javascript:popupfuc("+value.fxsj_id+")\" class=\"fengxian001\">"+value.fxsj_id+"</a></td>\n" +
-                        "                <td>"+value.bjsj+"</td>\n" +
-                        "                <td>"+value.fxlb+"</td>\n" +
-                        "               <td>"+value.fxzb+"</td>\n" +
-                        "               <td>"+value.fxzbz+"</td>\n" +
-                        "               <td>"+value.yuzhi+"</td>\n" +
-                        "               <td>"+value.cce+"</td>\n" +
-                        "               <td>"+value.jgdm+"</td>\n" +
-                        "               <td>"+value.jgmc+"</td>\n" +
-                        "               <td>"+value.cust_id+"</td>\n" +
-                        "               <td>"+value.khmc+"</td>\n" +
-                        "               <td>"+value.ywcdbm+"</td>\n" +
-                        "               <td>"+value.ywcdmc+"</td>\n" +
-                        "               <td>"+value.ywlx+"</td>\n" +
-                        "               <td>"+value.ywbm+"</td>\n" +
-                        "               <td>"+value.shr+"</td>\n" +
-                        "               <td>"+value.clzt+"</td>\n" +
-                        "               <td>"+value.update_time+"</td>\n" +
+                        "                <td>"+formatOutput(value.bjsj)+"</td>\n" +
+                        "                <td>"+formatOutput(value.fxlb)+"</td>\n" +
+                        "               <td>"+formatOutput(value.fxzb)+"</td>\n" +
+                        "               <td>"+formatOutput(value.fxzbz)+"</td>\n" +
+                        "               <td>"+formatOutput(value.yuzhi)+"</td>\n" +
+                        "               <td>"+formatOutput(value.cce)+"</td>\n" +
+                        "               <td>"+formatOutput(value.jgdm)+"</td>\n" +
+                        "               <td>"+formatOutput(value.jgmc)+"</td>\n" +
+                        "               <td>"+formatOutput(value.cust_id)+"</td>\n" +
+                        "               <td>"+formatOutput(value.khmc)+"</td>\n" +
+                        "               <td>"+formatOutput(value.ywcdbm)+"</td>\n" +
+                        "               <td>"+formatOutput(value.ywcdmc)+"</td>\n" +
+                        "               <td>"+formatOutput(value.ywlx)+"</td>\n" +
+                        "               <td>"+formatOutput(value.ywbm)+"</td>\n" +
+                        "               <td>"+formatOutput(value.shr)+"</td>\n" +
+                        "               <td>"+formatOutput(value.clzt)+"</td>\n" +
+                        "               <td>"+formatOutput(value.update_time)+"</td>\n" +
                         "                <td class=\"more\"><a href=\"javascript:seeMore("+value.fxsj_id+");\">查看</a></td></tr>  " ;
                 });
                 // append +="</tr>";
@@ -500,6 +500,13 @@
             }
 
         })
+    }
+
+    function formatOutput(str) {
+        if(str==null||str==undefined||str=='null'||str==''){
+            return '';
+        }else
+            return str;
     }
 
     /**

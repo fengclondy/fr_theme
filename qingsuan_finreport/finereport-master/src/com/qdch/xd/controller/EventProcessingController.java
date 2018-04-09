@@ -139,7 +139,10 @@ public class EventProcessingController extends BaseController {
     }
 
     public void submitCheck(){
-		riskEventHistoryModel.save();
+		RiskEventHistoryModel historyModel  = new RiskEventHistoryModel();
+		historyModel.set("clzt","111");
+		historyModel.save();
+
 		mRenderJson(null);
 	}
 
