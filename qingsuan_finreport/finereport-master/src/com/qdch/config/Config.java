@@ -30,6 +30,7 @@ import com.qdch.p2p.controller.PlatformController;
 import com.qdch.p2p.controller.ProjectplatformController;
 import com.qdch.p2p.controller.RiskController;
 import com.qdch.p2p.controller.SuperviseController;
+import com.qdch.p2p.model.BorrowerModel;
 import com.qdch.util.TemplteLayoutTag;
 import com.qdch.xd.model.ComparisonOfCompeModel;
 import com.qdch.xd.model.CompetitiveRrendModel;
@@ -167,6 +168,10 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("insight_regulatory_report", MonthlyReportModel.class);//监管月报
 		insight_arp.addMapping("insight_regulatory_report", MonthlyReportListModel.class);//监管月报
 		/***doushuiahi Model START***/
+		
+		/***p2p 高照  insight层Model SART***/
+		insight_arp.addMapping("insight_pp_score_info", BorrowerModel.class);//根据得分降序查找平台简称和得分
+		
 		
 		
 		/***小贷zuoqb insight层 Model START***/

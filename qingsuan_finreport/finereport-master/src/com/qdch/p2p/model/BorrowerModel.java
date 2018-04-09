@@ -21,8 +21,9 @@ public class BorrowerModel extends Model<BorrowerModel> {
 	 * @date 2018年4月8日
 	 * @TODO 平台得分
 	 */
-	public List<BorrowerModel> getScoreList(){
-		String sql="select * from hub_pp_score_info order by fscore desc";
+	public List<BorrowerModel> getScoreList(String bigjys){
+		String sql="select jysinfo,fscore from insight_pp_score_info order by fscore desc";
+	
 	    return	dao.find(sql);
 	}
 	/**
@@ -31,8 +32,8 @@ public class BorrowerModel extends Model<BorrowerModel> {
 	 * @date 2018年4月8日
 	 * @TODO
 	 */
-	public List<BorrowerModel> getBasicinfo(){
-		String sql="select * from hub_pp_person_info";
+	public List<BorrowerModel> getBasicinfo(String bigjys){
+		String sql="select * from insight_pp_person_info";
 		return dao.find(sql);
 	}
     /**
@@ -41,8 +42,8 @@ public class BorrowerModel extends Model<BorrowerModel> {
      * @date 2018年4月8日
      * @TODO
      */
-	public List<BorrowerModel> getCreditinfo(){
-		String sql="select * from hub_pp_credit_info";
+	public List<BorrowerModel> getCreditinfo(String bigjys){
+		String sql="select * from insight_pp_credit_info";
 		return dao.find(sql);
 	}
 	
@@ -52,8 +53,8 @@ public class BorrowerModel extends Model<BorrowerModel> {
 	 * @date 2018年4月8日
 	 * @TODO
 	 */
-	public List<BorrowerModel> getAssetinfo(){
-		String sql="select * from hub_pp_asset_info";
+	public List<BorrowerModel> getAssetinfo(String bigjys){
+		String sql="select * from insight_pp_asset_info";
 		return dao.find(sql);
 	}
 	
@@ -63,8 +64,8 @@ public class BorrowerModel extends Model<BorrowerModel> {
 	 * @date 2018年4月8日
 	 * @TODO
 	 */
-	public List<BorrowerModel> getJobinfo(){
-		String sql="select * from hub_pp_job_info";
+	public List<BorrowerModel> getJobinfo(String bigjys){
+		String sql="select * from insight_pp_job_info";
 		return dao.find(sql);
 	}
 	
@@ -74,8 +75,8 @@ public class BorrowerModel extends Model<BorrowerModel> {
 	 * @date 2018年4月8日
 	 * @TODO
 	 */
-	public List<BorrowerModel> getCompybasicinfo(){
-		String sql="select * from hub_pp_corp_info";
+	public List<BorrowerModel> getCompybasicinfo(String bigjys){
+		String sql="select * from insight_pp_corp_info";
 		return dao.find(sql);
 	}
 	/**
@@ -84,8 +85,9 @@ public class BorrowerModel extends Model<BorrowerModel> {
 	 * @date 2018年4月8日
 	 * @TODO
 	 */
-	public List<BorrowerModel> getOtherinfo(){
-		String sql="select * from hub_pp_othe_info";
+	public List<BorrowerModel> getOtherinfo(String bigjys){
+		String sql="select * from insight_pp_othe_info";
 		return dao.find(sql);
 	}
+	
 }
