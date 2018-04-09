@@ -1,26 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="${contextPath}/static/img/com/logo.png">
+    <link rel="stylesheet" href="${contextPath}/static/asserts/css/normalize.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/style.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/pageCom.css">
     <style>
-        *{margin:0;padding: 0;list-style: none;}
-        .main{
-            width:100%;
-            height: 80rem;
-            background: #fff;
-
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .fl{
+            float: left;
+        }
+        .fr{
+            float: right;
+        }
+        li{
+            list-style: none;
         }
         #box1,#box2{
             width:98%;
             margin:0 auto;
         }
-        .customerInformation{
-            margin-top: 2rem;
+        .pagination{
+            width: 98%;
+            margin: 0 auto;
         }
+        /*search*/
+        .search{
+            margin: 1rem auto;
+        }
+        .search>input{
+            width: 10rem;
+            height: 1.5rem;
+            font-size: 14px;
+            border: 1px solid gray;
+            border-radius: 0.2rem;
+            padding-left: 0.3rem;
+        }
+        input:-moz-placeholder,
+        textarea:-moz-placeholder {
+            color: #000;
+        }
+
+        input:-ms-input-placeholder,
+        textarea:-ms-input-placeholder {
+            color: #000;
+        }
+
+        input::-webkit-input-placeholder,
+        textarea::-webkit-input-placeholder {
+            color: #000;
+        }
+        .btn{
+            margin-left: 1rem;
+            padding: 0.05rem 1.5rem;
+            background: #00adef;
+            color: #fff;
+            border-radius: 0.3rem;
+            text-align: center;
+        }
+        /*表格*/
+        .tableBox {
+            width: 100%;
+            overflow: hidden;
+        }
+        .tableBox:hover {
+            overflow: auto;
+        }
+        table {
+            border: .1rem solid #ddd;
+        }
+
+        table tr {
+            white-space: nowrap;
+        }
+
+        tbody > tr:hover > td {
+            background-color: #fff;
+        }
+
+        table > thead > tr > th,
+        table > tbody > tr > td {
+            font-size: .83rem;
+            padding: .32rem 0rem;
+        }
+        table td:nth-of-type(1){
+            background-color: #fff;
+        }
+
+        table > thead > tr > th {
+            width: 100%;
+            font-weight: normal;
+            color: #fff;
+            background-color: #00abde;
+        }
+
+        .whitePage table > thead > tr > th{
+            font-size: .83rem;
+            padding: 0.5rem 1rem;
+        }
+        .whitePage table > tbody > tr > td{
+            padding: 0.1rem 1rem;
+        }
+        /*tab点击切换table*/
         #tit{
             width: 100%;
-            height: 3rem;
+            height: 2.8rem;
             overflow: hidden;
             border-bottom: 1px solid #8e8e8e;
         }
@@ -50,67 +139,11 @@
             color:#00adef;
             border-bottom: 0.3rem solid #00adef;
         }
-        /*search*/
-        .search{
-            margin: 1rem auto;
-        }
-        .search input{
-            width: 10rem;
-            height: 1.5rem;
-            font-size: 14px;
-        }
-
-        .btn{
-            margin-left: 1rem;
-            padding: 0.05rem 1.5rem;
-            background: #00adef;
-            color: #fff;
-            text-align: center;
-        }
-        /*表格*/
-         .tableBox {
-            width: 100%;
-            overflow: hidden;
-        }
-
-         .tableBox:hover {
-            overflow: auto;
-        }
-
-         table {
-            border: .1rem solid #ddd;
-        }
-
-         table tr {
-            white-space: nowrap;
-        }
-
-         tbody > tr:hover > td {
-            background-color: #fff;
-        }
-
-
-         table > thead > tr > th,
-         table > tbody > tr > td {
-            font-size: .83rem;
-            padding: .72rem 1rem;
-        }
-         table td:nth-of-type(1){
-            background-color: #fff;
-        }
-
-         table > thead > tr > th {
-             width: 100%;
-            font-weight: normal;
-            color: #fff;
-            background-color: #00abde;
-        }
 
     </style>
-    <link rel="stylesheet" href="${contextPath}/static/asserts/css/normalize.css">
 </head>
-<body id="alert">
-<div class="main">
+<body class="whitePage" id="05_01fengxianshijianchuli" data-title="风险事件处理">
+<div class="container">
     <div id="box1">
         <div class="tableBox">
             <table>
@@ -134,6 +167,7 @@
                     <th>处理人</th>
                     <th>处理状态</th>
                     <th>处理时间</th>
+                    <th>风险说明</th>
 
                 </tr>
                 </thead>
@@ -143,23 +177,245 @@
             </table>
         </div>
     </div>
+    <br>
     <div id="box2">
         <div id="tit">
-            <span class="select" value="1" id="span1">个人客户</span>
-            <span value="2" id="span2">对公客户</span>
-            <span value="3" id="span3">基本合同信息</span>
-            <span value="4" id="span4">担保合同</span>
-            <span value="5" id="span5">明细查询</span>
-            <span value="6" id="span6">额度查询</span>
+            <span class="select" value="1">个人客户</span>
+            <span value="2">对公客户</span>
+            <span value="3">基本合同信息</span>
+            <span value="4">担保合同</span>
+            <span value="5">明细查询</span>
+            <span value="6">额度查询</span>
         </div>
         <ul id="con">
             <!-- 客户信息 start -->
             <li class="show">
                 <div class="search">
                     <label for="cursorName">客户名称:</label>
-                    <input type="text" placeholder="请输入客户名称" id="cursorName">
+                    <input type="text"id="cursorName" placeholder="请输入客户名称">
                     <label for="cursorNameNumber">市场客户号:</label>
-                    <input type="text" placeholder="请输入市场客户号" id="cursorNameNumber">
+                    <input type="text" id="cursorNameNumber" placeholder="请输入客户号">
+                    <button class="btn">查询</button>
+                </div>
+                <!-- 表格 -->
+                <!--<div class="tableBox">-->
+                    <!--<table>-->
+                        <!--<thead>-->
+                        <!--<tr>-->
+                            <!--<td>客户编号</td>-->
+                            <!--<td>客户姓名</td>-->
+                            <!--<td>英文姓名（拼音）</td>-->
+                            <!--<td>证件类型</td>-->
+                            <!--<td>证件号码</td>-->
+                            <!--<td>出生日期</td>-->
+                            <!--<td>性别</td>-->
+                            <!--<td>国籍</td>-->
+                            <!--<td>籍贯</td>-->
+                            <!--<td>民族</td>-->
+                            <!--<td>是否本地人</td>-->
+                            <!--<td>户籍地址</td>-->
+                            <!--<td>户籍号</td>-->
+                            <!--<td>婚姻状况</td>-->
+                            <!--<td>健康状况</td>-->
+                            <!--<td>毕业院校</td>-->
+                            <!--<td>所学专业</td>-->
+                            <!--<td>毕业时间</td>-->
+                            <!--<td>最高学历</td>-->
+                            <!--<td>最高学位</td>-->
+                            <!--<td>自然情况其他说明</td>-->
+                            <!--<td>职业</td>-->
+                            <!--<td>职务</td>-->
+                            <!--<td>职称</td>-->
+                            <!--<td>工作单位编号</td>-->
+                            <!--<td>工作单位</td>-->
+                            <!--&lt;!&ndash;<td>行业类别</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>单位规模</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>单位地址</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>单位邮编</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>进入现单位工作时间（起始年月）</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>工作描述</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>单位状况说明</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>是否有执业资格</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>性格描述</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>修养描述</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>外貌特征</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>主观印象其他说明</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>主要经济来源</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>工资收入(月)</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>经营收入（月）</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>其他收入（月）</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>年收入</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>工资账号</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>工资账号开户银行</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>家庭总收入（月）</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>主要支出方向</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>生活费用支出（月）</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>赡养支出（月）</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>其他收入说明</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>还款支出（月）</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>潜在支出（月）</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>其他支出（月）</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>家庭总支出（月）</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>其他支出说明</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>家庭对外担保总额</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>家庭总资产</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>社会保障号码</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>公积金账号</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>住房储蓄账号</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>家庭总负债</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>家庭资产负债比率</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>家庭或有负债比率</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>家庭收支比率</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>是否参加养老保险</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>是否参加失业保险</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>是否参加医疗保险</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>是否缴纳公积金</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>是否享受住房补贴</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>是否参加社会保险</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>贷款状况</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>业务往来</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>信用记录</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>违约记录</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>申请记录</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>是否有本行信用卡</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>是否有本行定期存单</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>是否在本行证券业务系统开户</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>VIP客户级别</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>银行关系其他说明</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>经办行</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>经办人</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>额度序号</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>客户信用评价分值</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>客户信用评价日期</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>客户信用记录评价分值</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>客户信用记录评价日期</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>本地居住时间(年)</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>户籍性质</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>联系地址</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>补充公积金账号</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>是否本行员工</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>曾用名</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>供养人数</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>家庭人均月收入</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>目前银行借款余额</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>其中不良借款余额</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>当前月还款额</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>家庭所购房套数</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>家庭人口</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>商业性或公积金贷款的次数</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>公积金月缴额</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>单位公积金账号</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>公积金余额</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>补充月缴额</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>补充公积金余额</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>家庭月缴合计</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>家庭教育支出（月）</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>家庭月均可支配收入</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>信用等级</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>客户状态</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>录入时间</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>最后修改时间</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>身份证证件地址</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>客户类别</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>合同编号</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>介绍人</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>介绍费</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>单位固定电话</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>家庭人口数</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>区域编号</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>社会保障缴费基数</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>公积金缴费基数</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>财务客户编号</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>创建日期</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>所属核心企业</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>上下游关系</td>&ndash;&gt;-->
+
+                        <!--</tr>-->
+                        <!--</thead>-->
+                        <!--<tbody id="personal">-->
+                        <!--</tbody>-->
+                    <!--</table>-->
+                <!--</div>-->
+                <div class="tableBox">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>客户编号</th>
+                            <th>客户姓名</th>
+                            <th>英文姓名（拼音）</th>
+                            <th>证件类型</th>
+                            <th>证件号码</th>
+                            <th>出生日期</th>
+                            <th>性别</th>
+                            <th>国籍</th>
+                            <th>籍贯</th>
+                            <th>民族</th>
+                            <th>是否本地人</th>
+                            <th>户籍地址</th>
+                            <th>户籍号</th>
+                            <th>婚姻状况</th>
+                            <th>健康状况</th>
+                            <th>毕业院校</th>
+                            <th>所学专业</th>
+                            <th>毕业时间</th>
+                            <th>最高学历</th>
+                            <th>最高学位</th>
+                            <th>自然情况其他说明</th>
+                            <th>职业</th>
+                            <th>职务</th>
+                            <th>职称</th>
+                            <th>工作单位编号</th>
+                            <th>工作单位</th>
+                            <th>行业类别</th>
+                            <th>单位规模</th>
+                            <th>单位地址</th>
+                            <th>单位邮编</th>
+                            <th>进入现单位工作时间（起始年月）</th>
+
+                            <th>年收入</th>
+
+                            <th>社会保障号码</th>
+
+                            <th>是否参加养老保险</th>
+                            <th>是否参加失业保险</th>
+                            <th>是否参加医疗保险</th>
+                            <th>是否缴纳公积金</th>
+                            <th>是否享受住房补贴</th>
+                            <th>是否参加社会保险</th>
+
+                            <th>经办行</th>
+                            <th>经办人</th>
+
+                            <th>本地居住时间(年)</th>
+                            <th>联系地址</th>
+                            <th>是否本行员工</th>
+
+                            <th>客户状态</th>
+                            <th>最后修改时间</th>
+                            <th>身份证证件地址</th>
+                            <th>客户类别</th>
+
+                            <th>单位固定电话</th>
+
+                            <th>财务客户编号</th>
+                            <th>创建日期</th>
+                            <th>所属核心企业</th>
+                            <th>上下游关系</th>
+                        </tr>
+                        </thead>
+                        <tbody id="guaranteess">
+
+                        </tbody>
+                    </table>
+                </div>
+            </li>
+            <!-- 客户信息 END -->
+            <li>
+                <div class="search">
+                    <label for="cursorName4">客户名称:</label>
+                    <input type="text" placeholder="请输入客户名称" id="cursorName2">
+                    <label for="cursorNameNumber4">市场客户号:</label>
+                    <input type="text" placeholder="请输入市场客户号" id="cursorNameNumber2">
                     <button class="btn">查询</button>
                 </div>
                 <!-- 表格 -->
@@ -167,57 +423,65 @@
                     <table>
                         <thead>
                         <tr>
-                            <th>风险事件ID</th>
-                            <th>报警时间</th>
-                            <th>风险类别</th>
-                            <th>风险指标</th>
-                            <th>风险指标值</th>
-                            <th>阙值</th>
-                            <th>超出额</th>
-                            <th>市场代码</th>
-                            <th>市场名称</th>
-                            <th>客户号</th>
-                            <th>客户名称</th>
-                            <th>业务菜单编码</th>
-                            <th>业务菜单名称</th>
-                            <th>业务类型</th>
-                            <th>业务编码</th>
-                            <th>处理人</th>
-                            <th>处理状态</th>
-                            <th>处理时间</th>
-                            <th>风险说明</th>
-
+                            <th>工商营业执照</th><th>客户编号</th><th>法人客户类型</th><th>[法人证件类型]</th>
+                            <th>客户名称</th><th>客户简称</th><th>客户名称(英文)</th><th>客户简称(英文)</th>
+                            <th>营业执照号</th><th>成立日期</th><th>主管部门</th><th>所在地区</th><th>所有制类别</th>
+                            <th>组织类别</th><th>法人代表</th><th>代理人</th><th>注册资金</th><th>币种</th>
+                            <th>实收资本金</th><th>财务主管</th><th>企业规模</th><th>员工人数</th><th>企业信用等级</th>
+                            <th>是否本行基本户</th><th>基本账户账号</th><th>基本账户开户行</th><th>贷款卡号</th>
+                            <th>贷款卡年检日期</th><th>税务登记证号（国税）</th><th>税务登记证号（地税）</th>
+                            <th>是否上市公司</th><th>是否集团客户</th><th>是否母公司</th><th>是否本行股东</th>
+                            <th>是否本行关系人</th><th>是否授信客户</th><th>是否黑名单客户</th><th>客户分类</th>
+                            <th>客户状态</th><th>经办行</th><th>经办人</th><th>合作方额度序号</th><th>总资产</th>
+                            <th>总负债</th><th>所有者权益</th><th>资质</th><th>营业执照年检日期</th><th>是否本行开户</th>
+                            <th>企业信息</th><th>资产负债率</th><th>流动比率</th><th>速动比率</th><th>备注</th>
+                            <th>客户类别</th><th>合同编号</th><th>组织机构代码</th><th>法人代表证件类型</th>
+                            <th>法人代表证件号码</th><th>介绍人</th><th>介绍费</th><th>经营年限</th><th>行业门类</th>
+                            <th>合作商类型</th><th>是否合作商</th><th>财务客户编号</th><th>是否核心企业</th>
+                            <th>所属核心企业</th><th>上下游关系</th><th>创建日期</th><th>法人代表客户编号</th>
+                            <th>财务负责人客户编号</th><th>开户许可证</th><th>实际经营地址</th><th>统一社会信用证</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr>
-                            <td><a href="">449684</a></td>
-                            <td>20180124 06:01:43</td>
-                            <td>资金风险</td>
-                            <td>出入金异常</td>
-                            <td>12</td>
-                            <td>10</td>
-                            <td>20%</td>
-                            <td>0011</td>
-                            <td>山东天地红</td>
-                            <td>001100001130</td>
-                            <td>黄啸</td>
-                            <td>ZJXX</td>
-                            <td>资金信息</td>
-                            <td>市场编码</td>
-                            <td>资金信息</td>
-                            <td>man</td>
-                            <td>已提交</td>
-                            <td>20180124 16:07:39</td>
-                            <td class="more"><a href="">查看</a></td>
-                        </tr>
+                        <tbody id="public">
+
                         </tbody>
                     </table>
                 </div>
             </li>
-            <!-- 客户信息 END -->
-            <li></li>
-            <li>内容三</li>
+            <li>
+                <div class="search">
+                    <label for="cursorName4">客户名称:</label>
+                    <input type="text" placeholder="请输入客户名称" id="cursorName3">
+                    <label for="cursorNameNumber4">市场客户号:</label>
+                    <input type="text" placeholder="请输入市场客户号" id="cursorNameNumber3">
+                    <button class="btn">查询</button>
+                </div>
+                <!-- 表格 -->
+                <div class="tableBox">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>合同编号</th><th>纸质合同编号</th><th>业务编号</th><th>合同格式</th><th>客户编号</th>
+                            <th>客户名称</th><th>币种</th><th>合同金额</th><th>合同期限</th><th>起始日期</th>
+                            <th>到期日期</th><th>签约日期</th><th>经办行</th><th>经办人</th><th>受理意见说明</th>
+                            <th>审批意见</th><th>审批日期</th><th>审批人</th><th>审批表编号</th><th>审批意见说明</th>
+                            <th>合同标志</th><th>签订机构</th><th>合同是否生效</th><th>是否重签合同</th>
+                            <th>收款人账户类型</th><th>收款人账户号</th><th>收款人账户名称</th><th>收款人账户开户行名称</th>
+                            <th>出资人客户编号</th><th>出资人客户姓名</th><th>出资人账户名称</th><th>出资人账户号</th>
+                            <th>出资人账户开户行名称</th><th>出资人账户开户行行号</th><th>收款渠道</th>
+                            <th>收款人账户开户行行号</th><th>委托扣款授权协议</th><th>扣款授权状态</th>
+                            <th>放款渠道</th><th>手续费</th><th>签约时间</th><th>服务费率</th><th>注册密码</th>
+                            <th>贷款种类</th><th>是否录入还款账号</th><th>JRB上报标示</th><th>前提条件</th>
+                            <th>放款审核审批意见</th><th>收款人开户行通用名</th><th>收款人开户行通用码</th>
+                            <th>收款人账户开户行号</th><th>收款人账户清算行号</th>
+                        </tr>
+                        </thead>
+                        <tbody id="customerInfo">
+
+                        </tbody>
+                    </table>
+                </div>
+            </li>
             <li>
                 <div class="search">
                     <label for="cursorName4">客户名称:</label>
@@ -231,7 +495,6 @@
                     <table>
                         <thead>
                         <tr>
-                            <!--<th>合同管理-担保合同</th>-->
                             <th>担保合同编号</th>
                             <th>担保合同格式</th>
                             <th>业务编号</th>
@@ -255,7 +518,28 @@
                     </table>
                 </div>
             </li>
-            <li>内容五</li>
+            <li>
+                <div class="search">
+                    <label for="cursorName4">客户名称:</label>
+                    <input type="text" placeholder="请输入客户名称" id="cursorName5">
+                    <label for="cursorNameNumber4">市场客户号:</label>
+                    <input type="text" placeholder="请输入市场客户号" id="cursorNameNumber5">
+                    <button class="btn">查询</button>
+                </div>
+                <!-- 表格 -->
+                <div class="tableBox">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>业务编号</th><th>客户编号</th><th>客户名称</th><th>产品代码</th><th>产品名称</th><th>授信额度编号</th><th>贷款用途</th><th>资金来源#</th><th>担保方式</th><th>合同编号</th><th>币种</th><th>全额价款</th><th>审批金额</th><th>贷款期限约定#</th><th>审批期限</th><th>申请金额</th><th>申请期限</th><th>起始日期</th><th>到期日期</th><th>到期日约定#</th><th>首付款比例#</th><th>首付款金额</th><th>扣款方式#</th><th>划款方式</th><th>收款人账号</th><th>收款人账户名称</th><th>收款人账户开户行</th><th>还款方式#</th><th>#还款顺序</th><th>计息方式</th><th>结息方式</th><th>账单日</th><th>转逾期宽限天数</th><th>利率代码</th><th>基准利率[‰]</th><th>付款利率浮动方式</th><th>付款利率浮动比例[%]</th><th>付款利率浮动实点</th><th>付款利率[%]</th><th>付款月利率[‰]</th><th>收款利率浮动方式</th><th>收款利率浮动比例[%]</th><th>收款利率浮动实点</th><th>收款利率[%]</th><th>收款月利率[‰]</th><th>付款利率调整方式</th><th>收款利率调整方式</th><th>浮动方式</th><th>逾期利率执行方式</th><th>逾期基准利率[万分之_日]</th><th>付款逾期利率浮动方式</th><th>付款逾期利率浮动比例[%]</th><th>付款逾期利率浮动实点</th><th>付款逾期利率[万分之_日]</th><th>收款逾期利率浮动方式</th><th>收款逾期利率浮动比例[%]</th><th>收款逾期利率[万分之_日]</th><th>付款逾期利率调整方式</th><th>收款逾期利率调整方式</th><th>贴息比例[%]#</th><th>经办行</th><th>经办人</th><th>贷款状态</th><th>审批类型</th><th>审批状态</th><th>审核意见</th><th>审核日期</th><th>审核人</th><th>审核意见说明</th><th>审批意见</th><th>审批日期</th><th>审批人</th><th>开户放款金额</th><th>贷款账号</th><th>地址记录编号</th><th>通讯地址</th><th>邮编</th><th>电话</th><th>手机</th><th>期限标志</th><th>累计发放金额</th><th>EMail</th><th>行政区划代码</th><th>录入行</th><th>录入人</th><th>贷后责任人</th><th>贷款申请类型#</th><th>收款人账户类型</th><th>是否资金监管</th><th>放行标志</th><th>放行日期</th><th>证件类型</th><th>证件号码</th><th>费用套餐代码</th><th>贴息方式</th><th>是否组合贷款</th><th>组合贷款关联业务贷款金额</th><th>流程类型</th><th>是否合作项目额度项下贷款</th><th>贴息类型</th><th>数据来源</th><th>所属行业</th><th>委托人客户编号</th><th>业务审批计算要素</th><th>担保额度恢复标志</th><th>已占用额度金额</th><th>风险分类</th><th>是否分次放款</th><th>渠道编号</th><th>农户标识</th><th>贷款银行</th><th>贷款合同编号</th><th>审批金额（担保公司）</th><th>客户类型</th><th>贷款对象</th><th>贷款用途备注</th><th>费用1是否优惠</th><th>客户来源渠道</th><th>贷款用途集</th><th>日利率计算方式</th><th>贷款对象规模</th><th>利率标识</th><th>宽限期处理模式</th><th>担保公司类别</th><th>分次放款模式</th><th>预收款余额</th><th>历史未冲销预收款余额</th><th>合同额度是否循环</th><th>海易贷业务流水号</th><th>是否贴费</th>
+                        </tr>
+                        </thead>
+                        <tbody id="details">
+
+                        </tbody>
+                    </table>
+                </div>
+            </li>
             <li>
                 <div class="search">
                     <label for="cursorName6">客户名称:</label>
@@ -269,27 +553,26 @@
                     <table>
                         <thead>
                         <tr>
-                            <!--<th>额度管理_个人额度_额度调整_综合额度</th>-->
                             <th>客户编号</th>
                             <th>客户名称</th>
                             <th>抵押额度</th>
                             <th>质押额度</th>
                             <th>保证额度</th>
                             <th>信用额度</th>
-                            <th>授信总额度</th>
+                            <!--<th>授信总额度</th>-->
                             <th>可用额度</th>
                             <th>币种</th>
-                            <th>额度循环方式</th>
-                            <th>定额_定比递减值</th>
-                            <th>额度期限控制方式</th>
-                            <th>额度期限</th>
-                            <th>额度起始日期</th>
-                            <th>额度到期日期</th>
+                            <!--<th>额度循环方式</th>-->
+                            <!--<th>定额_定比递减值</th>-->
+                            <!--<th>额度期限控制方式</th>-->
+                            <!--<th>额度期限</th>-->
+                            <!--<th>额度起始日期</th>-->
+                            <!--<th>额度到期日期</th>-->
                             <th>担保方式</th>
-                            <th>贷款支用有效期限</th>
-                            <th>贷款最长期限</th>
-                            <th>主动授信标志</th>
-                            <th>额度统一控制方式</th>
+                            <!--<th>贷款支用有效期限</th>-->
+                            <!--<th>贷款最长期限</th>-->
+                            <!--<th>主动授信标志</th>-->
+                            <!--<th>额度统一控制方式</th>-->
 
                         </tr>
                         </thead>
@@ -301,6 +584,24 @@
             </li>
         </ul>
     </div>
+    <nav class="pagination">
+        <ul>
+            <li class="home">首页</li>
+            <li class="split">|</li>
+            <li class="prev">上一页</li>
+            <li class="split">|</li>
+            <li class="pageNumber">
+                <label for="pageCurrent" hidden></label>
+                <input id="pageCurrent" type="number" value="1">&nbsp;/
+                <span class="pageTotal">30</span>
+            </li>
+            <li class="split">|</li>
+            <li class="next">下一页</li>
+            <li class="split">|</li>
+            <li class="end">末页</li>
+        </ul>
+    </nav>
+
 </div>
 </body>
 <script src="${contextPath}/static/asserts/js/echarts-4.0.js"></script>
@@ -341,69 +642,13 @@
             dataType: "json",
             success: function (data) {
                 console.log(data)
-                var value = data.riskevent;
-                var append = "",guaranteehtml="",limithtml="";
-                append +=
-                    "  <tr>            <td><a href=\"\" class=\"fengxian001\">"+value.fxsj_id+"</a></td>\n" +
-                    "                <td>"+value.bjsj+"</td>\n" +
-                    "                <td>"+value.fxlb+"</td>\n" +
-                    "               <td>"+value.fxzb+"</td>\n" +
-                    "               <td>"+value.fxzbz+"</td>\n" +
-                    "               <td>"+value.yuzhi+"</td>\n" +
-                    "               <td>"+value.cce+"</td>\n" +
-                    "               <td>"+value.jgdm+"</td>\n" +
-                    "               <td>"+value.jgmc+"</td>\n" +
-                    "               <td>"+value.cust_id+"</td>\n" +
-                    "               <td>"+value.khmc+"</td>\n" +
-                    "               <td>"+value.ywcdbm+"</td>\n" +
-                    "               <td>"+value.ywcdmc+"</td>\n" +
-                    "               <td>"+value.ywlx+"</td>\n" +
-                    "               <td>"+value.ywbm+"</td>\n" +
-                    "               <td>"+value.shr+"</td>\n" +
-                    "               <td>"+value.clzt+"</td>\n" +
-                    "               <td>"+value.update_time+"</td>\n" ;
-                $('#riskEvent').html(append);
-                $.each(data.guarantee.list, function(index, guaranteevalue, array) {
-                    guaranteehtml +=
-                        "  <tr>            <td><a href=\"\" class=\"fengxian001\">"+guaranteevalue.assucontno+"</a></td>\n" +
-                        "                <td>"+guaranteevalue.assucontkind+"</td>\n" +
-                        "                <td>"+guaranteevalue.loanid+"</td>\n" +
-                        "               <td>"+guaranteevalue.contno+"</td>\n" +
-                        "               <td>"+guaranteevalue.maxassuflag+"</td>\n" +
-                        "               <td>"+guaranteevalue.assucustid+"</td>\n" +
-                        "               <td>"+guaranteevalue.assucustname+"</td>\n" +
-                        "               <td>"+guaranteevalue.regikind+"</td>\n" +
-                        "               <td>"+guaranteevalue.assuamt+"</td>\n" +
-                        "               <td>"+guaranteevalue.assurate+"</td>\n" +
-                        "               <td>"+guaranteevalue.begindate+"</td>\n" +
-                        "               <td>"+guaranteevalue.enddate+"</td>\n" +
-                        "               <td>"+guaranteevalue.contdate+"</td>\n" +
-                        "               <td>"+guaranteevalue.bankidcont+"</td>\n" +
-                        "               <td>"+guaranteevalue.validkind+"</td></tr>" ;
-                });
-                $('#guarantee').html(guaranteehtml);
-
-                $.each(data.limit.list, function(index, value, array) {
-                    limithtml +=
-                        "  <tr>            <td><a href=\"\" class=\"fengxian001\">"+value.custid+"</a></td>\n" +
-                        "                <td>"+value.custname+"</td>\n" +
-                        "                <td>"+value.mortamt+"</td>\n" +
-                        "               <td>"+value.impaamt+"</td>\n" +
-                        "               <td>"+value.assuamt+"</td>\n" +
-                        "               <td>"+value.credamt+"</td>\n" +
-                        // "               <td>"+value.assucustname+"</td>\n" + //授信总额度
-                        // "               <td>"+value.LEFTAMT+"</td>\n" +
-                        // "               <td>"+value.CURRSIGN+"</td>\n" +
-                        // "               <td>"+value.CYCFLAG+"</td>\n" +
-                        // "               <td>"+value.begindate+"</td>\n" +
-                        // "               <td>"+value.enddate+"</td>\n" +
-                        // "               <td>"+value.contdate+"</td>\n" +
-                        // "               <td>"+value.bankidcont+"</td>\n" +
-                        "               <td>"+value.currsign+"</td></tr>" ;
-                });
-                $('#limit').html(limithtml);
-
-                // console.log(data)
+                riskdata(data);
+                limitdata(data); //额度查询
+                guaranteedata(data); //担保合同
+               personaldata(data); //个人客户
+               publicdata(data);  //对公客户
+               customerInfo(data)//合同信息-基本信息
+                detailsdata(data); //明细查询
             }
         });
     }
@@ -430,6 +675,105 @@
 
             }
         });
+    }
+    function riskdata(data) {
+        var value = data.riskevent;
+        var append = "";
+        append +=
+            "  <tr>            <td><a href=\"\" class=\"fengxian001\">"+value.fxsj_id+"</a></td>\n" +
+            "                <td>"+value.bjsj+"</td>\n" +
+            "                <td>"+value.fxlb+"</td>\n" +
+            "               <td>"+value.fxzb+"</td>\n" +
+            "               <td>"+value.fxzbz+"</td>\n" +
+            "               <td>"+value.yuzhi+"</td>\n" +
+            "               <td>"+value.cce+"</td>\n" +
+            "               <td>"+value.jgdm+"</td>\n" +
+            "               <td>"+value.jgmc+"</td>\n" +
+            "               <td>"+value.cust_id+"</td>\n" +
+            "               <td>"+value.khmc+"</td>\n" +
+            "               <td>"+value.ywcdbm+"</td>\n" +
+            "               <td>"+value.ywcdmc+"</td>\n" +
+            "               <td>"+value.ywlx+"</td>\n" +
+            "               <td>"+value.ywbm+"</td>\n" +
+            "               <td>"+value.shr+"</td>\n" +
+            "               <td>"+value.clzt+"</td>\n" +
+            "               <td>"+value.update_time+"</td>\n" ;
+        $('#riskEvent').html(append);
+    }
+    function guaranteedata(data){
+        var guaranteehtml="";
+        $.each(data.guarantee.list, function(index, guaranteevalue, array) {
+            guaranteehtml +=
+                "  <tr>            <td><a href=\"\" class=\"fengxian001\">"+guaranteevalue.assucontno+"</a></td>\n" +
+                "                <td>"+guaranteevalue.assucontkind+"</td>\n" +
+                "                <td>"+guaranteevalue.loanid+"</td>\n" +
+                "               <td>"+guaranteevalue.contno+"</td>\n" +
+                "               <td>"+guaranteevalue.maxassuflag+"</td>\n" +
+                "               <td>"+guaranteevalue.assucustid+"</td>\n" +
+                "               <td>"+guaranteevalue.assucustname+"</td>\n" +
+                "               <td>"+guaranteevalue.regikind+"</td>\n" +
+                "               <td>"+guaranteevalue.assuamt+"</td>\n" +
+                "               <td>"+guaranteevalue.assurate+"</td>\n" +
+                "               <td>"+guaranteevalue.begindate+"</td>\n" +
+                "               <td>"+guaranteevalue.enddate+"</td>\n" +
+                "               <td>"+guaranteevalue.contdate+"</td>\n" +
+                "               <td>"+guaranteevalue.bankidcont+"</td>\n" +
+                "               <td>"+guaranteevalue.validkind+"</td></tr>" ;
+        });
+        $('#guarantee').html(guaranteehtml);
+
+    }
+    function limitdata(data) {
+        var limithtml=""
+        $.each(data.limit.list, function(index, value, array) {
+            limithtml +=
+                "  <tr>            <td><a href=\"\" class=\"fengxian001\">"+value.custid+"</a></td>\n" +
+                "                <td>"+value.custname+"</td>\n" +
+                "                <td>"+value.mortamt+"</td>\n" +
+                "               <td>"+value.impaamt+"</td>\n" +
+                "               <td>"+value.assuamt+"</td>\n" +
+                "               <td>"+value.credamt+"</td>\n" +
+                "               <td>"+value.leftamt+"</td>\n" + //授信总额度
+                "               <td>"+value.LEFTAMT+"</td>\n" +
+                "               <td>"+value.currsign+"</td>\n" +
+                "               <td>"+value.assukind+"</td></tr>" ;
+        });
+        $('#limit').html(limithtml);
+
+    }
+
+    function personaldata(data) {
+        var personalhtml = "";
+        $.each(data.limit.list, function(index, value, array) {
+           personalhtml+="<tr><td>"+value.jysc+"</td><td>"+value.custid+"</td><td>"+value.custname+"</td><td>"+value.engname+"</td><td>"+value.paperkind+"</td><td>"+value.paperid+"</td><td>"+value.birtdate+"</td><td>"+value.sexsign+"</td><td>"+value.natisign2+"</td><td>"+value.nativeplace+"</td><td>"+value.natisign1+"</td><td>"+value.regiseat+"</td><td>"+value.regicode+"</td><td>"+value.marrsign+"</td><td>"+value.healsign+"</td><td>"+value.gradschool+"</td><td>"+value.specialty+"</td><td>"+value.gradtime+"</td><td>"+value.educsign+"</td><td>"+value.degreesign+"</td><td>"+value.vocasign+"</td><td>"+value.workkind+"</td><td>"+value.titlesign+"</td><td>"+value.workcorpid+"</td><td>"+value.workcorp+"</td><td>"+value.waykind+"</td><td>"+value.corpsizesign+"</td><td>"+value.corpaddr+"</td><td>"+value.corppost+"</td><td>"+value.workyearmonth+"</td><td>"+value.loanstatsign+"</td><td>"+value.operfreqsign+"</td><td>"+value.credrecord+"</td><td>"+value.fellrecord+"</td><td>"+value.applyrecord+"</td><td>"+value.amtnum+"</td><td>"+value.custevalvalue+"</td><td>"+value.custevaldate+"</td><td>"+value.custrevalvalue+"</td><td>"+value.custrevaldate+"</td><td>"+value.resiyear+"</td><td>"+value.reginatu+"</td><td>"+value.contaddr+"</td><td>"+value.bal+"</td><td>"+value.badbal+"</td><td>"+value.amt+"</td><td>"+value.familyloancount+"</td><td>"+value.credsign+"</td><td>"+value.custstate+"</td><td>"+value.addtime+"</td><td>"+value.lastchgtime+"</td><td>"+value.paperadd+"</td><td>"+value.custkind+"</td><td>"+value.contno+"</td><td>"+value.areaid+"</td><td>"+value.nccustid+"</td><td>"+value.createdate+"</td><td>"+value.corecustid+"</td><td>"+value.corerela+"</td><td>"+value.agestage+"</td><td>"+value.createtime+"</td><td>"+value.updatetime+"</td><td>"+value.scouresystem+"</td></tr>";
+        });
+        $('#personal').html(personalhtml);
+    }
+
+    function detailsdata(data) {
+        var detailshtml=""
+        $.each(data.details.list, function(index, value, array) {
+            detailshtml +="<tr><td>"+value.loanacno+"</td><td>"+value.loanid+"</td><td>"+value.custid+"</td><td>"+value.custname+"</td><td>"+value.prodid+"</td><td>"+value.prodname+"</td><td>"+value.credid+"</td><td>"+value.assukind+"</td><td>"+value.corpid+"</td><td>"+value.projid+"</td><td>"+value.corpappid+"</td><td>"+value.loantype+"</td><td>"+value.contno+"</td><td>"+value.currsign+"</td><td>"+value.tcapi+"</td><td>"+value.loantermkind+"</td><td>"+value.tterm+"</td><td>"+value.begindate+"</td><td>"+value.enddate+"</td><td>"+value.enddatekind+"</td><td>"+value.subsflag+"</td><td>"+value.subskind+"</td><td>"+value.subsacno+"</td><td>"+value.retukind+"</td><td>"+value.intecompkind+"</td><td>"+value.reckday+"</td><td>"+value.turngraceday+"</td><td>"+value.ratecode+"</td><td>"+value.basicinterate+"</td><td>"+value.pintefloatmode+"</td><td>"+value.pfloatinterate+"</td><td>"+value.pfloatintevalue+"</td><td>"+value.pinterate+"</td><td>"+value.rintefloatmode+"</td><td>"+value.rfloatinterate+"</td><td>"+value.rfloatintevalue+"</td><td>"+value.rinterate+"</td><td>"+value.pinteadjukind+"</td><td>"+value.rinteadjukind+"</td><td>"+value.fineratetype+"</td><td>"+value.compinteflag+"</td><td>"+value.compintespacesign+"</td><td>"+value.basicfinerate+"</td><td>"+value.pfinefloatmode+"</td><td>"+value.pfloatfinerate+"</td><td>"+value.pfloatfinevalue+"</td><td>"+value.pfinerate+"</td><td>"+value.rfinefloatmode+"</td><td>"+value.rfloatfinerate+"</td><td>"+value.rfloatfinevalue+"</td><td>"+value.rfinerate+"</td><td>"+value.pfineadjukind+"</td><td>"+value.rfineadjukind+"</td><td>"+value.foulfloat+"</td><td>"+value.aheacapifloat+"</td><td>"+value.inteperc+"</td><td>"+value.inteenddate+"</td><td>"+value.inteallobegindate+"</td><td>"+value.amt+"</td><td>"+value.acbankid+"</td><td>"+value.bankid+"</td><td>"+value.operid+"</td><td>"+value.dutyid+"</td><td>"+value.dutyid2+"</td><td>"+value.addrkeyno+"</td><td>"+value.addr+"</td><td>"+value.post+"</td><td>"+value.tel+"</td><td>"+value.mobile+"</td><td>"+value.email+"</td><td>"+value.areakind+"</td><td>"+value.subjid+"</td><td>"+value.termflag+"</td><td>"+value.sdate+"</td><td>"+value.sterm+"</td><td>"+value.scterm+"</td><td>"+value.cterm+"</td><td>"+value.sumtcapi+"</td><td>"+value.bal+"</td><td>"+value.abal+"</td><td>"+value.aubal+"</td><td>"+value.bbal+"</td><td>"+value.cbal+"</td><td>"+value.dbal+"</td><td>"+value.fbal+"</td><td>"+value.finte+"</td><td>"+value.lastchgtime+"</td><td>"+value.loanobject+"</td><td>"+value.firstbegindate+"</td><td>"+value.loanevalvalue+"</td><td>"+value.ainte+"</td><td>"+value.binte+"</td><td>"+value.cinte+"</td><td>"+value.afoul+"</td><td>"+value.rinte+"</td><td>"+value.rfoul+"</td><td>"+value.cancelamt+"</td><td>"+value.lastintedate+"</td><td>"+value.overbal+"</td><td>"+value.overinte+"</td><td>"+value.overbegindate_tcapi+"</td><td>"+value.overbegindate_inte+"</td><td>"+value.thistermcapi+"</td><td>"+value.serioverterm+"</td><td>"+value.maxoverterm+"</td><td>"+value.sumoverterm+"</td><td>"+value.overflag+"</td><td>"+value.payoffflag+"</td><td>"+value.payoffdate+"</td><td>"+value.acflag+"</td><td>"+value.acflag2+"</td><td>"+value.sortdate+"</td><td>"+value.riskassukind+"</td><td>"+value.riskflag_lastyear+"</td><td>"+value.riskflag+"</td><td>"+value.riskadjuflag+"</td><td>"+value.nextsortdate+"</td><td>"+value.stopreleflag+"</td><td>"+value.stopsubsflag+"</td><td>"+value.stopinteflag+"</td><td>"+value.loanevaldate+"</td><td>"+value.sumevalvalue+"</td><td>"+value.sumevaldate+"</td><td>"+value.listnum+"</td><td>"+value.stermnum+"</td><td>"+value.loanbooknum+"</td><td>"+value.pbillkind+"</td><td>"+value.pretufreq+"</td><td>"+value.pretuincr+"</td><td>"+value.rbillkind+"</td><td>"+value.rretufreq+"</td><td>"+value.rretuincr+"</td><td>"+value.assukindac+"</td><td>"+value.lastinterecedate+"</td><td>"+value.loanacnoext+"</td><td>"+value.paperkind+"</td><td>"+value.paperid+"</td><td>"+value.pfineintekind+"</td><td>"+value.rfineintekind+"</td><td>"+value.loankindsubd+"</td><td>"+value.assucompno+"</td><td>"+value.dutybankid+"</td><td>"+value.oldassucompno+"</td><td>"+value.feeplanid+"</td><td>"+value.perikind+"</td><td>"+value.datasource+"</td><td>"+value.checkbankid+"</td><td>"+value.custid_client+"</td><td>"+value.intepercdept+"</td><td>"+value.risksortkind+"</td><td>"+value.pintebaseflag+"</td><td>"+value.rintebaseflag+"</td><td>"+value.rpt_operid+"</td><td>"+value.rpt_dutyid+"</td><td>"+value.waykind+"</td><td>"+value.isfavorfee1+"</td><td>"+value.favormodefee1+"</td><td>"+value.favorratefee1+"</td><td>"+value.favoramtfee1+"</td><td>"+value.isfavorfee2+"</td><td>"+value.favormodefee2+"</td><td>"+value.favorratefee2+"</td><td>"+value.favoramtfee2+"</td><td>"+value.maxoverdays+"</td><td>"+value.sumoverdays+"</td><td>"+value.dayintemode+"</td><td>"+value.mark+"</td><td>"+value.serioverdays+"</td><td>"+value.graceperiodmode+"</td><td>"+value.receamtbal+"</td><td>"+value.gracedays+"</td><td>"+value.retuplanflag+"</td><td>"+value.jrbreportflag+"</td><td>"+value.preamtbal+"</td><td>"+value.lastpreamtbal+"</td><td>"+value.ffine+"</td><td>"+value.ffee+"</td><td>"+value.over90date+"</td><td>"+value.rfine+"</td><td>"+value.rfee+"</td><td>"+value.createtime+"</td><td>"+value.updatetime+"</td><td>"+value.scouresystem+"</td></tr>";
+        });
+        $('#details').html(detailshtml);
+
+    }
+
+
+    function publicdata(data) {
+        var publichtml="";
+        $.each(data.public.list, function(index, value, array) {
+            publichtml += " <tr><td>"+value.orgaid+"</td><td>"+value.custid+"</td><td>"+value.corptype+"</td><td>"+value.licekind+"</td><td>"+value.custname+"</td><td>"+value.scustname+"</td><td>"+value.engname+"</td><td>"+value.sengname+"</td><td>"+value.liceid+"</td><td>"+value.comedate+"</td><td>"+value.superdept+"</td><td>"+value.localarea+"</td><td>"+value.posskind+"</td><td>"+value.orgakind+"</td><td>"+value.leadcustname+"</td><td>"+value.commcustname+"</td><td>"+value.regifund+"</td><td>"+value.currsign+"</td><td>"+value.factcapi+"</td><td>"+value.finamgr+"</td><td>"+value.corpsizesign+"</td><td>"+value.staffnum+"</td><td>"+value.corpcredsign+"</td><td>"+value.isownbankflag+"</td><td>"+value.basicacno+"</td><td>"+value.basicbankname+"</td><td>"+value.loanpaperid+"</td><td>"+value.loanpapercheckdate+"</td><td>"+value.creveid+"</td><td>"+value.lreveid+"</td><td>"+value.iscomeflag+"</td><td>"+value.isgroupflag+"</td><td>"+value.issuperflag+"</td><td>"+value.isholdflag+"</td><td>"+value.isrelaflag+"</td><td>"+value.iscredflag+"</td><td>"+value.isblackflag+"</td><td>"+value.corpcustclass+"</td><td>"+value.corpstate+"</td><td>"+value.bankid+"</td><td>"+value.operid+"</td><td>"+value.amtnum+"</td><td>"+value.sumfund+"</td><td>"+value.sumdebt+"</td><td>"+value.owneinte+"</td><td>"+value.corplevel+"</td><td>"+value.liccheckdate+"</td><td>"+value.islocalacct+"</td><td>"+value.corpinformation+"</td><td>"+value.funtdebtperc+"</td><td>"+value.streamperc+"</td><td>"+value.quickperc+"</td><td>"+value.note+"</td><td>"+value.custkind+"</td><td>"+value.contno+"</td><td>"+value.orgcode+"</td><td>"+value.leadcustpaperkind+"</td><td>"+value.keadcustpaperid+"</td><td>"+value.intrlducepers+"</td><td>"+value.introduceamt+"</td><td>"+value.busitmelimit+"</td><td>"+value.waykind+"</td><td>"+value.parinerkind+"</td><td>"+value.ispartner+"</td><td>"+value.nccustid+"</td><td>"+value.iscorecomp+"</td><td>"+value.corecustid+"</td><td>"+value.corerela+"</td><td>"+value.createdate+"</td><td>"+value.leadcustid+"</td><td>"+value.custid_c+"</td><td>"+value.premit+"</td><td>"+value.busiaddress+"</td><td>"+value.socialcredit+"</td>";
+            publichtml +="</tr>";
+        });
+        $('#public').html(publichtml);
+    }
+    function customerInfo(data) {
+        var customerInfohtml=""
+        $.each(data.custominfo.list, function(index, value, array) {
+            customerInfohtml +="<tr><td>"+value.jysc+"</td><td>"+value.batch_no+"</td><td>"+value.rootkey+"</td><td>"+value.report_type+"</td><td>"+value.org_code+"</td><td>"+value.contract_no+"</td><td>"+value.loan_cate+"</td><td>"+value.contract_name+"</td><td>"+value.customer_type+"</td><td>"+value.customer_name+"</td><td>"+value.certificate_type+"</td><td>"+value.certificate_no+"</td><td>"+value.linkman+"</td><td>"+value.telephone+"</td><td>"+value.loan_object+"</td><td>"+value.loan_object_size+"</td><td>"+value.contract_sign_date+"</td><td>"+value.contract_begin_date+"</td><td>"+value.contract_end_date+"</td><td>"+value.contract_amount+"</td><td>"+value.outstanding+"</td><td>"+value.guar_type+"</td><td>"+value.ccy+"</td><td>"+value.is_real_quota_loan+"</td><td>"+value.real_quota_no+"</td><td>"+value.int_rate+"</td><td>"+value.pri_plty_rate+"</td><td>"+value.contract_status+"</td><td>"+value.relation_manager+"</td><td>"+value.dispute_scheme+"</td><td>"+value.remark+"</td><td>"+value.con_customer_type+"</td><td>"+value.con_customer_name+"</td><td>"+value.con_certificate_type+"</td><td>"+value.con_certificate_no+"</td><td>"+value.con_jurisitc+"</td><td>"+value.con_telephone+"</td><td>"+value.con_locus+"</td><td>"+value.con_postalcode+"</td><td>"+value.con_fincal_org+"</td><td>"+value.con_account_no+"</td><td>"+value.ass_customer_name+"</td><td>"+value.ass_juristic+"</td><td>"+value.ass_telephone+"</td><td>"+value.ass_locus+"</td><td>"+value.ass_postalcode+"</td><td>"+value.con_fee+"</td><td>"+value.co_customer_info+"</td><td>"+value.reserved_field1+"</td><td>"+value.reserved_field2+"</td><td>"+value.reserved_field3+"</td><td>"+value.createtime+"</td><td>"+value.updatetime+"</td><td>"+value.scouresystem+"</td></tr>";
+        });
+        $('#customerInfo').html(customerInfohtml);
     }
 
 

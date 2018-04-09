@@ -7,9 +7,12 @@ import java.util.Map;
 import org.apache.commons.lang.StringUtils;
 
 import com.jfinal.kit.JsonKit;
+import com.jfinal.plugin.activerecord.Page;
 import com.qdch.core.BaseController;
 import com.qdch.xd.model.JyscModel;
+import com.qdch.xd.model.MonthlyReportListModel;
 import com.qdch.xd.model.MonthlyReportModel;
+import com.qdch.xd.model.RiskEventModel;
 /**
  * 
 * @author doushuihai  
@@ -41,6 +44,26 @@ public class MonthlyReportController extends BaseController {
 		List<MonthlyReportModel> monthlyreportmodel=MonthlyReportModel.dao.getMonthlyReport(getDataScopeByUserName(),jys,reportType,date);
 		
 		mRenderJson(monthlyreportmodel);
+		
+	}
+	/**
+	 * 分页查询
+	* @author doushuihai  
+	* @date 2018年4月8日下午2:57:58  
+	* @TODO
+	 */
+	public void getMonthlyReportList(){
+		int pageNum =Integer.parseInt(StringUtils.isBlank(getPara("pageNum"))||
+				getPara("pageNum").equals("undefined")==true?
+				"1":getPara("pageNum"));
+		int pageSize =Integer.parseInt(StringUtils.isBlank(getPara("pageSize"))||
+				getPara("pageSize").equals("undefined")
+				==true?
+				"10":getPara("pageSize"));
+//		getPara(getRequest());
+		getResponse().setCharacterEncoding("UTF-8");
+		Page<MonthlyReportListModel> page = MonthlyReportListModel.getMonthlyReportList(getDataScopeByUserName(),pageNum,pageSize,getRequest());
+		mRenderJson(page);
 		
 	}
 

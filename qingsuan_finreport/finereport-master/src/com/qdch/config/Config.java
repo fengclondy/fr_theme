@@ -165,6 +165,7 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("insight_xd_scability", ComparisonOfCompeModel.class);//业务总览的竞争力对比
 		insight_arp.addMapping("insight_xd_scability", CompetitiveRrendModel.class);//业务总览的竞争力对比
 		insight_arp.addMapping("insight_regulatory_report", MonthlyReportModel.class);//监管月报
+		insight_arp.addMapping("insight_regulatory_report", MonthlyReportListModel.class);//监管月报
 		/***doushuiahi Model START***/
 		
 		
@@ -194,7 +195,7 @@ public class Config extends JFinalConfig {
 
 		arp.addMapping("hub_xd_cust_pers", PersonalCustomModel.class);//个人客户
 
-//		insight_arp.addMapping("hub_xd_loan_ledeger", DetailsQueryModel.class);//明细查询
+		arp.addMapping("hub_xd_loan_ledger", DetailsQueryModel.class);//明细查询
 
 		arp.addMapping("hub_xd_cred_indus_info", LimitQueryModel.class);//额度查询
 

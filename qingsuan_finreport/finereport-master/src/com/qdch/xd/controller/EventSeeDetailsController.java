@@ -25,6 +25,7 @@ public class EventSeeDetailsController extends BaseController {
 	private static CustomerInfoModel customerInfoModelDao = CustomerInfoModel.dao;
 	private static  PublicCustomModel publicCustomModelDao = PublicCustomModel.dao;
 	private static PersonalCustomModel personalCustomModelDao = PersonalCustomModel.dao;
+	private static DetailsQueryModel detailsQueryModelDao = DetailsQueryModel.dao;
 	/**
 	 * 
 	* @author wf
@@ -64,6 +65,7 @@ public class EventSeeDetailsController extends BaseController {
 		results.put("custominfo",customerInfoModelDao.getPage(pageNum,pageSize)); //合同-基本信息
 		results.put("public",publicCustomModelDao.getPage(pageNum,pageSize));
 		results.put("personal",personalCustomModelDao.getPage(pageNum,pageSize));
+		results.put("details",detailsQueryModelDao.getPage(pageNum,pageSize));
         mRenderJson(results);
 	}
 
@@ -140,6 +142,12 @@ public class EventSeeDetailsController extends BaseController {
 
 		mRenderJson(personalCustomModelDao.getPage(pageNum,pageSize));
 	}
+
+
+
+
+
+//	public void
 
 
 

@@ -323,6 +323,7 @@
         })
         //getJysSelected();
         //初始化信用风险页面时默认加载所有相关模块数据
+        jysCode=$("#jysselect").find("li").eq(0).attr("id");
         initData();
     });
 	
@@ -528,7 +529,7 @@
         		$.each(data,function(index,item){
 	        		var points=[];
         			$.each(item.data,function(ind,it){
-        				if(index==0){
+        				if(index==1){
         					yAxisData.push(it.month);
         				}
         				points.push(it.value);
@@ -708,7 +709,7 @@
                              show: false
                          },
                          xAxis: {
-                             name: '月份',
+                             name: '年龄段',
                              data: yAxisData,
                          },
                          yAxis: {
@@ -754,7 +755,7 @@
                            show: false
                        },
                        xAxis: {
-                           name: '月份',
+                           name: '地域',
                            data: yAxisData,
                        },
                        yAxis: {
@@ -830,8 +831,17 @@
         		$.each(data,function(index,item){
         			
         			yAxisData.push(item.month);
-        			seriesData1.push(item.value1);
-        			seriesData2.push(item.value2);
+        			if(item.value1==undefined){
+        				seriesData1.push(0);
+        			}else{
+        				seriesData1.push(item.value1);
+        			}
+        			if(item.value2==undefined){
+        				seriesData2.push(0);
+        			}else{
+        				seriesData2.push(item.value2);
+        			}
+        			
 	    			
        	 		});
         		
