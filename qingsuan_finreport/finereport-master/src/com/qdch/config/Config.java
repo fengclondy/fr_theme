@@ -1,5 +1,4 @@
 package com.qdch.config;
-
 import org.beetl.core.GroupTemplate;
 import org.beetl.ext.jfinal3.JFinal3BeetlRenderFactory;
 
@@ -18,6 +17,16 @@ import com.jfinal.plugin.activerecord.dialect.PostgreSqlDialect;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.template.Engine;
 import com.qdch.model.DemoModel;
+import com.qdch.p2p.controller.BorrowerController;
+import com.qdch.p2p.controller.BorrowerPhotoController;
+import com.qdch.p2p.controller.CompanyFeelController;
+import com.qdch.p2p.controller.DealplatformController;
+import com.qdch.p2p.controller.PlatformAlertController;
+import com.qdch.p2p.controller.PlatformController;
+import com.qdch.p2p.controller.ProjectplatformController;
+import com.qdch.p2p.controller.RiskController;
+import com.qdch.p2p.controller.SuperviseController;
+import com.qdch.p2p.model.PlatformModel;
 import com.qdch.util.TemplteLayoutTag;
 import com.qdch.xd.controller.AssetRiskController;
 import com.qdch.xd.controller.BusinessOverviewController;
@@ -61,6 +70,7 @@ import com.qdch.xd.model.PublicCustomModel;
 import com.qdch.xd.model.RiskCountModel;
 import com.qdch.xd.model.RiskEventHistoryModel;
 import com.qdch.xd.model.RiskEventModel;
+import com.qdch.xd.model.RiskShowModel;
 import com.qdch.xd.model.RiskTypeModel;
 import com.qdch.xd.model.ScabilityModel;
 
@@ -112,6 +122,17 @@ public class Config extends JFinalConfig {
 		/***小贷zuoqb Controller END***/
 
 		me.add("qdch/eventSeeDetails", EventSeeDetailsController.class,"/");	//监管月报
+		
+		/***p2p lixiaoyi Controller START ***/
+		me.add("qdch/borrower",BorrowerController.class,"/");    //p2p-借款人总览
+		me.add("qdch/platform",PlatformController.class,"/");    //p2p-平台总览
+		me.add("qdch/risk",RiskController.class,"/");  // p2p-风险总览
+		me.add("qdch/project",ProjectplatformController.class,"/"); //p2p-平台项目
+		me.add("qdch/deal",DealplatformController.class,"/"); //p2p-平台交易
+		me.add("qdch/borrowerphoto",BorrowerPhotoController.class,"/"); //p2p-借款人画像
+		me.add("qdch/companyfeel",CompanyFeelController.class,"/");  //p2p-企业舆情
+		me.add("qdch/supervise",SuperviseController.class,"/");  //p2p-监管月报
+		me.add("qdch/platformalert",PlatformAlertController.class,"/"); //p2p-平台总览弹出
 	}
 
 	public void configEngine(Engine me) {
@@ -137,6 +158,7 @@ public class Config extends JFinalConfig {
 		//arp.addMapping("user", User.class);
 		arp.addMapping("hub_commerce_ref_jys", DemoModel.class);
 		arp.addMapping("hub_xd_jysc", JyscModel.class);
+		arp.addMapping("hub_fxsj", RiskShowModel.class);
 		//----qdchedw hub用户连接方式 end----
 		
 		
@@ -237,6 +259,10 @@ public class Config extends JFinalConfig {
 		
 		/***小贷 王风 insight层 Model START***/
 		
+		
+		
+		/***p2p 韩朋达 insight层 Model START***/
+		insight_arp.addMapping("insight_pp_overview", PlatformModel.class); //p2p 平台总览表
 	}
 
 	public void configInterceptor(Interceptors me) {

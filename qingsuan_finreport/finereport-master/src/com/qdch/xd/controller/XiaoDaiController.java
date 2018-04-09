@@ -20,9 +20,9 @@ public class XiaoDaiController extends BaseController {
   
 
     
-    public void test() {
+    public void p2p() {
     	setAttr("name", "value");
-        render("p2p/test/login.html");
+        render("p2p/pages/index.html");
      }
     
     public void xd() {

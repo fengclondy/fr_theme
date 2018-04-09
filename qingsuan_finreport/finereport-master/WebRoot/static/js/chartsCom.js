@@ -135,10 +135,6 @@ $.extend(true, opt_pie, opt_com,
             formatter: "{a} <br/>{b} : {c} ({d}%)"
         },
 
-        labelLine: {
-            lineStyle: {color: '#fff'}
-        },
-
         animationType: 'scale',
         animationEasing: 'elasticOut',
         animationDelay: function (idx) {

@@ -34,10 +34,10 @@
             <div class="mySelect" id="pingtai">
                 <div class="myOption selected"><span class="text"></span><span class="icon"></span></div>
                 <ul class="myOptionBox">
-                   <li data="" class="myOption selected">全部</li>
-                               ##for(j in jyslist!){
-                                <li id="${j.jysc!}" onclick=changeJysData(this) class="myOption">${j.jyscmc!}</li>
+                               ##for(j in jys!){
+                                <li id="${j.jyscmc!}" onclick=changeJysData(this) class="myOption">${j.jyscmc!}</li>                
                                ##}
+                               
                 </ul>
             </div>
         </div>
@@ -76,28 +76,15 @@
                     <h3>管理风险列示</h3>
                 </div>
                 <div class="chartContent">
-                    <table >
+                    <table id="test">
                         <thead>
                         <tr><th>报警时间</th><th>预警指标</th><th>预警原因</th><th>平台名称</th><th>业务详述</th></tr>
                         </thead>
                         <tbody>
-                        <tr><td>20180307 11:28:01</td><td>信用风险</td><td>借款集中度</td><td>鲁金宝</td><td class="more"><a href=""> 查看</a></td></tr>
-                        <tr><td>20180307 11:28:01</td><td>信用风险</td><td>借款集中度</td><td>鲁金宝</td><td class="more"><a href=""> 查看</a></td></tr>
-                        <tr><td>20180307 11:28:01</td><td>信用风险</td><td>借款集中度</td><td>鲁金宝</td><td class="more"><a href=""> 查看</a></td></tr>
-                        <tr><td>20180307 11:28:01</td><td>信用风险</td><td>借款集中度</td><td>鲁金宝</td><td class="more"><a href=""> 查看</a></td></tr>
-                        <tr><td>20180307 11:28:01</td><td>信用风险</td><td>借款集中度</td><td>鲁金宝</td><td class="more"><a href=""> 查看</a></td></tr>
-                        <tr><td>20180307 11:28:01</td><td>信用风险</td><td>借款集中度</td><td>鲁金宝</td><td class="more"><a href=""> 查看</a></td></tr>
-                        <tr><td>20180307 11:28:01</td><td>信用风险</td><td>借款集中度</td><td>鲁金宝</td><td class="more"><a href=""> 查看</a></td></tr>
-                        <tr><td>20180307 11:28:01</td><td>信用风险</td><td>借款集中度</td><td>鲁金宝</td><td class="more"><a href=""> 查看</a></td></tr>
-                        <tr><td>20180307 11:28:01</td><td>信用风险</td><td>借款集中度</td><td>鲁金宝</td><td class="more"><a href=""> 查看</a></td></tr>
-                        <tr><td>20180307 11:28:01</td><td>信用风险</td><td>借款集中度</td><td>鲁金宝</td><td class="more"><a href=""> 查看</a></td></tr>
-                        <tr><td>20180307 11:28:01</td><td>信用风险</td><td>借款集中度</td><td>鲁金宝</td><td class="more"><a href=""> 查看</a></td></tr>
-                        <tr><td>20180307 11:28:01</td><td>信用风险</td><td>借款集中度</td><td>鲁金宝</td><td class="more"><a href=""> 查看</a></td></tr>
-                        <tr><td>20180307 11:28:01</td><td>信用风险</td><td>借款集中度</td><td>鲁金宝</td><td class="more"><a href=""> 查看</a></td></tr>
-                        <tr><td>20180307 11:28:01</td><td>信用风险</td><td>借款集中度</td><td>鲁金宝</td><td class="more"><a href=""> 查看</a></td></tr>
-                        <tr><td>20180307 11:28:01</td><td>信用风险</td><td>借款集中度</td><td>鲁金宝</td><td class="more"><a href=""> 查看</a></td></tr>
-                        <tr><td>20180307 11:28:01</td><td>信用风险</td><td>借款集中度</td><td>鲁金宝</td><td class="more"><a href=""> 查看</a></td></tr>
-                        <tr><td>20180307 11:28:01</td><td>信用风险</td><td>借款集中度</td><td>鲁金宝</td><td class="more"><a href=""> 查看</a></td></tr>
+                         ##for(risk in show!){
+                        <tr><td id="td1">${risk.bjsj!}</td><td id="td2">${risk.fxlb!}</td><td id="td3">${risk.fxzb!}</td><td id="td4">${risk.jgmc!}</td><td class="more"><a href=""> 查看</a></td></tr>
+                         ##}
+            
                         </tbody>
                     </table>
                 </div>
@@ -113,8 +100,144 @@
 <script src="${contextPath}/static/js/pageCom.js"></script>
 <script src="${contextPath}/static/js/chartsCom.js"></script>
 <script>
+
+var jysCode;
+//切换交易所 刷新全部数据
+ function changeJysData(obj){
+	//获取交易所现在下拉选择值
+	jysCode=$(obj).attr("id");
+	initData();
+ }
+ //加载全部数据 
+function initData(){
+	//加载圆饼比例 
+	getsenior();
+	//加载管理风险警示列表 
+	getshow();
+}
     var allCharts = [];
 
+    
+    function getsenior(){
+    	
+    	 var ec001 = echarts.init($("#ec001_currentCompetitiveness")[0]);
+         ec001.setOption(opt_pie);
+         ec001.setOption({
+             label: {
+                 color: '#fff',
+                 normal: {
+                     position: 'outer'
+                 }
+             },
+             series : [
+                 {
+                     name:'高管资质',
+                     type:'pie',
+                     radius : '60%',
+                     center: ['36%', '50%'],
+                     data : (function(){
+                     	
+                 	             var arr=[];
+                 	             $.ajax({
+                 	                 type : "post",
+                 	                  async : false, //同步执行
+                 	                   url : "${contextPath}/qdch/managementrisk/gainSenior",
+                 	                   data : {"jys":jysCode},
+                 	                   dataType : "json", //返回数据形式为json
+                 	                   success : function(result) {
+                 	                	   
+                 	                	   
+                 	                	   $.each(result,function(index,item){
+                 	                		   arr.push({
+                    	                            name : item.cynx,
+                    	                            value : item.fvalue
+                    	                         }); 
+                 	                	   })
+                 	                 
+              
+                 	                 },
+                 	                 error : function(errorMsg) {
+                 	                          alert("不好意思,图表请求数据失败啦!");
+                 	                           myChart.hideLoading();
+                 	                         }
+                 	                 })
+                 	                   return arr;
+                 	                })() 
+
+
+                 }
+             ]
+         });
+       
+         var ec002 = echarts.init($("#ec002_competitivenessIndicators")[0]);
+         ec002.setOption(opt_pie);
+         ec002.setOption({
+             label: {
+                 color: '#fff',
+                 normal: {
+                     position: 'outer'
+                 }
+             },
+             series : [
+                 {
+                     name:'高管资质',
+                     type:'pie',
+                     radius : '60%',
+                     center: ['36%', '50%'],
+                     data : (function(){
+        	             var arr=[];
+        	             $.ajax({
+        	                 type : "post",
+        	                  async : false, //同步执行
+        	                   url : "${contextPath}/qdch/managementrisk/gainEduction",
+        	                   data : {"jys":jysCode},
+        	                   dataType : "json", //返回数据形式为json
+        	                   success : function(result) {
+        	                	   
+        	                	   
+        	                	   $.each(result,function(index,item){
+        	                		   arr.push({
+           	                            name : item.xuel,
+           	                            value : item.fvalue
+           	                         }); 
+        	                	   })
+        	                 
+     
+        	                 },
+        	                 error : function(errorMsg) {
+        	                          alert("不好意思,图表请求数据失败啦!");
+        	                           myChart.hideLoading();
+        	                         }
+        	                 })
+        	                   return arr;
+        	                })() 
+
+
+                 }
+             ]
+         });
+
+         //本页所有图表
+         allCharts = [ec001, ec002];
+    }
+    
+      function getshow(){
+       $.post("${contextPath}/qdch/managementrisk/gainShow",{"jys":jysCode},function(data){
+       $("#test tbody").html("");	
+          var tr=[];
+    	  $.each(data,function(index,item){
+    		var mTr='';
+    		mTr+='<tr><td>'+item.bjsj+'</td><td>'+item.fxlb+'</td><td>'+item.fxzb+'</td><td>'+item.jgmc+'<td class="more"><a href=""> 查看</a></td></tr>';
+    		tr.push(mTr);
+    		
+    		  });
+    		$("tbody").html(tr.join(''));
+    	
+    	  })	
+      }
+      
+      
+      
     $(function () {
         var ec001 = echarts.init($("#ec001_currentCompetitiveness")[0]);
         ec001.setOption(opt_pie);
@@ -131,19 +254,40 @@
                     type:'pie',
                     radius : '60%',
                     center: ['36%', '50%'],
-                    data:[
-                        {value:10, name:'10年以上'},
-                        {value:14, name:'5-10年'},
-                        {value:16, name:'3年'},
-                        {value:18, name:'2年'},
-                        {value:22, name:'1年'}
-                    ]
+                    data : (function(){
+                    	
+                	             var arr=[];
+                	             $.ajax({
+                	                 type : "post",
+                	                  async : false, //同步执行
+                	                   url : "${contextPath}/qdch/managementrisk/gainSenior",
+                	                   data : {"jys":jysCode},
+                	                   dataType : "json", //返回数据形式为json
+                	                   success : function(result) {
+                	                	   
+                	                	   
+                	                	   $.each(result,function(index,item){
+                	                		   arr.push({
+                   	                            name : item.cynx,
+                   	                            value : item.fvalue
+                   	                         }); 
+                	                	   })
+                	                 
+             
+                	                 },
+                	                 error : function(errorMsg) {
+                	                          alert("不好意思,图表请求数据失败啦!");
+                	                           myChart.hideLoading();
+                	                         }
+                	                 })
+                	                   return arr;
+                	                })() 
 
 
                 }
             ]
         });
-
+      
         var ec002 = echarts.init($("#ec002_competitivenessIndicators")[0]);
         ec002.setOption(opt_pie);
         ec002.setOption({
@@ -159,13 +303,33 @@
                     type:'pie',
                     radius : '60%',
                     center: ['36%', '50%'],
-                    data:[
-                        {value:10, name:'10年以上'},
-                        {value:14, name:'5-10年'},
-                        {value:16, name:'3年'},
-                        {value:18, name:'2年'},
-                        {value:22, name:'1年'}
-                    ]
+                    data : (function(){
+       	             var arr=[];
+       	             $.ajax({
+       	                 type : "post",
+       	                  async : false, //同步执行
+       	                   url : "${contextPath}/qdch/managementrisk/gainEduction",
+       	                   data : {"jys":jysCode},
+       	                   dataType : "json", //返回数据形式为json
+       	                   success : function(result) {
+       	                	   
+       	                	   
+       	                	   $.each(result,function(index,item){
+       	                		   arr.push({
+          	                            name : item.xuel,
+          	                            value : item.fvalue
+          	                         }); 
+       	                	   })
+       	                 
+    
+       	                 },
+       	                 error : function(errorMsg) {
+       	                          alert("不好意思,图表请求数据失败啦!");
+       	                           myChart.hideLoading();
+       	                         }
+       	                 })
+       	                   return arr;
+       	                })() 
 
 
                 }
