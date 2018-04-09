@@ -9,6 +9,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.alibaba.fastjson.JSON;
+import com.qdch.dto.CompanyDto;
+import com.qdch.dto.TestDto;
+/**
+ * 
+ * @todo   json转bean工具类
+ * @time   2018年4月9日 下午7:05:58
+ * @author zuoqb
+ */
 public class HttpJsonHelper {
 	// 根据key获取value
 	public static String getValueByKey(String jsonStr, String key) {
@@ -85,7 +94,6 @@ public class HttpJsonHelper {
 					field = field.toLowerCase().charAt(0) + field.substring(1);
 					if (innerKey.toUpperCase().equals(field.toUpperCase())) {
 						List<Object> innerList = new ArrayList<>();
-						// 锟斤拷锟斤拷锟节诧拷list
 						JSONArray innerArray = new JSONArray(
 								jsonObj.get(innerKey) + "");
 						for (int x = 0; x < innerArray.length(); x++) {
@@ -95,10 +103,8 @@ public class HttpJsonHelper {
 									innerArray.getJSONObject(x), innerObject);
 							innerList.add(owerInnerBean);
 						}
-						// 锟斤拷锟节诧拷list锟斤拷锟斤拷锟斤拷锟絣ist锟斤拷锟斤拷锟斤拷
 						outmethod.invoke(obBean, new Object[] { innerList });
 					} else {
-						// json锟叫帮拷key锟脚凤拷锟斤拷
 						if (jsonObj.toString().indexOf(field) != -1) {
 							outmethod.invoke(obBean,
 									new Object[] { jsonObj.get(field) + "" });
@@ -274,5 +280,67 @@ public class HttpJsonHelper {
 	}
 	public static void main(String[] args) {
 		//user=(User) HttpJsonHelper.toJavaBean(result, User.class);
+		
+		//测试单个bean转化
+		TestDto dto=new TestDto();
+		dto.setId("123");
+		dto.setName("张三");
+		String str=JSON.toJSONString(dto);
+		System.out.println(str);
+		String json="{\"id\":\"123\",\"name\":\"张三\"}";
+		TestDto dto2=(TestDto) HttpJsonHelper.toJavaBean(json, TestDto.class);
+		System.out.println(dto2.getId());
+		
+		//测试集合转化
+		List<TestDto> list=new ArrayList<TestDto>();
+		list.add(dto);
+		dto2.setName("测试");
+		list.add(dto2);
+		
+		String listStr=JSON.toJSONString(list);
+		System.out.println(listStr);
+		
+		String listJson="[{\"id\":\"123\",\"name\":\"张三\"},{\"id\":\"123\",\"name\":\"测试\"}]";
+		List<Object> t=HttpJsonHelper.toJavaBeanList(listJson,  TestDto.class);
+		for(Object o:t){
+			TestDto c=(TestDto)o;
+			System.out.println(c.getName());
+		}
+		
+		//测试某个属性包含list集合的对象
+		CompanyDto com=new CompanyDto();
+		com.setId("jhfsahfsa");
+		com.setName("公司名称");
+		com.setDtos(list);
+		String companyStr=JSON.toJSONString(com);
+		System.out.println(companyStr);
+		String companyJson="{\"dtos\":[{\"id\":\"123\",\"name\":\"张三\"},{\"id\":\"123\",\"name\":\"\"}],\"id\":\"jhfsahfsa\",\"name\":\"公司名称\"}";
+		JSONObject o;
+		try {
+			o = new JSONObject(companyJson);
+			CompanyDto companyDto=(CompanyDto)HttpJsonHelper.toBeanContainList(o, CompanyDto.class, TestDto.class, "dtos");
+		    System.out.println(companyDto.getName());
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//测试解析集合 并且每个对象的某个属性也是集合
+		List<CompanyDto> cList=new ArrayList<CompanyDto>();
+		cList.add(com);
+		String cListStr=JSON.toJSONString(cList);
+		System.out.println(cListStr);
+		String cListJson="[{\"dtos\":[{\"id\":\"123\",\"name\":\"张三\"},{\"id\":\"123\",\"name\":\"测试\"}],\"id\":\"jhfsahfsa\",\"name\":\"晚上购买\"}]";
+		try {
+			JSONArray arr=new JSONArray(cListJson);
+			List<Object> l=HttpJsonHelper.toDoubleList(arr, CompanyDto.class, TestDto.class, "dtos");
+			for(Object s:l){
+				CompanyDto d=(CompanyDto)s;
+				System.out.println(d.getName());
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		
 	}
 }
