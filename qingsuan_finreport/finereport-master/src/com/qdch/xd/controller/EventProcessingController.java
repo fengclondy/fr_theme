@@ -6,10 +6,7 @@ import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Page;
 import com.qdch.core.BaseController;
 import com.qdch.util.ExportUtil;
-import com.qdch.xd.model.ExchangeInfoModel;
-import com.qdch.xd.model.IndexRankingModel;
-import com.qdch.xd.model.RiskEventModel;
-import com.qdch.xd.model.RiskTypeModel;
+import com.qdch.xd.model.*;
 
 
 import java.util.ArrayList;
@@ -27,6 +24,8 @@ public class EventProcessingController extends BaseController {
 	private static RiskEventModel riskEventModelDao = RiskEventModel.dao;
 	private static ExchangeInfoModel exchangeInfoModelDao = ExchangeInfoModel.dao;
 	private static RiskTypeModel riskTypeModelDao = RiskTypeModel.dao;
+	private static RiskEventHistoryModel riskEventHistoryModel  = RiskEventHistoryModel.dao;
+
 	/**
 	 * 
 	* @author doushuihai  
@@ -35,7 +34,8 @@ public class EventProcessingController extends BaseController {
 	 */
 	public void index() {
 //		renderJsp("xd/pages/riskSolve.jsp");
-		 render("xd/pages/05_01fengxianshijianchuli.html");
+		//setAttr("type",getPara("type"));
+		render("xd/pages/05_01fengxianshijianchuli.html");
 	}
 
     /**
@@ -57,7 +57,16 @@ public class EventProcessingController extends BaseController {
 				"10":getPara("pageSize"));
 //		getPara(getRequest());
 		getResponse().setCharacterEncoding("UTF-8");
-		Page<RiskEventModel> page = riskEventModelDao.getRiskEvent(getDataScopeByUserName(),pageNum,pageSize,getRequest());
+		String checkstatus = ""; // 处理状态
+		String role = "";
+		if(role.equals("处理人")){
+			checkstatus = " and clzt in (\"未处理\",\"驳回\",\"已排除\") ";
+		}else if(role.equals("审核人")){
+			checkstatus = " and clzt in (\"已提交\",\"已排查\") ";
+		}else if(role.equals("决策人")){
+			checkstatus = " and clzt in (\"已上报\",\"已查阅\"\"已确认\") ";
+		}
+		Page<RiskEventModel> page = riskEventModelDao.getRiskEvent(checkstatus,pageNum,pageSize,getRequest());
 		mRenderJson(page);
 	}
 
@@ -85,7 +94,7 @@ public class EventProcessingController extends BaseController {
 			String[] tablename = new String[]{"风险事件ID","报警时间","风险类别","风险指标","风险指标值","阙值","超出额",
             "市场代码","市场名称","客户号","客户名称","业务菜单编码","业务菜单名称","业务类型","业务编码",
             "处理人","处理状态","处理时间"};
-            List<RiskEventModel> riskEventModels = riskEventModelDao.getRiskEventList(getRequest());
+            List<RiskEventModel> riskEventModels = riskEventModelDao.getRiskEventList("",getRequest());
             String[][] content = new String[riskEventModels.size()][];
             List<String> list = new ArrayList<String>();
             for (int i = 0; i < riskEventModels.size(); i++) {
@@ -128,6 +137,14 @@ public class EventProcessingController extends BaseController {
 	        return object.toString();
         }
     }
+
+    public void submitCheck(){
+		RiskEventHistoryModel historyModel  = new RiskEventHistoryModel();
+		historyModel.set("clzt","111");
+		historyModel.save();
+
+		mRenderJson(null);
+	}
 
 
 }

@@ -8,6 +8,108 @@
     <link rel="stylesheet" href="${contextPath}/static/css/style.css">
     <link rel="stylesheet" href="${contextPath}/static/css/pageCom.css">
     <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .fl{
+            float: left;
+        }
+        .fr{
+            float: right;
+        }
+        li{
+            list-style: none;
+        }
+        .model{
+
+            background: url("${contextPath}/static/img/com/bg_main.jpg") no-repeat;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            border-radius: .5rem .5rem 0 0;
+            width: 50%;
+            height: 60%;
+            margin-left: -30%;
+            margin-top: -15%;
+            color: #fff;
+            display: none;
+
+        }
+        /*头部 header*/
+        .header{
+            position: relative;
+            height: 2rem;
+            height: 8%;
+            border-radius: .5rem .5rem 0 0;
+            background-color: #0080ff;
+        }
+        .header span{
+            position: absolute;
+            right: .8rem;
+            top: 0.3rem;
+            width: 1rem;
+            height: 1rem;
+            text-align: center;
+            background-color: #fff;
+            border-radius: 50%;
+            line-height: 1rem;
+            cursor: pointer;
+            color: #00abde;
+        }
+        /*li list*/
+        .model_content{
+            height: 92%;
+            width: 100%;
+            padding: 0.5rem 0.5rem;
+
+        }
+        .tableBox tbody tr td:nth-child(1) a{
+            color: red;
+        }
+        .model_content .modelTop{
+            width: 100%;
+            height: 40%;
+            border-bottom: 1px solid #00abde;
+        }
+        .modelTopleft{
+            width: 30%;
+        }
+
+        ul>li span{
+            padding: 0.18rem 0rem;
+            font-family:'微软雅黑';
+            font-size: 0.6rem;
+        }
+        /*审核人*/
+        .modelMiddle{
+            width: 100%;
+            height: 40%;
+            margin-top: 1rem;
+            border-bottom: 1px solid #00abde;
+        }
+        .modelMiddle ul li{
+            float: left;
+            width: 30%;
+        }
+        .modelMiddle ul li span:nth-child(1){
+            padding: 0.1rem 1rem;
+            width: 10%;
+            height: 1.5rem;
+            background-color: rgb(51,103,153);
+            color: #fff;
+
+        }
+        /*.modelTopleft  ul li span:nth-child(1),*/
+        /*.modelTopright  ul li span:nth-child(1){*/
+            /*width: 35%;*/
+            /*float: left;*/
+        /*}*/
+        /*.modelTopright  ul li span:nth-child(2),*/
+        /*.modelTopleft  ul li span:nth-child(2){*/
+            /*width: 65%;*/
+            /*float: left;*/
+        /*}*/
 
     </style>
 </head>
@@ -137,10 +239,53 @@
         </table>
     </div>
     <!--模态框 弹出框-->
-    <div class="model" style="display: none">
+    <!--<div class="model" style="display: none">-->
+        <!--<div class="header"><span>X</span></div>-->
+        <!--<div class="model_content">-->
+
+        <!--</div>-->
+    <!--</div>-->
+
+    <div class="model">
         <div class="header"><span>X</span></div>
         <div class="model_content">
+            <div class="modelTop">
+                <div class="modelTopleft fl">
+                    <ul>
+                        <li><span>事件Id:</span><span class="shijianId"></span></li>
+                        <li><span>风险指标:</span><span class="fenxianzhibiao"></span></li>
+                        <li><span>超出额:</span><span class="Beyond"></span></li>
+                        <li><span>客户号:</span><span class="CustomerNo"></span></li>
+                        <li><span>业务类型:</span><span class="Business"></span></li>
+                        <li><span>风险说明:</span><span class="riskThat"></span></li>
+                    </ul>
+                </div>
+                <div class="modelTopleft fl">
+                    <ul>
+                        <li><span>报警时间:</span><span class="policeTime"></span></li>
+                        <li><span>指标值:</span><span class="indicatorsVal"></span></li>
+                        <li><span>机构代码:</span><span class="organizationCode"></span></li>
+                        <li><span>客户名称:</span><span class="CustomerName"></span></li>
+                        <li><span>业务编码:</span><span class="BusinessNo"></span></li>
+                    </ul>
 
+                </div>
+                <div class="modelTopright fl">
+                    <ul>
+                        <li><span>风险类别:</span><span class="riskCategories"></span></li>
+                        <li><span>阙值:</span><span class="threshold"></span></li>
+                        <li><span>机构名称:</span><span class="organizationName"></span></li>
+                        <li><span>业务菜单名称:</span><span class="menuName"></span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modelMiddle">
+                <ul>
+
+
+                </ul>
+            </div>
+            <div class="modelFooter"></div>
         </div>
     </div>
 </div>
@@ -321,7 +466,7 @@
             success: function(data){
                 var  append = "";
                 console.log(data)
-                $(".nuber").text(data.totalRow);
+                $(".number").text(data.totalRow);
                 $('#pageCurrent').val(data.pageNumber);
 
                 $('.pageTotal').text(data.totalPage);
@@ -329,24 +474,24 @@
                 pageNumber = data.pageNumber;
                 $.each(data.list, function(index, value, array) {
                     append +=
-                        "  <tr>       <td><a href=\"\" class=\"fengxian001\">"+value.fxsj_id+"</a></td>\n" +
-                        "                <td>"+value.bjsj+"</td>\n" +
-                        "                <td>"+value.fxlb+"</td>\n" +
-                        "               <td>"+value.fxzb+"</td>\n" +
-                        "               <td>"+value.fxzbz+"</td>\n" +
-                        "               <td>"+value.yuzhi+"</td>\n" +
-                        "               <td>"+value.cce+"</td>\n" +
-                        "               <td>"+value.jgdm+"</td>\n" +
-                        "               <td>"+value.jgmc+"</td>\n" +
-                        "               <td>"+value.cust_id+"</td>\n" +
-                        "               <td>"+value.khmc+"</td>\n" +
-                        "               <td>"+value.ywcdbm+"</td>\n" +
-                        "               <td>"+value.ywcdmc+"</td>\n" +
-                        "               <td>"+value.ywlx+"</td>\n" +
-                        "               <td>"+value.ywbm+"</td>\n" +
-                        "               <td>"+value.shr+"</td>\n" +
-                        "               <td>"+value.clzt+"</td>\n" +
-                        "               <td>"+value.update_time+"</td>\n" +
+                        "  <tr>       <td><a href=\"javascript:popupfuc("+value.fxsj_id+")\" class=\"fengxian001\">"+value.fxsj_id+"</a></td>\n" +
+                        "                <td>"+formatOutput(value.bjsj)+"</td>\n" +
+                        "                <td>"+formatOutput(value.fxlb)+"</td>\n" +
+                        "               <td>"+formatOutput(value.fxzb)+"</td>\n" +
+                        "               <td>"+formatOutput(value.fxzbz)+"</td>\n" +
+                        "               <td>"+formatOutput(value.yuzhi)+"</td>\n" +
+                        "               <td>"+formatOutput(value.cce)+"</td>\n" +
+                        "               <td>"+formatOutput(value.jgdm)+"</td>\n" +
+                        "               <td>"+formatOutput(value.jgmc)+"</td>\n" +
+                        "               <td>"+formatOutput(value.cust_id)+"</td>\n" +
+                        "               <td>"+formatOutput(value.khmc)+"</td>\n" +
+                        "               <td>"+formatOutput(value.ywcdbm)+"</td>\n" +
+                        "               <td>"+formatOutput(value.ywcdmc)+"</td>\n" +
+                        "               <td>"+formatOutput(value.ywlx)+"</td>\n" +
+                        "               <td>"+formatOutput(value.ywbm)+"</td>\n" +
+                        "               <td>"+formatOutput(value.shr)+"</td>\n" +
+                        "               <td>"+formatOutput(value.clzt)+"</td>\n" +
+                        "               <td>"+formatOutput(value.update_time)+"</td>\n" +
                         "                <td class=\"more\"><a href=\"javascript:seeMore("+value.fxsj_id+");\">查看</a></td></tr>  " ;
                 });
                 // append +="</tr>";
@@ -357,11 +502,84 @@
         })
     }
 
+    function formatOutput(str) {
+        if(str==null||str==undefined||str=='null'||str==''){
+            return '';
+        }else
+            return str;
+    }
+
     /**
      * 查看明细
      */
     function seeMore(fxsjid) {
         window.open("eventSeeDetails/index?fxsj_id="+fxsjid)
+    }
+
+    /**
+     * 弹出框
+     */
+
+    function popupfuc(value) {
+        $('.model').show()
+        $.ajax({
+            type: "POST",
+            url: "eventview/getPopUp",
+            data: {"id": value},
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                var value = data.risk;
+
+                $(".shijianId").text(value.fxsj_id);
+                $(".fenxianzhibiao").text(value.fxsj_id);
+                $(".Beyond").text(value.cce);
+                $(".CustomerNo").text(value.cust_id);
+                $(".Business").text(value.ywlx);
+                $(".policeTime").text(value.bjsj);
+                $(".indicatorsVal").text(value.fxzbz);
+                $(".organizationCode").text(value.jgdm);
+                $(".indicatorsVal").text(value.fxzbz);
+                $(".CustomerName").text(value.khmc);
+                $(".BusinessNo").text(value.ywbm);
+                $(".riskCategories").text(value.fxlb);
+                $(".threshold").text(value.yuzhi);
+                $(".organizationName").text(value.jgmc);
+                $(".menuName").text(value.ywcdmc);
+
+
+                var checkhtml = "";
+                $.each(data.history, function(index, value, array) {
+                    checkhtml +=" <li>\n" +
+                        "                        <div class=\"\">\n" +
+                        "                            <span class=\"\">审核人:</span>\n" +
+                        "                            <span id=\"checker\" class=\"Auditor\">"+value.checker+"</span>\n" +
+                        "                        </div>\n" +
+                        "                    </li>\n" +
+                        "                    <li>\n" +
+                        "                        <div class=\"\">\n" +
+                        "                            <span class=\"\">处理状态:</span>\n" +
+                        "                            <span id=\"checkstatus\" class=\"HandleState\">"+value.checkstatus+"</span>\n" +
+                        "                        </div>\n" +
+                        "                    </li>\n" +
+                        "                    <li>\n" +
+                        "                        <div class=\"\">\n" +
+                        "                            <span class=\"Auditor\">处理时间:</span>\n" +
+                        "                            <span id=\"checktime\" class=\"AuditorData\">"+value.checktime+"</span>\n" +
+                        "                        </div>\n" +
+                        "                    </li>\n" +
+                        "                    <br>\n" +
+                        "                    <li>\n" +
+                        "                        <div class=\"\">\n" +
+                        "                            <span class=\"Auditor\">备&nbsp;&nbsp;&nbsp;注:</span>\n" +
+                        "                            <span id=\"remarks\">"+value.remarks+"</span>\n" +
+                        "                        </div>\n" +
+                        "                    </li>";
+                });
+                $('.modelMiddle ul').html(checkhtml);
+            }
+        });
+
     }
 
 

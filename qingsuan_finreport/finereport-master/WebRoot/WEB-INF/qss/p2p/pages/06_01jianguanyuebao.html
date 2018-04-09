@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="${contextPath}/static/img/com/logo.png">
+    <link rel="stylesheet" href="${contextPath}/static/asserts/css/normalize.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/style.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/pageCom.css">
+    <style>
+        .tableBox tbody tr td:last-child span:nth-child(1) a{
+            margin-right: 6rem;
+        }
+        .tableBox tbody tr td:last-child{
+            color: #00abde;
+        }
+    </style>
+</head>
+<body class="whitePage" id="06_01jianguanyuebao" data-title="风险事件查看">
+<div class="container">
+    <nav class="pagination">
+        <ul>
+            <li class="home">首页</li>
+            <li class="split">|</li>
+            <li class="prev">上一页</li>
+            <li class="split">|</li>
+            <li class="pageNumber">
+                <label for="pageCurrent" hidden></label>
+                <input id="pageCurrent" type="number" value="1">&nbsp;/
+                <span class="pageTotal">30</span>
+            </li>
+            <li class="split">|</li>
+            <li class="next">下一页</li>
+            <li class="split">|</li>
+            <li class="end">末页</li>
+            <li class="output">
+                <a class="dropDown">输出</a>
+                <ul>
+                    <li class="pdf"><span class="icon"></span> PDF</li>
+                    <li class="excel"><span class="icon"></span>
+                        <a class="dropDown">EXCEL</a>
+                        <ul>
+                            <li>分页导出</li>
+                            <li>原样导出</li>
+                            <li>分页分sheet导出</li>
+                        </ul>
+                    </li>
+                    <li class="word"><span class="icon"></span> WORD</li>
+                    <li class="picture"><span class="icon"></span> 图片</li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div class="formBox open">
+        <form action="">
+            <br>
+            <div class="inputGroup">
+                <label for="marketName">市场名称：</label>
+                <select id="marketName">
+                    <option value=""></option>
+                    <option value="">青岛国际版权</option>
+                    <option value="">上海石油化工</option>
+                    <option value="">中韩文化产权</option>
+                    <option value="">山东天地红</option>
+                    <option value="">青岛国新大宗</option>
+                    <option value="">联合信用资产</option>
+                    <option value="">吉林文化产权</option>
+                    <option value="">青岛华银商品</option>
+                    <option value="">青岛华益金安</option>
+                    <option value="">中国国金(青岛)</option>
+
+                </select>
+            </div>
+            <div class="inputGroup">
+                <label for="riskCategories">报告类型：</label>
+                <select id="riskCategories">
+                    <option value=""></option>
+                    <option value="">舆情风险</option>
+                    <option value="">资金风险</option>
+                    <option value="">客户风险</option>
+                    <option value="">工商风险</option>
+                    <option value="">交易风险</option>
+                    <option value="">商品风险</option>
+                    <option value="">不选</option>
+                </select>
+            </div>
+            <div class="inputGroup">
+                <label for="alarmTimeEnd">上传日期：</label>
+                <input id="alarmTimeEnd" type="date">
+            </div>
+            <div class="btnGroup search">
+                <button class="active">查询</button>
+            </div>
+        </form>
+    </div>
+    <br>
+    <div class="tableBox">
+        <table>
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>报告类型</th>
+                <th>市场名额</th>
+                <th>上传人</th>
+                <th>上传日期</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>月报</td>
+                <td>青岛华益金安</td>
+                <td>时鸿岩</td>
+                <td>2018-01-25</td>
+                <td>
+                    <span><a href="#">预览</a></span>
+                    <span><a href="#">下载</a></span>
+                </td>
+            </tr>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="${contextPath}/static/asserts/js/echarts-4.0.js"></script>
+<script src="${contextPath}/static/asserts/js/jquery-2.2.4.js"></script>
+<script src="${contextPath}/static/js/main.js"></script>
+<script src="${contextPath}/static/js/chartsCom.js"></script>
+<script>
+
+    $(function () {
+        $(".formFoldHandle").click(function () {
+            $(".formBox").toggleClass("open")
+        })
+    });
+
+
+</script>
+</body>
+</html>
