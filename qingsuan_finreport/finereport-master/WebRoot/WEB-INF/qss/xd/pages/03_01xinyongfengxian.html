@@ -8,6 +8,17 @@
     <link rel="stylesheet" href="${contextPath}/static/css/style.css">
     <link rel="stylesheet" href="${contextPath}/static/css/pageCom.css">
     <style>
+    	#table tbody tr td{
+            width: 20%;
+            text-align: center;
+            padding: .5rem 0;
+        }
+        #table1 thead tr td{
+            width: 20%;
+            text-align: center;
+            padding: .5rem 0rem;
+
+        }
         .bottom {
             flex: .5;
         }
@@ -184,41 +195,20 @@
             <div class="chartTitle">
                 <h3>管理风险列示</h3>
             </div>
-            <div class="chartContent">
-                <table>
-                    <thead>
-                    <tr>
-                        <th>报警时间</th>
-                        <th>预警指标</th>
-                        <th>预警原因</th>
-                        <th>平台名称</th>
-                        <th>业务详述</th>
-                    </tr>
+           <div class="chartContent">
+                <table id="table1" align="center" width="100%">
+                    <thead style="background: #00abde;font-size: 0.9rem">
+                    <tr><td>报警时间</td><td>预警指标</td><td>预警原因</td><td>平台名称</td><td>业务详述</td></tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                        <td>20180307 11:28:01</td>
-                        <td>信用风险</td>
-                        <td>借款集中度</td>
-                        <td>鲁金宝</td>
-                        <td class="more"><a href=""> 查看</a></td>
-                    </tr>
-                    <tr>
-                        <td>20180307 11:28:01</td>
-                        <td>信用风险</td>
-                        <td>借款集中度</td>
-                        <td>鲁金宝</td>
-                        <td class="more"><a href=""> 查看</a></td>
-                    </tr>
-                    <tr>
-                        <td>20180307 11:28:01</td>
-                        <td>信用风险</td>
-                        <td>借款集中度</td>
-                        <td>鲁金宝</td>
-                        <td class="more"><a href=""> 查看</a></td>
-                    </tr>
-                    </tbody>
                 </table>
+                <div style="overflow-x: auto; overflow-y: auto; height: 180px; width:100%;">
+                    <table id="table" width="100%" height="180px">
+                        <tbody>
+                       
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
         </div>
     </div>
@@ -334,6 +324,7 @@
 		jysCode=$(obj).attr("id");
 		initData();
 	 }
+	//初始化
 	function initData(){
 		
 		getRanking();
@@ -341,6 +332,7 @@
         getMigrationRrate("m1");
 		conratioByCustCount();
 		getIncomeAndLoss();
+		getManagementRiskList();//获取管理风险列示
 	}
       //根据贷款次数查询指数排名
    	 function getRanking(){
@@ -502,7 +494,7 @@
         	                data: yAxisData
         	            },
         	            yAxis: {
-        	                name: '迁徙率(%)',
+        	                name: '%',
         	            },
         	            series: [
         	                {
@@ -575,7 +567,8 @@
         	                data: yAxisData
         	            },
         	            yAxis: {
-        	                name: '不良率(%)',
+        	                name: '%',
+        	                interval:30
         	            },
         	            series: seriesData,
         	        }); 
@@ -621,7 +614,8 @@
                              data: yAxisData,
                          },
                          yAxis: {
-                             name: '集中度(%)',
+                             name: '%',
+                             interval:30
                          },
                          series: [
                              {
@@ -667,7 +661,7 @@
                            data: yAxisData,
                        },
                        yAxis: {
-                           name: '集中度(%)',
+                           name: '%',
                        },
                        series: [
                            {
@@ -713,7 +707,7 @@
                              data: yAxisData,
                          },
                          yAxis: {
-                             name: '集中度(%)',
+                             name: '%',
                          },
                          series: [
                              {
@@ -759,7 +753,7 @@
                            data: yAxisData,
                        },
                        yAxis: {
-                           name: '集中度(%)',
+                           name: '%',
                        },
                        series: [
                            {
@@ -872,7 +866,7 @@
         	                data:yAxisData
         	            },
         	            yAxis: {
-        	                name: '损失率(%)',
+        	                name: '%',
         	            },
         	            series: [{
         	                    name: '贷款收入',
@@ -895,6 +889,28 @@
         	
 	    	});
        }
+     function intentFxsj(){
+    	 console.log(window.parent.$("#fxsj_ck_id").html())
+    	 window.parent.$("#fxsj_ck_id").trigger("click");
+     }
+     //获取管理风险列示
+   	function getManagementRiskList() {
+		var tableList = ""; 		
+		$.post('${contextPath}/qdch/creditrisk/getManagementRiskList',{"jys":jysCode},function(res){
+			console.log(res)
+			$.each(res,function(index,item){
+					tableList+=
+							
+							"   <tr>               <td>"+item.bjsj+"</td>\n" +
+							"                <td>"+item.fxlb+"</td>\n" +
+							"               <td>"+item.fxzb+"</td>\n" +
+							"               <td>"+item.jgmc+"</td>\n" +
+							"                <td><span onclick=intentFxsj()><a href='javascript:void(0);' />查看</a></span></td></tr>  " ;
+		
+			});
+			$('tbody').html(tableList)
+		})
+	}
 </script>
 </body>
 </html>

@@ -55,4 +55,6 @@ public class RiskCountModel extends Model<RiskCountModel>{
 		}
 		return dao.find(sql);
 	}
+
+	
 }

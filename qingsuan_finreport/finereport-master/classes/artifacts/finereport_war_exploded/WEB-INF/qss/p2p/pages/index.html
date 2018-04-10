@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="${contextPath}/static/img/com/logo.png">
+    <title>P2P</title>
+    <link rel="stylesheet" href="${contextPath}/static/asserts/css/normalize.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/style.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/index.css">
+</head>
+<body id="index">
+
+<!--规范约定-->
+<!--本页面的布局样式和图表的js代码都写本页面内-->
+<!--body的直接子元素是.container，-->
+<!--每个页面都有全局变量allCharts用来存放所有图表-->
+
+<header id="mainHeader">
+    <div class="logoBox">
+        <div class="logo"></div>
+        <h1>青岛P2P监控服务平台</h1>
+    </div>
+    <ul>
+        <li class="notice"><a href=""><span class="icon"></span><span class="number">3</span></a></li>
+        <li class="message"><a href=""><span class="icon"></span><span class="number">0</span></a></li>
+        <li class="user"><a href=""><span class="icon"></span><span class="name">man</span></a></li>
+    </ul>
+</header>
+<div class="navContent">
+    <nav id="mainNav">
+        <ul>
+            <li class="">
+                <a class="dropdown-toggle">平台总览 <span class="icon"></span> </a>
+                <ul>
+                    <li data-id="${contextPath}/qdch/platform" data="01_01pingtaizonglanbiao">平台总览表</li>
+                    <li data-id="${contextPath}/qdch/risk" data="01_02fengxianzonglan">风险总览</li>
+                </ul>
+            </li>
+
+            <!--<li class="">-->
+                <!--<a class="dropdown-toggle">风险总览 <span class="icon"></span></a>-->
+                <!--<ul>-->
+                    <!--<li data-id="03_01xinyongfengxian">信用风险</li>-->
+                    <!--<li data-id="03_02guanlifengxian">管理风险</li>-->
+                    <!--<li data-id="03_03zichanfengxian">资产风险</li>-->
+                    <!--<li data-id="03_04heguifengxian">合规风险</li>-->
+                    <!--&lt;!&ndash;<li data-id="03_05shengyufengxian">声誉风险</li>&ndash;&gt;-->
+                <!--</ul>-->
+            <!--</li>-->
+            <!--<li class="">-->
+                <!--<a class="dropdown-toggle">借款人 <span class="icon"></span></a>-->
+                <!--<ul>-->
+                    <!--<li data-id="04_01jingyingnengli">经营能力</li>-->
+                    <!--<li data-id="04_02yinglinengli">盈利能力</li>-->
+                    <!--<li data-id="04_03fazhannengli">发展能力</li>-->
+                <!--</ul>-->
+            <!--</li>-->
+            <li class="">
+                <a class="dropdown-toggle">平台画像 <span class="icon"></span></a>
+                <ul>
+                    <li>平台工商</li>
+                    <li data-id="${contextPath}/qdch/project" data="04_01pingtaixiangmuhuaxiang">平台项目</li>
+                    <li data-id="${contextPath}/qdch/deal" data="04_02pingtaijiaoyihuaxiang" >平台交易</li>
+                    <li data-id="${contextPath}/qdch/borrower" data="04_05jiekuanrenhuaxiang" >借款人总览</li>
+                    <li data-id="${contextPath}/qdch/companyfeel" data="04_04pingtaiyuqing">企业舆情</li>
+
+                </ul>
+            </li>
+            <li class="">
+                <a class="dropdown-toggle">监管报告 <span class="icon"></span></a>
+                <ul>
+                    <li data-id="${contextPath}/qdch/supervise" data="06_01jianguanyuebao">监管月报</li>
+                </ul>
+            </li>
+            <!--<li class="">-->
+                <!--<a class="dropdown-toggle">业务数据 <span class="icon"></span></a>-->
+                <!--<ul>-->
+                    <!--<li><a href="">客户信息</a></li>-->
+                    <!--<li><a href="">产品信息</a></li>-->
+                    <!--<li><a href="">交易信息</a></li>-->
+                <!--</ul>-->
+            <!--</li>-->
+            <li class="">
+                <a class="dropdown-toggle">数据录入 <span class="icon"></span></a>
+                <ul>
+                    <li><a href="">待定</a></li>
+                    <li data-id="${contextPath}/qdch/alert" data="07_alert">alert</li>
+                    <li data-id="${contextPath}/qdch/platformalert" data="01_01pingtaizonglanbiaoalert">平台总览alert</li>
+                    <li data-id="${contextPath}/qdch/borrowerphoto" data="04_06iiekuanrenhuaxiangalert">借款人画像</li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="mainNavFoldCtr">
+        <div class="icon"></div>
+    </div>
+    <div class="container">
+        <div class="nav-tabs" id="navTabs">
+            <ul>
+                <li class="active" data-id="00_01home">
+                    <a title="首页" ><span class="text"></span><span class="close">×</span> </a>
+                    <span class="tab-tip">
+                        <a class="refresh"><span class="icon"></span>刷新</a>
+                        <span class="separator">|</span>
+                        <a class="favorite"><span class="icon"></span>收藏</a>
+                    </span>
+                </li>
+                <li class="collapse">
+                    <button type="button" class="collapsed" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <ul style="display: none">
+                        <li onclick="toggleFullScreen(event)">全屏</li>
+                        <li>关闭全部</li>
+                        <li>关闭其它标签</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="pageBox">
+            <div class="pageContent current" id="00_01home" data-title="主页">
+                <iframe src="00_01home.html"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${contextPath}/static/asserts/js/jquery-2.2.4.js"></script>
+<script src="${contextPath}/static/js/index.js"></script>
+<script>
+</script>
+</body>
+</html>
