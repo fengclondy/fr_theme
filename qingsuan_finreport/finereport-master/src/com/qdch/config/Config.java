@@ -75,6 +75,8 @@ import com.qdch.xd.model.RiskTrendDetailedModel;
 import com.qdch.xd.model.RiskTrendModel;
 import com.qdch.xd.model.RiskTypeModel;
 import com.qdch.xd.model.ScabilityModel;
+import com.qdch.xd.model.defrateRankModel;
+import com.qdch.xd.model.maxIntrateRankModel;
 
 
 public class Config extends JFinalConfig {
@@ -247,6 +249,8 @@ public class Config extends JFinalConfig {
 			insight_arp.addMapping("hub_xd_fxzs",RiskCountModel.class);//小贷风险指数
 			insight_arp.addMapping("hub_xd_fxzs",RiskTrendModel.class);//风险趋势
 			insight_arp.addMapping("hub_xd_fxzsmx",RiskTrendDetailedModel.class);//风险趋势明细
+			insight_arp.addMapping("insight_xd_defrate",defrateRankModel.class);//不良率
+			insight_arp.addMapping("insight_xd_intrate",maxIntrateRankModel.class);//最高利率
 			
 		/***小贷 连纪明 insight层 Model END***/
 		
