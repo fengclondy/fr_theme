@@ -2,6 +2,8 @@ package com.qdch.p2p.model;
 
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.fr.report.core.A.S;
 import com.jfinal.plugin.activerecord.Model;
 /**
@@ -23,7 +25,10 @@ public class BorrowerModel extends Model<BorrowerModel> {
 	 */
 	public List<BorrowerModel> getScoreList(String bigjys){
 		String sql="select jysinfo,fscore from insight_pp_score_info order by fscore desc";
-	
+		if(StringUtils.isNotBlank(bigjys)){
+			sql+=" and jysc in "+bigjys;
+		} 
+		
 	    return	dao.find(sql);
 	}
 	/**
@@ -33,7 +38,11 @@ public class BorrowerModel extends Model<BorrowerModel> {
 	 * @TODO
 	 */
 	public List<BorrowerModel> getBasicinfo(String bigjys){
-		String sql="select * from insight_pp_person_info";
+		String sql="select * from insight_pp_person_info ";
+		if(StringUtils.isNotBlank(bigjys)){
+			sql+=" and jysc in "+bigjys;
+		} 
+		
 		return dao.find(sql);
 	}
     /**
@@ -88,6 +97,20 @@ public class BorrowerModel extends Model<BorrowerModel> {
 	public List<BorrowerModel> getOtherinfo(String bigjys){
 		String sql="select * from insight_pp_othe_info";
 		return dao.find(sql);
+	}
+	/**
+	 * 根据平台查询
+	 * @author 高照
+	 * @date 2018年4月10日
+	 * @TODO
+	 */
+	public List<BorrowerModel> getPingtai(String bigjys,String pingtai){
+		String sql="select jysinfo,fscore from insight_pp_score_info i where i.jysinfo like pingtai ";
+		if(StringUtils.isNotBlank(bigjys)){
+			sql+=" and jysc in "+bigjys;
+		} 
+		
+	    return	dao.find(sql);
 	}
 	
 }

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="../img/com/logo.png">
+    <link rel="stylesheet" href="../asserts/css/normalize.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/pageCom.css">
+    <style>
+        .top {
+            display: flex;
+            flex: 3;
+        }
+        .bottom {
+            flex: 3;
+            display: flex;
+        }
+        .top > div {
+            flex: 1;
+        }
+
+
+        .bottom > .ec001 {
+            flex: 0.98;
+        }
+        .bottom > .ec002 {
+            flex: 2.02;
+        }
+
+        /*四个小盒子*/
+        .fl{
+            float: left;
+        }
+        .fr{
+            float: right;
+        }
+        .top-r{
+            padding: 0.3rem;
+        }
+        .top-r_up,.top-r_down{
+            width: 100%;
+            height: 50%;
+            margin-left: 0.2rem;
+        }
+        .top-r_up{
+            margin-bottom: 0.2rem;
+        }
+        .top-r_upBox,.top-r_downBox{
+            position: relative;
+            width: 49%;
+            height: 98%;
+        }
+        .picBox{
+            width: 100%;
+            height: 100%;
+        }
+        .picBox img{
+            width: 100%;
+            height: 100%;
+        }
+        .top-r_BoxContent{
+            position: absolute;
+            text-align: center;
+            width: 50%;
+            height: 50%;
+            left: 25%;
+            top: 25%;
+        }
+        .top-r_BoxContent span:nth-child(1){
+            color: #fffb8f;
+            font-size: 1.5rem;
+            font-weight:500;
+        }
+        .top-r_BoxContent span:last-child{
+            font-size: 0.8rem;
+            color: #ffff;
+        }
+        .BoxContentNub+span{
+            color: #fffb8f;
+            font-size: 0.8rem;
+            margin-left: 0.2rem;
+        }
+        /*集中度*/
+        .jq22-content{ width: 80%; margin:0.8rem auto;}
+        .progressbar {
+            width: 100%;
+            margin-top: 5px;
+            margin-bottom: 1rem;
+            position: relative;
+            box-shadow: inset 0px 1px 1px rgba(0,0,0,.1);
+
+        }
+
+        .proggress{
+            height: 8px;
+            width: 10px;
+            background-color: #3498db;
+        }
+        /*百分百注释*/
+        .percentCount{
+            float:right;
+            margin-top: -35px;
+            clear: both;
+            font-family: '微软雅黑';
+            font-size: 0.6rem;
+        }
+        .chartBody .jq22-content h3{
+            font-size: 0.7rem;
+        }
+    /*集中度 end*/
+    </style>
+</head>
+<body id="04_02pingtaixiangmu" data-title="平台项目">
+<div class="container">
+    <h2 hidden>管理风险</h2>
+    <header class="pageHeader">
+        <div class="inputGroup">
+            <label>平台：</label>
+            <div class="mySelect" id="jingzhenglizhibiao4">
+                <div class="myOption selected"><span class="text"></span><span class="icon"></span>
+                </div>
+                <ul class="myOptionBox">
+                    <li class="myOption selected">鲁金宝1</li>
+                    <li class="myOption">鲁金宝2</li>
+                    <li class="myOption">鲁金宝3</li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="top">
+        <!--项目结构-->
+        <div class="top-l">
+            <div class="chartBox ec001">
+                <div class="chartTitle">
+                    <h3>项目结构</h3>
+                </div>
+                <div class="chartContent">
+                    <div class="chartBody">
+                        <div id="ec001_currentCompetitiveness"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--集中度-->
+        <div class="top-m">
+            <div class="chartBox ec003">
+                <div class="chartTitle">
+                    <h3>集中度</h3>
+                </div>
+                <div class="chartContent">
+                    <div class="chartBody">
+                        <div class="jq22-content">
+                            <h3 class="center">前十大借款人占比</h3>
+                            <div id="progressbar1"></div>
+                            <h3 class="center">前十大投资人占比</h3>
+                            <div id="progressbar2"></div>
+                            <h3 class="center">行业HHI指数</h3>
+                            <div id="progressbar3"></div>
+                            <h3 class="center">地区集中度</h3>
+                            <div id="progressbar4"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--右上侧  四个小盒子-->
+        <div class="top-r">
+            <div class="top-r_up">
+               <div class="top-r_upBox fl">
+                   <div class="picBox">
+                       <img src="../img/ptxmhx.png" alt="">
+                   </div>
+                   <div class="top-r_BoxContent">
+                       <span id="BoxContentNub01">20%</span><br>
+                       <span>逾期率</span>
+                   </div>
+               </div>
+               <div class="top-r_upBox fr">
+                   <div class="picBox">
+                       <img src="../img/ptxmhx.png" alt="">
+                   </div>
+                   <div class="top-r_BoxContent">
+                       <span id="BoxContentNub02">23%</span><br>
+                       <span>逾期金额</span>
+                   </div>
+               </div>
+            </div>
+            <div class="top-r_down">
+                <div class="top-r_downBox fl">
+                    <div class="picBox">
+                        <img src="../img/ptxmhx.png" alt="">
+                    </div>
+                    <div class="top-r_BoxContent">
+                        <span class="BoxContentNub" id="BoxContentNub03">2543</span><span>万元</span><br>
+                        <span>代偿金额</span>
+                    </div>
+                </div>
+                <div class="top-r_downBox fr">
+                    <div class="picBox">
+                        <img src="../img/ptxmhx.png" alt="">
+                    </div>
+                    <div class="top-r_BoxContent">
+                        <span class="BoxContentNub" id="BoxContentNub04">27</span><span>笔</span><br>
+                        <span>代偿笔数</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <!--平台期限分布-->
+        <div class="chartBox ec001">
+            <div class="chartTitle">
+                <h3>项目期限分布</h3>
+            </div>
+            <div class="chartContent">
+                <div class="chartBody">
+                    <div id="ec002_currentCompetitiveness"></div>
+                </div>
+            </div>
+        </div>
+        <!--平台利率-->
+        <div class="chartBox ec002">
+            <div class="chartTitle">
+                <h3>项目利率</h3>
+            </div>
+            <div class="chartContent">
+                <header>
+                    <div class="inputGroup" >
+                        <label style="margin-left: 1rem;">期限:</label>
+                        <div class="mySelect" id="jingzhenglizhibiao2">
+                            <div class="myOption selected"><span class="text"></span><span class="icon"></span>
+                            </div>
+                            <ul class="myOptionBox">
+
+                                <li class="myOption selected">综合利率</li>
+                                <li class="myOption">0-6个月</li>
+                                <li class="myOption">6-9个月</li>
+                                <li class="myOption">9-12个月</li>
+                            </ul>
+                        </div>
+                    </div>
+                </header>
+                <div class="chartBody">
+                    <div id="ec001_currentCompetitiveness3"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="../asserts/js/echarts-4.0.js"></script>
+<script src="../asserts/js/jquery-2.2.4.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/chartsCom.js"></script>
+<script>
+    var allCharts = [];
+
+    $(function () {
+        var ec001 = echarts.init($("#ec001_currentCompetitiveness")[0]);
+        ec001.setOption(opt_pie);
+        ec001.setOption({
+            // legend:{
+            //    show:false
+            // },
+            grid:{
+                top:'10%',
+                left:'10%',
+                right:'10%',
+                bottom:'10%'
+            },
+            series : [
+                {
+                    name:'融资渠道',
+                    type:'pie',
+                    radius : '70%',
+                    center: ['40%', '50%'],
+                    data:[
+                        {value:10, name:'信用类'},
+                        {value:14, name:'担保类'},
+                        {value:16, name:'抵/质押类'},
+                        {value:18, name:'供应链类'},
+                        {value:22, name:'消费金融类'}
+                    ]
+                }
+            ]
+        });
+
+        var ec002 = echarts.init($("#ec002_currentCompetitiveness")[0]);
+        ec002.setOption(opt_pie);
+        ec002.setOption({
+
+            series : [
+                {
+                    name:'货款用途',
+                    type:'pie',
+                    radius : '70%',
+                    center: ['40%', '50%'],
+                    data:[
+                        {value:10, name:'0-3个月'},
+                        {value:14, name:'3-6个月'},
+                        {value:16, name:'6-12个月'},
+                        {value:18, name:'12个月以上'}
+
+                    ]
+                }
+            ]
+        });
+        var ec003 = echarts.init($("#ec001_currentCompetitiveness3")[0]);
+        ec003.setOption(opt_line);
+        ec003.setOption({
+            grid: {
+                top: "12%",
+                right:'5%',
+                left:'5%',
+                bottom: '15%'
+            },
+            legend: {
+                show: false
+            },
+            xAxis: {
+                name: '月份',
+                data: [1,2,3,4,5,6,7,8,9,10,11,12]
+            },
+            yAxis: {
+                name: '利率'
+            },
+            series: [
+                {
+                    name: '综合利率',
+                    type: 'line',
+                    data: [11, 11, 15, 13, 12, 13, 10, 11, 15, 13, 12, 13, 10,12],
+                    symbol:'circle'
+                },
+                {
+                    name: '行业利率',
+                    type: 'line',
+                    data: [10, 12, 14, 11, 10, 11, 9, 9, 13, 11, 10, 11, 8,10],
+                    symbol: 'circle'
+                }
+            ]
+        });
+        //本页所有图表
+        allCharts = [ec001, ec002];
+
+
+
+    });
+
+
+
+    //  集中度
+    $(function(){
+        //percentage  数据值
+        $('#progressbar1').LineProgressbar({
+            percentage: 64,
+            fillBackgroundColor: '#f1c40f',
+            height: '15px',
+            radius: '20px',
+            backgroundColor:'rgba(0,0,0,0.2)'
+
+        });
+        $('#progressbar2').LineProgressbar({
+            percentage: 42,
+            fillBackgroundColor: 'blue',
+            height: '15px',
+            radius: '20px',
+            backgroundColor:'rgba(0,0,0,0.2)'
+        });
+        $('#progressbar3').LineProgressbar({
+            percentage: 4.5,
+            fillBackgroundColor: '#f1c40f',
+            height: '15px',
+            radius: '20px',
+            backgroundColor:'rgba(0,0,0,0.2)'
+        });
+        $('#progressbar4').LineProgressbar({
+            percentage: 7.8,
+            fillBackgroundColor: 'blue',
+            height: '15px',
+            radius: '20px',
+            backgroundColor:'rgba(0,0,0,0.2)'
+        });
+    });
+
+    (function($){
+        'use strict';
+
+        $.fn.LineProgressbar = function(options){
+
+            var options = $.extend({
+                percentage : null,
+                ShowProgressCount: true,
+                duration: 1000,
+
+                // Styling Options
+                fillBackgroundColor: '#3498db',
+                backgroundColor: '#EEEEEE',
+                radius: '0px',
+                height: '10px',
+                width: '100%'
+            },options);
+
+            return this.each(function(index, el) {
+                // Markup
+                $(el).html('<div class="progressbar"><div class="proggress"></div><div class="percentCount"></div></div>');
+
+
+
+                var progressFill = $(el).find('.proggress');
+                var progressBar= $(el).find('.progressbar');
+
+
+                progressFill.css({
+                    backgroundColor : options.fillBackgroundColor,
+                    height : options.height,
+                    borderRadius: options.radius
+                });
+                progressBar.css({
+                    width : options.width,
+                    backgroundColor : options.backgroundColor,
+                    borderRadius: options.radius
+                });
+
+                // Progressing
+                progressFill.animate(
+                    {
+                        width: options.percentage + "%"
+                    },
+                    {
+                        step: function(x) {
+                            if(options.ShowProgressCount){
+                                $(el).find(".percentCount").text(Math.round(x) + "%");
+                            }
+                        },
+                        duration: options.duration
+                    }
+                );
+                ////////////////////////////////////////////////////////////////////
+            });
+        }
+    })(jQuery);
+</script>
+</body>
+</html>

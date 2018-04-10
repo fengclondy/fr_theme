@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.qdch.core.BaseController;
 import com.qdch.p2p.model.BorrowerModel;
+import com.qdch.xd.model.JyscModel;
 import com.qdch.xd.model.KeyIndicatorsModel;
 /**
  * 
@@ -19,18 +20,14 @@ public class BorrowerController extends BaseController {
 	 * @TODO 借款人总览首页
 	 */
 	public void index(){
+		setAttr("pingtailist", BorrowerModel.dao.getScoreList(getDataScopeByUserNameForP2p()));
+		setAttr("ziRanRenInfo",BorrowerModel.dao.getBasicinfo(getDataScopeByUserNameForP2p()));
 		render("p2p/pages/04_05jiekuanrenhuaxiang.html");
 	}
-	/**
-	 * 
-	 * @author gaozhao
-	 * @date 2018年4月9日
-	 * @TODO 获取借款平台得分
-	 */
-	public void getPingtaidefen(){
-		List<BorrowerModel> borrowerPlatformScore=BorrowerModel.dao.getScoreList(getDataScopeByUserNameForP2p());
-		mRenderJson(borrowerPlatformScore);
-	}
+	
+	
+	
+	
 	/**
 	 * 
 	 * @author gaozhao
@@ -90,5 +87,16 @@ public class BorrowerController extends BaseController {
 	public void getQiYeQiTaInFo(){
 		 List<BorrowerModel>  borrowerQiYeQiTaInfo=BorrowerModel.dao.getOtherinfo(getDataScopeByUserNameForP2p());
 		 mRenderJson(borrowerQiYeQiTaInfo);
+	}
+	/**
+	 * 
+	 * @author gaozhao
+	 * @date 2018年4月10日
+	 * @TODO 获取自然人基本信息
+	 */
+	
+	public void getPingTai(String pingtainame){
+		List<BorrowerModel> borrowerZiRanRenInfo=BorrowerModel.dao.getPingtai(getDataScopeByUserNameForP2p(),pingtainame);
+		mRenderJson(borrowerZiRanRenInfo);
 	}
 }

@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="../img/com/logo.png">
+    <link rel="stylesheet" href="../asserts/css/normalize.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/pageCom.css">
+    <link rel="stylesheet" href="../css/laydate.css">
+    <style>
+        .pageBody {
+            display: flex;
+            flex: 1;
+        }
+        .left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .left > div {
+            flex: 1;
+            height: 50%;
+        }
+        .right {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+        }
+        .topBox {
+            flex: 3;
+            display: flex;
+            flex-direction: row;
+            height: 30%;
+        }
+        .topBox > div {
+            flex: 1;
+        }
+        .bottomBox {
+            flex: 7;
+            height: 70%;
+        }
+        /*newsInformation 最新资讯*/
+        .newsInformation {
+            width: 100%;
+            margin: 6% 10%;
+            height: 100%;
+        }
+        .newsInformation li{
+            height: 33.33%;
+            line-height: 33.33%;
+        }
+        .newsInformation li a, .newsInformation li span {
+            font-size: 0.9rem;
+        }
+        .newsInformation li span {
+            margin-right: .8rem;
+        }
+        .newsInformation li>a:hover {
+            color: var(--themeBlue);
+        }
+        /*舆情详情*/
+        .customerSelect {
+            padding: 0.5rem 1rem;
+        }
+        .btnGroup1 {
+            margin-top: 10px;
+        }
+        .timeUstyle {
+            background: transparent;
+            border: 2px solid #00abde;
+            width: 9rem;
+            border-radius: 0.1rem;
+            height: 28%;
+            line-height: 28%;
+        }
+        .endTimeContent {
+            margin-left: 5%;
+        }
+        /*修改输入框 placeholder字体颜色 start*/
+        input:-moz-placeholder,
+        textarea:-moz-placeholder {
+            color: #fff;
+            vertical-align: middle;
+        }
+        input:-ms-input-placeholder,
+        textarea:-ms-input-placeholder {
+            color: #fff;
+            vertical-align: middle;
+        }
+        input::-webkit-input-placeholder,
+        textarea::-webkit-input-placeholder {
+            color: #fff;
+            vertical-align: middle;
+        }
+        /*修改输入框 placeholder字体颜色 END*/
+        /*customerInformationList start*/
+        .fl {
+            float: left;
+        }
+        .fr {
+            float: right;
+        }
+        a {
+            text-decoration: none;
+        }
+        li {
+            float: left;
+            list-style: none;
+        }
+        .left {
+            width: 100%;
+        }
+        .left > h2 > span {
+            font-size: 1rem;
+            font-weight: normal;
+        }
+        .left > ul > li {
+            width: 100%;
+            color: #756F71;
+            padding: .3rem 0.1rem;
+            font-size: 12px;
+        }
+        .left > ul > li > .pic {
+            width: 16%;
+            height: 16%;
+            margin: 1%;
+        }
+        .left > ul > li > div > img {
+            width: 100%;
+            height: 100%;
+            margin-left: 0.5rem;
+        }
+        .left > ul > li > p {
+            width: 78%;
+            padding: 0.2rem 0.2rem;
+        }
+        .left > ul > li > p > .neirong {
+            margin: 0.1rem 0 0.5rem 0;
+            color: #00b0f4;
+            font-size: 14px;
+        }
+        .left > ul > li > p > span {
+            line-height: 1.3rem;
+            display: inline-block;
+            margin: 0 .5rem .5rem .5rem;
+        }
+        .bgi4 {
+            background: url("../img/03_05shengyufengxian/lticn_eye.png") no-repeat left center;
+            padding-left: 1.8rem;
+        }
+        .left > ul > li > p > a:first-child {
+            display: block;
+            font-size: 0.95rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem   ;
+        }
+        .left > ul > li > p a {
+            color: #fff;
+        }
+        /*查询*/
+        .yuqingsearch{
+            padding:0rem 2rem;
+            background: #00abde;
+            border: 2px solid #00abde;
+            margin-top: 50%;
+            border-radius: 0.1rem;
+        }
+
+        /*舆情详情 图片展示区*/
+        .customerInformationList {
+            width: 100%;
+            height: 75%;
+
+        }
+        .customerInformationList thead tr th{
+            font-size: 0.8rem;
+        }
+        .leftBox {
+            width: 100%;
+            height: 20rem;
+            overflow: auto;
+        }
+
+        /*舆情详情 输入框*/
+        .customerInformation {
+            width: 100%;
+            height: 25%;
+            padding: 1rem 0rem;
+            border-bottom: 2px solid #00adef;
+        }
+        .customerInformationleft,.customerInformationmiddle{
+            width: 33.33%;
+            height: 100%;
+        }
+        .mySelect{
+            width: 9rem;
+        }
+        /*关键字输入框*/
+        .gjz{
+            width: 9rem;
+            background: transparent;
+            border: 2px solid #00abde;
+            border-radius: 0.1rem;
+        }
+        /*#BeginTime,#EndTime{*/
+            /*width: 9rem;*/
+            /*height: 28%;*/
+            /*background: transparent;*/
+            /*border: 2px solid #00abde;*/
+        /*}*/
+
+    </style>
+</head>
+<body id="04_05qiyeyuqing" data-title="企业舆情">
+<div class="container">
+    <h2 hidden>声誉风险</h2>
+    <div class="pageBody">
+        <div class="left">
+            <div class="left-top">
+                <div class="chartBox ec001">
+                    <div class="chartTitle">
+                        <h3>市场舆情概览</h3>
+                    </div>
+                    <div class="chartContent">
+                        <div class="chartBody">
+                            <div id="ec_03_05shichangyuqinggailan"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="left-bottom">
+                <div class="chartBox ec002">
+                    <div class="customerSelect">
+                        <div class="btnGroup btnGroup1">
+                            <button class="active">纠纷客户名单</button>
+                            <button>客户黑名单</button>
+                        </div>
+                    </div>
+                    <div class="customerInformationList">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>时间</th>
+                                <th>投诉人</th>
+                                <th>投诉电话</th>
+                                <th>投诉原因</th>
+                                <th>查看详情</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>20180307</td>
+                                <td>王建国</td>
+                                <td>15888888888</td>
+                                <td>交易市场</td>
+                                <td class="more"><a href=""> 查看</a></td>
+                            </tr>
+                            <tr>
+                                <td>20180307</td>
+                                <td>王建国</td>
+                                <td>15888888888</td>
+                                <td>交易市场</td>
+                                <td class="more"><a href=""> 查看</a></td>
+                            </tr>
+                            <tr>
+                                <td>20180307</td>
+                                <td>王建国</td>
+                                <td>15888888888</td>
+                                <td>交易市场</td>
+                                <td class="more"><a href=""> 查看</a></td>
+                            </tr>
+                            <tr>
+                                <td>20180307</td>
+                                <td>王建国</td>
+                                <td>15888888888</td>
+                                <td>交易市场</td>
+                                <td class="more"><a href=""> 查看</a></td>
+                            </tr>
+                            <tr>
+                                <td>20180307</td>
+                                <td>王建国</td>
+                                <td>15888888888</td>
+                                <td>交易市场</td>
+                                <td class="more"><a href=""> 查看</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="topBox">
+                <!--实时舆情-->
+                <div class="topBox1">
+                    <div class="chartBox ec002">
+                        <div class="chartTitle">
+                            <h3>实时舆情</h3>
+                        </div>
+                        <div class="chartContent">
+                            <div class="chartBody">
+                                <div id="ec_shishiyuqing001"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--最新资讯-->
+                <div class="topBox2">
+                    <div class="chartBox ec002">
+                        <div class="chartTitle">
+                            <h3>最新资讯</h3>
+                        </div>
+                        <div class="chartContent">
+                            <div class="chartBody">
+                                <ul class="newsInformation">
+                                    <li><a href="#">期货日报:上市钢企积极参与期货套保</a></li>
+                                    <li><a href="#">期货日报:上市钢企积极参与期货套保</a></li>
+                                    <li><a href="#">期货日报:上市钢企积极参与期货套保</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--右下侧部分  舆情详情-->
+            <div class="bottomBox">
+                <div class="chartBox ec002">
+                    <div class="chartTitle">
+                        <h3>舆情详情</h3>
+                    </div>
+                    <!--舆情详情-->
+                    <div class="chartContent">
+                        <div class="chartBody chartBody1">
+                            <div class="customerInformation">
+                                <div class="customerInformationleft fl">
+                                    <div class="inputGroup fl">
+                                        <label class="jiaoyishichang">交易市场:</label>&nbsp;&nbsp;
+                                        <div class="mySelect" id="jiaoyishichang">
+                                            <div class="myOption selected"><span class="text"></span><span class="icon"></span></div>
+                                            <ul class="myOptionBox">
+                                                <li class="myOption selected">青岛华银有限公司</li>
+                                                <li class="myOption">青岛华银有限公司</li>
+                                                <li class="myOption">青岛华银有限公司</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div class="inputGroup fl">
+                                        <label for="BeginTime">开始时间：</label>
+                                        <input placeholder="请输入开始日期" id="BeginTime" class="laydate-icon timeUstyle stateUTime"
+                                               onclick="laydate({istime: true,format:'YYYY-MM-DD hh:mm'})">
+                                        <!--<input type="Date" id="BeginTime">-->
+                                    </div>
+                                </div>
+                                <div class="customerInformationmiddle fl">
+                                    <div class="inputGroup fl">
+                                        <label class="guanjianzi">关键字:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="text" class="gjz" placeholder="青岛华银有限公司">
+
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div class="inputGroup fl">
+                                        <label for="EndTime">结束时间：</label>
+                                        <input placeholder="请输入开始日期" id="EndTime" class="laydate-icon timeUstyle stateUTime"
+                                               onclick="laydate({istime: true,format:'YYYY-MM-DD hh:mm'})">
+                                        <!--<input type="Date" id="EndTime">-->
+                                    </div>
+                                </div>
+                                <div class="customerInformationright fl">
+
+                                    <div class="inputGroup">
+                                        <button class="yuqingsearch">查询</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="customerInformationList">
+                                <div class="left fl">
+                                    <ul class="leftBox">
+                                        <li>
+                                            <div class="fl pic"><img src="../img/03_05shengyufengxian/02.png"></div>
+                                            <p class="fr">
+                                                <a href="#">保监会启动偿二代二期工程建设</a>
+                                                <span class="neirong">为进一步补齐制度短板和监管漏洞，提升保险风险管理贺风险抵御能力，保监会于近日印发&gt偿二代二期工程建设方案&lt（一下简称《建设方案》），启动偿二代二期工程建设。</span>
+                                                <span>来源:</span><a href="#" class="bgi1 source1">中国网</a>
+                                                <span>|</span>
+                                                <span>涉及词:</span><a href="#">保监会、保险</a>
+                                                <span class="bgi4"><a href="#">256</a></span>
+                                                <span class="fr bgi2">2014-02-19 12:26</span>
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <div class="fl pic"><img src="../img/03_05shengyufengxian/02.png"></div>
+                                            <p class="fr">
+                                                <a href="#">保监会启动偿二代二期工程建设</a>
+                                                <span class="neirong">为进一步补齐制度短板和监管漏洞，提升保险风险管理贺风险抵御能力，保监会于近日印发&gt偿二代二期工程建设方案&lt（一下简称《建设方案》），启动偿二代二期工程建设。</span>
+                                                <span>来源:</span><a href="#" class="bgi1 source2">中国网</a>
+                                                <span>|</span>
+                                                <span>涉及词:</span><a href="#">保监会、保险</a>
+                                                <span class="bgi4"><a href="#">256</a></span>
+                                                <span class="fr bgi2">2014-02-19 12:26</span>
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <div class="fl pic"><img src="../img/03_05shengyufengxian/02.png"></div>
+                                            <p class="fr">
+                                                <a href="#">保监会启动偿二代二期工程建设</a>
+                                                <span class="neirong">为进一步补齐制度短板和监管漏洞，提升保险风险管理贺风险抵御能力，保监会于近日印发&gt偿二代二期工程建设方案&lt（一下简称《建设方案》），启动偿二代二期工程建设。</span>
+                                                <span>来源:</span><a href="#" class="bgi1">中国网</a>
+                                                <span>|</span>
+                                                <span>涉及词:</span><a href="#">保监会、保险</a>
+                                                <span class="bgi4"><a href="#">256</a></span>
+                                                <span class="fr bgi2">2014-02-19 12:26</span>
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <div class="fl pic"><img src="../img/03_05shengyufengxian/02.png"></div>
+                                            <p class="fr">
+                                                <a href="#">保监会启动偿二代二期工程建设</a>
+                                                <span class="neirong">为进一步补齐制度短板和监管漏洞，提升保险风险管理贺风险抵御能力，保监会于近日印发&gt偿二代二期工程建设方案&lt（一下简称《建设方案》），启动偿二代二期工程建设。</span>
+                                                <span>来源:</span><a href="#" class="bgi1 source3">中国网</a>
+                                                <span>|</span>
+                                                <span>涉及词:</span><a href="#">保监会、保险</a>
+                                                <span class="bgi4"><a href="#">256</a></span>
+                                                <span class="fr bgi2">2014-02-19 12:26</span>
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <div class="fl pic"><img src="../img/03_05shengyufengxian/02.png"></div>
+                                            <p class="fr">
+                                                <a href="#">保监会启动偿二代二期工程建设</a>
+                                                <span class="neirong">为进一步补齐制度短板和监管漏洞，提升保险风险管理贺风险抵御能力，保监会于近日印发&gt偿二代二期工程建设方案&lt（一下简称《建设方案》），启动偿二代二期工程建设。</span>
+                                                <span>来源:</span><a href="#" class="bgi1 source4">中国网</a>
+                                                <span>|</span>
+                                                <span>涉及词:</span><a href="#">保监会、保险</a>
+                                                <span class="bgi4"><a href="#">256</a></span>
+                                                <span class="fr bgi2">2014-02-19 12:26</span>
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <div class="fl pic"><img src="../img/03_05shengyufengxian/02.png"></div>
+                                            <p class="fr">
+                                                <a href="#">保监会启动偿二代二期工程建设</a>
+                                                <span class="neirong">为进一步补齐制度短板和监管漏洞，提升保险风险管理贺风险抵御能力，保监会于近日印发&gt偿二代二期工程建设方案&lt（一下简称《建设方案》），启动偿二代二期工程建设。</span>
+                                                <span>来源:</span><a href="#" class="bgi1 source5">中国网</a>
+                                                <span>|</span>
+                                                <span>涉及词:</span><a href="#">保监会、保险</a>
+                                                <span class="bgi4"><a href="#">256</a></span>
+                                                <span class="fr bgi2">2014-02-19 12:26</span>
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../asserts/js/echarts-4.0.js"></script>
+<script src="../asserts/js/jquery-2.2.4.js"></script>
+<script src="../js/chartsCom.js"></script>
+<script src="../js/pageCom.js"></script>
+<script src="../js/laydate.js"></script>
+<script>
+    var allCharts = [];
+    $(function () {
+        //市场舆情浏览 模块一
+        var fxyq001 = echarts.init($("#ec_03_05shichangyuqinggailan")[0]);
+        fxyq001.setOption(opt_pie);
+        fxyq001.setOption({
+            series: [
+                {
+                    name: '高管资质',
+                    type: 'pie',
+                    radius: '60%',
+                    center: ['36%', '50%'],
+                    data: [
+                        {value: 10, name: '10年以上'},
+                        {value: 14, name: '5-10年'},
+                        {value: 16, name: '3年'},
+                        {value: 18, name: '2年'},
+                        {value: 22, name: '1年'}
+                    ]
+                }
+            ]
+        });
+        //实时舆情
+        var fxyq002 = echarts.init($("#ec_shishiyuqing001")[0]);
+        fxyq002.setOption(opt_com);
+        fxyq002.setOption(opt_line);
+        fxyq002.setOption({
+            legend: {
+                show: false
+            },
+            grid: {
+                top: '20%',
+                left: '10%',
+                right: '10%',
+                bottom: '20%'
+            },
+            xAxis: {
+                name: '日',
+                // type: 'category',
+                // boundaryGap: false,
+                data: ['9-12', '9-13', '9-14', '9-15', '9-16', '9-17', '9-18', '9-19']
+            },
+            yAxis: {
+                name: '热度值',
+                type: 'value'
+
+            },
+            series: [
+                {
+                    name: '平均单笔贷款',
+                    type: 'line',
+                    symbol: 'circle',
+                    data: [200, 255, 290, 320, 380, 430, 470, 490],
+                    areaStyle: {
+                        color: {
+                            x: 0,
+                            y: 0,
+                            x2: 0,
+                            y2: 1,
+                            colorStops: [{
+                                offset: 0, color: colors[0] // 0% 处的颜色
+                            }, {
+                                offset: 1, color: '#00adef11' // 100% 处的颜色
+                            }]
+                        }
+                    }
+                }
+
+            ]
+        });
+        //当前时间
+        //本页所有图表
+        allCharts = [fxyq001, fxyq002];
+    });
+
+</script>
+</body>
+</html>

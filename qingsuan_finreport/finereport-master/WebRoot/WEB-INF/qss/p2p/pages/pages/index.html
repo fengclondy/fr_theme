@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="shortcut icon" href="${contextPath}/static/img/com/logo.png">
+    <link rel="shortcut icon" href="../img/com/logo.png">
     <title>P2P</title>
-    <link rel="stylesheet" href="${contextPath}/static/asserts/css/normalize.css">
-    <link rel="stylesheet" href="${contextPath}/static/css/style.css">
-    <link rel="stylesheet" href="${contextPath}/static/css/index.css">
+    <link rel="stylesheet" href="../asserts/css/normalize.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/index.css">
 </head>
 <body id="index">
 
@@ -33,8 +33,9 @@
             <li class="">
                 <a class="dropdown-toggle">平台总览 <span class="icon"></span> </a>
                 <ul>
-                    <li data-id="${contextPath}/qdch/platform" data="01_01pingtaizonglanbiao">平台总览表</li>
-                    <li data-id="${contextPath}/qdch/risk" data="01_02fengxianzonglan">风险总览</li>
+                    <li data-id="01_01pingtaizonglanbiao">平台总览表</li>
+                    <!--<li data-id="01_02fengxianzonglan">风险总览</li>-->
+                    <li data-id="pingtaizonglantupian">风险总览</li>
                 </ul>
             </li>
 
@@ -59,18 +60,18 @@
             <li class="">
                 <a class="dropdown-toggle">平台画像 <span class="icon"></span></a>
                 <ul>
-                    <li>平台工商</li>
-                    <li data-id="${contextPath}/qdch/project" data="04_01pingtaixiangmuhuaxiang">平台项目</li>
-                    <li data-id="${contextPath}/qdch/deal" data="04_02pingtaijiaoyihuaxiang" >平台交易</li>
-                    <li data-id="${contextPath}/qdch/borrower" data="04_05jiekuanrenhuaxiang" >借款人总览</li>
-                    <li data-id="${contextPath}/qdch/companyfeel" data="04_04pingtaiyuqing">企业舆情</li>
+                    <li data-id="04_01pingtaigongshang">平台工商</li>
+                    <li data-id="04_02pingtaixiangmu">平台项目</li>
+                    <li data-id="04_03pingtaijiaoyi">平台交易</li>
+                    <li data-id="04_04jiekuanrenzonglan">借款人总览</li>
+                    <li data-id="04_05qiyeyuqing">企业舆情</li>
 
                 </ul>
             </li>
             <li class="">
                 <a class="dropdown-toggle">监管报告 <span class="icon"></span></a>
                 <ul>
-                    <li data-id="${contextPath}/qdch/supervise" data="06_01jianguanyuebao">监管月报</li>
+                    <li data-id="06_01jianguanyuebao">监管月报</li>
                 </ul>
             </li>
             <!--<li class="">-->
@@ -81,15 +82,15 @@
                     <!--<li><a href="">交易信息</a></li>-->
                 <!--</ul>-->
             <!--</li>-->
-            <li class="">
-                <a class="dropdown-toggle">数据录入 <span class="icon"></span></a>
-                <ul>
-                    <li><a href="">待定</a></li>
-                    <li data-id="${contextPath}/qdch/alert" data="07_alert">alert</li>
-                    <li data-id="${contextPath}/qdch/platformalert" data="01_01pingtaizonglanbiaoalert">平台总览alert</li>
-                    <li data-id="${contextPath}/qdch/borrowerphoto" data="04_06iiekuanrenhuaxiangalert">借款人画像</li>
-                </ul>
-            </li>
+            <!--<li class="">-->
+                <!--<a class="dropdown-toggle">数据录入 <span class="icon"></span></a>-->
+                <!--<ul>-->
+                    <!--<li><a href="">待定</a></li>-->
+                    <!--<li data-id="alert">alert</li>-->
+                    <!--<li data-id="01_01pingtaizonglanbiaoalert">平台总览alert</li>-->
+                    <!--<li data-id="04_06iiekuanrenhuaxiangalert">借款人画像</li>-->
+                <!--</ul>-->
+            <!--</li>-->
         </ul>
     </nav>
 
@@ -98,7 +99,7 @@
     </div>
     <div class="container">
         <div class="nav-tabs" id="navTabs">
-            <ul>	
+            <ul>
                 <li class="active" data-id="00_01home">
                     <a title="首页" ><span class="text"></span><span class="close">×</span> </a>
                     <span class="tab-tip">
@@ -128,8 +129,8 @@
         </div>
     </div>
 </div>
-<script src="${contextPath}/static/asserts/js/jquery-2.2.4.js"></script>
-<script src="${contextPath}/static/js/index.js"></script>
+<script src="../asserts/js/jquery-2.2.4.js"></script>
+<script src="../js/index.js"></script>
 <script>
 </script>
 </body>

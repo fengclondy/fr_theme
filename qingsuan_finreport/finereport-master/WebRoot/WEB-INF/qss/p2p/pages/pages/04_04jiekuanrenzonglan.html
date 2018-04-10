@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="../img/com/logo.png">
+    <link rel="stylesheet" href="../asserts/css/normalize.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/pageCom.css">
+    <link rel="stylesheet" href="../css/04_04superTables.css" />
+    <style>
+        html,body{
+            font-family:'微软雅黑';
+        }
+        .fr{
+            float: right;
+        }
+        .fr{
+            float: right;
+        }
+        .main {
+            flex: 1;
+        }
+        /*search 搜查框区域*/
+        .search{
+            padding: 1rem 2rem;
+            height: 16%;
+        }
+        form {
+            width: 57rem;
+            margin: auto;
+        }
+        form select {
+            width: 9rem;
+            background: transparent;
+            border: 1px solid #00adef;
+        }
+        .selected{
+            width: 9rem;
+        }
+        form label {
+            display: inline-block;
+            width: 6rem;
+            text-align: right;
+        }
+
+        form input {
+            width: 9rem;
+            background: transparent;
+            border:1px solid #00adef;
+            border-radius: 3px;
+
+        }
+        .search .active{
+            padding: 0.1rem 2rem;
+            margin-left: 7.5rem;
+        }
+        .search{
+            width: 100%;
+            height: 15%;
+
+        }
+
+        #div_container{
+            width: 100%;
+            height: 85%;
+
+        }
+
+        /*table*/
+        #score>th:not(.defen){
+            color: #fffb8f;
+            cursor: pointer;
+        }
+
+        #score>th:not(.defen):hover{
+            color: orange;
+        }
+        tbody > tr:nth-of-type(odd) {
+            background-color:transparent;
+        }
+
+        tbody > tr:nth-of-type(even) {
+            background-color: transparent;
+        }
+        .center{
+            color: #fff;
+            background:transparent;
+        }
+        .red{
+            color: #fffb8f;
+            text-align: left;
+        }
+        .red ~ td{
+            color:#fffb8f;
+        }
+        .left{
+            text-align: left;
+        }
+        /*Model 模态框*/
+        #model{
+            position: absolute;
+            width: 560px;
+            height: 400px;
+            left: 50%;
+            top: 50%;
+            margin-left: -280px;
+            margin-top: -200px;
+            background: url("../img/com/bg_main.jpg") no-repeat;
+            z-index: 100;
+            display: none;
+            border-radius: 8px 8px 0 0;
+        }
+        .modelTitle{
+            height: 30px;
+            border-radius: 8px 8px 0 0;
+            background-color: blue;
+            line-height: 30px;
+
+        }
+        .del{
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            line-height: 15px;
+            border-radius: 15px;
+            background-color:#fff ;
+        }
+        .del a{
+            color: #000;
+        }
+
+        /*table [rowspan]{*/
+            /*background:red;*/
+            /*color: red;*/
+
+        /*}*/
+
+    </style>
+</head>
+<body id="04_04jiekuanrenzonglan" data-title="借款人总览">
+<div class="container">
+    <div class="main">
+        <div class="chartBox ec002">
+            <div class="chartTitle">
+                <h3>平台总览表</h3>
+            </div>
+            <div class="search">
+                <form action="">
+                    <div class="inputGroup">
+                        <label for="pingtaimingcheng">平台名称：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                        <input type="text" id="pingtaimingcheng11">
+                    </div>
+
+                    <div class="inputGroup">
+                        <label for="pingtaimingcheng">信息有无：</label>
+                        <div class="mySelect" id="pingtaimingcheng">
+                            <div class="myOption selected inputWidth"><span
+                                    class="text"></span><span
+                                    class="icon"></span></div>
+                            <ul class="myOptionBox">
+                                <li class="myOption selected" id="pingtaimingcheng01"></li>
+                                <li class="myOption" id="pingtaimingcheng02">有</li>
+                                <li class="myOption" id="pingtaimingcheng03">无</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="inputGroup">
+                        <div class="btnGroup search">
+                            <button class="active" id="search">查询</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <!--表格-->
+            <div id="div_container" style="text-align:center;position:relative;">
+                <!-- 固定表头 table外层必须包有一个div  id="my_div"   class="fakeContainer first_div" 引入superTables.js  在页面下面还需要调用 -->
+                <div style="height:100%;width: 100%;" id="my_div" class="fakeContainer first_div" >
+                    <table border="1" id="demoTable" style="border-collapse: collapse;">
+                        <tr id="my_tr">
+                            <th class="center" rowspan="2">借款方</th>
+                            <th class="center" rowspan="2">资料类别</th>
+                            <th class="center" rowspan="1">主要信息</th>
+                            <th class="center" rowspan="1">汇泉贷</th>
+                            <th class="center" rowspan="1">鲁金所</th>
+                            <th class="center" rowspan="1">钱吧</th>
+                            <th class="center" rowspan="1">中融宝</th>
+                            <th class="center" rowspan="1">海融易</th>
+                            <th class="center" rowspan="1">新博贷</th>
+                            <th class="center" rowspan="1">优存网</th>
+                            <th class="center" rowspan="1">土豆金服</th>
+                            <th class="center" rowspan="1">蓝琼金融</th>
+                            <th class="center" rowspan="1">钱座</th>
+                            <th class="center" rowspan="1">金源贷</th>
+                            <th class="center" rowspan="1">票宝宝</th>
+                            <th class="center" rowspan="1">金柜贷</th>
+                            <th class="center" rowspan="1">融诺微贷</th>
+                            <th class="center" rowspan="1">互助贷</th>
+                            <th class="center" rowspan="1">车E贷</th>
+                            <th class="center" rowspan="1">久信金服</th>
+                            <th class="center" rowspan="1">华舵金服</th>
+                            <th class="center" rowspan="1">大家贷</th>
+
+
+                            <th class="center" rowspan="1"></th>
+                            <th class="center" rowspan="1"></th>
+
+
+
+
+                        </tr>
+                        <tr id="score">
+                            <th class="center defen">得分</th>
+                            <th class="center">48</th>
+                            <th class="center">58</th>
+                            <th class="center">49</th>
+                            <th class="center">67</th>
+                            <th class="center">38</th>
+                            <th class="center">39</th>
+                            <th class="center">0</th>
+
+
+                            <th class="center">38</th>
+                            <th class="center">50</th>
+                            <th class="center">39</th>
+                            <th class="center">33</th>
+
+
+                            <th class="center">6</th>
+                            <th class="center">21</th>
+                            <th class="center">24</th>
+                            <th class="center">34</th>
+                            <th class="center">38</th>
+                            <th class="center">0</th>
+                            <th class="center">0</th>
+                            <th class="center">0</th>
+                            <th class="center">0</th>
+
+
+
+
+                        </tr>
+                        <tr>
+                            <td class="center ziranren" rowspan="26" style="background:#00568c">自然人</td>
+                            <td class="center" rowspan="9" style="background:#00568c">基础信息</td>
+                            <td class="center red">姓名</td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center">0</td>
+                            <td class="center">0</td>
+                            <td class="center">0</td>
+                        </tr>
+                        <tr>
+                            <td class="center red">身份证</td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">√</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="center red">借款用途</td>
+
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">√</td>
+
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="center left">性别</td>
+
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">√</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="center left">年龄</td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">√</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="center left">学历</td>
+
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="center left">婚姻状况</td>
+
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">√</td>
+
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="center left">户籍所在地</td>
+
+                            <td class="center">×</td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">√</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">√</td>
+
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="center left">还款来源</td>
+
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">√</td>
+
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+                        <tr>
+                            <td class="center" rowspan="7" style="background:#00568c">信用信息</td>
+
+                            <td class="center red">在平台逾期次数</td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">√</td>
+
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="center red">在平台的逾期金额</td>
+
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="center red">征信报告近6个月逾期情况</td>
+
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="center red" >在其他平台有无借款</td>
+
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="center left">历史借款笔数</td>
+
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="center left">历史借款总额</td>
+
+                            <td class="center">×</td>
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="center left">增信措施</td>
+
+                            <td class="center">×</td>
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="center" rowspan="5" style="background:#00568c">资产信息</td>
+
+                            <td class="center left">收入情况</td>
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="center left">有无购房</td>
+
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="center left">有无购车</td>
+
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="center left">有无房贷</td>
+
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="center left">有无车贷</td>
+
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="center" rowspan="5" style="background:#00568c">工作信息</td>
+
+                            <td class="center red">从事行业</td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">√</td>
+
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="center left">工作城市</td>
+
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="center left">公司规模</td>
+
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="center left">工作岗位</td>
+
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="center left">工作年限</td>
+
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">√</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+                        <!-- 企业 -->
+                        <tr>
+                            <td class="center jiekuanfang" rowspan="17" style="background:#00568c">企业</td>
+
+                            <td class="center" rowspan="9" style="background:#00568c">基本信息</td>
+                            <td class="center red">公司名称</td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+
+                        </tr>
+                        <tr>
+                            <td class="center red">法定代表人</td>
+
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center">√</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="center red">成立时间</td>
+
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+
+                            <td class="center">×</td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="center red">注册资本</td>
+
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+
+                            <td class="center">×</td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="center red">注册地址</td>
+
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="center red">营业范围</td>
+
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="center left">公司规模</td>
+
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="center red">资金用途</td>
+
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="center red">还款来源</td>
+
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="center" rowspan="8" style="background:#00568c">其他信息</td>
+
+                            <td class="center red">借款企业收入情况</td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+
+                        </tr>
+                        <tr>
+                            <td class="center red">借款人企业负债情况</td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+                        <tr>
+                            <td class="center red">借款人借款前6个月征信报告</td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+                        <tr>
+                            <td class="center red">借款人是否在其他平台借款</td>
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+                        <tr>
+                            <td class="center left">股东信息</td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+                        <tr>
+                            <td class="center left">法人信用信息</td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center">√</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+                        <tr>
+                            <td class="center left">增信措施</td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+                            <td class="center">√</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+                        <tr>
+                            <td class="center left">涉诉信息</td>
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+
+                            <td class="center">×</td>
+                            <td class="center">√</td>
+                            <td class="center">×</td>
+                            <td class="center">×</td>
+
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center">×</td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <!--&lt;!&ndash;模态框&ndash;&gt;-->
+            <!--<div id="model" >-->
+                <!--<div class="modelTitle">-->
+                        <!--<h5>借款人</h5>-->
+                        <!--<div class="del fr"><a href="">x</a></div>-->
+                <!--</div>-->
+                <!--<div class="modelContent">-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+    </div>
+</div>
+
+<script src="../asserts/js/echarts-4.0.js"></script>
+<script src="../asserts/js/jquery-2.2.4.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/chartsCom.js"></script>
+<script type="text/javascript" src="../js/04_04superTables.js"></script>
+
+</body>
+</html>
+
+<script type="text/javascript">
+    //此处调用superTables.js里需要的函数
+    $(document).ready(function(){
+    // window.onload=function(){
+        new superTable("demoTable", {cssSkin : "sDefault",
+            fixedCols : 2, //固定几列
+            headerRows :2,  //头部固定行数
+            onStart : function () {
+                this.start = new Date();
+            },
+            onFinish : function () {
+            }
+        });
+        $("#div_container").css("width","100%");//这个宽度是容器宽度，不同容器宽度不同
+        $(".fakeContainer").css("height","100%");//这个高度是整个table可视区域的高度，不同情况高度不同
+
+        //.sData是调用superTables.js之后页面自己生成的  这块就是出现滚动条 达成锁定表头和列的效果
+        $(".sData").css("width","100%");//这块的宽度是用$("#div_container")的宽度减去锁定的列的宽度
+        $(".sData").css("height","100%");//这块的高度是用$("#div_container")的高度减去锁定的表头的高度
+
+        //目前谷歌  ie8+  360浏览器均没问题  有些细小的东西要根据项目需求改
+
+        //有兼容问题的话可以在下面判断浏览器的方法里写
+        if(navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion.match(/9./i)=="9.")
+        {//alert("IE 9.0");
+
+        }else if (!!window.ActiveXObject || "ActiveXObject" in window){//alert("IE 10");
+
+        }else{//其他浏览器
+            //alert("其他浏览器");
+        }
+        //模块框
+        $("#score>th:not(.defen)").click(function () {
+            $('#model').css('display','block');
+        });
+        $(".del a").click(function () {
+            $('#model').css('display','none');
+        });
+    })
+
+
+</script>
