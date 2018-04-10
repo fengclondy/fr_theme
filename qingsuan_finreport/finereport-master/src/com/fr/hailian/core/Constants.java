@@ -59,8 +59,10 @@ public class Constants {
 	
 	//正式的url地址
 	public final static String MSG_API_URL = "http://manager.wxtxsms.cn/smsport/sendPost.aspx";
+	//外网ip
+	public final static String WEB_DOMAIN = "http://144.123.36.214:10080/WebReport";
 	//访问网址
-	public final static String WEB_URL = "http://144.123.36.214:10080/WebReport/QDCH/login.html ";
+	public final static String WEB_URL = WEB_DOMAIN+"/QDCH/login.html ";
 	
 	public final static String[] MSG_MODEL = {
 			"防控预警平台提示：风险预警事件（编号NUM）已提交，请登录"+WEB_URL+"查看处理。",
