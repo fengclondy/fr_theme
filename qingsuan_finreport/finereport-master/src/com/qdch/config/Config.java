@@ -26,6 +26,7 @@ import com.qdch.p2p.controller.PlatformController;
 import com.qdch.p2p.controller.ProjectplatformController;
 import com.qdch.p2p.controller.RiskController;
 import com.qdch.p2p.controller.SuperviseController;
+import com.qdch.p2p.model.BorrowerModel;
 import com.qdch.p2p.model.PlatformModel;
 import com.qdch.p2p.model.PpjyscModel;
 import com.qdch.p2p.model.ProjectStructureModel;
@@ -77,6 +78,8 @@ import com.qdch.xd.model.RiskTrendDetailedModel;
 import com.qdch.xd.model.RiskTrendModel;
 import com.qdch.xd.model.RiskTypeModel;
 import com.qdch.xd.model.ScabilityModel;
+import com.qdch.xd.model.defrateRankModel;
+import com.qdch.xd.model.maxIntrateRankModel;
 
 
 public class Config extends JFinalConfig {
@@ -206,6 +209,10 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("insight_pp_iterm_count", ProjectStructureModel.class);//平台画像的项目结构
 		/***doushuiahi Model START p2p***/
 		
+		/***p2p 高照  insight层Model SART***/
+		insight_arp.addMapping("insight_pp_score_info", BorrowerModel.class);//根据得分降序查找平台简称和得分
+		
+		
 		
 		/***小贷zuoqb insight层 Model START***/
 		
@@ -253,6 +260,8 @@ public class Config extends JFinalConfig {
 			insight_arp.addMapping("hub_xd_fxzs",RiskCountModel.class);//小贷风险指数
 			insight_arp.addMapping("hub_xd_fxzs",RiskTrendModel.class);//风险趋势
 			insight_arp.addMapping("hub_xd_fxzsmx",RiskTrendDetailedModel.class);//风险趋势明细
+			insight_arp.addMapping("insight_xd_defrate",defrateRankModel.class);//不良率
+			insight_arp.addMapping("insight_xd_intrate",maxIntrateRankModel.class);//最高利率
 			
 		/***小贷 连纪明 insight层 Model END***/
 		
