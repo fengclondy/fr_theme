@@ -1,4 +1,6 @@
 package com.qdch.config;
+import com.qdch.xd.controller.*;
+import com.qdch.xd.model.*;
 import org.beetl.core.GroupTemplate;
 import org.beetl.ext.jfinal3.JFinal3BeetlRenderFactory;
 
@@ -28,53 +30,6 @@ import com.qdch.p2p.controller.RiskController;
 import com.qdch.p2p.controller.SuperviseController;
 import com.qdch.p2p.model.PlatformModel;
 import com.qdch.util.TemplteLayoutTag;
-import com.qdch.xd.controller.AssetRiskController;
-import com.qdch.xd.controller.BusinessOverviewController;
-import com.qdch.xd.controller.ComplianceRiskController;
-import com.qdch.xd.controller.CreditRiskController;
-import com.qdch.xd.controller.DevelopmentCapacityController;
-import com.qdch.xd.controller.EventAuditController;
-import com.qdch.xd.controller.EventDecisionController;
-import com.qdch.xd.controller.EventProcessingController;
-import com.qdch.xd.controller.EventSeeDetailsController;
-import com.qdch.xd.controller.EventViewController;
-import com.qdch.xd.controller.ManagementRiskController;
-import com.qdch.xd.controller.MonthlyReportController;
-import com.qdch.xd.controller.OperationalCapabilityController;
-import com.qdch.xd.controller.ProfitabilityController;
-import com.qdch.xd.controller.ReputationRiskController;
-import com.qdch.xd.controller.RiskOverviewController;
-import com.qdch.xd.controller.XiaoDaiController;
-import com.qdch.xd.model.ComparisonOfCompeModel;
-import com.qdch.xd.model.CompetitiveRrendModel;
-import com.qdch.xd.model.ConRatioModel;
-import com.qdch.xd.model.CurrentComRankingModel;
-import com.qdch.xd.model.CustomerInfoModel;
-import com.qdch.xd.model.DefrateModel;
-import com.qdch.xd.model.DetailsQueryModel;
-import com.qdch.xd.model.DictModel;
-import com.qdch.xd.model.ExchangeInfoModel;
-import com.qdch.xd.model.GuaranteeContrastModel;
-import com.qdch.xd.model.IncomeAndLossrateModel;
-import com.qdch.xd.model.IndexRankingModel;
-import com.qdch.xd.model.JyscModel;
-import com.qdch.xd.model.KeyIndicatorsModel;
-import com.qdch.xd.model.LimitQueryModel;
-import com.qdch.xd.model.ManagementRiskListModel;
-import com.qdch.xd.model.MigrationRateModel;
-import com.qdch.xd.model.MonthlyReportListModel;
-import com.qdch.xd.model.MonthlyReportModel;
-import com.qdch.xd.model.PersonalCustomModel;
-import com.qdch.xd.model.ProportionModel;
-import com.qdch.xd.model.PublicCustomModel;
-import com.qdch.xd.model.RiskCountModel;
-import com.qdch.xd.model.RiskEventHistoryModel;
-import com.qdch.xd.model.RiskEventModel;
-import com.qdch.xd.model.RiskShowModel;
-import com.qdch.xd.model.RiskTrendDetailedModel;
-import com.qdch.xd.model.RiskTrendModel;
-import com.qdch.xd.model.RiskTypeModel;
-import com.qdch.xd.model.ScabilityModel;
 
 
 public class Config extends JFinalConfig {
@@ -124,6 +79,7 @@ public class Config extends JFinalConfig {
 		/***小贷zuoqb Controller END***/
 
 		me.add("qdch/eventSeeDetails", EventSeeDetailsController.class,"/");	//监管月报
+		me.add("qdch/eventinput", EventInputController.class,"/");	//风险事件填报
 		
 		/***p2p lixiaoyi Controller START ***/
 		me.add("qdch/borrower",BorrowerController.class,"/");    //p2p-借款人总览
@@ -143,6 +99,7 @@ public class Config extends JFinalConfig {
 
 	public void configPlugin(Plugins me) {
 		PropKit.use("config.txt");
+
 		//----qdchedw hub用户连接方式 start----
 		String jdbc = PropKit.get("jdbc");
 		String user = PropKit.get("user");
@@ -154,9 +111,10 @@ public class Config extends JFinalConfig {
 		arp.setBaseSqlTemplatePath(PathKit.getRootClassPath());
 		arp.addSqlTemplate("all.sql");
 		arp.setShowSql(true);
+		arp.setDialect(new PostgreSqlDialect());
 		me.add(arp);
 		// 配置Postgresql方言
-	    arp.setDialect(new PostgreSqlDialect());
+
 		//arp.addMapping("user", User.class);
 		arp.addMapping("hub_commerce_ref_jys", DemoModel.class);
 		arp.addMapping("hub_xd_jysc", JyscModel.class);
@@ -174,9 +132,10 @@ public class Config extends JFinalConfig {
 		insight_arp.setBaseSqlTemplatePath(PathKit.getRootClassPath());
 		insight_arp.addSqlTemplate("all.sql");
 		insight_arp.setShowSql(true);
+		insight_arp.setDialect(new PostgreSqlDialect());
 		me.add(insight_arp);
 		// 配置Postgresql方言
-		insight_arp.setDialect(new PostgreSqlDialect());
+
 		
 		
 		/**
@@ -214,7 +173,7 @@ public class Config extends JFinalConfig {
 		
 		
 		/*** 小贷 王风 insight层 Model START ***/
-		insight_arp.addMapping("hub_fxsj", RiskEventModel.class);//风险事件
+		insight_arp.addMapping("hub_fxsj","fxsj_id", RiskEventModel.class);//风险事件
 		insight_arp.addMapping("hub_fxsj_audit_new", RiskEventHistoryModel.class);//风险事件历史信息
 		insight_arp.addMapping("hub_commerce_ref_jys", ExchangeInfoModel.class);//交易所信息
 		insight_arp.addMapping("hub_fxlb", RiskTypeModel.class);//风险类别
@@ -232,6 +191,7 @@ public class Config extends JFinalConfig {
 		arp.addMapping("hub_xd_loan_ledger", DetailsQueryModel.class);//明细查询
 
 		arp.addMapping("hub_xd_cred_indus_info", LimitQueryModel.class);//额度查询
+		arp.addMapping("hub_fxsj_yuzhi", ThresholdValueModel.class);//阈值信息
 
 
 
