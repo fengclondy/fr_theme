@@ -25,6 +25,7 @@ public class EventProcessingController extends BaseController {
 	private static ExchangeInfoModel exchangeInfoModelDao = ExchangeInfoModel.dao;
 	private static RiskTypeModel riskTypeModelDao = RiskTypeModel.dao;
 	private static RiskEventHistoryModel riskEventHistoryModel  = RiskEventHistoryModel.dao;
+	private static DictModel dictModelDao  = DictModel.dao;
 
 	/**
 	 * 
@@ -60,11 +61,11 @@ public class EventProcessingController extends BaseController {
 		String checkstatus = ""; // 处理状态
 		String role = "";
 		if(role.equals("处理人")){
-			checkstatus = " and clzt in (\"未处理\",\"驳回\",\"已排除\") ";
+			checkstatus = " and clzt in ('未处理','驳回','已排除') ";
 		}else if(role.equals("审核人")){
-			checkstatus = " and clzt in (\"已提交\",\"已排查\") ";
+			checkstatus = " and clzt in ('已提交','已排查') ";
 		}else if(role.equals("决策人")){
-			checkstatus = " and clzt in (\"已上报\",\"已查阅\"\"已确认\") ";
+			checkstatus = " and clzt in ('已上报','已查阅''已确认') ";
 		}
 		Page<RiskEventModel> page = riskEventModelDao.getRiskEvent(checkstatus,pageNum,pageSize,getRequest());
 		mRenderJson(page);
@@ -82,9 +83,11 @@ public class EventProcessingController extends BaseController {
 		List<RiskTypeModel> riskTypeList =  riskTypeModelDao.getTypeKind("3"); //风险类别
 		List<RiskTypeModel> riskList =  riskTypeModelDao.getByType("3");
 		List<ExchangeInfoModel> exchangeInfoModelList = exchangeInfoModelDao.getList(); //机构/市场
+
 		result.put("type",riskTypeList);
 		result.put("risk",riskList);
 		result.put("exchange",exchangeInfoModelList);
+		result.put("status",dictModelDao.getLabel(getPara("note")));
 		mRenderJson(result);
 	}
 
@@ -138,12 +141,21 @@ public class EventProcessingController extends BaseController {
         }
     }
 
-    public void submitCheck(){
-		RiskEventHistoryModel historyModel  = new RiskEventHistoryModel();
-		historyModel.set("clzt","111");
-		historyModel.save();
+	/**
+	 * 提交审核
+	 */
+	public void submitCheck(){
+		RiskEventModel eventModel = riskEventModelDao.findById(getPara("id"));
+		eventModel.set("clzt","");
+		eventModel.set("shr","wf");
+		eventModel.set("report_id","wf");
+		eventModel.update();
+//		RiskEventHistoryModel historyModel  = new RiskEventHistoryModel();
+//		historyModel.set("clzt","111");
+//
+//		historyModel.save();
 
-		mRenderJson(null);
+		mRenderJson(true);
 	}
 
 

@@ -26,7 +26,10 @@ import com.qdch.p2p.controller.PlatformController;
 import com.qdch.p2p.controller.ProjectplatformController;
 import com.qdch.p2p.controller.RiskController;
 import com.qdch.p2p.controller.SuperviseController;
+import com.qdch.p2p.model.BorrowerModel;
 import com.qdch.p2p.model.PlatformModel;
+import com.qdch.p2p.model.PpjyscModel;
+import com.qdch.p2p.model.ProjectStructureModel;
 import com.qdch.util.TemplteLayoutTag;
 import com.qdch.xd.controller.AssetRiskController;
 import com.qdch.xd.controller.BusinessOverviewController;
@@ -201,7 +204,14 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("insight_regulatory_report", MonthlyReportListModel.class);//监管月报
 		
 		arp.addMapping("hub_fxsj", ManagementRiskListModel.class);//字典信用风险的管理风险列表
-		/***doushuiahi Model START***/
+		/***doushuiahi Model START p2p***/
+		arp.addMapping("hub_pp_jysc", PpjyscModel.class);
+		insight_arp.addMapping("insight_pp_iterm_count", ProjectStructureModel.class);//平台画像的项目结构
+		/***doushuiahi Model START p2p***/
+		
+		/***p2p 高照  insight层Model SART***/
+		insight_arp.addMapping("insight_pp_score_info", BorrowerModel.class);//根据得分降序查找平台简称和得分
+		
 		
 		
 		/***小贷zuoqb insight层 Model START***/
@@ -223,8 +233,9 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("hub_xd_cont_assu", GuaranteeContrastModel.class);//担保合同
 
 		arp.addMapping("hub_comm_param", DictModel.class);//字典表
-//
-		arp.addMapping("hub_xd_report_cont", CustomerInfoModel.class);//合同信息-基本信息
+
+//		arp.addMapping("hub_xd_report_cont", CustomerInfoModel.class);//合同信息-基本信息
+		arp.addMapping("hub_xd_cont_info", CustomerInfoModel.class);//合同信息-基本信息
 
 		arp.addMapping("hub_xd_cust_corp", PublicCustomModel.class);//对公客户
 

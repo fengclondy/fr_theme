@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="${contextPath}/static/img/com/logo.png">
+    <link rel="stylesheet" href="${contextPath}/static/asserts/css/normalize.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/style.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/pageCom.css">
+    <style>
+        .container > div,
+        .top > div,
+        .bottom > div {
+            flex: 1;
+        }
+
+        .top, .bottom {
+            display: flex;
+        }
+
+        .ec003 header{
+            text-align: center;
+        }
+    </style>
+</head>
+<body id="01_02yewuzonglan" data-title="业务总览">
+<div class="container">
+    <h2 hidden>业务总览</h2>
+    <div class="top">
+        <div class="top-l">
+            <div class="chartBox ec001">
+                <div class="chartTitle">
+                    <h3>当前竞争力排名</h3>
+                </div>
+                <div class="chartContent">
+                    <div class="chartBody">
+                        <div id="ec001_currentCompetitiveness"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="top-r">
+            <div class="chartBox ec002">
+                <div class="chartTitle">
+                    <h3>竞争力各指标对比</h3>
+                </div>
+                <div class="chartContent">
+                    <div class="chartBody">
+                        <div id="ec002_competitivenessIndicators"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="bottom-l">
+            <div class="chartBox ec003">
+                <div class="chartTitle">
+                    <h3>市场竞争力趋势</h3>
+                </div>
+                <div class="chartContent">
+                    <header>
+                        <div class="inputGroup">
+                            <label for="jiaoyishichang">交易市场：</label>
+                            <div class="mySelect" id="jiaoyishichang">
+                                <div class="myOption selected"><span class="text"></span><span class="icon"></span> </div>
+                                <ul class="myOptionBox">
+                                    <li class="myOption selected">海尔小额贷款</li>
+                                    <li class="myOption">这是一个很长很长很长很长的名字</li>
+                                    <li class="myOption">海尔小额贷款3</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="inputGroup">
+                            <label for="jingzhenglizhibiao">竞争力指标：</label>
+                            <div class="mySelect" id="jingzhenglizhibiao">
+                                <div class="myOption selected"><span class="text"></span><span class="icon"></span> </div>
+                                <ul class="myOptionBox">
+                                    <li class="myOption selected">信用风险</li>
+                                    <li class="myOption">信用风险2</li>
+                                    <li class="myOption">信用风险3</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </header>
+                    <div class="chartBody">
+                        <div id="ec003_marketCompetitivenessTrend"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-r">
+            <div class="chartBox ec004">
+                <div class="chartTitle">
+                    <h3>关键指标排名</h3>
+                </div>
+                <div class="chartContent">
+                    <header>
+                        <div class="btnGroup">
+                            <button class="active">贷款余额</button>
+                            <button>放款额</button>
+                            <button>日均放款额</button>
+                            <button>三农比重</button>
+                        </div>
+                    </header>
+                    <div class="chartBody">
+                        <div id="ec004_KeyIndexRanking"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="${contextPath}/static/asserts/js/echarts-4.0.js"></script>
+<script src="${contextPath}/static/asserts/js/jquery-2.2.4.js"></script>
+<script src="${contextPath}/static/js/main.js"></script>
+<script src="${contextPath}/static/js/chartsCom.js"></script>
+<script>
+    var allCharts = [];
+
+    $(function () {
+        var ec001 = echarts.init($("#ec001_currentCompetitiveness")[0]);
+        ec001.setOption(opt_bar_horizon);
+        ec001.setOption({
+            grid: {
+                left: "22%",
+                right: "16%",
+                top: "18%"
+            },
+            xAxis: {
+                type: 'value',
+                name: '竞争力'
+            },
+            yAxis: {
+                name: '市场',
+                data: ['小贷D', '小贷C', '小贷B', '小贷A', '海尔小额贷款']
+            },
+            series: [{
+                data: [1, 3, 5, 7.2, 10],
+                type: 'bar',
+                barWidth: "60%"
+            }]
+        });
+        // console.log(ec001.getOption())
+
+        var ec002 = echarts.init($("#ec002_competitivenessIndicators")[0]);
+        // ec002.setOption(opt_com);
+        ec002.setOption(opt_bar_vertical);
+        var ec002_data1 = [],
+            ec002_data2 = [],
+            ec002_data3 = [];
+        for (var i = 0; i < 5; i++) {
+            ec002_data1.push(rdm(3,10));
+            ec002_data2.push(rdm(4,7));
+            ec002_data3.push(rdm(3,8))
+        }
+        ec002.setOption({
+            legend: {
+                show: true
+            },
+            grid: {
+                left: "10%",
+                right: "10%",
+                top: "14%"
+            },
+            xAxis:
+                {
+                    name: '市场',
+                    type: 'category',
+                    data: ['小贷D', '小贷C', '小贷B', '小贷A', '海尔小额贷款']
+                },
+            yAxis: {
+                name: '竞争力',
+                type: 'value'
+            },
+            series: [
+                {
+                    name: '经营能力',
+                    type: 'bar',
+                    data: ec002_data1
+                },
+                {
+                    name: '盈利能力',
+                    type: 'bar',
+                    data: ec002_data2
+                },
+                {
+                    name: '发展能力',
+                    type: 'bar',
+                    barCategoryGap: '36%',
+                    data: ec002_data3
+                }
+            ]
+        });
+
+
+        var ec003 = echarts.init($("#ec003_marketCompetitivenessTrend")[0]);
+        ec003.setOption(opt_line);
+        ec003.setOption({
+            grid: {
+                left: "12%",
+                right: "12%",
+                top: "15%"
+            },
+            xAxis: {
+                name: '月份',
+                data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+            },
+            yAxis: {
+                name: '竞争力',
+            },
+            series: [{
+                data: [2, 5, 7.2, 4, 10, 7.2, 10, 5, 5, 7.2, 10, 5, 6],
+                type: 'line',
+                symbol:'circle',
+                areaStyle: lineAreaStyle(0)
+            }]
+        });
+
+        var ec004 = echarts.init($("#ec004_KeyIndexRanking")[0]);
+        ec004.setOption(opt_bar_horizon);
+        ec004.setOption({
+            grid: {
+                left: "20%",
+                right: "16%",
+                top: "15%"
+            },
+            xAxis: {
+                name: '万',
+                type: 'value'
+            },
+            yAxis: {
+                name: '市场',
+                type: 'category',
+                data: ['小贷D', '小贷C', '小贷B', '小贷A', '海尔小额贷款'],
+            },
+            series: [{
+                data: [1, 3, 5, 7.2, 10],
+                type: 'bar',
+                barWidth: "60%"
+            }]
+        });
+
+        //本页所有图表
+        allCharts = [ec001, ec002, ec003, ec004];
+
+    });
+
+
+</script>
+</body>
+</html>

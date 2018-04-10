@@ -455,44 +455,43 @@
         $('#btn').on('click',function () {
             cusname = $('#cursorName').val();
             cuscode = $('#cursorNameNumber').val();
-            querystr +="?cusname="+cusname+"&cuscode="+cuscode;
-            getTableBody()
+            querycomm(cusname,cuscode);
 
         })
         $('#btn2').on('click',function () {
             cusname = $('#cursorName2').val();
             cuscode = $('#cursorNameNumber2').val();
-            querystr +="?cusname="+cusname+"&cuscode="+cuscode;
-            getTableBody();
+            querycomm(cusname,cuscode);
 
         })
         $('#btn3').on('click',function () {
             cusname = $('#cursorName3').val();
             cuscode = $('#cursorNameNumber3').val();
-            querystr +="?cusname="+cusname+"&cuscode="+cuscode;
-            getTableBody();
+            querycomm(cusname,cuscode);
         })
         $('#btn4').on('click',function () {
             cusname = $('#cursorName4').val();
             cuscode = $('#cursorNameNumber4').val();
-            querystr +="?cusname="+cusname+"&cuscode="+cuscode;
-            getTableBody();
+            querycomm(cusname,cuscode);
         })
         $('#btn5').on('click',function () {
             cusname = $('#cursorName5').val();
             cuscode = $('#cursorNameNumber5').val();
-            querystr +="?cusname="+cusname+"&cuscode="+cuscode;
-            getTableBody();
+            querycomm(cusname,cuscode);
         })
         $('#btn6').on('click',function () {
             cusname = $('#cursorName6').val();
             cuscode = $('#cursorNameNumber6').val();
-            querystr +="?cusname="+cusname+"&cuscode="+cuscode;
-            getTableBody();
+            querycomm(cusname,cuscode);
         })
 
 
     })
+    function querycomm(name,code) {
+        console.log(name,code)
+        querystr ="?cusname="+encodeURI(encodeURI(name))+"&cuscode="+code;
+        getTableBody();
+    }
 
     /**
      * 风险事件本身
@@ -724,12 +723,14 @@
         var customerInfohtml=""
         $.each(data.list, function(index, value, array) {
             customerInfohtml+="<tr>"+
-                "<td>"+value.corptype+"</td><td>"+value.licekind+"</td><td>"+value.custname+"</td>" +
-                "<td>"+value.liceid+"</td><td>"+value.comedate+"</td><td>"+value.superdept+"</td>" +
-                "<td>"+value.localarea+"</td><td>"+value.posskind+"</td>" +
-                "<td>"+value.leadcustname+"</td>" +"<td>"+value.regifund+"</td>"+
-                "<td>"+value.currsign+"</td><td>"+value.factcapi+"</td>" +
-                "<td>"+value.corpsizesign+"</td><td>"+value.staffnum+"</td><td>"+value.corpcredsign+"</td>" ;
+                "<td>"+value.contno+"</td><td>"+value.contpaperno+"</td><td>"+value.loanid+"</td>" +
+                "<td>"+value.contkind+"</td><td>"+value.custid+"</td><td>"+value.custname+"</td>" +
+                "<td>"+value.currsign+"</td><td>"+value.conttotalamt+"</td>" +
+                "<td>"+value.contterm+"</td>" +"<td>"+value.begindate+"</td>"+
+                "<td>"+value.enddate+"</td><td>"+value.contdate+"</td>" +
+                "<td>"+value.contflag+"</td><td>"+value.payeeackind+"</td><td>"+value.payeeacno+"</td>" +
+            "<td>"+value.payeeacname+"</td><td>"+value.payeebankname+"</td>" +
+            "<td>"+value.fee+"</td><td>"+value.servicerate+"</td>" ;
             customerInfohtml +="</tr>";
         });
         $('#customerInfo').html(customerInfohtml);
