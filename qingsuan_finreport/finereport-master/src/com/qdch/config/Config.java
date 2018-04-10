@@ -1,8 +1,4 @@
 package com.qdch.config;
-
-import com.qdch.xd.controller.*;
-import com.qdch.xd.model.*;
-
 import org.beetl.core.GroupTemplate;
 import org.beetl.ext.jfinal3.JFinal3BeetlRenderFactory;
 
@@ -31,20 +27,57 @@ import com.qdch.p2p.controller.ProjectplatformController;
 import com.qdch.p2p.controller.RiskController;
 import com.qdch.p2p.controller.SuperviseController;
 import com.qdch.p2p.model.BorrowerModel;
-import com.qdch.util.TemplteLayoutTag;
+import com.qdch.p2p.model.PlatformModel;
+import com.qdch.p2p.model.PpjyscModel;
+import com.qdch.xd.controller.AssetRiskController;
+import com.qdch.xd.controller.BusinessOverviewController;
+import com.qdch.xd.controller.ComplianceRiskController;
+import com.qdch.xd.controller.CreditRiskController;
+import com.qdch.xd.controller.DevelopmentCapacityController;
+import com.qdch.xd.controller.EventAuditController;
+import com.qdch.xd.controller.EventDecisionController;
+import com.qdch.xd.controller.EventProcessingController;
+import com.qdch.xd.controller.EventSeeDetailsController;
+import com.qdch.xd.controller.EventViewController;
+import com.qdch.xd.controller.ManagementRiskController;
+import com.qdch.xd.controller.MonthlyReportController;
+import com.qdch.xd.controller.OperationalCapabilityController;
+import com.qdch.xd.controller.ProfitabilityController;
+import com.qdch.xd.controller.ReputationRiskController;
+import com.qdch.xd.controller.RiskOverviewController;
+import com.qdch.xd.controller.XiaoDaiController;
 import com.qdch.xd.model.ComparisonOfCompeModel;
 import com.qdch.xd.model.CompetitiveRrendModel;
 import com.qdch.xd.model.ConRatioModel;
 import com.qdch.xd.model.CurrentComRankingModel;
+import com.qdch.xd.model.CustomerInfoModel;
 import com.qdch.xd.model.DefrateModel;
+import com.qdch.xd.model.DetailsQueryModel;
+import com.qdch.xd.model.DictModel;
+import com.qdch.xd.model.ExchangeInfoModel;
+import com.qdch.xd.model.GuaranteeContrastModel;
 import com.qdch.xd.model.IncomeAndLossrateModel;
 import com.qdch.xd.model.IndexRankingModel;
 import com.qdch.xd.model.JyscModel;
 import com.qdch.xd.model.KeyIndicatorsModel;
+import com.qdch.xd.model.LimitQueryModel;
+import com.qdch.xd.model.ManagementRiskListModel;
 import com.qdch.xd.model.MigrationRateModel;
+import com.qdch.xd.model.MonthlyReportListModel;
+import com.qdch.xd.model.MonthlyReportModel;
+import com.qdch.xd.model.PersonalCustomModel;
 import com.qdch.xd.model.ProportionModel;
+import com.qdch.xd.model.PublicCustomModel;
 import com.qdch.xd.model.RiskCountModel;
+import com.qdch.xd.model.RiskEventHistoryModel;
+import com.qdch.xd.model.RiskEventModel;
+import com.qdch.xd.model.RiskShowModel;
+import com.qdch.xd.model.RiskTrendDetailedModel;
+import com.qdch.xd.model.RiskTrendModel;
+import com.qdch.xd.model.RiskTypeModel;
 import com.qdch.xd.model.ScabilityModel;
+//github.com/zuoqingbei/qss_code.git
+import com.qdch.util.TemplteLayoutTag;
 
 
 public class Config extends JFinalConfig {
@@ -167,7 +200,11 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("insight_xd_scability", CompetitiveRrendModel.class);//业务总览的竞争力对比
 		insight_arp.addMapping("insight_regulatory_report", MonthlyReportModel.class);//监管月报
 		insight_arp.addMapping("insight_regulatory_report", MonthlyReportListModel.class);//监管月报
-		/***doushuiahi Model START***/
+		
+		arp.addMapping("hub_fxsj", ManagementRiskListModel.class);//字典信用风险的管理风险列表
+		/***doushuiahi Model START p2p***/
+		arp.addMapping("hub_pp_jysc", PpjyscModel.class);
+		/***doushuiahi Model START p2p***/
 		
 		/***p2p 高照  insight层Model SART***/
 		insight_arp.addMapping("insight_pp_score_info", BorrowerModel.class);//根据得分降序查找平台简称和得分
@@ -193,8 +230,9 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("hub_xd_cont_assu", GuaranteeContrastModel.class);//担保合同
 
 		arp.addMapping("hub_comm_param", DictModel.class);//字典表
-//
-		arp.addMapping("hub_xd_report_cont", CustomerInfoModel.class);//合同信息-基本信息
+
+//		arp.addMapping("hub_xd_report_cont", CustomerInfoModel.class);//合同信息-基本信息
+		arp.addMapping("hub_xd_cont_info", CustomerInfoModel.class);//合同信息-基本信息
 
 		arp.addMapping("hub_xd_cust_corp", PublicCustomModel.class);//对公客户
 
@@ -216,10 +254,11 @@ public class Config extends JFinalConfig {
 		
 		/***小贷 连纪明 insight层 Model START ***/
 		
-		insight_arp.addMapping("hub_xd_fxzs", RiskCountModel.class);//小贷风险指数
-		
-		
-		/***小贷 连纪明 insight层 Model START***/
+			insight_arp.addMapping("hub_xd_fxzs",RiskCountModel.class);//小贷风险指数
+			insight_arp.addMapping("hub_xd_fxzs",RiskTrendModel.class);//风险趋势
+			insight_arp.addMapping("hub_xd_fxzsmx",RiskTrendDetailedModel.class);//风险趋势明细
+			
+		/***小贷 连纪明 insight层 Model END***/
 		
 		
 		
@@ -233,6 +272,10 @@ public class Config extends JFinalConfig {
 		
 		/***小贷 王风 insight层 Model START***/
 		
+		
+		
+		/***p2p 韩朋达 insight层 Model START***/
+		insight_arp.addMapping("insight_pp_overview", PlatformModel.class); //p2p 平台总览表
 	}
 
 	public void configInterceptor(Interceptors me) {
@@ -242,7 +285,7 @@ public class Config extends JFinalConfig {
 		me.add(new ContextPathHandler("contextPath"));
 	}
 
-	public static void main(String[] args){
+	public static void main(String[] args){ 
 		JFinal.start("WebRoot", 8080, "/", 5);
 	}
 }

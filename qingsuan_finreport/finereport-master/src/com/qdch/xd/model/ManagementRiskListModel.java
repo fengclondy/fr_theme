@@ -20,16 +20,16 @@ public class ManagementRiskListModel extends Model<ManagementRiskListModel>{
 	
 	public static final ManagementRiskListModel dao = new ManagementRiskListModel();
 
-	public List<ManagementRiskListModel> getManagementRiskList(String bigjys,String jyscode){
-		String sql="select jysc,jyscmc,jzl from insight_xd_scability where vday_ym=(select max(vday_ym) from insight_xd_scability) ";
-		String sql2="select t.jyscmc,sum(t.fvalue) from insight_xd_loan_count t where 1=1 " ;
+	public List<ManagementRiskListModel> getManagementRiskList(String bigjys,String jys){
+		String sql="select bjsj,fxlb,fxzb,jgmc from hub_fxsj t LEFT JOIN hub_xd_jysc t2 on t.jgmc=t2.jyscmc where 1=1 ";
+		
 		if(StringUtils.isNotBlank(bigjys)){
-			sql+=" and jysc in "+ bigjys;
+			sql+=" and t2.jysc in "+ bigjys;
 		}
-		if(StringUtils.isNotBlank(jyscode)){
-			sql+=" and jysc = '"+jyscode+"'";
+		if(StringUtils.isNotBlank(jys)){
+			sql+=" and t2.jysc = '"+jys+"'";
 		}
-		sql+=" GROUP BY jysc,jyscmc,jzl order by jysc";
+		sql+=" order by t.bjsj DESC limit 30 ";
 		//return dao.find(Db.getSqlPara("index.getByDBFS"));
 		return dao.find(sql);
 	}

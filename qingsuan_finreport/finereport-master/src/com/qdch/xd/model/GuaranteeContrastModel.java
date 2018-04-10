@@ -19,13 +19,27 @@ public class GuaranteeContrastModel extends Model<GuaranteeContrastModel>{
 	private static final long serialVersionUID = 1L;
 	public static final GuaranteeContrastModel dao = new GuaranteeContrastModel();
 
-	public Page<GuaranteeContrastModel> getPage(int num, int size){
+	public Page<GuaranteeContrastModel> getPage(int num, int size,HttpServletRequest request){
 		String sql = "select * ";
 		StringBuffer sb = new StringBuffer();
-		sb.append(" from hub_xd_cont_assu");
+		sb.append(" from hub_xd_cont_assu where 1=1 ");
+		if(StringUtils.isNotBlank(request.getParameter("cuscode"))){ //风险事件id
+			sb.append("  and custid  like '%").append(request.getParameter("cuscode")).append("%'");
+		}
+		try {
+			if(StringUtils.isNotBlank(request.getParameter("cusname"))){ //风险事件id
+				sb.append("  and custname  like '%").append(decode(request.getParameter("cusname"))).append("%'");
+			}
+		} catch (Exception e){
+			e.getStackTrace();
+		}
 //		return dao.paginate();
 		return dao.paginate(num,size," select * ",sb.toString());
 
+	}
+
+	private String decode(String str) throws UnsupportedEncodingException {
+		return URLDecoder.decode(str,"UTF-8");
 	}
 
 

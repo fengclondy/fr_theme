@@ -141,6 +141,12 @@ public class CreditRiskController extends BaseController {
 		List<IncomeAndLossrateModel> incomeAndLoss=IncomeAndLossrateModel.dao.getIncomeAndLoss(getDataScopeByUserName(),jys);
 		mRenderJson(incomeAndLoss);	
 	}
+	/**
+	 * 
+	* @author doushuihai  
+	* @date 2018年4月9日下午1:36:34  
+	* @TODO
+	 */
 	public void getManagementRiskList(){
 		String jys=getPara("jys");//获取信用风险总体限制的筛选条件参数
 		

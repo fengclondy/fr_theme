@@ -118,9 +118,12 @@
                 <div class="myOption selected"><span class="text"></span><span class="icon"></span>
                 </div>
                 <ul class="myOptionBox">
-                    <li class="myOption selected">鲁金宝1</li>
+                    <!-- <li class="myOption selected">鲁金宝1</li>
                     <li class="myOption">鲁金宝2</li>
-                    <li class="myOption">鲁金宝3</li>
+                    <li class="myOption">鲁金宝3</li> -->
+                    ##for(j in jyslist!){
+                                <li id="${j.jysc!}" onclick=changeJysData(this) class="myOption">${j.jyscmc!}</li>                
+                               ##}
                 </ul>
             </div>
         </div>
@@ -334,7 +337,37 @@
         allCharts = [ec001, ec002];
 
     });
+    //获取项目结构
+    function getProjectStructure(){
+      	 $.post("${contextPath}/qdch/project/getProjectStructure",{"jys":jysCode},function(data){
+      		console.log("---集中度-----",data)
+       		var yAxisData=[];
+       		var seriesData=[];
+       		$.each(data,function(index,item){
+	        		
+	    			seriesData.push({value:item.value, name:item.iterm_type});
+	    			
+      	 		});
+       		console.log("---书坐标-----",seriesData)
+       		console.log("---月份坐标-----",yAxisData)
+       		 
+       		ec001.setOption({
+                legend:{
+                    show:false
+                },
+                grid:{
+                    top:'10%',
+                    left:'10%',
+                    right:'10%',
+                    bottom:'10%'
+                },
+                series : seriesData
+            });
 
+       		
+       		
+       	});
+      } 
 
 </script>
 </body>

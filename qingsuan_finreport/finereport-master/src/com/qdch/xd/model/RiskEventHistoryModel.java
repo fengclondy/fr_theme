@@ -40,4 +40,7 @@ public class RiskEventHistoryModel extends Model<RiskEventHistoryModel>{
 		return dao.find(sql);
 	}
 
+//	public Rs
+
+
 }
