@@ -71,6 +71,8 @@ import com.qdch.xd.model.RiskCountModel;
 import com.qdch.xd.model.RiskEventHistoryModel;
 import com.qdch.xd.model.RiskEventModel;
 import com.qdch.xd.model.RiskShowModel;
+import com.qdch.xd.model.RiskTrendDetailedModel;
+import com.qdch.xd.model.RiskTrendModel;
 import com.qdch.xd.model.RiskTypeModel;
 import com.qdch.xd.model.ScabilityModel;
 
@@ -273,7 +275,7 @@ public class Config extends JFinalConfig {
 		me.add(new ContextPathHandler("contextPath"));
 	}
 
-	public static void main(String[] args){
-		JFinal.start("WebRoot", 8090, "/", 5);
+	public static void main(String[] args){ 
+		JFinal.start("WebRoot", 8080, "/", 5);
 	}
 }
