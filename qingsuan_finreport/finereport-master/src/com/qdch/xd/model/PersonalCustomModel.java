@@ -5,6 +5,8 @@ import com.jfinal.plugin.activerecord.Page;
 import org.apache.commons.lang.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 
 /**
  * 
@@ -28,14 +30,21 @@ public class PersonalCustomModel extends Model<PersonalCustomModel>{
 		StringBuffer sb = new StringBuffer();
 		sb.append(" from hub_xd_cust_pers where 1=1");
 		if(StringUtils.isNotBlank(request.getParameter("cuscode"))){ //风险事件id
-			sb.append("  and custid  like '%").append(request.getParameter("custid")).append("%'");
+			sb.append("  and custid  like '%").append(request.getParameter("cuscode")).append("%'");
 		}
-		if(StringUtils.isNotBlank(request.getParameter("cusname"))){ //风险事件id
-			sb.append("  and custname  like '%").append(request.getParameter("custname")).append("%'");
+		try {
+			if(StringUtils.isNotBlank(request.getParameter("cusname"))){ //风险事件id
+				sb.append("  and custname  like '%").append(decode(request.getParameter("cusname"))).append("%'");
+			}
+		} catch (Exception e){
+			e.getStackTrace();
 		}
 //		return dao.paginate();
 		return dao.paginate(num,size," select * ",sb.toString());
 
+	}
+	private String decode(String str) throws UnsupportedEncodingException {
+		return URLDecoder.decode(str,"UTF-8");
 	}
 
 
