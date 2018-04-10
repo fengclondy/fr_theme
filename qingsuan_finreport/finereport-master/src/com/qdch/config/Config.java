@@ -28,6 +28,7 @@ import com.qdch.p2p.controller.RiskController;
 import com.qdch.p2p.controller.SuperviseController;
 import com.qdch.p2p.model.PlatformModel;
 import com.qdch.p2p.model.PpjyscModel;
+import com.qdch.p2p.model.ProjectStructureModel;
 import com.qdch.util.TemplteLayoutTag;
 import com.qdch.xd.controller.AssetRiskController;
 import com.qdch.xd.controller.BusinessOverviewController;
@@ -202,6 +203,7 @@ public class Config extends JFinalConfig {
 		arp.addMapping("hub_fxsj", ManagementRiskListModel.class);//字典信用风险的管理风险列表
 		/***doushuiahi Model START p2p***/
 		arp.addMapping("hub_pp_jysc", PpjyscModel.class);
+		insight_arp.addMapping("insight_pp_iterm_count", ProjectStructureModel.class);//平台画像的项目结构
 		/***doushuiahi Model START p2p***/
 		
 		
