@@ -20,6 +20,7 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.activerecord.dialect.PostgreSqlDialect;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.template.Engine;
+import com.qdch.industry.controller.IndustryComController;
 import com.qdch.model.DemoModel;
 import com.qdch.p2p.controller.BorrowerController;
 import com.qdch.p2p.controller.BorrowerPhotoController;
@@ -104,6 +105,10 @@ public class Config extends JFinalConfig {
 		me.add("qdch/companyfeel",CompanyFeelController.class,"/");  //p2p-企业舆情
 		me.add("qdch/supervise",SuperviseController.class,"/");  //p2p-监管月报
 		me.add("qdch/platformalert",PlatformAlertController.class,"/"); //p2p-平台总览弹出
+		
+		/***工商 lixiaoyi Controller START ***/
+		me.add("qdch/industry",IndustryComController.class,"/"); //工商入口
+		
 	}
 
 	public void configEngine(Engine me) {
