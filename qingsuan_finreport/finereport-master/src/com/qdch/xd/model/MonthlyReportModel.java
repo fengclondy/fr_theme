@@ -2,10 +2,13 @@ package com.qdch.xd.model;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang.StringUtils;
 
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Model;
+import com.jfinal.plugin.activerecord.Page;
 
 //@TableBind(tableName="hub_commerce_ref_jys")
 /**
@@ -25,13 +28,21 @@ public class MonthlyReportModel extends Model<MonthlyReportModel>{
 		if(StringUtils.isNotBlank(bigjys)){
 			sql+=" and t2.jysc in "+ bigjys;
 		}
-		/*if(StringUtils.isNotBlank(jys) || StringUtils.isNotBlank(reportType) || StringUtils.isNotBlank(date)){
-			sql+=" and t.jys = '"+ jys+"' and t.type = '"+reportType+"' and t.upload_time = '"+date+"'";
-		}*/
+		if(StringUtils.isNotBlank(jys)){
+			sql+=" and t.jys = '"+ jys+"'";
+		}
+		if(StringUtils.isNotBlank(reportType)){
+			sql+=" and t.type = '"+ reportType+"'";
+		}
+		if(StringUtils.isNotBlank(date)){
+			sql+=" and t.upload_time = '"+ date+"'";
+		}
 		sql+=" order by order_number";
 		
 		return dao.find(sql);
 	}
+
+
 	
 	
 	

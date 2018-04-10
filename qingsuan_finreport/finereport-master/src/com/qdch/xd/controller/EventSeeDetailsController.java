@@ -25,6 +25,7 @@ public class EventSeeDetailsController extends BaseController {
 	private static CustomerInfoModel customerInfoModelDao = CustomerInfoModel.dao;
 	private static  PublicCustomModel publicCustomModelDao = PublicCustomModel.dao;
 	private static PersonalCustomModel personalCustomModelDao = PersonalCustomModel.dao;
+	private static DetailsQueryModel detailsQueryModelDao = DetailsQueryModel.dao;
 	/**
 	 * 
 	* @author wf
@@ -59,12 +60,24 @@ public class EventSeeDetailsController extends BaseController {
 		Map<String,Object> results = new HashMap<String,Object>();
 
 		results.put("riskevent",riskEventModelDao.findById(getPara("fxsj_id")));
-		results.put("guarantee",guaranteeContrastModelDao.getPage(pageNum,pageSize)); //担保合同
-		results.put("limit",limitQueryModelDao.getPage(pageNum,pageSize)); //额度信息
-		results.put("custominfo",customerInfoModelDao.getPage(pageNum,pageSize)); //合同-基本信息
-		results.put("public",publicCustomModelDao.getPage(pageNum,pageSize));
-		results.put("personal",personalCustomModelDao.getPage(pageNum,pageSize));
+		results.put("guarantee",guaranteeContrastModelDao.getPage(pageNum,pageSize,getRequest())); //担保合同
+		results.put("limit",limitQueryModelDao.getPage(pageNum,pageSize,getRequest())); //额度信息
+		results.put("custominfo",customerInfoModelDao.getPage(pageNum,pageSize,getRequest())); //合同-基本信息
+		results.put("public",publicCustomModelDao.getPage(pageNum,pageSize,getRequest()));
+		results.put("personal",personalCustomModelDao.getPage(pageNum,pageSize,getRequest()));
+		results.put("details",detailsQueryModelDao.getPage(pageNum,pageSize,getRequest()));
         mRenderJson(results);
+	}
+
+	public void getRiskdata(){
+		int pageNum =Integer.parseInt(StringUtils.isBlank(getPara("pageNum"))||
+				getPara("pageNum").equals("undefined")==true?
+				"1":getPara("pageNum"));
+		int pageSize =Integer.parseInt(StringUtils.isBlank(getPara("pageSize"))||
+				getPara("pageSize").equals("undefined")
+						==true?
+				"10":getPara("pageSize"));
+		mRenderJson(riskEventModelDao.findById(getPara("fxsj_id")));
 	}
 
 	/**
@@ -79,26 +92,26 @@ public class EventSeeDetailsController extends BaseController {
 						==true?
 				"10":getPara("pageSize"));
 
-		mRenderJson(guaranteeContrastModelDao.getPage(pageNum,pageSize));
+		mRenderJson(guaranteeContrastModelDao.getPage(pageNum,pageSize,getRequest()));
 	}
 
-	/**
-	 * 合同信息-基本信息
-	 */
-	public void getContrastInfo(){
-		int pageNum =Integer.parseInt(StringUtils.isBlank(getPara("pageNum"))||
-				getPara("pageNum").equals("undefined")==true?
-				"1":getPara("pageNum"));
-		int pageSize =Integer.parseInt(StringUtils.isBlank(getPara("pageSize"))||
-				getPara("pageSize").equals("undefined")
-						==true?
-				"10":getPara("pageSize"));
+//	/**
+//	 * 合同信息-基本信息
+//	 */
+//	public void getContrastInfo(){
+//		int pageNum =Integer.parseInt(StringUtils.isBlank(getPara("pageNum"))||
+//				getPara("pageNum").equals("undefined")==true?
+//				"1":getPara("pageNum"));
+//		int pageSize =Integer.parseInt(StringUtils.isBlank(getPara("pageSize"))||
+//				getPara("pageSize").equals("undefined")
+//						==true?
+//				"10":getPara("pageSize"));
+//
+//		mRenderJson(customerInfoModelDao.getPage(pageNum,pageSize));
+//	}
 
-		mRenderJson(customerInfoModelDao.getPage(pageNum,pageSize));
-	}
-
 	/**
-	 *
+	 *合同信息-基本信息
 	 */
 	public void getCustomInfo(){
 		int pageNum =Integer.parseInt(StringUtils.isBlank(getPara("pageNum"))||
@@ -109,11 +122,11 @@ public class EventSeeDetailsController extends BaseController {
 						==true?
 				"10":getPara("pageSize"));
 
-		mRenderJson(customerInfoModelDao.getPage(pageNum,pageSize));
+		mRenderJson(customerInfoModelDao.getPage(pageNum,pageSize,getRequest()));
 	}
 
 	/**
-	 *
+	 * 对公客户
 	 */
 	public void getPublic(){
 		int pageNum =Integer.parseInt(StringUtils.isBlank(getPara("pageNum"))||
@@ -124,10 +137,10 @@ public class EventSeeDetailsController extends BaseController {
 						==true?
 				"10":getPara("pageSize"));
 
-		mRenderJson(publicCustomModelDao.getPage(pageNum,pageSize));
+		mRenderJson(publicCustomModelDao.getPage(pageNum,pageSize,getRequest()));
 	}
 	/**
-	 *
+	 * 个人客户
 	 */
 	public void getPersonal(){
 		int pageNum =Integer.parseInt(StringUtils.isBlank(getPara("pageNum"))||
@@ -138,8 +151,43 @@ public class EventSeeDetailsController extends BaseController {
 						==true?
 				"10":getPara("pageSize"));
 
-		mRenderJson(personalCustomModelDao.getPage(pageNum,pageSize));
+		mRenderJson(personalCustomModelDao.getPage(pageNum,pageSize,getRequest()));
 	}
+
+	/**
+	 * 额度查询
+	 */
+	public void getLimit(){
+		int pageNum =Integer.parseInt(StringUtils.isBlank(getPara("pageNum"))||
+				getPara("pageNum").equals("undefined")==true?
+				"1":getPara("pageNum"));
+		int pageSize =Integer.parseInt(StringUtils.isBlank(getPara("pageSize"))||
+				getPara("pageSize").equals("undefined")
+						==true?
+				"10":getPara("pageSize"));
+
+		mRenderJson(limitQueryModelDao.getPage(pageNum,pageSize,getRequest()));
+	}
+
+	/**
+	 * 明细查询
+	 */
+	public void getDetails(){
+		int pageNum =Integer.parseInt(StringUtils.isBlank(getPara("pageNum"))||
+				getPara("pageNum").equals("undefined")==true?
+				"1":getPara("pageNum"));
+		int pageSize =Integer.parseInt(StringUtils.isBlank(getPara("pageSize"))||
+				getPara("pageSize").equals("undefined")
+						==true?
+				"10":getPara("pageSize"));
+
+		mRenderJson(detailsQueryModelDao.getPage(pageNum,pageSize,getRequest()));
+	}
+
+
+
+
+
 
 
 

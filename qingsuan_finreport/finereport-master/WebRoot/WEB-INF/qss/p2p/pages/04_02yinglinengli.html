@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="${contextPath}/static/img/com/logo.png">
+    <link rel="stylesheet" href="${contextPath}/static/asserts/css/normalize.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/style.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/pageCom.css">
+    <style>
+        .top, .bottom {
+            flex: 1;
+            display: flex;
+        }
+
+        .top > div, .bottom > div {
+            flex: 1;
+        }
+    </style>
+</head>
+<body id="04_02yinglinengli" data-title="经营能力">
+<div class="container">
+    <header class="pageHeader">
+        <div class="inputGroup">
+            <label>平台：</label>
+            <div class="mySelect" id="jiaoyishichang">
+                <div class="myOption selected"><span class="text"></span><span class="icon"></span> </div>
+                <ul class="myOptionBox">
+                    <li class="myOption selected">鲁金宝</li>
+                    <li class="myOption">鲁金宝2</li>
+                    <li class="myOption">鲁金宝3</li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="top">
+        <div class="top-left">
+            <div class="chartBox ec001">
+                <div class="chartTitle">
+                    <h3>税收贡献</h3>
+                </div>
+                <div class="chartContent">
+                    <div class="chartBody">
+                        <div id="ec001_taxRevenue"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="top-right">
+            <div class="chartBox ec002">
+                <div class="chartTitle">
+                    <h3>收益率趋势</h3>
+                </div>
+                <div class="chartContent">
+                    <div class="chartBody">
+                        <div id="ec002_rateOfReturn"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="bottom-left">
+            <div class="chartBox ec003">
+                <div class="chartTitle">
+                    <h3>利息收入增长率</h3>
+                </div>
+                <div class="chartContent">
+                    <div class="chartBody">
+                        <div id="ec003_interest"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-right"></div>
+    </div>
+</div>
+
+<script src="${contextPath}/static/asserts/js/echarts-4.0.js"></script>
+<script src="${contextPath}/static/asserts/js/jquery-2.2.4.js"></script>
+<script src="${contextPath}/static/js/main.js"></script>
+<script src="${contextPath}/static/js/chartsCom.js"></script>
+<script>
+    var allCharts = [];
+
+    $(function () {
+        var ec001 = echarts.init($("#ec001_taxRevenue")[0]);
+        ec001.setOption(opt_line);
+        ec001.setOption({
+            xAxis: {
+                name: '月份',
+                data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+            },
+            yAxis: {
+                name: '利率'
+            },
+            series: [
+                {   name:'税收利率',
+                    type: 'line',
+                    symbol: 'circle',
+                    data: [2, 5, 5, 3, 2, 6, 4, 7, 8, 8, 2, 3],
+                    areaStyle: lineAreaStyle(0)
+                }
+            ]
+        });
+        var ec002 = echarts.init($("#ec002_rateOfReturn")[0]);
+        ec002.setOption(opt_line);
+        ec002.setOption({
+            xAxis: {
+                name: '月份',
+                data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+            },
+            yAxis: {
+                name: '利率'
+            },
+            series: [
+                {
+                    name: '资产收益率',
+                    type: 'line',
+                    symbol: 'circle',
+                    data: [2, 5, 5, 3, 2, 6, 8, 7, 6, 8, 5, 3],
+                    areaStyle: lineAreaStyle(0)
+                },
+                {
+                    name: '贷款收益率',
+                    type: 'line',
+                    symbol: 'circle',
+                    data: [0, 2, 2, 4, 3, 3, 4, 6, 5, 8, 4, 3],
+                    areaStyle: lineAreaStyle(1)
+                }
+
+            ]
+        });
+        var ec003 = echarts.init($("#ec003_interest")[0]);
+        ec003.setOption(opt_line);
+        ec003.setOption({
+
+            xAxis: {
+                name: '增长率',
+                data: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+            },
+            yAxis: {
+                name: '利率'
+            },
+            series: [
+                {   name:'增长利率',
+                    type: 'line',
+                    symbol: 'circle',
+                    data: [2, 5, 5, 3, 2, 6, 4, 7, 8, 8, 2, 3],
+                    areaStyle: lineAreaStyle(0)
+                }
+            ]
+        });
+        //本页所有图表
+        allCharts = [ec001, ec002, ec003];
+    });
+
+
+</script>
+</body>
+</html>

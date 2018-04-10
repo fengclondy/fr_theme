@@ -272,5 +272,25 @@
 		<url-pattern>/getNewsByTitle</url-pattern>
 	</servlet-mapping>
 	
+	
+	<!-- 获取菜单详情 -->
+	<servlet>
+		<servlet-name>MenuDetailServlet</servlet-name>
+		<servlet-class>com.fr.hailian.servlet.MenuDetailServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MenuDetailServlet</servlet-name>
+		<url-pattern>/getMenuDetail</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 获取用户信息 角色 菜单 -->
+	<servlet>
+		<servlet-name>AuthorityServlet</servlet-name>
+		<servlet-class>com.fr.hailian.servlet.AuthorityServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AuthorityServlet</servlet-name>
+		<url-pattern>/getAuthorityUserInfo</url-pattern>
+	</servlet-mapping>
 
 </web-app>

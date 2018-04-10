@@ -309,6 +309,49 @@ body {
     .nav-tabs > ul > li:hover > .tab-tip > .separator {
         margin: 0 .1rem;
     }
+    .nav-tabs > ul > li.collapse,
+    .nav-tabs > ul > li.collapse>*{
+        position: absolute;
+        right: 0;
+    }
+    .nav-tabs > ul > li.collapse>button{
+        z-index: 1;
+        width: 2rem;
+        height: 1.85rem;
+        background: transparent;
+        border: none;
+    }
+    .nav-tabs > ul > li.collapse>button>.icon-bar{
+        position: absolute;
+        left: 50%;
+        top: 30%;
+        width: 50%;
+        transform: translateX(-50%);
+        border-top: 2px solid #fff;
+    }
+
+    .nav-tabs > ul > li.collapse>button>.icon-bar:nth-of-type(2){
+        top: 50%;
+    }
+    .nav-tabs > ul > li.collapse>button>.icon-bar:nth-of-type(3){
+        top: 70%;
+    }
+    .nav-tabs > ul > li.collapse>ul{
+        top: 1.875rem;
+        width: 11.25rem;
+        line-height: 1.875rem;
+        font-size: .75rem;
+        background-color: #fff;
+        box-shadow: 0 0.05rem 0.3rem #666;
+    }
+    .nav-tabs > ul > li.collapse>ul>li{
+        color: #000;
+    }
+    .nav-tabs > ul > li.collapse>ul>li:hover{
+        color: #fff;
+        background-color: var(--themeBlue);
+        cursor: pointer;
+    }
 }
 
 .pageBox {

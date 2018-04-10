@@ -1,4 +1,4 @@
-var totalPage,totalNum,pageNumber;
+var totalPage,totalNum,pageNumber,pageSize=10;
 
 //第一页
 $('#pagehome').on('click',function(){

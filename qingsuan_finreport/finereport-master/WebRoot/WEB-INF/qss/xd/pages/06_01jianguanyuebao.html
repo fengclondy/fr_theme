@@ -7,49 +7,37 @@
     <link rel="stylesheet" href="${contextPath}/static/asserts/css/normalize.css">
     <link rel="stylesheet" href="${contextPath}/static/css/style.css">
     <link rel="stylesheet" href="${contextPath}/static/css/pageCom.css">
-     <script type="text/javascript" src="${contextPath}/QDCH/pdf/build//pdf.js"></script>
+   <!--  <script type="text/javascript" src="${contextPath}/QDCH/pdf/build//pdf.js"></script> -->
     <style>
+        .pdf-container { height: 500px;}
+        .pdf { border: 1px solid #666; }
         .tableBox tbody tr td:last-child span:nth-child(1) a{
             margin-right: 6rem;
-        }
+        }        
         .tableBox tbody tr td:last-child{
             color: #00abde;
         }
-    </style>
+    </style
+ 
 </head>
-<body class="whitePage" id="06_01jianguanyuebao" data-title="风险事件查看">
+<body class="whitePage" id="06_01jianguanyuebao" data-title="监管报告">
 <div class="container">
     <nav class="pagination">
         <ul>
-            <li class="home">首页</li>
+             <li class="home" id="pagehome">首页</li>
             <li class="split">|</li>
-            <li class="prev">上一页</li>
+            <li class="prev" id="pageprev">上一页</li>
             <li class="split">|</li>
             <li class="pageNumber">
                 <label for="pageCurrent" hidden></label>
-                <input id="pageCurrent" type="number" value="1">&nbsp;/
-                <span class="pageTotal">30</span>
+                <input id="pageCurrent" type="number" >&nbsp;/
+                <span class="pageTotal"></span>
             </li>
             <li class="split">|</li>
-            <li class="next">下一页</li>
+            <li class="next" id="pagenext">下一页</li>
             <li class="split">|</li>
-            <li class="end">末页</li>
-            <li class="output">
-                <a class="dropDown">输出</a>
-                <ul>
-                    <li class="pdf"><span class="icon"></span> PDF</li>
-                    <li class="excel"><span class="icon"></span>
-                        <a class="dropDown">EXCEL</a>
-                        <ul>
-                            <li>分页导出</li>
-                            <li>原样导出</li>
-                            <li>分页分sheet导出</li>
-                        </ul>
-                    </li>
-                    <li class="word"><span class="icon"></span> WORD</li>
-                    <li class="picture"><span class="icon"></span> 图片</li>
-                </ul>
-            </li>
+            <li class="end" id="pageend">末页</li>
+          
         </ul>
     </nav>
     <div class="formBox open">
@@ -58,31 +46,22 @@
             <div class="inputGroup">
                 <label for="marketName">市场名称：</label>
                 <select id="marketName">
-                     <option value=""></option>
-                    <!--<option value="">青岛国际版权</option>
-                    <option value="">上海石油化工</option>
-                    <option value="">中韩文化产权</option>
-                    <option value="">山东天地红</option>
-                    <option value="">青岛国新大宗</option>
-                    <option value="">联合信用资产</option>
-                    <option value="">吉林文化产权</option>
-                    <option value="">青岛华银商品</option>
-                    <option value="">青岛华益金安</option>
-                    <option value="">中国国金(青岛)</option> -->
+                
+                    <option value="" selected>全部</option> 
                      ##for(j in jyslist!){
-                                    <option id="${j.jysc!}" data="${j.jysc!}" class="myOption" onclick="selectItem(this)">${j.jyscmc!}</li>
+                                    <option id="${j.jysc!}" value="${j.jyscmc!}" class="myOption" >${j.jyscmc!}</li>
                                      ##}
 
                 </select>
             </div>
             <div class="inputGroup">
-                <label for="riskCategories">报告类型：</label>
-                <select id="riskCategories">
-                    <option value=""></option>
-                    <option value="">月报</option>
-                    <option value="">季报</option>
-                    <option value="">年报</option>   
-                    <option value="">不选</option>
+                <label for="reportType">报告类型：</label>
+                <select id="reportType">
+                    <option value="" selected>不选</option>
+                    <option value="月报">月报</option>
+                    <option value="季报">季报</option>
+                    <option value="年报">年报</option>   
+                    
                 </select>
             </div>
             <div class="inputGroup">
@@ -90,7 +69,7 @@
                 <input id="alarmTimeEnd" type="date">
             </div>
             <div class="btnGroup search">
-                <button class="active">查询</button>
+                <button class="active" type="button" id="btnCheck" >查询</button>
             </div>
         </form>
     </div>
@@ -109,22 +88,7 @@
             </thead>
             <tbody>
 							
-            <!-- <tr>
-								##for(j in jyslist!){
-									<td>1</td>
-									<td>月报</td>
-									<td>青岛华益金安</td>
-									<td>时鸿岩</td>
-									<td>2018-01-25</td>
-									<td>
-											<span><a href="#">预览</a></span>
-											<span><a href="#">下载</a></span>
-									</td>
-								##}
-                
-            </tr> -->
-
-            </tr>
+          
             </tbody>
         </table>
     </div>
@@ -135,36 +99,141 @@
 <script src="${contextPath}/static/js/pageCom.js"></script>
 <script src="${contextPath}/static/js/chartsCom.js"></script>
 <script>
-
-    $(function () {
+	var totalPage,totalNum,pageNumber;
+	var riskIndex;
+     $(function () {
         $(".formFoldHandle").click(function () {
 					$(".formBox").toggleClass("open")
         })
-        init()
-    });
+        
+    }); 
+    init()
     function init(){
-    	getYuebBao()
+    	getTableBody();
     }
-		var tableList
-		var jys=''
-		var reportType=''
-		var date=''
+  //显示model
+    $(".tableBox tbody tr td:nth-child(1) a").click(function(e){
+        e.preventDefault();
+
+        $(".model").css("display","block");
+
+    });
+    //异常model
+    $(".header span").click(function (e) {
+        e.preventDefault();
+        $(".model").hide();
+    })
+    
+    //第一页
+    $('#pagehome').on('click',function(){
+        getTableBody()
+    })
+    //最后一页
+    $('#pageend').on('click',function(){
+        getTableBody(totalPage)
+    })
+    //上一页
+    $('#pageprev').on('click',function(){
+        if(pageNumber==1){
+            alert("已经是第一页了")
+        }else{
+            getTableBody(pageNumber-1)
+        }
+
+    })
+    //下一页
+    $('#pagenext').on('click',function(){
+        console.log(pageNumber,totalPage)
+        if(pageNumber== totalPage){
+            alert("已经是最后一页了")
+        }else{
+            getTableBody(pageNumber+1)
+        }
+
+    })
+    $('#pageCurrent').bind('keypress',function(event){
+        console.log(11,event.keyCode)
+        if(event.keyCode == 13){
+            getTableBody($(this).val(),10)
+            }
+        });	
+    $('#btnCheck').on('click',function () {
+       
+		var con = getCondition();
+        getTableBody(null,null,con);
+    })
+		function getCondition() {
+    	var jys = $('#marketName option:selected').val();
+    	
+	 	var reportType = $('#reportType option:selected').val();
+	 	alert(reportType)
+   		var date = $('#alarmTimeEnd').val();       
+        var htmlstr = "";     
+        return htmlstr+="?jys="+jys+"&reportType="+reportType+"&upload_time="+date;
+            
+
+    }
+
 		function getYuebBao() {
+			var tableList = "";
 			console.log(1)
+			var jys = $('#marketName option:selected').val();
+			
+		 	var reportType = $('#reportType option:selected').val();
+       		/* var date = $('#alarmTimeEnd').val().replace(/-/g,""); */
+       		var date = $('#alarmTimeEnd').val();
 			$.post('${contextPath}/qdch/monthlyrepor/getMonthlyReport',{jys,reportType,date},function(res){
+				alert(date);
 				console.log(res)
 				$.each(res,function(index,item){
 						tableList+=
-								"  <tr>            <td>"+(index+1)+"</a></td>\n" +
+								"  <tr>            <td>"+(index+1)+"</td>\n" +
 								"                <td>"+item.type+"</td>\n" +
 								"                <td>"+item.jys+"</td>\n" +
 								"               <td>"+item.upload_user+"</td>\n" +
 								"               <td>"+item.upload_time+"</td>\n" +
-								"                <td><span><a href=\"\">预览</a></span><span><a href=\"\">下载</a></span></td></tr>  " ;
-				})
+								"                <td><span><a href='/QDCH/pdf/web/viewer.html?file=test.pdf' target='_Blank'>预览</a></span><span><a href='/QDCH/pdf/web/test.pdf' download='监管报告'>下载</a></span></td></tr>  " 
+ 		
+ })
 				$('tbody').html(tableList)
 			})
 		}
+		 function getTableBody(pageNum,pageSize,appenddata) {
+		        if(!appenddata){
+		            appenddata = "";
+
+		        }
+		        $.ajax({
+		            type: "POST",
+		            url: "monthlyrepor/getMonthlyReportList"+appenddata,
+		            data: {"pageNum":pageNum,"pageSize":pageSize},
+		            dataType: "json",
+		            success: function(data){
+		                var  append = "";
+		                console.log(data)
+		                $(".nuber").text(data.totalRow);
+		                $('#pageCurrent').val(data.pageNumber);
+
+		                $('.pageTotal').text(data.totalPage);
+		                totalPage = data.totalPage;
+		                pageNumber = data.pageNumber;
+		                $.each(data.list, function(index, value, array) {
+		                    append +=
+		                        "  <tr>       <td><a href=\"\" class=\"fengxian001\">"+(index+1)+"</a></td>\n" +
+		                        "                <td>"+value.type+"</td>\n" +
+		                        "                <td>"+value.jys+"</td>\n" +
+		                        "               <td>"+value.upload_user+"</td>\n" +
+		                        "               <td>"+value.upload_time+"</td>\n" +
+		                        "                <td><span><a href='/QDCH/pdf/web/viewer.html?file=test.pdf' target='_Blank'>预览</a></span><span><a href='/QDCH/pdf/web/test.pdf' download='监管报告'>下载</a></span></td></tr>  ";
+		                       
+		                });
+		                // append +="</tr>";
+		                $('tbody').html(append);
+
+		            }
+
+		        })
+		    }
 
 </script>
 </body>

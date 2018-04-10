@@ -1,26 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="${contextPath}/static/img/com/logo.png">
+    <link rel="stylesheet" href="${contextPath}/static/asserts/css/normalize.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/style.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/pageCom.css">
     <style>
-        *{margin:0;padding: 0;list-style: none;}
-        .main{
-            width:100%;
-            height: 80rem;
-            background: #fff;
-
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .fl{
+            float: left;
+        }
+        .fr{
+            float: right;
+        }
+        li{
+            list-style: none;
         }
         #box1,#box2{
             width:98%;
             margin:0 auto;
         }
-        .customerInformation{
-            margin-top: 2rem;
+        .pagination{
+            width: 98%;
+            margin: 0 auto;
         }
+        /*search*/
+        .search{
+            margin: 1rem auto;
+        }
+        .search>input{
+            width: 10rem;
+            height: 1.5rem;
+            font-size: 14px;
+            border: 1px solid gray;
+            border-radius: 0.2rem;
+            padding-left: 0.3rem;
+        }
+        input:-moz-placeholder,
+        textarea:-moz-placeholder {
+            color: #000;
+        }
+
+        input:-ms-input-placeholder,
+        textarea:-ms-input-placeholder {
+            color: #000;
+        }
+
+        input::-webkit-input-placeholder,
+        textarea::-webkit-input-placeholder {
+            color: #000;
+        }
+        .btn{
+            margin-left: 1rem;
+            padding: 0.05rem 1.5rem;
+            background: #00adef;
+            color: #fff;
+            border-radius: 0.3rem;
+            text-align: center;
+        }
+        /*表格*/
+        .tableBox {
+            width: 100%;
+            overflow: hidden;
+        }
+        .tableBox:hover {
+            overflow: auto;
+        }
+        table {
+            border: .1rem solid #ddd;
+        }
+
+        table tr {
+            white-space: nowrap;
+        }
+
+        tbody > tr:hover > td {
+            background-color: #fff;
+        }
+
+        table > thead > tr > th,
+        table > tbody > tr > td {
+            font-size: .83rem;
+            padding: .32rem 0rem;
+        }
+        table td:nth-of-type(1){
+            background-color: #fff;
+        }
+
+        table > thead > tr > th {
+            width: 100%;
+            font-weight: normal;
+            color: #fff;
+            background-color: #00abde;
+        }
+
+        .whitePage table > thead > tr > th{
+            font-size: .83rem;
+            padding: 0.5rem 1rem;
+        }
+        .whitePage table > tbody > tr > td{
+            padding: 0.1rem 1rem;
+        }
+        /*tab点击切换table*/
         #tit{
             width: 100%;
-            height: 3rem;
+            height: 2.8rem;
             overflow: hidden;
             border-bottom: 1px solid #8e8e8e;
         }
@@ -50,67 +139,11 @@
             color:#00adef;
             border-bottom: 0.3rem solid #00adef;
         }
-        /*search*/
-        .search{
-            margin: 1rem auto;
-        }
-        .search input{
-            width: 10rem;
-            height: 1.5rem;
-            font-size: 14px;
-        }
-
-        .btn{
-            margin-left: 1rem;
-            padding: 0.05rem 1.5rem;
-            background: #00adef;
-            color: #fff;
-            text-align: center;
-        }
-        /*表格*/
-         .tableBox {
-            width: 100%;
-            overflow: hidden;
-        }
-
-         .tableBox:hover {
-            overflow: auto;
-        }
-
-         table {
-            border: .1rem solid #ddd;
-        }
-
-         table tr {
-            white-space: nowrap;
-        }
-
-         tbody > tr:hover > td {
-            background-color: #fff;
-        }
-
-
-         table > thead > tr > th,
-         table > tbody > tr > td {
-            font-size: .83rem;
-            padding: .72rem 1rem;
-        }
-         table td:nth-of-type(1){
-            background-color: #fff;
-        }
-
-         table > thead > tr > th {
-             width: 100%;
-            font-weight: normal;
-            color: #fff;
-            background-color: #00abde;
-        }
 
     </style>
-    <link rel="stylesheet" href="${contextPath}/static/asserts/css/normalize.css">
 </head>
-<body id="alert">
-<div class="main">
+<body class="whitePage" id="05_01fengxianshijianchuli" data-title="风险事件处理">
+<div class="container">
     <div id="box1">
         <div class="tableBox">
             <table>
@@ -134,6 +167,7 @@
                     <th>处理人</th>
                     <th>处理状态</th>
                     <th>处理时间</th>
+                    <th>风险说明</th>
 
                 </tr>
                 </thead>
@@ -143,95 +177,129 @@
             </table>
         </div>
     </div>
+    <br>
     <div id="box2">
         <div id="tit">
-            <span class="select" value="1" id="span1">个人客户</span>
-            <span value="2" id="span2">对公客户</span>
-            <span value="3" id="span3">基本合同信息</span>
-            <span value="4" id="span4">担保合同</span>
-            <span value="5" id="span5">明细查询</span>
-            <span value="6" id="span6">额度查询</span>
+            <span class="select" value="1">个人客户</span>
+            <span value="2">对公客户</span>
+            <span value="3">基本合同信息</span>
+            <span value="4">担保合同</span>
+            <span value="5">明细查询</span>
+            <span value="6">额度查询</span>
         </div>
         <ul id="con">
             <!-- 客户信息 start -->
             <li class="show">
                 <div class="search">
                     <label for="cursorName">客户名称:</label>
-                    <input type="text" placeholder="请输入客户名称" id="cursorName">
+                    <input type="text"id="cursorName" placeholder="请输入客户名称">
                     <label for="cursorNameNumber">市场客户号:</label>
-                    <input type="text" placeholder="请输入市场客户号" id="cursorNameNumber">
-                    <button class="btn">查询</button>
+                    <input type="text" id="cursorNameNumber" placeholder="请输入客户号">
+                    <button class="btn" id="btn" type="button">查询</button>
+                </div>
+
+                <div class="tableBox">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>客户编号</th>
+                            <th>客户姓名</th>
+                            <th>证件类型</th>
+                            <th>证件号码</th>
+                            <th>出生日期</th>
+                            <th>性别</th>
+                            <th>籍贯</th>
+                            <th>是否本地人</th>
+                            <th>婚姻状况</th>
+                            <th>健康状况</th>
+                            <th>毕业院校</th>
+                            <th>最高学历</th>
+                            <th>最高学位</th>
+                            <th>职业</th>
+                            <th>职务</th>
+                            <th>工作单位</th>
+                            <th>单位规模</th>
+                            <th>年收入</th>
+                            <th>是否缴纳公积金</th>
+                            <th>是否参加社会保险</th>
+
+                        </tr>
+                        </thead>
+                        <tbody id="personal">
+
+                        </tbody>
+                    </table>
+                </div>
+            </li>
+            <!-- 客户信息 END -->
+            <li>
+                <div class="search">
+                    <label for="cursorName4">客户名称:</label>
+                    <input type="text" placeholder="请输入客户名称" id="cursorName2">
+                    <label for="cursorNameNumber4">市场客户号:</label>
+                    <input type="text" placeholder="请输入市场客户号" id="cursorNameNumber2">
+                   <button class="btn" id="btn2" type="button">查询</button>
                 </div>
                 <!-- 表格 -->
                 <div class="tableBox">
                     <table>
                         <thead>
                         <tr>
-                            <th>风险事件ID</th>
-                            <th>报警时间</th>
-                            <th>风险类别</th>
-                            <th>风险指标</th>
-                            <th>风险指标值</th>
-                            <th>阙值</th>
-                            <th>超出额</th>
-                            <th>市场代码</th>
-                            <th>市场名称</th>
-                            <th>客户号</th>
+                            <th>工商营业执照</th><th>客户编号</th><th>法人客户类型</th><th>[法人证件类型]</th>
                             <th>客户名称</th>
-                            <th>业务菜单编码</th>
-                            <th>业务菜单名称</th>
-                            <th>业务类型</th>
-                            <th>业务编码</th>
-                            <th>处理人</th>
-                            <th>处理状态</th>
-                            <th>处理时间</th>
-                            <th>风险说明</th>
-
+                            <th>营业执照号</th><th>成立日期</th><th>主管部门</th><th>所在地区</th><th>所有制类别</th>
+                           <th>法人代表</th><th>注册资金</th><th>币种</th>
+                            <th>实收资本金</th><th>企业规模</th><th>员工人数</th><th>企业信用等级</th>
+                          <th>贷款卡号</th>
+                            <th>贷款卡年检日期</th><th>合同编号</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr>
-                            <td><a href="">449684</a></td>
-                            <td>20180124 06:01:43</td>
-                            <td>资金风险</td>
-                            <td>出入金异常</td>
-                            <td>12</td>
-                            <td>10</td>
-                            <td>20%</td>
-                            <td>0011</td>
-                            <td>山东天地红</td>
-                            <td>001100001130</td>
-                            <td>黄啸</td>
-                            <td>ZJXX</td>
-                            <td>资金信息</td>
-                            <td>市场编码</td>
-                            <td>资金信息</td>
-                            <td>man</td>
-                            <td>已提交</td>
-                            <td>20180124 16:07:39</td>
-                            <td class="more"><a href="">查看</a></td>
-                        </tr>
+                        <tbody id="public">
+
                         </tbody>
                     </table>
                 </div>
             </li>
-            <!-- 客户信息 END -->
-            <li></li>
-            <li>内容三</li>
+            <li>
+                <div class="search">
+                    <label for="cursorName4">客户名称:</label>
+                    <input type="text" placeholder="请输入客户名称" id="cursorName3">
+                    <label for="cursorNameNumber4">市场客户号:</label>
+                    <input type="text" placeholder="请输入市场客户号" id="cursorNameNumber3">
+                    <button class="btn" id="btn3" type="button">查询</button>
+                </div>
+                <!-- 表格 -->
+                <div class="tableBox">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>合同编号</th><th>纸质合同编号</th><th>业务编号</th><th>合同格式</th><th>客户编号</th>
+                            <th>客户名称</th><th>币种</th><th>合同金额</th><th>合同期限</th><th>起始日期</th>
+                            <th>到期日期</th><th>签约日期</th>
+                            <th>合同标志</th>
+                            <th>收款人账户类型</th><th>收款人账户号</th><th>收款人账户名称</th><th>收款人账户开户行名称</th>
+                           <th>手续费</th><th>服务费率</th>
+                        </tr>
+                        </thead>
+                        <tbody id="customerInfo">
+
+                        </tbody>
+                    </table>
+                </div>
+            </li>
             <li>
                 <div class="search">
                     <label for="cursorName4">客户名称:</label>
                     <input type="text" placeholder="请输入客户名称" id="cursorName4">
                     <label for="cursorNameNumber4">市场客户号:</label>
                     <input type="text" placeholder="请输入市场客户号" id="cursorNameNumber4">
-                    <button class="btn">查询</button>
+                    <button class="btn" id="btn4" type="button">查询</button>
                 </div>
                 <!-- 表格 -->
                 <div class="tableBox">
                     <table>
                         <thead>
                         <tr>
-                            <!--<th>合同管理-担保合同</th>-->
                             <th>担保合同编号</th>
                             <th>担保合同格式</th>
                             <th>业务编号</th>
@@ -255,41 +323,71 @@
                     </table>
                 </div>
             </li>
-            <li>内容五</li>
             <li>
                 <div class="search">
-                    <label for="cursorName6">客户名称:</label>
-                    <input type="text" placeholder="请输入客户名称" id="cursorName6">
-                    <label for="cursorNameNumber6">市场客户号:</label>
-                    <input type="text" placeholder="请输入市场客户号" id="cursorNameNumber6">
-                    <button class="btn">查询</button>
+                    <label for="cursorName4">客户名称:</label>
+                    <input type="text" placeholder="请输入客户名称" id="cursorName5">
+                    <label for="cursorNameNumber4">市场客户号:</label>
+                    <input type="text" placeholder="请输入市场客户号" id="cursorNameNumber5">
+                   <button class="btn" id="btn5" type="button">查询</button>
                 </div>
                 <!-- 表格 -->
                 <div class="tableBox">
                     <table>
                         <thead>
                         <tr>
-                            <!--<th>额度管理_个人额度_额度调整_综合额度</th>-->
+                            <th>业务编号</th><th>客户编号</th><th>客户名称</th><th>产品代码</th><th>产品名称</th>
+                            <!--<th>贷款用途</th>-->
+                            <th>担保方式</th><th>合同编号</th><th>币种</th>
+                            <!--<th>审批金额</th>-->
+                            <th>起始日期</th><th>到期日期</th><th>还款方式#</th><th>计息方式</th>
+                            <!--<th>结息方式</th>-->
+                            <th>付款利率[%]</th><th>收款利率[%]</th>
+                            <th>浮动方式</th>
+                            <th>付款逾期利率[万分之_日]</th><th>收款逾期利率[万分之_日]</th>
+                        </tr>
+                        </thead>
+                        <tbody id="details">
+
+                        </tbody>
+                    </table>
+                </div>
+            </li>
+            <li>
+                <div class="search">
+                    <label for="cursorName6">客户名称:</label>
+                    <input type="text" placeholder="请输入客户名称" id="cursorName6">
+                    <label for="cursorNameNumber6">市场客户号:</label>
+                    <input type="text" placeholder="请输入市场客户号" id="cursorNameNumber6">
+                   <button class="btn" id="btn6" type="button">查询</button>
+                </div>
+                <!-- 表格 -->
+                <div class="tableBox">
+                    <table>
+                        <thead>
+                        <tr>
                             <th>客户编号</th>
                             <th>客户名称</th>
                             <th>抵押额度</th>
                             <th>质押额度</th>
                             <th>保证额度</th>
                             <th>信用额度</th>
-                            <th>授信总额度</th>
+                            <!--<th>授信总额度</th>-->
                             <th>可用额度</th>
+
+
                             <th>币种</th>
-                            <th>额度循环方式</th>
-                            <th>定额_定比递减值</th>
-                            <th>额度期限控制方式</th>
-                            <th>额度期限</th>
-                            <th>额度起始日期</th>
-                            <th>额度到期日期</th>
+                            <!--<th>额度循环方式</th>-->
+                            <!--<th>定额_定比递减值</th>-->
+                            <!--<th>额度期限控制方式</th>-->
+                            <!--<th>额度期限</th>-->
+                            <!--<th>额度起始日期</th>-->
+                            <!--<th>额度到期日期</th>-->
                             <th>担保方式</th>
-                            <th>贷款支用有效期限</th>
-                            <th>贷款最长期限</th>
-                            <th>主动授信标志</th>
-                            <th>额度统一控制方式</th>
+                            <!--<th>贷款支用有效期限</th>-->
+                            <!--<th>贷款最长期限</th>-->
+                            <!--<th>主动授信标志</th>-->
+                            <!--<th>额度统一控制方式</th>-->
 
                         </tr>
                         </thead>
@@ -301,6 +399,25 @@
             </li>
         </ul>
     </div>
+    <nav class="pagination">
+        <ul>
+            <li class="home" id="pagehome">首页</li>
+            <li class="split">|</li>
+            <li class="prev" id="pageprev">上一页</li>
+            <li class="split">|</li>
+            <li class="pageNumber">
+                <label for="pageCurrent" hidden></label>
+                <input id="pageCurrent" type="number" >&nbsp;/
+                <span class="pageTotal"></span>
+            </li>
+            <li class="split">|</li>
+            <li class="next" id="pagenext">下一页</li>
+            <li class="split">|</li>
+            <li class="end" id="pageend">末页</li>
+
+        </ul>
+    </nav>
+
 </div>
 </body>
 <script src="${contextPath}/static/asserts/js/echarts-4.0.js"></script>
@@ -310,12 +427,16 @@
 <script src="${contextPath}/static/js/chartsCom.js"></script>
 <script type="text/javascript">
     var fxsj_id = '${fxsj_id}',spantab = 1;
+    var cusname,cuscode,querystr = ""; //搜索框的客户名称，客户标号
+    var pageObj = {};
     $("#tit span").click(function () {
 
         var i= $("#tit span").index(this);
         $(this).addClass('select').siblings().removeClass('select');
         $("#con li").eq(i).show().siblings().hide();
         spantab = $("#tit span.select").attr('value'); //切换的tab标签值
+        getTableBody();
+
     })
     $(".whitePage").find(".tableBox").scroll(function () {
         var $table =  $(this).children("table");
@@ -327,109 +448,298 @@
     $(function () {
 
 
-        getContent();
+        getRiskdata();//上方的风险事件
+        // getContent();
+        getTableBody();
+
+        $('#btn').on('click',function () {
+            cusname = $('#cursorName').val();
+            cuscode = $('#cursorNameNumber').val();
+            querystr +="?cusname="+cusname+"&cuscode="+cuscode;
+            getTableBody()
+
+        })
+        $('#btn2').on('click',function () {
+            cusname = $('#cursorName2').val();
+            cuscode = $('#cursorNameNumber2').val();
+            querystr +="?cusname="+cusname+"&cuscode="+cuscode;
+            getTableBody();
+
+        })
+        $('#btn3').on('click',function () {
+            cusname = $('#cursorName3').val();
+            cuscode = $('#cursorNameNumber3').val();
+            querystr +="?cusname="+cusname+"&cuscode="+cuscode;
+            getTableBody();
+        })
+        $('#btn4').on('click',function () {
+            cusname = $('#cursorName4').val();
+            cuscode = $('#cursorNameNumber4').val();
+            querystr +="?cusname="+cusname+"&cuscode="+cuscode;
+            getTableBody();
+        })
+        $('#btn5').on('click',function () {
+            cusname = $('#cursorName5').val();
+            cuscode = $('#cursorNameNumber5').val();
+            querystr +="?cusname="+cusname+"&cuscode="+cuscode;
+            getTableBody();
+        })
+        $('#btn6').on('click',function () {
+            cusname = $('#cursorName6').val();
+            cuscode = $('#cursorNameNumber6').val();
+            querystr +="?cusname="+cusname+"&cuscode="+cuscode;
+            getTableBody();
+        })
+
+
     })
 
     /**
      * 风险事件本身
      */
-    function getContent() {
+    function getContent(pageNum,pageSize) {
         $.ajax({
             type: "POST",
             url: "getContent",
-            data: {'fxsj_id':fxsj_id},
+            data: {"pageNum":pageNum,"pageSize":pageSize,'fxsj_id':fxsj_id},
             dataType: "json",
             success: function (data) {
                 console.log(data)
-                var value = data.riskevent;
-                var append = "",guaranteehtml="",limithtml="";
-                append +=
-                    "  <tr>            <td><a href=\"\" class=\"fengxian001\">"+value.fxsj_id+"</a></td>\n" +
-                    "                <td>"+value.bjsj+"</td>\n" +
-                    "                <td>"+value.fxlb+"</td>\n" +
-                    "               <td>"+value.fxzb+"</td>\n" +
-                    "               <td>"+value.fxzbz+"</td>\n" +
-                    "               <td>"+value.yuzhi+"</td>\n" +
-                    "               <td>"+value.cce+"</td>\n" +
-                    "               <td>"+value.jgdm+"</td>\n" +
-                    "               <td>"+value.jgmc+"</td>\n" +
-                    "               <td>"+value.cust_id+"</td>\n" +
-                    "               <td>"+value.khmc+"</td>\n" +
-                    "               <td>"+value.ywcdbm+"</td>\n" +
-                    "               <td>"+value.ywcdmc+"</td>\n" +
-                    "               <td>"+value.ywlx+"</td>\n" +
-                    "               <td>"+value.ywbm+"</td>\n" +
-                    "               <td>"+value.shr+"</td>\n" +
-                    "               <td>"+value.clzt+"</td>\n" +
-                    "               <td>"+value.update_time+"</td>\n" ;
-                $('#riskEvent').html(append);
-                $.each(data.guarantee.list, function(index, guaranteevalue, array) {
-                    guaranteehtml +=
-                        "  <tr>            <td><a href=\"\" class=\"fengxian001\">"+guaranteevalue.assucontno+"</a></td>\n" +
-                        "                <td>"+guaranteevalue.assucontkind+"</td>\n" +
-                        "                <td>"+guaranteevalue.loanid+"</td>\n" +
-                        "               <td>"+guaranteevalue.contno+"</td>\n" +
-                        "               <td>"+guaranteevalue.maxassuflag+"</td>\n" +
-                        "               <td>"+guaranteevalue.assucustid+"</td>\n" +
-                        "               <td>"+guaranteevalue.assucustname+"</td>\n" +
-                        "               <td>"+guaranteevalue.regikind+"</td>\n" +
-                        "               <td>"+guaranteevalue.assuamt+"</td>\n" +
-                        "               <td>"+guaranteevalue.assurate+"</td>\n" +
-                        "               <td>"+guaranteevalue.begindate+"</td>\n" +
-                        "               <td>"+guaranteevalue.enddate+"</td>\n" +
-                        "               <td>"+guaranteevalue.contdate+"</td>\n" +
-                        "               <td>"+guaranteevalue.bankidcont+"</td>\n" +
-                        "               <td>"+guaranteevalue.validkind+"</td></tr>" ;
-                });
-                $('#guarantee').html(guaranteehtml);
-
-                $.each(data.limit.list, function(index, value, array) {
-                    limithtml +=
-                        "  <tr>            <td><a href=\"\" class=\"fengxian001\">"+value.custid+"</a></td>\n" +
-                        "                <td>"+value.custname+"</td>\n" +
-                        "                <td>"+value.mortamt+"</td>\n" +
-                        "               <td>"+value.impaamt+"</td>\n" +
-                        "               <td>"+value.assuamt+"</td>\n" +
-                        "               <td>"+value.credamt+"</td>\n" +
-                        // "               <td>"+value.assucustname+"</td>\n" + //授信总额度
-                        // "               <td>"+value.LEFTAMT+"</td>\n" +
-                        // "               <td>"+value.CURRSIGN+"</td>\n" +
-                        // "               <td>"+value.CYCFLAG+"</td>\n" +
-                        // "               <td>"+value.begindate+"</td>\n" +
-                        // "               <td>"+value.enddate+"</td>\n" +
-                        // "               <td>"+value.contdate+"</td>\n" +
-                        // "               <td>"+value.bankidcont+"</td>\n" +
-                        "               <td>"+value.currsign+"</td></tr>" ;
-                });
-                $('#limit').html(limithtml);
-
-                // console.log(data)
+                riskdata(data);
+                limitdata(data); //额度查询
+                guaranteedata(data); //担保合同
+               personaldata(data); //个人客户
+               publicdata(data);  //对公客户
+               customerInfo(data)//合同信息-基本信息
+                detailsdata(data); //明细查询
             }
         });
     }
 
-    function getTableBody() {
-        var linkstr ;
+    function getTableBody(pageNum,pageSize) {
+        var linkstr ; //请求的链接地址
         if(spantab == 1)
-            linkstr = "";
+            linkstr = "getPersonal";
         else if (spantab == 2)
-            linkstr = "";
+            linkstr = "getPublic";
         else if (spantab == 3)
-            linkstr = "";
+            linkstr = "getCustomInfo";
         else if(spantab == 4)
             linkstr = "getGuarantee";
-            else if(spantab == 5)
-                linkstr = "";
+        else if(spantab == 5)
+            linkstr = "getDetails";
+        else if (spantab == 6)
+            linkstr = "getLimit";
 
         $.ajax({
             type: "POST",
-            url: linkstr,
-            data: {},
+            url: linkstr+querystr,
+            data: {"pageNum":pageNum,"pageSize":pageSize},
             dataType: "json",
             success: function (data) {
+                console.log(data)
+                var num,size,total,current,ptotal; //ptotal 是总页数
+                num = data.pageNumber;
+                size = data.pageSize;
+                total = data.totalRow;
+                ptotal = data.totalPage;
+                current = data.pageNumber;
+
+                // if(spantab == 1){
+                //     num = data.pageNumber;
+                //     size = data.pageSize;
+                //     total = data.totalRow;
+                //     ptotal = data.totalPage;
+                //     current = data.pageNumber;
+                // }  else if (spantab == 2){
+                //
+                // }else if (spantab == 3)
+                //     linkstr = "getCustomInfo";
+                // else if(spantab == 4)
+                //     linkstr = "getGuarantee";
+                // else if(spantab == 5)
+                //     linkstr = "getDetails";
+                // else if (spantab == 6)
+                //     linkstr = "getLimit";
+                console.log(current)
+                $(".number").text(total);
+                $('#pageCurrent').val(current);
+
+                $('.pageTotal').text(ptotal);
+                totalPage = data.totalPage;
+                pageNumber = data.pageNumber;
+
+                console.log(data)
+                if(spantab == 1)
+                    personaldata(data);
+                else if (spantab == 2)
+                   publicdata(data)
+                else if (spantab == 3)
+                    customerInfo(data)
+                else if(spantab == 4)
+                    guaranteedata(data)
+                else if(spantab == 5)
+                    detailsdata(data)
+                else if (spantab == 6)
+                    limitdata(data)
 
             }
         });
+    }
+
+    /**
+     * 上方的风险数据
+     */
+    function getRiskdata(){
+        $.ajax({
+            type: "POST",
+            url: "getRiskdata",
+            data: {'fxsj_id': fxsj_id},
+            dataType: "json",
+            success: function (data) {
+                riskdata(data)
+            }
+        });
+    }
+    function riskdata(data) {
+        var value = data;
+        var append = "";
+        append +=
+            "  <tr>            <td><a href=\"\" class=\"fengxian001\">"+value.fxsj_id+"</a></td>\n" +
+            "                <td>"+formatOutput(value.bjsj)+"</td>\n" +
+            "                <td>"+formatOutput(value.fxlb)+"</td>\n" +
+            "               <td>"+formatOutput(value.fxzb)+"</td>\n" +
+            "               <td>"+formatOutput(value.fxzbz)+"</td>\n" +
+            "               <td>"+formatOutput(value.yuzhi)+"</td>\n" +
+            "               <td>"+formatOutput(value.cce)+"</td>\n" +
+            "               <td>"+formatOutput(value.jgdm)+"</td>\n" +
+            "               <td>"+formatOutput(value.jgmc)+"</td>\n" +
+            "               <td>"+formatOutput(value.cust_id)+"</td>\n" +
+            "               <td>"+formatOutput(value.khmc)+"</td>\n" +
+            "               <td>"+formatOutput(value.ywcdbm)+"</td>\n" +
+            "               <td>"+formatOutput(value.ywcdmc)+"</td>\n" +
+            "               <td>"+formatOutput(value.ywlx)+"</td>\n" +
+            "               <td>"+formatOutput(value.ywbm)+"</td>\n" +
+            "               <td>"+formatOutput(value.shr)+"</td>\n" +
+            "               <td>"+formatOutput(value.clzt)+"</td>\n" +
+            "               <td>"+formatOutput(value.update_time)+"</td> </tr>" ;
+        $('#riskEvent').html(append);
+    }
+    function guaranteedata(data){
+        var guaranteehtml="";
+        $.each(data.list, function(index, guaranteevalue, array) {
+            guaranteehtml +=
+                "  <tr>            <td><a href=\"\" class=\"fengxian001\">"+guaranteevalue.assucontno+"</a></td>\n" +
+                "                <td>"+guaranteevalue.assucontkind+"</td>\n" +
+                "                <td>"+guaranteevalue.loanid+"</td>\n" +
+                "               <td>"+guaranteevalue.contno+"</td>\n" +
+                "               <td>"+guaranteevalue.maxassuflag+"</td>\n" +
+                "               <td>"+guaranteevalue.assucustid+"</td>\n" +
+                "               <td>"+guaranteevalue.assucustname+"</td>\n" +
+                "               <td>"+guaranteevalue.regikind+"</td>\n" +
+                "               <td>"+guaranteevalue.assuamt+"</td>\n" +
+                "               <td>"+guaranteevalue.assurate+"</td>\n" +
+                "               <td>"+guaranteevalue.begindate+"</td>\n" +
+                "               <td>"+guaranteevalue.enddate+"</td>\n" +
+                "               <td>"+guaranteevalue.contdate+"</td>\n" +
+                "               <td>"+guaranteevalue.bankidcont+"</td>\n" +
+                "               <td>"+guaranteevalue.validkind+"</td></tr>" ;
+        });
+        $('#guarantee').html(guaranteehtml);
+
+    }
+    function limitdata(data) {
+        var limithtml=""
+        $.each(data.list, function(index, value, array) {
+            limithtml +=
+                "  <tr>            <td><a href=\"\" class=\"fengxian001\">"+value.custid+"</a></td>\n" +
+                "                <td>"+value.custname+"</td>\n" +
+                "                <td>"+value.mortamt+"</td>\n" +
+                "               <td>"+value.impaamt+"</td>\n" +
+                "               <td>"+value.assuamt+"</td>\n" +
+                "               <td>"+value.credamt+"</td>\n" + //信用额度
+                "               <td>"+value.leftamt+"</td>\n" + //授信总额度
+
+                "               <td>"+value.currsign+"</td>\n" +
+                "               <td>"+value.assukind+"</td></tr>" ;
+        });
+        $('#limit').html(limithtml);
+
+    }
+
+    function personaldata(data) {
+        var personalhtml = "";
+        $.each(data.list, function(index, value, array) {
+           personalhtml+="<tr><td>"+value.custid+"</td>" +
+               "<td>"+value.custname+"</td>" +
+               "<td>"+value.paperkind+"</td><td>"+value.paperid+"</td>" +
+               "<td>"+value.birtdate+"</td>" +"<td>"+value.sexsign+"</td>"+
+               "<td>"+value.nativeplace+"</td><td>"+value.natiflag+
+               "</td><td>"+value.marrsign+"</td><td>"+value.healsign+"</td><td>"+value.gradschool+
+               "</td><td>"+value.workkind+
+               "</td><td>"+value.educsign+"</td><td>"+value.degreesign+"</td><td>"+value.vocasign+
+               "</td><td>"+value.workcorp+"</td><td>"+value.corpsizesign+"</td><td>"+value.yearinco+
+               "</td><td>"+value.havegjjflag+"</td><td>"+value.havecommflag+
+               "</tr>";
+
+
+        });
+        $('#personal').html(personalhtml);
+    }
+
+    function detailsdata(data) {
+        var detailshtml=""
+        $.each(data.list, function(index, value, array) {
+            detailshtml +="<tr><td>"+value.loanid+"</td><td>"+value.custid+"</td><td>"+value.custname+"</td>" +
+                "<td>"+value.prodid+"</td><td>"+value.prodname+"</td>" +
+                "<td>"+value.assukind+"</td><td>"+value.contno+"</td>" +
+                "<td>"+value.currsign+"</td>"+
+                "<td>"+value.begindate+"</td><td>"+value.enddate+"</td>" +
+                "<td>"+value.retukind+"</td>" +
+                "<td>"+value.intecompkind+"</td><td>"+value.pinterate+"</td><td>"+value.rinterate+"</td>" +
+                "<td>"+value.rintefloatmode+"</td><td>"+value.pfinerate+"</td><td>"+value.rfinerate+"</td>" ;
+            detailshtml +="</tr>";
+        });
+        $('#details').html(detailshtml);
+
+    }
+
+
+    function publicdata(data) {
+        var publichtml="";
+        $.each(data.list, function(index, value, array) {
+            publichtml += " <tr><td>"+value.orgaid+"</td><td>"+value.custid+"</td>" +
+                "<td>"+value.corptype+"</td><td>"+value.licekind+"</td><td>"+value.custname+"</td>" +
+                "<td>"+value.liceid+"</td><td>"+value.comedate+"</td><td>"+value.superdept+"</td>" +
+                "<td>"+value.localarea+"</td><td>"+value.posskind+"</td>" +
+                "<td>"+value.leadcustname+"</td>" +"<td>"+value.regifund+"</td>"+
+                "<td>"+value.currsign+"</td><td>"+value.factcapi+"</td>" +
+                "<td>"+value.corpsizesign+"</td><td>"+value.staffnum+"</td><td>"+value.corpcredsign+"</td>" +
+                "<td>"+value.loanpaperid+"</td><td>"+value.loanpapercheckdate+"</td><td>"+value.contno+"</td>";
+            publichtml +="</tr>";
+        });
+        $('#public').html(publichtml);
+    }
+    function customerInfo(data) {
+        var customerInfohtml=""
+        $.each(data.list, function(index, value, array) {
+            customerInfohtml+="<tr>"+
+                "<td>"+value.corptype+"</td><td>"+value.licekind+"</td><td>"+value.custname+"</td>" +
+                "<td>"+value.liceid+"</td><td>"+value.comedate+"</td><td>"+value.superdept+"</td>" +
+                "<td>"+value.localarea+"</td><td>"+value.posskind+"</td>" +
+                "<td>"+value.leadcustname+"</td>" +"<td>"+value.regifund+"</td>"+
+                "<td>"+value.currsign+"</td><td>"+value.factcapi+"</td>" +
+                "<td>"+value.corpsizesign+"</td><td>"+value.staffnum+"</td><td>"+value.corpcredsign+"</td>" ;
+            customerInfohtml +="</tr>";
+        });
+        $('#customerInfo').html(customerInfohtml);
+    }
+
+    function formatOutput(str) {
+        if(str==null||str==undefined||str=='null'||str==''){
+            return '';
+        }else
+            return str;
     }
 
 
