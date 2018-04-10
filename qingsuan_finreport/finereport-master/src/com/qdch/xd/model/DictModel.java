@@ -1,7 +1,10 @@
 package com.qdch.xd.model;
 
+import com.fr.stable.StringUtils;
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Page;
+
+import java.util.List;
 
 /**
  * 
@@ -12,6 +15,17 @@ import com.jfinal.plugin.activerecord.Page;
 public class DictModel extends Model<DictModel>{
 	private static final long serialVersionUID = 1L;
 	public static final DictModel dao = new DictModel();
+
+
+	public List<DictModel> getLabel(String note){
+		StringBuffer sb = new StringBuffer();
+		sb.append("select fvalue from  hub_comm_param where 1=1 ");
+		if(StringUtils.isNotBlank(note)){
+			sb.append(" and note ='").append(note).append("'");
+		}
+		sb.append("ORDER BY param_type,fkey");
+		return dao.find(sb.toString());
+	}
 
 
 

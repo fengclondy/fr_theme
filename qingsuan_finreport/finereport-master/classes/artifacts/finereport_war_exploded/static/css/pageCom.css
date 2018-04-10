@@ -53,19 +53,18 @@ html, body, .container {
     /*height: 100%;*/
 }
 
-.whitePage table tr {
-    /*height: calc(2.5rem + 0%);*/
-    /*height: 2.5rem ;*/
-}
 table{
     width: 100%;
 }
+tbody > tr > th {
+    font-size: .7rem;
+}
 tbody > tr > td {
-    font-size: .8rem;
+    font-size: .6rem;
 }
 
 tbody > tr:hover > td {
-    background-color: #00adef33;
+    /*background-color: #00adef33;*/
 }
 
 tbody > tr:hover > td {
@@ -81,15 +80,10 @@ tbody > tr:nth-of-type(even) {
 }
 
 td, th {
-    /*padding: .3rem 0;*/
+    padding:.6rem 0;
     text-align: center;
 }
 
-th {
-    padding: .5rem 0;
-    font-size: .9rem;
-    background-color: #4c7aff66;
-}
 
 td.more > a {
     display: block;
@@ -111,7 +105,7 @@ td.more:active > a {
     display: inline-block;
     position: relative;
     top: -.15em;
-    width: 7rem;
+    width: 9rem;
     text-align: left;
     vertical-align: middle;
 }
@@ -142,10 +136,10 @@ td.more:active > a {
 .mySelect > .myOption.selected > .icon {
     display: inline-block;
     position: absolute;
-    top: .36rem;
+    top: .46rem;
     right: .5rem;
     width: .8rem;
-    height: .46rem;
+    height: .3rem;
     background: url(../img/com/i_arrow_down.png) 50% 40% no-repeat;
     background-size: contain;
 }

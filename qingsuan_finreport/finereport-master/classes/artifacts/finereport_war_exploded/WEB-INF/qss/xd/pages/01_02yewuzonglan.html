@@ -493,46 +493,7 @@
 
       	});
      }
-    //获取业务总览的市场竞争力趋势
-    function getCompetitiveRrend(type){
-      	 $.post("${contextPath}/qdch/creditrisk/getRankByYeamount",{"jys":jysCode,"type":type},function(data){
-      		console.log("--------",data)
-       		var yAxisData=[];
-       		var seriesData=[];
-       		$.each(data,function(index,item){
-       			var name="";
-       			var page=parseInt(item.name.length/6);
-       			if(item.name.length%6>0){
-       				page++;
-       			}
-       			for(var x=1;x<parseInt(page)+1;x++){
-       				name+=item.name.substr((x-1)*6,6)+"\n";
-       			}
-       			yAxisData.push(name);
-       			seriesData.push(item.value);
-       		});
-       		ec001.setOption({
-                   grid: {
-                       left: "26%",
-                       right: "16%",
-                       top: "15%"
-                   },
-                   xAxis: {
-                       type: 'value',
-                       name: '指数'
-                   },
-                   yAxis: {
-                       name: '市场',
-                      data:yAxisData
-                   },
-                   series: [{
-                       data: seriesData,
-                       type: 'bar',
-                       barWidth: "60%"
-                   }]
-               }); 
-       	});
-      } 
+   
 			//市场竞争力趋势
 			var trend = 'jzl'
 			var items = ''
