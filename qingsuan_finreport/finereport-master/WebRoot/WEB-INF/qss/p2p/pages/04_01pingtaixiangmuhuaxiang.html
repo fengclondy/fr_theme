@@ -117,7 +117,7 @@
             <div class="mySelect" id="jingzhenglizhibiao4">
                 <div class="myOption selected"><span class="text"></span><span class="icon"></span>
                 </div>
-                <ul class="myOptionBox">
+                <ul class="myOptionBox" id="jysselect">
                     <!-- <li class="myOption selected">鲁金宝1</li>
                     <li class="myOption">鲁金宝2</li>
                     <li class="myOption">鲁金宝3</li> -->
@@ -294,7 +294,7 @@
         allCharts = [ec001, ec002];
        
     });
-    var jysCode;
+    jysCode=$("#jysselect").find("li").eq(0).attr("id");
     init();
     function changeJysData(obj){
 		//获取交易所现在下拉选择值
