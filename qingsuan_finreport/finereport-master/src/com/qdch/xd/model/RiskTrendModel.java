@@ -21,7 +21,9 @@ public class RiskTrendModel extends Model<RiskTrendModel>{
 		if(StringUtils.isNotBlank(jysc)){
 			sql+=" and jysc = '"+jysc+"'";
 		}
-		sql+=" group by jyscmc,fvalue,jysc,vday order by jyscmc,fvalue,jysc,vday";
+		sql+=" group by jyscmc,fvalue,jysc,vday order by vday";
 		return dao.find(sql);
 	}
+	
+	
 }

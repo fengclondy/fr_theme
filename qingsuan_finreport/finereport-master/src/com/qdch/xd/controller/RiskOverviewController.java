@@ -1,7 +1,9 @@
 package com.qdch.xd.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -9,6 +11,8 @@ import com.qdch.core.BaseController;
 import com.qdch.xd.model.RiskCountModel;
 import com.qdch.xd.model.RiskTrendDetailedModel;
 import com.qdch.xd.model.RiskTrendModel;
+import com.qdch.xd.model.defrateRankModel;
+import com.qdch.xd.model.maxIntrateRankModel;
 /**
  * 
  * @author ljm
@@ -17,7 +21,9 @@ import com.qdch.xd.model.RiskTrendModel;
 public class RiskOverviewController extends BaseController {
 	
 	public void index() {
-		 render("xd/pages/01_01fengxianzonglan.html");
+		
+		setAttr("jyslist", RiskTrendDetailedModel.dao.getPlat(getDataScopeByUserName()));
+		render("xd/pages/01_01fengxianzonglan.html");
 	}
 	/**
 	 * @todo   获取风险排名
@@ -65,6 +71,29 @@ public class RiskOverviewController extends BaseController {
 		}else{
 			list = RiskTrendModel.dao.getRiskTrend(getDataScopeByUserName(),jysc);
 		}
-		mRenderJson(list);
+		
+		Map<String,Object> res = new HashMap<String,Object>();
+		res.put("list", list);
+		res.put("plat", RiskTrendDetailedModel.dao.getPlat(getDataScopeByUserName()));
+		
+		mRenderJson(res);
+	}
+	/**
+	 * @todo   不良率排名
+	 * @time   2018年4月10日 
+	 * @author ljm
+	 */
+	public void getDefrateRank(){
+		List<defrateRankModel> defrateRank = defrateRankModel.dao.getDefrateRank(getDataScopeByUserName());
+		mRenderJson(defrateRank);
+	}
+	/**
+	 * @todo   最高利率
+	 * @time   2018年4月10日 
+	 * @author ljm
+	 */
+	public void getMaxIntrateRank(){
+		List<maxIntrateRankModel> maxIntrateRank = maxIntrateRankModel.dao.getMaxIntrateRank(getDataScopeByUserName());
+		mRenderJson(maxIntrateRank);
 	}
 }

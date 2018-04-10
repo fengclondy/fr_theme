@@ -26,7 +26,7 @@ public class ProjectplatformController  extends BaseController{
 	 */
 	public void getProjectStructure(){
 		String jys=getPara("jys");
-		jys="PP01";
+		
 		List<ProjectStructureModel> projectstructuremodel=ProjectStructureModel.dao.getProjectStructure(getDataScopeByUserNameForP2p(),jys);
 		mRenderJson(projectstructuremodel);
 	}
