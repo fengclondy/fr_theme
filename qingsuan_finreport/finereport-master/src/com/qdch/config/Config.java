@@ -72,6 +72,8 @@ import com.qdch.xd.model.RiskCountModel;
 import com.qdch.xd.model.RiskEventHistoryModel;
 import com.qdch.xd.model.RiskEventModel;
 import com.qdch.xd.model.RiskShowModel;
+import com.qdch.xd.model.RiskTrendDetailedModel;
+import com.qdch.xd.model.RiskTrendModel;
 import com.qdch.xd.model.RiskTypeModel;
 import com.qdch.xd.model.ScabilityModel;
 
@@ -222,8 +224,9 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("hub_xd_cont_assu", GuaranteeContrastModel.class);//担保合同
 
 		arp.addMapping("hub_comm_param", DictModel.class);//字典表
-//
-		arp.addMapping("hub_xd_report_cont", CustomerInfoModel.class);//合同信息-基本信息
+
+//		arp.addMapping("hub_xd_report_cont", CustomerInfoModel.class);//合同信息-基本信息
+		arp.addMapping("hub_xd_cont_info", CustomerInfoModel.class);//合同信息-基本信息
 
 		arp.addMapping("hub_xd_cust_corp", PublicCustomModel.class);//对公客户
 
@@ -245,10 +248,11 @@ public class Config extends JFinalConfig {
 		
 		/***小贷 连纪明 insight层 Model START ***/
 		
-		insight_arp.addMapping("hub_xd_fxzs", RiskCountModel.class);//小贷风险指数
-		
-		
-		/***小贷 连纪明 insight层 Model START***/
+			insight_arp.addMapping("hub_xd_fxzs",RiskCountModel.class);//小贷风险指数
+			insight_arp.addMapping("hub_xd_fxzs",RiskTrendModel.class);//风险趋势
+			insight_arp.addMapping("hub_xd_fxzsmx",RiskTrendDetailedModel.class);//风险趋势明细
+			
+		/***小贷 连纪明 insight层 Model END***/
 		
 		
 		
@@ -275,7 +279,7 @@ public class Config extends JFinalConfig {
 		me.add(new ContextPathHandler("contextPath"));
 	}
 
-	public static void main(String[] args){
+	public static void main(String[] args){ 
 		JFinal.start("WebRoot", 8080, "/", 5);
 	}
 }

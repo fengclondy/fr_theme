@@ -54,6 +54,12 @@ $(".whitePage").find(".tableBox").scroll(function () {
     console.log()
 });
 
+$(".fengxian001").click(function () {
+    $('.model').css('display','none');
+    console.log(111);
+});
+
+
 
 
 
