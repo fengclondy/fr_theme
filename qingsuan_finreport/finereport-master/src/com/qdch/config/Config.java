@@ -31,6 +31,7 @@ import com.qdch.p2p.controller.ProjectplatformController;
 import com.qdch.p2p.controller.RiskController;
 import com.qdch.p2p.controller.SuperviseController;
 import com.qdch.p2p.model.PlatformModel;
+import com.qdch.p2p.model.ptxxModel;
 import com.qdch.util.TemplteLayoutTag;
 import com.qdch.xd.model.ComparisonOfCompeModel;
 import com.qdch.xd.model.CompetitiveRrendModel;
@@ -233,6 +234,7 @@ public class Config extends JFinalConfig {
 		
 		/***p2p 韩朋达 insight层 Model START***/
 		insight_arp.addMapping("insight_pp_overview", PlatformModel.class); //p2p 平台总览表
+		arp.addMapping("hub_pp_jysc", ptxxModel.class); //p2p 平台信息表
 	}
 
 	public void configInterceptor(Interceptors me) {
