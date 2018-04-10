@@ -189,10 +189,11 @@ public class Config extends JFinalConfig {
 		
 		/***小贷 连纪明 insight层 Model START ***/
 		
-		insight_arp.addMapping("hub_xd_fxzs", RiskCountModel.class);//小贷风险指数
-		
-		
-		/***小贷 连纪明 insight层 Model START***/
+			insight_arp.addMapping("hub_xd_fxzs",RiskCountModel.class);//小贷风险指数
+			insight_arp.addMapping("hub_xd_fxzs",RiskTrendModel.class);//风险趋势
+			insight_arp.addMapping("hub_xd_fxzsmx",RiskTrendDetailedModel.class);//风险趋势明细
+			
+		/***小贷 连纪明 insight层 Model END***/
 		
 		
 		
@@ -216,6 +217,6 @@ public class Config extends JFinalConfig {
 	}
 
 	public static void main(String[] args){
-		JFinal.start("WebRoot", 8080, "/", 5);
+		JFinal.start("WebRoot", 8090, "/", 5);
 	}
 }
