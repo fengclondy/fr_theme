@@ -24,6 +24,7 @@ public class PpjyscModel extends Model<PpjyscModel> {
 		if(StringUtils.isNotBlank(dataSql)){
 			sql+=" jysc in"+ dataSql+"";
 		}
+		sql+="order by jysc";
 		return dao.find(sql);
 	}
 

@@ -27,6 +27,8 @@ import com.qdch.p2p.controller.ProjectplatformController;
 import com.qdch.p2p.controller.RiskController;
 import com.qdch.p2p.controller.SuperviseController;
 import com.qdch.p2p.model.BorrowerModel;
+import com.qdch.p2p.model.ImportantRatioModel;
+import com.qdch.p2p.model.InterestModel;
 import com.qdch.p2p.model.PlatformModel;
 import com.qdch.p2p.model.PpjyscModel;
 import com.qdch.p2p.model.ProjectStructureModel;
@@ -206,7 +208,9 @@ public class Config extends JFinalConfig {
 		arp.addMapping("hub_fxsj", ManagementRiskListModel.class);//字典信用风险的管理风险列表
 		/***doushuiahi Model START p2p***/
 		arp.addMapping("hub_pp_jysc", PpjyscModel.class);
-		insight_arp.addMapping("insight_pp_iterm_count", ProjectStructureModel.class);//平台画像的项目结构
+		insight_arp.addMapping("insight_pp_iterm_count", ProjectStructureModel.class);//平台项目的项目结构
+		insight_arp.addMapping("insight_pp_netinfo", ImportantRatioModel.class);//平台项目的四个重要比率
+		insight_arp.addMapping("insight_pp_interest", InterestModel.class);//用于动态获取平台项目中期限类型
 		/***doushuiahi Model START p2p***/
 		
 		/***p2p 高照  insight层Model SART***/
