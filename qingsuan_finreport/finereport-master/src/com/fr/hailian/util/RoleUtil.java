@@ -18,10 +18,10 @@ import com.fr.fs.base.entity.User;
 import com.fr.fs.control.UserControl;
 import com.fr.fs.web.service.ServiceUtils;
 import com.fr.hailian.action.HlLoadLoginAction;
+import com.fr.hailian.core.QdchUser;
 import com.fr.hailian.model.RoleMenuModel;
 import com.fr.hailian.model.RoleModel;
 import com.fr.hailian.service.UserDataFromRoleService;
-import com.qdch.core.QdchUser;
 
 /**
  * 
@@ -122,7 +122,6 @@ public class RoleUtil {
            String sql = "select * from fr_t_user where username='"+userName+"'";
            PreparedStatement ps = con.prepareStatement(sql);
            ResultSet rs = ps.executeQuery();
-           System.out.println(rs);
            while (rs.next()) {
         	   user.setId(rs.getString("ID"));
         	   user.setUsername(rs.getString("USERNAME"));
@@ -130,16 +129,16 @@ public class RoleUtil {
         	   user.setRealname(rs.getString("REALNAME"));
         	   user.setEmail(rs.getString("EMAIL"));
            }
-           System.out.println(user);
            rs.close();
            con.close();
            //查询角色 菜单
            List<RoleModel>  roles=getUserRoles(user.getId(), userName,roleName);
            user.setRoles(roles);
            //查询数据权限 交易所
-           String jysStr=UserDataFromRoleService.getDepartMenByUserName(userName);
+           String jysStr=UserDataFromRoleService.getJysForP2pXd(userName);
            if(jysStr!=null&&!"".equals(jysStr)&&jysStr.length()>0){
         	   user.setJysList(Arrays.asList(jysStr.split(",")));
+        	   user.setDataScope(jysStr);
            }
 	} catch (Exception e) {
 		e.printStackTrace();
@@ -164,9 +163,9 @@ public class RoleUtil {
            if(!"".equals(roleName)&&roleName!=null){
            	sql+="  and m.rolename like '%"+roleName+"%' ";
            }
+           //System.out.println(sql);
            PreparedStatement ps = con.prepareStatement(sql);
            ResultSet rs = ps.executeQuery();
-           System.out.println(rs);
            while (rs.next()) {
         	   RoleModel role=new RoleModel();
         	   role.setId(rs.getString("ID"));
@@ -176,7 +175,6 @@ public class RoleUtil {
         	   role.setMenu(menus);
         	   roles.add(role);
            }
-           System.out.println(roles);
            rs.close();
            con.close();
 	} catch (Exception e) {
@@ -192,7 +190,7 @@ public class RoleUtil {
 	 * @return
 	 * @throws SQLException
 	 */
-	public static List<RoleMenuModel> getMenuByRoleName(String  userId,String roleName) throws SQLException{
+	public static List<RoleMenuModel> getMenuByRoleName(String  userId,String roleName){
 		Connection con = null;
 		List<RoleMenuModel> list=new ArrayList<RoleMenuModel>();
         con = C3P0Utils.getInstance().getConnection();
@@ -204,19 +202,24 @@ public class RoleUtil {
         	sql+="  and r.rolename like '%"+roleName+"%' ";
         }
         sql+=" and t.userid='"+userId+"'";
-        PreparedStatement ps = con.prepareStatement(sql);
-        ResultSet rs = ps.executeQuery();
-        while (rs.next()) {
-        	RoleMenuModel m=new RoleMenuModel();
-        	m.setId(rs.getString("id"));
-        	m.setName(rs.getString("name"));
-        	m.setPid(rs.getString("pid"));
-        	m.setPname(rs.getString("pname"));
-        	m.setReportletpath(rs.getString("reportletpath"));
-        	list.add(m);
-        }
-        rs.close();
-        con.close();
+        System.out.println(sql);
+        try {
+        	 PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery();
+             while (rs.next()) {
+             	RoleMenuModel m=new RoleMenuModel();
+             	m.setId(rs.getString("id"));
+             	m.setName(rs.getString("name"));
+             	m.setPid(rs.getString("pid"));
+             	m.setPname(rs.getString("pname"));
+             	m.setReportletpath(rs.getString("reportletpath"));
+             	list.add(m);
+             }
+             rs.close();
+             con.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		return list;
 	}
 	

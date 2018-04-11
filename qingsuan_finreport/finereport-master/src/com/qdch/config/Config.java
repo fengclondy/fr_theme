@@ -18,6 +18,7 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.activerecord.dialect.PostgreSqlDialect;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.template.Engine;
+import com.qdch.core.QdchController;
 import com.qdch.model.DemoModel;
 import com.qdch.p2p.controller.BorrowerController;
 import com.qdch.p2p.controller.BorrowerPhotoController;
@@ -28,10 +29,14 @@ import com.qdch.p2p.controller.PlatformController;
 import com.qdch.p2p.controller.ProjectplatformController;
 import com.qdch.p2p.controller.RiskController;
 import com.qdch.p2p.controller.SuperviseController;
-import com.qdch.p2p.model.BorrowerModel;
+import com.qdch.p2p.model.DefenInfoModel;
 import com.qdch.p2p.model.PlatformModel;
 import com.qdch.p2p.model.PpjyscModel;
 import com.qdch.p2p.model.ProjectStructureModel;
+import com.qdch.p2p.model.WorkInfoModel;
+import com.qdch.p2p.model.XinYongInfoModel;
+import com.qdch.p2p.model.ZiChanInfoModel;
+import com.qdch.p2p.model.ZiRanRenJiChuInfoMoDel;
 import com.qdch.util.TemplteLayoutTag;
 
 import com.qdch.xd.controller.AssetRiskController;
@@ -104,7 +109,7 @@ public class Config extends JFinalConfig {
 		
 
 	
-	
+		me.add("qdch/auth", QdchController.class);
 		me.add("qdch/xiaodai", XiaoDaiController.class,"/");
 		
 		/***小贷 doushuihai Controller START***/
@@ -217,11 +222,12 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("insight_pp_iterm_count", ProjectStructureModel.class);//平台画像的项目结构
 		/***doushuiahi Model START p2p***/
 		
-		/***p2p 高照  insight层Model SART***/
-		insight_arp.addMapping("insight_pp_score_info", BorrowerModel.class);//根据得分降序查找平台简称和得分
-		
-		
-		
+		/***p2p 高照  insight层Model p2p***/
+		insight_arp.addMapping("insight_pp_score_info", DefenInfoModel.class);//根据得分降序查找平台简称和得分
+		insight_arp.addMapping("insight_pp_person_info", ZiRanRenJiChuInfoMoDel.class);//查询自然人基本信息
+		insight_arp.addMapping("insight_pp_credit_info",XinYongInfoModel.class);//自然人信用信息
+		insight_arp.addMapping("insight_pp_asset_info",ZiChanInfoModel.class);//自然人资产信息
+		insight_arp.addMapping("insight_pp_job_info", WorkInfoModel.class);//自然人工作信息
 		/***小贷zuoqb insight层 Model START***/
 		
 		/*insight_arp.addMapping("hub_xd_fxzs", RiskCountModel.class);//小贷风险指数*/		
