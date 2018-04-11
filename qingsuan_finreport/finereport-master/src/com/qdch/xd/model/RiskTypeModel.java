@@ -16,6 +16,7 @@ public class RiskTypeModel extends Model<RiskTypeModel>{
 	public static final RiskTypeModel dao = new RiskTypeModel();
 
 
+
 	/**
 	 * 根据交易所信息来查询
 	 * @param type

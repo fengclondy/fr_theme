@@ -36,21 +36,33 @@
             flex: 2.02;
         }
         /*集中度*/
-        .informationList{
-            height: 100%;
-            padding: 1rem 2rem;
-        }
-        .informationList li{
-            padding: 0.5rem 0.2rem;
-            height: 25%;
-        }
-        .informationList li a{
-            display: inline-block;
-            font-size: 0.95rem;
-            cursor: pointer;
-
+        .jq22-content{ width: 80%; margin:0.8rem auto;}
+        .progressbar {
+            width: 100%;
+            margin-top: 5px;
+            margin-bottom: 1rem;
+            position: relative;
+            box-shadow: inset 0px 1px 1px rgba(0,0,0,.1);
 
         }
+
+        .proggress{
+            height: 8px;
+            width: 10px;
+            background-color: #3498db;
+        }
+        /*百分百注释*/
+        .percentCount{
+            float:right;
+            margin-top: -35px;
+            clear: both;
+            font-family: '微软雅黑';
+            font-size: 0.6rem;
+        }
+        .chartBody .jq22-content h3{
+            font-size: 0.7rem;
+        }
+    /*集中度 end*/
         /*四个小盒子*/
         .fl{
             float: left;
@@ -104,6 +116,67 @@
             font-size: 0.8rem;
             margin-left: 0.2rem;
         }
+		 /*项目结构*/
+        .model,.model1{
+            background: url("${contextPath}/static/img/com/bg_main.jpg") no-repeat;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            border-radius: .5rem .5rem 0 0;
+            width: 900px;
+            height: 500px;
+            margin-left: -450px;
+            margin-top: -250px;
+            color: #fff;
+            display:none;
+            z-index:1000;
+      
+           
+
+        }
+        /* header  可以删除*/
+        .header{
+            position: relative;
+            height: 1.8rem;
+            line-height: 1.8rem;
+            font-size: 0.7rem;
+            border-radius: .5rem .5rem 0 0;
+            background-color: #0080ff;
+            padding-left: 0.3rem;
+        }
+        .header span{
+            position: absolute;
+            right: .5rem;
+            top: 0.3rem;
+            width: 1rem;
+            height: 1rem;
+            text-align: center;
+            background-color: #fff;
+            border-radius: 50%;
+            line-height: 1rem;
+            cursor: pointer;
+            color: #00abde;
+            diplay:none;
+
+        }
+        .icon{
+            width: 1.5rem;
+            height: 1.5rem;
+            float: right;
+            background:url("${contextPath}/static/img/04pingtai/eject.gif");
+            background-size: contain;
+            border-radius: 50%;
+            cursor: pointer;
+            line-height: 1.5rem;
+        }
+        .icon:hover{
+            transition: all 0.2s;
+            transform: scale(1.2);
+        }
+        #div_container1 tr [rowspan]{
+            background-color: rgba(0,0,0,.2);
+        }
+        /*项目结构  end*/
 
 
     </style>
@@ -118,11 +191,9 @@
                 <div class="myOption selected"><span class="text"></span><span class="icon"></span>
                 </div>
                 <ul class="myOptionBox" id="jysselect">
-                    <!-- <li class="myOption selected">鲁金宝1</li>
-                    <li class="myOption">鲁金宝2</li>
-                    <li class="myOption">鲁金宝3</li> -->
+                   
                     ##for(j in jyslist!){
-                                <li id="${j.jysc!}" onclick=changeJysData(this) class="myOption">${j.jyscmc!}</li>                
+                                <li id="${j.jysc!}" onclick=changeJysData(this) class="myOption">${j.jysinfo!}</li>                
                                ##}
                 </ul>
             </div>
@@ -132,8 +203,9 @@
         <!--项目结构-->
         <div class="top-l">
             <div class="chartBox ec001">
-                <div class="chartTitle">
+                <div class="chartTitle tck1">
                     <h3>项目结构</h3>
+                    <div class="icon">1</div>
                 </div>
                 <div class="chartContent">
                     <div class="chartBody">
@@ -150,12 +222,16 @@
                 </div>
                 <div class="chartContent">
                     <div class="chartBody">
-                        <ul class="informationList">
-                            <li><a href="#">前十大借款人占比:<span>11%</span></a></li>
-                            <li><a href="#">前十大投资人占比:<span>11%</span></a></li>
-                            <li><a href="#">行业HHI指数：<span>4.9</span></a></li>
-                            <li><a href="#">地区HHI：<span>3.9</span></a></li>
-                        </ul>
+                        <div class="jq22-content">
+                            <h3 class="center">前十大借款人占比</h3>
+                            <div id="progressbar1"></div>
+                            <h3 class="center">前十大投资人占比</h3>
+                            <div id="progressbar2"></div>
+                            <h3 class="center">行业HHI指数</h3>
+                            <div id="progressbar3"></div>
+                            <h3 class="center">地区集中度</h3>
+                            <div id="progressbar4"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -177,8 +253,8 @@
                        <img src="${contextPath}/static/img/ptxmhx.png" alt="">
                    </div>
                    <div class="top-r_BoxContent">
-                       <span id="BoxContentNub02">23%</span><br>
-                       <span>代偿金额</span>
+                       <span id="BoxContentNub02">23%</span><span>万元</span><br>
+                       <span>逾期金额</span>
                    </div>
                </div>
             </div>
@@ -198,7 +274,7 @@
                     </div>
                     <div class="top-r_BoxContent">
                         <span class="BoxContentNub" id="BoxContentNub04">27</span><span>笔</span><br>
-                        <span>逾期次数</span>
+                        <span>代偿笔数</span>
                     </div>
                 </div>
             </div>
@@ -207,8 +283,9 @@
     <div class="bottom">
         <!--平台期限分布-->
         <div class="chartBox ec001">
-            <div class="chartTitle">
+            <div class="chartTitle tck2">
                 <h3>平台期限分布</h3>
+                <div class="icon">2</div>
             </div>
             <div class="chartContent">
                 <div class="chartBody">
@@ -228,10 +305,11 @@
                         <div class="mySelect" id="jingzhenglizhibiao2">
                             <div class="myOption selected"><span class="text"></span><span class="icon"></span>
                             </div>
-                            <ul class="myOptionBox">
-                                <li class="myOption selected">0-6个月</li>
-                                <li class="myOption">6-9个月</li>
-                                <li class="myOption">9-12个月</li>
+                            <ul class="myOptionBox" id="rangetypeSelect">
+                                
+                                ##for(r in rangetypeList!){
+                                	<li id="${r.range_type!}" onclick=changeRangeType(this) class="myOption">${r.range_type!}</li>
+                                ##}
                             </ul>
                         </div>
                     </div>
@@ -243,6 +321,108 @@
         </div>
 
     </div>
+  	 <!--项目结构  弹出框 start-->
+  	 <!--项目结构  弹出框 start-->
+    <div class="model">
+        <div class="header">项目结构详情<span>X</span></div>
+        <div id="div_container1" style="text-align:center;position:relative;height: 95%; overflow: auto;">
+            <!-- 固定表头 table外层必须包有一个div  id="my_div"   class="fakeContainer first_div" 引入superTables.js  在页面下面还需要调用 -->
+            <div style="height:100%;width: 100%;overflow: auto;" id="my_div1" class="fakeContainer first_div" >
+                <table border="1" id="demoTable1" style="border-collapse: collapse;overflow: auto">
+                    <tr id="my_tr1">
+                        <th class="center" rowspan="1">项目类型</th>
+                        <th class="center" rowspan="1">业务类型</th>
+                        <th class="center" rowspan="1">平均利率</th>
+                        <th class="center" rowspan="1">金额</th>
+                        <th class="center" rowspan="1">金额占比</th>
+                        <th class="center" rowspan="1">平均期限</th>
+
+                    </tr>
+
+                    <tr>
+                        <td class="center ziranren" rowspan="2">信用</td>
+                        <td class="center left">车押宝</td>
+                        <td class="center">12%</td>
+                        <td class="center">13%</td>
+                        <td class="center">23%</td>
+                        <td class="center">12%</td>
+
+
+                    </tr>
+                    <tr>
+                        <td class="center left">车贷</td>
+                        <td class="center">12%</td>
+                        <td class="center">13%</td>
+                        <td class="center">23%</td>
+                        <td class="center">12%</td>
+
+                    </tr>
+
+                    <tr>
+                        <td class="center left" rowspan="1">抵押</td>
+
+                        <td class="center">车贷</td>
+                        <td class="center">12%</td>
+                        <td class="center">13%</td>
+                        <td class="center">23%</td>
+                        <td class="center">12%</td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+    </div>
+      <div class="model1">
+        <div class="header">项目结构详情<span>X</span></div>
+        <div id="div_container2" style="text-align:center;position:relative;height: 95%; overflow: auto;">
+            <!-- 固定表头 table外层必须包有一个div  id="my_div"   class="fakeContainer first_div" 引入superTables.js  在页面下面还需要调用 -->
+            <div style="height:100%;width: 100%;overflow: auto;" id="my_div2" class="fakeContainer first_div" >
+                <table border="1" id="demoTable2" style="border-collapse: collapse;overflow: auto">
+                    <tr id="my_tr2">
+                        <th class="center" rowspan="1">项目期限</th>
+                        <th class="center" rowspan="1">平均利率</th>
+                        <th class="center" rowspan="1">金额</th>
+                        <th class="center" rowspan="1">金额占比</th>
+                        <th class="center" rowspan="1">还款方式</th>
+
+                    </tr>
+
+                    <tr>
+                        <td class="center">1</td>
+                        <td class="center">2</td>
+                        <td class="center">3</td>
+                        <td class="center">4</td>
+                        <td class="center">5</td>
+
+
+                    </tr>
+                    <tr>
+                        <td class="center">1</td>
+                        <td class="center">2</td>
+                        <td class="center">3</td>
+                        <td class="center">4</td>
+                        <td class="center">5</td>
+
+
+
+
+                    </tr>
+
+                    <tr>
+                        <td class="center">1</td>
+                        <td class="center">2</td>
+                        <td class="center">3</td>
+                        <td class="center">4</td>
+                        <td class="center">5</td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+    </div>
+    
+<!--项目结构  弹出框 end-->
+  	 
 </div>
 <script src="${contextPath}/static/asserts/js/echarts-4.0.js"></script>
 <script src="${contextPath}/static/asserts/js/jquery-2.2.4.js"></script>
@@ -252,6 +432,116 @@
     var allCharts = [];
     var ec001 = echarts.init($("#ec001_currentCompetitiveness")[0]);
     var ec002 = echarts.init($("#ec002_currentCompetitiveness")[0]);
+    var ec003 = echarts.init($("#ec001_currentCompetitiveness3")[0]);
+//  集中度
+    $(function(){
+    	//弹出框
+        $(".tck1 .icon").click(function () {
+            $('.model').css('display','block');
+            console.log('aaa');
+        });
+
+        $(".model>.header>span").click(function () {
+            $('.model').hide(500)
+        });
+        $(".tck2 .icon").click(function () {
+            $('.model1').css('display','block');
+            console.log('aaa');
+        });
+        $(".model1>.header>span").click(function () {
+            $('.model1').hide(500)
+        });
+        
+        //percentage  数据值
+        $('#progressbar1').LineProgressbar({
+            percentage: 64,
+            fillBackgroundColor: '#f1c40f',
+            height: '15px',
+            radius: '20px',
+            backgroundColor:'rgba(0,0,0,0.2)'
+
+        });
+        $('#progressbar2').LineProgressbar({
+            percentage: 42,
+            fillBackgroundColor: 'blue',
+            height: '15px',
+            radius: '20px',
+            backgroundColor:'rgba(0,0,0,0.2)'
+        });
+        $('#progressbar3').LineProgressbar({
+            percentage: 4.5,
+            fillBackgroundColor: '#f1c40f',
+            height: '15px',
+            radius: '20px',
+            backgroundColor:'rgba(0,0,0,0.2)'
+        });
+        $('#progressbar4').LineProgressbar({
+            percentage: 7.8,
+            fillBackgroundColor: 'blue',
+            height: '15px',
+            radius: '20px',
+            backgroundColor:'rgba(0,0,0,0.2)'
+        });
+    });
+
+    (function($){
+        'use strict';
+
+        $.fn.LineProgressbar = function(options){
+
+            var options = $.extend({
+                percentage : null,
+                ShowProgressCount: true,
+                duration: 1000,
+
+                // Styling Options
+                fillBackgroundColor: '#3498db',
+                backgroundColor: '#EEEEEE',
+                radius: '0px',
+                height: '10px',
+                width: '100%'
+            },options);
+
+            return this.each(function(index, el) {
+                // Markup
+                $(el).html('<div class="progressbar"><div class="proggress"></div><div class="percentCount"></div></div>');
+
+
+
+                var progressFill = $(el).find('.proggress');
+                var progressBar= $(el).find('.progressbar');
+
+
+                progressFill.css({
+                    backgroundColor : options.fillBackgroundColor,
+                    height : options.height,
+                    borderRadius: options.radius
+                });
+                progressBar.css({
+                    width : options.width,
+                    backgroundColor : options.backgroundColor,
+                    borderRadius: options.radius
+                });
+
+                // Progressing
+                progressFill.animate(
+                    {
+                        width: options.percentage + "%"
+                    },
+                    {
+                        step: function(x) {
+                            if(options.ShowProgressCount){
+                                $(el).find(".percentCount").text(Math.round(x) + "%");
+                            }
+                        },
+                        duration: options.duration
+                    }
+                );
+                ////////////////////////////////////////////////////////////////////
+            });
+        }
+    })(jQuery);
+    //集中度END
     $(function () {
         
         ec001.setOption(opt_pie);
@@ -260,7 +550,7 @@
        
         ec002.setOption(opt_pie);
        
-        var ec003 = echarts.init($("#ec001_currentCompetitiveness3")[0]);
+       
         ec003.setOption(opt_line);
         ec003.setOption({
             grid: {
@@ -292,18 +582,32 @@
         });
         //本页所有图表
         allCharts = [ec001, ec002];
+      
        
     });
+    var jysCode;
+    var rangetype;
     jysCode=$("#jysselect").find("li").eq(0).attr("id");
+    rangetype=$("#rangetypeSelect").find("li").eq(0).attr("id");
     init();
+    function changeRangeType(obj){
+		//获取交易所现在下拉选择值
+		rangetype=$(obj).attr("id");
+		getInterest();
+		
+	 }
     function changeJysData(obj){
 		//获取交易所现在下拉选择值
 		jysCode=$(obj).attr("id");
+		
 		init();
 	 }
     function init(){
     	getProjectStructure();
         getProjectterm();
+        getImportantRatio();
+        getInterest();
+        
     }
     //获取项目结构
     function getProjectStructure(){
@@ -316,9 +620,7 @@
        		console.log("---项目结构-----",seriesData)    		
        		ec001.setOption(opt_pie);
        	    ec001.setOption({
-                legend:{
-                    show:false
-                },
+              
                 grid:{
                     top:'10%',
                     left:'10%',
@@ -352,9 +654,7 @@
        		console.log("---平台期限分布-----",seriesData)    		
        		
        		ec002.setOption({
-                legend:{
-                    show:false
-                },
+             
                 grid:{
                     top:'10%',
                     left:'10%',
@@ -372,11 +672,77 @@
                 ]
             });
 
-
+			
        		
        		
        	});
       } 
+  //获取四个重要比率
+    function getImportantRatio(){
+      	 $.post("${contextPath}/qdch/project/getImporttantRatio",{"jys":jysCode},function(data){
+      		console.log("比率",data[2]);
+      		var yql=data[0].yql;
+      		var yqje=data[0].yqje;
+      		var dcje=data[0].dcje;
+      		var dcbs=data[0].dcbs;
+      		if(yql == null ){
+      			yql="/";
+      		}
+      		if(yqje == null ){
+      			yqje="/";
+      		}
+      		if(dcje == null ){
+      			dcje="/";
+      		}
+      		if(dcbs == null ){
+      			dcbs="/";
+      		}
+       		$("#BoxContentNub01").html(yql);
+       		$("#BoxContentNub02").html(yqje);
+       		$("#BoxContentNub03").html(dcje);
+       		$("#BoxContentNub04").html(dcbs);     		
+       	});
+      } 
+  	function getInterest(){
+  		$.post("${contextPath}/qdch/project/getInterest",{"jys":jysCode,"rangeType":rangetype},function(data){
+  			var seriesData=[];
+  			var yAxisData=[];
+  			$.each(data,function(index,item){
+  				yAxisData.push(item.vday);
+  				seriesData.push(item.interest);
+  				
+  			})
+  			console.log("=========利率========",data)
+  			ec003.setOption({
+  	            grid: {
+  	                top: "12%",
+  	                right:'5%',
+  	                left:'5%',
+  	                bottom: '15%'
+  	            },
+  	            legend: {
+  	                show: false
+  	            },
+  	            xAxis: {
+  	                name: '月份',
+  	                data: yAxisData
+  	            },
+  	            yAxis: {
+  	                name: '利率'
+  	            },
+  	            series: [
+  	                {
+  	                    name: '利率',
+  	                    type: 'line',
+  	                    symbol: 'circle',
+  	                    data: seriesData,
+  	                    areaStyle: lineAreaStyle(0)
+
+  	                }
+  	            ]
+  	        });
+  		})
+  	}
 </script>
 </body>
 </html>
