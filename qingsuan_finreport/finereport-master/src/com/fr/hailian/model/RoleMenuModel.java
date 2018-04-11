@@ -17,6 +17,13 @@ public class RoleMenuModel implements Serializable{
 	private String pid;
 	private String pname;
 	private String reportletpath;
+	private String desc;
+	public String getDesc() {
+		return desc;
+	}
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
 	public String getId() {
 		return id;
 	}

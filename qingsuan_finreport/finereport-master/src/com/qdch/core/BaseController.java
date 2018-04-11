@@ -107,10 +107,11 @@ public class BaseController extends Controller{
 		QdchUser user=new QdchUser();
 		String userName=c.getPara("userName");
 		String roleType=c.getPara("type");
+		String uid=c.getPara("uid");
 		if(StringUtils.isNotBlank(userName)){
 			//获取用户信息
-			String url="http://localhost:8075/WebReport/getAuthorityUserInfo?userName="+userName;
-			//String url=com.fr.hailian.core.Constants.WEB_DOMAIN+"/getAuthorityUserInfo?userName="+userName;
+			String url="http://localhost:8075/WebReport/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
+			//String url=com.fr.hailian.core.Constants.WEB_DOMAIN+"/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
 			if(StringUtils.isNotBlank(roleType)){
 				url+="&roleType="+roleType;
 			};
