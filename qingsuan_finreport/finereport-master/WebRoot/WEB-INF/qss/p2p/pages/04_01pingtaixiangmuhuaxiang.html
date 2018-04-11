@@ -117,10 +117,13 @@
             <div class="mySelect" id="jingzhenglizhibiao4">
                 <div class="myOption selected"><span class="text"></span><span class="icon"></span>
                 </div>
-                <ul class="myOptionBox">
-                    <li class="myOption selected">鲁金宝1</li>
+                <ul class="myOptionBox" id="jysselect">
+                    <!-- <li class="myOption selected">鲁金宝1</li>
                     <li class="myOption">鲁金宝2</li>
-                    <li class="myOption">鲁金宝3</li>
+                    <li class="myOption">鲁金宝3</li> -->
+                    ##for(j in jyslist!){
+                                <li id="${j.jysc!}" onclick=changeJysData(this) class="myOption">${j.jyscmc!}</li>                
+                               ##}
                 </ul>
             </div>
         </div>
@@ -247,59 +250,16 @@
 <script src="${contextPath}/static/js/chartsCom.js"></script>
 <script>
     var allCharts = [];
-
+    var ec001 = echarts.init($("#ec001_currentCompetitiveness")[0]);
+    var ec002 = echarts.init($("#ec002_currentCompetitiveness")[0]);
     $(function () {
-        var ec001 = echarts.init($("#ec001_currentCompetitiveness")[0]);
+        
         ec001.setOption(opt_pie);
-        ec001.setOption({
-            legend:{
-                show:false
-            },
-            grid:{
-                top:'10%',
-                left:'10%',
-                right:'10%',
-                bottom:'10%'
-            },
-            series : [
-                {
-                    name:'融资渠道',
-                    type:'pie',
-                    radius : '70%',
-                    center: ['50%', '50%'],
-                    data:[
-                        {value:10, name:'渠道1'},
-                        {value:14, name:'渠道2'},
-                        {value:16, name:'渠道3'},
-                        {value:18, name:'渠道4'},
-                        {value:22, name:'渠道5'}
-                    ]
-                }
-            ]
-        });
+       
 
-        var ec002 = echarts.init($("#ec002_currentCompetitiveness")[0]);
+       
         ec002.setOption(opt_pie);
-        ec002.setOption({
-            legend:{
-                show:false
-            },
-            series : [
-                {
-                    name:'货款用途',
-                    type:'pie',
-                    radius : '70%',
-                    center: ['50%', '50%'],
-                    data:[
-                        {value:10, name:'渠道1'},
-                        {value:14, name:'渠道2'},
-                        {value:16, name:'渠道3'},
-                        {value:18, name:'渠道4'},
-                        {value:22, name:'渠道5'}
-                    ]
-                }
-            ]
-        });
+       
         var ec003 = echarts.init($("#ec001_currentCompetitiveness3")[0]);
         ec003.setOption(opt_line);
         ec003.setOption({
@@ -332,10 +292,91 @@
         });
         //本页所有图表
         allCharts = [ec001, ec002];
-
+       
     });
+    jysCode=$("#jysselect").find("li").eq(0).attr("id");
+    init();
+    function changeJysData(obj){
+		//获取交易所现在下拉选择值
+		jysCode=$(obj).attr("id");
+		init();
+	 }
+    function init(){
+    	getProjectStructure();
+        getProjectterm();
+    }
+    //获取项目结构
+    function getProjectStructure(){
+      	 $.post("${contextPath}/qdch/project/getProjectStructure",{"jys":jysCode},function(data){   		
+       		
+       		var seriesData=[];
+       		$.each(data,function(index,item){       		
+	    			seriesData.push({value:item.value, name:item.iterm_type});    			
+      	 		});
+       		console.log("---项目结构-----",seriesData)    		
+       		ec001.setOption(opt_pie);
+       	    ec001.setOption({
+                legend:{
+                    show:false
+                },
+                grid:{
+                    top:'10%',
+                    left:'10%',
+                    right:'10%',
+                    bottom:'10%'
+                },
+                series : [
+                    {
+                        name:'项目结构',
+                        type:'pie',
+                        radius : '70%',
+                        center: ['50%', '50%'],
+                        data: seriesData
+                    }
+                ]
+            });
 
 
+       		
+       		
+       	});
+      } 
+    //获取平台期限分布
+    function getProjectterm(){
+      	 $.post("${contextPath}/qdch/project/getProjectStructure",{"jys":jysCode},function(data){   		
+       		
+       		var seriesData=[];
+       		$.each(data,function(index,item){       		
+	    			seriesData.push({value:item.value, name:item.iterm_term});    			
+      	 		});
+       		console.log("---平台期限分布-----",seriesData)    		
+       		
+       		ec002.setOption({
+                legend:{
+                    show:false
+                },
+                grid:{
+                    top:'10%',
+                    left:'10%',
+                    right:'10%',
+                    bottom:'10%'
+                },
+                series : [
+                    {
+                        name:'平台期限分布',
+                        type:'pie',
+                        radius : '70%',
+                        center: ['50%', '50%'],
+                        data: seriesData
+                    }
+                ]
+            });
+
+
+       		
+       		
+       	});
+      } 
 </script>
 </body>
 </html>

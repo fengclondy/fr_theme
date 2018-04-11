@@ -28,8 +28,62 @@ import com.qdch.p2p.controller.PlatformController;
 import com.qdch.p2p.controller.ProjectplatformController;
 import com.qdch.p2p.controller.RiskController;
 import com.qdch.p2p.controller.SuperviseController;
+import com.qdch.p2p.model.BorrowerModel;
 import com.qdch.p2p.model.PlatformModel;
+import com.qdch.p2p.model.PpjyscModel;
+import com.qdch.p2p.model.ProjectStructureModel;
 import com.qdch.util.TemplteLayoutTag;
+
+import com.qdch.xd.controller.AssetRiskController;
+import com.qdch.xd.controller.BusinessOverviewController;
+import com.qdch.xd.controller.ComplianceRiskController;
+import com.qdch.xd.controller.CreditRiskController;
+import com.qdch.xd.controller.DevelopmentCapacityController;
+import com.qdch.xd.controller.EventAuditController;
+import com.qdch.xd.controller.EventDecisionController;
+import com.qdch.xd.controller.EventProcessingController;
+import com.qdch.xd.controller.EventSeeDetailsController;
+import com.qdch.xd.controller.EventViewController;
+import com.qdch.xd.controller.ManagementRiskController;
+import com.qdch.xd.controller.MonthlyReportController;
+import com.qdch.xd.controller.OperationalCapabilityController;
+import com.qdch.xd.controller.ProfitabilityController;
+import com.qdch.xd.controller.ReputationRiskController;
+import com.qdch.xd.controller.RiskOverviewController;
+import com.qdch.xd.controller.XiaoDaiController;
+import com.qdch.xd.model.ComparisonOfCompeModel;
+import com.qdch.xd.model.CompetitiveRrendModel;
+import com.qdch.xd.model.ConRatioModel;
+import com.qdch.xd.model.CurrentComRankingModel;
+import com.qdch.xd.model.CustomerInfoModel;
+import com.qdch.xd.model.DefrateModel;
+import com.qdch.xd.model.DetailsQueryModel;
+import com.qdch.xd.model.DictModel;
+import com.qdch.xd.model.ExchangeInfoModel;
+import com.qdch.xd.model.GuaranteeContrastModel;
+import com.qdch.xd.model.IncomeAndLossrateModel;
+import com.qdch.xd.model.IndexRankingModel;
+import com.qdch.xd.model.JyscModel;
+import com.qdch.xd.model.KeyIndicatorsModel;
+import com.qdch.xd.model.LimitQueryModel;
+import com.qdch.xd.model.ManagementRiskListModel;
+import com.qdch.xd.model.MigrationRateModel;
+import com.qdch.xd.model.MonthlyReportListModel;
+import com.qdch.xd.model.MonthlyReportModel;
+import com.qdch.xd.model.PersonalCustomModel;
+import com.qdch.xd.model.ProportionModel;
+import com.qdch.xd.model.PublicCustomModel;
+import com.qdch.xd.model.RiskCountModel;
+import com.qdch.xd.model.RiskEventHistoryModel;
+import com.qdch.xd.model.RiskEventModel;
+import com.qdch.xd.model.RiskShowModel;
+import com.qdch.xd.model.RiskTrendDetailedModel;
+import com.qdch.xd.model.RiskTrendModel;
+import com.qdch.xd.model.RiskTypeModel;
+import com.qdch.xd.model.ScabilityModel;
+import com.qdch.xd.model.defrateRankModel;
+import com.qdch.xd.model.maxIntrateRankModel;
+
 
 
 public class Config extends JFinalConfig {
@@ -158,7 +212,14 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("insight_regulatory_report", MonthlyReportListModel.class);//监管月报
 		
 		arp.addMapping("hub_fxsj", ManagementRiskListModel.class);//字典信用风险的管理风险列表
-		/***doushuiahi Model START***/
+		/***doushuiahi Model START p2p***/
+		arp.addMapping("hub_pp_jysc", PpjyscModel.class);
+		insight_arp.addMapping("insight_pp_iterm_count", ProjectStructureModel.class);//平台画像的项目结构
+		/***doushuiahi Model START p2p***/
+		
+		/***p2p 高照  insight层Model SART***/
+		insight_arp.addMapping("insight_pp_score_info", BorrowerModel.class);//根据得分降序查找平台简称和得分
+		
 		
 		
 		/***小贷zuoqb insight层 Model START***/
@@ -208,6 +269,8 @@ public class Config extends JFinalConfig {
 			insight_arp.addMapping("hub_xd_fxzs",RiskCountModel.class);//小贷风险指数
 			insight_arp.addMapping("hub_xd_fxzs",RiskTrendModel.class);//风险趋势
 			insight_arp.addMapping("hub_xd_fxzsmx",RiskTrendDetailedModel.class);//风险趋势明细
+			insight_arp.addMapping("insight_xd_defrate",defrateRankModel.class);//不良率
+			insight_arp.addMapping("insight_xd_intrate",maxIntrateRankModel.class);//最高利率
 			
 		/***小贷 连纪明 insight层 Model END***/
 		
