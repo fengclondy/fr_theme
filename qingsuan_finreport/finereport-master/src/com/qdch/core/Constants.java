@@ -16,4 +16,8 @@ public class Constants {
 	
 	public static final String ATTR_TEMPLTE_DIR = "tpl_dir";
 	public final static String SESSION_USER = "login_user";
+	
+	public static final String URL_STRING="http://api.qixin.com/APITestService/";
+	
+	public static final String appkey="ada44bd0070711e6b8a865678b483fde";
 }

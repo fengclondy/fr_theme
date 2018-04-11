@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="${contextPath}/static/img/com/logo.png">
+    <link rel="stylesheet" href="${contextPath}/static/asserts/css/normalize.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/style.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/pageCom.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .fl{
+            float: left;
+        }
+        .fr{
+            float: right;
+        }
+
+        /*提交、删除  导航菜单*/
+        li{
+            list-style: none;
+        }
+        .NavList li img{
+            width: 0.8rem;
+            height: 0.8rem;
+            vertical-align: middle;
+            line-height: 1.2rem;
+        }
+        .NavList li span{
+            margin-left: 0.5rem;
+        }
+        input::placeholder {
+            padding-left: 0.2rem;
+        }
+          /*table表格内容格子*/
+        table {
+            width: 100%;
+            /*border-collapse:collapse;*/
+
+        }
+        thead > tr > th {
+            width: 6%;
+            padding: 0.5rem 1rem;
+            background-color:#00abde;
+            text-align: center;
+        }
+        tbody > tr > td {
+            /*display: table-header-group;*/
+            width: 6%;
+            font-size: .8rem;
+            padding: 1rem 1rem;
+            height: 2rem;
+            text-align: center;
+            border: 1px solid gray;
+        }
+				.whitePage table > tbody > tr > td{
+					padding: 0;
+				}
+				
+        table th,
+        table td{
+            position: relative;
+        }
+        input{
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        /* 注释注释 */
+        /*table表格内容格子*/
+        .tableBox{
+            margin-top: 0.3rem;
+        }
+        .one{
+            position: relative;
+            display: table-header-group;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+        }
+        .sel{
+            position:absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            width:100%;
+            height:100%;
+
+        }
+        .sel select{
+            width:100%;
+            height:100%;
+            border:0;
+        }
+        .inp{
+            width: 83%;
+            position:absolute;
+            left: 0;
+            top: 0;
+            border:0;
+            height: 100%;
+            /* border-top:1px solid #c1c1c1;
+            border-left:1px solid #c1c1c1;
+            border-bottom:1px solid #c1c1c1; */
+        }
+        .inp input{
+            width:100%;
+            border:0px;
+            display: block;
+            height: 100%;
+        }
+
+        .tableDiv{
+            margin-top: 0.2rem;
+        }
+
+    </style>
+</head>
+<body class="whitePage" id="05_01fengxianshijianchuli" data-title="风险事件处理">
+<div class="container">
+    <nav class="pagination">
+        <ul class="NavList">
+            <li><img src="${contextPath}/static/img/submit.gif" alt=""><span id="submit">提交</span></li>
+            <li><img src="${contextPath}/static/img/addition.gif" alt=""><span id="addRecord">增加记录</span></li>
+            <li><img src="${contextPath}/static/img/deleted.gif" alt=""><span id="deleteColumn">删除列行</span></li>
+        </ul>
+    </nav>
+    <div class="tableDiv" style="width:100%;overflow-x:auto;">
+        <table style="width:100%;">
+            <thead>
+            <tr>
+                <th>风险类别</th>
+                <th>风险指标</th>
+                <th>风险指标值</th>
+                <th>阙值</th>
+                <th>超出额</th>
+                <th>机构名称</th>
+                <th>结构代码</th>
+                <th>客户号</th>
+                <th>客户名称</th>
+                <th>业务菜单名称</th>
+                <th>业务菜单编码</th>
+                <th>业务类型</th>
+                <th>业务编码</th>
+                <th>处理状态</th>
+                <th>风险说明</th>
+                <th>备注</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+									<div class="one">
+											<span class="sel">
+													<select name="makeupCoSe" id="makeupCoSe" class="selected" >
+													<option value=""></option>
+														 ##for(j in type!){
+															<option value="${j.fxlb!}">${j.fxlb!}</option>
+														 ##}
+
+													</select>
+											</span>
+											<span class="inp">
+													<input type="text" name="makeupCo" id="makeupCo" class="inputs">
+											</span>
+									</div>
+                </td>
+                <td>
+									<div class="one">
+										<span class="sel">
+												<select name="makeupCoSe" id="riskIndex" class="selected" ">
+												<option value=""></option>
+
+												</select>
+										</span>
+										<span class="inp">
+												<input type="text" name="makeupCo" id="riskIndexCo" class="inputs">
+										</span>
+									</div>
+                </td>
+                <td><input type="text"></td>
+				<td><input type="text"></td>
+				<td><input type="text"></td>
+				<td><input type="text"></td>
+                <!--<td>-->
+									<!--<div class="one">-->
+										<!--<span class="sel">-->
+												<!--<select name="makeupCoSe" id="mechanism" class="selected" onChange="changeF();">-->
+												<!--<option value=""></option>-->
+												<!--<option  value='风险类型'>风险类型</option>-->
+												<!--<option  value='c++'>c++</option>-->
+												<!--<option  value='python'>python</option>-->
+												<!--</select>-->
+										<!--</span>-->
+										<!--<span class="inp">-->
+												<!--<input type="text" name="makeupCo" id="mechanismCo" class="inputs">-->
+										<!--</span>-->
+									<!--</div>-->
+								<!--</td>-->
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+				<td><input type="text"></td>
+                <!--<td>-->
+									<!--<div class="one">-->
+										<!--<span class="sel">-->
+												<!--<select name="makeupCoSe" id="business" class="selected" onChange="changeF();">-->
+												<!--<option value=""></option>-->
+												<!--<option  value='风险类型'>风险类型</option>-->
+												<!--<option  value='c++'>c++</option>-->
+												<!--<option  value='python'>python</option>-->
+												<!--</select>-->
+										<!--</span>-->
+										<!--<span class="inp">-->
+												<!--<input type="text" name="makeupCo" id="businessCo" class="inputs">-->
+										<!--</span>-->
+									<!--</div>-->
+								<!--</td>-->
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+				<td>
+					<div class="one">
+						<span class="sel">
+						<select name="makeupCoSe" id="status" class="selected" >
+							<option value=""></option>
+
+						</select>
+						</span>
+						<span class="inp">
+							<input type="text" name="makeupCo" id="businessCo" class="inputs">
+						</span>
+					</div>
+				</td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<script src="${contextPath}/static/asserts/js/jquery-2.2.4.js"></script>
+<script src="${contextPath}/static/js/pageCom.js"></script>
+<script src="${contextPath}/static/js/chartsCom.js"></script>
+
+</body>
+</html>
+<script language="javascript">
+    // function changeF() {
+    //     document.getElementById('makeupCo').value= document.getElementById('makeupCoSe').options[document.getElementById('makeupCoSe').selectedIndex].value;
+    //     // document.getElementsByClassName('inputs').value= document.getElementsByClassName('selected').options[document.getElementsByClassName('selected').selectedIndex].value;
+    //     document.getElementById('riskIndexCo').value= document.getElementById('riskIndex').options[document.getElementById('riskIndex').selectedIndex].value;
+		// 		document.getElementById('thresholdCo').value= document.getElementById('threshold').options[document.getElementById('threshold').selectedIndex].value;
+		// 		document.getElementById('mechanismCo').value= document.getElementById('mechanism').options[document.getElementById('mechanism').selectedIndex].value;
+		// 		document.getElementById('businessCo').value= document.getElementById('business').options[document.getElementById('business').selectedIndex].value;
+    // }
+	var riskIndex ;
+    $(function () {
+        getPullDown();
+        $('#makeupCoSe').on('blur',function () {
+            var a = $('#makeupCoSe option:selected').val();
+            var str  = "<option value=''></option>";
+            $.each(riskIndex, function(index, value, array) {
+                if(value.fxlb==a){
+                    str+="<option value='"+value.fxzb+"'>"+value.fxzb+"</option>";
+                }
+            });
+            $('#riskIndex').html("")
+            $('#riskIndex').append(str);
+        })
+
+
+    })
+
+	function getPullDown() {
+        $.ajax({
+            type: "POST",
+            url: "eventinput/getRisk",
+            data: {},
+            dataType: "json",
+            success: function (data) {
+				riskIndex = data.risk;
+				riskdata(data); //风险指标下拉框
+				exchangedata(data); //机构名称和机构代码下拉框
+
+            }
+        });
+    }
+    function riskdata(data) {
+        var statushtml = "<option value=''></option>";
+        $.each(data.status, function(index, value, array) {
+            statushtml+="<option value='"+value.fvalue+"'>"+value.fvalue+"</option>"
+        });
+        $("#status").html();
+        $("#status").append(statushtml);
+    }
+
+    /**
+	 * 交易所市场信息
+     * @param data
+     */
+    function exchangedata(data) {
+        var exchange = "<option value=''></option>";
+        var exchangecode = "<option value=''></option>";
+        $.each(data.exchange, function(index, value, array) {
+            exchange+="<option value='"+value.jysinfo+"'>"+value.jysinfo+"</option>"
+            exchange+="<option value='"+value.jys+"'>"+value.jys+"</option>"
+        });
+        $("#exchange").html();
+        $("#exchange").append(exchange);
+
+        $("#exchangecode").html();
+        $("#exchangecode").append(exchangecode);
+    }
+
+    //当划过阈值，计算超出额
+    function overmount(index) {
+
+    }
+
+    //提交
+    function sumit() {
+
+    }
+
+</script>
