@@ -17,6 +17,7 @@ import com.jfinal.plugin.activerecord.dialect.PostgreSqlDialect;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.template.Engine;
 import com.qdch.core.QdchController;
+import com.qdch.intercept.SecurityInterceptor;
 import com.qdch.model.DemoModel;
 import com.qdch.p2p.controller.BorrowerController;
 import com.qdch.p2p.controller.BorrowerPhotoController;
@@ -290,6 +291,7 @@ public class Config extends JFinalConfig {
 	}
 
 	public void configInterceptor(Interceptors me) {
+		me.add(new SecurityInterceptor());
 	}
 
 	public void configHandler(Handlers me) {

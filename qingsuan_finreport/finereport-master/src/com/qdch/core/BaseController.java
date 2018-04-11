@@ -6,6 +6,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -75,7 +76,11 @@ public class BaseController extends Controller{
 	 * @return_type   QdchUser
 	 */
 	public QdchUser getLoginUser() {
-		return this.getSessionAttr(Constants.SESSION_USER);
+		QdchUser user=this.getSessionAttr(Constants.SESSION_USER);
+		if(user==null){
+			user=new QdchUser();
+		}
+		return user;
 	}
 	/**
 	 * 设置session
@@ -97,6 +102,84 @@ public class BaseController extends Controller{
 		return parasUrl;
 	}
 	/**
+	 * @todo   处理菜单
+	 * @time   2018年4月11日 下午4:17:30
+	 * @author zuoqb
+	 * @return_type   List<RoleMenuModel>
+	 */
+	public List<RoleMenuModel> dealMenus(QdchUser user){
+		List<RoleMenuModel> menus=new ArrayList<RoleMenuModel>();
+		if(user!=null&&StringUtils.isNotBlank(user.getId())){
+			Set<RoleMenuModel> menuSet = new HashSet<RoleMenuModel>();
+			List<RoleModel> roles=user.getRoles();
+			//先去除重复
+			for(RoleModel role:roles){
+				for(RoleMenuModel menu:role.getMenu()){
+					menuSet.add(menu);
+				}
+			}
+			//按照pname/pid分组
+			List<RoleMenuModel> allMenu=new ArrayList<RoleMenuModel>();
+			allMenu.addAll(menuSet);
+			HashMap<String,Set<RoleMenuModel>> map=new HashMap<String, Set<RoleMenuModel>>();
+			for(RoleMenuModel m:allMenu){
+				String pname=m.getPname();
+				Set<RoleMenuModel> s=map.get(pname);
+				if(s==null){
+					s = new HashSet<RoleMenuModel>();
+					s.add(m);
+				}else{
+					s.add(m);
+				}
+				map.put(pname, s);
+			}
+			//循环map
+			Set<String> pNames=map.keySet();
+			List<String> names=new ArrayList<String>();
+			names.addAll(pNames);
+			for(String pname:names){
+				RoleMenuModel m=new RoleMenuModel();
+				m.setName(pname);
+				Set<RoleMenuModel> children=map.get(pname);
+				List<RoleMenuModel> cmenus=new ArrayList<RoleMenuModel>();
+				cmenus.addAll(children);
+				m.setChildren(cmenus);
+				menus.add(m);
+			}
+			
+		}
+		return menus;
+	}
+	/**
+	 * 
+	 * @todo   处理审批流权限
+	 * @time   2018年4月11日 下午4:46:56
+	 * @author zuoqb
+	 * @return_type   String
+	 */
+	public String judgeActivity(QdchUser user) {
+		String active = "";
+		if (user != null && StringUtils.isNotBlank(user.getId())) {
+			List<RoleModel> roles = user.getRoles();
+			for (RoleModel role : roles) {
+				String roleName = role.getRoleName();
+				if (StringUtils.isNotBlank(roleName)) {
+					if (roleName.contains("处理")) {
+						active = "处理";
+					} else if (roleName.contains("审批")) {
+						active = "审批";
+					} else if (roleName.contains("决策")) {
+						active = "决策";
+					}
+				}
+				if (StringUtils.isNotBlank(active)) {
+					break;
+				}
+			}
+		}
+		return active;
+	}
+	/**
 	 * 
 	 * @todo 用户认证处理
 	 * @time   2018年4月10日18:20:52
@@ -104,14 +187,18 @@ public class BaseController extends Controller{
 	 * @return_type   QdchUser
 	 */
 	public  QdchUser dealUser(BaseController c){
-		QdchUser user=new QdchUser();
+		QdchUser user=getLoginUser();
 		String userName=c.getPara("userName");
 		String roleType=c.getPara("type");
 		String uid=c.getPara("uid");
+		if(user!=null&&StringUtils.isNotBlank(user.getUsername())
+				&&user.getUsername().equals(userName)){
+			return user;
+		}
 		if(StringUtils.isNotBlank(userName)){
 			//获取用户信息
-			String url="http://localhost:8075/WebReport/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
-			//String url=com.fr.hailian.core.Constants.WEB_DOMAIN+"/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
+			//String url="http://localhost:8075/WebReport/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
+			String url=com.fr.hailian.core.Constants.WEB_DOMAIN+"/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
 			if(StringUtils.isNotBlank(roleType)){
 				url+="&roleType="+roleType;
 			};
@@ -128,20 +215,37 @@ public class BaseController extends Controller{
 						roles.add(r);
 					}
 					user.setRoles(roles);
-					user.setId(arr.get("id").toString());
-					user.setUsername(arr.getString("username"));
-					user.setRealname(arr.getString("realname"));
-					user.setMobile(arr.getString("mobile"));
-					user.setEmail(arr.getString("email"));
-					user.setDataScope(arr.getString("dataScope"));
-					if(StringUtils.isNotBlank(arr.getString("dataScope"))){
-						user.setJysList(Arrays.asList(arr.getString("dataScope").replaceAll("'", "").split(",")));
+					if(arr.has("id")){
+						user.setId(arr.get("id").toString());
+					}
+					if(arr.has("username")){
+						user.setUsername(arr.getString("username"));
+					}
+					if(arr.has("realname")){
+						user.setRealname(arr.getString("realname"));
+					}
+					if(arr.has("mobile")){
+						user.setMobile(arr.getString("mobile"));
+					}
+					if(arr.has("email")){
+						user.setEmail(arr.getString("email"));
+					}
+					if(arr.has("dataScope")){
+						user.setDataScope(arr.getString("dataScope"));
+						if(StringUtils.isNotBlank(arr.getString("dataScope"))){
+							user.setJysList(Arrays.asList(arr.getString("dataScope").replaceAll("'", "").split(",")));
+						}
 					}
 					//user=(QdchUser) HttpJsonHelper.toBeanContainList(arr, QdchUser.class, RoleModel.class, "roles");
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
 			}
+			//处理菜单
+			List<RoleMenuModel> menus=dealMenus(user);
+			user.setMenus(menus);
+			//处理审批流权限
+			user.setActivity(judgeActivity(user));
 		}
 		c.setSession(Constants.SESSION_USER, user);
 		return user;
