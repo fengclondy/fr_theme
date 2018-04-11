@@ -3,14 +3,25 @@ package com.qdch.core;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import com.fr.hailian.core.QdchUser;
+import com.fr.hailian.model.RoleMenuModel;
+import com.fr.hailian.model.RoleModel;
+import com.fr.hailian.util.HttpClientUtil;
+import com.fr.hailian.util.HttpJsonHelper;
 import com.jfinal.core.Controller;
 import com.jfinal.kit.JsonKit;
 /**
@@ -22,7 +33,7 @@ import com.jfinal.kit.JsonKit;
 public class BaseController extends Controller{
 	/**
 	 * 
-	 * @todo   获取当前用户数据权限-需要测试
+	 * @todo   获取当前用户数据权限-其实在这边不需要再次分发-以后优化
 	 * @time   2018年3月24日 下午4:27:14
 	 * @author zuoqb
 	 * @return_type   String
@@ -33,32 +44,26 @@ public class BaseController extends Controller{
 			return null;
 		}
 		String jysIds="";
-		for(String str:user.getJysList()){
-			jysIds+="'"+str+"',";
-		}
 		if(jysIds.length()>0){
-			jysIds=jysIds.substring(0,jysIds.length()-1);
-		}
-		if(jysIds.length()>0){
-			jysIds="("+jysIds+")";
+			jysIds="("+user.getDataScope()+")";
 		}
 		return jysIds;
 	}
-	
+	/**
+	 * 
+	 * @todo   p2p数据权限-其实在这边不需要再次分发-以后优化
+	 * @time   2018年4月10日 下午6:22:09
+	 * @author zuoqb
+	 * @return_type   String
+	 */
 	public String getDataScopeByUserNameForP2p(){
 		QdchUser user=getLoginUser();//从session或者UserUtil工具类（未封装）中获取
 		if(user==null||user.getJysList()==null||user.getJysList().size()==0){
 			return null;
 		}
 		String jysIds="";
-		for(String str:user.getJysList()){
-			jysIds+="'"+str+"',";
-		}
 		if(jysIds.length()>0){
-			jysIds=jysIds.substring(0,jysIds.length()-1);
-		}
-		if(jysIds.length()>0){
-			jysIds="("+jysIds+")";
+			jysIds="("+user.getDataScope()+")";
 		}
 		return jysIds;
 	}
@@ -91,7 +96,55 @@ public class BaseController extends Controller{
 		}
 		return parasUrl;
 	}
-
+	/**
+	 * 
+	 * @todo 用户认证处理
+	 * @time   2018年4月10日18:20:52
+	 * @author zuoqb
+	 * @return_type   QdchUser
+	 */
+	public  QdchUser dealUser(BaseController c){
+		QdchUser user=new QdchUser();
+		String userName=c.getPara("userName");
+		String roleType=c.getPara("type");
+		if(StringUtils.isNotBlank(userName)){
+			//获取用户信息
+			String url="http://localhost:8075/WebReport/getAuthorityUserInfo?userName="+userName;
+			//String url=com.fr.hailian.core.Constants.WEB_DOMAIN+"/getAuthorityUserInfo?userName="+userName;
+			if(StringUtils.isNotBlank(roleType)){
+				url+="&roleType="+roleType;
+			};
+			String result=HttpClientUtil.sendGetRequest(url, null);
+			if(StringUtils.isNotBlank(result)){
+				JSONObject arr;
+				try {
+					arr = new JSONObject(result);
+					JSONArray ja=new JSONArray(arr.get("roles").toString());
+					List<Object> rolsList=HttpJsonHelper.toDoubleList(ja, RoleModel.class, RoleMenuModel.class, "menu");
+					List<RoleModel> roles=new ArrayList<RoleModel>();
+					for(Object o:rolsList){
+						RoleModel r=(RoleModel)o;
+						roles.add(r);
+					}
+					user.setRoles(roles);
+					user.setId(arr.get("id").toString());
+					user.setUsername(arr.getString("username"));
+					user.setRealname(arr.getString("realname"));
+					user.setMobile(arr.getString("mobile"));
+					user.setEmail(arr.getString("email"));
+					user.setDataScope(arr.getString("dataScope"));
+					if(StringUtils.isNotBlank(arr.getString("dataScope"))){
+						user.setJysList(Arrays.asList(arr.getString("dataScope").replaceAll("'", "").split(",")));
+					}
+					//user=(QdchUser) HttpJsonHelper.toBeanContainList(arr, QdchUser.class, RoleModel.class, "roles");
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		c.setSession(Constants.SESSION_USER, user);
+		return user;
+	}
 
 	public String getRequestUrl() {
 		return getRequest().getRequestURL()

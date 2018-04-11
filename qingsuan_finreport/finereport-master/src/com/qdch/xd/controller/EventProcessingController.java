@@ -1,5 +1,6 @@
 package com.qdch.xd.controller;
 
+import com.fr.hailian.util.JDBCUtil;
 import com.fr.stable.StringUtils;
 
 import com.jfinal.plugin.activerecord.Model;
@@ -9,10 +10,8 @@ import com.qdch.util.ExportUtil;
 import com.qdch.xd.model.*;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * 
@@ -25,6 +24,7 @@ public class EventProcessingController extends BaseController {
 	private static ExchangeInfoModel exchangeInfoModelDao = ExchangeInfoModel.dao;
 	private static RiskTypeModel riskTypeModelDao = RiskTypeModel.dao;
 	private static RiskEventHistoryModel riskEventHistoryModel  = RiskEventHistoryModel.dao;
+	private static DictModel dictModelDao  = DictModel.dao;
 
 	/**
 	 * 
@@ -60,11 +60,11 @@ public class EventProcessingController extends BaseController {
 		String checkstatus = ""; // 处理状态
 		String role = "";
 		if(role.equals("处理人")){
-			checkstatus = " and clzt in (\"未处理\",\"驳回\",\"已排除\") ";
+			checkstatus = " and clzt in ('未处理','驳回','已排除') ";
 		}else if(role.equals("审核人")){
-			checkstatus = " and clzt in (\"已提交\",\"已排查\") ";
+			checkstatus = " and clzt in ('已提交','已排查') ";
 		}else if(role.equals("决策人")){
-			checkstatus = " and clzt in (\"已上报\",\"已查阅\"\"已确认\") ";
+			checkstatus = " and clzt in ('已上报','已查阅''已确认') ";
 		}
 		Page<RiskEventModel> page = riskEventModelDao.getRiskEvent(checkstatus,pageNum,pageSize,getRequest());
 		mRenderJson(page);
@@ -82,9 +82,11 @@ public class EventProcessingController extends BaseController {
 		List<RiskTypeModel> riskTypeList =  riskTypeModelDao.getTypeKind("3"); //风险类别
 		List<RiskTypeModel> riskList =  riskTypeModelDao.getByType("3");
 		List<ExchangeInfoModel> exchangeInfoModelList = exchangeInfoModelDao.getList(); //机构/市场
+
 		result.put("type",riskTypeList);
 		result.put("risk",riskList);
 		result.put("exchange",exchangeInfoModelList);
+		result.put("status",dictModelDao.getLabel(getPara("note")));
 		mRenderJson(result);
 	}
 
@@ -138,13 +140,84 @@ public class EventProcessingController extends BaseController {
         }
     }
 
-    public void submitCheck(){
-		RiskEventHistoryModel historyModel  = new RiskEventHistoryModel();
-		historyModel.set("clzt","111");
-		historyModel.save();
+	/**
+	 * 提交审核
+	 */
+	public void submitCheck(){
+		try {
+			RiskEventModel eventModel = riskEventModelDao.findById(getPara("id"));
+			eventModel.set("clzt",getPara("status"));
+			eventModel.set("shr","wf");
+			eventModel.set("report_id","wf");
+			eventModel.set("bz","wf");
+			eventModel.set("update_time",new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(System.currentTimeMillis()));
+			eventModel.dao.update();
 
-		mRenderJson(null);
+
+//			RiskEventHistoryModel historyModel  = RiskEventHistoryModel.dao;
+//			historyModel.set("fxsj_id","");
+	//		historyModel.set("fxsj_id",eventModel.get("fxsj_id")+"");
+	//		historyModel.set("shr",eventModel.get("shr")+"");
+	//		historyModel.set("report_id",eventModel.get("report_id")+"");
+	//		historyModel.set("bjsj",eventModel.get("bjsj")+"");
+	//		historyModel.set("fxlb",eventModel.get("fxlb")+"");
+	//		historyModel.set("fxzb",eventModel.get("fxzb")+"");
+	//		historyModel.set("fxzbz",eventModel.get("yuzhi")+"");
+	//		historyModel.set("yuzhi",eventModel.get("yuzhi")+"");
+	//		historyModel.set("cce",eventModel.get("cce")+"");
+	//		historyModel.set("jgdm",eventModel.get("jgdm")+"");
+	//		historyModel.set("jgmc",eventModel.get("jgmc")+"");
+	//		historyModel.set("cust_id",eventModel.get("cust_id")+"");
+	//		historyModel.set("khmc",eventModel.get("khmc")+"");
+	//		historyModel.set("ywcdbm",eventModel.get("ywcdbm")+"");
+	//		historyModel.set("ywcdmc",eventModel.get("ywcdmc")+"");
+	//		historyModel.set("ywlx",eventModel.get("ywlx")+"");
+	//		historyModel.set("ywbm",eventModel.get("ywbm")+"");
+
+	//		historyModel.set("update_time",new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(System.currentTimeMillis()));
+	//		historyModel.save();
+				StringBuffer sb = new StringBuffer();
+	//		sb.append("insert into hub_fxsj_audit_new(bjsj,fxlb,fxzb,fxzbz,yuzhi,cce," +
+	//				"jgdm,jgmc,cust_id,khmc,ywcdbm,ywcdmc,ywlx,ywbm,shr,clzt,fxsm,bz,fxsj_id,unit," +
+	//				"report_id,deal_id,update_time,jysfl,bq,yxcd,zbvalue)values(");
+				sb.append("insert into hub_fxsj_audit_new(shr,clzt,fxsj_id,update_time)values(");
+	//		sb.append(eventModel.get("bjsj")+"");
+	//		sb.append(eventModel.get("fxlb")+",");
+	//		sb.append(eventModel.get("fxzb")+",");
+	//		sb.append(eventModel.get("fxzbz")+",");
+	//		sb.append(eventModel.get("yuzhi")+",");
+	//		sb.append(eventModel.get("cce")+",");
+	//		sb.append(eventModel.get("jgdm")+",");
+	//		sb.append(eventModel.get("jgmc")+",");
+	//		sb.append(eventModel.get("cust_id")+",");
+	//		sb.append(eventModel.get("khmc")+",");
+	//		sb.append(eventModel.get("ywcdbm")+",");
+	//		sb.append(eventModel.get("ywcdmc")+",");
+	//		sb.append(eventModel.get("ywlx")+",");
+	//		sb.append(eventModel.get("ywbm")+",");
+				sb.append("'").append(eventModel.get("shr")+"',");
+				sb.append("'").append(eventModel.get("clzt")+"',");
+	//		sb.append(eventModel.get("fxsm")+",");
+			sb.append("'").append(eventModel.get("bz")+"',");
+				sb.append("'").append(eventModel.get("fxsj_id")+"',");
+	//		sb.append(eventModel.get("unit")+",");
+	//		sb.append(eventModel.get("report_id")+",");
+	//		sb.append(eventModel.get("deal_id")+",");
+				sb.append("'").append(eventModel.get("update_time")+"'");
+	//		sb.append(eventModel.get("jysfl")+",");
+	//		sb.append(eventModel.get("bq")+",");
+	//		sb.append(eventModel.get("yxcd")+",");
+	//		sb.append(eventModel.get("zbvalue"));
+			sb.append(")");
+			JDBCUtil.executeUpdate(sb.toString(),null);
+			mRenderJson(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+			mRenderJson(false);
+		}
 	}
+
+
 
 
 }

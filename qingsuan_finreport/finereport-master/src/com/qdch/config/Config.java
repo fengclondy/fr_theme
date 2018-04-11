@@ -1,4 +1,6 @@
 package com.qdch.config;
+import com.qdch.xd.controller.*;
+import com.qdch.xd.model.*;
 import org.beetl.core.GroupTemplate;
 import org.beetl.ext.jfinal3.JFinal3BeetlRenderFactory;
 
@@ -17,7 +19,11 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.activerecord.dialect.PostgreSqlDialect;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.template.Engine;
+
 import com.qdch.industry.controller.IndustryComController;
+
+import com.qdch.core.QdchController;
+
 import com.qdch.model.DemoModel;
 import com.qdch.p2p.controller.BorrowerController;
 import com.qdch.p2p.controller.BorrowerPhotoController;
@@ -28,8 +34,16 @@ import com.qdch.p2p.controller.PlatformController;
 import com.qdch.p2p.controller.ProjectplatformController;
 import com.qdch.p2p.controller.RiskController;
 import com.qdch.p2p.controller.SuperviseController;
+import com.qdch.p2p.model.DefenInfoModel;
 import com.qdch.p2p.model.PlatformModel;
+import com.qdch.p2p.model.PpjyscModel;
+import com.qdch.p2p.model.ProjectStructureModel;
+import com.qdch.p2p.model.WorkInfoModel;
+import com.qdch.p2p.model.XinYongInfoModel;
+import com.qdch.p2p.model.ZiChanInfoModel;
+import com.qdch.p2p.model.ZiRanRenJiChuInfoMoDel;
 import com.qdch.util.TemplteLayoutTag;
+
 import com.qdch.xd.controller.AssetRiskController;
 import com.qdch.xd.controller.BusinessOverviewController;
 import com.qdch.xd.controller.CommerceController;
@@ -97,6 +111,9 @@ import com.qdch.xd.model.RiskTrendDetailedModel;
 import com.qdch.xd.model.RiskTrendModel;
 import com.qdch.xd.model.RiskTypeModel;
 import com.qdch.xd.model.ScabilityModel;
+import com.qdch.xd.model.defrateRankModel;
+import com.qdch.xd.model.maxIntrateRankModel;
+
 
 
 public class Config extends JFinalConfig {
@@ -117,7 +134,7 @@ public class Config extends JFinalConfig {
 		
 
 	
-	
+		me.add("qdch/auth", QdchController.class);
 		me.add("qdch/xiaodai", XiaoDaiController.class,"/");
 		
 		/***小贷 doushuihai Controller START***/
@@ -147,6 +164,7 @@ public class Config extends JFinalConfig {
 		/***小贷zuoqb Controller END***/
 
 		me.add("qdch/eventSeeDetails", EventSeeDetailsController.class,"/");	//监管月报
+		me.add("qdch/eventinput", EventInputController.class,"/");	//风险事件填报
 		
 		/***p2p lixiaoyi Controller START ***/
 		me.add("qdch/borrower",BorrowerController.class,"/");    //p2p-借款人总览
@@ -170,6 +188,7 @@ public class Config extends JFinalConfig {
 
 	public void configPlugin(Plugins me) {
 		PropKit.use("config.txt");
+
 		//----qdchedw hub用户连接方式 start----
 		String jdbc = PropKit.get("jdbc");
 		String user = PropKit.get("user");
@@ -181,9 +200,10 @@ public class Config extends JFinalConfig {
 		arp.setBaseSqlTemplatePath(PathKit.getRootClassPath());
 		arp.addSqlTemplate("all.sql");
 		arp.setShowSql(true);
+		arp.setDialect(new PostgreSqlDialect());
 		me.add(arp);
 		// 配置Postgresql方言
-	    arp.setDialect(new PostgreSqlDialect());
+
 		//arp.addMapping("user", User.class);
 		arp.addMapping("hub_commerce_ref_jys", DemoModel.class);
 		arp.addMapping("hub_xd_jysc", JyscModel.class);
@@ -201,9 +221,10 @@ public class Config extends JFinalConfig {
 		insight_arp.setBaseSqlTemplatePath(PathKit.getRootClassPath());
 		insight_arp.addSqlTemplate("all.sql");
 		insight_arp.setShowSql(true);
+		insight_arp.setDialect(new PostgreSqlDialect());
 		me.add(insight_arp);
 		// 配置Postgresql方言
-		insight_arp.setDialect(new PostgreSqlDialect());
+
 		
 		
 		/**
@@ -226,9 +247,17 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("insight_regulatory_report", MonthlyReportListModel.class);//监管月报
 		
 		arp.addMapping("hub_fxsj", ManagementRiskListModel.class);//字典信用风险的管理风险列表
-		/***doushuiahi Model START***/
+		/***doushuiahi Model START p2p***/
+		arp.addMapping("hub_pp_jysc", PpjyscModel.class);
+		insight_arp.addMapping("insight_pp_iterm_count", ProjectStructureModel.class);//平台画像的项目结构
+		/***doushuiahi Model START p2p***/
 		
-		
+		/***p2p 高照  insight层Model p2p***/
+		insight_arp.addMapping("insight_pp_score_info", DefenInfoModel.class);//根据得分降序查找平台简称和得分
+		insight_arp.addMapping("insight_pp_person_info", ZiRanRenJiChuInfoMoDel.class);//查询自然人基本信息
+		insight_arp.addMapping("insight_pp_credit_info",XinYongInfoModel.class);//自然人信用信息
+		insight_arp.addMapping("insight_pp_asset_info",ZiChanInfoModel.class);//自然人资产信息
+		insight_arp.addMapping("insight_pp_job_info", WorkInfoModel.class);//自然人工作信息
 		/***小贷zuoqb insight层 Model START***/
 		
 		/*insight_arp.addMapping("hub_xd_fxzs", RiskCountModel.class);//小贷风险指数*/		
@@ -241,15 +270,16 @@ public class Config extends JFinalConfig {
 		
 		
 		/*** 小贷 王风 insight层 Model START ***/
-		insight_arp.addMapping("hub_fxsj", RiskEventModel.class);//风险事件
+		insight_arp.addMapping("hub_fxsj","fxsj_id", RiskEventModel.class);//风险事件
 		insight_arp.addMapping("hub_fxsj_audit_new", RiskEventHistoryModel.class);//风险事件历史信息
 		insight_arp.addMapping("hub_commerce_ref_jys", ExchangeInfoModel.class);//交易所信息
 		insight_arp.addMapping("hub_fxlb", RiskTypeModel.class);//风险类别
 		insight_arp.addMapping("hub_xd_cont_assu", GuaranteeContrastModel.class);//担保合同
 
 		arp.addMapping("hub_comm_param", DictModel.class);//字典表
-//
-		arp.addMapping("hub_xd_report_cont", CustomerInfoModel.class);//合同信息-基本信息
+
+//		arp.addMapping("hub_xd_report_cont", CustomerInfoModel.class);//合同信息-基本信息
+		arp.addMapping("hub_xd_cont_info", CustomerInfoModel.class);//合同信息-基本信息
 
 		arp.addMapping("hub_xd_cust_corp", PublicCustomModel.class);//对公客户
 
@@ -258,6 +288,7 @@ public class Config extends JFinalConfig {
 		arp.addMapping("hub_xd_loan_ledger", DetailsQueryModel.class);//明细查询
 
 		arp.addMapping("hub_xd_cred_indus_info", LimitQueryModel.class);//额度查询
+		arp.addMapping("hub_fxsj_yuzhi", ThresholdValueModel.class);//阈值信息
 
 
 
@@ -274,6 +305,8 @@ public class Config extends JFinalConfig {
 			insight_arp.addMapping("hub_xd_fxzs",RiskCountModel.class);//小贷风险指数
 			insight_arp.addMapping("hub_xd_fxzs",RiskTrendModel.class);//风险趋势
 			insight_arp.addMapping("hub_xd_fxzsmx",RiskTrendDetailedModel.class);//风险趋势明细
+			insight_arp.addMapping("insight_xd_defrate",defrateRankModel.class);//不良率
+			insight_arp.addMapping("insight_xd_intrate",maxIntrateRankModel.class);//最高利率
 			
 		/***小贷 连纪明 insight层 Model END***/
 		
@@ -323,7 +356,7 @@ public class Config extends JFinalConfig {
 		me.add(new ContextPathHandler("contextPath"));
 	}
 
-	public static void main(String[] args){
-		JFinal.start("WebRoot", 8090, "/", 5);
+	public static void main(String[] args){ 
+		JFinal.start("WebRoot", 8080, "/", 5);
 	}
 }
