@@ -1,19 +1,16 @@
 package com.fr.hailian.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.alibaba.fastjson.JSONArray;
 import com.fr.hailian.core.BaseServlet;
-import com.fr.hailian.model.RoleMenuModel;
+import com.fr.hailian.core.QdchUser;
 import com.fr.hailian.util.RoleUtil;
 import com.fr.json.JSONObject;
-import com.qdch.core.QdchUser;
 
 /**
  * 
@@ -76,10 +73,21 @@ public class AuthorityServlet extends BaseServlet {
 				roleName="P2P";
 			}
 			System.out.println("---roleName-------"+roleName);
-			//QdchUser user=RoleUtil.authorityUser(request, userName, roleName);
-			QdchUser user=new QdchUser();
-			List<RoleMenuModel> list=new ArrayList<RoleMenuModel>();
-			r.put("user", JSONArray.toJSONString(list));
+			QdchUser user=RoleUtil.authorityUser(request, userName, roleName);
+			r.put("user", com.alibaba.fastjson.JSONObject.toJSONString(user));
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("application/json; charset=utf-8");
+			PrintWriter out = null;
+			try {
+				out = response.getWriter();
+				out.append(com.alibaba.fastjson.JSONObject.toJSONString(user));
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				if (out != null) {
+					out.close();
+				}
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

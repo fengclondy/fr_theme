@@ -25,7 +25,7 @@ public class SynchronizeStatusService {
 	public HashMap<String, String> getDataById(String fxsjId) throws ClassNotFoundException, SQLException{
 		Connection conn = JDBCUtil.getConnection();
 		Statement st = conn.createStatement();
-		String sql = "select clzt,report_id,deal_id,update_time,bz from hub_fxsj_audit_new where fxsj_id = '"+fxsjId+"' order by update_time desc";
+		String sql = "select clzt,report_id,deal_id,update_time,bz,bq,yxcd from hub_fxsj_audit_new where fxsj_id = '"+fxsjId+"' order by update_time desc";
 		ResultSet rs = st.executeQuery(sql);
 		//状态只获取最新的
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -35,6 +35,8 @@ public class SynchronizeStatusService {
 			map.put("deal", rs.getString(3));
 			map.put("updateTime", rs.getString(4));
 			map.put("note", rs.getString(5));
+			map.put("bq", rs.getString(6));//新加字段
+			map.put("yxcd", rs.getString(7));//新加字段
 			map.put("success", "1");
 		}else{
 			//若没有数据，置空
@@ -43,6 +45,8 @@ public class SynchronizeStatusService {
 			map.put("deal", "");
 			map.put("updateTime", "");
 			map.put("note", "");
+			map.put("bq", "");//新加字段
+			map.put("yxcd", "");//新加字段
 			map.put("success", "0");
 		}
 		rs.close();
@@ -68,7 +72,7 @@ public class SynchronizeStatusService {
 		}else{
 			deal_id = param.get("deal");
 		}
-		String sql = "UPDATE hub_fxsj SET clzt='"+param.get("status")+"',report_id='"+param.get("report")+"', deal_id='"+deal_id+"',update_time='"+param.get("updateTime")+"',bz='"+param.get("note")+"' WHERE fxsj_id='"+fxsjId+"'";
+		String sql = "UPDATE hub_fxsj SET clzt='"+param.get("status")+"',report_id='"+param.get("report")+"', deal_id='"+deal_id+"',update_time='"+param.get("updateTime")+"',bz='"+param.get("note")+"',bq='"+param.get("bq")+"',yxcd='"+param.get("yxcd")+"' WHERE fxsj_id='"+fxsjId+"'";
 		System.out.println("sql-----"+sql);
 		st.executeUpdate(sql);
 		st.close();

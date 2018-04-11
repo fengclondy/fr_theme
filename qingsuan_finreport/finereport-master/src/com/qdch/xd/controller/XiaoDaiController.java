@@ -1,5 +1,6 @@
 package com.qdch.xd.controller;
 
+import com.fr.hailian.core.QdchUser;
 import com.qdch.core.BaseController;
 //@ControllerBind(controllerKey = "/jfinal/demo", viewPath = "/p2p")
 /***
@@ -8,25 +9,16 @@ import com.qdch.core.BaseController;
  *
  */
 public class XiaoDaiController extends BaseController {
-	//默认方法
-    public void index() {
-        renderText("This is a demo.");
-     }
-
-    
-
-
-
-  
-
     
     public void p2p() {
-    	setAttr("name", "value");
+    	QdchUser user=getLoginUser();
+    	System.out.println(user);
         render("p2p/pages/index.html");
      }
     
     public void xd() {
-    	setAttr("name", "value");
+    	QdchUser user=getLoginUser();
+    	System.out.println(user);
         render("xd/pages/index.html");
      }
 }
