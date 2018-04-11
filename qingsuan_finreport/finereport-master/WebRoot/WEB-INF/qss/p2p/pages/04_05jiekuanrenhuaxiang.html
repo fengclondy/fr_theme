@@ -129,11 +129,44 @@
         .del a{
             color: #000;
         }
-        /*table [rowspan]{*/
-            /*background:red;*/
-            /*color: red;*/
+        /*模态框strat*/
+        .model{
+            background: url("../img/com/bg_main.jpg") no-repeat;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            border-radius: .5rem .5rem 0 0;
+            width: 900px;
+            height: 500px;
+            margin-left: -450px;
+            margin-top: -250px;
+            color: #fff;
+            display: none;
+            z-index: 1001;
 
-        /*}*/
+        }
+        /*头部 header*/
+        .header{
+            position: relative;
+            height: 2rem;
+            height: 6%;
+            border-radius: .5rem .5rem 0 0;
+            background-color: #0080ff;
+        }
+        .header span{
+            position: absolute;
+            right: .5rem;
+            top: 0.3rem;
+            width: 1rem;
+            height: 1rem;
+            text-align: center;
+            background-color: #fff;
+            border-radius: 50%;
+            line-height: 1rem;
+            cursor: pointer;
+            color: #00abde;
+        }
+        /*模态框  end*/
 
     </style>
 </head>
@@ -215,21 +248,11 @@
                             <td class="center" rowspan="10" style="background:#00568c">基础信息</td>
                          </tr>
                          
-                             <tr>
+                        <tr>
                             <td class="center red">姓名</td>
-                            
-                            
-                           		 	<td class="center">&radic;</td>
-                           				
-                           		 	<td class="center">&Chi;</td>
-                           		
-                           
-                           
-                           
-                           
-                          
-
-                           
+                            <div id="name">
+                            	<td class="center td">&radic;</td>	
+                           	</div>   
                         </tr>
                         <tr>
                             <td class="center red">身份证</td>
@@ -625,15 +648,192 @@
                     </table>
                 </div>
             </div>
-            <!--模态框-->
-            <div id="model" >
-                <div class="modelTitle">
-                        <h5>借款人</h5>
-                        <div class="del fr"><a href="">x</a></div>
-                </div>
-                <div class="modelContent">
+           <!--模态框 start-->
+            <div class="model">
+                <div class="header"><span>X</span></div>
+                <div id="div_container1" style="text-align:center;position:relative;height: 95%; overflow: auto;">
+                    <!-- 固定表头 table外层必须包有一个div  id="my_div"   class="fakeContainer first_div" 引入superTables.js  在页面下面还需要调用 -->
+                    <div style="height:100%;width: 100%;overflow: auto;" id="my_div1" class="fakeContainer first_div" >
+                        <table border="1" id="demoTable1" style="border-collapse: collapse;overflow: auto">
+                            <tr id="my_tr1">
+                                <th class="center" rowspan="1"></th>
+                                <th class="center" rowspan="1">主要类别</th>
+                                <th class="center" rowspan="1">主要信息</th>
+                                <th class="center" rowspan="1">汇泉贷</th>
+                                <th class="center" rowspan="1">能否查看</th>
+                            </tr>
+
+                            <tr>
+                                <td class="center ziranren" rowspan="13">基本资料</td>
+                                <td class="center" rowspan="7">自热人</td>
+                                <td class="center left">身份证明</td>
+                                <td class="center">√</td>
+                                <td class="center">√</td>
+
+
+                            </tr>
+                            <tr>
+                                <td class="center left">工作证明</td>
+                                <td class="center">√</td>
+                                <td class="center">√</td>
+
+
+
+                            </tr>
+
+                            <tr>
+                                <td class="center left">收入证明</td>
+
+                                <td class="center">√</td>
+                                <td class="center">√</td>
+
+
+                            </tr>
+
+                            <tr>
+                                <td class="center left">居住证明</td>
+
+                                <td class="center">×</td>
+                                <td class="center">×</td>
+
+
+                            </tr>
+
+                            <tr>
+                                <td class="center left">车辆证</td>
+                                <td class="center">√</td>
+                                <td class="center">√</td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="center left">房产证</td>
+
+                                <td class="center">√</td>
+                                <td class="center">×</td>
+
+
+                            </tr>
+
+                            <tr>
+                                <td class="center left">征信报告</td>
+
+                                <td class="center">√</td>
+                                <td class="center">√</td>
+
+
+                            </tr>
+
+                            <tr>
+                                <td class="center " rowspan="6">企业</td>
+
+                                <td class="center left">营业执照</td>
+                                <td class="center">√</td>
+                                <td class="center">√</td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="center left">身份证照</td>
+
+                                <td class="center">√</td>
+                                <td class="center">√</td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="center left">征信报告</td>
+
+                                <td class="center">√</td>
+                                <td class="center">√</td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="center left" >税务登记证</td>
+
+                                <td class="center">√</td>
+                                <td class="center">√</td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="center left">办公产所</td>
+
+                                <td class="center">×</td>
+                                <td class="center">×</td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="center left">组织机构</td>
+
+                                <td class="center">×</td>
+                                <td class="center">√</td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="center" rowspan="7" >其他资料</td>
+                                <td class="center" rowspan="7" >抵押物</td>
+                                <td class="center left">借款申请</td>
+                                <td class="center">×</td>
+                                <td class="center">×</td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="center left">借款合同</td>
+
+                                <td class="center">√</td>
+                                <td class="center">×</td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="center left">抵押证(房产证)</td>
+
+                                <td class="center">√</td>
+                                <td class="center">√</td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="center left">抵/质合同</td>
+
+                                <td class="center">×</td>
+                                <td class="center">×</td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="center left">抵/质物</td>
+
+                                <td class="center">×</td>
+                                <td class="center">×</td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="center left">债券转让协议</td>
+
+                                <td class="center">√</td>
+                                <td class="center">×</td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="center left">担保合同</td>
+
+                                <td class="center">√</td>
+                                <td class="center">×</td>
+                            </tr>
+
+                        </table>
+                    </div>
                 </div>
             </div>
+            <!--模态框  end-->
         </div>
     </div>
 </div>
@@ -649,6 +849,23 @@
 </html>
 
 <script type="text/javascript">
+
+//模态框
+$(function () {
+    //显示model
+    $(".tableBox tbody tr td:nth-child(1) a").click(function(e){
+        e.preventDefault();
+        $(".model").css("display","block");
+
+    });
+    //异常model
+    $(".header span").click(function (e) {
+        e.preventDefault();
+        $(".model").hide(500);
+    });
+
+
+});
     //此处调用superTables.js里需要的函数
     $(document).ready(function(){
     // window.onload=function(){
@@ -707,6 +924,43 @@
 	   alert(pt);
 	   alert(youwu);
    })
+  $(function(){
+	start();
+	function start(){
+			$.ajax({
+				type: "POST",
+				url: "borrower/getBasicinfo",
+				data: {"jys":pt,"hasInfo":youwu},
+				dataType: "json",
+				success: function(data){
+					var content = "";
+					$(".td").remove();
+					$.each(data,function(index,items){
+						
+						$.each(items.zrr,function(index,item){
+							
+							if(items.jysinfo==item.jysinfo){
+								if(item.age==null){
+									content = content
+									+'<td class="center td">&Chi;</td>'
+								}else{
+									content = content
+									+'<td class="center td">&radic;</td>'
+								}
+							}
+							
+							
+						})
+						
+						
+					})
+					$("#name").html(content);
+				}
+				
+				
+			})	
+	}
+  })
   
     
    
