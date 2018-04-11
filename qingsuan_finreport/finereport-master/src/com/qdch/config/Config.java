@@ -30,6 +30,8 @@ import com.qdch.p2p.model.DefenInfoModel;
 import com.qdch.p2p.model.PlatformModel;
 import com.qdch.p2p.model.PpjyscModel;
 import com.qdch.p2p.model.ProjectStructureModel;
+import com.qdch.p2p.model.QiYeJiBenInFoModel;
+import com.qdch.p2p.model.QiYeQiTaInFoModel;
 import com.qdch.p2p.model.WorkInfoModel;
 import com.qdch.p2p.model.XinYongInfoModel;
 import com.qdch.p2p.model.ZiChanInfoModel;
@@ -219,6 +221,8 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("insight_pp_credit_info",XinYongInfoModel.class);//自然人信用信息
 		insight_arp.addMapping("insight_pp_asset_info",ZiChanInfoModel.class);//自然人资产信息
 		insight_arp.addMapping("insight_pp_job_info", WorkInfoModel.class);//自然人工作信息
+		insight_arp.addMapping("insight_pp_corp_info", QiYeJiBenInFoModel.class);//企业基本信息
+		insight_arp.addMapping("insight_pp_othe_info",QiYeQiTaInFoModel.class);//企业其它信息
 		/***小贷zuoqb insight层 Model START***/
 		
 		/*insight_arp.addMapping("hub_xd_fxzs", RiskCountModel.class);//小贷风险指数*/		

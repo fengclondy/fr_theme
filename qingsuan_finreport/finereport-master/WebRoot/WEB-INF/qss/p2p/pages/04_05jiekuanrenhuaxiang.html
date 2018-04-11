@@ -129,44 +129,11 @@
         .del a{
             color: #000;
         }
-        /*模态框strat*/
-        .model{
-            background: url("../img/com/bg_main.jpg") no-repeat;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            border-radius: .5rem .5rem 0 0;
-            width: 900px;
-            height: 500px;
-            margin-left: -450px;
-            margin-top: -250px;
-            color: #fff;
-            display: none;
-            z-index: 1001;
+        /*table [rowspan]{*/
+            /*background:red;*/
+            /*color: red;*/
 
-        }
-        /*头部 header*/
-        .header{
-            position: relative;
-            height: 2rem;
-            height: 6%;
-            border-radius: .5rem .5rem 0 0;
-            background-color: #0080ff;
-        }
-        .header span{
-            position: absolute;
-            right: .5rem;
-            top: 0.3rem;
-            width: 1rem;
-            height: 1rem;
-            text-align: center;
-            background-color: #fff;
-            border-radius: 50%;
-            line-height: 1rem;
-            cursor: pointer;
-            color: #00abde;
-        }
-        /*模态框  end*/
+        /*}*/
 
     </style>
 </head>
@@ -178,21 +145,36 @@
                 <h3>平台总览表</h3>
             </div>
             <div class="search">
-               <!--  <form action=""> -->
+                <form action="${contextPath}/qdch/borrower"  method="post">
+                  <input type="hidden" name="jys" id="jys">
+                  <input type="hidden" name="hasInfo" id="hasInfo">
                     <div class="inputGroup">
                         <label for="pingtaimingcheng">平台名称：</label>
                         <div class="mySelect" id="pingtaimingcheng">
                             <div class="myOption selected inputWidth"><span
                                     class="text"></span><span
                                     class="icon"></span></div>
-                            <ul class="myOptionBox">
+                         
+                           <ul class="myOptionBox" id="jysul">
                                 <li class="myOption selected pt" id="pingtaimingcheng01"></li>
-                                ##for(j in pingtailist){
-                                 <li class="myOption pt"  value="${j.jysinfo}">${j.jysinfo}</li>
-                                ##}
                                
+                               ##for(j in jyslist!){
+                                		
+                                	##if(j.jysinfo=='${jys}'){
+                                		 <li class="myOption pt selected" id="jys" value="${j.jysinfo}" name="${j.jysinfo}">
+		                                	 ${j.jysinfo!}
+		                                 </li>
+                                	##}else{
+                                		 <li class="myOption pt " id="jys" value="${j.jysinfo}" name="${j.jysinfo}">
+	                                	 ${j.jysinfo!}
+	                                 </li>
+                                	##} 
+                                	
+                                
+                                ##}
                                 
                             </ul>
+                            
                         </div>
                  
                     </div>
@@ -204,18 +186,18 @@
                                     class="icon"></span></div>
                             <ul class="myOptionBox">
                                 <li class="myOption selected youwu" id="pingtaimingcheng01"></li>
-                                <li class="myOption youwu" id="pingtaimingcheng02" value="you">有</li>
-                                <li class="myOption youwu" id="pingtaimingcheng03" value="wu">无</li>
+                                <li class="myOption youwu" id="pingtaimingcheng02" value="有">有</li>
+                                <li class="myOption youwu" id="pingtaimingcheng03" value="无">无</li>
                             </ul>
                         </div>
                  
                     </div>
                     <div class="inputGroup">
                         <div class="btnGroup search">
-                            <button class="active" id="search">查询</button>
+                            <button class="active" id="search" type="button">查询</button>
                         </div>
                     </div>
-               <!--  </form> -->
+              </form> 
 
             </div>
             <!--表格-->
@@ -235,8 +217,8 @@
                         <tr id="score">
                             <th class="center defen">得分</th>
                             
-                          ##for(j in pingtailist){
-                          	<th class="center">${j.fscore}</th>
+                          ##for(j in pingtailist!){
+                          	<th class="center">${j.fscore!}</th>
                           ##}
 
 
@@ -250,99 +232,92 @@
                          
                         <tr>
                             <td class="center red">姓名</td>
-                            <div id="name">
-                            	<td class="center td">&radic;</td>	
-                           	</div>   
+                            ##for(j in pingtailist!){
+                          	<td class="center">
+                          		${j.zrr.jkf!}
+                          		
+                          	 </td>
+                          ##}
                         </tr>
-                        <tr>
+                         <tr>
                             <td class="center red">身份证</td>
-                            
-                           		 <td class="center">&radic;</td>
-                           		
-                           		 <td class="center">&Chi;</td>
-                           		
+                            ##for(j in pingtailist!){
                            
-                      
-
-                        </tr>
+                          	<td class="center">
+                          		 ${j.zrr.sfz!}
+                          	 </td>
+                          ##}
+                 		</tr>
 
                         <tr>
                             <td class="center red">借款用途</td>
-							
-                           		 <td class="center">&radic;</td>
-                           		
-                           		 <td class="center">&Chi;</td>
+                             ##for(j in pingtailist!){
                            
-                             
-                           
-                        </tr>
+                          	<td class="center">
+                          		${j.zrr.jkyt!} 
+                          	 </td>
+                          ##}
+             			 </tr>
 
                         <tr>
                             <td class="center left">性别</td>
-
-                           		 <td class="center">&radic;</td>
-                           		
-                           		 <td class="center">&Chi;</td>
+                              ##for(j in pingtailist!){
                            
-                           
-                        </tr>
+                          	<td class="center">
+                          		${j.zrr.sex!} 
+                          	 </td>
+                          ##}
+					    </tr>
 
                         <tr>
                             <td class="center left">年龄</td>
-
+                             ##for(j in pingtailist!){
                            
-                           		 <td class="center">&radic;</td>
-                           		
-                           		 <td class="center">&Chi;</td>
-                          
-                            
-                         
-                           
+                          	<td class="center">
+                          		${j.zrr.age!}
+                          	 </td>
+                          ##}
                         </tr>
 
                         <tr>
                             <td class="center left">学历</td>
-
+                             ##for(j in pingtailist!){
                            
-                           		 <td class="center">&radic;</td>
-                           		
-                           		 <td class="center">&Chi;</td>
-                         
-                           
+                          	<td class="center">
+                          		${j.zrr.xuel!} 
+                          	 </td>
+                          ##}
                         </tr>
 
                         <tr>
                             <td class="center left">婚姻状况</td>
-
-                            
-                           		 <td class="center">&radic;</td>
-                           		
-                           		 <td class="center">&Chi;</td>
-                          
-                            
-                        </tr>
+                              ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.zrr.hyzk!} 
+                          	 </td>
+                          ##}
+          				 </tr>
 
                         <tr>
                             <td class="center left">户籍所在地</td>
-
-                          
-                           		 <td class="center">&radic;</td>
-                           		
-                           		 <td class="center">&Chi;</td>
-                           	
+                              ##for(j in pingtailist!){
                            
-                        </tr>
+                          	<td class="center">
+                          		${j.zrr.hjszd!} 
+                          	 </td>
+                          ##}
+					     </tr>
 
                         <tr>
                             <td class="center left">还款来源</td>
-
+                              ##for(j in pingtailist!){
                            
-                           		 <td class="center">&radic;</td>
-                           		
-                           		 <td class="center">&Chi;</td>
-                           
-                            
-                        </tr>
+                          	<td class="center">
+                          		 ${j.zrr.hkly!} 
+                          	 </td>
+                          ##}
+					    </tr> 
                    
                          
 
@@ -350,16 +325,24 @@
                             <td class="center" rowspan="7" style="background:#00568c">信用信息</td>
 
                             <td class="center red">在平台逾期次数</td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.xinyon.yqcs!} 
+                          	 </td>
+                          ##}
                            
                         </tr>
 
                         <tr>
                             <td class="center red">在平台的逾期金额</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.xinyon.yqje!} 
+                          	 </td>
+                          ##}
                            
                            
                           
@@ -368,8 +351,12 @@
                         <tr>
                             <td class="center red">征信报告近6个月逾期情况</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
+                             ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.xinyon.zxbg!} 
+                          	 </td>
+                          ##}
                            
                          
                         </tr>
@@ -377,8 +364,12 @@
                         <tr>
                             <td class="center red" >在其他平台有无借款</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
+                             ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.xinyon.jkf!} 
+                          	 </td>
+                          ##}
                            
                        
                         </tr>
@@ -386,8 +377,12 @@
                         <tr>
                             <td class="center left">历史借款笔数</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.xinyon.jkbs!} 
+                          	 </td>
+                          ##}
                           
                           
                         </tr>
@@ -395,8 +390,12 @@
                         <tr>
                             <td class="center left">历史借款总额</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
+                             ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.xinyon.jkze!} 
+                          	 </td>
+                          ##}
                           
                          
                         </tr>
@@ -404,8 +403,12 @@
                         <tr>
                             <td class="center left">增信措施</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.xinyon.zxcs!} 
+                          	 </td>
+                          ##}
                            
                           
                         </tr>
@@ -414,16 +417,24 @@
                             <td class="center" rowspan="5" style="background:#00568c">资产信息</td>
 
                             <td class="center left">收入情况</td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                             ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.zichan.srqk!} 
+                          	 </td>
+                          ##}
                            
                         </tr>
 
                         <tr>
                             <td class="center left">有无购房</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
+                             ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.zichan.gf_flag!} 
+                          	 </td>
+                          ##}
                             
                             
                           
@@ -432,8 +443,13 @@
                         <tr>
                             <td class="center left">有无购车</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            
+                             ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.zichan.gc_flag!} 
+                          	 </td>
+                          ##}
                             
                            
                         </tr>
@@ -441,8 +457,13 @@
                         <tr>
                             <td class="center left">有无房贷</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            
+                             ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.zichan.fd_flag!} 
+                          	 </td>
+                          ##}
                             
                            
                         </tr>
@@ -450,8 +471,13 @@
                         <tr>
                             <td class="center left">有无车贷</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            
+                             ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.zichan.cd_flag!} 
+                          	 </td>
+                          ##}
                            
                            
                         </tr>
@@ -460,8 +486,13 @@
                             <td class="center" rowspan="5" style="background:#00568c">工作信息</td>
 						
                             <td class="center red">从事行业</td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                           
+                             ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.job.industry!} 
+                          	 </td>
+                          ##}
                           
                          
 
@@ -470,16 +501,24 @@
                         <tr>
                             <td class="center left">工作城市</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.job.city!} 
+                          	 </td>
+                          ##}
                            
                         </tr>
 
                         <tr>
                             <td class="center left">公司规模</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
+                             ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.job.gsgm!} 
+                          	 </td>
+                          ##}
                            
                           
                         </tr>
@@ -487,8 +526,12 @@
                         <tr>
                             <td class="center left">工作岗位</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.job.gzgw!} 
+                          	 </td>
+                          ##}
                            
                          
                         </tr>
@@ -496,8 +539,12 @@
                         <tr>
                             <td class="center left">工作年限</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
+                             ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.job.gznx!} 
+                          	 </td>
+                          ##}
                           
                          
                         </tr>
@@ -507,8 +554,12 @@
 
                             <td class="center" rowspan="9" style="background:#00568c">基本信息</td>
                             <td class="center red">公司名称</td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                             ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.qjb.gsmc!} 
+                          	 </td>
+                          ##}
                            
 
                         </tr>
@@ -516,8 +567,12 @@
                         <tr>
                             <td class="center red">法定代表人</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
+                             ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.qjb.frdb!} 
+                          	 </td>
+                          ##}
                            
                           
                         </tr>
@@ -525,8 +580,12 @@
                         <tr>
                             <td class="center red">成立时间</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.qjb.clsj!} 
+                          	 </td>
+                          ##}
                           
                           
                         </tr>
@@ -534,17 +593,24 @@
                         <tr>
                             <td class="center red">注册资本</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
+                             ##for(j in pingtailist!){
                            
+                          	<td class="center">
+                          		 ${j.qjb.zczb!} 
+                          	 </td>
+                          ##}
                           
                         </tr>
 
                         <tr>
                             <td class="center red">注册地址</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.qjb.zcdz!} 
+                          	 </td>
+                          ##}
                            
                           
                         </tr>
@@ -552,17 +618,24 @@
                         <tr>
                             <td class="center red">营业范围</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            
+                           ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.qjb.yyfw!} 
+                          	 </td>
+                          ##}
                        
                         </tr>
 
                         <tr>
                             <td class="center left">公司规模</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.qjb.gsgm!} 
+                          	 </td>
+                          ##}
                             
                           
                         </tr>
@@ -570,8 +643,12 @@
                         <tr>
                             <td class="center red">资金用途</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
+                           ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.qjb.zjyt!} 
+                          	 </td>
+                          ##}
                            
                           
                         </tr>
@@ -579,8 +656,12 @@
                         <tr>
                             <td class="center red">还款来源</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.qjb.hkly!} 
+                          	 </td>
+                          ##}
                             
                         
                         </tr>
@@ -589,251 +670,104 @@
                             <td class="center" rowspan="8" style="background:#00568c">其他信息</td>
 
                             <td class="center red">借款企业收入情况</td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.qqt.srqk!} 
+                          	 </td>
+                          ##}
                            
                        
                         </tr>
                         <tr>
                             <td class="center red">借款人企业负债情况</td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.qqt.fzqk!} 
+                          	 </td>
+                          ##}
                             
                          
                         </tr>
                         <tr>
                             <td class="center red">借款人借款前6个月征信报告</td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.qqt.zxbg!} 
+                          	 </td>
+                          ##}
                             
                          
                         </tr>
                         <tr>
                             <td class="center red">借款人是否在其他平台借款</td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.qqt.qijk_flag!} 
+                          	 </td>
+                          ##}
                           
                          
                          
                         </tr>
                         <tr>
                             <td class="center left">股东信息</td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.qqt.gdxx!} 
+                          	 </td>
+                          ##}
                       
                         </tr>
                         <tr>
                             <td class="center left">法人信用信息</td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.qqt.frxyxx!} 
+                          	 </td>
+                          ##}
                            
                             
                          
                         </tr>
                         <tr>
                             <td class="center left">增信措施</td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                           >
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.qqt.zxcs!} 
+                          	 </td>
+                          ##}
                            
                         </tr>
                         <tr>
                             <td class="center left">涉诉信息</td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.qqt.ssxx!} 
+                          	 </td>
+                          ##}
                             
                           
                         </tr>
                     </table>
                 </div>
             </div>
-           <!--模态框 start-->
-            <div class="model">
-                <div class="header"><span>X</span></div>
-                <div id="div_container1" style="text-align:center;position:relative;height: 95%; overflow: auto;">
-                    <!-- 固定表头 table外层必须包有一个div  id="my_div"   class="fakeContainer first_div" 引入superTables.js  在页面下面还需要调用 -->
-                    <div style="height:100%;width: 100%;overflow: auto;" id="my_div1" class="fakeContainer first_div" >
-                        <table border="1" id="demoTable1" style="border-collapse: collapse;overflow: auto">
-                            <tr id="my_tr1">
-                                <th class="center" rowspan="1"></th>
-                                <th class="center" rowspan="1">主要类别</th>
-                                <th class="center" rowspan="1">主要信息</th>
-                                <th class="center" rowspan="1">汇泉贷</th>
-                                <th class="center" rowspan="1">能否查看</th>
-                            </tr>
-
-                            <tr>
-                                <td class="center ziranren" rowspan="13">基本资料</td>
-                                <td class="center" rowspan="7">自热人</td>
-                                <td class="center left">身份证明</td>
-                                <td class="center">√</td>
-                                <td class="center">√</td>
-
-
-                            </tr>
-                            <tr>
-                                <td class="center left">工作证明</td>
-                                <td class="center">√</td>
-                                <td class="center">√</td>
-
-
-
-                            </tr>
-
-                            <tr>
-                                <td class="center left">收入证明</td>
-
-                                <td class="center">√</td>
-                                <td class="center">√</td>
-
-
-                            </tr>
-
-                            <tr>
-                                <td class="center left">居住证明</td>
-
-                                <td class="center">×</td>
-                                <td class="center">×</td>
-
-
-                            </tr>
-
-                            <tr>
-                                <td class="center left">车辆证</td>
-                                <td class="center">√</td>
-                                <td class="center">√</td>
-
-                            </tr>
-
-                            <tr>
-                                <td class="center left">房产证</td>
-
-                                <td class="center">√</td>
-                                <td class="center">×</td>
-
-
-                            </tr>
-
-                            <tr>
-                                <td class="center left">征信报告</td>
-
-                                <td class="center">√</td>
-                                <td class="center">√</td>
-
-
-                            </tr>
-
-                            <tr>
-                                <td class="center " rowspan="6">企业</td>
-
-                                <td class="center left">营业执照</td>
-                                <td class="center">√</td>
-                                <td class="center">√</td>
-
-                            </tr>
-
-                            <tr>
-                                <td class="center left">身份证照</td>
-
-                                <td class="center">√</td>
-                                <td class="center">√</td>
-
-                            </tr>
-
-                            <tr>
-                                <td class="center left">征信报告</td>
-
-                                <td class="center">√</td>
-                                <td class="center">√</td>
-
-                            </tr>
-
-                            <tr>
-                                <td class="center left" >税务登记证</td>
-
-                                <td class="center">√</td>
-                                <td class="center">√</td>
-
-                            </tr>
-
-                            <tr>
-                                <td class="center left">办公产所</td>
-
-                                <td class="center">×</td>
-                                <td class="center">×</td>
-
-                            </tr>
-
-                            <tr>
-                                <td class="center left">组织机构</td>
-
-                                <td class="center">×</td>
-                                <td class="center">√</td>
-
-                            </tr>
-
-                            <tr>
-                                <td class="center" rowspan="7" >其他资料</td>
-                                <td class="center" rowspan="7" >抵押物</td>
-                                <td class="center left">借款申请</td>
-                                <td class="center">×</td>
-                                <td class="center">×</td>
-
-                            </tr>
-
-                            <tr>
-                                <td class="center left">借款合同</td>
-
-                                <td class="center">√</td>
-                                <td class="center">×</td>
-
-                            </tr>
-
-                            <tr>
-                                <td class="center left">抵押证(房产证)</td>
-
-                                <td class="center">√</td>
-                                <td class="center">√</td>
-
-                            </tr>
-
-                            <tr>
-                                <td class="center left">抵/质合同</td>
-
-                                <td class="center">×</td>
-                                <td class="center">×</td>
-
-                            </tr>
-
-                            <tr>
-                                <td class="center left">抵/质物</td>
-
-                                <td class="center">×</td>
-                                <td class="center">×</td>
-
-                            </tr>
-
-                            <tr>
-                                <td class="center left">债券转让协议</td>
-
-                                <td class="center">√</td>
-                                <td class="center">×</td>
-
-                            </tr>
-
-                            <tr>
-                                <td class="center left">担保合同</td>
-
-                                <td class="center">√</td>
-                                <td class="center">×</td>
-                            </tr>
-
-                        </table>
-                    </div>
+            <!--模态框-->
+            <div id="model" >
+                <div class="modelTitle">
+                        <h5>借款人</h5>
+                        <div class="del fr"><a href="">x</a></div>
+                </div>
+                <div class="modelContent">
                 </div>
             </div>
-            <!--模态框  end-->
         </div>
     </div>
 </div>
@@ -849,25 +783,30 @@
 </html>
 
 <script type="text/javascript">
-
-//模态框
-$(function () {
-    //显示model
-    $(".tableBox tbody tr td:nth-child(1) a").click(function(e){
-        e.preventDefault();
-        $(".model").css("display","block");
-
-    });
-    //异常model
-    $(".header span").click(function (e) {
-        e.preventDefault();
-        $(".model").hide(500);
-    });
-
-
-});
+	var pt="${jys!}";
+	var youwu="${hasInfo!}";
+	
     //此处调用superTables.js里需要的函数
     $(document).ready(function(){
+    	    //获取到选择平台的值
+    	    $(".pt").click(function(){
+    	    	pt=$(this).attr('value');
+    	    	 
+    	    });
+    	    
+    	    //获取到有无的值
+    	    $(".youwu").click(function(){
+    	    	youwu=$(this).attr('value');
+    	    });
+     	
+    	   $("#search").click(function(){
+    		   
+    	   alert(pt);
+    		  $("#jys").val(pt);
+    		  $("#hasInfo").val(youwu);
+    		  $("form").submit();
+    	   });
+    	   
     // window.onload=function(){
         new superTable("demoTable", {cssSkin : "sDefault",
             fixedCols : 2, //固定几列
@@ -903,67 +842,7 @@ $(function () {
         $(".del a").click(function () {
             $('#model').css('display','none');
         });
-    })
+    });
     
    
-    var pt="";
-    var youwu="";
-    //获取到选择平台的值
-    $(".pt").click(function(){
-    	pt=$(this).attr('value');
-    })
-    //获取到有无的值
-    $(".youwu").click(function(){
-    	youwu=$(this).attr('value');
-    })
-  
-    	
-   
- 	
-   $("#search").click(function(){
-	   alert(pt);
-	   alert(youwu);
-   })
-  $(function(){
-	start();
-	function start(){
-			$.ajax({
-				type: "POST",
-				url: "borrower/getBasicinfo",
-				data: {"jys":pt,"hasInfo":youwu},
-				dataType: "json",
-				success: function(data){
-					var content = "";
-					$(".td").remove();
-					$.each(data,function(index,items){
-						
-						$.each(items.zrr,function(index,item){
-							
-							if(items.jysinfo==item.jysinfo){
-								if(item.age==null){
-									content = content
-									+'<td class="center td">&Chi;</td>'
-								}else{
-									content = content
-									+'<td class="center td">&radic;</td>'
-								}
-							}
-							
-							
-						})
-						
-						
-					})
-					$("#name").html(content);
-				}
-				
-				
-			})	
-	}
-  })
-  
-    
-   
-    
-
 </script>

@@ -18,7 +18,7 @@ import com.qdch.model.DemoModel;
  * 
  * @author doush
  * @date 2018年3月26日
- * @TODO 获取交易市场
+ * @TODO 获取交易市场 --小贷
  */
 public class JyscModel extends Model<JyscModel>{
 

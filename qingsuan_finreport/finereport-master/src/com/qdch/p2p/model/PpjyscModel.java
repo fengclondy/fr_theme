@@ -6,7 +6,7 @@ import org.apache.commons.lang.StringUtils;
 
 import com.jfinal.plugin.activerecord.Model;
 /**
- * 获取字典平台信息
+ * 获取字典平台信息-P2P
 * @author doushuihai  
 * @date 2018年4月10日上午10:21:25  
 * @TODO
