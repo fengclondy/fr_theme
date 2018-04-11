@@ -26,10 +26,13 @@ import com.qdch.p2p.controller.PlatformController;
 import com.qdch.p2p.controller.ProjectplatformController;
 import com.qdch.p2p.controller.RiskController;
 import com.qdch.p2p.controller.SuperviseController;
+import com.qdch.p2p.model.AverageTimeModel;
 import com.qdch.p2p.model.BorrowerModel;
+import com.qdch.p2p.model.CustNumberModel;
 import com.qdch.p2p.model.PlatformModel;
 import com.qdch.p2p.model.PpjyscModel;
 import com.qdch.p2p.model.ProjectStructureModel;
+import com.qdch.p2p.model.TotalTranNumModel;
 import com.qdch.util.TemplteLayoutTag;
 import com.qdch.xd.controller.AssetRiskController;
 import com.qdch.xd.controller.BusinessOverviewController;
@@ -256,15 +259,25 @@ public class Config extends JFinalConfig {
 		
 		
 		/***小贷 连纪明 insight层 Model START ***/
-		
 			insight_arp.addMapping("hub_xd_fxzs",RiskCountModel.class);//小贷风险指数
 			insight_arp.addMapping("hub_xd_fxzs",RiskTrendModel.class);//风险趋势
 			insight_arp.addMapping("hub_xd_fxzsmx",RiskTrendDetailedModel.class);//风险趋势明细
 			insight_arp.addMapping("insight_xd_defrate",defrateRankModel.class);//不良率
 			insight_arp.addMapping("insight_xd_intrate",maxIntrateRankModel.class);//最高利率
-			
 		/***小贷 连纪明 insight层 Model END***/
 		
+			
+			
+			
+			
+		/***p2p 连纪明 insight层 Model START ***/
+			
+			insight_arp.addMapping("insight_pp_tran_number",TotalTranNumModel.class);//交易总量，总成交额
+			insight_arp.addMapping("insight_pp_average_time",AverageTimeModel.class);//平均满标用时
+			insight_arp.addMapping("insight_pp_cust_number",CustNumberModel.class);//人均借款，人均投资
+			
+			
+		/***p2p 连纪明 insight层 Model END***/
 		
 		
 		
@@ -291,6 +304,6 @@ public class Config extends JFinalConfig {
 	}
 
 	public static void main(String[] args){ 
-		JFinal.start("WebRoot", 8080, "/", 5);
+		JFinal.start("WebRoot", 8090, "/", 5);
 	}
 }
