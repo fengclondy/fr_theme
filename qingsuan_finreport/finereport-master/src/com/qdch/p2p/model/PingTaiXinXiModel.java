@@ -11,10 +11,10 @@ import com.jfinal.plugin.activerecord.Model;
  * @date 2018年4月10日
  * @TODO 平台信息
  */
-public class ptxxModel extends Model<ptxxModel>{
+public class PingTaiXinXiModel extends Model<PingTaiXinXiModel>{
 
 	private static final long serialVersionUID = 1L;
-	public static final ptxxModel dao = new ptxxModel();
+	public static final PingTaiXinXiModel dao = new PingTaiXinXiModel();
 
 	/**
 	 * 
@@ -22,11 +22,12 @@ public class ptxxModel extends Model<ptxxModel>{
 	 * @date 2018年4月10日
 	 * @TODO 获取平台信息
 	 */
-	public List<ptxxModel> getPtxx(String jysIds){
+	public List<PingTaiXinXiModel> getPtxx(String jysIds){
 		String sql = "select * from hub_pp_jysc";
 		if (StringUtils.isNotBlank(jysIds)) {
 			sql += " jysc in "+jysIds+"";
 		}
+		sql += " order by jysc";
 		return dao.find(sql);
 	}
 	/**
@@ -35,7 +36,7 @@ public class ptxxModel extends Model<ptxxModel>{
 	 * @date 2018年4月11日
 	 * @TODO 根据平台获取平台信息
 	 */
-	public List<ptxxModel> getPtxxByJysc(String jysIds,String jysc){
+	public List<PingTaiXinXiModel> getPtxxByJysc(String jysIds,String jysc){
 		String sql = "select * from hub_pp_jysc where 1=1";
 		if (StringUtils.isNotBlank(jysIds)) {
 			sql += " and jysc in "+jysIds+"";

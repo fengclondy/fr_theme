@@ -1,4 +1,5 @@
 package com.qdch.config;
+
 import org.beetl.core.GroupTemplate;
 import org.beetl.ext.jfinal3.JFinal3BeetlRenderFactory;
 
@@ -17,31 +18,46 @@ import com.jfinal.plugin.activerecord.dialect.PostgreSqlDialect;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.template.Engine;
 import com.qdch.core.QdchController;
-import com.qdch.industry.controller.IndustryComController;
 import com.qdch.intercept.SecurityInterceptor;
 import com.qdch.model.DemoModel;
 import com.qdch.p2p.controller.BorrowerController;
 import com.qdch.p2p.controller.BorrowerPhotoController;
 import com.qdch.p2p.controller.CompanyFeelController;
 import com.qdch.p2p.controller.DealplatformController;
+import com.qdch.p2p.controller.IndustryCommController;
 import com.qdch.p2p.controller.PlatformAlertController;
 import com.qdch.p2p.controller.PlatformController;
 import com.qdch.p2p.controller.ProjectplatformController;
 import com.qdch.p2p.controller.RiskController;
 import com.qdch.p2p.controller.SuperviseController;
 import com.qdch.p2p.model.AverageTimeModel;
+import com.qdch.p2p.model.AvgTermTimeModel;
+import com.qdch.p2p.model.CoBusinessTypeModel;
+import com.qdch.p2p.model.CoChangeModel;
+import com.qdch.p2p.model.CoCompanyBrachModel;
+import com.qdch.p2p.model.CoCompanyInfoModel;
+import com.qdch.p2p.model.CoCompanyTypeModel;
+import com.qdch.p2p.model.CoCorePersonModel;
+import com.qdch.p2p.model.CoExecptionModel;
+import com.qdch.p2p.model.CoShareholderInfoModel;
 import com.qdch.p2p.model.CustNumberModel;
 import com.qdch.p2p.model.DefenInfoModel;
 import com.qdch.p2p.model.DiYaShenHeModel;
+import com.qdch.p2p.model.FenSanDuJiSuanModel;
+import com.qdch.p2p.model.FullScaleTimeModel;
 import com.qdch.p2p.model.ImportantRatioModel;
 import com.qdch.p2p.model.InterestModel;
 import com.qdch.p2p.model.JiaoYiLiangModel;
+import com.qdch.p2p.model.LoanBalanceModel;
 import com.qdch.p2p.model.PingTaiRenShuModel;
+import com.qdch.p2p.model.PingTaiXinXiModel;
+import com.qdch.p2p.model.PingTaiZhuangTaiModel;
 import com.qdch.p2p.model.PlatformModel;
 import com.qdch.p2p.model.PpjyscModel;
 import com.qdch.p2p.model.ProjectStructureModel;
 import com.qdch.p2p.model.QiYeJiBenInFoModel;
 import com.qdch.p2p.model.QiYeQiTaInFoModel;
+import com.qdch.p2p.model.RenJunCiShuModel;
 import com.qdch.p2p.model.ShenHeQiYeModel;
 import com.qdch.p2p.model.ShenHeZiLiaoZiRanRenModel;
 import com.qdch.p2p.model.TotalTranNumModel;
@@ -50,7 +66,6 @@ import com.qdch.p2p.model.XinXiPiLouModel;
 import com.qdch.p2p.model.XinYongInfoModel;
 import com.qdch.p2p.model.ZiChanInfoModel;
 import com.qdch.p2p.model.ZiRanRenJiChuInfoMoDel;
-import com.qdch.p2p.model.ptxxModel;
 import com.qdch.util.TemplteLayoutTag;
 import com.qdch.xd.controller.AssetRiskController;
 import com.qdch.xd.controller.BusinessOverviewController;
@@ -186,9 +201,9 @@ public class Config extends JFinalConfig {
 		me.add("qdch/companyfeel",CompanyFeelController.class,"/");  //p2p-企业舆情
 		me.add("qdch/supervise",SuperviseController.class,"/");  //p2p-监管月报
 		me.add("qdch/platformalert",PlatformAlertController.class,"/"); //p2p-平台总览弹出
-		
+		me.add("qdch/industry",IndustryCommController.class,"/");//p2p-工商新内容
 		/***工商 lixiaoyi Controller START ***/
-		me.add("qdch/industry",IndustryComController.class,"/"); //工商入口
+		//me.add("qdch/industry",IndustryComController.class,"/"); //工商入口
 		
 	}
 
@@ -345,7 +360,7 @@ public class Config extends JFinalConfig {
 		
 		/***小贷 李晓依 insight层 Model START ***/
 		insight_arp.addMapping("insight_xd_jysc_info", ProportionModel.class);//小贷-管理风险-占比
-		
+		/***小贷 李晓依 hub层 Model START***/
 		arp.addMapping("hub_commerce_enterprise", CompanysInfoModel.class);//工商-企业信息获取
 		arp.addMapping("hub_commerce_co_shareholder", CoShareHolderModel.class);//工商-股东/对外投资人信息
 		arp.addMapping("hub_commerce_co_change_log", CoChangeLogModel.class);//工商-信息变更记录
@@ -366,7 +381,16 @@ public class Config extends JFinalConfig {
         arp.addMapping("hub_commerce_co_finance_state", CoReportModel.class);//工商-企业年报-财务信息
         arp.addMapping("hub_commerce_co_stock_change_log", CoStockchangeModel.class);//工商-股权变更
 
-
+    	/***p2p 李晓依 hub层 Model START***/
+        
+        arp.addMapping("hub_static_company_info", CoCompanyInfoModel.class);//p2p-工商静态-公司信息
+        arp.addMapping("hub_static_company_type_info", CoCompanyTypeModel.class);//p2p-工商-静态-公司属性
+        arp.addMapping("hub_static_important_person ", CoCorePersonModel.class);//p2p-工商-静态-公司主要人物
+        arp.addMapping("hub_static_change_log", CoChangeModel.class);//p2p-工商-静态-变更记录
+        arp.addMapping("hub_static_company_branch", CoCompanyBrachModel.class);//p2p-工商-静态-分支机构
+        arp.addMapping("hub_static_operation_exception", CoExecptionModel.class);//p2p-工商-静态-经营异常
+        arp.addMapping("hub_static_shareholder_info", CoShareholderInfoModel.class);//p2p-工商-静态-股东信息
+        arp.addMapping("hub_static_business_type", CoBusinessTypeModel.class);//p2p-工商-静态-行业分类
 		
 		
 		/***小贷 王风 insight层 Model START***/
@@ -375,10 +399,16 @@ public class Config extends JFinalConfig {
 		
 		/***p2p 韩朋达 insight层 Model START***/
 		insight_arp.addMapping("insight_pp_overview", PlatformModel.class); //p2p 平台总览表
-		arp.addMapping("hub_pp_jysc", ptxxModel.class); //p2p 平台信息表
+		arp.addMapping("hub_pp_jysc", PingTaiXinXiModel.class); //p2p 平台信息表
 		insight_arp.addMapping("insight_pp_show_info", XinXiPiLouModel.class); //p2p 平台总览alert-信息披露
 		insight_arp.addMapping("insight_pp_tran_number", JiaoYiLiangModel.class); //p2p 平台总览alert-平台数据信息
 		insight_arp.addMapping("insight_pp_cust_number", PingTaiRenShuModel.class); //p2p 平台总览alert-平台数据信息
+		insight_arp.addMapping("insight_pp_hhi_calculate", FenSanDuJiSuanModel.class); //p2p 平台总览alert-平台数据信息
+		insight_arp.addMapping("insight_pp_avge_count", RenJunCiShuModel.class); //p2p 平台总览alert-平台数据信息
+		insight_arp.addMapping("insight_pp_jyscstatus", PingTaiZhuangTaiModel.class); //p2p 平台总览 alert-平台数据信息
+		insight_arp.addMapping("insight_pp_avge_term", AvgTermTimeModel.class); //p2p平台总览 alert-平台数据信息
+		insight_arp.addMapping("insight_pp_collect_principal", LoanBalanceModel.class); //p2p 平台总览alert-平台数据信息
+		insight_arp.addMapping("insight_pp_average_time", FullScaleTimeModel.class); //p2p 平台总览alert-平台数据信息
 	}
 
 	public void configInterceptor(Interceptors me) {
@@ -390,6 +420,6 @@ public class Config extends JFinalConfig {
 	}
 
 	public static void main(String[] args){ 
-		JFinal.start("WebRoot", 8090, "/", 5);
+		JFinal.start("WebRoot", 8080, "/", 5);
 	}
 }
