@@ -29,4 +29,20 @@ public class ptxxModel extends Model<ptxxModel>{
 		}
 		return dao.find(sql);
 	}
+	/**
+	 * 
+	 * @author hanpengda
+	 * @date 2018年4月11日
+	 * @TODO 根据平台获取平台信息
+	 */
+	public List<ptxxModel> getPtxxByJysc(String jysIds,String jysc){
+		String sql = "select * from hub_pp_jysc where 1=1";
+		if (StringUtils.isNotBlank(jysIds)) {
+			sql += " and jysc in "+jysIds+"";
+		}
+		if (StringUtils.isNotBlank(jysc)) {
+			sql += " and jysc = '"+jysc+"'";
+		}
+		return dao.find(sql);
+	}
 }

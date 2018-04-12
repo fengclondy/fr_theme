@@ -132,6 +132,11 @@
             color: #fff;
             cursor: default;
         }
+        /*降低zindex级别*/
+        .zi{
+            position: relative;
+            z-index:3;
+        }
     </style>
 </head>
 <body id="01_01pingtaizonglanbiao" data-title="平台总览表">
@@ -169,6 +174,7 @@
                                         class="icon"></span></div>
                                 <ul class="myOptionBox">
                                 	<li class="myOption selected yhcg" id="yinhangcunguan01" value=""></li>
+                                	<!-- <li class="myOption yhcg" id="yinhangcunguan01" value="1">----</li> -->
                                     <li class="myOption yhcg" id="yinhangcunguan01" value="1">有</li>
                                     <li class="myOption yhcg" id="yinhangcunguan02" value="0">无</li>
                                 </ul>
@@ -306,7 +312,8 @@
         start();
         function start() {
         	$.ajax({
-            	url:"${contextPath}/qdch/platform/findOverviewInfo",
+            	type:"POST",
+        		url:"${contextPath}/qdch/platform/findOverviewInfo",
             	data:{"ptmc":ptmc,"cgyh":cgyh,"zczb":zczb,"db":db,"ptsl":ptsl},
             	dataType:"json",
             	success:function(data){
@@ -328,7 +335,7 @@
             			+'   	<td>'+item.dkje+'</td>'
             			+'    	<td>'+item.ztrs+'</td>'
             			+'   	<td>'+item.xxpl+'</td>'
-            			+'   	<td class="more"><a href="" data-id="01_01pingtaizonglanalert" data-title="平台总览"> 查看</a></td>'
+            			+'   	<td class="more"><a href="${contextPath}/qdch/platformalert/index?jysc='+item.jysc+'" data-id="01_01pingtaizonglanalert" data-title="平台总览"> 查看</a></td>'
             			+'    </tr>'
             			+'</tbody>'
             		})
@@ -337,6 +344,7 @@
             })
             
             $.ajax({
+            	type:"POST",
             	url:"${contextPath}/qdch/platform/countOverviewInfo",
             	data:{"ptmc":ptmc,"cgyh":cgyh,"zczb":zczb,"db":db,"ptsl":ptsl},
             	dataType:"json",

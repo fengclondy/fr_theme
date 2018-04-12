@@ -28,10 +28,13 @@ import com.qdch.p2p.controller.ProjectplatformController;
 import com.qdch.p2p.controller.RiskController;
 import com.qdch.p2p.controller.SuperviseController;
 import com.qdch.p2p.model.DefenInfoModel;
+import com.qdch.p2p.model.JiaoYiLiangModel;
+import com.qdch.p2p.model.PingTaiRenShuModel;
 import com.qdch.p2p.model.PlatformModel;
 import com.qdch.p2p.model.PpjyscModel;
 import com.qdch.p2p.model.ProjectStructureModel;
 import com.qdch.p2p.model.WorkInfoModel;
+import com.qdch.p2p.model.XinXiPiLouModel;
 import com.qdch.p2p.model.XinYongInfoModel;
 import com.qdch.p2p.model.ZiChanInfoModel;
 import com.qdch.p2p.model.ZiRanRenJiChuInfoMoDel;
@@ -289,6 +292,9 @@ public class Config extends JFinalConfig {
 		/***p2p 韩朋达 insight层 Model START***/
 		insight_arp.addMapping("insight_pp_overview", PlatformModel.class); //p2p 平台总览表
 		arp.addMapping("hub_pp_jysc", ptxxModel.class); //p2p 平台信息表
+		insight_arp.addMapping("insight_pp_show_info", XinXiPiLouModel.class); //p2p 平台总览alert-信息披露
+		insight_arp.addMapping("insight_pp_tran_number", JiaoYiLiangModel.class); //p2p 平台总览alert-平台数据信息
+		insight_arp.addMapping("insight_pp_cust_number", PingTaiRenShuModel.class); //p2p 平台总览alert-平台数据信息
 	}
 
 	public void configInterceptor(Interceptors me) {

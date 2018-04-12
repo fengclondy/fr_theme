@@ -63,6 +63,7 @@ public class PlatformModel extends Model<PlatformModel>{
 			if (StringUtils.isNotBlank(ptsl)) {
 				sql.append(" and ptsl like '%"+ptsl+"%'");
 			}
+			sql.append(" order by xxpl desc");
 			return dao.find(sql.toString());
 		} 
 	
@@ -113,4 +114,21 @@ public class PlatformModel extends Model<PlatformModel>{
 			
 			return dao.find(sql.toString());
 		}
+	
+	/**
+	 * 
+	 * @author hanpengda
+	 * @date 2018年4月11日
+	 * @TODO 根据平台获取总览信息
+	 */
+	public List<PlatformModel> getPlatfromByJysc(String jysIds, String jysc){
+		String sql = "select * from insight_pp_overview where 1=1";
+		if (StringUtils.isNotBlank(jysIds)) {
+			sql += " and jsyc in '"+jysIds+"'";
+		}
+		if (StringUtils.isNotBlank(jysc)) {
+			sql += " and jysc='"+jysc+"'";
+		}
+		return dao.find(sql);
+	}
 }
