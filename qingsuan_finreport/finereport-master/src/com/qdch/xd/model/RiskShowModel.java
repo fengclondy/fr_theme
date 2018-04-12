@@ -1,11 +1,9 @@
 package com.qdch.xd.model;
-
-
-
 import java.util.List;
-
 import org.apache.commons.lang.StringUtils;
-
+import com.jfinal.plugin.activerecord.Model;
+import java.util.List;
+import org.apache.commons.lang.StringUtils;
 import com.jfinal.plugin.activerecord.Model;
 /**
  * 
@@ -32,3 +30,4 @@ public class RiskShowModel extends Model<RiskShowModel>{
 	
 
 }
+

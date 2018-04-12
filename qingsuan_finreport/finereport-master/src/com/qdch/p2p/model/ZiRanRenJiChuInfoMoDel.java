@@ -1,3 +1,4 @@
+
 package com.qdch.p2p.model;
 
 import java.util.List;
@@ -22,13 +23,14 @@ public class ZiRanRenJiChuInfoMoDel extends Model<ZiRanRenJiChuInfoMoDel>{
 		} 
 		//
 		if(StringUtils.isNotBlank(pyType)){
-			sql+=" and jysc = '"+pyType+"' ";
+			sql+=" and jysinfo = '"+pyType+"' ";
 		} 
 		if(StringUtils.isNotBlank(hasInfo)){
-			sql+="  ";
+			sql+=" and jkf = '√'";
 		} 
 		//日期
 		sql+=" order by vday desc  ";
 		return dao.findFirst(sql);
 	}
 }
+

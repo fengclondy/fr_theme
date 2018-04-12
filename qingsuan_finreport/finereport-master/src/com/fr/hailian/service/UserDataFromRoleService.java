@@ -47,6 +47,22 @@ public class UserDataFromRoleService {
         con.close();
 		return id;
 	}
+	public String getUserId(String name) throws SQLException{
+		Connection con = null;
+        con = C3P0Utils.getInstance().getConnection();
+        String sql = "SELECT ID FROM fr_t_user WHERE ROLENAME = '"+name+"'";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        String id = "";
+        while (rs.next()) {
+        	System.out.println("获取到的角色名称："+name);
+            System.out.println("获取到的角色id："+rs.getString("ID"));
+            id = rs.getString("ID");
+        }
+        rs.close();
+        con.close();
+		return id;
+	}
 	/**
 	 * 获取用户id
 	 * @return
@@ -268,7 +284,7 @@ public class UserDataFromRoleService {
 	 * @return 数据权限 获取交易所信息
 	 * @throws SQLException
 	 */
-	public static String getJysForP2pXd(String userName){
+	public static String getJysForP2pXd(String userName,boolean isSuperAdmin){
 		if(userName==null||StringUtils.isBlank(userName)){
 			return null;
 		}
@@ -279,7 +295,7 @@ public class UserDataFromRoleService {
             String sql = "select p.postname,d.name from fr_t_post p left join fr_t_department_post_user du on du.postid=p.id ";
             sql+=" left join fr_t_department d on d.id=du.departmentid left join fr_t_user u on u.id=du.userid ";
             sql+=" where 1=1  ";
-            if(!"".equals(userName)&&userName!=null){
+            if(!"".equals(userName)&&userName!=null&&!isSuperAdmin){
             	sql+="  and u.username ='"+userName+"' ";
             }
             System.out.println(sql);

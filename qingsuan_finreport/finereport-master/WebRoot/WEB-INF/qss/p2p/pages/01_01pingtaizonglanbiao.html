@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="${contextPath}/static/asserts/css/normalize.css">
     <link rel="stylesheet" href="${contextPath}/static/css/style.css">
     <link rel="stylesheet" href="${contextPath}/static/css/pageCom.css">
+  
+  
     <style>
         .fl {
             float: left;
@@ -130,6 +132,11 @@
             color: #fff;
             cursor: default;
         }
+        /*降低zindex级别*/
+        .zi{
+            position: relative;
+            z-index:3;
+        }
     </style>
 </head>
 <body id="01_01pingtaizonglanbiao" data-title="平台总览表">
@@ -150,9 +157,12 @@
                                         class="text"></span><span
                                         class="icon"></span></div>
                                 <ul class="myOptionBox">
-                                    <!-- <li class="myOption selected" id="pingtaimingcheng01">青岛华银有限公司</li>
-                                    <li class="myOption" id="pingtaimingcheng02">青岛华银有限公司2</li>
+                                   <li class="myOption selected ptmc" id="pingtaimingcheng01" value=""> </li>
+                                   <!--  <li class="myOption" id="pingtaimingcheng02">青岛华银有限公司2</li>
                                     <li class="myOption" id="pingtaimingcheng03">青岛华银有限公司3</li> -->
+                                    ##for(p in ptxxList!){
+                                     <li class="myOption ptmc" value="${p.jyscmc!}">${p.jyscmc!}</li> 
+                                    ##}
                                 </ul>
                             </div>
                         </div>
@@ -163,9 +173,10 @@
                                         class="text"></span><span
                                         class="icon"></span></div>
                                 <ul class="myOptionBox">
-                                   <!--  <li class="myOption selected" id="yinhangcunguan01">青岛华银有限公司</li>
-                                    <li class="myOption" id="yinhangcunguan02">青岛华银有限公司2</li>
-                                    <li class="myOption" id="yinhangcunguan03">青岛华银有限公司3</li> -->
+                                	<li class="myOption selected yhcg" id="yinhangcunguan01" value=""></li>
+                                	<!-- <li class="myOption yhcg" id="yinhangcunguan01" value="1">----</li> -->
+                                    <li class="myOption yhcg" id="yinhangcunguan01" value="1">有</li>
+                                    <li class="myOption yhcg" id="yinhangcunguan02" value="0">无</li>
                                 </ul>
                             </div>
                         </div>
@@ -176,9 +187,10 @@
                                         class="text"></span><span
                                         class="icon"></span></div>
                                 <ul class="myOptionBox">
-                                    <!-- <li class="myOption selected" id="zhuceziben01">青岛华银有限公司</li>
-                                    <li class="myOption" id="zhuceziben02">青岛华银有限公司2</li>
-                                    <li class="myOption" id="zhuceziben03">青岛华银有限公司3</li> -->
+                                	<li class="myOption selected zczb" id="zhuceziben01" value=""></li>
+                                    <li class="myOption zczb" id="zhuceziben01" value="0">1000万以下</li>
+                                    <li class="myOption zczb" id="zhuceziben02" value="1">1000万~5000万</li>
+                                    <li class="myOption zczb" id="zhuceziben03" value="2">5000万以上</li>
                                 </ul>
                             </div>
                         </div>
@@ -190,9 +202,9 @@
                                         class="text"></span><span
                                         class="icon"></span></div>
                                 <ul class="myOptionBox">
-                                   <!--  <li class="myOption selected" id="dengbao01">青岛华银有限公司</li>
-                                    <li class="myOption" id="dengbao02">青岛华银有限公司2</li>
-                                    <li class="myOption" id="dengbao03">青岛华银有限公司3</li> -->
+                                 	<li class="myOption selected db" id="dengbao01" value=""></li>
+                                    <li class="myOption db" id="dengbao01" value="1">有</li>
+                                    <li class="myOption db" id="dengbao02" value="0">无</li>
                                 </ul>
                             </div>
                         </div>
@@ -203,9 +215,14 @@
                                         class="text"></span><span
                                         class="icon"></span></div>
                                 <ul class="myOptionBox">
-                                   <!--  <li class="myOption selected" id="pingtaishili01">青岛华银有限公司</li>
-                                    <li class="myOption" id="pingtaishili02">青岛华银有限公司2</li>
-                                    <li class="myOption" id="pingtaishili03">青岛华银有限公司3</li> -->
+                                	<li class="myOption selected ptsl" id="pingtaishili01" value=""></li>
+                                   <li class="myOption ptsl" id="pingtaishili01">国资控股</li>
+                                    <li class="myOption ptsl" id="pingtaishili02">国资参股</li>
+                                    <li class="myOption ptsl" id="pingtaishili03">上市控股</li>
+                                     <li class="myOption ptsl" id="pingtaishili04">上市参股</li>
+                                    <li class="myOption ptsl" id="pingtaishili05">风投系</li>
+                                     <li class="myOption ptsl" id="pingtaishili06">银行系</li>
+                                    <li class="myOption ptsl" id="pingtaishili07">民营系</li> 
                                 </ul>
                             </div>
                         </div>
@@ -216,7 +233,7 @@
                         </div>
                     </form>
                     <div class="pilouInformation">
-                        <p>共刷选出24个平台</p>
+                        <p id="count">共刷选出24个平台</p>
                     </div>
                 </div>
                 <!--table start-->
@@ -242,16 +259,7 @@
                     <div style="overflow-x: auto; overflow-y: auto; height: 80%; width:100%;">
                         <table id="table" width="100%" height="100%">
                             <tbody>
-                            <tr><td>青岛华银有限公司</td><td>25</td><td>是</td><td>浦发银行</td><td>有</td><td>12</td><td>5000万</td><td>5000万</td><td>3453万</td><td>543万</td><td>3455</td><td></td><td class="more"><a href="" data-id="01_01pingtaizonglanalert" data-title="平台总览"> 查看</a></td></tr><tr><td>青岛华银有限公司</td><td>25</td><td>是</td><td>浦发银行</td><td>有</td><td>12</td><td>5000万</td><td>5000万</td><td>3453万</td><td>543万</td><td>3455</td><td></td><td class="more"><a href="" data-id="01_01pingtaizonglanalert" data-title="平台总览"> 查看</a></td></tr>
-                            <tr><td>青岛华银有限公司</td><td>25</td><td>是</td><td>浦发银行</td><td>有</td><td>12</td><td>5000万</td><td>5000万</td><td>3453万</td><td>543万</td><td>3455</td><td></td><td class="more"><a href="" data-id="01_01pingtaizonglanalert" data-title="平台总览"> 查看</a></td></tr><tr><td>青岛华银有限公司</td><td>25</td><td>是</td><td>浦发银行</td><td>有</td><td>12</td><td>5000万</td><td>5000万</td><td>3453万</td><td>543万</td><td>3455</td><td></td><td class="more"><a href="" data-id="01_01pingtaizonglanalert" data-title="平台总览"> 查看</a></td></tr>
-                            <tr><td>青岛华银有限公司</td><td>25</td><td>是</td><td>浦发银行</td><td>有</td><td>12</td><td>5000万</td><td>5000万</td><td>3453万</td><td>543万</td><td>3455</td><td></td><td class="more"><a href="" data-id="01_01pingtaizonglanalert" data-title="平台总览"> 查看</a></td></tr>
-                            <tr><td>青岛华银有限公司</td><td>25</td><td>是</td><td>浦发银行</td><td>有</td><td>12</td><td>5000万</td><td>5000万</td><td>3453万</td><td>543万</td><td>3455</td><td></td><td class="more"><a href="" data-id="01_01pingtaizonglanalert" data-title="平台总览"> 查看</a></td></tr>
-                            <tr><td>青岛华银有限公司</td><td>25</td><td>是</td><td>浦发银行</td><td>有</td><td>12</td><td>5000万</td><td>5000万</td><td>3453万</td><td>543万</td><td>3455</td><td></td><td class="more"><a href="" data-id="01_01pingtaizonglanalert" data-title="平台总览"> 查看</a></td></tr>
-                            <tr><td>青岛华银有限公司</td><td>25</td><td>是</td><td>浦发银行</td><td>有</td><td>12</td><td>5000万</td><td>5000万</td><td>3453万</td><td>543万</td><td>3455</td><td></td><td class="more"><a href="" data-id="01_01pingtaizonglanalert" data-title="平台总览"> 查看</a></td></tr>
-                            <tr><td>青岛华银有限公司</td><td>25</td><td>是</td><td>浦发银行</td><td>有</td><td>12</td><td>5000万</td><td>5000万</td><td>3453万</td><td>543万</td><td>3455</td><td></td><td class="more"><a href="" data-id="01_01pingtaizonglanalert" data-title="平台总览"> 查看</a></td></tr>
-                            <tr><td>青岛华银有限公司</td><td>25</td><td>是</td><td>浦发银行</td><td>有</td><td>12</td><td>5000万</td><td>5000万</td><td>3453万</td><td>543万</td><td>3455</td><td></td><td class="more"><a href="" data-id="01_01pingtaizonglanalert" data-title="平台总览"> 查看</a></td></tr>
-                            <tr><td>青岛华银有限公司</td><td>25</td><td>是</td><td>浦发银行</td><td>有</td><td>12</td><td>5000万</td><td>5000万</td><td>3453万</td><td>543万</td><td>3455</td><td></td><td class="more"><a href="" data-id="01_01pingtaizonglanalert" data-title="平台总览"> 查看</a></td></tr>
-                            <tr><td>青岛华银有限公司</td><td>25</td><td>是</td><td>浦发银行</td><td>有</td><td>12</td><td>5000万</td><td>5000万</td><td>3453万</td><td>543万</td><td>3455</td><td></td><td class="more"><a href="" data-id="01_01pingtaizonglanalert" data-title="平台总览"> 查看</a></td></tr>
+                            
                             </tbody>
                         </table>
                     </div>
@@ -270,7 +278,9 @@
 <script src="${contextPath}/static/asserts/js/echarts-4.0.js"></script>
 <script src="${contextPath}/static/asserts/js/jquery-2.2.4.js"></script>
 <script src="${contextPath}/static/js/main.js"></script>
-<script src="${contextPath}/static/js/chartsCom.js"></script>
+
+<!-- <script src="${contextPath}/static/js/pageCom.js"></script> -->
+
 
 </body>
 </html>
@@ -292,70 +302,83 @@
                 $("#current3").text(current)
             }
         });
-	   
-       init();
+        /* 获取查询条件字段值 */
+        var ptmc = "";
+        var cgyh = "";
+        var zczb = "";
+        var  db= "";
+        var ptsl = "";
+        /* 初始化页面执行查询 */
+        start();
+        function start() {
+        	$.ajax({
+            	type:"POST",
+        		url:"${contextPath}/qdch/platform/findOverviewInfo",
+            	data:{"ptmc":ptmc,"cgyh":cgyh,"zczb":zczb,"db":db,"ptsl":ptsl},
+            	dataType:"json",
+            	success:function(data){
+            		var content = "";
+            		$("tbody").remove();
+            		$.each(data,function(index,item){
+            			content = content
+            			+'<tbody>'
+            			+'    <tr>'
+            			+'    	<td>'+item.jyscmc+'</td>'
+            			+'    	<td>'+item.icp+'</td>'
+            			+'    	<td>'+item.jrbba+'</td>'
+            			+'     	<td>'+item.cgyh+'</td>'
+            			+'    	<td>'+item.db+'</td>'
+            			+'   	<td>'+item.yysj+'</td>'
+            			+'   	<td>'+item.ptsl+'</td>'
+            			+'    	<td>'+item.zczb+'万</td>'
+            			+'   	<td>'+item.zcje+'</td>'
+            			+'   	<td>'+item.dkje+'</td>'
+            			+'    	<td>'+item.ztrs+'</td>'
+            			+'   	<td>'+item.xxpl+'</td>'
+            			+'   	<td class="more"><a href="${contextPath}/qdch/platformalert/index?jysc='+item.jysc+'" data-id="01_01pingtaizonglanalert" data-title="平台总览"> 查看</a></td>'
+            			+'    </tr>'
+            			+'</tbody>'
+            		})
+            		$("#table").html(content);
+            	}
+            })
+            
+            $.ajax({
+            	type:"POST",
+            	url:"${contextPath}/qdch/platform/countOverviewInfo",
+            	data:{"ptmc":ptmc,"cgyh":cgyh,"zczb":zczb,"db":db,"ptsl":ptsl},
+            	dataType:"json",
+            	success:function(data){
+            		
+            		var content = "";
+            		$(".count").remove();
+            		$.each(data,function(index,item){
+            			content = content
+            			+' <p id="count">共刷选出'+item.count+'个平台</p>'
+            		})
+            		$(".pilouInformation").html(content);
+            	}
+            })
+		}
+        
+        /* 当点击查询按钮时查询 */
+        $("#search").click(function () {
+        	start();
+    	})
+    	$(".ptmc").click(function () {
+			ptmc = $(this).attr('value');
+		})
+        $(".yhcg").click(function () {
+        	cgyh = $(this).attr('value');
+    	})
+    	$(".zczb").click(function () {
+    		zczb = $(this).attr('value');
+    	})
+    	$(".db").click(function () {
+    		db = $(this).attr('value');
+    	})
+    	$(".ptsl").click(function () {
+    		ptsl = $(this).html();
+    	})
     });
-    //加载页面时初始化
-    function init() {
-    	 getJysc();
-         getCgyh();
-         getZczb();
-         getDb();
-         getPtsl();
-	}
-    //获取平台名称
-    function getJysc() {
-		$.post('${contextPath}/qdch/platform/getJysc',function(data){
-			var content = "";
-			$.each(data,function(index,item){
-				content = content
-				+'<li class="myOption" id="'+index+'">'+item.jysc+'</li>'
-			})
-			$(".myOptionBox").append(content);
-		})
-	}
-    //获取银行存管
-    function getCgyh() {
-		$.post('${contextPath}/qdch/platform/getCgyh',function(data){
-			var content = "";
-			$.each(data,function(index,item){
-				content = content
-				+'<li class="myOption" id="'+index+'">'+item.jysc+'</li>'
-			})
-			$(".myOptionBox").append(content);
-		})
-	}
-    //获取注册资本
-    function getZczb() {
-		$.post('${contextPath}/qdch/platform/getZczb',function(data){
-			var content = "";
-			$.each(data,function(index,item){
-				content = content
-				+'<li class="myOption" id="'+index+'">'+item.jysc+'</li>'
-			})
-			$(".myOptionBox").append(content);
-		})
-	}
-    //获取等保
-    function getDb() {
-		$.post('${contextPath}/qdch/platform/getDb',function(data){
-			var content = "";
-			$.each(data,function(index,item){
-				content = content
-				+'<li class="myOption" id="'+index+'">'+item.jysc+'</li>'
-			})
-			$(".myOptionBox").append(content);
-		})
-	}
-    //获取平台实力
-    function getPtsl() {
-		$.post('${contextPath}/qdch/platform/getPtsl',function(data){
-			var content = "";
-			$.each(data,function(index,item){
-				content = content
-				+'<li class="myOption" id="'+index+'">'+item.jysc+'</li>'
-			})
-			$(".myOptionBox").append(content);
-		})
-	}
 </script>

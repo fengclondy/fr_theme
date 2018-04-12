@@ -21,7 +21,7 @@ public class KeyIndicatorsModel extends Model<KeyIndicatorsModel>{
 	public static final KeyIndicatorsModel dao = new KeyIndicatorsModel();
 
 	public List<KeyIndicatorsModel> getByYeamount(String bigjys){
-		String sql="select t.jyscmc as name,round(sum(t.fvalue)/10000,2) as value from insight_xd_yeamount t where vday=(select max(vday) from insight_xd_yeamount)";
+		String sql="select t.jyscmc as name,round(sum(t.fvalue)/100000000,2) as value from insight_xd_yeamount t where vday=(select max(vday) from insight_xd_yeamount)";
 		if(StringUtils.isNotBlank(bigjys)){
 			sql+=" jysc in "+bigjys;
 		} 
@@ -30,7 +30,7 @@ public class KeyIndicatorsModel extends Model<KeyIndicatorsModel>{
 		return dao.find(sql);
 	}
 	public List<KeyIndicatorsModel> getByAmount(String bigjys){
-		String sql="select t.jysc,t.jyscmc as name,round(sum(t.fvalue)/10000,2) as value from insight_xd_fkamount t where 1=1 ";
+		String sql="select t.jysc,t.jyscmc as name,round(sum(t.fvalue)/100000000,2) as value from insight_xd_fkamount t where 1=1 ";
 		String sql2="select jysc,jyscmc as name,round(SUM(fvalue),0) as value from insight_xd_fkamount WHERE vday>=to_char(now()-INTERVAL '31 day','yyyymmdd') and ";
 		if(StringUtils.isNotBlank(bigjys)){
 			sql+="and jysc in "+bigjys;

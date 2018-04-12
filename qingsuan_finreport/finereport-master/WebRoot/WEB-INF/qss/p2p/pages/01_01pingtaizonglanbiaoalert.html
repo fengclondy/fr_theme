@@ -71,10 +71,9 @@
             <div class="mySelect" id="pingtai">
                 <div class="myOption selected"><span class="text"></span><span class="icon"></span></div>
                 <ul class="myOptionBox">
-                    <li class="myOption selected">条目一</li>
-                    <li class="myOption selected">条目二</li>
-                    <li class="myOption selected">条目三</li>
-
+                ##for(p in ptxxList){
+               		<li class="myOption selected ptmc" value="${p.jysc!}">${p.jysinfo!}</li>
+                 ##}
                 </ul>
             </div>
         </div>
@@ -92,7 +91,7 @@
                         <th>等保</th>
                         <th>运营时间</th>
                         <th>平台实力</th>
-                        <th>法人</th>
+                        <!-- <th>法人</th> -->
                         <th>注册资本</th>
                         <th>总成金额</th>
                         <th>贷款金额</th>
@@ -101,8 +100,8 @@
                         <th>详情</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
+                    <tbody id="ptzl">
+                    <!-- <tr>
                         <td>鲁金宝</td>
                         <td>25</td>
                         <td>是</td>
@@ -117,7 +116,7 @@
                         <td>3245</td>
                         <td></td>
                         <td>查看</td>
-                    </tr>
+                    </tr> -->
                     </tbody>
                 </table>
             </div>
@@ -135,17 +134,17 @@
                     <thead>
                     <tr>
                         <th>平台名称</th>
-                        <th>机构信息 <span>(26)</span></th>
-                        <th>经营信息 <span>(17)</span></th>
-                        <th>项目信息 <span>(13)</span></th>
-                        <th>附加信息 <span>(7)</span></th>
+                        <th>机构信息 </th>
+                        <th>经营信息</th>
+                        <th>项目信息</th>
+                        <th>附加信息 </th>
                         <th>总计</th>
                         <th>得分</th>
                         <th>排名</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
+                    <tbody id="xxpl">
+                    <!-- <tr>
                         <td>中融宝</td>
                         <td>25</td>
                         <td>15</td>
@@ -154,7 +153,7 @@
                         <td>50.5</td>
                         <td>89.1</td>
                         <td>1</td>
-                    </tr>
+                    </tr> -->
                     </tbody>
                 </table>
             </div>
@@ -180,11 +179,11 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td>76543</td>
-                                <td>67897650</td>
-                                <td>76543</td>
-                                <td>76543</td>
-                                <td>43</td>
+                                <td id="zcjl">76543</td>
+                                <td id="zcje">67897650</td>
+                                <td id="zjkrs">76543</td>
+                                <td id="ztzrs">76543</td>
+                                <td id="pjjkqx">43</td>
                             </tr>
                             </tbody>
                         </table>
@@ -240,3 +239,150 @@
 
 </body>
 </html>
+<script type="text/javascript">
+	$(function () {
+		var jysc = '${jysc}';
+		start();
+		function start() {
+			//获取当前平台名称
+			$.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/platformalert/getPtxxByJysc",
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					var content = "";
+					$.each(data,function(index,item){
+						content = content
+						+ item.jysinfo
+					})
+					
+					$(".text").html(content);
+				}
+			});
+			//获去当前平台的总览信息
+			$.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/platformalert/getPlatfromByJysc",
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					var content = "";
+					$.each(data,function(index,item){
+						content = content
+						+'    <tr>'
+	        			+'    	<td>'+item.jysinfo+'</td>'
+	        			+'    	<td>'+item.icp+'</td>'
+	        			+'    	<td>'+item.jrbba+'</td>'
+	        			+'     	<td>'+item.cgyh+'</td>'
+	        			+'    	<td>'+item.db+'</td>'
+	        			+'   	<td>'+item.yysj+'</td>'
+	        			+'   	<td>'+item.ptsl+'</td>'
+	        			+'    	<td>'+item.zczb+'万</td>'
+	        			+'   	<td>'+item.zcje+'</td>'
+	        			+'   	<td>'+item.dkje+'</td>'
+	        			+'    	<td>'+item.ztrs+'</td>'
+	        			+'   	<td>'+item.xxpl+'</td>'
+	        			+'   	<td>查看</td>'
+	        			+'    </tr>'
+					})
+					$("#ptzl").html(content);
+				}
+			})
+			//获取当前平台的信息披露
+			$.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/platformalert/getXxplByJysc",
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){	
+					var content = "";
+					$.each(data,function(index,item){
+						content = content
+						+'<tr>'
+						+'  <td>'+item.jyscmc+'</td>'
+						+'  <td>'+item.jgxx+'</td>'
+						+'  <td>'+item.jyxx+'</td>'
+						+'  <td>'+item.xmxx+'</td>'
+						+'  <td>'+item.fjxx+'</td>'
+						+'  <td>'+item.fvalue+'</td>'
+						+'  <td>'+item.fvalue1+'</td>'
+						+'  <td>'+item.pm+'</td>'
+						+'</tr>'
+						
+					})
+					$("#xxpl").html(content);
+				}
+			})
+			//获取总成交量
+			$.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/platformalert/getZcjl",
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					var content = "";
+					$.each(data,function(index,item){
+						content = content
+						+item.zcjl
+					})
+					$("#zcjl").html(content);
+				}
+			})
+			//获取总成交额
+			$.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/platformalert/getZcje",
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					var content = "";
+					$.each(data,function(index,item){
+						content = content
+						+item.zcje
+					})
+					$("#zcje").html(content);
+				}
+			})
+			//获取总借款人数
+			$.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/platformalert/getZjkrs",
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					var content = "";
+					$.each(data,function(index,item){
+						content = content
+						+item.zjkrs
+					})
+					$("#zjkrs").html(content);
+				}
+			})
+			//获取总投资人数
+			$.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/platformalert/getZtzrs",
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					var content = "";
+					$.each(data,function(index,item){
+						content = content
+						+item.ztzrs
+					})
+					$("#ztzrs").html(content);
+				}
+			})
+		}
+		
+		
+		//换平台查看的点击事件
+		$(".ptmc").click(function () {
+			jysc = $(this).attr('value');
+			start();
+		})
+	})
+	
+	
+</script>
