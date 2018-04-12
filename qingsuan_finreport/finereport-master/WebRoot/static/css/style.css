@@ -64,9 +64,7 @@
     }
     /*输入组框*/
     .inputGroup {
-
-    	position: relative;
-
+    position: relative;
         display: inline-block;
         margin-left: 1rem;
         font-size: .72rem;

@@ -1,10 +1,7 @@
 package com.qdch.config;
-import com.qdch.xd.controller.*;
-import com.qdch.xd.model.*;
 import org.beetl.core.GroupTemplate;
 import org.beetl.ext.jfinal3.JFinal3BeetlRenderFactory;
 
-import com.fr.hailian.model.CompanyInfoModel;
 import com.jfinal.config.Constants;
 import com.jfinal.config.Handlers;
 import com.jfinal.config.Interceptors;
@@ -19,10 +16,8 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.activerecord.dialect.PostgreSqlDialect;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.template.Engine;
-
-import com.qdch.industry.controller.IndustryComController;
-
 import com.qdch.core.QdchController;
+import com.qdch.industry.controller.IndustryComController;
 import com.qdch.intercept.SecurityInterceptor;
 import com.qdch.model.DemoModel;
 import com.qdch.p2p.controller.BorrowerController;
@@ -36,14 +31,16 @@ import com.qdch.p2p.controller.RiskController;
 import com.qdch.p2p.controller.SuperviseController;
 import com.qdch.p2p.model.AverageTimeModel;
 import com.qdch.p2p.model.CustNumberModel;
+import com.qdch.p2p.model.DefenInfoModel;
 import com.qdch.p2p.model.ImportantRatioModel;
 import com.qdch.p2p.model.InterestModel;
-import com.qdch.p2p.model.DefenInfoModel;
 import com.qdch.p2p.model.JiaoYiLiangModel;
 import com.qdch.p2p.model.PingTaiRenShuModel;
 import com.qdch.p2p.model.PlatformModel;
 import com.qdch.p2p.model.PpjyscModel;
 import com.qdch.p2p.model.ProjectStructureModel;
+import com.qdch.p2p.model.QiYeJiBenInFoModel;
+import com.qdch.p2p.model.QiYeQiTaInFoModel;
 import com.qdch.p2p.model.TotalTranNumModel;
 import com.qdch.p2p.model.WorkInfoModel;
 import com.qdch.p2p.model.XinXiPiLouModel;
@@ -52,7 +49,6 @@ import com.qdch.p2p.model.ZiChanInfoModel;
 import com.qdch.p2p.model.ZiRanRenJiChuInfoMoDel;
 import com.qdch.p2p.model.ptxxModel;
 import com.qdch.util.TemplteLayoutTag;
-
 import com.qdch.xd.controller.AssetRiskController;
 import com.qdch.xd.controller.BusinessOverviewController;
 import com.qdch.xd.controller.CommerceController;
@@ -61,6 +57,7 @@ import com.qdch.xd.controller.CreditRiskController;
 import com.qdch.xd.controller.DevelopmentCapacityController;
 import com.qdch.xd.controller.EventAuditController;
 import com.qdch.xd.controller.EventDecisionController;
+import com.qdch.xd.controller.EventInputController;
 import com.qdch.xd.controller.EventProcessingController;
 import com.qdch.xd.controller.EventSeeDetailsController;
 import com.qdch.xd.controller.EventViewController;
@@ -76,6 +73,7 @@ import com.qdch.xd.model.CoBranchModel;
 import com.qdch.xd.model.CoBusinessModel;
 import com.qdch.xd.model.CoChangeLogModel;
 import com.qdch.xd.model.CoCopyrightModel;
+import com.qdch.xd.model.CoDishonestyModel;
 import com.qdch.xd.model.CoExecutorModel;
 import com.qdch.xd.model.CoJobModel;
 import com.qdch.xd.model.CoJudgmentModel;
@@ -97,7 +95,6 @@ import com.qdch.xd.model.CustomerInfoModel;
 import com.qdch.xd.model.DefrateModel;
 import com.qdch.xd.model.DetailsQueryModel;
 import com.qdch.xd.model.DictModel;
-import com.qdch.xd.model.CoDishonestyModel;
 import com.qdch.xd.model.ExchangeInfoModel;
 import com.qdch.xd.model.GuaranteeContrastModel;
 import com.qdch.xd.model.IncomeAndLossrateModel;
@@ -120,6 +117,7 @@ import com.qdch.xd.model.RiskTrendDetailedModel;
 import com.qdch.xd.model.RiskTrendModel;
 import com.qdch.xd.model.RiskTypeModel;
 import com.qdch.xd.model.ScabilityModel;
+import com.qdch.xd.model.ThresholdValueModel;
 import com.qdch.xd.model.defrateRankModel;
 import com.qdch.xd.model.maxIntrateRankModel;
 
@@ -269,6 +267,8 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("insight_pp_credit_info",XinYongInfoModel.class);//自然人信用信息
 		insight_arp.addMapping("insight_pp_asset_info",ZiChanInfoModel.class);//自然人资产信息
 		insight_arp.addMapping("insight_pp_job_info", WorkInfoModel.class);//自然人工作信息
+		insight_arp.addMapping("insight_pp_corp_info", QiYeJiBenInFoModel.class);//企业基本信息
+		insight_arp.addMapping("insight_pp_othe_info",QiYeQiTaInFoModel.class);//企业其它信息
 		/***小贷zuoqb insight层 Model START***/
 		
 		/*insight_arp.addMapping("hub_xd_fxzs", RiskCountModel.class);//小贷风险指数*/		
