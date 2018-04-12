@@ -19,7 +19,7 @@ public class RiskShowModel extends Model<RiskShowModel>{
 	public static final RiskShowModel dao=new RiskShowModel();
 	
 	public List<RiskShowModel> gainShow(String datasql,String jys){
-		String sql="select bjsj ,fxlb ,fxzb,jgmc from hub_fxsj where jysfl='3'";
+		String sql="select bjsj ,fxlb ,fxzb,jgmc from hub_fxsj where jysfl='3' and fxlb='管理风险' ";
 				if(StringUtils.isNotBlank(jys)){
 					sql+=" and jgmc = '"+jys+"'";
 				}
