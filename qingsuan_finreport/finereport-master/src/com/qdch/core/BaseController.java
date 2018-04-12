@@ -44,11 +44,7 @@ public class BaseController extends Controller{
 		if(user==null||user.getJysList()==null||user.getJysList().size()==0){
 			return null;
 		}
-		String jysIds="";
-		if(jysIds.length()>0){
-			jysIds="("+user.getDataScope()+")";
-		}
-		return jysIds;
+		return "("+user.getDataScope()+")";
 	}
 	/**
 	 * 
@@ -62,11 +58,7 @@ public class BaseController extends Controller{
 		if(user==null||user.getJysList()==null||user.getJysList().size()==0){
 			return null;
 		}
-		String jysIds="";
-		if(jysIds.length()>0){
-			jysIds="("+user.getDataScope()+")";
-		}
-		return jysIds;
+		return "("+user.getDataScope()+")";
 	}
 	/**
 	 * 
