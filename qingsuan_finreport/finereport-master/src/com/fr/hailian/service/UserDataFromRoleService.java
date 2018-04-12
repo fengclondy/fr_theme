@@ -262,4 +262,41 @@ public class UserDataFromRoleService {
 		return m;
 	}
 	
+	/**
+	 * 
+	 * @param userName
+	 * @return 数据权限 获取交易所信息
+	 * @throws SQLException
+	 */
+	public static String getJysForP2pXd(String userName){
+		if(userName==null||StringUtils.isBlank(userName)){
+			return null;
+		}
+		String jysIds="";
+		Connection con = null;
+        try {
+        	con = C3P0Utils.getInstance().getConnection();
+            String sql = "select p.postname,d.name from fr_t_post p left join fr_t_department_post_user du on du.postid=p.id ";
+            sql+=" left join fr_t_department d on d.id=du.departmentid left join fr_t_user u on u.id=du.userid ";
+            sql+=" where 1=1  ";
+            if(!"".equals(userName)&&userName!=null){
+            	sql+="  and u.username ='"+userName+"' ";
+            }
+            System.out.println(sql);
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+            	jysIds=jysIds+"'"+rs.getString("postname").split("_")[2]+"',";
+            }
+            if(jysIds.length()>0){
+            	jysIds=jysIds.substring(0,jysIds.length()-1);
+            }
+            rs.close();
+            con.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return jysIds;
+	}
+	
 }

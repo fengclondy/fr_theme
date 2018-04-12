@@ -1,4 +1,4 @@
-package com.qdch.core;
+package com.fr.hailian.core;
 
 import java.io.Serializable;
 import java.util.List;
@@ -23,7 +23,18 @@ public class QdchUser implements Serializable {
 	private String mobile;//电话
 	private String email;//邮箱
 	private List<RoleModel> roles;//用户相应角色 菜单
+	private String dataScope;
 	private List<String> jysList;//数据权限相关  交易所信息
+
+	
+
+	public String getDataScope() {
+		return dataScope;
+	}
+
+	public void setDataScope(String dataScope) {
+		this.dataScope = dataScope;
+	}
 
 	public String getId() {
 		return id;

@@ -46,7 +46,7 @@ public class ConRatioModel extends Model<ConRatioModel>{
 	}
 	public List<ConRatioModel> getConRatioByAge(String bigjys,String jyscode){
 		String sql=" SELECT jyscmc,agestage,round(SUM(custnum)::NUMERIC/(SELECT SUM(custnum) FROM insight_xd_cust_tongji WHERE jyscmc=t1.jyscmc),4)*100 AS nums "
-				+ "FROM insight_xd_cust_tongji t1 where 1=1 ";
+				+ "FROM insight_xd_cust_tongji t1 where 1=1 and t1.custtype='1' ";
 				
 		if(StringUtils.isNotBlank(bigjys)){
 			sql+=" and jysc in "+ bigjys;

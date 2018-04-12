@@ -156,8 +156,11 @@
                                     class="icon"></span></div>
                          
                            <ul class="myOptionBox" id="jysul">
+                           ##if('${jys}'==null){
                                 <li class="myOption selected pt" id="pingtaimingcheng01"></li>
-                               
+                              ##}else{
+                              	<li class="myOption selected pt" id="pingtaimingcheng01">'${jys!}'</li>
+                              ##} 
                                ##for(j in jyslist!){
                                 		
                                 	##if(j.jysinfo=='${jys}'){
@@ -166,8 +169,8 @@
 		                                 </li>
                                 	##}else{
                                 		 <li class="myOption pt " id="jys" value="${j.jysinfo}" name="${j.jysinfo}">
-	                                	 ${j.jysinfo!}
-	                                 </li>
+	                                	 	 ${j.jysinfo!}
+	                                 	 </li>
                                 	##} 
                                 	
                                 
@@ -185,9 +188,15 @@
                                     class="text"></span><span
                                     class="icon"></span></div>
                             <ul class="myOptionBox">
-                                <li class="myOption selected youwu" id="pingtaimingcheng01"></li>
-                                <li class="myOption youwu" id="pingtaimingcheng02" value="有">有</li>
-                                <li class="myOption youwu" id="pingtaimingcheng03" value="无">无</li>
+                            ##if('hasInfo'==null){
+                             <li class="myOption selected youwu" id="pingtaimingcheng01"></li>
+                            ##}else{
+                            	 <li class="myOption selected youwu" >'${hasInfo!}'</li>
+                            ##}
+                             <li class="myOption youwu" id="pingtaimingcheng02" value="有">有</li>
+                             <li class="myOption youwu" id="pingtaimingcheng03" value="无">无</li>
+                               
+                               
                             </ul>
                         </div>
                  

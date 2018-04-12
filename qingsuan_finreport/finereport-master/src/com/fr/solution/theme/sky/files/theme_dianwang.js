@@ -84,13 +84,13 @@
     				}
     				//三级
     				if(it2.hasChildren||it2.hasChildren=="true"){
-    					var third='<div class="threeM" style="display:none" id="third_ul_'+it2.id+'"><ul>';
+    					var third='<li class="threeM" style="display:none" id="third_ul_'+it2.id+'"><ul>';
     					$.each(it2.ChildNodes,function(ind3,it3){
     						//菜单明细
     						_menu_detail(it3,"third_menu_id_"+it3.id);
     						third+='<li   id="third_menu_id_'+it3.id+'" haschildren="'+it3.hasChildren+'" data="'+it3.id+'" pid="third_menu_id_'+it3.parentId+'">'+it3.text+'</li>';
     					});
-    					third+='</ul></div>';
+    					third+='</ul></li>';
     					thirdArr.push(third);
     				}else{
     					//二级不需要查询访问路径
@@ -203,13 +203,30 @@
      */
     var Index = {
     	    init: function () {
-    	        // var $leftNav = $(".leftNav");
-    	        // var $menu1 = $leftNav.find(".ful>li");
     	        this.time();
     	        this.menuAction();
-    	        // this.titleShowContent();
-    	        //this.clock();
-
+    	        this.repairStyle();
+    	    },
+    	    repairStyle:function(){
+    	    	/*$(".fs_ltabpane_content_selected.fr-absolutelayout.ui-state-enabled").children()
+    	    	.eq(0).css({
+    	    		width: "30%",
+    	        	height: "100%"
+    	    		
+	    		}).next().css({
+	    			width: "66%",
+		    	    height: "100%",
+		    	    left: "33%"
+	    		});*/
+    	    	$("#fs-frame-header").css("background","#323a6e");
+    	    	$("#mine_title nav").css("left","12%");
+    	    	//目录管理中让滚动条恢复到顶部
+    	    	$("[id^=senond_menu_id]").click(function(){
+	    			setTimeout(function(){
+	    				$("body").scrollTop(0);
+	    			},100)
+	    		})
+    	    		
     	    },
     	    clock: function () {
     	        var clock = new Clock('#clock', {
@@ -238,6 +255,12 @@
     	            $(".ful").hide();
     	            //有下一级
     	            $("#senond_ul_"+$(this).attr("data")).show().siblings().hide();
+    	            //钟表位置
+    	            if($("#senond_ul_"+$(this).attr("data")).children().length>8){
+    	            	$(".timer").addClass("relative")
+    	            }else{
+    	            	$(".timer").removeClass("relative")
+    	            }
     	           // $(".leftNav>.mine_menu").children("ul").eq($(this).index() + 1).show().siblings().hide();
     	            $breadcrumbItem.eq(1).text($(this).children().text());
     	            if($(this).attr("haschildren")=="false"||$(this).attr("haschildren")=="undefined"){
@@ -261,7 +284,7 @@
     	        $(".secondM>li:not(.resBox,.threeM)").on('mouseenter',function () {
     	            //$(this).addClass("activeLi").nextAll(".threeM").css("top", +4.5 * $(this).index() + .2 + "rem");
     	            $(".threeM").removeClass("activeLi").hide();
-    	            $("#third_ul_"+$(this).attr("data")).addClass("activeLi").css("top", +4.5 * $(this).index() + .2 + "rem").show();
+    	            $("#third_ul_"+$(this).attr("data")).addClass("activeLi").css("top", +4.5 * $(this).index() + 8.2 + "rem").show();
     	            $("#third_ul_"+$(this).attr("data")).find("ul").show();
     	            $(this).siblings().removeClass("activeLi");
     	        });

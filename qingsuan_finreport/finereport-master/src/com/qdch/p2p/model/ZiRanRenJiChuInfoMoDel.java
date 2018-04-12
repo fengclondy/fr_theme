@@ -25,7 +25,7 @@ public class ZiRanRenJiChuInfoMoDel extends Model<ZiRanRenJiChuInfoMoDel>{
 			sql+=" and jysinfo = '"+pyType+"' ";
 		} 
 		if(StringUtils.isNotBlank(hasInfo)){
-			sql+=" and  ";
+			sql+=" and jkf = '√'";
 		} 
 		//日期
 		sql+=" order by vday desc  ";
