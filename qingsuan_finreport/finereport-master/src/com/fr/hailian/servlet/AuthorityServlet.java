@@ -54,14 +54,15 @@ public class AuthorityServlet extends BaseServlet {
 	 * @return_type   void
 	 */
 	private void getAuthorityUserInfo(HttpServletRequest request, HttpServletResponse response) {
-		JSONObject r = new JSONObject();
 		HttpServletRequest hrequest = (HttpServletRequest) request;//web资源
 		String roleType = "";
 		String userName="";//用户名字 这个必须传 跨系统了 session不共享
+		String uid="";
 		try {
 			//"大宗","权益"
 			roleType = hrequest.getParameter("roleType");
 			userName = hrequest.getParameter("userName");
+			uid = hrequest.getParameter("uid");
 			String roleName="";
 			if("0".equals(roleType)){
 				roleName="大宗";
@@ -73,8 +74,7 @@ public class AuthorityServlet extends BaseServlet {
 				roleName="P2P";
 			}
 			System.out.println("---roleName-------"+roleName);
-			QdchUser user=RoleUtil.authorityUser(request, userName, roleName);
-			r.put("user", com.alibaba.fastjson.JSONObject.toJSONString(user));
+			QdchUser user=RoleUtil.authorityUser(request, userName, roleName,uid);
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("application/json; charset=utf-8");
 			PrintWriter out = null;
@@ -91,7 +91,6 @@ public class AuthorityServlet extends BaseServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		responseOutWithJson(response, r);
 	}
 
 	public void init() throws ServletException {

@@ -21,12 +21,50 @@ public class DefenInfoModel extends Model<DefenInfoModel>{
 			sql+=" and jysc in "+bigjys;
 		} 
 		if(StringUtils.isNotBlank(pyType)){
-			sql+=" and jysinfo = '"+pyType+"' ";
+			sql+=" and jysc = '"+pyType+"' ";
 		} 
 		sql+=" order by fscore desc";
 	    return	dao.find(sql);
 	}
 	
+    
 	
 	
+	
+	
+	
+	/**
+	 * 获取企业基本信息
+	 * @author lixiaoyi
+	 * @date 2018年4月8日
+	 * @TODO
+	 */
+	public List<DefenInfoModel> getCompybasicinfo(String bigjys){
+		String sql="select * from insight_pp_corp_info";
+		return dao.find(sql);
+	}
+	/**
+	 * 获取企业其他信息
+	 * @author lixiaoyi
+	 * @date 2018年4月8日
+	 * @TODO
+	 */
+	public List<DefenInfoModel> getOtherinfo(String bigjys){
+		String sql="select * from insight_pp_othe_info";
+		return dao.find(sql);
+	}
+	/**
+	 * 根据平台查询
+	 * @author 高照
+	 * @date 2018年4月10日
+	 * @TODO
+	 */
+	public List<DefenInfoModel> getPingtai(String bigjys,String pingtai){
+		String sql="select jysinfo,fscore from insight_pp_score_info i where i.jysinfo like pingtai ";
+		if(StringUtils.isNotBlank(bigjys)){
+			sql+=" and jysc in "+bigjys;
+		} 
+		
+	    return	dao.find(sql);
+	}
 }

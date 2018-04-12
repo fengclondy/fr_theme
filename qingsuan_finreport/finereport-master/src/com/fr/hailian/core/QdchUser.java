@@ -3,6 +3,7 @@ package com.fr.hailian.core;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fr.hailian.model.RoleMenuModel;
 import com.fr.hailian.model.RoleModel;
 
 /**
@@ -25,8 +26,25 @@ public class QdchUser implements Serializable {
 	private List<RoleModel> roles;//用户相应角色 菜单
 	private String dataScope;
 	private List<String> jysList;//数据权限相关  交易所信息
-
+	private List<RoleMenuModel> menus;//菜单 包含父子级关系
+	private String activity;//审批流权限  处理/审核/决策
 	
+	
+	public List<RoleMenuModel> getMenus() {
+		return menus;
+	}
+
+	public void setMenus(List<RoleMenuModel> menus) {
+		this.menus = menus;
+	}
+
+	public String getActivity() {
+		return activity;
+	}
+
+	public void setActivity(String activity) {
+		this.activity = activity;
+	}
 
 	public String getDataScope() {
 		return dataScope;
