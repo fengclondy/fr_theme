@@ -30,24 +30,30 @@ import com.qdch.p2p.controller.ProjectplatformController;
 import com.qdch.p2p.controller.RiskController;
 import com.qdch.p2p.controller.SuperviseController;
 import com.qdch.p2p.model.AverageTimeModel;
+import com.qdch.p2p.model.AvgTermTimeModel;
 import com.qdch.p2p.model.CustNumberModel;
 import com.qdch.p2p.model.DefenInfoModel;
+import com.qdch.p2p.model.FenSanDuJiSuanModel;
+import com.qdch.p2p.model.FullScaleTimeModel;
 import com.qdch.p2p.model.ImportantRatioModel;
 import com.qdch.p2p.model.InterestModel;
 import com.qdch.p2p.model.JiaoYiLiangModel;
+import com.qdch.p2p.model.LoanBalanceModel;
 import com.qdch.p2p.model.PingTaiRenShuModel;
+import com.qdch.p2p.model.PingTaiZhuangTaiModel;
 import com.qdch.p2p.model.PlatformModel;
 import com.qdch.p2p.model.PpjyscModel;
 import com.qdch.p2p.model.ProjectStructureModel;
 import com.qdch.p2p.model.QiYeJiBenInFoModel;
 import com.qdch.p2p.model.QiYeQiTaInFoModel;
+import com.qdch.p2p.model.RenJunCiShuModel;
 import com.qdch.p2p.model.TotalTranNumModel;
 import com.qdch.p2p.model.WorkInfoModel;
 import com.qdch.p2p.model.XinXiPiLouModel;
 import com.qdch.p2p.model.XinYongInfoModel;
 import com.qdch.p2p.model.ZiChanInfoModel;
 import com.qdch.p2p.model.ZiRanRenJiChuInfoMoDel;
-import com.qdch.p2p.model.ptxxModel;
+import com.qdch.p2p.model.PingTaiXinXiModel;
 import com.qdch.util.TemplteLayoutTag;
 import com.qdch.xd.controller.AssetRiskController;
 import com.qdch.xd.controller.BusinessOverviewController;
@@ -368,10 +374,16 @@ public class Config extends JFinalConfig {
 		
 		/***p2p 韩朋达 insight层 Model START***/
 		insight_arp.addMapping("insight_pp_overview", PlatformModel.class); //p2p 平台总览表
-		arp.addMapping("hub_pp_jysc", ptxxModel.class); //p2p 平台信息表
+		arp.addMapping("hub_pp_jysc", PingTaiXinXiModel.class); //p2p 平台信息表
 		insight_arp.addMapping("insight_pp_show_info", XinXiPiLouModel.class); //p2p 平台总览alert-信息披露
 		insight_arp.addMapping("insight_pp_tran_number", JiaoYiLiangModel.class); //p2p 平台总览alert-平台数据信息
 		insight_arp.addMapping("insight_pp_cust_number", PingTaiRenShuModel.class); //p2p 平台总览alert-平台数据信息
+		insight_arp.addMapping("insight_pp_hhi_calculate", FenSanDuJiSuanModel.class); //p2p 平台总览alert-平台数据信息
+		insight_arp.addMapping("insight_pp_avge_count", RenJunCiShuModel.class); //p2p 平台总览alert-平台数据信息
+		insight_arp.addMapping("insight_pp_jyscstatus", PingTaiZhuangTaiModel.class); //p2p 平台总览 alert-平台数据信息
+		insight_arp.addMapping("insight_pp_avge_term", AvgTermTimeModel.class); //p2p平台总览 alert-平台数据信息
+		insight_arp.addMapping("insight_pp_collect_principal", LoanBalanceModel.class); //p2p 平台总览alert-平台数据信息
+		insight_arp.addMapping("insight_pp_average_time", FullScaleTimeModel.class); //p2p 平台总览alert-平台数据信息
 	}
 
 	public void configInterceptor(Interceptors me) {

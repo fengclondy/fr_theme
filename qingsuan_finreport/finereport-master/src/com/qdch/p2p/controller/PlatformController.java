@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.qdch.core.BaseController;
 import com.qdch.p2p.model.PlatformModel;
-import com.qdch.p2p.model.ptxxModel;
+import com.qdch.p2p.model.PingTaiXinXiModel;
 
 
 /**
@@ -18,7 +18,7 @@ import com.qdch.p2p.model.ptxxModel;
 public class PlatformController extends BaseController {
 	
 	public void index(){
-		setAttr("ptxxList", ptxxModel.dao.getPtxx(getDataScopeByUserNameForP2p())); //获取平台信息
+		setAttr("ptxxList", PingTaiXinXiModel.dao.getPtxx(getDataScopeByUserNameForP2p())); //获取平台信息
 		render("p2p/pages/01_01pingtaizonglanbiao.html");
 	}
 	/**
