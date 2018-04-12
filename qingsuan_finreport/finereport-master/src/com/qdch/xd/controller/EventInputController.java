@@ -25,18 +25,28 @@ public class EventInputController extends BaseController {
 	public void index(){
 		List<RiskTypeModel> riskTypeList =  riskTypeModelDao.getTypeKind("3"); //风险类别
 		setAttr("type",riskTypeList);
+		setAttr("status",dictModelDao.getLabel(getPara("note")));
+		setAttr("exchange",ExchangeInfoModel.dao.getList());  //机构/市场)
 		render("xd/pages/05_05fengxianshijiantianbao.html");
 	}
 
 
 	public void saveEvent(){
 		RiskEventModel riskEventModel  = new RiskEventModel();
+
+		StringBuffer sb = new StringBuffer();
+		sb.append("insert into hub_fxsj(fxlb,fxzb,fxzbz,yuzhi)value(");
+//		String risks = getPara()
 		riskEventModel.dao.save();
 		mRenderJson(true);
 	}
 
 	public void getRisk(){
 		Map<String,Object> result = new HashMap<String, Object>();
+		List<RiskTypeModel> riskTypeList =  riskTypeModelDao.getTypeKind("3"); //风险类别
+//		setAttr("type",riskTypeList);
+		result.put("yuzhi",ThresholdValueModel.dao.getInfoList("3"));
+		result.put("type",riskTypeList);
 		result.put("status",dictModelDao.getLabel(getPara("note")));
 		result.put("risk",riskTypeModelDao.getByType("3"));
 		result.put("exchange",	ExchangeInfoModel.dao.getList()); //机构/市场)

@@ -57,11 +57,47 @@
             cursor: pointer;
             color: #00abde;
         }
+        /*模态框  start*/
+        .model{
+            background: url("${contextPath}/static/img/com/bg_main.jpg") no-repeat;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            border-radius: .5rem .5rem 0 0;
+            width: 900px;
+            height: 500px;
+            margin-left: -450px;
+            margin-top: -250px;
+            color: #fff;
+            display: none;
+
+        }
+        /*头部 header*/
+        .header{
+            position: relative;
+            height: 2rem;
+            height: 6%;
+            border-radius: .5rem .5rem 0 0;
+            background-color: #0080ff;
+        }
+        .header span{
+            position: absolute;
+            right: .8rem;
+            top: 0.3rem;
+            width: 1rem;
+            height: 1rem;
+            text-align: center;
+            background-color: #fff;
+            border-radius: 50%;
+            line-height: 1rem;
+            cursor: pointer;
+            color: #00abde;
+        }
         /*li list*/
         .model_content{
             height: 92%;
             width: 100%;
-            padding: 0.5rem 0.5rem;
+            padding: 0.2rem 0.5rem;
 
         }
         .tableBox tbody tr td:nth-child(1) a{
@@ -72,44 +108,71 @@
             height: 40%;
             border-bottom: 1px solid #00abde;
         }
-        .modelTopleft{
-            width: 30%;
-        }
-
-        ul>li span{
-            padding: 0.18rem 0rem;
-            font-family:'微软雅黑';
-            font-size: 0.6rem;
-        }
-        /*审核人*/
-        .modelMiddle{
-            width: 100%;
-            height: 20%;
-            margin-top: 1rem;
-            border-bottom: 1px solid #00abde;
-        }
-        .modelMiddle ul li{
+        .modelTop li{
+            padding: 0.45rem 1rem;
             float: left;
             width: 30%;
+            font-family: '微软雅黑';
+            font-size: 0.6rem;
         }
-        .modelMiddle ul li span:nth-child(1){
-            padding: 0.1rem 1rem;
-            width: 10%;
-            height: 1.5rem;
-            background-color: rgb(51,103,153);
-            color: #fff;
+        .modelMiddle{
+            height: 25%;
+            margin: 0.5rem 0.5rem;
+            background-color:rgba(0,0,0,.25);
+            overflow: auto;
+        }
+        .modelFooter{
+            margin-top: 0.2rem;
+            height: 25%;
+            margin: 0.5rem 0.5rem;
+            background-color:rgba(0,0,0,.25);
+        }
+        .modelMiddleContent,.modelFooterContent{
+            margin: 0.5rem 1rem;
+            width: 100%;
+        }
+        .modelMiddleContent ul li,.modelFooterContent ul li{
+            padding: 0.2rem 0.2rem;
+            width: 33%;
+            float: left;
+            font-size: 0.6rem;
+        }
+        .modelFooterContent ul li input,textarea{
+            background-color: rgba(0,0,0,.3);
+            border: 1px solid #00abde;
+            border-radius: 0.15rem;
+        }
 
+        .operation{
+            height: 1.2rem;
+            width: 100%;
+            background-color: #eee;
         }
-        /*.modelTopleft  ul li span:nth-child(1),*/
-        /*.modelTopright  ul li span:nth-child(1){*/
-            /*width: 35%;*/
-            /*float: left;*/
-        /*}*/
-        /*.modelTopright  ul li span:nth-child(2),*/
-        /*.modelTopleft  ul li span:nth-child(2){*/
-            /*width: 65%;*/
-            /*float: left;*/
-        /*}*/
+        .operation .NavList li{
+            float: left;
+            font-size: .8rem;
+            line-height: 1.2rem;
+        }
+        .operation ul li{
+            font-size: 0.6rem;
+            margin-right: 1rem;
+            color: #000;
+            cursor: pointer;
+        }
+        .operation ul li:hover{
+            background-color: rgba(0,0,0,.2);
+            padding: 0.1rem;
+        }
+        .operation .NavList li img{
+            width: 0.8rem;
+            height: 0.8rem;
+            vertical-align: middle;
+            line-height: 1.2rem;
+        }
+        .operation .NavList li span{
+            margin-left: 0.5rem;
+        }
+        /*模态框  end*/
     </style>
 </head>
 <body class="whitePage" id="05_01fengxianshijianchuli" data-title="风险事件处理">
@@ -244,86 +307,120 @@
 
         <!--</div>-->
     <!--</div>-->
+    <!--模态框 弹出框-->
     <div class="model">
         <div class="header"><span>X</span></div>
+        <nav class="operation">
+            <ul class="NavList">
+                <li><img src="../img/05_fengxianguanli/submit.gif" alt=""><span id="submit">提交</span></li>
+                <li><img src="../img/05_fengxianguanli/deleted.gif" alt=""><span id="deleteColumn">清空</span></li>
+            </ul>
+        </nav>
         <div class="model_content">
             <div class="modelTop">
-                <div class="modelTopleft fl">
-                    <ul>
-                        <li><span>事件Id:</span><span class="shijianId"></span></li>
-                        <li><span>风险指标:</span><span class="fenxianzhibiao"></span></li>
-                        <li><span>超出额:</span><span class="Beyond"></span></li>
-                        <li><span>客户号:</span><span class="CustomerNo"></span></li>
-                        <li><span>业务类型:</span><span class="Business"></span></li>
-                        <li><span>风险说明:</span><span class="riskThat"></span></li>
-                    </ul>
-                </div>
-                <div class="modelTopleft fl">
-                    <ul>
-                        <li><span>报警时间:</span><span class="policeTime"></span></li>
-                        <li><span>指标值:</span><span class="indicatorsVal"></span></li>
-                        <li><span>机构代码:</span><span class="organizationCode"></span></li>
-                        <li><span>客户名称:</span><span class="CustomerName"></span></li>
-                        <li><span>业务编码:</span><span class="BusinessNo"></span></li>
-                    </ul>
+                <li><a href="#">事件ID：<span>1233</span></a></li>
+                <li><a href="#">报警时间：<span>1233</span></a></li>
+                <li><a href="#">风险类型：<span>1233</span></a></li>
+                <li><a href="#">风险指标：<span>1233</span></a></li>
+                <li><a href="#">指标值：<span>1233</span></a></li>
+                <li><a href="#">阙值：<span>1233</span></a></li>
+                <li><a href="#">超出额：<span>1233</span></a></li>
+                <li><a href="#">机构代码：<span>1233</span></a></li>
+                <li><a href="#">机构名称：<span>1233</span></a></li>
+                <li><a href="#">客户号：<span>1233</span></a></li>
+                <li><a href="#">客户名称：<span>11111111111111111</span></a></li>
+                <li><a href="#">业务菜单名称：<span>1233</span></a></li>
+                <li><a href="#">业务类型：<span>1233</span></a></li>
+                <li><a href="#">业务编码：<span>1233</span></a></li>
 
-                </div>
-                <div class="modelTopright fl">
-                    <ul>
-                        <li><span>风险类别:</span><span class="riskCategories"></span></li>
-                        <li><span>阙值:</span><span class="threshold"></span></li>
-                        <li><span>机构名称:</span><span class="organizationName"></span></li>
-                        <li><span>业务菜单名称:</span><span class="menuName"></span></li>
-                    </ul>
-                </div>
+
             </div>
             <div class="modelMiddle">
-                <ul>
-                    <li>
-                        <div class="">
-                            <span class="">审核人:</span>
-                            <span class="Auditor">man</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="">
-                            <span class="">处理状态:</span>
-                            <span class="HandleState">已排查</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="">
-                            <span class="Auditor">处理时间:</span>
-                            <span class="AuditorData">20180327 13:44:04</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="">
-                            <span class="Auditor">备&nbsp;&nbsp;&nbsp;注:</span>
-                            <span></span>
-                        </div>
-                    </li>
-                </ul>
+                <div class="modelMiddleContent">
+                    <ul>
+                        <li>
+                            <label >处理人: <span class="processingPerson">123</span></label>
+
+                        </li>
+                        <li>
+                            <label >处理状态: <span class="processState">已提交</span></label>
+
+                        </li>
+                        <li>
+                            <a href="">处理时间: <span class="processData">2018-1-1 00:00:00</span> </a>
+                        </li>
+                        <li style="width: 100%;">
+                            <label >备注: <span></span></label>
+
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <label >处理人: <span class="processingPerson">123</span></label>
+
+                        </li>
+                        <li>
+                            <label >处理状态: <span class="processState">已提交</span></label>
+
+                        </li>
+                        <li>
+                            <a href="">处理时间: <span class="processData">2018-1-1 00:00:00</span> </a>
+                        </li>
+                        <li style="width: 100%;">
+                            <label >备注: <span></span></label>
+
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <label >处理人: <span class="processingPerson">123</span></label>
+
+                        </li>
+                        <li>
+                            <label >处理状态: <span class="processState">已提交</span></label>
+
+                        </li>
+                        <li>
+                            <a href="">处理时间: <span class="processData">2018-1-1 00:00:00</span> </a>
+                        </li>
+                        <li style="width: 100%;">
+                            <label >备注: <span></span></label>
+
+                        </li>
+                    </ul>
+
+
+
+                </div>
             </div>
             <div class="modelFooter">
+                <div class="modelFooterContent">
+                    <ul>
+                        <li>
+                            <label>审核人:</label>
+                            <input type="text" id="Auditor">
+                        </li>
+                        <li>
+                            <label >处理状态</label>
+                            <input  name="radio1" type="radio" checked="checked">未处理
+                            <input name="radio1" type="radio">已提交
+                            <input name="radio1" type="radio">已排查
+                        </li>
+                        <li>
+                            <a href="">处理时间: <span id="processingData">2018-1-1 00:00:00</span> </a>
+                        </li>
+                        <li style="width: 100%;">
+                            <label><strong>备注：</strong></label>
+                            <textarea cols="100" rows="4"></textarea><br>
+                        </li>
+                    </ul>
 
-                <div class="inputGroup fl">
-                    <label class="jiaoyishichang"></label>&nbsp;&nbsp;
-                    <div class="mySelect" id="jiaoyishichang" style="width: 5rem">
-                        <div id="statusSubmit" class="myOption selected"><span class="text"></span><span class="icon"></span></div>
-                        <select class="myOptionBox">
-                            <option class="myOption selected">1</option>
-                            <option class="myOption">2</option>
-                            <option class="myOption">3</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="inputGroup">
-                    <button onclick="submitcheck()" type="button"  style="color: #fff; background-color:#00abde;padding: 0.1rem 1rem;border-radius: 0.2rem">提交</button>
+
                 </div>
             </div>
         </div>
-</div>
+    </div>
+    <!--模态框  end-->
 </div>
 <!--<script src="http://www.jq22.com/jquery/jquery-2.1.1.js"></script>-->
 <script src="${contextPath}/static/asserts/js/echarts-4.0.js"></script>
