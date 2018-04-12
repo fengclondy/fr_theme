@@ -32,6 +32,7 @@ import com.qdch.p2p.controller.SuperviseController;
 import com.qdch.p2p.model.AverageTimeModel;
 import com.qdch.p2p.model.CustNumberModel;
 import com.qdch.p2p.model.DefenInfoModel;
+import com.qdch.p2p.model.DiYaShenHeModel;
 import com.qdch.p2p.model.ImportantRatioModel;
 import com.qdch.p2p.model.InterestModel;
 import com.qdch.p2p.model.JiaoYiLiangModel;
@@ -41,6 +42,8 @@ import com.qdch.p2p.model.PpjyscModel;
 import com.qdch.p2p.model.ProjectStructureModel;
 import com.qdch.p2p.model.QiYeJiBenInFoModel;
 import com.qdch.p2p.model.QiYeQiTaInFoModel;
+import com.qdch.p2p.model.ShenHeQiYeModel;
+import com.qdch.p2p.model.ShenHeZiLiaoZiRanRenModel;
 import com.qdch.p2p.model.TotalTranNumModel;
 import com.qdch.p2p.model.WorkInfoModel;
 import com.qdch.p2p.model.XinXiPiLouModel;
@@ -269,6 +272,10 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("insight_pp_job_info", WorkInfoModel.class);//自然人工作信息
 		insight_arp.addMapping("insight_pp_corp_info", QiYeJiBenInFoModel.class);//企业基本信息
 		insight_arp.addMapping("insight_pp_othe_info",QiYeQiTaInFoModel.class);//企业其它信息
+		insight_arp.addMapping("insight_pp_person_audit",ShenHeZiLiaoZiRanRenModel.class);//自然人审核资料
+		insight_arp.addMapping("insight_pp_corp_audit", ShenHeQiYeModel.class);//企业审核资料
+		insight_arp.addMapping("insight_pp_pledge_audit", DiYaShenHeModel.class);//审核抵押物
+		
 		/***小贷zuoqb insight层 Model START***/
 		
 		/*insight_arp.addMapping("hub_xd_fxzs", RiskCountModel.class);//小贷风险指数*/		

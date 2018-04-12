@@ -23,7 +23,7 @@ public class DefenInfoModel extends Model<DefenInfoModel>{
 			sql+=" and jysc in "+bigjys;
 		} 
 		if(StringUtils.isNotBlank(pyType)){
-			sql+=" and jysc = '"+pyType+"' ";
+			sql+=" and jysinfo = '"+pyType+"' ";
 		} 
 		sql+=" order by fscore desc";
 	    return	dao.find(sql);

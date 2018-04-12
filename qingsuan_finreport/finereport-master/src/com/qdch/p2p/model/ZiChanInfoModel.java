@@ -11,7 +11,7 @@ public class ZiChanInfoModel extends Model<ZiChanInfoModel>{
 	public static final ZiChanInfoModel dao=new ZiChanInfoModel();
 	/**
 	 * 获取自然人资产信息
-	 * @author lixiaoyi
+	 * @author 高照
 	 * @date 2018年4月8日
 	 * @TODO
 	 */
