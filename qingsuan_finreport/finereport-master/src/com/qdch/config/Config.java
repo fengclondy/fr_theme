@@ -36,6 +36,7 @@ import com.qdch.p2p.model.PlatformModel;
 import com.qdch.p2p.model.PpjyscModel;
 import com.qdch.p2p.model.ProjectStructureModel;
 import com.qdch.p2p.model.StructuralDetailsModel;
+import com.qdch.p2p.model.TermDetailsModel;
 import com.qdch.p2p.model.WorkInfoModel;
 import com.qdch.p2p.model.XinYongInfoModel;
 import com.qdch.p2p.model.ZiChanInfoModel;
@@ -254,6 +255,7 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("insight_pp_interest", CompositeInterestModel.class);//用于获取平台综合利率
 		insight_arp.addMapping("insight_pp_indust_int", CompositeInterestModel.class);//用于获取行业综合利率
 		insight_arp.addMapping("insight_pp_iterm_count", StructuralDetailsModel.class);//用于获取项目结构详情
+		insight_arp.addMapping("insight_pp_term_distribute", TermDetailsModel.class);//用于获取期限分布详情
 		/***doushuiahi Model START p2p***/
 		
 		/***p2p 高照  insight层Model p2p***/

@@ -10,6 +10,7 @@ import com.qdch.p2p.model.InterestModel;
 import com.qdch.p2p.model.PpjyscModel;
 import com.qdch.p2p.model.ProjectStructureModel;
 import com.qdch.p2p.model.StructuralDetailsModel;
+import com.qdch.p2p.model.TermDetailsModel;
 /**
  * 
  * @author lixiaoyi
@@ -75,10 +76,21 @@ public class ProjectplatformController  extends BaseController{
 		map.put("industryinterestList", industryinterest);
 		mRenderJson(map);
 	}
+	/**
+	 * 获取项目结构详情
+	* @author doushuihai  
+	* @date 2018年4月12日下午4:51:22  
+	* @TODO
+	 */
 	public void getStructuralDetails(){
 		String jys=getPara("jys");		
 		List<StructuralDetailsModel> structuraldetailsmodel=StructuralDetailsModel.dao.getStructuralDetails(getDataScopeByUserNameForP2p(),jys);
 		mRenderJson(structuraldetailsmodel);
+	}
+	public void getTermDetails(){
+		String jys=getPara("jys");		
+		List<TermDetailsModel> termdetailsmodel=TermDetailsModel.dao.getTermDetails(getDataScopeByUserNameForP2p(),jys);
+		mRenderJson(termdetailsmodel);
 	}
 	
 
