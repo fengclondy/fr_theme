@@ -344,7 +344,9 @@
             <!-- 固定表头 table外层必须包有一个div  id="my_div"   class="fakeContainer first_div" 引入superTables.js  在页面下面还需要调用 -->
             <div id="my_div1" class="fakeContainer first_div" >
                 <table border="1" id="demoTable1" style="">
+                	 <thead>
                     <tr id="my_tr1">
+                    
                         <th class="center" rowspan="1">项目类型</th>
                         <th class="center" rowspan="1">业务类型</th>
                         <th class="center" rowspan="1">平均利率</th>
@@ -353,9 +355,10 @@
                         <th class="center" rowspan="1">平均期限</th>
 
                     </tr>
-
+					 </thead>
+					 <tbody>
                     <tr>
-                        <td class="center ziranren" rowspan="2">信用</td>
+                        <td class="center ziranren">信用</td>
                         <td class="center left">车押宝</td>
                         <td class="center">12%</td>
                         <td class="center">13%</td>
@@ -365,6 +368,7 @@
 
                     </tr>
                     <tr>
+                    	 <td class="center ziranren">信用</td>
                         <td class="center left">车贷</td>
                         <td class="center">12%</td>
                         <td class="center">13%</td>
@@ -385,7 +389,7 @@
                         <td class="center">23%</td>
                         <td class="center">12%</td>
                     </tr>
-
+					</tbody>
                 </table>
             </div>
         </div>
@@ -454,8 +458,23 @@
     $(function(){
     	//弹出框
         $(".tck1 .icon").click(function () {
+            
+            var tableList = "";
+            $.post("${contextPath}/qdch/project/getStructuralDetails",{"jys":jysCode},function(data){            
+                $.each(res,function(index,item){
+					tableList+=
+							"  <tr>            <td class='center ziranren'>"+item.xmlx+"</td>\n" +
+							"                 <td class='center left'>"+item.ywlx+"</td>\n" +
+							"                 <td class='center'>"+item.pjlv+"</td>\n" +
+							"               <td class='center'>"+item.je+"</td>\n" +
+							"               <td class='center'>"+item.jezb+"</td>\n" +
+							"                <td class='center'>"+item.pjqx+"</td></tr>  " 
+		
+			})
+			alert(data)
+			$('tbody').html(tableList)
+            })
             $('.model').css('display','block');
-            console.log('aaa');
         });
 
         $(".model>.header>span").click(function () {

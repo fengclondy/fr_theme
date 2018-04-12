@@ -3,14 +3,13 @@ package com.qdch.p2p.controller;
 import java.util.HashMap;
 import java.util.List;
 
-import org.apache.commons.collections.map.HashedMap;
-
 import com.qdch.core.BaseController;
 import com.qdch.p2p.model.CompositeInterestModel;
 import com.qdch.p2p.model.ImportantRatioModel;
 import com.qdch.p2p.model.InterestModel;
 import com.qdch.p2p.model.PpjyscModel;
 import com.qdch.p2p.model.ProjectStructureModel;
+import com.qdch.p2p.model.StructuralDetailsModel;
 /**
  * 
  * @author lixiaoyi
@@ -75,6 +74,11 @@ public class ProjectplatformController  extends BaseController{
 		map.put("platformcominterestList", platformcominterest);
 		map.put("industryinterestList", industryinterest);
 		mRenderJson(map);
+	}
+	public void getStructuralDetails(){
+		String jys=getPara("jys");		
+		List<StructuralDetailsModel> structuraldetailsmodel=StructuralDetailsModel.dao.getStructuralDetails(getDataScopeByUserNameForP2p(),jys);
+		mRenderJson(structuraldetailsmodel);
 	}
 	
 
