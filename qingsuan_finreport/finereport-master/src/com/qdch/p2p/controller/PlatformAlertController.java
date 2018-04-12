@@ -1,3 +1,4 @@
+
 package com.qdch.p2p.controller;
 
 import java.util.List;
@@ -105,3 +106,4 @@ public class PlatformAlertController extends BaseController{
 		mRenderError(ztzrs);
 	}
 }
+
