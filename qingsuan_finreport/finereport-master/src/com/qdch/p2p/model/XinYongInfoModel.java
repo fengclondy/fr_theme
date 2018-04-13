@@ -18,7 +18,7 @@ public class XinYongInfoModel extends Model<XinYongInfoModel> {
 	public XinYongInfoModel getCreditinfo(String bigjys,String pyType,String hasInfo){
 		String sql="select * from insight_pp_credit_info where 1=1 ";
 		if(StringUtils.isNotBlank(bigjys)){
-			sql+=" and jysc in '"+bigjys;
+			sql+=" and jysc in "+bigjys;
 		}
 		if(StringUtils.isNotBlank(pyType)){
 			sql+=" and jysc ='"+pyType+"' ";
