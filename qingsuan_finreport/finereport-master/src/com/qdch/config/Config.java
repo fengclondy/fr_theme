@@ -65,6 +65,7 @@ import com.qdch.p2p.model.ShenHeZiLiaoZiRanRenModel;
 import com.qdch.p2p.model.StructuralDetailsModel;
 import com.qdch.p2p.model.TermDetailsModel;
 import com.qdch.p2p.model.TotalTranNumModel;
+import com.qdch.p2p.model.TranAmountModel;
 import com.qdch.p2p.model.WorkInfoModel;
 import com.qdch.p2p.model.XinXiPiLouModel;
 import com.qdch.p2p.model.XinYongInfoModel;
@@ -349,16 +350,13 @@ public class Config extends JFinalConfig {
 			insight_arp.addMapping("insight_xd_intrate",maxIntrateRankModel.class);//最高利率
 		/***小贷 连纪明 insight层 Model END***/
 		
-			
-			
-			
-			
 		/***p2p 连纪明 insight层 Model START ***/
 			
 			insight_arp.addMapping("insight_pp_tran_number",TotalTranNumModel.class);//交易总量，总成交额
 			insight_arp.addMapping("insight_pp_average_time",AverageTimeModel.class);//平均满标用时
 			insight_arp.addMapping("insight_pp_cust_number",CustNumberModel.class);//人均借款，人均投资
 			insight_arp.addMapping("insight_pp_range_number",RangeNumberModel.class);//投资金额借款金额区间人数
+			insight_arp.addMapping("insight_pp_tran_amount",TranAmountModel.class);//人均借款人均投资
 			
 			
 		/***p2p 连纪明 insight层 Model END***/
@@ -429,6 +427,6 @@ public class Config extends JFinalConfig {
 	}
 
 	public static void main(String[] args){ 
-		JFinal.start("WebRoot", 8080, "/", 5);
+		JFinal.start("WebRoot", 8088, "/", 5);
 	}
 }

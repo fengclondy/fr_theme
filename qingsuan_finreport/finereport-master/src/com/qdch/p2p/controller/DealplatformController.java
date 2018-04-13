@@ -10,11 +10,13 @@ import java.util.Map;
 
 
 
+
 import com.qdch.core.BaseController;
 import com.qdch.p2p.model.AverageTimeModel;
 import com.qdch.p2p.model.CustNumberModel;
 import com.qdch.p2p.model.RangeNumberModel;
 import com.qdch.p2p.model.TotalTranNumModel;
+import com.qdch.p2p.model.TranAmountModel;
 /**
  * 
  * @author lixiaoyi
@@ -43,12 +45,11 @@ public class DealplatformController extends BaseController {
 	//平均满标时间
 	public void getAvgTime(){
 		String jysinfo=getPara("jysinfo");//获取参数：交易市场名称
-		//获取总成交量
 		List<AverageTimeModel> avgTime = AverageTimeModel.dao.getAvgTime(getDataScopeByUserName(), jysinfo);
 		mRenderJson(avgTime);
 	}
 	
-	//获取人均借款，人均投资
+	//获取平台借款人数，平台投资人数
 	public void getCustNum(){
 		String jysinfo=getPara("jysinfo");//获取参数：交易市场名称
 		//人均借款
@@ -60,13 +61,33 @@ public class DealplatformController extends BaseController {
 		res.put("investList", investList);
 		mRenderJson(res);
 	}
+
 	
-	//获取投资区间人数，借款区间人数
+	//获取 投资区间人数
 	public void getRangeNumber(){
 		String jysinfo = getPara("jysinfo");//获取参数：交易市场名称
 		String ppType = getPara("ppType");//类型：借款人或者投资人
 		List<RangeNumberModel> list = RangeNumberModel.dao.getInvestRangeNumber(getDataScopeByUserName(), jysinfo, ppType);
 		mRenderJson(list);
+	}
+	//获取 借款区间人数
+	public void getLoanRangeNumber(){
+		String jysinfo = getPara("jysinfo");//获取参数：交易市场名称
+		String ppType = getPara("ppType");//类型：借款人或者投资人
+		List<RangeNumberModel> list = RangeNumberModel.dao.getLoanRangeNumber(getDataScopeByUserName(), jysinfo, ppType);
+		mRenderJson(list);
+	}
+	//获取人均借款金额 人均投资金额
+	public void getLoanAndInvestNumber(){
+		String jysinfo=getPara("jysinfo");//获取参数：交易市场名称
+		//人均借款金额 
+		List<TranAmountModel> loanList = TranAmountModel.dao.getLoanNumber(getDataScopeByUserName(),jysinfo);
+		//人均投资金额
+		List<TranAmountModel> investList = TranAmountModel.dao.getInvestNumber(getDataScopeByUserName(), jysinfo);
+		Map<String,Object> res = new HashMap<String,Object>();
+		res.put("loanList", loanList);
+		res.put("investList", investList);
+		mRenderJson(res);
 	}
 
 }
