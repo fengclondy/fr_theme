@@ -591,16 +591,18 @@
     		var seriesData1=[];
     		var seriesData2=[];
   			var yAxisData=[];
+  			var yAxisData2=[];
   			$.each(data.platformcominterestList,function(index,item){
   				yAxisData.push(item.vday_ym);
   				seriesData1.push(item.interestnum);
   				
+  				
   			})
-  			$.each(data.industryinterestList,function(index,item){
+  			 $.each(data.industryinterestList,function(index,item){
   				
   				seriesData2.push(item.interestnum);
   				
-  			})
+  			}) 
   			console.log("YUEYUEYUE",seriesData1);
   			ec003.setOption({
   	            grid: {

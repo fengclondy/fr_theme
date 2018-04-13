@@ -58,12 +58,15 @@ import com.qdch.p2p.model.PpjyscModel;
 import com.qdch.p2p.model.ProjectStructureModel;
 import com.qdch.p2p.model.QiYeJiBenInFoModel;
 import com.qdch.p2p.model.QiYeQiTaInFoModel;
+import com.qdch.p2p.model.RangeNumberModel;
 import com.qdch.p2p.model.RenJunCiShuModel;
+import com.qdch.p2p.model.RiskOverviewModel;
 import com.qdch.p2p.model.ShenHeQiYeModel;
 import com.qdch.p2p.model.ShenHeZiLiaoZiRanRenModel;
 import com.qdch.p2p.model.StructuralDetailsModel;
 import com.qdch.p2p.model.TermDetailsModel;
 import com.qdch.p2p.model.TotalTranNumModel;
+import com.qdch.p2p.model.TranAmountModel;
 import com.qdch.p2p.model.WorkInfoModel;
 import com.qdch.p2p.model.XinXiPiLouModel;
 import com.qdch.p2p.model.XinYongInfoModel;
@@ -280,10 +283,11 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("insight_pp_iterm_count", ProjectStructureModel.class);//平台项目的项目结构
 		insight_arp.addMapping("insight_pp_netinfo", ImportantRatioModel.class);//平台项目的四个重要比率
 		insight_arp.addMapping("insight_pp_interest", InterestModel.class);//用于动态获取平台项目中期限类型
-		insight_arp.addMapping("insight_pp_interest", CompositeInterestModel.class);//用于获取平台综合利率
-		insight_arp.addMapping("insight_pp_indust_int", CompositeInterestModel.class);//用于获取行业综合利率
-		insight_arp.addMapping("insight_pp_iterm_count", StructuralDetailsModel.class);//用于获取项目结构详情
-		insight_arp.addMapping("insight_pp_term_distribute", TermDetailsModel.class);//用于获取期限分布详情
+		insight_arp.addMapping("insight_pp_interest", CompositeInterestModel.class);//用于平台项目获取平台综合利率
+		insight_arp.addMapping("insight_pp_indust_int", CompositeInterestModel.class);//用于平台项目获取行业综合利率
+		insight_arp.addMapping("insight_pp_iterm_count", StructuralDetailsModel.class);//用于平台项目获取项目结构详情
+		insight_arp.addMapping("insight_pp_term_distribute", TermDetailsModel.class);//用于平台项目获取期限分布详情
+		arp.addMapping("hub_pp_fxzs", RiskOverviewModel.class);//用于p2p风险总览
 		/***doushuiahi Model START p2p***/
 		
 		/***p2p 高照  insight层Model p2p***/
@@ -348,15 +352,13 @@ public class Config extends JFinalConfig {
 			insight_arp.addMapping("insight_xd_intrate",maxIntrateRankModel.class);//最高利率
 		/***小贷 连纪明 insight层 Model END***/
 		
-			
-			
-			
-			
 		/***p2p 连纪明 insight层 Model START ***/
 			
 			insight_arp.addMapping("insight_pp_tran_number",TotalTranNumModel.class);//交易总量，总成交额
 			insight_arp.addMapping("insight_pp_average_time",AverageTimeModel.class);//平均满标用时
 			insight_arp.addMapping("insight_pp_cust_number",CustNumberModel.class);//人均借款，人均投资
+			insight_arp.addMapping("insight_pp_range_number",RangeNumberModel.class);//投资金额借款金额区间人数
+			insight_arp.addMapping("insight_pp_tran_amount",TranAmountModel.class);//人均借款人均投资
 			
 			
 		/***p2p 连纪明 insight层 Model END***/
@@ -427,6 +429,6 @@ public class Config extends JFinalConfig {
 	}
 
 	public static void main(String[] args){ 
-		JFinal.start("WebRoot", 8080, "/", 5);
+		JFinal.start("WebRoot", 8088, "/", 5);
 	}
 }

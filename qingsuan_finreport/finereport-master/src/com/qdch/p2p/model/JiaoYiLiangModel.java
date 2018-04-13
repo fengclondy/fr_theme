@@ -29,7 +29,7 @@ public class JiaoYiLiangModel extends Model<JiaoYiLiangModel>{
 				+ "from insight_pp_tran_number where tran_type = '总成交额' "
 				+ "and vday_ym = (select to_char(now() - INTERVAL '1 month','yyyymm'))";
 		if (StringUtils.isNotBlank(jysIds)) {
-			sql += " and jysc in '"+jysIds+"'";
+			sql += " and jysc in "+jysIds+"";
 		}
 		if (StringUtils.isNotBlank(jysc)) {
 			sql += " and jysc = '"+jysc+"'";
@@ -47,7 +47,7 @@ public class JiaoYiLiangModel extends Model<JiaoYiLiangModel>{
 				+ "from insight_pp_tran_number where tran_type = '总成交量' "
 				+ "and vday_ym = (select to_char(now() - INTERVAL '1 month','yyyymm'))";
 		if (StringUtils.isNotBlank(jysIds)) {
-			sql += " and jysc in '"+jysIds+"'";
+			sql += " and jysc in "+jysIds+"";
 		}
 		if (StringUtils.isNotBlank(jysc)) {
 			sql += " and jysc = '"+jysc+"'";
