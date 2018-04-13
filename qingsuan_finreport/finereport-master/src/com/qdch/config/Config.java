@@ -1,8 +1,4 @@
 package com.qdch.config;
-
-import com.qdch.xd.controller.*;
-import com.qdch.xd.model.*;
-
 import org.beetl.core.GroupTemplate;
 import org.beetl.ext.jfinal3.JFinal3BeetlRenderFactory;
 
@@ -20,15 +16,9 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.activerecord.dialect.PostgreSqlDialect;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.template.Engine;
-
-import com.qdch.industry.controller.IndustryComController;
-
 import com.qdch.core.QdchController;
-
-
-import com.qdch.industry.controller.IndustryComController;
 import com.qdch.intercept.SecurityInterceptor;
-
+//github.com/zuoqingbei/qss_code.git
 import com.qdch.model.DemoModel;
 import com.qdch.p2p.controller.BorrowerController;
 import com.qdch.p2p.controller.BorrowerPhotoController;
@@ -40,21 +30,20 @@ import com.qdch.p2p.controller.PlatformController;
 import com.qdch.p2p.controller.ProjectplatformController;
 import com.qdch.p2p.controller.RiskController;
 import com.qdch.p2p.controller.SuperviseController;
-
+import com.qdch.p2p.model.AverageTimeModel;
+import com.qdch.p2p.model.AvgTermTimeModel;
 import com.qdch.p2p.model.CoBusinessTypeModel;
-import com.qdch.p2p.model.CoCompanyBrachModel;
 import com.qdch.p2p.model.CoChangeModel;
+import com.qdch.p2p.model.CoCompanyBrachModel;
 import com.qdch.p2p.model.CoCompanyInfoModel;
 import com.qdch.p2p.model.CoCompanyTypeModel;
 import com.qdch.p2p.model.CoCorePersonModel;
 import com.qdch.p2p.model.CoExecptionModel;
 import com.qdch.p2p.model.CoShareholderInfoModel;
-
-import com.qdch.p2p.model.AverageTimeModel;
-import com.qdch.p2p.model.AvgTermTimeModel;
+import com.qdch.p2p.model.CompositeInterestModel;
 import com.qdch.p2p.model.CustNumberModel;
-
 import com.qdch.p2p.model.DefenInfoModel;
+import com.qdch.p2p.model.DiYaShenHeModel;
 import com.qdch.p2p.model.FenSanDuJiSuanModel;
 import com.qdch.p2p.model.FullScaleTimeModel;
 import com.qdch.p2p.model.ImportantRatioModel;
@@ -62,6 +51,7 @@ import com.qdch.p2p.model.InterestModel;
 import com.qdch.p2p.model.JiaoYiLiangModel;
 import com.qdch.p2p.model.LoanBalanceModel;
 import com.qdch.p2p.model.PingTaiRenShuModel;
+import com.qdch.p2p.model.PingTaiXinXiModel;
 import com.qdch.p2p.model.PingTaiZhuangTaiModel;
 import com.qdch.p2p.model.PlatformModel;
 import com.qdch.p2p.model.PpjyscModel;
@@ -69,13 +59,16 @@ import com.qdch.p2p.model.ProjectStructureModel;
 import com.qdch.p2p.model.QiYeJiBenInFoModel;
 import com.qdch.p2p.model.QiYeQiTaInFoModel;
 import com.qdch.p2p.model.RenJunCiShuModel;
+import com.qdch.p2p.model.ShenHeQiYeModel;
+import com.qdch.p2p.model.ShenHeZiLiaoZiRanRenModel;
+import com.qdch.p2p.model.StructuralDetailsModel;
+import com.qdch.p2p.model.TermDetailsModel;
 import com.qdch.p2p.model.TotalTranNumModel;
 import com.qdch.p2p.model.WorkInfoModel;
 import com.qdch.p2p.model.XinXiPiLouModel;
 import com.qdch.p2p.model.XinYongInfoModel;
 import com.qdch.p2p.model.ZiChanInfoModel;
 import com.qdch.p2p.model.ZiRanRenJiChuInfoMoDel;
-import com.qdch.p2p.model.PingTaiXinXiModel;
 import com.qdch.util.TemplteLayoutTag;
 import com.qdch.xd.controller.AssetRiskController;
 import com.qdch.xd.controller.BusinessOverviewController;
@@ -287,6 +280,10 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("insight_pp_iterm_count", ProjectStructureModel.class);//平台项目的项目结构
 		insight_arp.addMapping("insight_pp_netinfo", ImportantRatioModel.class);//平台项目的四个重要比率
 		insight_arp.addMapping("insight_pp_interest", InterestModel.class);//用于动态获取平台项目中期限类型
+		insight_arp.addMapping("insight_pp_interest", CompositeInterestModel.class);//用于获取平台综合利率
+		insight_arp.addMapping("insight_pp_indust_int", CompositeInterestModel.class);//用于获取行业综合利率
+		insight_arp.addMapping("insight_pp_iterm_count", StructuralDetailsModel.class);//用于获取项目结构详情
+		insight_arp.addMapping("insight_pp_term_distribute", TermDetailsModel.class);//用于获取期限分布详情
 		/***doushuiahi Model START p2p***/
 		
 		/***p2p 高照  insight层Model p2p***/
@@ -297,6 +294,10 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("insight_pp_job_info", WorkInfoModel.class);//自然人工作信息
 		insight_arp.addMapping("insight_pp_corp_info", QiYeJiBenInFoModel.class);//企业基本信息
 		insight_arp.addMapping("insight_pp_othe_info",QiYeQiTaInFoModel.class);//企业其它信息
+		insight_arp.addMapping("insight_pp_person_audit",ShenHeZiLiaoZiRanRenModel.class);//自然人审核资料
+		insight_arp.addMapping("insight_pp_corp_audit", ShenHeQiYeModel.class);//企业审核资料
+		insight_arp.addMapping("insight_pp_pledge_audit", DiYaShenHeModel.class);//审核抵押物
+		
 		/***小贷zuoqb insight层 Model START***/
 		
 		/*insight_arp.addMapping("hub_xd_fxzs", RiskCountModel.class);//小贷风险指数*/		

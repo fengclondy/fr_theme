@@ -20,10 +20,10 @@ public class ProjectStructureModel extends Model<ProjectStructureModel> {
 	public static final ProjectStructureModel dao=new ProjectStructureModel();
 	public List<ProjectStructureModel> getProjectStructure(String dataSql,String jys){	
 		String sql="select vday"
-				+ ",jyscmc,jysc,iterm_type,iterm_term,sum(iterm_value) as value from insight_pp_iterm_count where 1=1  and vday=(select max(vday) from insight_pp_iterm_count)";
+				+ ",jyscmc,jysc,iterm_type,iterm_term,sum(iterm_value) as value from insight_pp_iterm_count where 1=1  and vday=(select max(vday) from insight_pp_iterm_count) ";
 		
 		if(StringUtils.isNotBlank(dataSql)){
-			sql+=" jysc in"+ dataSql+"";
+			sql+=" and jysc in"+ dataSql+"";
 		}
 		if(StringUtils.isNotBlank(jys)){
 			sql+="and jysc='"+ jys+"'  ";
