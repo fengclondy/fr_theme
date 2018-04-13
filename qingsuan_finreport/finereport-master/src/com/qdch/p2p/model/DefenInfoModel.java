@@ -1,3 +1,4 @@
+
 package com.qdch.p2p.model;
 
 import java.util.List;
@@ -5,6 +6,7 @@ import java.util.List;
 import org.apache.commons.lang.StringUtils;
 
 import com.jfinal.plugin.activerecord.Model;
+
 
 public class DefenInfoModel extends Model<DefenInfoModel>{
 	private static final long serialVersionUID = 1L;
@@ -21,7 +23,7 @@ public class DefenInfoModel extends Model<DefenInfoModel>{
 			sql+=" and jysc in "+bigjys;
 		} 
 		if(StringUtils.isNotBlank(pyType)){
-			sql+=" and jysc = '"+pyType+"' ";
+			sql+=" and jysinfo = '"+pyType+"' ";
 		} 
 		sql+=" order by fscore desc";
 	    return	dao.find(sql);

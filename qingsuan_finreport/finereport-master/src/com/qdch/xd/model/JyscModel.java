@@ -18,7 +18,7 @@ import com.qdch.model.DemoModel;
  * 
  * @author doush
  * @date 2018年3月26日
- * @TODO 获取交易市场
+ * @TODO 获取交易市场 --小贷
  */
 public class JyscModel extends Model<JyscModel>{
 
@@ -33,7 +33,7 @@ public class JyscModel extends Model<JyscModel>{
 		String sql="select * from hub_xd_jysc where 1=1 ";
 		
 		if(StringUtils.isNotBlank(dataSql)){
-			sql+=" jysc in"+ dataSql+"";
+			sql+=" and jysc in"+ dataSql+"";
 		}
 		return dao.find(sql);
 	}

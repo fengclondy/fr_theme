@@ -60,7 +60,7 @@ public class Constants {
 	//正式的url地址
 	public final static String MSG_API_URL = "http://manager.wxtxsms.cn/smsport/sendPost.aspx";
 	//外网ip
-	public final static String WEB_DOMAIN = "http://144.123.36.214:10080/WebReport";
+	public final static String WEB_DOMAIN = "http://144.123.36.214/WebReport";
 	//访问网址
 	public final static String WEB_URL = WEB_DOMAIN+"/QDCH/login.html ";
 	
