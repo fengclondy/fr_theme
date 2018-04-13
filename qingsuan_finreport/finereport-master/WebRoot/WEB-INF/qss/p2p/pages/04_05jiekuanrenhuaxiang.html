@@ -150,7 +150,7 @@
                         <label for="pingtaimingcheng">平台名称：</label>
                         <div class="mySelect" id="pingtaimingcheng">
                             <div class="myOption selected inputWidth"><span
-                                    class="text" id="show_name">${jys!'全部'}</span><span
+                                    class="text" id="show_name">${jys!}</span><span
                                     class="icon"></span></div>
                          
                            <ul class="myOptionBox" id="jysul">
@@ -371,12 +371,12 @@
                         <tr>
                             <td class="center red" >在其他平台有无借款</td>
 
-                             ##for(j in pingtailist!){
+                            ##for(j in pingtailist!){
                            
                           	<td class="center">
                           		 ${j.xinyon.jkf!} 
-                          	 </td>
-                          ##}
+                          	</td>
+                            ##}
                            
                        
                         </tr>
@@ -388,8 +388,8 @@
                            
                           	<td class="center">
                           		 ${j.xinyon.jkbs!} 
-                          	 </td>
-                          ##}
+                          	</td>
+                            ##}
                           
                           
                         </tr>
@@ -397,12 +397,12 @@
                         <tr>
                             <td class="center left">历史借款总额</td>
 
-                             ##for(j in pingtailist!){
+                            ##for(j in pingtailist!){
                            
                           	<td class="center">
                           		 ${j.xinyon.jkze!} 
-                          	 </td>
-                          ##}
+                          	</td>
+                            ##}
                           
                          
                         </tr>
@@ -415,7 +415,7 @@
                           	<td class="center">
                           		 ${j.xinyon.zxcs!} 
                           	 </td>
-                          ##}
+                            ##}
                            
                           
                         </tr>
@@ -429,19 +429,19 @@
                           	<td class="center">
                           		 ${j.zichan.srqk!} 
                           	 </td>
-                          ##}
+                            ##}
                            
                         </tr>
 
                         <tr>
                             <td class="center left">有无购房</td>
 
-                             ##for(j in pingtailist!){
+                            ##for(j in pingtailist!){
                            
                           	<td class="center">
                           		 ${j.zichan.gf_flag!} 
                           	 </td>
-                          ##}
+                            ##}
                             
                             
                           
@@ -451,12 +451,12 @@
                             <td class="center left">有无购车</td>
 
                             
-                             ##for(j in pingtailist!){
+                            ##for(j in pingtailist!){
                            
                           	<td class="center">
                           		 ${j.zichan.gc_flag!} 
-                          	 </td>
-                          ##}
+                          	</td>
+                            ##}
                             
                            
                         </tr>
@@ -465,12 +465,12 @@
                             <td class="center left">有无房贷</td>
 
                             
-                             ##for(j in pingtailist!){
+                            ##for(j in pingtailist!){
                            
                           	<td class="center">
                           		 ${j.zichan.fd_flag!} 
                           	 </td>
-                          ##}
+                            ##}
                             
                            
                         </tr>
@@ -479,12 +479,12 @@
                             <td class="center left">有无车贷</td>
 
                             
-                             ##for(j in pingtailist!){
+                            ##for(j in pingtailist!){
                            
                           	<td class="center">
                           		 ${j.zichan.cd_flag!} 
-                          	 </td>
-                          ##}
+                          	</td>
+                            ##}
                            
                            
                         </tr>
@@ -494,12 +494,12 @@
 						
                             <td class="center red">从事行业</td>
                            
-                             ##for(j in pingtailist!){
+                            ##for(j in pingtailist!){
                            
                           	<td class="center">
                           		 ${j.job.industry!} 
-                          	 </td>
-                          ##}
+                          	</td>
+                            ##}
                           
                          
 
@@ -512,20 +512,20 @@
                            
                           	<td class="center">
                           		 ${j.job.city!} 
-                          	 </td>
-                          ##}
+                          	</td>
+                            ##}
                            
                         </tr>
 
                         <tr>
                             <td class="center left">公司规模</td>
 
-                             ##for(j in pingtailist!){
+                            ##for(j in pingtailist!){
                            
                           	<td class="center">
                           		 ${j.job.gsgm!} 
-                          	 </td>
-                          ##}
+                          	</td>
+                            ##}
                            
                           
                         </tr>
@@ -533,12 +533,12 @@
                         <tr>
                             <td class="center left">工作岗位</td>
 
-                            ##for(j in pingtailist!){
+                           ##for(j in pingtailist!){
                            
                           	<td class="center">
                           		 ${j.job.gzgw!} 
-                          	 </td>
-                          ##}
+                          	</td>
+                           ##}
                            
                          
                         </tr>
@@ -546,12 +546,12 @@
                         <tr>
                             <td class="center left">工作年限</td>
 
-                             ##for(j in pingtailist!){
+                            ##for(j in pingtailist!){
                            
                           	<td class="center">
                           		 ${j.job.gznx!} 
-                          	 </td>
-                          ##}
+                          	</td>
+                            ##}
                           
                          
                         </tr>
@@ -591,8 +591,8 @@
                            
                           	<td class="center">
                           		 ${j.qjb.clsj!} 
-                          	 </td>
-                          ##}
+                          	</td>
+                            ##}
                           
                           
                         </tr>
@@ -600,12 +600,12 @@
                         <tr>
                             <td class="center red">注册资本</td>
 
-                             ##for(j in pingtailist!){
+                            ##for(j in pingtailist!){
                            
                           	<td class="center">
                           		 ${j.qjb.zczb!} 
-                          	 </td>
-                          ##}
+                          	</td>
+                            ##}
                           
                         </tr>
 
@@ -616,8 +616,8 @@
                            
                           	<td class="center">
                           		 ${j.qjb.zcdz!} 
-                          	 </td>
-                          ##}
+                          	</td>
+                            ##}
                            
                           
                         </tr>
@@ -629,8 +629,8 @@
                            
                           	<td class="center">
                           		 ${j.qjb.yyfw!} 
-                          	 </td>
-                          ##}
+                          	</td>
+                           ##}
                        
                         </tr>
 
@@ -642,7 +642,7 @@
                           	<td class="center">
                           		 ${j.qjb.gsgm!} 
                           	 </td>
-                          ##}
+                            ##}
                             
                           
                         </tr>
@@ -655,7 +655,7 @@
                           	<td class="center">
                           		 ${j.qjb.zjyt!} 
                           	 </td>
-                          ##}
+                           ##}
                            
                           
                         </tr>
@@ -668,7 +668,7 @@
                           	<td class="center">
                           		 ${j.qjb.hkly!} 
                           	 </td>
-                          ##}
+                            ##}
                             
                         
                         </tr>
@@ -682,7 +682,7 @@
                           	<td class="center">
                           		 ${j.qqt.srqk!} 
                           	 </td>
-                          ##}
+                            ##}
                            
                        
                         </tr>
@@ -693,7 +693,7 @@
                           	<td class="center">
                           		 ${j.qqt.fzqk!} 
                           	 </td>
-                          ##}
+                            ##}
                             
                          
                         </tr>
@@ -704,7 +704,7 @@
                           	<td class="center">
                           		 ${j.qqt.zxbg!} 
                           	 </td>
-                          ##}
+                            ##}
                             
                          
                         </tr>
@@ -714,8 +714,8 @@
                            
                           	<td class="center">
                           		 ${j.qqt.qijk_flag!} 
-                          	 </td>
-                          ##}
+                          	</td>
+                            ##}
                           
                          
                          
@@ -726,8 +726,8 @@
                            
                           	<td class="center">
                           		 ${j.qqt.gdxx!} 
-                          	 </td>
-                          ##}
+                          	</td>
+                            ##}
                       
                         </tr>
                         <tr>
@@ -736,8 +736,8 @@
                            
                           	<td class="center">
                           		 ${j.qqt.frxyxx!} 
-                          	 </td>
-                          ##}
+                          	</td>
+                            ##}
                            
                             
                          
@@ -748,8 +748,8 @@
                            
                           	<td class="center">
                           		 ${j.qqt.zxcs!} 
-                          	 </td>
-                          ##}
+                          	</td>
+                            ##}
                            
                         </tr>
                         <tr>
@@ -758,8 +758,8 @@
                            
                           	<td class="center">
                           		 ${j.qqt.ssxx!} 
-                          	 </td>
-                          ##}
+                          	</td>
+                            ##}
                             
                           
                         </tr>
@@ -780,7 +780,7 @@
                                 <th class="center" rowspan="1">主要类别</th>
                                 <th class="center" rowspan="1">主要信息</th>
                                 
-                                 <th class="center ptModel" rowspan="1">${j.jysinfo}</th>
+                                <th class="center ptModel" rowspan="1">${j.jysinfo}</th>
                                
                                 <th class="center" rowspan="1">能否查看</th>
                             </tr>
@@ -791,19 +791,13 @@
                                 <td class="center left">身份证明</td>
                                 <td class="center">${j.shzr.sfrz!}</td>
                                 <td class="center">${j.shzr.sfrz_flag!}</td>
-                               
-
-
                             </tr>
                             <tr>
                                 <td class="center left">工作证明</td>
                                 <td class="center">${j.shzr.gzzm!}</td>
                                 <td class="center">${j.shzr.gzzm_flag!}</td>
                                 
-
-
-
-                            </tr>
+                   			</tr>
 
                             <tr>
                                 <td class="center left">收入证明</td>
@@ -818,7 +812,7 @@
                                 <td class="center left">居住证明</td>
 
                                 <td class="center">${j.shzr.jzzm!}</td>
-                                 <td class="center">${j.shzr.jzzm_flag!}</td>
+                                <td class="center">${j.shzr.jzzm_flag!}</td>
 
 
                             </tr>
@@ -834,7 +828,7 @@
                                 <td class="center left">房产证</td>
 
                                 <td class="center">${j.shzr.fcz!}</td>
-                                 <td class="center">${j.shzr.fcz_flag!}</td>
+                                <td class="center">${j.shzr.fcz_flag!}</td>
 
 
                             </tr>
@@ -853,7 +847,7 @@
 
                                 <td class="center left">营业执照</td>
                                 <td class="center">${j.shqy.yyzz!}</td>
-                                 <td class="center">${j.shqy.yyzz_flag!}</td>
+                                <td class="center">${j.shqy.yyzz_flag!}</td>
 
                             </tr>
 
@@ -861,7 +855,7 @@
                                 <td class="center left">身份证照</td>
 
                                  <td class="center">${j.shqy.sfzz!}</td>
-                                  <td class="center">${j.shqy.sfzz_flag!}</td>
+                                 <td class="center">${j.shqy.sfzz_flag!}</td>
 
                             </tr>
 
@@ -893,7 +887,7 @@
                                 <td class="center left">组织机构</td>
 
                                  <td class="center">${j.shqy.zzjgz!}</td>
-                                  <td class="center">${j.shqy.zzjgz_flag!}</td>
+                                 <td class="center">${j.shqy.zzjgz_flag!}</td>
 
                             </tr>
 
@@ -959,10 +953,7 @@
             </div>
       
       ##}
-           
-        
-            
-            <!--模态框  end-->
+         <!--模态框  end-->
         </div>
     </div>
 </div>
@@ -995,15 +986,15 @@
      	
     	   $("#search").one("click",function(){
     		   
-    	   		alert(123131);
+    	   	
   			  $("#jys").val(pt);
     		  $("#hasInfo").val(youwu);
     		  $("form").submit();
-    		  if((youwu=="有")&&("×"==$("#sfz").find("td").get(1))){
+    		 /*  if((youwu=="有")&&("×"==$("#sfz").find("td").get(1))){
     			  $("#sfz").remove();
     		  }else if((youwu=="无")&&("√"==$("#sfz").find("td").get(1))){
     			  $("#sfz").remove();
-    		  }
+    		  } */
     		  
     	   });
     	   
@@ -1036,23 +1027,9 @@
             //alert("其他浏览器");
         }
         
-        /* //模块框
+        //模态框触发绑定
         $("#score>th:not(.defen)").click(function () {
-       		if(a==b){
-       			 $('.model').css('display','block');
-       		}
-       
-        });  */
-        //var a=$(".defen1").html();
-        //var b=$(".ptModel").html();
-   /*      $(".defen1").click(function(){
-    	   
-    		   $('.model').css('display','block');
-    
-       });  */
-      
-        $("#score>th:not(.defen)").click(function () {
-       		//$('.model').css('display','block');
+       		
        		
        		var jys=$(this).attr("data");
         	$('#model_'+jys).css('display','block');
