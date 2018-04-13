@@ -33,6 +33,10 @@ public class ProportionModel extends Model<ProportionModel>{
 			sql+="and t1.jyscmc='"+ jys+"'  ";
 			
 		}
+		if(StringUtils.isNotBlank(datasql)){
+			sql+="and t1.jysc in"+ datasql+" ";
+			
+		}
 		sql+="GROUP BY t1.vday,t1.jysc,t1.jyscmc,t1.cynx";
 		return dao.find(sql);
 	
@@ -49,6 +53,10 @@ public class ProportionModel extends Model<ProportionModel>{
 	   		+ "FROM insight_xd_jysc_info t1 WHERE t1.vday=(SELECT MAX(vday) FROM insight_xd_jysc_info )";		
 	   	if(StringUtils.isNotBlank(jys)){
 			sql+=" and t1.jyscmc='"+ jys+"' ";
+		}
+		if(StringUtils.isNotBlank(datasql)){
+			sql+="and t1.jysc in"+ datasql+" ";
+			
 		}
 		sql+="GROUP BY t1.vday,t1.jysc,t1.jyscmc,t1.xuel";
 		return dao.find(sql);
