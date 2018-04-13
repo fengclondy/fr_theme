@@ -26,7 +26,7 @@ public class FullScaleTimeModel extends Model<FullScaleTimeModel>{
 	public List<FullScaleTimeModel> getMbys(String jysIds,String jysc){
 		String sql = "select AVG(usetime) as mbys from insight_pp_average_time where 1=1";
 		if (StringUtils.isNotBlank(jysIds)) {
-			sql += " and jysc in '"+jysIds+"'";
+			sql += " and jysc in "+jysIds+"";
 		}
 		if (StringUtils.isNotBlank(jysc)) {
 			sql += " and jysc = '"+jysc+"'";

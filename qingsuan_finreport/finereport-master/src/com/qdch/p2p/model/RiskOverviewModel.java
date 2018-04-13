@@ -19,15 +19,20 @@ public class RiskOverviewModel extends Model<RiskOverviewModel> {
 	private static final long serialVersionUID = 1L;
 	public static final RiskOverviewModel dao=new RiskOverviewModel();
 
-	public List<RiskOverviewModel> getInterest(String dataSql){	
-		String sql="select vday,jysc,jysinfo,fvalue,pm from hub_pp_fxzs where 1=1 and vday=(select max(vday) from hub_pp_fxzs)";
+	public List<RiskOverviewModel> getRiskIndex(String dataSql){	
+		String sql="select vday as day,jysc,jysinfo,fvalue as value,pm  as keypm from hub_pp_fxzs where 1=1 and vday=(select max(vday) from hub_pp_fxzs)";
 		
 		if(StringUtils.isNotBlank(dataSql)){
 			sql+="  and jysc in"+ dataSql+" ";
 		}
 		
-		
-		return dao.find(sql);
+		List<RiskOverviewModel> lines=dao.find(sql);
+		for(RiskOverviewModel model:lines){
+			String innersql="select fxlb,fvalue as detailvalue,pm as detailpm from hub_pp_fxzsmx where vday='"+model.get("day")+"' and jysc='"+model.get("jysc")+"'";
+			List<RiskOverviewModel> list=dao.find(innersql);
+			model.put("detaildata",list);
+		}
+		return lines;
 	}
 
 }

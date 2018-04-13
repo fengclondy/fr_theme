@@ -18,11 +18,12 @@ public class defrateRankModel extends Model<defrateRankModel>{
 	public List<defrateRankModel> getDefrateRank(String dataSql){
 		String sql = "select max(vday),jysc,jysmc,round(sum(deftotal)/sum(loantotal),4) AS defrate "
 				   + "FROM insight_xd_defrate "
-				   + "where vday=(select max(vday)from insight_xd_defrate) "
-				   + "group by jysc,jysmc;";
+				   + "where vday=(select max(vday)from insight_xd_defrate) ";
+				  
 		if(StringUtils.isNotBlank(dataSql)){
 			sql+=" and jysc in"+ dataSql+" ";
 		}
+		sql+=" group by jysc,jysmc";
 		return dao.find(sql);
 	}
 }

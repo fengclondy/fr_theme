@@ -24,10 +24,11 @@ public class RiskCountModel extends Model<RiskCountModel>{
 				   + "from (select a.jyscmc,a.vday,a.fvalue "
 				   		 + "from hub_xd_fxzs a,(select jyscmc,max(vday)max_vday from hub_xd_fxzs group by jyscmc) t "
 				   		 + "where a.jyscmc=t.jyscmc and a.vday=t.max_vday) x,hub_xd_fxzsmx y "
-				   + "where x.jyscmc = y.jyscmc and x.vday = y.vday order by x.fvalue asc";
+				   + "where x.jyscmc = y.jyscmc and x.vday = y.vday ";
 		if(StringUtils.isNotBlank(dataSql)){
 			sql+=" and jysc in"+ dataSql+" ";
 		}
+		sql+=" order by x.fvalue asc";
 		return dao.find(sql);
 	}
 	/**
@@ -37,10 +38,13 @@ public class RiskCountModel extends Model<RiskCountModel>{
 	 */
 	//获取平台总数，无报警平台数量，有报警平台数量
 	public List<RiskCountModel> getAllPlatform(String dataSql){
-		String sql = "select  zs,yc,zs-yc As zc from (select count(*) zs from hub_xd_jysc) zs,(select count(DISTINCT jgdm) yc from hub_fxsj where jysfl='3') yc";
+		String sql = "select  zs,yc,zs-yc As zc "
+				   + "from (select count(*) zs from hub_xd_jysc) zs,"
+				+ "(select count(DISTINCT jgdm) yc from hub_fxsj where jysfl='3') yc where 1=1 ";
 		if(StringUtils.isNotBlank(dataSql)){
 			sql+=" and jysc in"+ dataSql+" ";
 		}
+		
 		return dao.find(sql);
 	}
 	/**
@@ -49,10 +53,11 @@ public class RiskCountModel extends Model<RiskCountModel>{
 	 * @author ljm
 	 */
 	public List<RiskCountModel> getRiskCount(String dataSql){
-		String sql = "select count(fxlb),fxlb from hub_fxsj where jysfl='3' group by fxlb";
+		String sql = "select count(fxlb),fxlb from hub_fxsj where jysfl='3' ";
 		if(StringUtils.isNotBlank(dataSql)){
 			sql+=" and jgdm in"+ dataSql+" ";
 		}
+		sql+=" group by fxlb";
 		return dao.find(sql);
 	}
 

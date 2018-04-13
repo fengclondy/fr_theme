@@ -227,10 +227,3 @@ function canvasAll(obj,val){
 	  requestAnimationFrame(render);
 	}
 }
-
-
-
-
-
-
-

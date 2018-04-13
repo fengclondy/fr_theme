@@ -18,8 +18,8 @@ public class TotalTranNumModel extends Model<TotalTranNumModel>{
 	 */
 	public List<TotalTranNumModel> getTotalTranNumModel(String datasql,String jysinfo){
 		//查询本月之前所有月份的数据
-		String sql = "select substr(vday,5,2) As month,tran_type As jyzl,tran_num As jyzlvalue,jysinfo "
-				+ "from insight_pp_tran_number where tran_type='总成交量' and substr(vday,5,2)<to_char(now(),'mm') ";
+		String sql = "select vday_ym As month,tran_type As jyzl,tran_num As jyzlvalue,jysinfo "
+				+ "from insight_pp_tran_number where tran_type='总成交量' and vday_ym<to_char(now(),'yyyymm') ";
 		
 		if(StringUtils.isNotBlank(datasql)){
 			sql+=" and jysc in "+datasql;
@@ -27,7 +27,7 @@ public class TotalTranNumModel extends Model<TotalTranNumModel>{
 		if(StringUtils.isNotBlank(jysinfo)){
 			sql+=" and jysinfo = '"+jysinfo+"'";
 		}
-		sql+=" order by jysc,vday ";
+		sql+=" order by jysc,vday_ym ";
 		return dao.find(sql);
 	}
 	/**
@@ -37,8 +37,8 @@ public class TotalTranNumModel extends Model<TotalTranNumModel>{
 	 */
 	public List<TotalTranNumModel> getCountTranNumModel(String datasql,String jysinfo){
 		//查询本月之前所有月份的数据
-		String sql = "select substr(vday,5,2) As month,tran_type As jyze,tran_num AS jyzevalue,jysinfo "
-				+ "from insight_pp_tran_number where tran_type='总成交额' and substr(vday,5,2)<to_char(now(),'mm') ";
+		String sql = "select vday_ym As month,tran_type As jyze,tran_num AS jyzevalue,jysinfo "
+				+ "from insight_pp_tran_number where tran_type='总成交额' and vday_ym<to_char(now(),'yyyymm') ";
 		
 		if(StringUtils.isNotBlank(datasql)){
 			sql+=" and jysc in "+datasql;
@@ -47,7 +47,7 @@ public class TotalTranNumModel extends Model<TotalTranNumModel>{
 		if(StringUtils.isNotBlank(jysinfo)){
 			sql+=" and jysinfo = '"+jysinfo+"'";
 		}
-		sql+=" order by jysc,vday";
+		sql+=" order by jysc,vday_ym";
 		
 		return dao.find(sql);
 		
@@ -58,7 +58,11 @@ public class TotalTranNumModel extends Model<TotalTranNumModel>{
 	 * @author ljm 
 	 */
 	public List<TotalTranNumModel> getPlat(String datasql){
-		String sql = "select jysinfo from insight_pp_tran_number group by jysinfo";
+		String sql = "select jysinfo from hub_pp_jysc where 1=1";
+		if(StringUtils.isNotBlank(datasql)){
+			sql+=" and jysc in "+datasql;
+		}
+		sql+=" group by jysinfo order by jysinfo";
 		return dao.find(sql);
 	}
 }
