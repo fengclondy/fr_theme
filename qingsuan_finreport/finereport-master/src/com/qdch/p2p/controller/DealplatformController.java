@@ -1,6 +1,5 @@
 package com.qdch.p2p.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,11 +9,12 @@ import java.util.Map;
 
 
 
+
 import com.qdch.core.BaseController;
 import com.qdch.p2p.model.AverageTimeModel;
 import com.qdch.p2p.model.CustNumberModel;
+import com.qdch.p2p.model.RangeNumberModel;
 import com.qdch.p2p.model.TotalTranNumModel;
-import com.qdch.xd.model.RiskTrendDetailedModel;
 /**
  * 
  * @author lixiaoyi
@@ -59,6 +59,14 @@ public class DealplatformController extends BaseController {
 		res.put("loanList", loanList);
 		res.put("investList", investList);
 		mRenderJson(res);
+	}
+	
+	//获取投资区间人数，借款区间人数
+	public void getRangeNumber(){
+		String jysinfo = getPara("jysinfo");//获取参数：交易市场名称
+		String ppType = getPara("ppType");//类型：借款人或者投资人
+		List<RangeNumberModel> list = RangeNumberModel.dao.getInvestRangeNumber(getDataScopeByUserName(), jysinfo, ppType);
+		mRenderJson(list);
 	}
 
 }

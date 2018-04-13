@@ -58,6 +58,7 @@ import com.qdch.p2p.model.PpjyscModel;
 import com.qdch.p2p.model.ProjectStructureModel;
 import com.qdch.p2p.model.QiYeJiBenInFoModel;
 import com.qdch.p2p.model.QiYeQiTaInFoModel;
+import com.qdch.p2p.model.RangeNumberModel;
 import com.qdch.p2p.model.RenJunCiShuModel;
 import com.qdch.p2p.model.ShenHeQiYeModel;
 import com.qdch.p2p.model.ShenHeZiLiaoZiRanRenModel;
@@ -357,6 +358,7 @@ public class Config extends JFinalConfig {
 			insight_arp.addMapping("insight_pp_tran_number",TotalTranNumModel.class);//交易总量，总成交额
 			insight_arp.addMapping("insight_pp_average_time",AverageTimeModel.class);//平均满标用时
 			insight_arp.addMapping("insight_pp_cust_number",CustNumberModel.class);//人均借款，人均投资
+			insight_arp.addMapping("insight_pp_range_number",RangeNumberModel.class);//投资金额借款金额区间人数
 			
 			
 		/***p2p 连纪明 insight层 Model END***/
@@ -427,6 +429,6 @@ public class Config extends JFinalConfig {
 	}
 
 	public static void main(String[] args){ 
-		JFinal.start("WebRoot", 8080, "/", 5);
+		JFinal.start("WebRoot", 8088, "/", 5);
 	}
 }
