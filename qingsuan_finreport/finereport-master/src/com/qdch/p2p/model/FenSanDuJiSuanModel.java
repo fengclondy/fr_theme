@@ -27,7 +27,7 @@ public class FenSanDuJiSuanModel extends Model<FenSanDuJiSuanModel>{
 
 		String sql = "select hhi_value from insight_pp_hhi_calculate where 1=1";
 		if (StringUtils.isNotBlank(jysIds)) {
-			sql += " and jysc in '"+jysIds+"'";
+			sql += " and jysc in "+jysIds+"";
 		}
 		if (StringUtils.isNotBlank(jysc)) {
 			sql += " and jysc = '"+jysc+"'";

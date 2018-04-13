@@ -29,7 +29,7 @@ public class PingTaiRenShuModel extends Model<PingTaiRenShuModel>{
 				+ "where cust_type = '借款人' "
 				+ "and vday_ym = (select to_char(now() - INTERVAL '1 month','yyyymm'))";
 		if (StringUtils.isNotBlank(jysIds)) {
-			sql += " and jysc in '"+jysIds+"'";
+			sql += " and jysc in "+jysIds+"";
 		}
 		if (StringUtils.isNotBlank(jysc)) {
 			sql += " and jysc = '"+jysc+"'";
@@ -47,7 +47,7 @@ public class PingTaiRenShuModel extends Model<PingTaiRenShuModel>{
 				+ "where cust_type = '投资人' "
 				+ "and vday_ym = (select to_char(now() - INTERVAL '1 month','yyyymm'))";
 		if (StringUtils.isNotBlank(jysIds)) {
-			sql += " and jysc in '"+jysIds+"'";
+			sql += " and jysc in "+jysIds+"";
 		}
 		if (StringUtils.isNotBlank(jysc)) {
 			sql += " and jysc = '"+jysc+"'";
