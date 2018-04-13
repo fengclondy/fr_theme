@@ -18,6 +18,8 @@ import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.template.Engine;
 import com.qdch.core.QdchController;
 import com.qdch.intercept.SecurityInterceptor;
+//github.com/zuoqingbei/qss_code.git
+import com.qdch.model.DemoModel;
 import com.qdch.p2p.controller.BorrowerController;
 import com.qdch.p2p.controller.BorrowerPhotoController;
 import com.qdch.p2p.controller.CompanyFeelController;
@@ -41,6 +43,7 @@ import com.qdch.p2p.model.CoShareholderInfoModel;
 import com.qdch.p2p.model.CompositeInterestModel;
 import com.qdch.p2p.model.CustNumberModel;
 import com.qdch.p2p.model.DefenInfoModel;
+import com.qdch.p2p.model.DiYaShenHeModel;
 import com.qdch.p2p.model.FenSanDuJiSuanModel;
 import com.qdch.p2p.model.FullScaleTimeModel;
 import com.qdch.p2p.model.ImportantRatioModel;
@@ -56,6 +59,8 @@ import com.qdch.p2p.model.ProjectStructureModel;
 import com.qdch.p2p.model.QiYeJiBenInFoModel;
 import com.qdch.p2p.model.QiYeQiTaInFoModel;
 import com.qdch.p2p.model.RenJunCiShuModel;
+import com.qdch.p2p.model.ShenHeQiYeModel;
+import com.qdch.p2p.model.ShenHeZiLiaoZiRanRenModel;
 import com.qdch.p2p.model.StructuralDetailsModel;
 import com.qdch.p2p.model.TermDetailsModel;
 import com.qdch.p2p.model.TotalTranNumModel;
@@ -136,8 +141,6 @@ import com.qdch.xd.model.ScabilityModel;
 import com.qdch.xd.model.ThresholdValueModel;
 import com.qdch.xd.model.defrateRankModel;
 import com.qdch.xd.model.maxIntrateRankModel;
-//github.com/zuoqingbei/qss_code.git
-import com.qdch.model.DemoModel;
 
 
 
