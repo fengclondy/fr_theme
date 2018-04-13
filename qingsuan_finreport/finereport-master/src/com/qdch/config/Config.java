@@ -1,5 +1,4 @@
 package com.qdch.config;
-
 import org.beetl.core.GroupTemplate;
 import org.beetl.ext.jfinal3.JFinal3BeetlRenderFactory;
 
@@ -19,6 +18,7 @@ import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.template.Engine;
 import com.qdch.core.QdchController;
 import com.qdch.intercept.SecurityInterceptor;
+//github.com/zuoqingbei/qss_code.git
 import com.qdch.model.DemoModel;
 import com.qdch.p2p.controller.BorrowerController;
 import com.qdch.p2p.controller.BorrowerPhotoController;
@@ -40,6 +40,7 @@ import com.qdch.p2p.model.CoCompanyTypeModel;
 import com.qdch.p2p.model.CoCorePersonModel;
 import com.qdch.p2p.model.CoExecptionModel;
 import com.qdch.p2p.model.CoShareholderInfoModel;
+import com.qdch.p2p.model.CompositeInterestModel;
 import com.qdch.p2p.model.CustNumberModel;
 import com.qdch.p2p.model.DefenInfoModel;
 import com.qdch.p2p.model.DiYaShenHeModel;
@@ -60,6 +61,8 @@ import com.qdch.p2p.model.QiYeQiTaInFoModel;
 import com.qdch.p2p.model.RenJunCiShuModel;
 import com.qdch.p2p.model.ShenHeQiYeModel;
 import com.qdch.p2p.model.ShenHeZiLiaoZiRanRenModel;
+import com.qdch.p2p.model.StructuralDetailsModel;
+import com.qdch.p2p.model.TermDetailsModel;
 import com.qdch.p2p.model.TotalTranNumModel;
 import com.qdch.p2p.model.WorkInfoModel;
 import com.qdch.p2p.model.XinXiPiLouModel;
@@ -277,6 +280,10 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("insight_pp_iterm_count", ProjectStructureModel.class);//平台项目的项目结构
 		insight_arp.addMapping("insight_pp_netinfo", ImportantRatioModel.class);//平台项目的四个重要比率
 		insight_arp.addMapping("insight_pp_interest", InterestModel.class);//用于动态获取平台项目中期限类型
+		insight_arp.addMapping("insight_pp_interest", CompositeInterestModel.class);//用于获取平台综合利率
+		insight_arp.addMapping("insight_pp_indust_int", CompositeInterestModel.class);//用于获取行业综合利率
+		insight_arp.addMapping("insight_pp_iterm_count", StructuralDetailsModel.class);//用于获取项目结构详情
+		insight_arp.addMapping("insight_pp_term_distribute", TermDetailsModel.class);//用于获取期限分布详情
 		/***doushuiahi Model START p2p***/
 		
 		/***p2p 高照  insight层Model p2p***/
