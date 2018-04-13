@@ -26,7 +26,7 @@ public class PingTaiZhuangTaiModel extends Model<PingTaiZhuangTaiModel>{
 	public List<PingTaiZhuangTaiModel> getPtzt(String jysIds,String jysc){
 		String sql = "select status from insight_pp_jyscstatus where 1=1";
 		if (StringUtils.isNotBlank(jysIds)) {
-			sql += " and jysc in "+jysc+"";
+			sql += " and jysc in "+jysIds+"";
 		}
 		if (StringUtils.isNotBlank(jysc)) {
 			sql += " and jysc = '"+jysc+"'";
