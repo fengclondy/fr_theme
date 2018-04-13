@@ -174,23 +174,23 @@
                                 <th>总成交额 <span>(万)</span></th>
                                 <th>总借款人数 <span>(万)</span></th>
                                 <th>总投资人数 <span>(万)</span></th>
-                                <th>平均借款期限 <span>(天)</span></th>
+                                <th>平均借款期限 <span>(月)</span></th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <td id="zcjl">76543</td>
-                                <td id="zcje">67897650</td>
-                                <td id="zjkrs">76543</td>
-                                <td id="ztzrs">76543</td>
-                                <td id="pjjkqx">43</td>
+                                <td id="zcjl"></td>
+                                <td id="zcje"></td>
+                                <td id="zjkrs"></td>
+                                <td id="ztzrs"></td>
+                                <td id="pjjkqx"></td>
                             </tr>
                             </tbody>
                         </table>
                         <table class="pingtaiInformationtable">
                             <thead>
                             <tr>
-                                <th>平均满标时间 <span>(小时)</span></th>
+                                <th>平均满标时间 <span>(秒)</span></th>
                                 <th>人均借款金额 <span>(万)</span></th>
                                 <th>人均投资金额 <span>(万)</span></th>
                                 <th>借款分散度</th>
@@ -199,11 +199,11 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td>0.07</td>
-                                <td>650.90</td>
-                                <td>650.90</td>
-                                <td>0.4531</td>
-                                <td>0.4712</td>
+                                <td id="mbys"></td>
+                                <td id="rjjk"></td>
+                                <td id="rjtz"></td>
+                                <td id="jkfsd"></td>
+                                <td id="tzfsd"></td>
                             </tr>
                             </tbody>
                         </table>
@@ -219,10 +219,10 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td>172.27</td>
-                                <td>155.48</td>
-                                <td>155.48</td>
-                                <td>正常</td>
+                                <td id="rjjkcs"></td>
+                                <td id="rjtzcs"></td>
+                                <td id="dkye"></td>
+                                <td id="ptzt"></td>
                                 <td></td>
                             </tr>
                             </tbody>
@@ -374,6 +374,158 @@
 					$("#ztzrs").html(content);
 				}
 			})
+			
+			//获取平均借款期限
+			$.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/platformalert/getPjjkqx",
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					var content = "";
+					$.each(data,function(index,item){
+						content = content
+						+item.avge_term  
+					})
+					$("#pjjkqx").html(content);
+				}
+			})
+			//获取平均满标用时
+			$.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/platformalert/getMbys",
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					var content = "";
+					$.each(data,function(index,item){
+					
+						content = content
+						+item.mbys.toFixed(2)  
+					})
+					$("#mbys").html(content);
+				}
+			})
+			//获取人均借款
+			$.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/platformalert/getRjjk",
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					var content = "";
+					var jk = parseInt(data.zcje)/parseInt(data.zjkrs);
+						content = content
+						+jk.toFixed(2)
+					
+					$("#rjjk").html(content);
+				}
+			})
+			//获取人均投资
+			$.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/platformalert/getRjtz",
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					var content = "";
+					var tz = parseInt(data.zcje)/parseInt(data.ztzrs);
+						content = content
+						+tz.toFixed(2);
+					
+					$("#rjtz").html(content);
+				}
+			})
+			//获取借款分散度
+			$.ajax({
+				url:"${contextPath}/qdch/platformalert/getJkfsd",
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					var content = "";
+					$.each(data,function(index,item){
+						content = content
+						+item.hhi_value
+					})
+					$("#jkfsd").html(content);
+				}
+			})
+			//获取投资分散度
+			$.ajax({
+				url:"${contextPath}/qdch/platformalert/getTzfsd",
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					var content = "";
+					$.each(data,function(index,item){
+						content = content
+						+item.hhi_value
+					})
+					$("#tzfsd").html(content);
+				}
+			})
+			//获取人均借款次数
+			$.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/platformalert/getRjjkcs",
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					var content = "";
+					$.each(data,function(index,item){
+						content = content
+						+item.rjjkcs
+					})
+					$("#rjjkcs").html(content);
+				}
+			})
+			//获取人均投资次数
+			$.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/platformalert/getRjtzcs",
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					var content = "";
+					$.each(data,function(index,item){
+						content = content
+						+item.rjtzcs
+					})
+					$("#rjtzcs").html(content);
+				}
+			})
+			
+			//获取贷款余额
+			$.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/platformalert/getDkye",
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					var content = "";
+					$.each(data,function(index,item){
+						content = content
+						+item.je  
+					})
+					$("#dkye").html(content);
+				}
+			})
+			
+			//获取平台状态
+			$.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/platformalert/getPtzt",
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					var content = "";
+					$.each(data,function(index,item){
+						content = content
+						+item.status
+					})
+					$("#ptzt").html(content);
+				}
+			})
 		}
 		
 		
@@ -382,6 +534,8 @@
 			jysc = $(this).attr('value');
 			start();
 		})
+		
+		
 	})
 	
 	

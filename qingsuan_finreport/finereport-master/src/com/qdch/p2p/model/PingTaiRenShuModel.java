@@ -25,13 +25,13 @@ public class PingTaiRenShuModel extends Model<PingTaiRenShuModel>{
 	 */
 	public List<PingTaiRenShuModel> getZjkrs(String jysIds,String jysc){
 		
-		String sql = "select sum(cust_num) as zjkrs from insight_pp_cust_number "
-				+ "where cust_type = '借款人数' "
+		String sql = "select cust_num as zjkrs from insight_pp_cust_number "
+				+ "where cust_type = '借款人' "
 				+ "and vday_ym = (select to_char(now() - INTERVAL '1 month','yyyymm'))";
 		if (StringUtils.isNotBlank(jysIds)) {
 			sql += " and jysc in '"+jysIds+"'";
 		}
-		if (StringUtils.isNotBlank(jysIds)) {
+		if (StringUtils.isNotBlank(jysc)) {
 			sql += " and jysc = '"+jysc+"'";
 		}
 		return dao.find(sql);
@@ -43,13 +43,13 @@ public class PingTaiRenShuModel extends Model<PingTaiRenShuModel>{
 	 * @TODO 获取总投资人数
 	 */
 	public List<PingTaiRenShuModel> getZtzrs(String jysIds,String jysc){
-		String sql = "select sum(cust_num) ztzrs from insight_pp_cust_number "
-				+ "where cust_type = '投资人数' "
+		String sql = "select cust_num ztzrs from insight_pp_cust_number "
+				+ "where cust_type = '投资人' "
 				+ "and vday_ym = (select to_char(now() - INTERVAL '1 month','yyyymm'))";
 		if (StringUtils.isNotBlank(jysIds)) {
 			sql += " and jysc in '"+jysIds+"'";
 		}
-		if (StringUtils.isNotBlank(jysIds)) {
+		if (StringUtils.isNotBlank(jysc)) {
 			sql += " and jysc = '"+jysc+"'";
 		}
 		return dao.find(sql);

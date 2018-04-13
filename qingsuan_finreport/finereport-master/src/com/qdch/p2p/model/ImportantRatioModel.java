@@ -23,10 +23,10 @@ public class ImportantRatioModel extends Model<ImportantRatioModel> {
 				+ ",jyscmc,jysc,yql,(yqje::NUMERIC/10000) as yqje,(dcje::NUMERIC/10000) as dcje,dcbs  from insight_pp_netinfo where 1=1  and vday=(select max(vday) from insight_pp_netinfo)";
 		
 		if(StringUtils.isNotBlank(dataSql)){
-			sql+=" jysc in"+ dataSql+"";
+			sql+=" and  jysc in"+ dataSql+"";
 		}
 		if(StringUtils.isNotBlank(jys)){
-			sql+="and jysc='"+ jys+"'  ";
+			sql+=" and jysc='"+ jys+"'  ";
 			
 		}
 		sql+="group by vday,jyscmc,jysc,yql,yqje,dcje,dcbs order by vday,jyscmc,jysc,yql,yqje,dcje,dcbs";

@@ -68,7 +68,7 @@
         display: inline-block;
         margin-left: 1rem;
         font-size: .72rem;
-        z-index:5;
+        z-index:10;
     }
     /*按钮组*/
     .btnGroup {

@@ -25,13 +25,13 @@ public class JiaoYiLiangModel extends Model<JiaoYiLiangModel>{
 	 */
 	public List<JiaoYiLiangModel> getZcje(String jysIds,String jysc){
 	
-		String sql = "select sum(tran_num) as zcje "
+		String sql = "select tran_num as zcje "
 				+ "from insight_pp_tran_number where tran_type = '总成交额' "
 				+ "and vday_ym = (select to_char(now() - INTERVAL '1 month','yyyymm'))";
 		if (StringUtils.isNotBlank(jysIds)) {
 			sql += " and jysc in '"+jysIds+"'";
 		}
-		if (StringUtils.isNotBlank(jysIds)) {
+		if (StringUtils.isNotBlank(jysc)) {
 			sql += " and jysc = '"+jysc+"'";
 		}
 		return dao.find(sql);
@@ -43,16 +43,15 @@ public class JiaoYiLiangModel extends Model<JiaoYiLiangModel>{
 	 * @TODO 获取上月总成交量
 	 */
 	public List<JiaoYiLiangModel> getZcjl(String jysIds,String jysc){
-		String sql = "select sum(tran_num) as zcjl "
+		String sql = "select tran_num as zcjl "
 				+ "from insight_pp_tran_number where tran_type = '总成交量' "
 				+ "and vday_ym = (select to_char(now() - INTERVAL '1 month','yyyymm'))";
 		if (StringUtils.isNotBlank(jysIds)) {
 			sql += " and jysc in '"+jysIds+"'";
 		}
-		if (StringUtils.isNotBlank(jysIds)) {
+		if (StringUtils.isNotBlank(jysc)) {
 			sql += " and jysc = '"+jysc+"'";
 		}
 		return dao.find(sql);
 	}
-	
 }
