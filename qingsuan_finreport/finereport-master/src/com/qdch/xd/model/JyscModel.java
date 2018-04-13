@@ -33,7 +33,7 @@ public class JyscModel extends Model<JyscModel>{
 		String sql="select * from hub_xd_jysc where 1=1 ";
 		
 		if(StringUtils.isNotBlank(dataSql)){
-			sql+=" jysc in"+ dataSql+"";
+			sql+=" and jysc in"+ dataSql+"";
 		}
 		return dao.find(sql);
 	}
