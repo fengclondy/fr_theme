@@ -190,7 +190,10 @@ public class BaseController extends Controller{
 		if(StringUtils.isNotBlank(userName)){
 			//获取用户信息
 			//String url="http://localhost:8075/WebReport/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
-			String url=com.fr.hailian.core.Constants.WEB_DOMAIN+"/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
+			//String url=com.fr.hailian.core.Constants.WEB_DOMAIN+"/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
+			
+			//正式环境也需要写localhost  服务器设置了外网权限
+			String url="http://localhost/WebReport/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
 			if(StringUtils.isNotBlank(roleType)){
 				url+="&roleType="+roleType;
 			};
