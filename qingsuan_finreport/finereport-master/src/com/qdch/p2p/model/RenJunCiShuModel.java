@@ -25,7 +25,7 @@ public class RenJunCiShuModel extends Model<RenJunCiShuModel>{
 	public List<RenJunCiShuModel> getRjjkcs(String jysIds,String jysc){
 		String sql = "select avge_value as rjjkcs from insight_pp_avge_count where 1=1";
 		if (StringUtils.isNotBlank(jysIds)) {
-			sql += " and jysc in '"+jysIds+"'";
+			sql += " and jysc in "+jysIds+"";
 		}
 		if (StringUtils.isNotBlank(jysc)) {
 			sql += " and jysc = '"+jysc+"'";
@@ -42,7 +42,7 @@ public class RenJunCiShuModel extends Model<RenJunCiShuModel>{
 	public List<RenJunCiShuModel> getRjtzcs(String jysIds,String jysc){
 		String sql = "select avge_value as rjtzcs from insight_pp_avge_count where 1=1";
 		if (StringUtils.isNotBlank(jysIds)) {
-			sql += " and jysc in '"+jysIds+"'";
+			sql += " and jysc in "+jysIds+"";
 		}
 		if (StringUtils.isNotBlank(jysc)) {
 			sql += " and jysc = '"+jysc+"'";
