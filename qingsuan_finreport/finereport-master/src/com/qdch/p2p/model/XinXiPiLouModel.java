@@ -26,7 +26,7 @@ public class XinXiPiLouModel extends Model<XinXiPiLouModel>{
 		String sql = "select pm.* from (select *,ROW_NUMBER() OVER(ORDER BY fvalue1 DESC) as pm "
 						+ "from insight_pp_show_info  order by fvalue1 desc) as pm where 1=1";
 		if (StringUtils.isNotBlank(jysIds)) {
-			sql += " and jysc in '"+jysc+"'";
+			sql += " and jysc in "+jysIds+"";
 		}
 		if (StringUtils.isNotBlank(jysc)) {
 			sql += " and jysc = '"+jysc+"'";

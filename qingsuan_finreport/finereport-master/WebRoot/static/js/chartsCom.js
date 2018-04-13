@@ -42,9 +42,10 @@ var opt_com = {
             fontSize: 10 * bodyScale,
             color: '#fff' //图例白色,全局样式不能影响到
         },
-        itemWidth: 11 * bodyScale,
-        itemHeight: 11 * bodyScale,
-        top: '3%'
+        itemWidth: 6 * bodyScale,
+        itemHeight: 6 * bodyScale,
+        top: '3%',
+
     },
     tooltip: {
         trigger: 'axis',
@@ -60,13 +61,16 @@ var opt_com = {
 
 //直角坐标系坐标轴
 var axis_com = {
+    // yAxis:{
+    //    nameGap:15
+    // },
     axisLabel: { //标签名称
         fontSize: 11 * bodyScale
     },
     nameTextStyle: { //坐标轴名称
         fontSize: 11 * bodyScale
     },
-    nameGap: 5 * bodyScale, //坐标轴名称距离
+    nameGap: 10 * bodyScale, //坐标轴名称距离
     axisTick: { //小刻度线
         show: false
     },
@@ -91,6 +95,7 @@ $.extend(true, opt_bar_horizon, opt_com, {
     }, axis_com),
     yAxis: $.extend({
         type: 'category'
+
     }, axis_com)
     //这里写此类图表其他属性
 });
@@ -116,6 +121,8 @@ $.extend(true, opt_line, opt_com, {
     yAxis: $.extend({
         type: 'value'
     }, axis_com),
+
+
     //这里写此类图表其他属性
 
 });
@@ -126,13 +133,21 @@ $.extend(true, opt_pie, opt_com,
     {
         legend: {
             orient: 'vertical',
+            itemWidth:6,
+            itemHeight:6,
             right: '3%',
-            top: 'middle'
+            top: 'middle',
+
         },
+
         tooltip: {
             show: true,
             trigger: 'item',
             formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+
+        labelLine: {
+            // lineStyle: {color: 'red'}
         },
 
         animationType: 'scale',
