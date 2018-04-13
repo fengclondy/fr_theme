@@ -23,7 +23,7 @@ public class DiYaShenHeModel extends Model<DiYaShenHeModel> {
 			sql+=" and jysc = '"+pyType+"' ";
 		} 
 		if(StringUtils.isNotBlank(hasInfo)){
-			sql+="  ";
+			sql+=" ";
 		} 
 		//日期
 		sql+=" order by vday desc  ";
