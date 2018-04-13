@@ -28,7 +28,7 @@ public class InterestModel extends Model<InterestModel> {
 		return dao.find(sql);
 	}
 	public List<InterestModel> getInterest(String dataSql,String jyscode,String type){	
-		String sql="select vday,jysc,interest from insight_pp_interest where 1=1 ";
+		String sql="select vday_ym,jysc,interest from insight_pp_interest where 1=1 ";
 		
 		if(StringUtils.isNotBlank(dataSql)){
 			sql+="  and jysc in"+ dataSql+"";
@@ -37,7 +37,7 @@ public class InterestModel extends Model<InterestModel> {
 			sql+="  and jysc = '"+ jyscode+"'";
 		}
 		sql+=" and range_type='"+type+"'";
-		sql+=" group by vday,jysc,interest order by vday,jysc,interest";
+		sql+=" group by vday_ym,jysc,interest order by vday_ym,jysc,interest";
 		return dao.find(sql);
 	}
 

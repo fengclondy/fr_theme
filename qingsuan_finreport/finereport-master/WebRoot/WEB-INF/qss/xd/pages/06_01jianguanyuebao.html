@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -166,7 +167,7 @@
     	var jys = $('#marketName option:selected').val();
     	
 	 	var reportType = $('#reportType option:selected').val();
-	 	
+	 	alert(reportType)
    		var date = $('#alarmTimeEnd').val();       
         var htmlstr = "";     
         return htmlstr+="?jys="+jys+"&reportType="+reportType+"&upload_time="+date;
@@ -194,7 +195,7 @@
 								"               <td>"+item.upload_time+"</td>\n" +
 								"                <td><span><a href='/QDCH/pdf/web/viewer.html?file=test.pdf' target='_Blank'>预览</a></span><span><a href='/QDCH/pdf/web/test.pdf' download='监管报告'>下载</a></span></td></tr>  " 
  		
- })
+ 			})
 				$('tbody').html(tableList)
 			})
 		}

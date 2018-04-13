@@ -30,7 +30,7 @@ public class PlatformModel extends Model<PlatformModel>{
 	public List<PlatformModel> findOverviewInfo(String jysIds,String ptmc,String cgyh,String zczb,String db,String ptsl){
 			
 			StringBuffer sql = new StringBuffer("select * from insight_pp_overview where 1=1");
-			if(StringUtils.isNotBlank(jysIds)) sql.append(" and jsyc in '"+jysIds+"'");
+			if(StringUtils.isNotBlank(jysIds)) sql.append(" and jysc in "+jysIds+"");
 			if(StringUtils.isNotBlank(ptmc)) sql.append(" and jyscmc = '"+ptmc+"'");		
 			//根据银行存管查询
 			//0：没有银行存管 1:有银行存管
@@ -78,7 +78,7 @@ public class PlatformModel extends Model<PlatformModel>{
 	public List<PlatformModel> countOverviewInfo(String jysIds,String ptmc,String cgyh,String zczb,String db,String ptsl){
 			
 			StringBuffer sql = new StringBuffer("select count(0) from insight_pp_overview where 1=1");
-			if(StringUtils.isNotBlank(jysIds)) sql.append(" and jsyc in '"+jysIds+"'");
+			if(StringUtils.isNotBlank(jysIds)) sql.append(" and jysc in "+jysIds+"");
 			if(StringUtils.isNotBlank(ptmc)) sql.append(" and jyscmc = '"+ptmc+"'");		
 			//根据银行存管查询
 			//0：没有银行存管 1:有银行存管
@@ -126,10 +126,10 @@ public class PlatformModel extends Model<PlatformModel>{
 	public List<PlatformModel> getPlatfromByJysc(String jysIds, String jysc){
 		String sql = "select * from insight_pp_overview where 1=1";
 		if (StringUtils.isNotBlank(jysIds)) {
-			sql += " and jsyc in '"+jysIds+"'";
+			sql += " and jysc in "+jysIds+"";
 		}
 		if (StringUtils.isNotBlank(jysc)) {
-			sql += " and jysc='"+jysc+"'";
+			sql += " and jysc= '"+jysc+"'";
 		}
 		return dao.find(sql);
 	}

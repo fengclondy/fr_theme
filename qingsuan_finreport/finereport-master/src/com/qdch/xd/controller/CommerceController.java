@@ -39,7 +39,7 @@ public class CommerceController extends BaseController{
 	    List<CompanysInfoModel> info = CompanysInfoModel.dao.getInfo(getDataScopeByUserName());
 	    setAttr("companyName", info);
 	    System.out.println(info);
-		render("");
+		render("xd/pages/08_01shichanghuaxiang.html");
 	}
 	/**
 	 * 获取企业基本信息 工商信息 

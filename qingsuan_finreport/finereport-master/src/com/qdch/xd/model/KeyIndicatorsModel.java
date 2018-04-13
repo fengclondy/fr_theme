@@ -23,7 +23,7 @@ public class KeyIndicatorsModel extends Model<KeyIndicatorsModel>{
 	public List<KeyIndicatorsModel> getByYeamount(String bigjys){
 		String sql="select t.jyscmc as name,round(sum(t.fvalue)/100000000,2) as value from insight_xd_yeamount t where vday=(select max(vday) from insight_xd_yeamount)";
 		if(StringUtils.isNotBlank(bigjys)){
-			sql+=" jysc in "+bigjys;
+			sql+="  and jysc in "+bigjys;
 		} 
 		sql+=" group by t.jyscmc order by value,t.jyscmc";
 		//return dao.find(Db.getSqlPara("index.getByDBFS"));

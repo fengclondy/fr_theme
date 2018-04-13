@@ -23,7 +23,7 @@ $(function () {
     tabNav();
 
 
-    $("#mainNav").find(".dropdown-toggle:eq(1)").click()
+    $("#mainNav").find(".dropdown-toggle:eq(3)").click()
         .next("ul").children("li:eq(3)").click();
 });
 
@@ -68,7 +68,7 @@ function mainNav() {
             }
         });
         if (pageAlreadyExists) {
-            $("#navTabs").children().find("li[data-id='" + pageId + "']")
+            $("#navTabs").children().find("li[data-id=" + pageId + "]")
                 .addClass("active").siblings().removeClass("active");
             pageSwitch(pageId);
         } else {

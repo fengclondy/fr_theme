@@ -157,11 +157,11 @@
                                         class="text"></span><span
                                         class="icon"></span></div>
                                 <ul class="myOptionBox">
-                                   <li class="myOption selected ptmc" id="pingtaimingcheng01" value=""> </li>
+                                   <li class="myOption selected ptmc" id="pingtaimingcheng01" value="">&nbsp;</li>
                                    <!--  <li class="myOption" id="pingtaimingcheng02">青岛华银有限公司2</li>
                                     <li class="myOption" id="pingtaimingcheng03">青岛华银有限公司3</li> -->
                                     ##for(p in ptxxList!){
-                                     <li class="myOption ptmc" value="${p.jyscmc!}">${p.jyscmc!}</li> 
+                                     <li class="myOption ptmc" value="${p.jyscmc!}">${p.jysinfo!}</li> 
                                     ##}
                                 </ul>
                             </div>
@@ -173,7 +173,7 @@
                                         class="text"></span><span
                                         class="icon"></span></div>
                                 <ul class="myOptionBox">
-                                	<li class="myOption selected yhcg" id="yinhangcunguan01" value=""></li>
+                                	<li class="myOption selected yhcg" id="yinhangcunguan01" value="">&nbsp;</li>
                                 	<!-- <li class="myOption yhcg" id="yinhangcunguan01" value="1">----</li> -->
                                     <li class="myOption yhcg" id="yinhangcunguan01" value="1">有</li>
                                     <li class="myOption yhcg" id="yinhangcunguan02" value="0">无</li>
@@ -187,7 +187,7 @@
                                         class="text"></span><span
                                         class="icon"></span></div>
                                 <ul class="myOptionBox">
-                                	<li class="myOption selected zczb" id="zhuceziben01" value=""></li>
+                                	<li class="myOption selected zczb" id="zhuceziben01" value="">&nbsp;</li>
                                     <li class="myOption zczb" id="zhuceziben01" value="0">1000万以下</li>
                                     <li class="myOption zczb" id="zhuceziben02" value="1">1000万~5000万</li>
                                     <li class="myOption zczb" id="zhuceziben03" value="2">5000万以上</li>
@@ -202,7 +202,7 @@
                                         class="text"></span><span
                                         class="icon"></span></div>
                                 <ul class="myOptionBox">
-                                 	<li class="myOption selected db" id="dengbao01" value=""></li>
+                                 	<li class="myOption selected db" id="dengbao01" value="">&nbsp;</li>
                                     <li class="myOption db" id="dengbao01" value="1">有</li>
                                     <li class="myOption db" id="dengbao02" value="0">无</li>
                                 </ul>
@@ -215,14 +215,14 @@
                                         class="text"></span><span
                                         class="icon"></span></div>
                                 <ul class="myOptionBox">
-                                	<li class="myOption selected ptsl" id="pingtaishili01" value=""></li>
-                                   <li class="myOption ptsl" id="pingtaishili01">国资控股</li>
-                                    <li class="myOption ptsl" id="pingtaishili02">国资参股</li>
-                                    <li class="myOption ptsl" id="pingtaishili03">上市控股</li>
-                                     <li class="myOption ptsl" id="pingtaishili04">上市参股</li>
-                                    <li class="myOption ptsl" id="pingtaishili05">风投系</li>
-                                     <li class="myOption ptsl" id="pingtaishili06">银行系</li>
-                                    <li class="myOption ptsl" id="pingtaishili07">民营系</li> 
+                                	<li class="myOption selected ptsl" id="pingtaishili01" value="">&nbsp;</li>
+                                   <li class="myOption ptsl" id="pingtaishili01" value="国资控股">国资控股</li>
+                                    <li class="myOption ptsl" id="pingtaishili02" value="国资参股">国资参股</li>
+                                    <li class="myOption ptsl" id="pingtaishili03" value="上市控股">上市控股</li>
+                                     <li class="myOption ptsl" id="pingtaishili04" value="上市参股">上市参股</li>
+                                    <li class="myOption ptsl" id="pingtaishili05" value="风投系">风投系</li>
+                                     <li class="myOption ptsl" id="pingtaishili06" value="银行系">银行系</li>
+                                    <li class="myOption ptsl" id="pingtaishili07" value="民营系">民营系</li> 
                                 </ul>
                             </div>
                         </div>
@@ -323,7 +323,7 @@
             			content = content
             			+'<tbody>'
             			+'    <tr>'
-            			+'    	<td>'+item.jyscmc+'</td>'
+            			+'    	<td>'+item.jysinfo+'</td>'
             			+'    	<td>'+item.icp+'</td>'
             			+'    	<td>'+item.jrbba+'</td>'
             			+'     	<td>'+item.cgyh+'</td>'
@@ -378,7 +378,7 @@
     		db = $(this).attr('value');
     	})
     	$(".ptsl").click(function () {
-    		ptsl = $(this).html();
+    		ptsl = $(this).attr('value');
     	})
     });
 </script>

@@ -1,0 +1,167 @@
+{  
+    "type": "graph",  
+    "categories": [
+        {  
+            "name": "当前节点",
+            "keyword": {},  
+            "base": "当前节点"  
+        },
+        {  
+            "name": "企业",  
+            "keyword": {},  
+            "base": "企业"  
+        }, 
+        {  
+            "name": "人员",  
+            "keyword": {},  
+            "base": "人员"  
+        }, 
+        {  
+            "name": "任职",  
+            "keyword": {},  
+            "base": "任职"
+            
+        }, 
+        {  
+            "name": "投资",  
+            "keyword": {},  
+            "base": "投资"  
+        }  
+    ],  
+    "nodes": [  
+        {  
+            "name":"青岛国际版权",
+            "value":"青岛国际版权",  
+            "category": 0 ,
+            "flag":"公司",
+            "info":{
+            	"componeny":"青岛国际版权",
+            	"person":"安波",
+            	"money":"1000万元人民币",
+            	"date":"2014-07-15",
+            	"address":"青岛市崂山区信利路国际创新园A座1124"
+            }
+        },  
+        {  
+            "name":"青岛华银公司",
+            "value":"青岛华银公司",  
+            "category": 1 ,
+             "flag":"公司",
+            "info": {
+            	"componeny":"青岛华银公司",
+            	"person":"王小虎",
+            	"money":"2000万元人民币",
+            	"date":"2015-07-15",
+            	"address":"青岛市崂山区信利路国际创新园A座1124"
+            }
+        },  
+        {  
+            "name": "霓娜",  
+             "flag":"个人",
+            "value": 1, 
+            "category": 2,
+            "info":{
+            	"compony":"青岛华银有限公司",
+            	"money":"1000万元人民币"
+            }
+        },  
+        {  
+            "name": "张三",  
+            "value": 1,
+            "flag":"个人",
+             "x":510,
+             "y":150,
+            "category": 2,
+             "info":{
+            	"compony":"青岛华银有限公司",
+            	"money":"1000万元人民币"
+            }
+        },  
+        {  
+            "name": "李四", 
+            "flag":"个人", 
+            "value": 1,
+            "category": 2 ,
+             "info":{
+            	"compony":"青岛华银有限公司",
+            	"money":"1000万元人民币"
+            }
+        },  
+        {  
+            "name": "网二",  
+            "value": 1,
+            "flag":"个人",
+            "category": 2,
+           "info":{
+            	"compony":"青岛华银有限公司",
+            	"money":"1000万元人民币"
+            }
+        }, 
+        {  
+            "name": "麻子",  
+            "value": 1,
+            "flag":"个人",
+            "category": 2 ,
+            "info":{
+            	"compony":"青岛华银有限公司",
+            	"money":"1000万元人民币"
+            }
+        }  
+    ],  
+    "links": [
+        {  
+        	"name":"line",
+            "source": 0,
+            "target": 1 ,
+            "text":"投资" ,
+         	"relationship":2
+            
+        },  
+        {  
+        	"name":"line",
+            "source": 0,  
+            "target": 2 ,
+            "text":"董事长", 
+            "relationship":1
+        },  
+        {  
+        	"name":"line",
+            "source": 0,  
+            "target": 3 ,
+            "text":"董事", 
+            "relationship":1
+        },  
+        {  
+        	"name":"line",
+            "source": 0,  
+            "target": 4 ,
+            "text":"董事", 
+            "relationship":1
+        }, 
+        {  
+        	"name":"line",
+            "source": 0,  
+            "target": 5 ,
+            "text":"董事", 
+           "relationship":1
+        }, 
+        {  
+        	"name":"line",
+            "source": 0,  
+            "target": 6 ,
+            "text":"董事", 
+           "relationship":1
+        },
+         {  
+        	"name":"line",
+            "source": 5,  
+            "target": 1 ,
+            "text":"董事", 
+           "relationship":1
+        }  
+    ],
+    "linelabel":[
+    	{"任职":["董事","监事","董事长","法定代表人"]},
+    	{"投资":["投资"]}
+    ]
+} 
