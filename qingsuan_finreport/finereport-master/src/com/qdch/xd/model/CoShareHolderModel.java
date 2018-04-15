@@ -112,4 +112,18 @@ public class CoShareHolderModel extends Model<CoShareHolderModel>{
 				sql+="AND T.type = '1'";
 				return dao.find(sql);
 	}
+	/**
+	 * 企业是否有投资信息或购买股权
+	 * @author lixiaoyi
+	 * @date 2018年4月15日 下午8:04:54
+	 * @TODO
+	 */
+	public CoShareHolderModel getCount(String name){
+		String sql="SELECT count(0) FROM hub_commerce_co_shareholder T ";
+		if(StringUtils.isNotBlank(name)){
+			sql+="WHERE T .company_name = '"+ name+"' ";
+		}	
+				sql+="AND T.type = '2'";
+		return dao.findFirst(sql);
+	}
 }

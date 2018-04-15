@@ -36,7 +36,7 @@ public class CommerceController extends BaseController{
 	 * @TODO
 	 */
 	public void index(){
-		String name="青岛华银商品交易中心有限公司";//getPara("name");
+		String name="青岛国际商品交易所有限公司";//getPara("name");
 		
 	    List<CompanysInfoModel> info = CompanysInfoModel.dao.getInfo(getDataScopeByUserName());
 	    setAttr("companyName", info);
@@ -57,7 +57,7 @@ public class CommerceController extends BaseController{
 		List<CoChangeLogModel> changeLog = CoChangeLogModel.dao.getChange(name);
 		  setAttr("change", changeLog);
 		List<CoReportModel> report = CoReportModel.dao.getReport(name);  
-		  setAttr("report", report);
+		  setAttr("report", report.get(0));
 		List<CoBranchModel> branch = CoBranchModel.dao.getBranch(name);  
 		  setAttr("brach", branch);
 		List<CoChangeLogModel> nameChange = CoChangeLogModel.dao.getNamechange(name);
@@ -96,7 +96,9 @@ public class CommerceController extends BaseController{
 	       setAttr("copy", copy);
 	    List<CoWebsiteModel> website = CoWebsiteModel.dao.getWebsite(name);   
            setAttr("website", website);
-	    render("xd/pages/08_01shichanghuaxiang.html");
+        CoShareHolderModel count = CoShareHolderModel.dao.getCount(name);
+	       setAttr("count", count);
+        render("xd/pages/08_01shichanghuaxiang.html");
 	}
 	/**
 	 * 获取企业基本信息 工商信息 
