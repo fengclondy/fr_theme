@@ -13,6 +13,8 @@ import com.qdch.xd.model.*;
 
 
 import javax.management.relation.Role;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -76,7 +78,7 @@ public class EventProcessingController extends BaseController {
 				checkstatus = " and clzt in ('已上报','已查阅''已确认') ";
 			}
 		}else{
-			String role  = "处理人";
+			String role  = "审核人";
 			if(role.equals("处理人")){
 				checkstatus = " and clzt in ('未处理','驳回','已排除') ";
 			}else if(role.equals("审核人")){
@@ -250,7 +252,15 @@ public class EventProcessingController extends BaseController {
 	//		sb.append(eventModel.get("yxcd")+",");
 	//		sb.append(eventModel.get("zbvalue"));
 //			sb.append(")");
-			JDBCUtil.executeUpdate(sb.toString(),null);
+
+			StringBuffer buffer  = new StringBuffer();
+			buffer.append("insert into hub_fxsj_audit_new(shr,clzt,fxsj_id,update_time,bz) values(");
+			buffer.append("'").append(getLoginUser().getUsername()).append("'");
+			buffer.append(",'").append(decode(getPara("status"))).append("'");
+			buffer.append(",'").append(getPara("id")).append("'");
+			buffer.append(",'").append(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(System.currentTimeMillis())).append("'");
+			buffer.append(",'").append(decode(getPara("area"))).append("')");
+			JDBCUtil.executeUpdate(buffer.toString(),null);
 			mRenderJson(true);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -258,6 +268,14 @@ public class EventProcessingController extends BaseController {
 		}
 	}
 
+
+	private String decode(String str) throws UnsupportedEncodingException {
+		if(StringUtils.isNotBlank(str)){
+			return URLDecoder.decode(str,"UTF-8");
+		}else
+			return  str;
+
+	}
 
 
 
