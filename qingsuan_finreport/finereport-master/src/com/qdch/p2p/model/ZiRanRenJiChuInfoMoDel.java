@@ -23,12 +23,8 @@ public class ZiRanRenJiChuInfoMoDel extends Model<ZiRanRenJiChuInfoMoDel>{
 		} 
 		//
 		if(StringUtils.isNotBlank(pyType)){
-			sql+=" and jysinfo = '"+pyType+"' ";
+			sql+=" and jysc = '"+pyType+"' ";
 		} 
-		/*if(StringUtils.isNotBlank(hasInfo)){
-			
-			sql+=" ";
-		} */
 		//日期
 		sql+=" order by vday desc  ";
 		return dao.findFirst(sql);

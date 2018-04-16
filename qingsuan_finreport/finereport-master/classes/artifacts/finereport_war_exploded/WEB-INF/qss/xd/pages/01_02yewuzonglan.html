@@ -220,7 +220,7 @@
 	                 top: "15%"
 	             },
 	             xAxis: {
-	                 name: '万',
+	                 name: '亿元',
 	                 type: 'value',
 	             },
 	             yAxis: {
@@ -267,7 +267,7 @@
 	                 top: "15%"
 	             },
 	             xAxis: {
-	                 name: '万',
+	                 name: '亿元',
 	                 type: 'value',
 	             },
 	             yAxis: {
@@ -314,7 +314,7 @@
 	                 top: "15%"
 	             },
 	             xAxis: {
-	                 name: '万',
+	                 name: '万元',
 	                 type: 'value',
 	             },
 	             yAxis: {
@@ -505,20 +505,39 @@
 				items = $(item).attr('data')
 				selected(items,trend)
 			}
-			var competitive = []
-			var month = []
+			var competitive = [];
+			var month = [];
+			
 			function selected(item,trend){
 				console.log(item)
 				console.log(trend)
-				month=[]
-				$.post("${contextPath}/qdch/businessOverview/getCompetitiveRrend",{jys:item,condition:trend},
-					function(res){
-						competitive = []
-						$.each(res[0].data,function(index,item){
-							competitive.push(item.zhibiao)
-							month.push(item.vday_ym)
-						})
-						console.log(competitive)
+				
+				$.post("${contextPath}/qdch/businessOverview/getCompetitiveRrend",{jys:item,condition:trend},function(data){
+					var yAxisData=[];
+	        		var seriesData=[];
+	        		$.each(data,function(index,itemm){
+		        		var points=[];
+		        		
+	        			$.each(itemm.data,function(ind,it){
+	        				if(index==0){
+	        					yAxisData.push(it.month);
+	        					
+	        				}        				
+	        				points.push(it.zhibiao);
+	        			})
+	        				
+		        			var  ser={
+	    	                    name: itemm.condition,
+	    	                    type: 'line',
+	    	                    symbol: 'circle',
+	    	                    data: points,
+	    	                    areaStyle: lineAreaStyle(index)
+	
+	    	                };
+	        				seriesData.push(ser);
+	        			});
+	        		
+						console.log("aaaaaaaaaa竞争力趋势",seriesData);
 						ec003.setOption(opt_line);
 						ec003.setOption({
 								grid: {
@@ -528,23 +547,20 @@
 								},
 								xAxis: {
 										name: '月份',
-										data: month,
+										data: yAxisData
 								},
 								yAxis: {
-										name: '竞争力',
+										name: '竞争力'
 								},
-								series: [{
-										data: competitive,
-										type: 'line',
-										symbol:'circle',
-										areaStyle: lineAreaStyle(0)
-								}]
+								series: seriesData
 						});
+		        		
+	        		
 					}
 				)
-				
+				}
 					
-			}
+			
 			
 </script>
 </body>
