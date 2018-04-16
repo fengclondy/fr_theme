@@ -46,7 +46,90 @@ public class CoChangeLogModel extends Model<CoChangeLogModel>{
 		sql+="ORDER BY row,T.change_date DESC ";
 		return dao.find(sql);
 	}
-	
+	/**
+	 * 名称变更
+	 * @author lixiaoyi
+	 * @date 2018年4月13日 下午3:52:41
+	 * @TODO
+	 */
+	public List<CoChangeLogModel> getNamechange(String name){
+		String sql="SELECT T .change_date,T .guid,T .old_log,T .new_log FROM hub_commerce_co_change_log T "
+				+ "LEFT JOIN hub_commerce_enterprise n ON T .company_name = n. NAME ";
+		if(StringUtils.isNotBlank(name)){
+			sql+="WHERE T .company_name ='"+ name+"' and T.change_object like '%名称变更%'";
+		}		
+		return dao.find(sql);
+	}
+	/**
+	 * 投资人股权变更
+	 * @author lixiaoyi
+	 * @date 2018年4月13日 下午4:01:34
+	 * @TODO
+	 */
+	public List<CoChangeLogModel> getInvestchange(String name){
+		String sql="SELECT T .change_date,T .guid,T .old_log,T .new_log FROM hub_commerce_co_change_log T "
+				+ "LEFT JOIN hub_commerce_enterprise n ON T .company_name = n. NAME ";
+		if(StringUtils.isNotBlank(name)){
+			sql+="WHERE T .company_name ='"+ name+"' and T.change_object like '%投资人（股权）%'";
+		}		
+		return dao.find(sql);
+	}
+	/**
+	 * 联络员变更
+	 * @author lixiaoyi
+	 * @date 2018年4月13日 下午4:02:54
+	 * @TODO
+	 */
+	public List<CoChangeLogModel> getLiaisonchange(String name){
+		String sql="SELECT T .change_date,T .guid,T .old_log,T .new_log FROM hub_commerce_co_change_log T "
+				+ "LEFT JOIN hub_commerce_enterprise n ON T .company_name = n. NAME ";
+		if(StringUtils.isNotBlank(name)){
+			sql+="WHERE T .company_name ='"+ name+"' and T.change_object like '%联络员%'";
+		}		
+		return dao.find(sql);
+	}
+	/**
+	 * 经营范围变更
+	 * @author lixiaoyi
+	 * @date 2018年4月13日 下午4:04:35
+	 * @TODO
+	 */
+	public List<CoChangeLogModel> getBuinesschange(String name){
+		String sql="SELECT T .change_date,T .guid,T .old_log,T .new_log FROM hub_commerce_co_change_log T "
+				+ "LEFT JOIN hub_commerce_enterprise n ON T .company_name = n. NAME ";
+		if(StringUtils.isNotBlank(name)){
+			sql+="WHERE T .company_name ='"+ name+"' and T.change_object like '%经营范围%'";
+		}		
+		return dao.find(sql);
+	}
+	/**
+	 * 企业类型变更
+	 * @author lixiaoyi
+	 * @date 2018年4月13日 下午4:05:27
+	 * @TODO
+	 */
+	public List<CoChangeLogModel> getComtypechange(String name){
+		String sql="SELECT T .change_date,T .guid,T .old_log,T .new_log FROM hub_commerce_co_change_log T "
+				+ "LEFT JOIN hub_commerce_enterprise n ON T .company_name = n. NAME ";
+		if(StringUtils.isNotBlank(name)){
+			sql+="WHERE T .company_name ='"+ name+"' and T.change_object like '%企业类型%'";
+		}		
+		return dao.find(sql);
+	}
+	/**
+	 * 注册资本变更
+	 * @author lixiaoyi
+	 * @date 2018年4月13日 下午4:06:03
+	 * @TODO
+	 */
+	public List<CoChangeLogModel> getRegisterchange(String name){
+		String sql="SELECT T .change_date,T .guid,T .old_log,T .new_log FROM hub_commerce_co_change_log T "
+				+ "LEFT JOIN hub_commerce_enterprise n ON T .company_name = n. NAME ";
+		if(StringUtils.isNotBlank(name)){
+			sql+="WHERE T .company_name ='"+ name+"' and T.change_object like '%注册资本%'";
+		}		
+		return dao.find(sql);
+	}
 	
 	
 }

@@ -373,7 +373,7 @@ public class Config extends JFinalConfig {
 		/***小贷 李晓依 insight层 Model START ***/
 		insight_arp.addMapping("insight_xd_jysc_info", ProportionModel.class);//小贷-管理风险-占比
 		/***小贷 李晓依 hub层 Model START***/
-		arp.addMapping("hub_commerce_enterprise", CompanysInfoModel.class);//工商-企业信息获取
+		arp.addMapping("hub_commerce_company_info", CompanysInfoModel.class);//工商-企业信息获取
 		arp.addMapping("hub_commerce_co_shareholder", CoShareHolderModel.class);//工商-股东/对外投资人信息
 		arp.addMapping("hub_commerce_co_change_log", CoChangeLogModel.class);//工商-信息变更记录
 		arp.addMapping("hub_commerce_co_senior_manager", CoMainPersonModel.class);//工商-主要人员

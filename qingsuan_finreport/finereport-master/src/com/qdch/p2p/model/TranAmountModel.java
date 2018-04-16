@@ -1,3 +1,4 @@
+
 package com.qdch.p2p.model;
 
 import java.util.List;
@@ -5,6 +6,8 @@ import java.util.List;
 import org.apache.commons.lang.StringUtils;
 
 import com.jfinal.plugin.activerecord.Model;
+
+
 
 public class TranAmountModel extends Model<TranAmountModel>{
 	private static final long serialVersionUID = 1L;

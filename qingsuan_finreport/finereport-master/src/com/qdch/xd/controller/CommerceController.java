@@ -36,10 +36,69 @@ public class CommerceController extends BaseController{
 	 * @TODO
 	 */
 	public void index(){
+		String name="青岛国际商品交易所有限公司";//getPara("name");
+		
 	    List<CompanysInfoModel> info = CompanysInfoModel.dao.getInfo(getDataScopeByUserName());
 	    setAttr("companyName", info);
-	    System.out.println(info);
-		render("xd/pages/08_01shichanghuaxiang.html");
+	    List<CompanysInfoModel> basic = CompanysInfoModel.dao.getBasicinfo(getDataScopeByUserName(),name);
+	     setAttr("basic", basic);
+	    List<CoShareHolderModel> main = CoShareHolderModel.dao.getMainperson(name);
+		 setAttr("main", main);
+	    List<CoShareHolderModel> manager = CoShareHolderModel.dao.getManager(name);
+	      setAttr("manager", manager);
+		List<CoShareHolderModel> dierctor = CoShareHolderModel.dao.getDong(name);
+		  setAttr("director", dierctor);
+		List<CoShareHolderModel> supervisor = CoShareHolderModel.dao.getJian(name);
+		  setAttr("supervisor", supervisor); 
+		List<CoShareHolderModel> stackInfo = CoShareHolderModel.dao.getStackInfo(name);
+		  setAttr("stackInfo", stackInfo);
+		List<CoShareHolderModel> invest = CoShareHolderModel.dao.getInvest(name);
+		  setAttr("invest", invest);  
+		List<CoChangeLogModel> changeLog = CoChangeLogModel.dao.getChange(name);
+		  setAttr("change", changeLog);
+		List<CoReportModel> report = CoReportModel.dao.getReport(name);  
+		  setAttr("report", report.get(0));
+		List<CoBranchModel> branch = CoBranchModel.dao.getBranch(name);  
+		  setAttr("brach", branch);
+		List<CoChangeLogModel> nameChange = CoChangeLogModel.dao.getNamechange(name);
+		  setAttr("nameChange", nameChange);
+		List<CoChangeLogModel> investChange =  CoChangeLogModel.dao.getInvestchange(name);  
+		  setAttr("investChange", investChange);
+		List<CoChangeLogModel> liaison = CoChangeLogModel.dao.getLiaisonchange(name);
+		  setAttr("liaison", liaison);
+		List<CoChangeLogModel> business = CoChangeLogModel.dao.getBuinesschange(name);
+          setAttr("business", business);
+        List<CoChangeLogModel> companyType = CoChangeLogModel.dao.getComtypechange(name);
+          setAttr("com", companyType);
+        List<CoChangeLogModel> register  = CoChangeLogModel.dao.getRegisterchange(name);
+          setAttr("register", register);
+        List<CoJudgmentModel> judgment = CoJudgmentModel.dao.getJudgment(name);
+          setAttr("judgment", judgment);  
+        List<CoAnnounceModel> announce = CoAnnounceModel.dao.getAnnounce(name);
+          setAttr("announce", announce);
+        CoDishonestyModel dishonesty = CoDishonestyModel.dao.getDishonesty(name); 
+		   setAttr("dishonesty", dishonesty);
+		List<CoExecutorModel> exector = CoExecutorModel.dao.getExecutor(name);
+		   setAttr("exector", exector);
+		List<CoBusinessModel> businesExeption = CoBusinessModel.dao.getBusiness(name);
+		   setAttr("buExecption", businesExeption);
+		List<CoPenaltvModel> penaltv = CoPenaltvModel.dao.getPenalt(name); 
+           setAttr("penalt", penaltv);
+        List<CoJobModel> job = CoJobModel.dao.getJob(name);  
+           setAttr("job", job);
+        List<CoTradeMarkModel> tradeMark =  CoTradeMarkModel.dao.getMark(name);  
+           setAttr("trade", tradeMark);
+        List<CoPatentModel> patent = CoPatentModel.dao.getPatent(name);   
+		   setAttr("patent", patent);
+	    List<CoSoftcopyModel> soft = CoSoftcopyModel.dao.getSoft(name);   
+	       setAttr("soft", soft);
+	    List<CoCopyrightModel> copy = CoCopyrightModel.dao.getCopy(name);  
+	       setAttr("copy", copy);
+	    List<CoWebsiteModel> website = CoWebsiteModel.dao.getWebsite(name);   
+           setAttr("website", website);
+        CoShareHolderModel count = CoShareHolderModel.dao.getCount(name);
+	       setAttr("count", count);
+        render("xd/pages/08_01shichanghuaxiang.html");
 	}
 	/**
 	 * 获取企业基本信息 工商信息 
@@ -199,7 +258,7 @@ public class CommerceController extends BaseController{
 	 */
 	public void gainDishonesty(){
 		String name = getPara("name");
-		List<CoDishonestyModel> dishonesty = CoDishonestyModel.dao.getDishonesty(name);
+	   CoDishonestyModel dishonesty = CoDishonestyModel.dao.getDishonesty(name);
 	    mRenderJson(dishonesty);
 	}
 	/**

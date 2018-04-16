@@ -1,3 +1,4 @@
+
 package com.qdch.p2p.controller;
 
 import java.util.HashMap;
@@ -106,3 +107,13 @@ public class DealplatformController extends BaseController {
 		mRenderJson(collectPrincipal);
 	}
 }
+
+
+
+
+
+
+
+
+
+
