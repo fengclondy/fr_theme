@@ -5,8 +5,10 @@ import com.fr.hailian.model.RoleModel;
 import com.fr.hailian.util.JDBCUtil;
 import com.fr.stable.StringUtils;
 
+import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Page;
+import com.jfinal.plugin.activerecord.Record;
 import com.qdch.core.BaseController;
 import com.qdch.util.ExportUtil;
 import com.qdch.xd.model.*;
@@ -275,6 +277,14 @@ public class EventProcessingController extends BaseController {
 		}else
 			return  str;
 
+	}
+
+	public void  test(){
+		Record record = new Record();
+		record.set("fxsj_id","wfwf");
+		Db.save("hub_fxsj_audit_new",record);
+//		new RiskEventHistoryModel().set("fxsj_id","wfwf").save();
+		mRenderJson(null);
 	}
 
 
