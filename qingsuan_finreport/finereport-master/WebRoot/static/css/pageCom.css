@@ -101,13 +101,13 @@ td.more:active > a {
 
 /*自定义下拉框*/
 .mySelect {
-    z-index: 1;
-    display: inline-block;
     position: relative;
+    display: inline-block;
     top: -.15em;
     width: 9rem;
     text-align: left;
     vertical-align: middle;
+   
 }
 
 .mySelect .myOption {
@@ -123,7 +123,7 @@ td.more:active > a {
     text-overflow: ellipsis;
     overflow: hidden;
     height: 1.3125rem;
-    z-index:10;
+  
 }
 
 .mySelect.open > .myOption.selected,
@@ -154,12 +154,16 @@ td.more:active > a {
 .mySelect > .myOptionBox {
     position: absolute;
     display: none;
-    margin-top: .1em;
+    margin-top: .3em;
     padding: 0;
     min-width: 100%;
-    background-color: #0005;
+
+    background: #004d7d;
+
     border-radius: .2rem;
     transition: all .5s ease;
+    z-index:100;
+    box-shadow: 0rem 0.2rem .2rem #1F547E;
 }
 
 .mySelect.open > .myOptionBox {
@@ -167,11 +171,11 @@ td.more:active > a {
 }
 
 .mySelect > .myOptionBox > .myOption.selected {
-    background-color: #0005;
+    /*background-color: #00adef;*/
 }
 
 .mySelect > .myOptionBox > .myOption:hover {
-    background-color: #0002;
+    background-color: #00adef;
 }
 
 /*像风险查看一类页面的白色底样式*/
@@ -523,6 +527,7 @@ td.more:active > a {
     }
     /*模态框  end*/
 }
+
 
 
 
