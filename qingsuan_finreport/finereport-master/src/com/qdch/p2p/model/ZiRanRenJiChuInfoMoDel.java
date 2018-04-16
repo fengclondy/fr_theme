@@ -23,7 +23,7 @@ public class ZiRanRenJiChuInfoMoDel extends Model<ZiRanRenJiChuInfoMoDel>{
 		} 
 		//
 		if(StringUtils.isNotBlank(pyType)){
-			sql+=" and jysinfo = '"+pyType+"' ";
+			sql+=" and jysc = '"+pyType+"' ";
 		} 
 		/*if(StringUtils.isNotBlank(hasInfo)){
 			
