@@ -1,5 +1,6 @@
 package com.qdch.xd.controller;
 
+import com.fr.hailian.core.QdchUser;
 import com.fr.hailian.util.JDBCUtil;
 import com.fr.stable.StringUtils;
 
@@ -35,6 +36,7 @@ public class EventProcessingController extends BaseController {
 	public void index() {
 //		renderJsp("xd/pages/riskSolve.jsp");
 		//setAttr("type",getPara("type"));
+		setAttr("user", getLoginUser());
 		render("xd/pages/05_01fengxianshijianchuli.html");
 	}
 
@@ -177,10 +179,11 @@ public class EventProcessingController extends BaseController {
 	//		historyModel.set("update_time",new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(System.currentTimeMillis()));
 	//		historyModel.save();
 				StringBuffer sb = new StringBuffer();
+				sb.append("update hub_fxsj ");
 	//		sb.append("insert into hub_fxsj_audit_new(bjsj,fxlb,fxzb,fxzbz,yuzhi,cce," +
 	//				"jgdm,jgmc,cust_id,khmc,ywcdbm,ywcdmc,ywlx,ywbm,shr,clzt,fxsm,bz,fxsj_id,unit," +
 	//				"report_id,deal_id,update_time,jysfl,bq,yxcd,zbvalue)values(");
-				sb.append("insert into hub_fxsj_audit_new(shr,clzt,fxsj_id,update_time)values(");
+//				sb.append("insert into hub_fxsj_audit_new(shr,clzt,fxsj_id,update_time)values(");
 	//		sb.append(eventModel.get("bjsj")+"");
 	//		sb.append(eventModel.get("fxlb")+",");
 	//		sb.append(eventModel.get("fxzb")+",");
@@ -195,20 +198,21 @@ public class EventProcessingController extends BaseController {
 	//		sb.append(eventModel.get("ywcdmc")+",");
 	//		sb.append(eventModel.get("ywlx")+",");
 	//		sb.append(eventModel.get("ywbm")+",");
-				sb.append("'").append(eventModel.get("shr")+"',");
-				sb.append("'").append(eventModel.get("clzt")+"',");
+				sb.append(" set shr='").append(getLoginUser().getId());
+				sb.append(", clzt='").append(eventModel.get("clzt")+"',");
 	//		sb.append(eventModel.get("fxsm")+",");
-			sb.append("'").append(eventModel.get("bz")+"',");
-				sb.append("'").append(eventModel.get("fxsj_id")+"',");
+			sb.append(",update_time'").append(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(System.currentTimeMillis()));
+//				sb.append("'").append(eventModel.get("fxsj_id")+"',");
 	//		sb.append(eventModel.get("unit")+",");
 	//		sb.append(eventModel.get("report_id")+",");
 	//		sb.append(eventModel.get("deal_id")+",");
-				sb.append("'").append(eventModel.get("update_time")+"'");
+//				sb.append("'").append(eventModel.get("update_time")+"'");
+			sb.append(" where fxsj_id="+getPara("id")+"");
 	//		sb.append(eventModel.get("jysfl")+",");
 	//		sb.append(eventModel.get("bq")+",");
 	//		sb.append(eventModel.get("yxcd")+",");
 	//		sb.append(eventModel.get("zbvalue"));
-			sb.append(")");
+//			sb.append(")");
 			JDBCUtil.executeUpdate(sb.toString(),null);
 			mRenderJson(true);
 		} catch (Exception e) {

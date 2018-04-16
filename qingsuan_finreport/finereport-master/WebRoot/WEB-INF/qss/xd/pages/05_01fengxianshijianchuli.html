@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -313,26 +313,27 @@
         <div class="header"><span>X</span></div>
         <nav class="operation">
             <ul class="NavList">
-                <li><img src="../img/05_fengxianguanli/submit.gif" alt=""><span id="submit">提交</span></li>
-                <li><img src="../img/05_fengxianguanli/deleted.gif" alt=""><span id="deleteColumn">清空</span></li>
+                <li onclick="submitcheck()"><img src="${contextPath}/static/img/submit.gif" alt=""><span id="submit">提交</span></li>
+                <li onclick="empty()"><img src="${contextPath}/static/img/deleted.gif" alt=""><span  id="deleteColumn">清空</span></li>
             </ul>
         </nav>
         <div class="model_content">
             <div class="modelTop">
-                <li><a href="#">事件ID：<span>1233</span></a></li>
-                <li><a href="#">报警时间：<span>1233</span></a></li>
-                <li><a href="#">风险类型：<span>1233</span></a></li>
-                <li><a href="#">风险指标：<span>1233</span></a></li>
-                <li><a href="#">指标值：<span>1233</span></a></li>
-                <li><a href="#">阙值：<span>1233</span></a></li>
-                <li><a href="#">超出额：<span>1233</span></a></li>
-                <li><a href="#">机构代码：<span>1233</span></a></li>
-                <li><a href="#">机构名称：<span>1233</span></a></li>
-                <li><a href="#">客户号：<span>1233</span></a></li>
-                <li><a href="#">客户名称：<span>11111111111111111</span></a></li>
-                <li><a href="#">业务菜单名称：<span>1233</span></a></li>
-                <li><a href="#">业务类型：<span>1233</span></a></li>
-                <li><a href="#">业务编码：<span>1233</span></a></li>
+                <li><a href="#">事件ID：<span class="shijianId"></span></a></li>
+                <li><a href="#">报警时间：<span class="policeTime"></span></a></li>
+                <li><a href="#">风险类型：<span class="riskCategories"></span></a></li>
+                <li><a href="#">风险指标：<span class="fenxianzhibiao"></span></a></li>
+                <li><a href="#">指标值：<span class="indicatorsVal"></span></a></li>
+                <li><a href="#">阙值：<span class="threshold"></span></a></li>
+                <li><a href="#">超出额：<span class="Beyond"></span></a></li>
+                <li><a href="#">机构代码：<span class="organizationCode"></span></a></li>
+                <li><a href="#">机构名称：<span class="organizationName"></span></a></li>
+                <li><a href="#">客户号：<span class="CustomerNo"></span></a></li>
+                <li><a href="#">客户名称：<span class="CustomerName"></span></a></li>
+                <li><a href="#">业务菜单名称：<span class="menuName"></span></a></li>
+                <li><a href="#">业务类型：<span class="Business"></span></a></li>
+                <li><a href="#">业务编码：<span class="BusinessNo"></span></a></li>
+
 
 
             </div>
@@ -399,20 +400,20 @@
                     <ul>
                         <li>
                             <label>审核人:</label>
-                            <input type="text" id="Auditor">
+                            <input disabled  type="text"  id="Auditor">
                         </li>
                         <li>
                             <label >处理状态</label>
-                            <input  name="radio1" type="radio" checked="checked">未处理
-                            <input name="radio1" type="radio">已提交
-                            <input name="radio1" type="radio">已排查
+                            <input class="inputradio"  name="radio1" value="0" type="radio" checked="checked">未处理
+                            <input  class="inputradio"   name="radio1" value="1" type="radio">已提交
+                            <input  class="inputradio"   name="radio1" value="2" type="radio">已排查
                         </li>
                         <li>
-                            <a href="">处理时间: <span id="processingData">2018-1-1 00:00:00</span> </a>
+                            <a href="">处理时间: <span id="processingData"></span> </a>
                         </li>
                         <li style="width: 100%;">
                             <label><strong>备注：</strong></label>
-                            <textarea cols="100" rows="4"></textarea><br>
+                            <textarea class="inputarea" cols="100" rows="4"></textarea><br>
                         </li>
                     </ul>
 
@@ -434,6 +435,7 @@
     var riskIndex;
 
     $(function () {
+        console.log('${user}')
         $(".formFoldHandle").click(function () {
             $(".formBox").toggleClass("open")
         });
@@ -658,23 +660,27 @@
             data: {"id": value},
             dataType: "json",
             success: function (data) {
-                // console.log(data);
-                // var value = data.risk;
-                // $(".shijianId").text(value.fxsj_id);
-                // $(".fenxianzhibiao").text(value.fxsj_id);
-                // $(".Beyond").text(value.cce);
-                // $(".CustomerNo").text(value.cust_id);
-                // $(".Business").text(value.ywlx);
-                // $(".policeTime").text(value.bjsj);
-                // $(".indicatorsVal").text(value.fxzbz);
-                // $(".organizationCode").text(value.jgdm);
-                // $(".indicatorsVal").text(value.fxzbz);
-                // $(".CustomerName").text(value.khmc);
-                // $(".BusinessNo").text(value.ywbm);
-                // $(".riskCategories").text(value.fxlb);
-                // $(".threshold").text(value.yuzhi);
-                // $(".organizationName").text(value.jgmc);
-                // $(".menuName").text(value.ywcdmc);
+                console.log(data);
+                var value = data.risk;
+                $(".shijianId").text(value.fxsj_id);
+                $(".fenxianzhibiao").text(value.fxsj_id);
+                $(".Beyond").text(value.cce);
+                $(".CustomerNo").text(value.cust_id);
+                $(".Business").text(value.ywlx);
+                $(".policeTime").text(value.bjsj);
+                $(".indicatorsVal").text(value.fxzbz);
+                $(".organizationCode").text(value.jgdm);
+                $(".indicatorsVal").text(value.fxzbz);
+                $(".CustomerName").text(value.khmc);
+                $(".BusinessNo").text(value.ywbm);
+                $(".riskCategories").text(value.fxlb);
+                $(".threshold").text(value.yuzhi);
+                $(".organizationName").text(value.jgmc);
+                $(".menuName").text(value.ywcdmc);
+
+                var d = new Date();
+                var timestr = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate()+" "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
+                $('#processingData').html(timestr)
                 //
 
 
@@ -688,9 +694,13 @@
      */
 
     function submitcheck() {
+        var status = $(".inputradio .checked").val();
+        var area = $(".inputarea").val();
+        var param = "?status="+status+"&area="+area;
+
         $.ajax({
             type: "POST",
-            url: "eventprocessing/submitCheck",
+            url: "eventprocessing/submitCheck"+param,
             data: {"id": idvalue},
             dataType: "json",
             success: function (data) {
@@ -699,613 +709,10 @@
         });
 
     }
-    
 
-</script>
-</body>
-</html>
-=======
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="shortcut icon" href="${contextPath}/static/img/com/logo.png">
-    <link rel="stylesheet" href="${contextPath}/static/asserts/css/normalize.css">
-    <link rel="stylesheet" href="${contextPath}/static/css/style.css">
-    <link rel="stylesheet" href="${contextPath}/static/css/pageCom.css">
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-        }
-        .fl{
-            float: left;
-        }
-        .fr{
-            float: right;
-        }
-        li{
-            list-style: none;
-        }
-        .model{
-
-            background: url("${contextPath}/static/img/com/bg_main.jpg") no-repeat;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            border-radius: .5rem .5rem 0 0;
-            width: 50%;
-            height: 60%;
-            margin-left: -30%;
-            margin-top: -15%;
-            color: #fff;
-            display: none;
-
-        }
-        /*头部 header*/
-        .header{
-            position: relative;
-            height: 2rem;
-            height: 8%;
-            border-radius: .5rem .5rem 0 0;
-            background-color: #0080ff;
-        }
-        .header span{
-            position: absolute;
-            right: .8rem;
-            top: 0.3rem;
-            width: 1rem;
-            height: 1rem;
-            text-align: center;
-            background-color: #fff;
-            border-radius: 50%;
-            line-height: 1rem;
-            cursor: pointer;
-            color: #00abde;
-        }
-        /*li list*/
-        .model_content{
-            height: 92%;
-            width: 100%;
-            padding: 0.5rem 0.5rem;
-
-        }
-        .tableBox tbody tr td:nth-child(1) a{
-            color: red;
-        }
-        .model_content .modelTop{
-            width: 100%;
-            height: 40%;
-            border-bottom: 1px solid #00abde;
-        }
-        .modelTopleft{
-            width: 30%;
-        }
-
-        ul>li span{
-            padding: 0.18rem 0rem;
-            font-family:'微软雅黑';
-            font-size: 0.6rem;
-        }
-        /*审核人*/
-        .modelMiddle{
-            width: 100%;
-            height: 20%;
-            margin-top: 1rem;
-            border-bottom: 1px solid #00abde;
-        }
-        .modelMiddle ul li{
-            float: left;
-            width: 30%;
-        }
-        .modelMiddle ul li span:nth-child(1){
-            padding: 0.1rem 1rem;
-            width: 10%;
-            height: 1.5rem;
-            background-color: rgb(51,103,153);
-            color: #fff;
-
-        }
-        /*.modelTopleft  ul li span:nth-child(1),*/
-        /*.modelTopright  ul li span:nth-child(1){*/
-            /*width: 35%;*/
-            /*float: left;*/
-        /*}*/
-        /*.modelTopright  ul li span:nth-child(2),*/
-        /*.modelTopleft  ul li span:nth-child(2){*/
-            /*width: 65%;*/
-            /*float: left;*/
-        /*}*/
-    </style>
-</head>
-<body class="whitePage" id="05_01fengxianshijianchuli" data-title="风险事件处理">
-<div class="container">
-    <nav class="pagination">
-        <ul>
-            <li class="home" id="pagehome">首页</li>
-            <li class="split">|</li>
-            <li class="prev" id="pageprev">上一页</li>
-            <li class="split">|</li>
-            <li class="pageNumber">
-                <label for="pageCurrent" hidden></label>
-                <input id="pageCurrent" type="number" >&nbsp;/
-                <span class="pageTotal"></span>
-            </li>
-            <li class="split">|</li>
-            <li class="next" id="pagenext">下一页</li>
-            <li class="split">|</li>
-            <li class="end" id="pageend">末页</li>
-            <li class="output">
-                <a class="dropDown">输出</a>
-                <ul>
-                    <!--<li class="pdf"><span class="icon"></span> PDF</li>-->
-                    <li class="excel"><span class="icon"></span>EXCEL
-                        <!--<a class="dropDown">EXCEL</a>-->
-                        <!--<ul>-->
-                            <!--<li>分页导出</li>-->
-                            <!--<li>原样导出</li>-->
-                            <!--<li>分页分sheet导出</li>-->
-                        <!--</ul>-->
-                    </li>
-                    <!--<li class="word"><span class="icon"></span> WORD</li>-->
-                    <!--<li class="picture"><span class="icon"></span> 图片</li>-->
-                </ul>
-            </li>
-        </ul>
-    </nav>
-    <div class="formBox open">
-        <form action="">
-            <div class="inputGroup">
-                <label for="eventId">事件ID：</label>
-                <input id="eventId">
-            </div>
-            <div class="inputGroup">
-                <label for="customerName">客户名称：</label>
-                <input id="customerName">
-            </div>
-            <div class="inputGroup">
-                <label for="marketName">市场名称：</label>
-                <select id="marketName">
-                    <option value=""></option>
-                </select>
-            </div>
-            <br>
-            <div class="inputGroup">
-                <label for="processingState">处理状态：</label>
-                <select id="processingState">
-                    <option value=""></option>
-                    <!--<option value="">未处理</option>-->
-                    <!--<option value="">驳回</option>-->
-                    <!--<option value="">不选</option>-->
-                </select>
-            </div>
-            <div class="inputGroup">
-                <label for="riskCategories">风险类别：</label>
-                <select id="riskCategories">
-                    <option value=""></option>
-
-                </select>
-            </div>
-            <div class="inputGroup">
-                <label for="riskIndicators">风险指标：</label>
-                <select id="riskIndicators">
-                    <option value=""></option>
-
-                </select>
-            </div>
-            <br>
-            <div class="inputGroup">
-                <label for="alarmTimeStart">报警时间起：</label>
-                <input id="alarmTimeStart" type="date">
-            </div>
-            <div class="inputGroup">
-                <label for="alarmTimeEnd">报警时间止：</label>
-                <input id="alarmTimeEnd" type="date">
-            </div>
-            <div class="inputGroup">
-                <label for="encode">业务编码：</label>
-                <input id="encode">
-            </div>
-            <div class="btnGroup search">
-                <button class="active" type="button" id="btnCheck">查询</button>
-            </div>
-        </form>
-    </div>
-    <div class="formFoldHandle"></div>
-    <p class="queryResult">此次为您查询数据<span class="number"></span>条</p>
-    <div class="tableBox">
-        <table>
-            <thead>
-            <tr>
-                <th>风险事件ID</th>
-                <th>报警时间</th>
-                <th>风险类别</th>
-                <th>风险指标</th>
-                <th>风险指标值</th>
-                <th>阙值</th>
-                <th>超出额</th>
-                <th>市场代码</th>
-                <th>市场名称</th>
-                <th>客户号</th>
-                <th>客户名称</th>
-                <th>业务菜单编码</th>
-                <th>业务菜单名称</th>
-                <th>业务类型</th>
-                <th>业务编码</th>
-                <th>处理人</th>
-                <th>处理状态</th>
-                <th>处理时间</th>
-                <!--<th>风险说明</th>-->
-
-            </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-    </div>
-    <!--模态框 弹出框-->
-    <!--<div class="model" style="display: none">-->
-        <!--<div class="header"><span>X</span></div>-->
-        <!--<div class="model_content">-->
-
-        <!--</div>-->
-    <!--</div>-->
-    <div class="model">
-        <div class="header"><span>X</span></div>
-        <div class="model_content">
-            <div class="modelTop">
-                <div class="modelTopleft fl">
-                    <ul>
-                        <li><span>事件Id:</span><span class="shijianId"></span></li>
-                        <li><span>风险指标:</span><span class="fenxianzhibiao"></span></li>
-                        <li><span>超出额:</span><span class="Beyond"></span></li>
-                        <li><span>客户号:</span><span class="CustomerNo"></span></li>
-                        <li><span>业务类型:</span><span class="Business"></span></li>
-                        <li><span>风险说明:</span><span class="riskThat"></span></li>
-                    </ul>
-                </div>
-                <div class="modelTopleft fl">
-                    <ul>
-                        <li><span>报警时间:</span><span class="policeTime"></span></li>
-                        <li><span>指标值:</span><span class="indicatorsVal"></span></li>
-                        <li><span>机构代码:</span><span class="organizationCode"></span></li>
-                        <li><span>客户名称:</span><span class="CustomerName"></span></li>
-                        <li><span>业务编码:</span><span class="BusinessNo"></span></li>
-                    </ul>
-
-                </div>
-                <div class="modelTopright fl">
-                    <ul>
-                        <li><span>风险类别:</span><span class="riskCategories"></span></li>
-                        <li><span>阙值:</span><span class="threshold"></span></li>
-                        <li><span>机构名称:</span><span class="organizationName"></span></li>
-                        <li><span>业务菜单名称:</span><span class="menuName"></span></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="modelMiddle">
-                <ul>
-                    <li>
-                        <div class="">
-                            <span class="">审核人:</span>
-                            <span class="Auditor">man</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="">
-                            <span class="">处理状态:</span>
-                            <span class="HandleState">已排查</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="">
-                            <span class="Auditor">处理时间:</span>
-                            <span class="AuditorData">20180327 13:44:04</span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="">
-                            <span class="Auditor">备&nbsp;&nbsp;&nbsp;注:</span>
-                            <span></span>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="modelFooter">
-
-                <div class="inputGroup fl">
-                    <label class="jiaoyishichang"></label>&nbsp;&nbsp;
-                    <div class="mySelect" id="jiaoyishichang" style="width: 5rem">
-                        <div id="statusSubmit" class="myOption selected"><span class="text"></span><span class="icon"></span></div>
-                        <select class="myOptionBox">
-                            <option class="myOption selected">1</option>
-                            <option class="myOption">2</option>
-                            <option class="myOption">3</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="inputGroup">
-                    <button onclick="submitcheck()" type="button"  style="color: #fff; background-color:#00abde;padding: 0.1rem 1rem;border-radius: 0.2rem">提交</button>
-                </div>
-            </div>
-        </div>
-</div>
-</div>
-<!--<script src="http://www.jq22.com/jquery/jquery-2.1.1.js"></script>-->
-<script src="${contextPath}/static/asserts/js/echarts-4.0.js"></script>
-<script src="${contextPath}/static/asserts/js/jquery-2.2.4.js"></script>
-<script src="${contextPath}/static/js/pageCom.js"></script>
-<script src="${contextPath}/static/js/chartsCom.js"></script>
-
-<script>
-    var totalPage,totalNum,pageNumber;
-    var riskIndex;
-
-    $(function () {
-        $(".formFoldHandle").click(function () {
-            $(".formBox").toggleClass("open")
-        });
-
-        //显示model
-        $(".tableBox tbody tr td:nth-child(1) a").click(function(e){
-            e.preventDefault();
-
-            $(".model").css("display","block");
-
-        });
-        //异常model
-        $(".header span").click(function (e) {
-            e.preventDefault();
-            $(".model").hide();
-        })
-        // $('.model').show()
-
-        getTableBody(); //表格内容
-        getPullDown(); //下拉框
-        //第一页
-        $('#pagehome').on('click',function(){
-            getTableBody()
-        })
-        //最后一页
-        $('#pageend').on('click',function(){
-            getTableBody(totalPage)
-        })
-        //上一页
-        $('#pageprev').on('click',function(){
-            if(pageNumber==1){
-                alert("已经是第一页了")
-            }else{
-                getTableBody(pageNumber-1)
-            }
-
-        })
-        //下一页
-        $('#pagenext').on('click',function(){
-            console.log(pageNumber,totalPage)
-            if(pageNumber== totalPage){
-                alert("已经是最后一页了")
-            }else{
-                getTableBody(pageNumber+1)
-            }
-
-        })
-        $('#pageCurrent').bind('keypress',function(event){
-            console.log(11,event.keyCode)
-            if(event.keyCode == 13){
-                getTableBody($(this).val(),10)
-                }
-            });
-
-        $('#riskCategories').on('blur',function () {
-            var a = $('#riskCategories option:selected').val();
-            var str  = "<option value=''></option>";
-            $.each(riskIndex, function(index, value, array) {
-                if(value.fxlb==a){
-                    str+="<option value='"+value.fxzb+"'>"+value.fxzb+"</option>";
-                }
-            });
-            $('#riskIndicators').html("")
-            $('#riskIndicators').append(str);
-        })
-        $('#btnCheck').on('click',function () {
-            // var eventId = $('#eventId').val();
-            // var customerName = $('#customerName').val();
-            // var marketName = $('#marketName option:selected').val();
-            // var processingState = $('#processingState').val();
-            // var riskCategories = $('#riskCategories option:selected').val();
-            // var riskIndicators = $('#riskIndicators option:selected').val();
-            // var alarmTimeStart = $('#alarmTimeStart').val().replace(/-/g,"");
-            // var alarmTimeEnd = $('#alarmTimeEnd').val().replace(/-/g,"");
-            // var encode = $('#encode').val();
-            // var htmlstr = "";
-            // if((alarmTimeStart==""&&alarmTimeEnd!="")||(alarmTimeStart!=""&&alarmTimeEnd=="")){
-            //     alert('预警时间段应选择全');
-            //     return;
-            // }
-            // if(alarmTimeEnd<alarmTimeStart){
-            //     alert('结束时间不能比开始时间小');
-            //     return;
-            // }
-            // htmlstr+="?fxsj_id="+eventId+"&khmc="+encodeURI(encodeURI(customerName))+
-            //     "&jgmc="+encodeURI(encodeURI(marketName))+"&clzt="+encodeURI(encodeURI(processingState))+
-            //         "&fxlb="+encodeURI(encodeURI(riskCategories))+"&fxzb="+encodeURI(encodeURI(riskIndicators))
-            //     +"&alarmTimeStart="+alarmTimeStart+
-            //         "&alarmTimeEnd="+alarmTimeEnd+"&ywbm="+encode;
-    var con = getCondition();
-            // console.log(alarmTimeStart.replace(/-/g,"")) //注意 前面没有“”
-           getTableBody(null,null,con);
-        })
-
-        //导出excel
-        $('.excel').on('click',function () {
-            var con = getCondition();
-            window.open("eventprocessing/exportExcel"+con)
-        })
-        
-        
-    });
-    function getCondition() {
-        var eventId = $('#eventId').val();
-        var customerName = $('#customerName').val();
-        var marketName = $('#marketName option:selected').val();
-        var processingState = $('#processingState').val();
-        var riskCategories = $('#riskCategories option:selected').val();
-        var riskIndicators = $('#riskIndicators option:selected').val();
-        var alarmTimeStart = $('#alarmTimeStart').val().replace(/-/g,"");
-        var alarmTimeEnd = $('#alarmTimeEnd').val().replace(/-/g,"");
-        var encode = $('#encode').val();
-        var htmlstr = "";
-        if((alarmTimeStart==""&&alarmTimeEnd!="")||(alarmTimeStart!=""&&alarmTimeEnd=="")){
-            alert('预警时间段应选择全');
-            return;
-        }
-        if(alarmTimeEnd<alarmTimeStart){
-            alert('结束时间不能比开始时间小');
-            return;
-        }
-       return htmlstr+="?fxsj_id="+eventId+"&khmc="+encodeURI(encodeURI(customerName))+
-            "&jgmc="+encodeURI(encodeURI(marketName))+"&clzt="+encodeURI(encodeURI(processingState))+
-            "&fxlb="+encodeURI(encodeURI(riskCategories))+"&fxzb="+encodeURI(encodeURI(riskIndicators))
-            +"&alarmTimeStart="+alarmTimeStart+
-            "&alarmTimeEnd="+alarmTimeEnd+"&ywbm="+encode;
-
-    }
-
-    /**
-     * 下拉框
-     */
-    function getPullDown() {
-        $.ajax({
-            type: "POST",
-            url: "eventprocessing/getPullDown",
-            data: {},
-            dataType: "json",
-            success: function(data){
-                console.log(data);
-                riskIndex = data.risk;
-                var exchangeHtml = "",typehtml,riskhtml,statushtml;
-                $.each(data.exchange, function(index, value, array) {
-                    exchangeHtml+="<option value='"+value.jys+"'>"+value.jysinfo+"</option>";
-                });
-                $.each(data.type, function(index, value, array) {
-                    typehtml+="<option value='"+value.fxlb+"'>"+value.fxlb+"</option>";
-                });
-                $.each(data.status, function(index, value, array) {
-                    statushtml+="<option value='"+value.fvalue+"'>"+value.fvalue+"</option>";
-                });
-                $("#processingState").append(statushtml);
-                $("#marketName").append(exchangeHtml);
-                $("#riskCategories").append(typehtml);
-
-            }
-        });
-
-    }
-    function getTableBody(pageNum,pageSize,appenddata) {
-        if(!appenddata){
-            appenddata = "";
-
-        }
-        $.ajax({
-            type: "POST",
-            url: "eventprocessing/getList"+appenddata,
-            data: {"pageNum":pageNum,"pageSize":pageSize},
-            dataType: "json",
-            success: function(data){
-                var  append = "";
-                console.log(data);
-                $(".number").text(data.totalRow);
-                $('#pageCurrent').val(data.pageNumber);
-                $('.pageTotal').text(data.totalPage);
-                totalPage = data.totalPage;
-                pageNumber = data.pageNumber;
-                $.each(data.list, function(index, value, array) {
-                    append +=
-                        "  <tr>            <td><a href=\"javascript:popupfuc("+value.fxsj_id+")\" class=\"fengxian001\">"+formatOutput(value.fxsj_id)+"</a></td>\n" +
-                        "                <td>"+formatOutput(value.bjsj)+"</td>\n" +
-                        "                <td>"+formatOutput(value.fxlb)+"</td>\n" +
-                        "               <td>"+formatOutput(value.fxzb)+"</td>\n" +
-                        "               <td>"+formatOutput(value.fxzbz)+"</td>\n" +
-                        "               <td>"+formatOutput(value.yuzhi)+"</td>\n" +
-                        "               <td>"+formatOutput(value.cce)+"</td>\n" +
-                        "               <td>"+formatOutput(value.jgdm)+"</td>\n" +
-                        "               <td>"+formatOutput(value.jgmc)+"</td>\n" +
-                        "               <td>"+formatOutput(value.cust_id)+"</td>\n" +
-                        "               <td>"+formatOutput(value.khmc)+"</td>\n" +
-                        "               <td>"+formatOutput(value.ywcdbm)+"</td>\n" +
-                        "               <td>"+formatOutput(value.ywcdmc)+"</td>\n" +
-                        "               <td>"+formatOutput(value.ywlx)+"</td>\n" +
-                        "               <td>"+formatOutput(value.ywbm)+"</td>\n" +
-                        "               <td>"+formatOutput(value.shr)+"</td>\n" +
-                        "               <td>"+formatOutput(value.clzt)+"</td>\n" +
-                    "               <td>"+formatOutput(value.update_time)+"</td> </tr>" ;
-                        // "                <td class=\"more\"><a href=\"\">查看</a></td></tr>  " ;
-                });
-                // append +="</tr>";
-                $('tbody').html(append)
-
-            }
-
-            })
-    }
-    function formatOutput(str) {
-        if(str==null||str==undefined||str=='null'||str==''){
-            return '';
-        }else
-            return str;
-    }
-
-    var idvalue;
-    function popupfuc(value) {
-        idvalue = value;
-        console.log('idvalue'+idvalue)
-        $('.model').show()
-        $.ajax({
-            type: "POST",
-            url: "eventview/getPopUp",
-            data: {"id": value},
-            dataType: "json",
-            success: function (data) {
-                // console.log(data);
-                // var value = data.risk;
-                // $(".shijianId").text(value.fxsj_id);
-                // $(".fenxianzhibiao").text(value.fxsj_id);
-                // $(".Beyond").text(value.cce);
-                // $(".CustomerNo").text(value.cust_id);
-                // $(".Business").text(value.ywlx);
-                // $(".policeTime").text(value.bjsj);
-                // $(".indicatorsVal").text(value.fxzbz);
-                // $(".organizationCode").text(value.jgdm);
-                // $(".indicatorsVal").text(value.fxzbz);
-                // $(".CustomerName").text(value.khmc);
-                // $(".BusinessNo").text(value.ywbm);
-                // $(".riskCategories").text(value.fxlb);
-                // $(".threshold").text(value.yuzhi);
-                // $(".organizationName").text(value.jgmc);
-                // $(".menuName").text(value.ywcdmc);
-                //
-
-
-            }
-        });
-
-    }
-
-    /**
-     * 提交审核
-     */
-
-    function submitcheck() {
-        $.ajax({
-            type: "POST",
-            url: "eventprocessing/submitCheck",
-            data: {"id": idvalue},
-            dataType: "json",
-            success: function (data) {
-
-            }
-        });
+    function empty() {
+        $(".inputradio .checked").val("");
+        $(".inputarea").val("");
 
     }
     
@@ -1313,4 +720,3 @@
 </script>
 </body>
 </html>
->>>>>>> 43162c823ebfa3f61148370d2722f28240b698e1
