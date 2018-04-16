@@ -24,7 +24,7 @@
         /*search 搜查框区域*/
         .search{
             padding: 1rem 2rem;
-            /*height: 10%;*/
+            height: 16%;
         }
         form {
             width: 57rem;
@@ -129,11 +129,9 @@
         .del a{
             color: #000;
         }
-        /*table [rowspan]{*/
-            /*background:red;*/
-            /*color: red;*/
-
-        /*}*/
+      	#demoTable1{
+            border: 1px solid #00abde;
+        }
 
     </style>
 </head>
@@ -145,25 +143,61 @@
                 <h3>平台总览表</h3>
             </div>
             <div class="search">
-                <form action="">
+                <form action="${contextPath}/qdch/borrower"  method="post">
+                  <input type="hidden" name="jys" value="${jys!}" id="jys">
+                  <input type="hidden" name="hasInfo" value="${hasInfo!}"  id="hasInfo">
                     <div class="inputGroup">
-                        <label for="pingtaimingcheng">平台名称：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                        <input type="text" id="pingtaimingcheng">
+                        <label for="pingtaimingcheng0">平台名称：</label>
+                        <div class="mySelect" id="pingtaimingcheng0">
+                            <div class="myOption selected inputWidth"><span
+                                    class="text" id="show_name">${jys!}</span><span
+                                    class="icon"></span></div>
+                         
+                           <ul class="myOptionBox" id="jysul">
+                               <li class="myOption  pt" id="pingtaimingcheng01">全部</li>
+                               ##for(j in jyslist!){
+                                		
+                                	##if(j.jysinfo=='${jys}'){
+                                		 <li class="myOption pt "  value="${j.jysinfo}" name="${j.jysinfo}">
+		                                	 ${j.jysinfo!}
+		                                 </li>
+                                	##}else{
+                                		 <li class="myOption pt "  value="${j.jysinfo}" name="${j.jysinfo}">
+	                                	 	 ${j.jysinfo!}
+	                                 	 </li>
+                                	##} 
+                                	
+                                
+                                ##}
+                                
+                            </ul>
+                            
+                        </div>
+                 
                     </div>
                     <div class="inputGroup">
-                        <label for="InformationNO">信息有无：</label>
-                        <select name="" id="InformationNO">
-                            <option value=""></option>
-                            <option value="yes" class="optionNo">有</option>
-                            <option value="no" class="optionNo">无</option>
-                        </select>
+                        <label for="pingtaimingcheng">信息有无：</label>
+                        <div class="mySelect" id="pingtaimingcheng">
+                            <div class="myOption selected inputWidth"><span
+                                    class="text" id="show_youwu">${hasInfo!}</span><span
+                                    class="icon"></span></div>
+                            <ul class="myOptionBox">
+                           
+                             <li class="myOption youwu" id="pingtaimingcheng3">全部</li>
+                             <li class="myOption youwu"  value="有">有</li>
+                             <li class="myOption youwu"  value="无">无</li>
+                               
+                               
+                            </ul>
+                        </div>
+                 
                     </div>
                     <div class="inputGroup">
                         <div class="btnGroup search">
-                            <button class="active" id="search">查询</button>
+                            <button class="active" id="search" type="button">查询</button>
                         </div>
                     </div>
-                </form>
+              </form> 
 
             </div>
             <!--表格-->
@@ -174,742 +208,349 @@
                         <tr id="my_tr">
                             <th class="center" rowspan="2">借款方</th>
                             <th class="center" rowspan="2">资料类别</th>
-                            <th class="center" rowspan="1">主要信息</th>
-                            <th class="center" rowspan="1">鲁金所</th>
-                            <th class="center" rowspan="1">中融宝</th>
-                            <th class="center" rowspan="1">汇泉贷</th>
-                            <th class="center" rowspan="1">钱吧</th>
-                            <th class="center" rowspan="1">海融易</th>
-                            <th class="center" rowspan="1">新博贷</th>
-                            <th class="center" rowspan="1">优存网</th>
-                            <th class="center" rowspan="1">土豆金服</th>
-                            <th class="center" rowspan="1">蓝琼金融</th>
-                            <th class="center" rowspan="1">钱座</th>
-                            <th class="center" rowspan="1">金源贷</th>
-                            <th class="center" rowspan="1">票宝宝</th>
-                            <th class="center" rowspan="1">金柜贷</th>
-                            <th class="center" rowspan="1">融诺微贷</th>
-                            <th class="center" rowspan="1">互助贷</th>
-                            <th class="center" rowspan="1">久信金服</th>
-                            <th class="center" rowspan="1">华舵金服</th>
-                            <th class="center" rowspan="1">大家贷</th>
-                            <th class="center" rowspan="1">车E贷</th>
-                            <th class="center" rowspan="1"></th>
-                            <th class="center" rowspan="1"></th>
-
-
-
-
+                            <th class="center " rowspan="1" id="pingtai">主要信息</th>
+                            
+                             ##for(j in pingtailist!){
+                                <th class="center" rowspan="1" >${j.jysinfo!}</th>
+                             ##}
                         </tr>
                         <tr id="score">
                             <th class="center defen">得分</th>
-                            <th class="center">60</th>
-                            <th class="center">60</th>
-                            <th class="center">60</th>
-                            <th class="center">60</th>
-                            <th class="center">60</th>
-                            <th class="center">60</th>
-                            <th class="center">60</th>
-
-
-                            <th class="center">60</th>
-                            <th class="center">60</th>
-                            <th class="center">60</th>
-                            <th class="center">60</th>
-
-
-                            <th class="center">60</th>
-                            <th class="center">60</th>
-                            <th class="center">60</th>
-                            <th class="center">60</th>
-                            <th class="center">60</th>
-                            <th class="center">60</th>
-                            <th class="center">60</th>
-                            <th class="center">60</th>
-                            <th class="center">60</th>
+                            
+                          ##for(j in pingtailist!){
+                          	<th class="center defen1" data="${j.jysinfo!}">${j.fscore!}</th>
+                          ##}
 
 
 
 
                         </tr>
                         <tr>
-                            <td class="center ziranren" rowspan="26" style="background:#00568c">自然人</td>
-                            <td class="center" rowspan="9" style="background:#00568c">基础信息</td>
+                            <td class="center ziranren" rowspan="27" style="background:#00568c">自然人</td>
+                            <td class="center" rowspan="10" style="background:#00568c">基础信息</td>
+                         </tr>
+                         
+                        <tr id="name1">
                             <td class="center red">姓名</td>
-                            <td class="center">1234567890123123</td>
-                            <td class="center">2</td>
-                            <td class="center">3</td>
-                            <td class="center">4</td>
-                            <td class="center">5</td>
-                            <td class="center">6</td>
-                            <td class="center">7</td>
-                            <td class="center">8</td>
-                            <td class="center">9</td>
-
-                            <td class="center">10</td>
-                            <td class="center">11</td>
-                            <td class="center">12</td>
-                            <td class="center">13</td>
-
-                            <td class="center">14</td>
-                            <td class="center">15</td>
-                            <td class="center">16</td>
-                            <td class="center">17</td>
-                            <td class="center">18</td>
-                            <td class="center">19</td>
+                            ##for(j in pingtailist!){
+                          	<td class="center" id="name2">
+                          		
+                          			${j.zrr.jkf!}
+                     	     </td>
+                          ##}
                         </tr>
-                        <tr>
+                          <tr id="sfz">
                             <td class="center red">身份证</td>
-                            <td class="center">1</td>
-                            <td class="center">2</td>
-                            <td class="center">3</td>
-                            <td class="center">4</td>
-                            <td class="center">5</td>
-                            <td class="center">6</td>
-                            <td class="center">7</td>
-                            <td class="center">8</td>
-                            <td class="center">9</td>
-
-                            <td class="center">10</td>
-                            <td class="center">11</td>
-                            <td class="center">12</td>
-                            <td class="center">13</td>
-
-                            <td class="center">14</td>
-                            <td class="center">15</td>
-                            <td class="center">16</td>
-                            <td class="center">17</td>
-                            <td class="center">18</td>
-                            <td class="center">19</td>
-
-                        </tr>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		
+                          			${j.zrr.sfz!}
+                          		
+                          	 </td>
+                          ##}
+                 		</tr> 
 
                         <tr>
                             <td class="center red">借款用途</td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                        </tr>
+                             ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                   		
+                          			${j.zrr.sfz!}
+                          		
+                          	 </td>
+                          ##}
+             			 </tr>
 
                         <tr>
                             <td class="center left">性别</td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                        </tr>
+                              ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		${j.zrr.sex!} 
+                          	 </td>
+                          ##}
+					    </tr>
 
                         <tr>
                             <td class="center left">年龄</td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                             ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		${j.zrr.age!}
+                          	 </td>
+                          ##}
                         </tr>
 
                         <tr>
                             <td class="center left">学历</td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                             ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		${j.zrr.xuel!} 
+                          	 </td>
+                          ##}
                         </tr>
 
                         <tr>
                             <td class="center left">婚姻状况</td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                        </tr>
+                              ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.zrr.hyzk!} 
+                          	 </td>
+                          ##}
+          				 </tr>
 
                         <tr>
                             <td class="center left">户籍所在地</td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                        </tr>
+                              ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		${j.zrr.hjszd!} 
+                          	 </td>
+                          ##}
+					     </tr>
 
                         <tr>
                             <td class="center left">还款来源</td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                        </tr>
+                              ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.zrr.hkly!} 
+                          	 </td>
+                          ##}
+					    </tr> 
+                   
+                         
 
                         <tr>
                             <td class="center" rowspan="7" style="background:#00568c">信用信息</td>
 
                             <td class="center red">在平台逾期次数</td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.xinyon.yqcs!} 
+                          	 </td>
+                          ##}
+                           
                         </tr>
 
                         <tr>
                             <td class="center red">在平台的逾期金额</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.xinyon.yqje!} 
+                          	 </td>
+                          ##}
+                           
+                           
+                          
                         </tr>
 
                         <tr>
                             <td class="center red">征信报告近6个月逾期情况</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                             ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.xinyon.zxbg!} 
+                          	 </td>
+                          ##}
+                           
+                         
                         </tr>
 
                         <tr>
                             <td class="center red" >在其他平台有无借款</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.xinyon.jkf!} 
+                          	</td>
+                            ##}
+                           
+                       
                         </tr>
 
                         <tr>
                             <td class="center left">历史借款笔数</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.xinyon.jkbs!} 
+                          	</td>
+                            ##}
+                          
+                          
                         </tr>
 
                         <tr>
                             <td class="center left">历史借款总额</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.xinyon.jkze!} 
+                          	</td>
+                            ##}
+                          
+                         
                         </tr>
 
                         <tr>
                             <td class="center left">增信措施</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.xinyon.zxcs!} 
+                          	 </td>
+                            ##}
+                           
+                          
                         </tr>
 
                         <tr>
                             <td class="center" rowspan="5" style="background:#00568c">资产信息</td>
 
                             <td class="center left">收入情况</td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                             ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.zichan.srqk!} 
+                          	 </td>
+                            ##}
+                           
                         </tr>
 
                         <tr>
                             <td class="center left">有无购房</td>
 
-                            <td class="center">12</td>
-                            <td class="center">7</td>
-                            <td class="center">2</td>
-                            <td class="center">0</td>
-                            <td class="center">0</td>
-                            <td class="center">0</td>
-                            <td class="center">3</td>
-                            <td class="center">0</td>
-                            <td class="center">0</td>
-
-                            <td class="center">1</td>
-                            <td class="center">0</td>
-                            <td class="center">2</td>
-                            <td class="center">1</td>
-
-                            <td class="center">2744</td>
-                            <td class="center">1728</td>
-                            <td class="center">1634</td>
-                            <td class="center">1744</td>
-                            <td class="center">7850</td>
-                            <td class="center">208</td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.zichan.gf_flag!} 
+                          	 </td>
+                            ##}
+                            
+                            
+                          
                         </tr>
 
                         <tr>
                             <td class="center left">有无购车</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.zichan.gc_flag!} 
+                          	</td>
+                            ##}
+                            
+                           
                         </tr>
 
                         <tr>
                             <td class="center left">有无房贷</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.zichan.fd_flag!} 
+                          	 </td>
+                            ##}
+                            
+                           
                         </tr>
 
                         <tr>
                             <td class="center left">有无车贷</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.zichan.cd_flag!} 
+                          	</td>
+                            ##}
+                           
+                           
                         </tr>
 
                         <tr>
                             <td class="center" rowspan="5" style="background:#00568c">工作信息</td>
-
+						
                             <td class="center red">从事行业</td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                           
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.job.industry!} 
+                          	</td>
+                            ##}
+                          
+                         
 
                         </tr>
 
                         <tr>
                             <td class="center left">工作城市</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.job.city!} 
+                          	</td>
+                            ##}
+                           
                         </tr>
 
                         <tr>
                             <td class="center left">公司规模</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.job.gsgm!} 
+                          	</td>
+                            ##}
+                           
+                          
                         </tr>
 
                         <tr>
                             <td class="center left">工作岗位</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                           ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.job.gzgw!} 
+                          	</td>
+                           ##}
+                           
+                         
                         </tr>
 
                         <tr>
                             <td class="center left">工作年限</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.job.gznx!} 
+                          	</td>
+                            ##}
+                          
+                         
                         </tr>
                         <!-- 企业 -->
                         <tr>
@@ -917,461 +558,445 @@
 
                             <td class="center" rowspan="9" style="background:#00568c">基本信息</td>
                             <td class="center red">公司名称</td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                             ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.qjb.gsmc!} 
+                          	 </td>
+                          ##}
+                           
 
                         </tr>
 
                         <tr>
                             <td class="center red">法定代表人</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                             ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.qjb.frdb!} 
+                          	 </td>
+                          ##}
+                           
+                          
                         </tr>
 
                         <tr>
                             <td class="center red">成立时间</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.qjb.clsj!} 
+                          	</td>
+                            ##}
+                          
+                          
                         </tr>
 
                         <tr>
                             <td class="center red">注册资本</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.qjb.zczb!} 
+                          	</td>
+                            ##}
+                          
                         </tr>
 
                         <tr>
                             <td class="center red">注册地址</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.qjb.zcdz!} 
+                          	</td>
+                            ##}
+                           
+                          
                         </tr>
 
                         <tr>
                             <td class="center red">营业范围</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                           ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.qjb.yyfw!} 
+                          	</td>
+                           ##}
+                       
                         </tr>
 
                         <tr>
                             <td class="center left">公司规模</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.qjb.gsgm!} 
+                          	 </td>
+                            ##}
+                            
+                          
                         </tr>
 
                         <tr>
                             <td class="center red">资金用途</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                           ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.qjb.zjyt!} 
+                          	 </td>
+                           ##}
+                           
+                          
                         </tr>
 
                         <tr>
                             <td class="center red">还款来源</td>
 
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.qjb.hkly!} 
+                          	 </td>
+                            ##}
+                            
+                        
                         </tr>
 
                         <tr>
                             <td class="center" rowspan="8" style="background:#00568c">其他信息</td>
 
                             <td class="center red">借款企业收入情况</td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.qqt.srqk!} 
+                          	 </td>
+                            ##}
+                           
+                       
                         </tr>
                         <tr>
                             <td class="center red">借款人企业负债情况</td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.qqt.fzqk!} 
+                          	 </td>
+                            ##}
+                            
+                         
                         </tr>
                         <tr>
                             <td class="center red">借款人借款前6个月征信报告</td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.qqt.zxbg!} 
+                          	 </td>
+                            ##}
+                            
+                         
                         </tr>
                         <tr>
                             <td class="center red">借款人是否在其他平台借款</td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.qqt.qijk_flag!} 
+                          	</td>
+                            ##}
+                          
+                         
+                         
                         </tr>
                         <tr>
                             <td class="center left">股东信息</td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.qqt.gdxx!} 
+                          	</td>
+                            ##}
+                      
                         </tr>
                         <tr>
                             <td class="center left">法人信用信息</td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.qqt.frxyxx!} 
+                          	</td>
+                            ##}
+                           
+                            
+                         
                         </tr>
                         <tr>
                             <td class="center left">增信措施</td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.qqt.zxcs!} 
+                          	</td>
+                            ##}
+                           
                         </tr>
                         <tr>
                             <td class="center left">涉诉信息</td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
-                            <td class="center"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.qqt.ssxx!} 
+                          	</td>
+                            ##}
+                            
+                          
                         </tr>
                     </table>
                 </div>
             </div>
             <!--模态框-->
-            <div id="model" >
-                <div class="modelTitle">
-                        <h5>借款人</h5>
-                        <div class="del fr"><a href="">x</a></div>
-                </div>
-                <div class="modelContent">
+           <!--模态框 start-->
+      ##for(j in pingtailist!){
+      	<div class="model"  id="model_${j.jysinfo!}">
+                <div class="header"><span>X</span></div>
+                <div id="div_container1" style="text-align:center;position:relative;height: 95%; overflow: auto;">
+                    <!-- 固定表头 table外层必须包有一个div  id="my_div"   class="fakeContainer first_div" 引入superTables.js  在页面下面还需要调用 -->
+                    <div style="height:100%;width: 100%;overflow: auto;" id="my_div1" class="fakeContainer first_div" >
+                        <table border="1" id="demoTable1" style="border-collapse: collapse;overflow: auto">
+                            <tr id="my_tr1">
+                                <th class="center" rowspan="1"></th>
+                                <th class="center" rowspan="1">主要类别</th>
+                                <th class="center" rowspan="1">主要信息</th>
+                                
+                                <th class="center ptModel" rowspan="1">${j.jysinfo}</th>
+                               
+                                <th class="center" rowspan="1">能否查看</th>
+                            </tr>
+
+                            <tr>
+                                <td class="center ziranren" rowspan="13">基本资料</td>
+                                <td class="center" rowspan="7">自热人</td>
+                                <td class="center left">身份证明</td>
+                                <td class="center">${j.shzr.sfrz!}</td>
+                                <td class="center">${j.shzr.sfrz_flag!}</td>
+                            </tr>
+                            <tr>
+                                <td class="center left">工作证明</td>
+                                <td class="center">${j.shzr.gzzm!}</td>
+                                <td class="center">${j.shzr.gzzm_flag!}</td>
+                                
+                   			</tr>
+
+                            <tr>
+                                <td class="center left">收入证明</td>
+
+                                <td class="center">${j.shzr.srzm!}</td>
+                                <td class="center">${j.shzr.srzm_flag!}</td>
+
+
+                            </tr>
+
+                            <tr>
+                                <td class="center left">居住证明</td>
+
+                                <td class="center">${j.shzr.jzzm!}</td>
+                                <td class="center">${j.shzr.jzzm_flag!}</td>
+
+
+                            </tr>
+
+                            <tr>
+                                <td class="center left">车辆证</td>
+                                <td class="center">${j.shzr.clzm!}</td>
+                                <td class="center">${j.shzr.clzm_flag!}</td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="center left">房产证</td>
+
+                                <td class="center">${j.shzr.fcz!}</td>
+                                <td class="center">${j.shzr.fcz_flag!}</td>
+
+
+                            </tr>
+
+                            <tr>
+                                <td class="center left">征信报告</td>
+
+                                <td class="center">${j.shzr.zxbg!}</td>
+                                <td class="center">${j.shzr.zxbg_flag!}</td>
+
+
+                            </tr>
+
+                            <tr>
+                                <td class="center " rowspan="6">企业</td>
+
+                                <td class="center left">营业执照</td>
+                                <td class="center">${j.shqy.yyzz!}</td>
+                                <td class="center">${j.shqy.yyzz_flag!}</td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="center left">身份证照</td>
+
+                                 <td class="center">${j.shqy.sfzz!}</td>
+                                 <td class="center">${j.shqy.sfzz_flag!}</td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="center left">征信报告</td>
+
+                                 <td class="center">${j.shqy.zxbg!}</td>
+                                 <td class="center">${j.shqy.zxbg_flag!}</td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="center left" >税务登记证</td>
+
+                                 <td class="center">${j.shqy.swdj!}</td>
+                                 <td class="center">${j.shqy.swdj_flag!}</td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="center left">办公产所</td>
+
+                                <td class="center">${j.shqy.zlht!}</td>
+                                <td class="center">${j.shqy.zlht_flag!}</td>
+
+                            </tr>
+ 
+                            <tr>
+                                <td class="center left">组织机构</td>
+
+                                 <td class="center">${j.shqy.zzjgz!}</td>
+                                 <td class="center">${j.shqy.zzjgz_flag!}</td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="center" rowspan="7" >其他资料</td>
+                                <td class="center" rowspan="7" >抵押物</td>
+                                <td class="center left">借款申请</td>
+                                <td class="center">${j.diya.jksq!}</td>
+                                <td class="center">${j.diya.jksq_flag!}</td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="center left">借款合同</td>
+
+                               <td class="center">${j.diya.jkht!}</td>
+                               <td class="center">${j.diya.jkht_flag!}</td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="center left">抵押证(房产证)</td>
+
+                               <td class="center">${j.diya.dyz!}</td>
+                               <td class="center">${j.diya.dyz_flag!}</td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="center left">抵/质合同</td>
+
+                                <td class="center">${j.diya.dzyht!}</td>
+                                <td class="center">${j.diya.dzyht_flag!}</td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="center left">抵/质物</td>
+
+                                 <td class="center">${j.diya.dzyzp!}</td>
+                                 <td class="center">${j.diya.dzyzp_flag!}</td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="center left">债券转让协议</td>
+
+                                 <td class="center">${j.diya.zqzr!}</td>
+                                <td class="center">${j.diya.zqzr_flag!}</td>
+
+                            </tr>
+
+                            <tr>
+                                <td class="center left">担保合同</td>
+
+                                <td class="center">${j.diya.dzyht!}</td>
+                                <td class="center">${j.diya.dzyht_flag!}</td>
+                            </tr>
+
+                        </table>
+                    </div>
                 </div>
             </div>
+      
+      ##}
+         <!--模态框  end-->
         </div>
     </div>
 </div>
 
 <script src="${contextPath}/static/asserts/js/echarts-4.0.js"></script>
 <script src="${contextPath}/static/asserts/js/jquery-2.2.4.js"></script>
-<script src="${contextPath}/static/js/main.js"></script>
 <script src="${contextPath}/static/js/chartsCom.js"></script>
+<script src="${contextPath}/static/js/pageCom.js"></script>
+<script src="${contextPath}/static/js/laydate.js"></script>
 <script type="text/javascript" src="${contextPath}/static/js/04_04superTables.js"></script>
 
 </body>
 </html>
 
 <script type="text/javascript">
+	var pt="${jys!}";
+	var youwu="${hasInfo!}";
     //此处调用superTables.js里需要的函数
     $(document).ready(function(){
+    	    //获取到选择平台的值
+    	    $(".pt").click(function(){
+    	    	pt=$(this).attr('value');
+    	    	 
+    	    });
+    	    $("#show_name").html(pt);
+    	    //获取到有无的值
+    	    $(".youwu").click(function(){
+    	    	youwu=$(this).attr('value');
+    	    });
+    	    
+    	    $("#show_youwu").html(youwu);
+     	
+    	   $("#search").one("click",function(){
+    		   
+    	   	
+  			  $("#jys").val(pt);
+    		  $("#hasInfo").val(youwu);
+    		  $("form").submit();
+    		 /*  if((youwu=="有")&&("×"==$("#sfz").find("td").get(1))){
+    			  $("#sfz").remove();
+    		  }else if((youwu=="无")&&("√"==$("#sfz").find("td").get(1))){
+    			  $("#sfz").remove();
+    		  } */
+    		  
+    	   });
+    	   
     // window.onload=function(){
         new superTable("demoTable", {cssSkin : "sDefault",
             fixedCols : 2, //固定几列
@@ -1400,14 +1025,21 @@
         }else{//其他浏览器
             //alert("其他浏览器");
         }
-        //模块框
+        
+        //模态框触发绑定
         $("#score>th:not(.defen)").click(function () {
-            $('#model').css('display','block');
+       		
+       		
+       		var jys=$(this).attr("data");
+        	$('#model_'+jys).css('display','block');
+      		
+        }); 
+        $(".header span").click(function () {
+            $('.model').css('display','none');
         });
-        $(".del a").click(function () {
-            $('#model').css('display','none');
-        });
-    })
-
-
+        
+     
+    });
+    
+   
 </script>
