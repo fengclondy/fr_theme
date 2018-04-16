@@ -17,9 +17,9 @@ public class AverageTimeModel extends Model<AverageTimeModel>{
 	 */
 	public List<AverageTimeModel> getAvgTime(String datasql,String jysinfo){
 		//查询本月之前所有月份的数据
-		String sql = "select substr(vday_ym,5,2) As month,jysc,jyscmc,jysinfo,avg(usetime) As avgtime "
+		String sql = "select vday_ym As month,jysc,jyscmc,jysinfo,CEIL(avg(usetime)) As avgtime "
 				+ "from insight_pp_average_time "
-				+ "where vday_ym < to_char(now(),'yyyymm')";
+				+ "where vday_ym < to_char(now(),'yyyymm') and usetime != 0";
 		
 		if(StringUtils.isNotBlank(datasql)){
 			sql+=" and jysc in "+datasql;

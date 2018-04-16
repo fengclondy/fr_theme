@@ -586,22 +586,65 @@
     }
     //获取综合利率
     function getCompositeInterest(){
+    	alert("进入到综合利率的函数")
     	$.post("${contextPath}/qdch/project/getCompositeInterest",{"jys":jysCode},function(data){
     		console.log("综合利率",data);
     		var seriesData1=[];
     		var seriesData2=[];
   			var yAxisData=[];
-  			$.each(data.platformcominterestList,function(index,item){
+  			
+  			/* $.each(data.platformcominterestList,function(index,item){
   				yAxisData.push(item.vday_ym);
   				seriesData1.push(item.interestnum);
   				
+  				
   			})
-  			$.each(data.industryinterestList,function(index,item){
+  			 $.each(data.industryinterestList,function(index,item){
   				
   				seriesData2.push(item.interestnum);
   				
+  			})  */
+  			
+  			var dataArr=[];
+  			$.each(data.platformcominterestList,function(index,item){
+  				//yAxisData.push(item.vday_ym);
+  				if(dataArr.indexOf(item.vday_ym)==-1){
+  					dataArr.push(item.vday_ym);
+  				}
+  				
   			})
-  			console.log("YUEYUEYUE",seriesData1);
+  			
+  			 $.each(data.industryinterestList,function(index,item){
+  				
+  				 if(dataArr.indexOf(item.vday_ym)==-1){
+  					dataArr.push(item.vday_ym);
+  				} 
+  				
+  				
+  			}) ;
+  			
+  			//排序
+  			dataArr.sort();
+  			console.log("数组数组",dataArr)
+  			
+  			
+  			for(var x=0;x<dataArr.length;x++){
+  				seriesData1.push(0);
+  				seriesData2.push(0);
+  			}
+  			$.each(data.platformcominterestList,function(index,item){
+  				var num=dataArr.indexOf(item.vday_ym);
+  				seriesData1[num]=item.interestnum;
+  				
+  			})
+  			 $.each(data.industryinterestList,function(index,item){
+  				var num=dataArr.indexOf(item.vday_ym);
+  				seriesData2[num]=item.interestnum;
+  				
+  			})  
+  			console.log(seriesData1)
+  			console.log(seriesData2)
+  			
   			ec003.setOption({
   	            grid: {
   	                top: "12%",
@@ -614,7 +657,7 @@
   	            },
   	            xAxis: {
   	                name: '月份',
-  	                data: yAxisData
+  	                data: dataArr
   	            },
   	            yAxis: {
   	                name: '利率'

@@ -17,9 +17,9 @@ public class CustNumberModel extends Model<CustNumberModel>{
 	 */
 	public List<CustNumberModel> getLoanNumber(String datasql,String jysinfo){
 		//查询本月之前所有月份借款的数据
-		String sql = "select substr(vday_ym,5,2) As month,cust_type As rjjk,cust_num As rjjkvalue,jysinfo "
+		String sql = "select vday_ym As month,cust_type As rjjk,cust_num As rjjkvalue,jysinfo "
 				+ "from insight_pp_cust_number "
-				+ "where cust_type='人均借款' and vday_ym<to_char(now(),'yyyymm') ";
+				+ "where cust_type='借款人' and vday_ym<to_char(now(),'yyyymm') ";
 		
 		if(StringUtils.isNotBlank(datasql)){
 			sql+=" and jysc in "+datasql;
@@ -40,9 +40,9 @@ public class CustNumberModel extends Model<CustNumberModel>{
 	 */
 	public List<CustNumberModel> getInvestNumber(String datasql,String jysinfo){
 		//查询本月之前所有月份投资的数据
-		String sql = "select substr(vday_ym,5,2) As month,cust_type As rjtz,cust_num As rjtzvalue,jysinfo "
+		String sql = "select vday_ym As month,cust_type As rjtz,cust_num As rjtzvalue,jysinfo "
 				+ "from insight_pp_cust_number "
-				+ "where cust_type='人均投资' and vday_ym<to_char(now(),'yyyymm') ";
+				+ "where cust_type='投资人' and vday_ym<to_char(now(),'yyyymm') ";
 		
 		if(StringUtils.isNotBlank(datasql)){
 			sql+=" and jysc in "+datasql;

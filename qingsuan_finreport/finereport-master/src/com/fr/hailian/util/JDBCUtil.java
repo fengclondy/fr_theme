@@ -99,6 +99,7 @@ public class JDBCUtil {
 			affectedLine = pst.executeUpdate();
 
 		} catch (SQLException e) {
+			e.printStackTrace();
 			System.out.println(e.getMessage());
 		} finally {
 			// 释放资源

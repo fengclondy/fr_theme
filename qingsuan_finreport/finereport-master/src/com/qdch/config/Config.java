@@ -41,11 +41,13 @@ import com.qdch.p2p.model.CoCompanyTypeModel;
 import com.qdch.p2p.model.CoCorePersonModel;
 import com.qdch.p2p.model.CoExecptionModel;
 import com.qdch.p2p.model.CoShareholderInfoModel;
+import com.qdch.p2p.model.CollectPrincipalModel;
 import com.qdch.p2p.model.CompositeInterestModel;
 import com.qdch.p2p.model.CustNumberModel;
 import com.qdch.p2p.model.DefenInfoModel;
 import com.qdch.p2p.model.DiYaShenHeModel;
 import com.qdch.p2p.model.FenSanDuJiSuanModel;
+import com.qdch.p2p.model.FlowAmountModel;
 import com.qdch.p2p.model.FullScaleTimeModel;
 import com.qdch.p2p.model.ImportantRatioModel;
 import com.qdch.p2p.model.InterestModel;
@@ -59,12 +61,15 @@ import com.qdch.p2p.model.PpjyscModel;
 import com.qdch.p2p.model.ProjectStructureModel;
 import com.qdch.p2p.model.QiYeJiBenInFoModel;
 import com.qdch.p2p.model.QiYeQiTaInFoModel;
+import com.qdch.p2p.model.RangeNumberModel;
 import com.qdch.p2p.model.RenJunCiShuModel;
+import com.qdch.p2p.model.RiskOverviewModel;
 import com.qdch.p2p.model.ShenHeQiYeModel;
 import com.qdch.p2p.model.ShenHeZiLiaoZiRanRenModel;
 import com.qdch.p2p.model.StructuralDetailsModel;
 import com.qdch.p2p.model.TermDetailsModel;
 import com.qdch.p2p.model.TotalTranNumModel;
+import com.qdch.p2p.model.TranAmountModel;
 import com.qdch.p2p.model.WorkInfoModel;
 import com.qdch.p2p.model.XinXiPiLouModel;
 import com.qdch.p2p.model.XinYongInfoModel;
@@ -282,10 +287,11 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("insight_pp_iterm_count", ProjectStructureModel.class);//平台项目的项目结构
 		insight_arp.addMapping("insight_pp_netinfo", ImportantRatioModel.class);//平台项目的四个重要比率
 		insight_arp.addMapping("insight_pp_interest", InterestModel.class);//用于动态获取平台项目中期限类型
-		insight_arp.addMapping("insight_pp_interest", CompositeInterestModel.class);//用于获取平台综合利率
-		insight_arp.addMapping("insight_pp_indust_int", CompositeInterestModel.class);//用于获取行业综合利率
-		insight_arp.addMapping("insight_pp_iterm_count", StructuralDetailsModel.class);//用于获取项目结构详情
-		insight_arp.addMapping("insight_pp_term_distribute", TermDetailsModel.class);//用于获取期限分布详情
+		insight_arp.addMapping("insight_pp_interest", CompositeInterestModel.class);//用于平台项目获取平台综合利率
+		insight_arp.addMapping("insight_pp_indust_int", CompositeInterestModel.class);//用于平台项目获取行业综合利率
+		insight_arp.addMapping("insight_pp_iterm_count", StructuralDetailsModel.class);//用于平台项目获取项目结构详情
+		insight_arp.addMapping("insight_pp_term_distribute", TermDetailsModel.class);//用于平台项目获取期限分布详情
+		arp.addMapping("hub_pp_fxzs", RiskOverviewModel.class);//用于p2p风险总览
 		/***doushuiahi Model START p2p***/
 		
 		/***p2p 高照  insight层Model p2p***/
@@ -350,16 +356,15 @@ public class Config extends JFinalConfig {
 			insight_arp.addMapping("insight_xd_intrate",maxIntrateRankModel.class);//最高利率
 		/***小贷 连纪明 insight层 Model END***/
 		
-			
-			
-			
-			
 		/***p2p 连纪明 insight层 Model START ***/
 			
 			insight_arp.addMapping("insight_pp_tran_number",TotalTranNumModel.class);//交易总量，总成交额
 			insight_arp.addMapping("insight_pp_average_time",AverageTimeModel.class);//平均满标用时
-			insight_arp.addMapping("insight_pp_cust_number",CustNumberModel.class);//人均借款，人均投资
-			
+			insight_arp.addMapping("insight_pp_cust_number",CustNumberModel.class);//人均借款数，人均投资数
+			insight_arp.addMapping("insight_pp_range_number",RangeNumberModel.class);//投资金额借款金额区间人数
+			insight_arp.addMapping("insight_pp_tran_amount",TranAmountModel.class);//人均借款金额，人均投资金额
+			insight_arp.addMapping("insight_pp_flow_amount",FlowAmountModel.class);//资金流入
+			insight_arp.addMapping("insight_pp_collect_principal",CollectPrincipalModel.class);//资金流入
 			
 		/***p2p 连纪明 insight层 Model END***/
 		
@@ -370,7 +375,7 @@ public class Config extends JFinalConfig {
 		/***小贷 李晓依 insight层 Model START ***/
 		insight_arp.addMapping("insight_xd_jysc_info", ProportionModel.class);//小贷-管理风险-占比
 		/***小贷 李晓依 hub层 Model START***/
-		arp.addMapping("hub_commerce_enterprise", CompanysInfoModel.class);//工商-企业信息获取
+		arp.addMapping("hub_commerce_company_info", CompanysInfoModel.class);//工商-企业信息获取
 		arp.addMapping("hub_commerce_co_shareholder", CoShareHolderModel.class);//工商-股东/对外投资人信息
 		arp.addMapping("hub_commerce_co_change_log", CoChangeLogModel.class);//工商-信息变更记录
 		arp.addMapping("hub_commerce_co_senior_manager", CoMainPersonModel.class);//工商-主要人员

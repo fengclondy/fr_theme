@@ -112,4 +112,68 @@ public class CoShareHolderModel extends Model<CoShareHolderModel>{
 				sql+="AND T.type = '1'";
 				return dao.find(sql);
 	}
+	/**
+	 * 企业是否有投资信息或购买股权
+	 * @author lixiaoyi
+	 * @date 2018年4月15日 下午8:04:54
+	 * @TODO
+	 */
+	public CoShareHolderModel getCount(String name){
+		String sql="SELECT count(0) FROM hub_commerce_co_shareholder T ";
+		if(StringUtils.isNotBlank(name)){
+			sql+="WHERE T .company_name = '"+ name+"' ";
+		}	
+				sql+="AND T.type = '2'";
+		return dao.findFirst(sql);
+	}
+	/**
+	 * 股权结构
+	 * @author lixiaoyi
+	 * @date 2018年4月16日 上午9:12:09
+	 * @TODO
+	 */
+	public List<CoShareHolderModel> getStockc(String name){
+		String sql="SELECT distinct t.name,t.company_name from hub_commerce_co_shareholder t ";
+				if(StringUtils.isNotBlank(name)){
+					sql+="WHERE t.company_name='"+ name+"' ";
+				}	
+				sql+=" AND t.type='1' limit 1";
+		return dao.find(sql);
+		
+	}
+	/**
+	 * 核心人员数量
+	 * @author lixiaoyi
+	 * @date 2018年4月16日 上午11:15:34
+	 * @TODO
+	 */
+	public List<CoShareHolderModel> getMainSize(String name){
+		String sql="SELECT T.NAME  FROM hub_commerce_co_shareholder T WHERE T .stockholder_type = '自然人股东' ";
+		if(StringUtils.isNotBlank(name)){
+			sql+="AND T.company_name='"+ name+"'";
+		}		
+		return dao.find(sql);
+}  
+	
+	public List<CoShareHolderModel> getManagerSize(String name){
+		String sql="SELECT T.NAME  FROM hub_commerce_co_shareholder T WHERE T .stockholder_type = '总经理' ";
+		if(StringUtils.isNotBlank(name)){
+			sql+="AND T.company_name='"+ name+"'";
+		}		
+		return dao.find(sql);
+}  
+	public List<CoShareHolderModel> getDirectSize(String name){
+		String sql="SELECT T.NAME  FROM hub_commerce_co_shareholder T WHERE T .stockholder_type = '董事' ";
+		if(StringUtils.isNotBlank(name)){
+			sql+="AND T.company_name='"+ name+"'";
+		}		
+		return dao.find(sql);
+}  
+	public List<CoShareHolderModel> getSuperSize(String name){
+		String sql="SELECT T.NAME  FROM hub_commerce_co_shareholder T WHERE T .stockholder_type = '监事' ";
+		if(StringUtils.isNotBlank(name)){
+			sql+="AND T.company_name='"+ name+"'";
+		}		
+		return dao.find(sql);
+}  
 }

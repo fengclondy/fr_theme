@@ -292,5 +292,14 @@
 		<servlet-name>AuthorityServlet</servlet-name>
 		<url-pattern>/getAuthorityUserInfo</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>LoginUserInfoServlet</servlet-name>
+		<servlet-class>com.fr.hailian.servlet.LoginUserInfoServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoginUserInfoServlet</servlet-name>
+		<url-pattern>/getLoginUserInfo</url-pattern>
+	</servlet-mapping>
 
 </web-app>
