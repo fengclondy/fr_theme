@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
@@ -132,9 +132,9 @@
 <div class="container">
     <nav class="pagination">
         <ul class="NavList">
-            <li><img src="../img/05_fengxianguanli/submit.gif" alt=""><span id="submit">提交</span></li>
-            <li><img src="../img/05_fengxianguanli/addition.gif" alt=""><span id="addRecord">增加记录</span></li>
-            <li><img src="../img/05_fengxianguanli/deleted.gif" alt=""><span id="deleteColumn">删除列行</span></li>
+            <li><img src="${contextPath}/static/img/submit.gif" alt=""><span id="submit">提交</span></li>
+            <li><img src="${contextPath}/static/img/addition.gif" alt=""><span id="addRecord">增加记录</span></li>
+            <li><img src="${contextPath}/static/img/deleted.gif" alt=""><span id="deleteColumn">删除列行</span></li>
         </ul>
     </nav>
     <div class="tableDiv" style="width:100%;overflow-x:auto;">
@@ -301,7 +301,7 @@
                 "<td><input type='radio' name='radio' id='radio"+index+"' class='radioBtn'></td>"+
                 "<td><div class='one'>"+
                 "<span class='sel'>"+
-                "<select name='makeupCoSe' onchange=\"getrisk(\"+index+\")\" onclick='getrisk("+index+")' class='selected typeclass'>"+
+                "<select name='makeupCoSe' onchange='getrisk("+index+")' onclick='getrisk("+index+")' class='selected typeclass'>"+
                 "<option value=''></option>";
                 $.each(typepull, function(index, value, array) {
                     append+="<option value='"+value.fxlb+"'>"+value.fxlb+"</option>"
@@ -313,7 +313,7 @@
                 "</td>"+
                 "<td><div class='one'>"+
                 "<span class='sel'>"+
-                "<select name='makeupCoSe' id='makeupCoSe' onchange='calcyuzhi('"+index+"')' class='selected riskclass'>"+
+                "<select name='makeupCoSe' id='makeupCoSe' onchange='calcyuzhi("+index+")' class='selected riskclass'>"+
                 "<option value=''></option>";
 
                 // "<option  value='风险类型'>风险类型</option>"+
@@ -398,7 +398,7 @@
         //     console.log(a)
         // })
         $('#makeupCoSe').on('blur',function () {
-            var a = $('#makeupCoSe option:selected').val());
+            var a = $('#makeupCoSe option:selected').val();
             var str  = "<option value=''></option>";
             $.each(riskIndex, function(index, value, array) {
                 if(value.fxlb==a){
@@ -454,7 +454,7 @@
         $(".statusclass").eq(index).append(appendhtml);
     }
     function riskdata(data,index) {
-        var a = $('.typeclass:eq('+index+') option:selected').val());
+        var a = $('.typeclass:eq('+index+') option:selected').val();
         console.log('a-----'+a)
         var statushtml = "<option value=''></option>";
         $.each(data, function(index, value, array) {
@@ -493,8 +493,8 @@
     //计算阈值
     function calcyuzhi(index) {
         if(!index) index=0;
-        var a = $(".typeclass").eq(index).val());
-        var b = $(".riskclass").eq(index).val());
+        var a = $(".typeclass").eq(index).val();
+        var b = $(".riskclass").eq(index).val();
         var exchange = "<option value=''></option>";
         $.each(yuzhiIndex, function(index, value, array) {
             if(value.fxlb=a&&value.fxzb==b){
@@ -507,8 +507,8 @@
     //当划过阈值，计算超出额
     function calcover(index) {
         if(!index) index=0;
-        var a = $(".riskvalueclass").eq(index).val());
-        var b = $(".yuzhiclass").eq(index).val());
+        var a = $(".riskvalueclass").eq(index).val();
+        var b = $(".yuzhiclass").eq(index).val();
         if(a && b){
             var c = (a-b)/b;
             $(".chaochuclass").eq(index).val(c+"%");
@@ -544,6 +544,7 @@
         // console.log($('.riskvalueclass'))
         var b  = document.getElementById('tbody').getElementsByTagName('tr').length
 
+        var length = $('#tbody tr').length;
        console.log($('#tbody tr').length);
         var atype = new Array(),arisk = new Array(),ariskvalue = new Array(),ayuzhi = new Array(),
             achaochu = new Array(),aorgnname = new Array(),aorgncode = new Array(),acusname = new Array(),
@@ -551,29 +552,107 @@
             abuscode = new Array(),astatus = new Array(),aintro = new Array(),aremarks = new Array();
         
         for(var i = 0;i<$('#tbody tr').length;i++){
-            atype.push($('.typeclass option:selected').eq(i).val());
-            arisk.push($('.riskclass option:selected').val());
-            ariskvalue.push($('.riskvalueclass').val());
-            ayuzhi.push($('.yuzhiclass').val());
-            achaochu.push($('.chaochuclass').val());
-            aorgnname.push($('.organname').val());
-            aorgncode.push($('.organcode').val());
-            acusname.push($('.cusnameclass').val());
-            acuscode.push($('.cuscodeclass').val());
-            amenuname.push($('.menunameclass').val());
-            amenucode.push($('.menucodeclass').val());
-            abusname.push($('.busnameclass').val());
-            abuscode.push($('.buscodeclass').val());
-            astatus.push($('.statusclass').val());
-            aintro.push($('.introclass').val());
-            aremarks.push($('.remarksclass').val());
+            if(!$('.typeclass option:selected').eq(i).val()){
+                atype.push('');
+            }else{
+                atype.push($('.typeclass option:selected').eq(i).val());
+            }
+            if(!$('.riskclass option:selected').val()){
+                arisk.push('');
+            }else{
+                arisk.push($('.typeclass option:selected').eq(i).val());
+            }
+            if(!$('.riskvalueclass').eq(i).val()){
+                ariskvalue.push('');
+            }else{
+                ariskvalue.push($('.riskvalueclass').eq(i).val());
+            }
+            if(!$('.yuzhiclass').eq(i).val()){
+                ayuzhi.push('');
+            }else{
+                ayuzhi.push($('.yuzhiclass').eq(i).val());
+            }
+            if(!$('.chaochuclass').eq(i).val()){
+                achaochu.push('');
+            }else{
+                ayuzhi.push($('.yuzhiclass').eq(i).val());
+            }
+            //
+            if(!$('.organname').eq(i).val()){
+                aorgnname.push('');
+            }else{
+                aorgnname.push($('.organname').eq(i).val());
+            }
+            if(!$('.organcode').eq(i).val()){
+                aorgncode.push('');
+            }else{
+                aorgncode.push($('.organcode').eq(i).val());
+            }
+
+            if(!$('.cusnameclass').eq(i).val()){
+                acusname.push('');
+            }else{
+                acusname.push($('.cusnameclass').eq(i).val());
+            }
+            if(!$('.cuscodeclass').eq(i).val()){
+                acuscode.push('');
+            }else{
+                acuscode.push($('.cuscodeclass').eq(i).val());
+            }
+            if(!$('.menunameclass').eq(i).val()){
+                amenuname.push('');
+            }else{
+                amenuname.push($('.menunameclass').eq(i).val());
+            }
+            if(!$('.menucodeclass').eq(i).val()){
+                amenucode.push('');
+            }else{
+                amenucode.push($('.menucodeclass').eq(i).val());
+            }
+            if(!$('.busnameclass').eq(i).val()){
+                abusname.push('');
+            }else{
+                abusname.push($('.busnameclass').eq(i).val());
+            }
+            if(!$('.buscodeclass').eq(i).val()){
+                abuscode.push('');
+            }else{
+                abuscode.push($('.buscodeclass').eq(i).val());
+            }
+
+            if(!$('.introclass').eq(i).val()){
+                aintro.push('');
+            }else{
+                aintro.push($('.introclass').eq(i).val());
+            }
+            if(!$('.remarksclass').eq(i).val()){
+                aremarks.push('');
+            }else{
+                aremarks.push($('.remarksclass').eq(i).val());
+            }
+
+            // arisk.push($('.riskclass option:selected').val());
+            // ariskvalue.push($('.riskvalueclass').val());
+            // ayuzhi.push($('.yuzhiclass').val());
+            // achaochu.push($('.chaochuclass').val());
+            // aorgnname.push($('.organname').val());
+            // aorgncode.push($('.organcode').val());
+            // acusname.push($('.cusnameclass').val());
+            // acuscode.push($('.cuscodeclass').val());
+            // amenuname.push($('.menunameclass').val());
+            // amenucode.push($('.menucodeclass').val());
+            // abusname.push($('.busnameclass').val());
+            // abuscode.push($('.buscodeclass').val());
+            // astatus.push($('.statusclass').val());
+            // aintro.push($('.introclass').val());
+            // aremarks.push($('.remarksclass').val());
         }
         // console.log(parr.join(','))
 
-    var ptype =  atype.join(',');
-    var prisk =  arisk.join(',');
-    var priskvalue =  ariskvalue.join(',')
-    var pyuzhi =  ayuzhi.join(',')
+    var ptype =  encodeURI(encodeURI(atype.join(',')));
+    var prisk =  encodeURI(encodeURI(arisk.join(',')));
+    var priskvalue =  encodeURI(encodeURI(ariskvalue.join(',')))
+    var pyuzhi =  encodeURI(encodeURI(ayuzhi.join(',')))
     // var pchaochu =  $('.chaochuclass').val());
     // var porgnname =  $('.organname').val());
     // var porgncode =  $('.organcode').val());
@@ -587,7 +666,7 @@
     // var pintro =  $('.introclass').val());
     // var premarks =  $('.remarksclass').val());
 
-        var paradata ='?ptype='+ptype+"&prisk="+prisk+"&priskvalue="+priskvalue+"&pyuzhi="+pyuzhi;
+        var paradata ='?length='+length+'&ptype='+ptype+"&prisk="+prisk+"&priskvalue="+priskvalue+"&pyuzhi="+pyuzhi;
 
         $.ajax({
             type: "POST",
@@ -600,6 +679,26 @@
             }
         });
 
+
+    }
+    function isempty() {
+
+        var a = $('.typeclass option:selected').eq(i).val();
+        var b = $('.riskclass option:selected').val();
+        var c = $('.riskvalueclass').val();
+        var d = $('.yuzhiclass').val();
+        achaochu.push($('.chaochuclass').val());
+        aorgnname.push($('.organname').val());
+        aorgncode.push($('.organcode').val());
+        acusname.push($('.cusnameclass').val());
+        acuscode.push($('.cuscodeclass').val());
+        amenuname.push($('.menunameclass').val());
+        amenucode.push($('.menucodeclass').val());
+        abusname.push($('.busnameclass').val());
+        abuscode.push($('.buscodeclass').val());
+        astatus.push($('.statusclass').val());
+        aintro.push($('.introclass').val());
+        aremarks.push($('.remarksclass').val());
 
     }
 
