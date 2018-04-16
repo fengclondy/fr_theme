@@ -407,20 +407,20 @@
         <!--</nav>-->
         <div class="model_content">
             <div class="modelTop">
-                <li><a href=" ">事件ID：<span>1233</span></a></li>
-                <li><a href="#">报警时间：<span>1233</span></a></li>
-                <li><a href="#">风险类型：<span>1233</span></a></li>
-                <li><a href="#">风险指标：<span>1233</span></a></li>
-                <li><a href="#">指标值：<span>1233</span></a></li>
-                <li><a href="#">阙值：<span>1233</span></a></li>
-                <li><a href="#">超出额：<span>1233</span></a></li>
-                <li><a href="#">机构代码：<span>1233</span></a></li>
-                <li><a href="#">机构名称：<span>1233</span></a></li>
-                <li><a href="#">客户号：<span>1233</span></a></li>
-                <li><a href="#">客户名称：<span>11111111111111111</span></a></li>
-                <li><a href="#">业务菜单名称：<span>1233</span></a></li>
-                <li><a href="#">业务类型：<span>1233</span></a></li>
-                <li><a href="#">业务编码：<span>1233</span></a></li>
+                <li><a href="#">事件ID：<span class="shijianId"></span></a></li>
+                <li><a href="#">报警时间：<span class="policeTime"></span></a></li>
+                <li><a href="#">风险类型：<span class="riskCategories"></span></a></li>
+                <li><a href="#">风险指标：<span class="fenxianzhibiao"></span></a></li>
+                <li><a href="#">指标值：<span class="indicatorsVal"></span></a></li>
+                <li><a href="#">阙值：<span class="threshold"></span></a></li>
+                <li><a href="#">超出额：<span class="Beyond"></span></a></li>
+                <li><a href="#">机构代码：<span class="organizationCode"></span></a></li>
+                <li><a href="#">机构名称：<span class="organizationName"></span></a></li>
+                <li><a href="#">客户号：<span class="CustomerNo"></span></a></li>
+                <li><a href="#">客户名称：<span class="CustomerName"></span></a></li>
+                <li><a href="#">业务菜单名称：<span class="menuName"></span></a></li>
+                <li><a href="#">业务类型：<span class="Business"></span></a></li>
+                <li><a href="#">业务编码：<span class="BusinessNo"></span></a></li>
 
 
             </div>
@@ -678,7 +678,7 @@
         appenddata = getCondition();
         $.ajax({
             type: "POST",
-            url: "eventprocessing/getList"+appenddata,
+            url: "eventprocessing/getList2"+appenddata,
             data: {"pageNum":pageNum,"pageSize":pageSize},
             dataType: "json",
             success: function(data){
@@ -766,6 +766,7 @@
                 $(".menuName").text(value.ywcdmc);
 
 
+                console.log(data)
                 var checkhtml = "";
                 $.each(data.history, function(index, value, array) {
                     checkhtml +=" <li>\n" +
@@ -805,3 +806,4 @@
 </script>
 </body>
 </html>
+

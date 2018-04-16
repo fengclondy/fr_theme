@@ -167,6 +167,7 @@ public class JDBCUtil {
 			rst = pst.executeQuery();
 
 		} catch (SQLException e) {
+			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
 
@@ -306,13 +307,13 @@ public class JDBCUtil {
 	 */
 	private static void closeAll() {
 		// 关闭结果集对象
-		if (rst != null) {
-			try {
-				rst.close();
-			} catch (SQLException e) {
-				System.out.println(e.getMessage());
-			}
-		}
+//		if (rst != null) {
+//			try {
+//				rst.close();
+//			} catch (SQLException e) {
+//				System.out.println(e.getMessage());
+//			}
+//		}
 
 		// 关闭PreparedStatement对象
 		if (pst != null) {

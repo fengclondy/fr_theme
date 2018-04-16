@@ -1,5 +1,7 @@
 package com.qdch.xd.controller;
 
+import com.fr.hailian.core.QdchUser;
+import com.fr.hailian.model.RoleModel;
 import com.fr.hailian.util.JDBCUtil;
 import com.fr.stable.StringUtils;
 
@@ -10,6 +12,7 @@ import com.qdch.util.ExportUtil;
 import com.qdch.xd.model.*;
 
 
+import javax.management.relation.Role;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -35,6 +38,7 @@ public class EventProcessingController extends BaseController {
 	public void index() {
 //		renderJsp("xd/pages/riskSolve.jsp");
 		//setAttr("type",getPara("type"));
+		setAttr("user", getLoginUser());
 		render("xd/pages/05_01fengxianshijianchuli.html");
 	}
 
@@ -58,14 +62,31 @@ public class EventProcessingController extends BaseController {
 //		getPara(getRequest());
 		getResponse().setCharacterEncoding("UTF-8");
 		String checkstatus = ""; // 处理状态
-		String role = "";
-		if(role.equals("处理人")){
-			checkstatus = " and clzt in ('未处理','驳回','已排除') ";
-		}else if(role.equals("审核人")){
-			checkstatus = " and clzt in ('已提交','已排查') ";
-		}else if(role.equals("决策人")){
-			checkstatus = " and clzt in ('已上报','已查阅''已确认') ";
+		List<RoleModel> roles = getLoginUser().getRoles();
+		if(roles!=null && roles.size()>0){
+			List<String> rr = new ArrayList<>();
+			for(RoleModel roleModel:roles){
+				rr.add(roleModel.getRoleName());
+			}
+			if(rr.contains("处理人")){
+				checkstatus = " and clzt in ('未处理','驳回','已排除') ";
+			}else if (rr.contains("审核人")){
+				checkstatus = " and clzt in ('已提交','已排查') ";
+			}else if (rr.contains("决策人")){
+				checkstatus = " and clzt in ('已上报','已查阅''已确认') ";
+			}
+		}else{
+			String role  = "处理人";
+			if(role.equals("处理人")){
+				checkstatus = " and clzt in ('未处理','驳回','已排除') ";
+			}else if(role.equals("审核人")){
+				checkstatus = " and clzt in ('已提交','已排查') ";
+			}else if(role.equals("决策人")){
+				checkstatus = " and clzt in ('已上报','已查阅''已确认') ";
+			}
 		}
+
+
 		Page<RiskEventModel> page = riskEventModelDao.getRiskEvent(checkstatus,pageNum,pageSize,getRequest());
 		mRenderJson(page);
 	}
@@ -89,6 +110,24 @@ public class EventProcessingController extends BaseController {
 		result.put("status",dictModelDao.getLabel(getPara("note")));
 		mRenderJson(result);
 	}
+
+
+	public void getListSee(){
+		int pageNum =Integer.parseInt(StringUtils.isBlank(getPara("pageNum"))||
+				getPara("pageNum").equals("undefined")==true?
+				"1":getPara("pageNum"));
+		int pageSize =Integer.parseInt(StringUtils.isBlank(getPara("pageSize"))||
+				getPara("pageSize").equals("undefined")
+						==true?
+				"10":getPara("pageSize"));
+//		getPara(getRequest());
+		getResponse().setCharacterEncoding("UTF-8");
+
+
+		Page<RiskEventModel> page = riskEventModelDao.getRiskEvent("",pageNum,pageSize,getRequest());
+		mRenderJson(page);
+	}
+
 
 	public void exportExcel(){
 
@@ -147,9 +186,9 @@ public class EventProcessingController extends BaseController {
 		try {
 			RiskEventModel eventModel = riskEventModelDao.findById(getPara("id"));
 			eventModel.set("clzt",getPara("status"));
-			eventModel.set("shr","wf");
-			eventModel.set("report_id","wf");
-			eventModel.set("bz","wf");
+			eventModel.set("shr",getLoginUser().getUsername());
+			eventModel.set("report_id",getPara("id"));
+			eventModel.set("bz",getPara("area"));
 			eventModel.set("update_time",new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(System.currentTimeMillis()));
 			eventModel.dao.update();
 
@@ -177,10 +216,11 @@ public class EventProcessingController extends BaseController {
 	//		historyModel.set("update_time",new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(System.currentTimeMillis()));
 	//		historyModel.save();
 				StringBuffer sb = new StringBuffer();
+				sb.append("update hub_fxsj ");
 	//		sb.append("insert into hub_fxsj_audit_new(bjsj,fxlb,fxzb,fxzbz,yuzhi,cce," +
 	//				"jgdm,jgmc,cust_id,khmc,ywcdbm,ywcdmc,ywlx,ywbm,shr,clzt,fxsm,bz,fxsj_id,unit," +
 	//				"report_id,deal_id,update_time,jysfl,bq,yxcd,zbvalue)values(");
-				sb.append("insert into hub_fxsj_audit_new(shr,clzt,fxsj_id,update_time)values(");
+//				sb.append("insert into hub_fxsj_audit_new(shr,clzt,fxsj_id,update_time)values(");
 	//		sb.append(eventModel.get("bjsj")+"");
 	//		sb.append(eventModel.get("fxlb")+",");
 	//		sb.append(eventModel.get("fxzb")+",");
@@ -195,20 +235,21 @@ public class EventProcessingController extends BaseController {
 	//		sb.append(eventModel.get("ywcdmc")+",");
 	//		sb.append(eventModel.get("ywlx")+",");
 	//		sb.append(eventModel.get("ywbm")+",");
-				sb.append("'").append(eventModel.get("shr")+"',");
-				sb.append("'").append(eventModel.get("clzt")+"',");
+				sb.append(" set shr='").append(getLoginUser().getUsername());
+				sb.append("', clzt='").append(getPara("status")+"',");
 	//		sb.append(eventModel.get("fxsm")+",");
-			sb.append("'").append(eventModel.get("bz")+"',");
-				sb.append("'").append(eventModel.get("fxsj_id")+"',");
+			sb.append("update_time='").append(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(System.currentTimeMillis()));
+//				sb.append("'").append(eventModel.get("fxsj_id")+"',");
 	//		sb.append(eventModel.get("unit")+",");
 	//		sb.append(eventModel.get("report_id")+",");
 	//		sb.append(eventModel.get("deal_id")+",");
-				sb.append("'").append(eventModel.get("update_time")+"'");
+//				sb.append("'").append(eventModel.get("update_time")+"'");
+			sb.append("' where fxsj_id='"+getPara("id")+"'");
 	//		sb.append(eventModel.get("jysfl")+",");
 	//		sb.append(eventModel.get("bq")+",");
 	//		sb.append(eventModel.get("yxcd")+",");
 	//		sb.append(eventModel.get("zbvalue"));
-			sb.append(")");
+//			sb.append(")");
 			JDBCUtil.executeUpdate(sb.toString(),null);
 			mRenderJson(true);
 		} catch (Exception e) {
