@@ -23,8 +23,8 @@ $(function () {
     tabNav();
 
 
-    $("#mainNav").find(".dropdown-toggle:eq(3)").click()
-        .next("ul").children("li:eq(3)").click();
+    $("#mainNav").find(".dropdown-toggle:eq(1)").click()
+        .next("ul").children("li:eq(0)").click();
 });
 
 function windowResize() {
@@ -35,7 +35,7 @@ function windowResize() {
         }, 500)
 
     }
-    console.log("~~~~~~~~~bodyScale" , bodyScale)
+    //console.log("~~~~~~~~~bodyScale" , bodyScale)
 }
 
 /*主导航点击切换*/
@@ -61,17 +61,40 @@ function mainNav() {
         var pageTitle = $(this).text();
         var pageId = $(this).data("id");
         // tabNavActive(pageTitle);
-        var pageAlreadyExists = false;
+        var pageAlreadyExists = false;       
+        var navTabsWidth = $("#navTabs").width();
+        var _width = 0;
         $("#navTabs").children("ul").children("li").each(function () {
-            if (pageId === $(this).data("id")) {
+            if (pageId === $(this).data("id")) {//判断页面是否已经打开
                 pageAlreadyExists = true;
             }
+            else{
+	        	_width += $(this).width();
+        	}
         });
-        if (pageAlreadyExists) {
+        if (pageAlreadyExists) {//已打开
             $("#navTabs").children().find("li[data-id=" + pageId + "]")
                 .addClass("active").siblings().removeClass("active");
             pageSwitch(pageId);
-        } else {
+        } else {//首次打开
+        	if(_width > navTabsWidth){
+        		var obj = $("#navTabs li.collapse").children("ul");
+        		var tabLiObj = $("#navTabs").children("ul").children("li:nth-child(3)");
+        		var tabLiObjId = tabLiObj.data("id");
+        		var tabLiObjTitle = tabLiObj.data("title");
+        		var html = "<li data-id="+ tabLiObjId +">"+ tabLiObjTitle +"</li>";
+        		obj.append(html);
+        		var index = obj.children("li").length - 1;
+        		setTimeout(function(){
+        			navTabsCollapseClick(index);
+        		},500);
+        		tabLiObj.remove();
+        		obj.children("li").each(function(){
+        			if(pageId === $(this).data("id")){
+        				$(this).remove();
+        			}
+        		})      		
+        	}
             addTabNavBtn(pageId, pageTitle);
             addPageContent(pageId, pageTitle);
         }
@@ -84,17 +107,15 @@ function mainNav() {
     })
 }
 
-
-//添加tab按钮
-function addTabNavBtn(pageId, pageTitle,pageName) {
+// 添加tab按钮
+function addTabNavBtn(pageId, pageTitle) {
     var $navTabsUl = $("#navTabs").children("ul");
     $navTabsUl.append($navTabsUl.children("li:eq(0)").clone());
     $navTabsUl.children("li").removeClass("active")
         .last().addClass("active")
         .attr({
             "data-id": pageId,
-            "data-title": pageTitle,
-            "data-pagename": pageName
+            "data-title": pageTitle
         })
         .children("a").attr("title", pageTitle)
         .children(".text").text(pageTitle);
@@ -113,35 +134,32 @@ function addTabNavBtnFromPage(pageId, pageTitle) {
         .children(".text").text(pageTitle);
 }
 // 添加页面
-function addPageContent(pageId, pageTitle,pageName) {
+function addPageContent(pageId, pageTitle) {
     var $pageBox = $(".pageBox");
     $pageBox.append($pageBox.children(".pageContent:eq(0)").clone());
     $(".pageBox>.pageContent").removeClass("current")
         .last().addClass("current")
         .attr({
             "id": pageId,
-            "data-title": pageTitle,
-            "data-pagename": pageName
+            "data-title": pageTitle
         })
-        .children("iframe").attr("src", pageId);
+        .children("iframe").attr("src", pageId + ".html");
     windowResize();
     /*setTimeout(function () {
         $(".pageContent#"+pageId+">iframe").contents().find("html").css("font-size", bodyScale * 100 + "%");
         console.log(pageId,$(".pageContent#"+pageId+">iframe").contents().find("html")[0]);
     },400)*/
 }
+
 /*tab页面切换和关闭*/
 function tabNav() {
     var $navTabUl = $("#navTabs").find("ul");
     $navTabUl.on("click", "li>a", function () {
         $navTabUl.children("li").removeClass("active");
         $(this).parent().addClass("active").mouseleave();
-        var selectedId = $navTabUl.find("li.active").data("pagename");
+        var selectedId = $navTabUl.find("li.active").data("id");
         pageSwitch(selectedId);
         windowResize();
-        //切换左侧菜单样式
-        $("#mainNav").find("li").removeClass("active");
-        $("li[data-id='"+$(this).parent().attr("data-id")+"']").addClass("active");
     });
     $navTabUl.on("click", ".refresh", function () {
         var id = $(this).parents("li").data("id");
@@ -152,7 +170,6 @@ function tabNav() {
         });
         windowResize();
     })
-
 
     $navTabUl.on("click", "li>a>.close", function (e) {
         var selectedId = "00_01home";
@@ -168,11 +185,11 @@ function tabNav() {
             } else {
                 $(this).parents("li").addClass("active");
             }
-            selectedId = $navTabUl.find("li.active").data("pagename");
+            selectedId = $navTabUl.find("li.active").data("id");
 
             pageSwitch(selectedId);
         }
-        $("div[data-pagename='" + $(this).parents("li").data("pagename")+"']").remove();
+        $("#" + $(this).parents("li").data("id")).remove();
         // if ($navTabUl.find("li").length !== 1) {//如果只剩一个则不能关闭
         $(this).parents("li").remove();
         // }
@@ -217,5 +234,39 @@ function toggleFullScreen(e){
     var el=e.srcElement||e.target;//target兼容Firefox
     el.innerHTML=='全屏'?el.innerHTML='退出全屏':el.innerHTML='全屏';
     FullScreen(el);
+}
+function navTabsCollapseClick(index){//事件单独绑定
+	$(".nav-tabs > ul > li.collapse>ul>li").eq(index).click(function () {
+        $(this).parent().slideUp(100);
+        var liId = $(this).data("id");
+        var liTitle = $(this).text(); 
+        if(liId != undefined){
+        	addTabNavBtn(liId, liTitle);
+            addPageContent(liId, liTitle);
+            $(this).remove();
+            
+            var navTabsWidth = $("#navTabs").width();
+	        var _width = 0;
+	        $("#navTabs").children("ul").children("li").each(function () {
+	        	_width += $(this).width();
+	        });
+	        console.log(_width);
+	        console.log(navTabsWidth);
+            if(_width > navTabsWidth){
+        		var obj = $("#navTabs li.collapse").children("ul");
+        		var tabLiObj = $("#navTabs").children("ul").children("li:nth-child(3)");
+        		var tabLiObjId = tabLiObj.data("id");
+        		var tabLiObjTitle = tabLiObj.data("title");
+        		var html = "<li data-id="+ tabLiObjId +">"+ tabLiObjTitle +"</li>";
+        		obj.append(html);
+        		var index = obj.children("li").length - 1;
+        		setTimeout(function(){
+        			navTabsCollapseClick(index);
+        		},500);
+        		tabLiObj.remove();    		
+        	}
+            
+        }
+    });
 }
 
