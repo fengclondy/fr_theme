@@ -586,7 +586,7 @@
     }
     //获取综合利率
     function getCompositeInterest(){
-    	alert("进入到综合利率的函数")
+    	
     	$.post("${contextPath}/qdch/project/getCompositeInterest",{"jys":jysCode},function(data){
     		console.log("综合利率",data);
     		var seriesData1=[];
