@@ -47,7 +47,7 @@ public class KeyIndicatorsModel extends Model<KeyIndicatorsModel>{
 		return dao.find(sql);
 	}
 	public List<KeyIndicatorsModel> getByThreeRuralIssue(String bigjys){
-		String sql="SELECT t1.vday,t1.jysc,t1.jyscmc,SUM(CASE WHEN loanobject='410003' THEN fvalue ELSE 0 END)/SUM(fvalue) AS nums FROM insight_xd_yeamount t1 WHERE vday=(SELECT max(vday) FROM insight_xd_yeamount) ";
+		String sql="SELECT t1.vday,t1.jysc,t1.jyscmc,round(SUM(CASE WHEN loanobject='410003' THEN fvalue ELSE 0 END)/SUM(fvalue),4)*100  AS nums FROM insight_xd_yeamount t1 WHERE vday=(SELECT max(vday) FROM insight_xd_yeamount) ";
 		if(StringUtils.isNotBlank(bigjys)){
 			sql+="and jysc in "+bigjys;
 		} 

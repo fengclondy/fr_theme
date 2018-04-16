@@ -23,7 +23,7 @@ public class ZiRanRenJiChuInfoMoDel extends Model<ZiRanRenJiChuInfoMoDel>{
 		} 
 		//
 		if(StringUtils.isNotBlank(pyType)){
-			sql+=" and jysinfo = '"+pyType+"' ";
+			sql+=" and jysc = '"+pyType+"' ";
 		} 
 		/*if(StringUtils.isNotBlank(hasInfo)){
 			
@@ -31,6 +31,28 @@ public class ZiRanRenJiChuInfoMoDel extends Model<ZiRanRenJiChuInfoMoDel>{
 		} */
 		//日期
 		sql+=" order by vday desc  ";
+		return dao.findFirst(sql);
+	}
+	
+	
+	
+	/**
+	 * 
+	 * @author hanpengda
+	 * @date 2018年4月13日
+	 * @TODO 根据平台获取自然人信息
+	 */
+	public ZiRanRenJiChuInfoMoDel getInfoByJysc(String bigjys,String jysc){
+		String sql="select * from insight_pp_person_info  where 1=1 "; 
+		if(StringUtils.isNotBlank(bigjys)){
+			sql+=" and jysc in "+bigjys;
+		}
+		if (StringUtils.isNotBlank(jysc)) {
+			sql += " and jysc = '"+jysc+"'";
+		}else{
+			return null;
+		}
+		sql += " order by vday desc";
 		return dao.findFirst(sql);
 	}
 }

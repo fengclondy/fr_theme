@@ -21,7 +21,7 @@ public class ThresholdValueModel extends Model<ThresholdValueModel>{
 	 * @param type
 	 * @return
 	 */
-	public List<ThresholdValueModel> getList(String type){
+	public List<ThresholdValueModel> getInfoList(String type){
 		String sql = "SELECT * from hub_fxsj_yuzhi WHERE jysfl='"+type+"'";
 
 		return dao.find(sql);

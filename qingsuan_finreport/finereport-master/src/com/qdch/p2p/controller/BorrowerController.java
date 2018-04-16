@@ -39,23 +39,23 @@ public class BorrowerController extends BaseController {
 		ptList=DefenInfoModel.dao.getScoreList(getDataScopeByUserNameForP2p(),ptType);
 		setAttr("jyslist", PpjyscModel.dao.getJysc(getDataScopeByUserName()));
 		for(DefenInfoModel model:ptList){
-			ZiRanRenJiChuInfoMoDel zrr=ZiRanRenJiChuInfoMoDel.dao.getBasicinfo(getDataScopeByUserNameForP2p(),model.getStr("jysinfo"),hasInfo);
+			ZiRanRenJiChuInfoMoDel zrr=ZiRanRenJiChuInfoMoDel.dao.getBasicinfo(getDataScopeByUserNameForP2p(),model.getStr("jysc"),hasInfo);
 			model.put("zrr",zrr);
-			XinYongInfoModel xinyon=XinYongInfoModel.dao.getCreditinfo(getDataScopeByUserNameForP2p(),model.getStr("jysinfo"),hasInfo);
+			XinYongInfoModel xinyon=XinYongInfoModel.dao.getCreditinfo(getDataScopeByUserNameForP2p(),model.getStr("jysc"),hasInfo);
 			model.put("xinyon",xinyon);
-			ZiChanInfoModel zichan=ZiChanInfoModel.dao.getAssetinfo(getDataScopeByUserNameForP2p(),model.getStr("jysinfo"),hasInfo);
+			ZiChanInfoModel zichan=ZiChanInfoModel.dao.getAssetinfo(getDataScopeByUserNameForP2p(),model.getStr("jysc"),hasInfo);
 			model.put("zichan",zichan);
-			WorkInfoModel job=WorkInfoModel.dao.getJobinfo(getDataScopeByUserNameForP2p(),model.getStr("jysinfo"),hasInfo);
+			WorkInfoModel job=WorkInfoModel.dao.getJobinfo(getDataScopeByUserNameForP2p(),model.getStr("jysc"),hasInfo);
 			model.put("job",job);
-			QiYeJiBenInFoModel qjb=QiYeJiBenInFoModel.dao.getCompybasicinfo(getDataScopeByUserNameForP2p(),model.getStr("jysinfo"),hasInfo);
+			QiYeJiBenInFoModel qjb=QiYeJiBenInFoModel.dao.getCompybasicinfo(getDataScopeByUserNameForP2p(),model.getStr("jysc"),hasInfo);
 			model.put("qjb",qjb);
-			QiYeQiTaInFoModel qqt=QiYeQiTaInFoModel.dao.getOtherinfo(getDataScopeByUserNameForP2p(),model.getStr("jysinfo"),hasInfo);
+			QiYeQiTaInFoModel qqt=QiYeQiTaInFoModel.dao.getOtherinfo(getDataScopeByUserNameForP2p(),model.getStr("jysc"),hasInfo);
 			model.put("qqt",qqt);
-			DiYaShenHeModel diya=DiYaShenHeModel.dao.getDiYa(getDataScopeByUserNameForP2p(),model.getStr("jysinfo"),hasInfo);
+			DiYaShenHeModel diya=DiYaShenHeModel.dao.getDiYa(getDataScopeByUserNameForP2p(),model.getStr("jysc"),hasInfo);
 			model.put("diya",diya);
-			ShenHeQiYeModel shqy=ShenHeQiYeModel.dao.getShenHeQiYe(getDataScopeByUserNameForP2p(),model.getStr("jysinfo"),hasInfo);
+			ShenHeQiYeModel shqy=ShenHeQiYeModel.dao.getShenHeQiYe(getDataScopeByUserNameForP2p(),model.getStr("jysc"),hasInfo);
 			model.put("shqy",shqy);
-			ShenHeZiLiaoZiRanRenModel shzr=ShenHeZiLiaoZiRanRenModel.dao.getShenHeZiRanRen(getDataScopeByUserNameForP2p(),model.getStr("jysinfo"),hasInfo);
+			ShenHeZiLiaoZiRanRenModel shzr=ShenHeZiLiaoZiRanRenModel.dao.getShenHeZiRanRen(getDataScopeByUserNameForP2p(),model.getStr("jysc"),hasInfo);
 			model.put("shzr",shzr);
 		}
 		setAttr("pingtailist",ptList);
