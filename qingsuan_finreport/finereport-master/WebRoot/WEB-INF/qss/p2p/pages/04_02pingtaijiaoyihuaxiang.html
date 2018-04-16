@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -100,8 +101,8 @@
 
                 <div class="chartContent">
                     <div class="btnGroup">
-                        <button id='jkr' >借款人分级</button>
-                        <button id='tzr' class="active" >投资人分级</button>
+                        <button id='jkr'  class="active">借款人分级</button>
+                        <button id='tzr'  >投资人分级</button>
                     </div>
                     <div class="chartBody">
                         <div id="ec002_04_02currentCompetitiveness04"></div>
@@ -162,6 +163,9 @@
     var myChart2 = echarts.init($("#ec002_04_02currentCompetitiveness02")[0]);
     var myChart3 = echarts.init($("#ec002_04_02currentCompetitiveness03")[0]);
     var myChart4 = echarts.init($("#ec002_04_02currentCompetitiveness04")[0]);
+    var myChart5 = echarts.init($("#ec002_04_02currentCompetitiveness05")[0]);
+    var myChart6 = echarts.init($("#ec002_04_02currentCompetitiveness06")[0]);
+    var myChart7 = echarts.init($("#ec002_04_02currentCompetitiveness07")[0]);
     $(function () {
         //模块一
         myChart1 = echarts.init($("#ec002_04_02currentCompetitiveness01")[0]);
@@ -183,139 +187,22 @@
         myChart4.setOption(opt_line);
 
 
+
         //模块五
-        var myChart5 = echarts.init($("#ec002_04_02currentCompetitiveness05")[0]);
+        myChart5 = echarts.init($("#ec002_04_02currentCompetitiveness05")[0]);
         myChart5.setOption(opt_bar_horizon);
         myChart5.setOption(opt_line);
-        myChart5.setOption({
-            grid: {
-                left: '10%',
-                right: '10%',
-                bottom: '18%',
-                top: '20%'
-            },
-            legend:{
-                show:false
-            },
-            xAxis: [
-                {
-                    name: '月份',
-                    type: 'category',
-                    data: ['1', '2', '3', '4', '5', '6'],
-                    axisTick: {
-                        alignWithLabel: true
-                    }
-                }
-            ],
-            yAxis: [
-                {
-                    name: '金额',
-                    type: 'value'
-                }
-            ],
-            series: [
-                {
-                    type: 'line',
-                    data: [29, 31, 29, 34, 33, 40],
-                    symbol: 'circle'
-                },
-
-                {
-                    type: 'line',
-                    data: [26, 28, 26, 31, 30, 37],
-                    symbol: 'circle'
-                }
-            ]
-        });
         //模块六
-      var myChart6 = echarts.init($("#ec002_04_02currentCompetitiveness06")[0]);
+      	myChart6 = echarts.init($("#ec002_04_02currentCompetitiveness06")[0]);
         myChart6.setOption(opt_bar_vertical);
         myChart6.setOption(opt_line);
-        myChart6.setOption({
-            legend: {
-                show:false
-            },
-            grid: {
-                left: '10%',
-                right: '10%',
-                bottom: '18%',
-                top:'15%'
-            },
-            xAxis : [
 
-                {
-                    type : 'category',
-                    axisTick : {show: false},
-                    data : [1,2,3,4,5,6],
-                    name:'月份'
-                }
-            ],
-            yAxis : [
-                {   name:'金额',
-                    type : 'value'
-                }
-            ],
-            series : [
-                {
-                    name:'收入',
-                    type:'bar',
-                    stack: '总量',
-                    barWidth:barWidth,
-                    data:[23, 34, 40, 44, 42, 37]
-                },
-                {
-                    name:'支出',
-                    type:'bar',
-                    stack: '总量',
-                    barWidth:barWidth,
-                    data:[-23, -34, -40, -44, -42, -37]
-                }
-            ]
-        });
 
         //模块七
-        var myChart7 = echarts.init($("#ec002_04_02currentCompetitiveness07")[0]);
+        myChart7 = echarts.init($("#ec002_04_02currentCompetitiveness07")[0]);
         myChart7.setOption(opt_bar_horizon);
         myChart7.setOption(opt_line);
-        myChart7.setOption({
-            grid: {
-                left: '10%',
-                right: '10%',
-                bottom: '15%',
-                top: '20%'
-            },
-            legend:{
-                show:false
-            },
-            xAxis: [
-                {
-                    name: '月份',
-                    type: 'category',
-                    data: ['1', '2', '3', '4', '5', '6'],
-                    axisTick: {
-                        alignWithLabel: true
-                    }
-                }
-            ],
-            yAxis: [
-                {
-                    name: '金额',
-                    type: 'value'
-                }
-            ],
-            series: [
-                {
-                    type: 'line',
-                    data: [29, 31, 29, 34, 33, 40],
-                    symbol: 'circle'
-                },
-                {
-                    type: 'line',
-                    data: [26, 28, 26, 31, 30, 37],
-                    symbol: 'circle'
-                }
-            ]
-        });
+
         //本页所有图表
         allCharts = [myChart1, myChart2,myChart3,myChart4,myChart5,myChart6,myChart7];
 
@@ -333,16 +220,81 @@
 			initData();
 		 }
 		function initData(){
-			getTotalTranNum();
-			getAvgTime();
-			getCustNum();
-			getRangeNumber();
+			getTotalTranNum();//交易总量，总额
+			getAvgTime();//平均满标用时
+			getCustNum();//投资人数 借款人数
+			//getRangeNumber();//投资金额区间
+			getLoanRangeNumber();//借款金额区间
+			getLoanAndInvestNumber();//人均投资金额,人均借款金额
+			getFlowAmount();//资金流入
+			getCollectPrincipal();//代偿本金
+			$("#jkr").click(function(){//点击事件  按借款人分级
+				getLoanRangeNumber();
+		  	});
 			$("#tzr").click(function(){//点击事件  按投资人分级
 				getRangeNumber();
 		  	});
-
 		}
 
+		//借款金额区间人数
+		function getLoanRangeNumber(){
+			var ppType = $("#jkr").html().substr(0,3);
+ 			$.post("${contextPath}/qdch/deal/getLoanRangeNumber",{"jysinfo":jysinfo,"ppType":ppType},function(data){
+ 		    	var month=[];
+ 		    	var lines1=[];
+ 		    	console.log(data)
+ 				$.each(data,function(index,item){
+ 					var num=[];
+	    			$.each(item.numlist,function(index2,item2){
+	    				if(index==0){
+	    					month.push(item2.vday_ym);
+	    				}
+	    					num.push(item2.jkrnum);
+	    			});
+
+	    			
+	    			var ser1= {
+	                        name:item.pp_range,
+	                        type: 'bar',
+	                        stack: '总量',
+	                        barWidth:barWidth,
+	                        data: num
+	                };	
+	    			
+	    			lines1.push(ser1);
+	    		});   
+ 		    	myChart4.clear();
+ 		        myChart4.setOption(opt_bar_vertical);
+ 		        myChart4.setOption(opt_line);
+	            myChart4.setOption({
+	                tooltip : {
+	                    trigger: 'axis',
+	                    axisPointer : {            
+	                        type : 'line'        
+	                    }
+	                },
+	                legend: {
+	                    show:false
+	                },
+	                grid: {
+	                    left: '7%',
+	                    right: '5%',
+	                    bottom: '22%',
+	                    top: '5%'
+	                },
+	                xAxis:  {
+	                    name:'月份',
+	                    type: 'category',
+	                    data: month
+	                },
+	                yAxis: {
+	                    type: 'value'
+
+	                },
+	                series: lines1
+	            });		
+			}); 
+		}
 		//投资金额区间人数
 		function getRangeNumber(){
 			var ppType = $("#tzr").html().substr(0,3);
@@ -359,18 +311,20 @@
 	    				}
 	    					num.push(item2.tzrnum);
 	    			});
+	    			
 	    			var ser= {
 	                        name: item.pp_range,
 	                        type: 'bar',
 	                        stack: '总量',
 	                        barWidth:barWidth,
 	                        data: num
-	                    };
+	                };	
+	    			console.log(item.pp_range)
 	    			lines.push(ser);
-	    		});   
-
-	            myChart4.setOption(opt_bar_vertical);
-	            myChart4.setOption(opt_line);
+	    		}); 
+ 				myChart4.clear();
+ 		        myChart4.setOption(opt_bar_vertical);
+ 		        myChart4.setOption(opt_line);
 	            myChart4.setOption({
 	                tooltip : {
 	                    trigger: 'axis',
@@ -586,6 +540,164 @@
 	            });	    		
 		 	});
 		}
+		//人均借款金额，人均投资金额
+		function getLoanAndInvestNumber(){
+		 	$.post("${contextPath}/qdch/deal/getLoanAndInvestNumber",{"jysinfo":jysinfo},function(data){
+				var rjjkvalue=[];
+		    	var rjtzvalue=[];
+		    	var month=[];
+		    	//人均借款金额
+	    		$.each(data.loanList,function(index,item){
+	    			month.push(item.month);
+	    			rjjkvalue.push(item.rjjkvalue);
+	    		});
+		    	//人均投资金额
+	    		$.each(data.investList,function(index,item){
+	    			rjtzvalue.push(item.rjtzvalue);
+	    		});
+	            myChart5.setOption(opt_bar_horizon);
+	            myChart5.setOption(opt_line);
+	            myChart5.setOption({
+	                grid: {
+	                    left: '10%',
+	                    right: '10%',
+	                    bottom: '18%',
+	                    top: '20%'
+	                },
+	                legend:{
+	                    show:true
+	                },
+	                xAxis: [
+	                    {
+	                        name: '月份',
+	                        type: 'category',
+	                        data: month,
+	                        axisTick: {
+	                            alignWithLabel: true
+	                        }
+	                    }
+	                ],
+	                yAxis: [
+	                    {
+	                        name: '金额',
+	                        type: 'value'
+	                    }
+	                ],
+	                series: [
+	                    {	
+	                    	name:'人均投资',
+	                        type: 'line',
+	                        data: rjtzvalue,
+	                        symbol: 'circle'
+	                    },
+
+	                    {	
+	                    	name:'人均借款',
+	                        type: 'line',
+	                        data: rjjkvalue,
+	                        symbol: 'circle'
+	                    }
+	                ]
+	            });
+		 	});
+		}
+		//资金流入
+		function getFlowAmount(){
+		 	$.post("${contextPath}/qdch/deal/getFlowAmount",{"jysinfo":jysinfo},function(data){
+				var day=[];
+		    	var fvalue=[];
+		    	
+	    		$.each(data,function(index,item){
+	    			day.push(item.vday);
+	    			fvalue.push(item.fvalue);
+	    		});
+	            myChart6.setOption(opt_bar_vertical);
+	            myChart6.setOption(opt_line);
+	            myChart6.setOption({
+	                legend: {
+	                    show:false
+	                },
+	                grid: {
+	                    left: '10%',
+	                    right: '10%',
+	                    bottom: '18%',
+	                    top:'15%'
+	                },
+	                xAxis : [
+
+	                    {
+	                        type : 'category',
+	                        axisTick : {show: false},
+	                        data : day,
+	                        name:'日期'
+	                    }
+	                ],
+	                yAxis : [
+	                    {   name:'金额',
+	                        type : 'value'
+	                    }
+	                ],
+	                series : [
+	                    {
+	                        name:'资金流入',
+	                        type:'bar',
+	                        stack: '总量',
+	                        barWidth:barWidth,
+	                        data:fvalue
+	                    }
+	                ]
+	            });
+		 	});
+		}
+		//代偿本金
+		function getCollectPrincipal(){
+		 	$.post("${contextPath}/qdch/deal/getCollectPrincipal",{"jysinfo":jysinfo},function(data){
+				var bz=[];
+		    	var day=[];
+	    		$.each(data,function(index,item){
+	    			bz.push(item.bz);
+	    			day.push(item.vday_ym);
+	    		});
+	            myChart7.setOption(opt_bar_horizon);
+	            myChart7.setOption(opt_line);
+	            myChart7.setOption({
+	                grid: {
+	                    left: '20%',
+	                    right: '10%',
+	                    bottom: '15%',
+	                    top: '20%'
+	                },
+	                legend:{
+	                    show:false
+	                },
+	                xAxis: [
+	                    {
+	                        name: '月份',
+	                        type: 'category',
+	                        data: day,
+	                        axisTick: {
+	                            alignWithLabel: true
+	                        }
+	                    }
+	                ],
+	                yAxis: [
+	                    {
+	                        name: '金额',
+	                        type: 'value'
+	                    }
+	                ],
+	                series: [
+	                    {
+	                        type: 'line',
+	                        data: bz,
+	                        symbol: 'circle'
+	                    }
+	                ]
+	            });
+
+		 	});
+		}
+
 
 </script>
 </body>

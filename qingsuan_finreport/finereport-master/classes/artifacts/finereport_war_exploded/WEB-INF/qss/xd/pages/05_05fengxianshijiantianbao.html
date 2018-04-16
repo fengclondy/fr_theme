@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
@@ -18,7 +18,13 @@
         .fr{
             float: right;
         }
-
+        .whitePage form{
+            width: 100%;
+            /* z-index: -1;
+            position: absolute;
+            top: 0;
+            bottom: 0; */
+        }
         /*提交、删除  导航菜单*/
         li{
             list-style: none;
@@ -35,7 +41,7 @@
         input::placeholder {
             padding-left: 0.2rem;
         }
-          /*table表格内容格子*/
+        /*table表格内容格子*/
         table {
             width: 100%;
             /*border-collapse:collapse;*/
@@ -56,10 +62,10 @@
             text-align: center;
             border: 1px solid gray;
         }
-				.whitePage table > tbody > tr > td{
-					padding: 0;
-				}
-				
+        .whitePage table > tbody > tr > td{
+            padding: 0;
+        }
+
         table th,
         table td{
             position: relative;
@@ -115,9 +121,11 @@
         }
 
         .tableDiv{
-            margin-top: 0.2rem;
+            margin-top: 1rem;
         }
-
+        .radioBtn{
+            width: 20px;
+        }
     </style>
 </head>
 <body class="whitePage" id="05_01fengxianshijianchuli" data-title="风险事件处理">
@@ -133,6 +141,7 @@
         <table style="width:100%;">
             <thead>
             <tr>
+                <th>选择</th>
                 <th>风险类别</th>
                 <th>风险指标</th>
                 <th>风险指标值</th>
@@ -151,93 +160,95 @@
                 <th>备注</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="tbody">
             <tr>
+                <td><input type="radio" name="radio" id="radio0" class="radioBtn"></td>
                 <td>
-									<div class="one">
-											<span class="sel">
-													<select name="makeupCoSe" id="makeupCoSe" class="selected" >
-													<option value=""></option>
-														 ##for(j in type!){
-															<option value="${j.fxlb!}">${j.fxlb!}</option>
-														 ##}
+                    <div class="one">
+                        <span class="sel">
+                                <select name="makeupCoSe" id="makeupCoSe" onchange="getrisk(0)" onclick="getrisk(0)" class="selected typeclass">
+                                <option value=""></option>
+                                     ##for(j in type!){
+                                <option id="${j.fxlb!}" >${j.fxlb!}</option>
+                                     ##}
 
-													</select>
-											</span>
-											<span class="inp">
-													<input type="text" name="makeupCo" id="makeupCo" class="inputs">
-											</span>
-									</div>
+                                </select>
+                        </span>
+                    </div>
                 </td>
                 <td>
-									<div class="one">
-										<span class="sel">
-												<select name="makeupCoSe" id="riskIndex" class="selected" ">
-												<option value=""></option>
-
-												</select>
-										</span>
-										<span class="inp">
-												<input type="text" name="makeupCo" id="riskIndexCo" class="inputs">
-										</span>
-									</div>
+                    <div class="one">
+                        <span class="sel">
+                            <select name="makeupCoSe" id="riskIndex" onchange="calcyuzhi(0)" class="selected riskclass" >
+                            <option value=""></option>
+                            <!--<option id="4" value='风险类型'>风险类型</option>-->
+                            <!--<option  value='c++'>c++</option>-->
+                            <!--<option  value='python'>python</option>-->
+                            </select>
+                        </span>
+                    </div>
                 </td>
-                <td><input type="text"></td>
-				<td><input type="text"></td>
-				<td><input type="text"></td>
-				<td><input type="text"></td>
-                <!--<td>-->
-									<!--<div class="one">-->
-										<!--<span class="sel">-->
-												<!--<select name="makeupCoSe" id="mechanism" class="selected" onChange="changeF();">-->
-												<!--<option value=""></option>-->
-												<!--<option  value='风险类型'>风险类型</option>-->
-												<!--<option  value='c++'>c++</option>-->
-												<!--<option  value='python'>python</option>-->
-												<!--</select>-->
-										<!--</span>-->
-										<!--<span class="inp">-->
-												<!--<input type="text" name="makeupCo" id="mechanismCo" class="inputs">-->
-										<!--</span>-->
-									<!--</div>-->
-								<!--</td>-->
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-				<td><input type="text"></td>
-                <!--<td>-->
-									<!--<div class="one">-->
-										<!--<span class="sel">-->
-												<!--<select name="makeupCoSe" id="business" class="selected" onChange="changeF();">-->
-												<!--<option value=""></option>-->
-												<!--<option  value='风险类型'>风险类型</option>-->
-												<!--<option  value='c++'>c++</option>-->
-												<!--<option  value='python'>python</option>-->
-												<!--</select>-->
-										<!--</span>-->
-										<!--<span class="inp">-->
-												<!--<input type="text" name="makeupCo" id="businessCo" class="inputs">-->
-										<!--</span>-->
-									<!--</div>-->
-								<!--</td>-->
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-				<td>
-					<div class="one">
-						<span class="sel">
-						<select name="makeupCoSe" id="status" class="selected" >
-							<option value=""></option>
+                <td><input name="riskvalueclass" onblur="calcover()" class="riskvalueclass" type="text"></td>
+                <td>
+                    <div class="one">
+                        <span class="sel">
+                                <select onchange="calcover()" name="yuzhiclass" id="threshold" class="selected yuzhiclass" >
+                                <option value=""></option>
+                                <!--<option  value='风险类型'>风险类型</option>-->
+                                <!--<option  value='c++'>c++</option>-->
+                                <!--<option  value='python'>python</option>-->
+                                </select>
+                        </span>
+                    </div>
+                </td>
+                <td><input class="chaochuclass" disabled type="text"></td>
+                <td>
+                    <div class="one">
+                        <span class="sel">
+                            <select name="makeupCoSe" id="organname" class="selected organname" >
+                            <option value=""></option>
+                                 ##for(e in exchange!){
+                                <option id="${e.jysinfo}" >${e.jysinfo!}</option>
+                                     ##}
 
-						</select>
-						</span>
-						<span class="inp">
-							<input type="text" name="makeupCo" id="businessCo" class="inputs">
-						</span>
-					</div>
-				</td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
+                            </select>
+                        </span>
+                    </div>
+                </td>
+                <td>
+                    <div class="one">
+                        <span class="sel">
+                                <select name="makeupCoSe" id="organcode" class="selected organcode" >
+                                <option value=""></option>
+                                 ##for(e in exchange!){
+                                    <option id="${e.jys}" >${e.jys!}</option>
+                                         ##}
+                                </select>
+                        </span>
+                    </div>
+                </td>
+                <td><input class="cusnameclass" type="text"></td>
+                <td><input class="cuscodeclass" type="text"></td>
+                <td><input class="menunameclass" type="text">
+
+                </td>
+                <td><input class="menucodeclass" type="text"> </td>
+                <td><input class="busnameclass" type="text"></td>
+                <td><input class="buscodeclass"  type="text"></td>
+                <td>
+                    <div class="one">
+                        <span class="sel">
+                            <select name="makeupCoSe" id="business" class="selected statusclass" >
+                            <option value=""></option>
+                                 ##for(e in status!){
+                                                <option id="${e.fvalue}" >${e.fvalue!}</option>
+                                 ##}
+                            </select>
+                        </span>
+                </div></td>
+                <td><input class="introclass" type="text">
+                </td>
+                <td><input class="remarksclass" type="text"></td>
 
             </tr>
             </tbody>
@@ -249,9 +260,8 @@
 <script src="${contextPath}/static/js/pageCom.js"></script>
 <script src="${contextPath}/static/js/chartsCom.js"></script>
 
-</body>
-</html>
 <script language="javascript">
+    var typepull,riskIndex ,statusIndex,yuzhiIndex,exchangedataIndex;
     // function changeF() {
     //     document.getElementById('makeupCo').value= document.getElementById('makeupCoSe').options[document.getElementById('makeupCoSe').selectedIndex].value;
     //     // document.getElementsByClassName('inputs').value= document.getElementsByClassName('selected').options[document.getElementsByClassName('selected').selectedIndex].value;
@@ -260,9 +270,131 @@
 		// 		document.getElementById('mechanismCo').value= document.getElementById('mechanism').options[document.getElementById('mechanism').selectedIndex].value;
 		// 		document.getElementById('businessCo').value= document.getElementById('business').options[document.getElementById('business').selectedIndex].value;
     // }
-	var riskIndex ;
+
+    $(document).ready(function(){
+        var length = $('tbody').children('tr').length
+        var  append = ""
+
+        var deleteOne = 1
+        $('#deleteColumn').click(function(){
+            deleteOne = $('input[name="radio"]:checked').attr('id')
+            if (deleteOne) {
+                $('#'+deleteOne).parents('tr').remove()
+                length--
+            }else{
+                alert('请选择一条数据')
+            }
+            console.log(deleteOne)
+
+        })
+
+        $('#addRecord').click(function(){
+            length++
+            appendTr(length-1)
+
+        })
+        function appendTr(index){
+            console.log('append'+index)
+            append="<tr id='line"+index+"'>"+
+                "<td><input type='radio' name='radio' id='radio"+index+"' class='radioBtn'></td>"+
+                "<td><div class='one'>"+
+                "<span class='sel'>"+
+                "<select name='makeupCoSe' onchange='getrisk("+index+")' onclick='getrisk("+index+")' class='selected typeclass'>"+
+                "<option value=''></option>";
+                $.each(typepull, function(index, value, array) {
+                    append+="<option value='"+value.fxlb+"'>"+value.fxlb+"</option>"
+                });
+               append+=
+                "</select>"+
+                "</span>"+
+                "</div>"+
+                "</td>"+
+                "<td><div class='one'>"+
+                "<span class='sel'>"+
+                "<select name='makeupCoSe' id='makeupCoSe' onchange='calcyuzhi("+index+")' class='selected riskclass'>"+
+                "<option value=''></option>";
+
+                // "<option  value='风险类型'>风险类型</option>"+
+                // "<option  value='c++'>c++</option>"+
+                // "<option  value='python'>python</option>"+
+                append+="</select>"+
+                "</span>"+
+                "</div>"+
+                "</td>"+
+                "<td>" +
+                    "<input name='riskvalueclass' onblur='calcover("+index+")' class='riskvalueclass'  type='text'>" +
+                "</td>"+
+                "<td>" +
+                    "<div class='one'>"+
+                    "<span class='sel'>"+
+                    "<select name='yuzhiclass' onchange='calcover("+index+")' class='selected yuzhiclass'>"+
+                    "<option value=''></option>"+
+
+                    "</select>"+
+                    "</span>"+
+                    "</div>"+
+                "</td>"+
+                "<td><input class=\"chaochuclass\" disabled type=\"text\"></td>"+
+                "<td>" +
+                    "<div class='one'>"+
+                    "<span class='sel'>"+
+                    "<select name='makeupCoSe' class='selected organname'>"+
+                    "<option value=''></option>"+
+
+                    "</select>"+
+                    "</span>"+
+                    "</div>"+
+                "</td>"+
+                "<td>" +
+                    "<div class='one'>"+
+                    "<span class='sel'>"+
+                    "<select name='makeupCoSe' class='selected organcode'>"+
+                    "<option value=''></option>"+
+
+                    "</select>"+
+                    "</span>"+
+                    "</div>"+
+                "</td>"+
+                "<td><input class='cusnameclass' type='text'></td>" +
+                "<td><input class='cuscodeclass' type='text'></td>"+
+                "<td><input class='menunameclass' type='text'></td>"+
+                // "</div>"+
+                // "</td>"+
+                "<td><input class='busnameclass' type='text'></td>" +
+                    "<input class='buscodeclass' type='text'></td>" +
+                "<td>" +
+                    "<input type='text'></td>" +
+                    "<td><input type='text'></td>" +
+                    "<td><div class='one'>"+
+                    "<span class='sel'>"+
+                    "<select name='makeupCoSe' class='selected statusclass'>"+
+                    "<option value=''></option>"+
+
+                    "</select>"+
+                    "</span>"+
+                    "</div>"+
+                "</td>"+
+                "<td><input class='introclass' type='text'></td>"+
+                "<td><input class='remarksclass' type='text'></td>" +
+
+            "</tr>"
+
+            $('tbody').append(append)
+            exchangedata(exchangedataIndex,index);
+            statusdata(statusIndex,index)
+
+        }
+
+
+    })
+
     $(function () {
         getPullDown();
+        // $('.typeclass').on('blur',function () {
+        //     console.log( $(this).parents('tr'))
+        //     var  a = $(this).parents('tr').attr('id')
+        //     console.log(a)
+        // })
         $('#makeupCoSe').on('blur',function () {
             var a = $('#makeupCoSe option:selected').val();
             var str  = "<option value=''></option>";
@@ -273,10 +405,22 @@
             });
             $('#riskIndex').html("")
             $('#riskIndex').append(str);
+
+
+        })
+
+        $('#submit').on('click',function () {
+            sumitfuc();
         })
 
 
     })
+
+    function getrisk(index) {
+        console.log('index'+index)
+        riskdata(riskIndex,index)
+
+    }
 
 	function getPullDown() {
         $.ajax({
@@ -285,48 +429,303 @@
             data: {},
             dataType: "json",
             success: function (data) {
+                console.log(data)
+                typepull   = data.type;
 				riskIndex = data.risk;
-				riskdata(data); //风险指标下拉框
-				exchangedata(data); //机构名称和机构代码下拉框
+				exchangedataIndex = data.exchange;
+				statusIndex = data.status;
+				yuzhiIndex = data.yuzhi;
+				riskdata(data.risk); //风险指标下拉框
+				exchangedata(data.exchange); //机构名称和机构代码下拉框
 
             }
         });
     }
-    function riskdata(data) {
-        var statushtml = "<option value=''></option>";
-        $.each(data.status, function(index, value, array) {
-            statushtml+="<option value='"+value.fvalue+"'>"+value.fvalue+"</option>"
+
+    // 状态下拉
+    function statusdata(data,index) {
+        var appendhtml = "<option value=''></option>";
+        $.each(data, function(index, value, array) {
+            appendhtml+="<option value='"+value.fvalue+"'>"+value.fvalue+"</option>"
         });
-        $("#status").html();
-        $("#status").append(statushtml);
+        $(".statusclass").eq(index).empty();
+        $(".statusclass").eq(index).append(appendhtml);
+    }
+    function riskdata(data,index) {
+        var a = $('.typeclass:eq('+index+') option:selected').val();
+        console.log('a-----'+a)
+        var statushtml = "<option value=''></option>";
+        $.each(data, function(index, value, array) {
+            if(value.fxlb==a){
+                statushtml+="<option value='"+value.fxzb+"'>"+value.fxzb+"</option>";
+            }
+        });
+        if(!index){
+            index = 0;
+        }
+        console.log(index+'----')
+        $(".riskclass").eq(index).empty();
+        $(".riskclass").eq(index).append(statushtml);
+
     }
 
     /**
 	 * 交易所市场信息
      * @param data
      */
-    function exchangedata(data) {
+    function exchangedata(data,index) {
+        if(!index) index=0;
         var exchange = "<option value=''></option>";
         var exchangecode = "<option value=''></option>";
-        $.each(data.exchange, function(index, value, array) {
+        $.each(data, function(index, value, array) {
             exchange+="<option value='"+value.jysinfo+"'>"+value.jysinfo+"</option>"
-            exchange+="<option value='"+value.jys+"'>"+value.jys+"</option>"
+            exchangecode+="<option value='"+value.jys+"'>"+value.jys+"</option>"
         });
-        $("#exchange").html();
-        $("#exchange").append(exchange);
+        $(".organname").eq(index).empty();
+        $(".organname").eq(index).append(exchange);
 
-        $("#exchangecode").html();
-        $("#exchangecode").append(exchangecode);
+        $(".organcode").eq(index).empty();
+        $(".organcode").eq(index).append(exchangecode);
     }
 
+    //计算阈值
+    function calcyuzhi(index) {
+        if(!index) index=0;
+        var a = $(".typeclass").eq(index).val();
+        var b = $(".riskclass").eq(index).val();
+        var exchange = "<option value=''></option>";
+        $.each(yuzhiIndex, function(index, value, array) {
+            if(value.fxlb=a&&value.fxzb==b){
+                exchange+="<option value='"+value.yuzhi1+"'>"+value.yuzhi1+"</option>"
+            }
+        });
+        $(".yuzhiclass").eq(index).empty();
+        $(".yuzhiclass").eq(index).append(exchange);
+    }
     //当划过阈值，计算超出额
-    function overmount(index) {
+    function calcover(index) {
+        if(!index) index=0;
+        var a = $(".riskvalueclass").eq(index).val();
+        var b = $(".yuzhiclass").eq(index).val();
+        if(a && b){
+            var c = (a-b)/b;
+            $(".chaochuclass").eq(index).val(c+"%");
+        }
+
+
+
+
+
 
     }
 
     //提交
-    function sumit() {
+    function sumitfuc() {
+        // var ptype =  $('.typeclass option:selected').val());
+        // var prisk =  $('.riskclass option:selected').val());
+        // var priskvalue =  $('.riskvalueclass').val());
+        // var pyuzhi =  $('.yuzhiclass').val());
+        // var pchaochu =  $('.chaochuclass').val());
+        // var porgnname =  $('.organname').val());
+        // var porgncode =  $('.organcode').val());
+        // var pcusname =  $('.cusnameclass').val());
+        // var pcuscode =  $('.cuscodeclass').val());
+        // var pmenuname =  $('.menunameclass').val());
+        // var pmenucode =  $('.menucodeclass').val());
+        // var pbusname =  $('.busnameclass').val());
+        // var pbuscode =  $('.buscodeclass').val());
+        // var pstatus =  $('.statusclass').val());
+        // var pintro =  $('.introclass').val());
+        // var premarks =  $('.remarksclass').val());
+        // var a =document.getElementsByName('riskvalueclass').val()
 
+        // console.log($('.riskvalueclass'))
+        var b  = document.getElementById('tbody').getElementsByTagName('tr').length
+
+        var length = $('#tbody tr').length;
+       console.log($('#tbody tr').length);
+        var atype = new Array(),arisk = new Array(),ariskvalue = new Array(),ayuzhi = new Array(),
+            achaochu = new Array(),aorgnname = new Array(),aorgncode = new Array(),acusname = new Array(),
+            acuscode = new Array(),amenuname = new Array(),amenucode = new Array(),abusname = new Array(),
+            abuscode = new Array(),astatus = new Array(),aintro = new Array(),aremarks = new Array();
+        
+        for(var i = 0;i<$('#tbody tr').length;i++){
+            
+            if(!$('.typeclass option:selected').eq(i).val()){
+                atype.push('null');
+            }else{
+                atype.push($('.typeclass option:selected').eq(i).val());
+            }
+            if(!$('.riskclass option:selected').val()){
+                arisk.push('null');
+            }else{
+                arisk.push($('.typeclass option:selected').eq(i).val());
+            }
+            if(!$('.riskvalueclass').eq(i).val()){
+                ariskvalue.push('null');
+            }else{
+                ariskvalue.push($('.riskvalueclass').eq(i).val());
+            }
+            if(!$('.yuzhiclass').eq(i).val()){
+                ayuzhi.push('null');
+            }else{
+                ayuzhi.push($('.yuzhiclass').eq(i).val());
+            }
+            if(!$('.chaochuclass').eq(i).val()){
+                achaochu.push('null');
+            }else{
+                ayuzhi.push($('.yuzhiclass').eq(i).val());
+            }
+            //
+            if(!$('.organname').eq(i).val()){
+                aorgnname.push('null');
+            }else{
+                aorgnname.push($('.organname').eq(i).val());
+            }
+            if(!$('.organcode').eq(i).val()){
+                aorgncode.push('null');
+            }else{
+                aorgncode.push($('.organcode').eq(i).val());
+            }
+
+            if(!$('.cusnameclass').eq(i).val()){
+                acusname.push('null');
+            }else{
+                acusname.push($('.cusnameclass').eq(i).val());
+            }
+            if(!$('.cuscodeclass').eq(i).val()){
+                acuscode.push('null');
+            }else{
+                acuscode.push($('.cuscodeclass').eq(i).val());
+            }
+            if(!$('.menunameclass').eq(i).val()){
+                amenuname.push('null');
+            }else{
+                amenuname.push($('.menunameclass').eq(i).val());
+            }
+            if(!$('.menucodeclass').eq(i).val()){
+                amenucode.push('null');
+            }else{
+                amenucode.push($('.menucodeclass').eq(i).val());
+            }
+            if(!$('.busnameclass').eq(i).val()){
+                abusname.push('null');
+            }else{
+                abusname.push($('.busnameclass').eq(i).val());
+            }
+            if(!$('.buscodeclass').eq(i).val()){
+                abuscode.push('null');
+            }else{
+                abuscode.push($('.buscodeclass').eq(i).val());
+            }
+
+            if(!$('.statusclass').eq(i).val()){
+                astatus.push('null');
+            }else{
+                astatus.push($('.statusclass').eq(i).val());
+            }
+
+            if(!$('.introclass').eq(i).val()){
+                aintro.push('null');
+            }else{
+                aintro.push($('.introclass').eq(i).val());
+            }
+            if(!$('.remarksclass').eq(i).val()){
+                aremarks.push('null');
+            }else{
+                aremarks.push($('.remarksclass').eq(i).val());
+            }
+            // console.log(abuscode,ayuzhi)
+
+            // arisk.push($('.riskclass option:selected').val());
+            // ariskvalue.push($('.riskvalueclass').val());
+            // ayuzhi.push($('.yuzhiclass').val());
+            // achaochu.push($('.chaochuclass').val());
+            // aorgnname.push($('.organname').val());
+            // aorgncode.push($('.organcode').val());
+            // acusname.push($('.cusnameclass').val());
+            // acuscode.push($('.cuscodeclass').val());
+            // amenuname.push($('.menunameclass').val());
+            // amenucode.push($('.menucodeclass').val());
+            // abusname.push($('.busnameclass').val());
+            // abuscode.push($('.buscodeclass').val());
+            // astatus.push($('.statusclass').val());
+            // aintro.push($('.introclass').val());
+            // aremarks.push($('.remarksclass').val());
+        }
+        console.log(ariskvalue)
+        console.log(ariskvalue.join(','))
+
+    var ptype =  encodeURI(encodeURI(atype.join(',')));
+    var prisk =  encodeURI(encodeURI(arisk.join(',')));
+    var priskvalue =  encodeURI(encodeURI(ariskvalue))
+    var pyuzhi =  encodeURI(encodeURI(ayuzhi.join(',')))
+    // var pchaochu =  $('.chaochuclass').val());
+        var pchaochu =  encodeURI(encodeURI(ayuzhi.join(',')))
+        var porgnname =  encodeURI(encodeURI(aorgnname.join(',')))
+        var porgncode =  encodeURI(encodeURI(aorgncode.join(',')))
+        var pcusname =  encodeURI(encodeURI(acusname.join(',')))
+        var pcuscode =  encodeURI(encodeURI(acuscode.join(',')))
+        var pmenuname =  encodeURI(encodeURI(amenuname.join(',')))
+        var pmenucode =  encodeURI(encodeURI(amenucode.join(',')));
+        var pbusname =  encodeURI(encodeURI(abusname.join(',')))
+        var pbuscode =  encodeURI(encodeURI(abuscode.join(',')))
+        var pstatus =  encodeURI(encodeURI(astatus.join(',')))
+        var pintro =  encodeURI(encodeURI(aintro.join(',')))
+        var premarks =  encodeURI(encodeURI(aremarks.join(',')))
+
+        var paradata ='?length='+length+'&ptype='+ptype+"&prisk="+prisk+"&priskvalue="+priskvalue+
+            "&pyuzhi="+pyuzhi+"&pchaochu="+pchaochu+"&porgnname="+porgnname+"&porgncode="+porgncode+
+            "&pcusname="+pcusname+"&pcuscode="+pcuscode+"&pmenuname="+pmenuname+"&pmenucode="+pmenucode+
+            "&pbusname="+pbusname+"&pbuscode="+pbuscode+"&pstatus="+pstatus+"&pintro="+pintro+"&premarks="+premarks;
+
+        $.ajax({
+            type: "POST",
+            url: "eventinput/saveEvent"+paradata,
+            data: {},
+            dataType: "json",
+            success: function (data) {
+
+
+            }
+        });
+
+
+    }
+    function checkempty() {
+
+        var a = $('.typeclass option:selected').eq(i).val();
+        var b = $('.riskclass option:selected').val();
+        var c = $('.riskvalueclass').val();
+        var d = $('.yuzhiclass').val();
+        var e = $('.chaochuclass').val();
+        var f = $('.organname').val();
+        var g = $('.organcode').val();
+        var h  = $('.cusnameclass').val();
+        var i = $('.cuscodeclass').val();
+        var j = $('.menunameclass').val();
+        var k = $('.menucodeclass').val();
+        var l = $('.busnameclass').val();
+        var m  = $('.buscodeclass').val();
+        var n = $('.statusclass').val();
+        var o = $('.introclass').val();
+        var p = $('.remarksclass').val();
+        if(isempty(a)||isempty(b)||isempty(c)||isempty(d)||isempty(e)||isempty(f)||isempty(g)||isempty(h)||isempty(i)
+            ||isempty(g)||isempty(k)||isempty(l)||isempty(m)||isempty(n)||isempty(o)||isempty(p)){
+            return false;
+        }
+
+    }
+    
+    function isempty(str) {
+        if(!str)
+            return true;
+        else 
+            return false;
+        
     }
 
 </script>
+
+</body>
+</html>

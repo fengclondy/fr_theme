@@ -157,7 +157,7 @@ td.more:active > a {
     margin-top: .1em;
     padding: 0;
     min-width: 100%;
-    background-color: #0006;
+    background-color: #0005;
     border-radius: .2rem;
     transition: all .5s ease;
 }
