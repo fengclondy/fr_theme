@@ -21,6 +21,7 @@ import com.qdch.intercept.SecurityInterceptor;
 //github.com/zuoqingbei/qss_code.git
 import com.qdch.model.DemoModel;
 import com.qdch.p2p.controller.BorrowerController;
+import com.qdch.p2p.controller.BorrowerFillController;
 import com.qdch.p2p.controller.BorrowerPhotoController;
 import com.qdch.p2p.controller.CompanyFeelController;
 import com.qdch.p2p.controller.DealplatformController;
@@ -210,6 +211,7 @@ public class Config extends JFinalConfig {
 		me.add("qdch/supervise",SuperviseController.class,"/");  //p2p-监管月报
 		me.add("qdch/platformalert",PlatformAlertController.class,"/"); //p2p-平台总览弹出
 		me.add("qdch/industry",IndustryCommController.class,"/");//p2p-工商新内容
+		me.add("qdch/borrowerfill",BorrowerFillController.class,"/"); //p2p-借款人填报
 		/***工商 lixiaoyi Controller START ***/
 		//me.add("qdch/industry",IndustryComController.class,"/"); //工商入口
 		
