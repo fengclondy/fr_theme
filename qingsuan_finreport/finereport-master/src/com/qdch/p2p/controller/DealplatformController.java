@@ -11,9 +11,13 @@ import java.util.Map;
 
 
 
+
+
 import com.qdch.core.BaseController;
 import com.qdch.p2p.model.AverageTimeModel;
+import com.qdch.p2p.model.CollectPrincipalModel;
 import com.qdch.p2p.model.CustNumberModel;
+import com.qdch.p2p.model.FlowAmountModel;
 import com.qdch.p2p.model.RangeNumberModel;
 import com.qdch.p2p.model.TotalTranNumModel;
 import com.qdch.p2p.model.TranAmountModel;
@@ -89,5 +93,16 @@ public class DealplatformController extends BaseController {
 		res.put("investList", investList);
 		mRenderJson(res);
 	}
-
+	//资金流入
+	public void getFlowAmount(){
+		String jysinfo = getPara("jysinfo");//获取参数：交易市场名称
+		List<FlowAmountModel> flowAmountList = FlowAmountModel.dao.getFlowAmount(getDataScopeByUserName(), jysinfo);
+		mRenderJson(flowAmountList);
+	}
+	//代收本金
+	public void getCollectPrincipal(){
+		String jysinfo = getPara("jysinfo");//获取参数：交易市场名称
+		List<CollectPrincipalModel> collectPrincipal = CollectPrincipalModel.dao.getCollectPrincipal(getDataScopeByUserName(), jysinfo);
+		mRenderJson(collectPrincipal);
+	}
 }

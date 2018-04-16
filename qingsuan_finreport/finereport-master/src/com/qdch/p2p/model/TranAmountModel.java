@@ -36,6 +36,8 @@ public class TranAmountModel extends Model<TranAmountModel>{
 	 * @todo   平台画像，人均投资金额
 	 * @time   2018年4月13日 
 	 * @author ljm   
+	 * 
+	 * 
 	 */
 	public List<TranAmountModel> getInvestNumber(String datasql,String jysinfo){
 		String sql = "select vday_ym As month,tran_type As rjtz,fvalue As rjtzvalue,jysinfo "
@@ -53,5 +55,4 @@ public class TranAmountModel extends Model<TranAmountModel>{
 		
 		return dao.find(sql);
 	}
-	
 }

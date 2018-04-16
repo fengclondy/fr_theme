@@ -40,11 +40,13 @@ import com.qdch.p2p.model.CoCompanyTypeModel;
 import com.qdch.p2p.model.CoCorePersonModel;
 import com.qdch.p2p.model.CoExecptionModel;
 import com.qdch.p2p.model.CoShareholderInfoModel;
+import com.qdch.p2p.model.CollectPrincipalModel;
 import com.qdch.p2p.model.CompositeInterestModel;
 import com.qdch.p2p.model.CustNumberModel;
 import com.qdch.p2p.model.DefenInfoModel;
 import com.qdch.p2p.model.DiYaShenHeModel;
 import com.qdch.p2p.model.FenSanDuJiSuanModel;
+import com.qdch.p2p.model.FlowAmountModel;
 import com.qdch.p2p.model.FullScaleTimeModel;
 import com.qdch.p2p.model.ImportantRatioModel;
 import com.qdch.p2p.model.InterestModel;
@@ -356,10 +358,11 @@ public class Config extends JFinalConfig {
 			
 			insight_arp.addMapping("insight_pp_tran_number",TotalTranNumModel.class);//交易总量，总成交额
 			insight_arp.addMapping("insight_pp_average_time",AverageTimeModel.class);//平均满标用时
-			insight_arp.addMapping("insight_pp_cust_number",CustNumberModel.class);//人均借款，人均投资
+			insight_arp.addMapping("insight_pp_cust_number",CustNumberModel.class);//人均借款数，人均投资数
 			insight_arp.addMapping("insight_pp_range_number",RangeNumberModel.class);//投资金额借款金额区间人数
-			insight_arp.addMapping("insight_pp_tran_amount",TranAmountModel.class);//人均借款人均投资
-			
+			insight_arp.addMapping("insight_pp_tran_amount",TranAmountModel.class);//人均借款金额，人均投资金额
+			insight_arp.addMapping("insight_pp_flow_amount",FlowAmountModel.class);//资金流入
+			insight_arp.addMapping("insight_pp_collect_principal",CollectPrincipalModel.class);//资金流入
 			
 		/***p2p 连纪明 insight层 Model END***/
 		
@@ -429,6 +432,6 @@ public class Config extends JFinalConfig {
 	}
 
 	public static void main(String[] args){ 
-		JFinal.start("WebRoot", 8088, "/", 5);
+		JFinal.start("WebRoot", 8080, "/", 5);
 	}
 }
