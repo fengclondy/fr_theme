@@ -404,9 +404,9 @@
                         </li>
                         <li>
                             <label >处理状态</label>
-                            <input class="inputradio"  name="radio1" value="0" type="radio" checked="checked">未处理
-                            <input  class="inputradio"   name="radio1" value="1" type="radio">已提交
-                            <input  class="inputradio"   name="radio1" value="2" type="radio">已排查
+                            <input class="inputradio"  name="radio1" value="未处理" type="radio">未处理
+                            <input  class="inputradio"   name="radio1" value="已提交"  checked="checked" type="radio">已提交
+                            <input  class="inputradio"   name="radio1" value="已排查" type="radio">已排查
                         </li>
                         <li>
                             <a href="">处理时间: <span id="processingData"></span> </a>
@@ -651,6 +651,7 @@
 
     var idvalue;
     function popupfuc(value) {
+        empty()
         idvalue = value;
         console.log('idvalue'+idvalue)
         $('.model').show()
@@ -684,6 +685,37 @@
                 //
 
 
+                var checkhtml = "";
+                $.each(data.history, function(index, value, array) {
+                    checkhtml +=" <li>\n" +
+                        "                        <div class=\"\">\n" +
+                        "                            <span class=\"\">审核人:</span>\n" +
+                        "                            <span id=\"checker\" class=\"Auditor\">"+value.checker+"</span>\n" +
+                        "                        </div>\n" +
+                        "                    </li>\n" +
+                        "                    <li>\n" +
+                        "                        <div class=\"\">\n" +
+                        "                            <span class=\"\">处理状态:</span>\n" +
+                        "                            <span id=\"checkstatus\" class=\"HandleState\">"+value.checkstatus+"</span>\n" +
+                        "                        </div>\n" +
+                        "                    </li>\n" +
+                        "                    <li>\n" +
+                        "                        <div class=\"\">\n" +
+                        "                            <span class=\"Auditor\">处理时间:</span>\n" +
+                        "                            <span id=\"checktime\" class=\"AuditorData\">"+value.checktime+"</span>\n" +
+                        "                        </div>\n" +
+                        "                    </li>\n" +
+                        "                    <br>\n" +
+                        "                    <li>\n" +
+                        "                        <div class=\"\">\n" +
+                        "                            <span class=\"Auditor\">备&nbsp;&nbsp;&nbsp;注:</span>\n" +
+                        "                            <span id=\"remarks\">"+value.remarks+"</span>\n" +
+                        "                        </div>\n" +
+                        "                    </li>";
+                });
+                $('.modelMiddle ul').html(checkhtml);
+
+
             }
         });
 
@@ -694,7 +726,9 @@
      */
 
     function submitcheck() {
-        var status = $(".inputradio .checked").val();
+        // var status = $(".inputradio.checked").attr('value')
+        var status = $("input[name='radio1']:checked").val();
+
         var area = $(".inputarea").val();
         var param = "?status="+status+"&area="+area;
 
