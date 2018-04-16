@@ -64,9 +64,11 @@
     }
     /*输入组框*/
     .inputGroup {
+    position: relative;
         display: inline-block;
         margin-left: 1rem;
         font-size: .72rem;
+        z-index:10;
     }
     /*按钮组*/
     .btnGroup {

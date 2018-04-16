@@ -38,20 +38,48 @@ public class EventInputController extends BaseController {
 		RiskEventModel riskEventModel  = new RiskEventModel();
 
 		StringBuffer sb = new StringBuffer();
-		sb.append("insert into hub_fxsj(fxlb,fxzb,fxzbz,yuzhi) values");
+		sb.append("insert into hub_fxsj(fxlb,fxzb,fxzbz,yuzhi,cce,jgmc,jgdm,khmc,cust_id,ywlx,ywbm," +
+				"ywcdmc,ywcdbm,clzt,fxsm,bz) values");
 		try {
+
 			String length  =  getPara("length"); //总共有几行
-			String[] types = decode(getPara("ptype")).split(",");
-			String[] risks = decode(getPara("prisk")).split(",");
-			String[] riskvalues = decode(getPara("priskvalue")).split(",");
-			String[] yuzhis = decode(getPara("priskvalue")).split(",");
+			String[] ptypes = decode(getPara("ptype")).split(",");
+			String[] prisks = decode(getPara("prisk")).split(",");
+			String[] priskvalues = decode(getPara("priskvalue")).split(",");
+			String[] pyuzhis = decode(getPara("pyuzhi")).split(",");
+			String[] pchaochus = decode(getPara("pchaochu")).split(",");
+			String[] porgnnames = decode(getPara("porgnname")).split(",");
+			String[] porgncodes = decode(getPara("porgncode")).split(",");
+			String[] pcusnames = decode(getPara("pcusname")).split(",");
+			String[] pcuscodes = decode(getPara("pcuscode")).split(",");
+			String[] pbusnames = decode(getPara("pbusname")).split(",");
+			String[] pbuscodes = decode(getPara("pbuscode")).split(",");
+			String[] pmenunames = decode(getPara("pmenuname")).split(",");
+			String[] pmenucodes = decode(getPara("pmenucode")).split(",");
+			String[] pstatuses = decode(getPara("pstatus")).split(",");
+			String[] pintros = decode(getPara("pintro")).split(",");
+			String[] premarks = decode(getPara("premarks")).split(",");
+
+
+
 			for(int i=0;i<Integer.parseInt(length);i++){
 				sb.append("('");
-				sb.append(types[i]).append("','");
-				sb.append(risks[i]).append("','");
-//				sb.append(riskvalues[i]).append(",");
-//				sb.append(yuzhis[i]).append("),");
-
+				sb.append(ptypes[i]).append("','");
+				sb.append(prisks[i]).append("','");
+				sb.append(priskvalues[i]).append("','");
+				sb.append(pyuzhis[i]).append("','");
+				sb.append(pchaochus[i]).append("','");
+				sb.append(porgnnames[i]).append("','");
+				sb.append(porgncodes[i]).append("','");
+				sb.append(pcusnames[i]).append("','");
+				sb.append(pcuscodes[i]).append("','");
+				sb.append(pbusnames[i]).append("','");
+				sb.append(pbuscodes[i]).append("','");
+				sb.append(pmenunames[i]).append("','");
+				sb.append(pmenucodes[i]).append("','");
+				sb.append(pstatuses[i]).append("','");
+				sb.append(pintros[i]).append("','");
+				sb.append(premarks[i]).append("'),");
 
 			}
 			String sql = sb.toString().substring(0,sb.toString().length()-1);
@@ -59,7 +87,7 @@ public class EventInputController extends BaseController {
 
 //			sb.append()
 
-//			JDBCUtil.executeUpdate(sb.toString(),null);
+			JDBCUtil.executeUpdate(sql,null);
 
 //			riskEventModel.dao.save();
 			mRenderJson(true);

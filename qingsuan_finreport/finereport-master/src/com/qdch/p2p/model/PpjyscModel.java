@@ -22,8 +22,9 @@ public class PpjyscModel extends Model<PpjyscModel> {
 		String sql="select jysc,jyscmc,jysinfo,jyscfl,zt,djrq from hub_pp_jysc where 1=1 ";
 		
 		if(StringUtils.isNotBlank(dataSql)){
-			sql+=" jysc in"+ dataSql+"";
+			sql+=" and jysc in"+ dataSql+"";
 		}
+		sql+="order by jysc";
 		return dao.find(sql);
 	}
 

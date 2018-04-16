@@ -1,6 +1,7 @@
 package com.fr.hailian.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 
@@ -17,6 +18,14 @@ public class RoleMenuModel implements Serializable{
 	private String pid;
 	private String pname;
 	private String reportletpath;
+	private String desc;
+	private List<RoleMenuModel> children;
+	public String getDesc() {
+		return desc;
+	}
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
 	public String getId() {
 		return id;
 	}
@@ -46,6 +55,12 @@ public class RoleMenuModel implements Serializable{
 	}
 	public void setReportletpath(String reportletpath) {
 		this.reportletpath = reportletpath;
+	}
+	public List<RoleMenuModel> getChildren() {
+		return children;
+	}
+	public void setChildren(List<RoleMenuModel> children) {
+		this.children = children;
 	}
 	
 }

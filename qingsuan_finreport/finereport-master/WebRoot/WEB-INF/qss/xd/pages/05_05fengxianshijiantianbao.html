@@ -260,8 +260,6 @@
 <script src="${contextPath}/static/js/pageCom.js"></script>
 <script src="${contextPath}/static/js/chartsCom.js"></script>
 
-</body>
-</html>
 <script language="javascript">
     var typepull,riskIndex ,statusIndex,yuzhiIndex,exchangedataIndex;
     // function changeF() {
@@ -552,84 +550,92 @@
             abuscode = new Array(),astatus = new Array(),aintro = new Array(),aremarks = new Array();
         
         for(var i = 0;i<$('#tbody tr').length;i++){
+            
             if(!$('.typeclass option:selected').eq(i).val()){
-                atype.push('');
+                atype.push('null');
             }else{
                 atype.push($('.typeclass option:selected').eq(i).val());
             }
             if(!$('.riskclass option:selected').val()){
-                arisk.push('');
+                arisk.push('null');
             }else{
                 arisk.push($('.typeclass option:selected').eq(i).val());
             }
             if(!$('.riskvalueclass').eq(i).val()){
-                ariskvalue.push('');
+                ariskvalue.push('null');
             }else{
                 ariskvalue.push($('.riskvalueclass').eq(i).val());
             }
             if(!$('.yuzhiclass').eq(i).val()){
-                ayuzhi.push('');
+                ayuzhi.push('null');
             }else{
                 ayuzhi.push($('.yuzhiclass').eq(i).val());
             }
             if(!$('.chaochuclass').eq(i).val()){
-                achaochu.push('');
+                achaochu.push('null');
             }else{
                 ayuzhi.push($('.yuzhiclass').eq(i).val());
             }
             //
             if(!$('.organname').eq(i).val()){
-                aorgnname.push('');
+                aorgnname.push('null');
             }else{
                 aorgnname.push($('.organname').eq(i).val());
             }
             if(!$('.organcode').eq(i).val()){
-                aorgncode.push('');
+                aorgncode.push('null');
             }else{
                 aorgncode.push($('.organcode').eq(i).val());
             }
 
             if(!$('.cusnameclass').eq(i).val()){
-                acusname.push('');
+                acusname.push('null');
             }else{
                 acusname.push($('.cusnameclass').eq(i).val());
             }
             if(!$('.cuscodeclass').eq(i).val()){
-                acuscode.push('');
+                acuscode.push('null');
             }else{
                 acuscode.push($('.cuscodeclass').eq(i).val());
             }
             if(!$('.menunameclass').eq(i).val()){
-                amenuname.push('');
+                amenuname.push('null');
             }else{
                 amenuname.push($('.menunameclass').eq(i).val());
             }
             if(!$('.menucodeclass').eq(i).val()){
-                amenucode.push('');
+                amenucode.push('null');
             }else{
                 amenucode.push($('.menucodeclass').eq(i).val());
             }
             if(!$('.busnameclass').eq(i).val()){
-                abusname.push('');
+                abusname.push('null');
             }else{
                 abusname.push($('.busnameclass').eq(i).val());
             }
             if(!$('.buscodeclass').eq(i).val()){
-                abuscode.push('');
+                abuscode.push('null');
             }else{
                 abuscode.push($('.buscodeclass').eq(i).val());
             }
 
+            if(!$('.statusclass').eq(i).val()){
+                astatus.push('null');
+            }else{
+                astatus.push($('.statusclass').eq(i).val());
+            }
+
             if(!$('.introclass').eq(i).val()){
-                aintro.push('');
+                aintro.push('null');
             }else{
                 aintro.push($('.introclass').eq(i).val());
             }
             if(!$('.remarksclass').eq(i).val()){
-                aremarks.push('');
+                aremarks.push('null');
             }else{
                 aremarks.push($('.remarksclass').eq(i).val());
             }
+            // console.log(abuscode,ayuzhi)
 
             // arisk.push($('.riskclass option:selected').val());
             // ariskvalue.push($('.riskvalueclass').val());
@@ -647,26 +653,31 @@
             // aintro.push($('.introclass').val());
             // aremarks.push($('.remarksclass').val());
         }
-        // console.log(parr.join(','))
+        console.log(ariskvalue)
+        console.log(ariskvalue.join(','))
 
     var ptype =  encodeURI(encodeURI(atype.join(',')));
     var prisk =  encodeURI(encodeURI(arisk.join(',')));
-    var priskvalue =  encodeURI(encodeURI(ariskvalue.join(',')))
+    var priskvalue =  encodeURI(encodeURI(ariskvalue))
     var pyuzhi =  encodeURI(encodeURI(ayuzhi.join(',')))
     // var pchaochu =  $('.chaochuclass').val());
-    // var porgnname =  $('.organname').val());
-    // var porgncode =  $('.organcode').val());
-    // var pcusname =  $('.cusnameclass').val());
-    // var pcuscode =  $('.cuscodeclass').val());
-    // var pmenuname =  $('.menunameclass').val());
-    // var pmenucode =  $('.menucodeclass').val());
-    // var pbusname =  $('.busnameclass').val());
-    // var pbuscode =  $('.buscodeclass').val());
-    // var pstatus =  $('.statusclass').val());
-    // var pintro =  $('.introclass').val());
-    // var premarks =  $('.remarksclass').val());
+        var pchaochu =  encodeURI(encodeURI(ayuzhi.join(',')))
+        var porgnname =  encodeURI(encodeURI(aorgnname.join(',')))
+        var porgncode =  encodeURI(encodeURI(aorgncode.join(',')))
+        var pcusname =  encodeURI(encodeURI(acusname.join(',')))
+        var pcuscode =  encodeURI(encodeURI(acuscode.join(',')))
+        var pmenuname =  encodeURI(encodeURI(amenuname.join(',')))
+        var pmenucode =  encodeURI(encodeURI(amenucode.join(',')));
+        var pbusname =  encodeURI(encodeURI(abusname.join(',')))
+        var pbuscode =  encodeURI(encodeURI(abuscode.join(',')))
+        var pstatus =  encodeURI(encodeURI(astatus.join(',')))
+        var pintro =  encodeURI(encodeURI(aintro.join(',')))
+        var premarks =  encodeURI(encodeURI(aremarks.join(',')))
 
-        var paradata ='?length='+length+'&ptype='+ptype+"&prisk="+prisk+"&priskvalue="+priskvalue+"&pyuzhi="+pyuzhi;
+        var paradata ='?length='+length+'&ptype='+ptype+"&prisk="+prisk+"&priskvalue="+priskvalue+
+            "&pyuzhi="+pyuzhi+"&pchaochu="+pchaochu+"&porgnname="+porgnname+"&porgncode="+porgncode+
+            "&pcusname="+pcusname+"&pcuscode="+pcuscode+"&pmenuname="+pmenuname+"&pmenucode="+pmenucode+
+            "&pbusname="+pbusname+"&pbuscode="+pbuscode+"&pstatus="+pstatus+"&pintro="+pintro+"&premarks="+premarks;
 
         $.ajax({
             type: "POST",
@@ -681,25 +692,40 @@
 
 
     }
-    function isempty() {
+    function checkempty() {
 
         var a = $('.typeclass option:selected').eq(i).val();
         var b = $('.riskclass option:selected').val();
         var c = $('.riskvalueclass').val();
         var d = $('.yuzhiclass').val();
-        achaochu.push($('.chaochuclass').val());
-        aorgnname.push($('.organname').val());
-        aorgncode.push($('.organcode').val());
-        acusname.push($('.cusnameclass').val());
-        acuscode.push($('.cuscodeclass').val());
-        amenuname.push($('.menunameclass').val());
-        amenucode.push($('.menucodeclass').val());
-        abusname.push($('.busnameclass').val());
-        abuscode.push($('.buscodeclass').val());
-        astatus.push($('.statusclass').val());
-        aintro.push($('.introclass').val());
-        aremarks.push($('.remarksclass').val());
+        var e = $('.chaochuclass').val();
+        var f = $('.organname').val();
+        var g = $('.organcode').val();
+        var h  = $('.cusnameclass').val();
+        var i = $('.cuscodeclass').val();
+        var j = $('.menunameclass').val();
+        var k = $('.menucodeclass').val();
+        var l = $('.busnameclass').val();
+        var m  = $('.buscodeclass').val();
+        var n = $('.statusclass').val();
+        var o = $('.introclass').val();
+        var p = $('.remarksclass').val();
+        if(isempty(a)||isempty(b)||isempty(c)||isempty(d)||isempty(e)||isempty(f)||isempty(g)||isempty(h)||isempty(i)
+            ||isempty(g)||isempty(k)||isempty(l)||isempty(m)||isempty(n)||isempty(o)||isempty(p)){
+            return false;
+        }
 
+    }
+    
+    function isempty(str) {
+        if(!str)
+            return true;
+        else 
+            return false;
+        
     }
 
 </script>
+
+</body>
+</html>

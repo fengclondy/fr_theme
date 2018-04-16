@@ -16,10 +16,11 @@ public class maxIntrateRankModel extends Model<maxIntrateRankModel>{
 	 */
 	public List<maxIntrateRankModel> getMaxIntrateRank(String dataSql){
 		String sql = "select jyscmc,max(intrate) As max_intrate "
-				+ "from insight_xd_intrate group by jyscmc order by max(intrate) asc;";
+				+ "from insight_xd_intrate where 1=1  ";
 		if(StringUtils.isNotBlank(dataSql)){
 			sql+=" and jysc in"+ dataSql+" ";
 		}
+		sql+=" group by jyscmc order by max(intrate) asc";
 		return dao.find(sql);
 	}
 }
