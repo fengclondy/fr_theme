@@ -20,7 +20,7 @@ public class CoDishonestyModel extends Model<CoDishonestyModel>{
     * @date 2018年4月10日 下午5:26:53
     * @TODO
     */
-	public List<CoDishonestyModel> getDishonesty(String name){
+	public CoDishonestyModel getDishonesty(String name){
 		String sql="SELECT T.name,T.legal_person,T.court,T.according_no,T.case_no,T.performance,T.duty,T.group_no,"
 				+ "T.public_date,T.province,T.create_date,T.according_court "
 				+ "FROM hub_commerce_dishonesty T LEFT JOIN hub_commerce_enterprise n ON T .name = n. NAME ";
@@ -28,7 +28,7 @@ public class CoDishonestyModel extends Model<CoDishonestyModel>{
 			sql+="WHERE T.name = '"+ name+"'";
 		}		
 		
-		return  dao.find(sql);
+		return  dao.findFirst(sql);
 		
 	}
 }

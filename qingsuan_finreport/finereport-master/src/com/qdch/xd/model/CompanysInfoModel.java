@@ -23,7 +23,7 @@ public class CompanysInfoModel extends Model<CompanysInfoModel> {
 	 * @TODO
 	 */
 	public List<CompanysInfoModel> getInfo(String data){
-		String sql="select m.name from hub_commerce_enterprise m where m.name in (select n.company_name from hub_commerce_ref_jys n ";
+		String sql="select m.company_name from hub_commerce_company_info m where m.company_name in (select n.company_name from hub_commerce_ref_jys n ";
 				if(StringUtils.isNotBlank(data)){
 					sql+="where n.jys in "+ data;
 				}
@@ -38,9 +38,9 @@ public class CompanysInfoModel extends Model<CompanysInfoModel> {
 	 * @TODO
 	 */
 	public List<CompanysInfoModel> getBasicinfo(String data,String name){
-		String sql="select * from hub_commerce_enterprise m ";
+		String sql="select * from hub_commerce_company_info m ";
 		if(StringUtils.isNotBlank(name)){
-			sql+="where m.name='"+ name+"'";
+			sql+="where m.company_name='"+ name+"'";
 		}
 		
 		return dao.find(sql);
