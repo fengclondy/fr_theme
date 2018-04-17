@@ -101,6 +101,7 @@ import com.qdch.xd.model.CoBusinessModel;
 import com.qdch.xd.model.CoChangeLogModel;
 import com.qdch.xd.model.CoCopyrightModel;
 import com.qdch.xd.model.CoDishonestyModel;
+import com.qdch.xd.model.CoEnterpriseModel;
 import com.qdch.xd.model.CoExecutorModel;
 import com.qdch.xd.model.CoJobModel;
 import com.qdch.xd.model.CoJudgmentModel;
@@ -130,6 +131,7 @@ import com.qdch.xd.model.JyscModel;
 import com.qdch.xd.model.KeyIndicatorsModel;
 import com.qdch.xd.model.LimitQueryModel;
 import com.qdch.xd.model.ManagementRiskListModel;
+import com.qdch.xd.model.MarkNewsModel;
 import com.qdch.xd.model.MigrationRateModel;
 import com.qdch.xd.model.MonthlyReportListModel;
 import com.qdch.xd.model.MonthlyReportModel;
@@ -394,7 +396,8 @@ public class Config extends JFinalConfig {
         arp.addMapping("hub_commerce_co_website", CoWebsiteModel.class);//工商-网站信息
         arp.addMapping("hub_commerce_co_finance_state", CoReportModel.class);//工商-企业年报-财务信息
         arp.addMapping("hub_commerce_co_stock_change_log", CoStockchangeModel.class);//工商-股权变更
-
+        arp.addMapping("hub_commerce_enterprise", CoEnterpriseModel.class);//舆情关联的企业表
+        arp.addMapping("hub_commerce_meiya_sentiment_news", MarkNewsModel.class);//舆情详情
     	/***p2p 李晓依 hub层 Model START***/
         
         arp.addMapping("hub_static_company_info", CoCompanyInfoModel.class);//p2p-工商静态-公司信息
