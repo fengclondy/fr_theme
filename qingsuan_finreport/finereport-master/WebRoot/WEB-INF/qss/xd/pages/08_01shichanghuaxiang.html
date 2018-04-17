@@ -808,10 +808,10 @@
 	</div>
 	<div class="top">
 		<li>
-			<a href="#jbxx" class="mdclick" tab-id="1">基本信息：<span>10</span></a>
+			<a href="#jbxx" class="mdclick" tab-id="1">基本信息<span></span></a>
 		</li>
 		<li>
-			<a href="#gsxx" class="mdclick" tab-id="1">工商信息：<span>10</span></a>
+			<a href="#gsxx" class="mdclick" tab-id="1">工商信息<span></span></a>
 		</li>
 		<li>
 			<a href="#hxry" class="mdclick" tab-id="1">核心人员：<span>${core!}</span></a>
@@ -826,7 +826,7 @@
 			<a href="#bgjl" class="mdclick" tab-id="1">变更记录：<span>${changeLog!}</span></a>
 		</li>
 		<li>
-			<a href="#qynb" class="mdclick" tab-id="1">企业年报：<span>10</span></a>
+			<a href="#qynb" class="mdclick" tab-id="1">企业年报<span></span></a>
 		</li>
 		<li>
 			<a href="#fzjg" class="mdclick" tab-id="1">分支机构：<span>${brachsize!}</span></a>
@@ -838,7 +838,7 @@
 			<a href="#zczb" class="mdclick" tab-id="1">注册资本变更：<span>${registSize!}</span></a>
 		</li>
 		<li>
-			<a href="#sxr" class="mdclick" tab-id="2">失信人：<span>10</span></a>
+			<a href="#sxr" class="mdclick" tab-id="2">失信人<span></span></a>
 		</li>
 		<li>
 			<a href="#xzcf" class="mdclick" tab-id="2">行政处罚：<span>${penaltvSize!}</span></a>
@@ -2320,7 +2320,7 @@
 
             $.ajax({
                 type:"get",
-                url:"mydata.json",
+                url:"${contextPath}/WEB-INF/qss/xd/pages/mydata.json",
                 async:true,
                 success:function(res){
                     var webkitDep = res;
