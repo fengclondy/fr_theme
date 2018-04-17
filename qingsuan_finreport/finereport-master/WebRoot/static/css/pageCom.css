@@ -157,13 +157,13 @@ td.more:active > a {
     margin-top: .3em;
     padding: 0;
     min-width: 100%;
-
     background: #004d7d;
-
     border-radius: .2rem;
     transition: all .5s ease;
     z-index:100;
     box-shadow: 0rem 0.2rem .2rem #1F547E;
+    max-height: 4.5rem;
+    overflow: auto;
 }
 
 .mySelect.open > .myOptionBox {
