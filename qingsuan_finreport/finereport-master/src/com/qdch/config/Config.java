@@ -109,6 +109,7 @@ import com.qdch.xd.model.CoMainPersonModel;
 import com.qdch.xd.model.CoPatentModel;
 import com.qdch.xd.model.CoPenaltvModel;
 import com.qdch.xd.model.CoReportModel;
+import com.qdch.xd.model.CoScabilityModel;
 import com.qdch.xd.model.CoShareHolderModel;
 import com.qdch.xd.model.CoSoftcopyModel;
 import com.qdch.xd.model.CoStockchangeModel;
@@ -376,6 +377,7 @@ public class Config extends JFinalConfig {
 		
 		/***小贷 李晓依 insight层 Model START ***/
 		insight_arp.addMapping("insight_xd_jysc_info", ProportionModel.class);//小贷-管理风险-占比
+		insight_arp.addMapping("insight_xd_scability", CoScabilityModel.class);//小贷-市场画像得分
 		/***小贷 李晓依 hub层 Model START***/
 		arp.addMapping("hub_commerce_company_info", CompanysInfoModel.class);//工商-企业信息获取
 		arp.addMapping("hub_commerce_co_shareholder", CoShareHolderModel.class);//工商-股东/对外投资人信息

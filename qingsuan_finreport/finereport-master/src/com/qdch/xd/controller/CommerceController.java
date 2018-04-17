@@ -422,8 +422,6 @@ public class CommerceController extends BaseController{
 	 mark =  MarkNewsModel.dao.getNews("", keyword, begin,end);
 
 	}
-   
-	
 		mRenderJson(mark);
 	}
 }
