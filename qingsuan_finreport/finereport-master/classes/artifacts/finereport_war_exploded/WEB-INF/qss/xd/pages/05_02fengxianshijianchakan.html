@@ -407,79 +407,42 @@
         <!--</nav>-->
         <div class="model_content">
             <div class="modelTop">
-                <li><a href=" ">事件ID：<span>1233</span></a></li>
-                <li><a href="#">报警时间：<span>1233</span></a></li>
-                <li><a href="#">风险类型：<span>1233</span></a></li>
-                <li><a href="#">风险指标：<span>1233</span></a></li>
-                <li><a href="#">指标值：<span>1233</span></a></li>
-                <li><a href="#">阙值：<span>1233</span></a></li>
-                <li><a href="#">超出额：<span>1233</span></a></li>
-                <li><a href="#">机构代码：<span>1233</span></a></li>
-                <li><a href="#">机构名称：<span>1233</span></a></li>
-                <li><a href="#">客户号：<span>1233</span></a></li>
-                <li><a href="#">客户名称：<span>11111111111111111</span></a></li>
-                <li><a href="#">业务菜单名称：<span>1233</span></a></li>
-                <li><a href="#">业务类型：<span>1233</span></a></li>
-                <li><a href="#">业务编码：<span>1233</span></a></li>
+                <li><a href="#">事件ID：<span class="shijianId"></span></a></li>
+                <li><a href="#">报警时间：<span class="policeTime"></span></a></li>
+                <li><a href="#">风险类型：<span class="riskCategories"></span></a></li>
+                <li><a href="#">风险指标：<span class="fenxianzhibiao"></span></a></li>
+                <li><a href="#">指标值：<span class="indicatorsVal"></span></a></li>
+                <li><a href="#">阙值：<span class="threshold"></span></a></li>
+                <li><a href="#">超出额：<span class="Beyond"></span></a></li>
+                <li><a href="#">机构代码：<span class="organizationCode"></span></a></li>
+                <li><a href="#">机构名称：<span class="organizationName"></span></a></li>
+                <li><a href="#">客户号：<span class="CustomerNo"></span></a></li>
+                <li><a href="#">客户名称：<span class="CustomerName"></span></a></li>
+                <li><a href="#">业务菜单名称：<span class="menuName"></span></a></li>
+                <li><a href="#">业务类型：<span class="Business"></span></a></li>
+                <li><a href="#">业务编码：<span class="BusinessNo"></span></a></li>
 
 
             </div>
             <div class="modelMiddle">
                 <div class="modelMiddleContent">
                     <div class="one">
-                        <ul>
-                            <li>
-                                <label >处理人: <span>1</span></label>
-                            </li>
-                            <li>
-                                <label >处理状态: <span>2</span></label>
-                            </li>
-                            <li>
-                                <label >处理时间: <span>3</span></label>
-                            </li>
-                            <li>
-                                <label >备注: <span>1</span></label>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="clear"></div>
-                    <div class="one">
-                        <ul>
-                            <li>
-                                <label >处理人:</label>
-                            </li>
-                            <li>
-                                <label >处理状态:</label>
-                            </li>
-                            <li>
-                                <label >处理时间:</label>
-                            </li>
-                            <li>
-                                <label >备注:</label>
-                            </li>
-
-                        </ul>
-                    </div>
-                    <div class="clear"></div>
-                    <div class="one">
-                        <ul>
-                            <li>
-                                <label >处理人:</label>
-                            </li>
-                            <li>
-                                <label >处理状态:</label>
-                            </li>
-                            <li>
-                                <label >处理时间:</label>
-                            </li>
-                            <li>
-                                <label >备注:</label>
-                            </li>
-
-                        </ul>
-                    </div>
-
-
+                        <!--<ul>-->
+                            <!--<li>-->
+                                <!--<label >处理人: <span>1</span></label>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<label >处理状态: <span>2</span></label>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<label >处理时间: <span>3</span></label>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<label >备注: <span>1</span></label>-->
+                            <!--</li>-->
+                        <!--</ul>-->
+                    <!--</div>-->
+                    <!--<div class="clear"></div>-->
 
                 </div>
             </div>
@@ -678,7 +641,7 @@
         appenddata = getCondition();
         $.ajax({
             type: "POST",
-            url: "eventprocessing/getList"+appenddata,
+            url: "eventprocessing/getListSee"+appenddata,
             data: {"pageNum":pageNum,"pageSize":pageSize},
             dataType: "json",
             success: function(data){
@@ -766,35 +729,54 @@
                 $(".menuName").text(value.ywcdmc);
 
 
+                console.log(data)
                 var checkhtml = "";
                 $.each(data.history, function(index, value, array) {
-                    checkhtml +=" <li>\n" +
-                        "                        <div class=\"\">\n" +
-                        "                            <span class=\"\">审核人:</span>\n" +
-                        "                            <span id=\"checker\" class=\"Auditor\">"+value.checker+"</span>\n" +
-                        "                        </div>\n" +
-                        "                    </li>\n" +
-                        "                    <li>\n" +
-                        "                        <div class=\"\">\n" +
-                        "                            <span class=\"\">处理状态:</span>\n" +
-                        "                            <span id=\"checkstatus\" class=\"HandleState\">"+value.checkstatus+"</span>\n" +
-                        "                        </div>\n" +
-                        "                    </li>\n" +
-                        "                    <li>\n" +
-                        "                        <div class=\"\">\n" +
-                        "                            <span class=\"Auditor\">处理时间:</span>\n" +
-                        "                            <span id=\"checktime\" class=\"AuditorData\">"+value.checktime+"</span>\n" +
-                        "                        </div>\n" +
-                        "                    </li>\n" +
-                        "                    <br>\n" +
-                        "                    <li>\n" +
-                        "                        <div class=\"\">\n" +
-                        "                            <span class=\"Auditor\">备&nbsp;&nbsp;&nbsp;注:</span>\n" +
-                        "                            <span id=\"remarks\">"+value.remarks+"</span>\n" +
-                        "                        </div>\n" +
-                        "                    </li>";
+                    // checkhtml +=" <li>\n" +
+                    //     "                        <div class=\"\">\n" +
+                    //     "                            <span class=\"\">审核人:</span>\n" +
+                    //     "                            <span id=\"checker\" class=\"Auditor\">"+value.checker+"</span>\n" +
+                    //     "                        </div>\n" +
+                    //     "                    </li>\n" +
+                    //     "                    <li>\n" +
+                    //     "                        <div class=\"\">\n" +
+                    //     "                            <span class=\"\">处理状态:</span>\n" +
+                    //     "                            <span id=\"checkstatus\" class=\"HandleState\">"+value.checkstatus+"</span>\n" +
+                    //     "                        </div>\n" +
+                    //     "                    </li>\n" +
+                    //     "                    <li>\n" +
+                    //     "                        <div class=\"\">\n" +
+                    //     "                            <span class=\"Auditor\">处理时间:</span>\n" +
+                    //     "                            <span id=\"checktime\" class=\"AuditorData\">"+value.checktime+"</span>\n" +
+                    //     "                        </div>\n" +
+                    //     "                    </li>\n" +
+                    //     "                    <br>\n" +
+                    //     "                    <li>\n" +
+                    //     "                        <div class=\"\">\n" +
+                    //     "                            <span class=\"Auditor\">备&nbsp;&nbsp;&nbsp;注:</span>\n" +
+                    //     "                            <span id=\"remarks\">"+value.remarks+"</span>\n" +
+                    //     "                        </div>\n" +
+                    //     "                    </li>";
+
+                    checkhtml+="<div class=\"one\">\n" +
+                        "                        <ul>\n" +
+                        "                            <li>\n" +
+                        "                                <label >处理人: <span>"+value.checker+"</span></label>\n" +
+                        "                            </li>\n" +
+                        "                            <li>\n" +
+                        "                                <label >处理状态: <span>"+value.checkstatus+"</span></label>\n" +
+                        "                            </li>\n" +
+                        "                            <li>\n" +
+                        "                                <label >处理时间: <span>"+value.checktime+"</span></label>\n" +
+                        "                            </li>\n" +
+                        "                            <li>\n" +
+                        "                                <label >备注: <span>"+value.remarks+"</span></label>\n" +
+                        "                            </li>\n" +
+                        "                        </ul>\n" +
+                        "                    </div>\n" +
+                        "                    <div class=\"clear\"></div>"
                 });
-                $('.modelMiddle ul').html(checkhtml);
+                $('.modelMiddle .modelMiddleContent').html(checkhtml);
             }
         });
 
@@ -805,3 +787,4 @@
 </script>
 </body>
 </html>
+

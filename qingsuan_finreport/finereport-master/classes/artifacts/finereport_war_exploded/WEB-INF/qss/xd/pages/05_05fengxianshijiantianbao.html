@@ -521,6 +521,7 @@
 
     //提交
     function sumitfuc() {
+
         // var ptype =  $('.typeclass option:selected').val());
         // var prisk =  $('.riskclass option:selected').val());
         // var priskvalue =  $('.riskvalueclass').val());
@@ -685,7 +686,8 @@
             data: {},
             dataType: "json",
             success: function (data) {
-
+                alert('保存成功');
+                window.location.href="${contextPath}/qdch/eventview";
 
             }
         });

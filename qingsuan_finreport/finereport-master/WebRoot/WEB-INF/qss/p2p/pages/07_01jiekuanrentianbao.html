@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="${contextPath}/static/img/com/logo.png">
+    <link rel="stylesheet" href="${contextPath}/static/asserts/css/normalize.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/style.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/pageCom.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/04_04superTables.css" />
+    <style>
+        html,body{
+            font-family:'微软雅黑';
+        }
+        .fr{
+            float: right;
+        }
+        .fr{
+            float: right;
+        }
+        .main {
+            flex: 1;
+        }
+        /*search 搜查框区域*/
+
+        form {
+            padding: 0.3rem 1rem;
+            width: 57rem;
+        }
+        form select {
+            position: relative;
+            width: 9rem;
+            background: transparent;
+            border: 1px solid #00adef;
+            z-index: 1001;
+        }
+
+        form label {
+            display: inline-block;
+            width: 6rem;
+            text-align: right;
+        }
+
+        form input {
+            width: 9rem;
+            background: transparent;
+            border:1px solid #00adef;
+            border-radius: 3px;
+        }
+        .search .active{
+            padding: 0.1rem 2rem;
+            margin-left: 7.5rem;
+        }
+        .search{
+            width: 100%;
+            /*height: 17%;*/
+
+        }
+
+        #div_container{
+            width: 100%;
+            height: 85%;
+
+        }
+
+        /*table*/
+        #score>th:not(.defen){
+            color: #fffb8f;
+            cursor: pointer;
+        }
+
+        #score>th:not(.defen):hover{
+            color: orange;
+        }
+        tbody > tr:nth-of-type(odd) {
+            background-color:transparent;
+        }
+
+        tbody > tr:nth-of-type(even) {
+            background-color: transparent;
+        }
+        .center{
+            color: #fff;
+            background:transparent;
+        }
+        .red{
+            color: #fffb8f;
+            text-align: left;
+        }
+        .red ~ td{
+            color:#fffb8f;
+        }
+        .left{
+            text-align: left;
+        }
+        .myOptionBox{
+            position: relative;
+            z-index: 6;
+        }
+        select{
+            text-transform: none;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            border:.1rem solid var(--themeBlue)
+        }
+        option{
+        background: #004D7D;
+        }
+        input{
+            text-transform: none;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            border-radius: 0.2rem;
+            border:.1rem solid var(--themeBlue);
+            text-align: center;
+        }
+        .search .active{
+            position: relative;
+            right:0;
+            padding: 0.1rem 2.5rem;
+        }
+
+
+
+    </style>
+</head>
+<body id="07_01jiekuanrentianbao" data-title="借款人填报">
+<div class="container">
+    <div class="main">
+        <div class="chartBox ec002">
+            <div class="chartTitle">
+                <h3>平台总览表</h3>
+            </div>
+            <div class="search">
+                <form action="">
+                    <div class="inputGroup">
+                        <label >平台名称：</label>
+                        <select class="inp pt">
+                            <option value=""></option>
+                            ##for(p in ptxxList!){
+                            <option value="${p.jysinfo!},${p.jysc!},${p.jyscmc!}" class="a">${p.jysinfo!}</option>
+                            ##}
+                        </select>
+                    </div>
+                    <div class="inputGroup">
+                        <div class="btnGroup search">
+                            <button class="active" id="search" type="button">提交</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!--表格-->
+            <div id="div_container" style="text-align:center;position:relative;">
+                <!-- 固定表头 table外层必须包有一个div  id="my_div"   class="fakeContainer first_div" 引入superTables.js  在页面下面还需要调用 -->
+                <div style="height:100%;width: 100%;" id="my_div" class="fakeContainer first_div" >
+                    <table border="1" id="demoTable" style="border-collapse: collapse;">
+                        <tr id="my_tr">
+                            <th class="center" rowspan="2">借款方</th>
+                            <th class="center" rowspan="2">资料类别</th>
+                            <th class="center" rowspan="1">主要信息</th>
+                            <th class="center ptmc" rowspan="1">鲁金所</th>
+                        </tr>
+                        <tr id="score">
+                            <th class="center defen">得分</th>
+                            <th class="center">
+                                <input type="text">
+                            </th>
+
+                        </tr>
+                        <tr>
+                            <td class="center ziranren" rowspan="26">自然人</td>
+                            <td class="center" rowspan="9">基础信息</td>
+                            <td class="center red" id="userName">姓名</td>
+                            <td class="center">
+                                <select class="inp pname">
+                                    <option value=""></option>
+                                    <option value="">√</option>
+                                    <option value="">×</option>
+                                </select>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td class="center red" id="idCard">身份证</td>
+                            <td class="center">
+                                <select class="inp sfz">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+
+                        </tr>
+                        <tr>
+                            <td class="center red" id="purpose">借款用途</td>
+                            <td class="center">
+                                <select class="inp jkyt">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="center left" id="sex">性别</td>
+
+                            <td class="center">
+                                <select class="inp sex">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td class="center left" id="userAge">年龄</td>
+                            <td class="center">
+                                <select class="inp age">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td class="center left" id="education">学历</td>
+
+                            <td class="center">
+                                <select class="inp xuel">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="center left">婚姻状况</td>
+
+                            <td class="center">
+                                <select class="inp hyzk">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="center left">户籍所在地</td>
+
+                            <td class="center">
+                                <select class="inp hjszd">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="center left">还款来源</td>
+
+                            <td class="center">
+                                <select class="inp hkly">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td class="center" rowspan="7">信用信息</td>
+
+                            <td class="center red">在平台逾期次数</td>
+                            <td class="center">
+                                <select class="inp yqcs">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="center red">在平台的逾期金额</td>
+
+                            <td class="center">
+                                <select class="inp yqje">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="center red">征信报告近6个月逾期情况</td>
+
+                            <td class="center">
+                                <select class="inp zxbg">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="center red" >在其他平台有无借款</td>
+
+                            <td class="center">
+                                <select class="inp jkrxy">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="center left">历史借款笔数</td>
+
+                            <td class="center">
+                                <select class="inp jkbs">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="center left">历史借款总额</td>
+
+                            <td class="center">
+                                <select class="inp jkze">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="center left">增信措施</td>
+
+                            <td class="center ">
+                                <select class="inp zxcs">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="center" rowspan="5">资产信息</td>
+
+                            <td class="center left">收入情况</td>
+                            <td class="center">
+                                <select class="inp srqk">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="center left">有无购房</td>
+
+                            <td class="center ">
+                                <select class="inp gf_flag">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="center left">有无购车</td>
+
+                            <td class="center ">
+                                <select class="inp gc_flag">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="center left">有无房贷</td>
+
+                            <td class="center ">
+                                <select class="inp fd_flag">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="center left">有无车贷</td>
+
+                            <td class="center ">
+                                <select class="inp cd_flag">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="center" rowspan="5">工作信息</td>
+
+                            <td class="center red">从事行业</td>
+                            <td class="center">
+                                <select class="inp industry">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+
+                        </tr>
+
+                        <tr>
+                            <td class="center left">工作城市</td>
+
+                            <td class="center">
+                                <select class="inp city">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="center left">公司规模</td>
+
+                            <td class="center">
+                                <select class="inp gsgm">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="center left">工作岗位</td>
+
+                            <td class="center">
+                                <select class="inp gzgw">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="center left">工作年限</td>
+
+                            <td class="center">
+                                <select class="inp gznx">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+                        </tr>
+                        <!-- 企业 -->
+                        <tr>
+                            <td class="center jiekuanfang" rowspan="17">企业</td>
+
+                            <td class="center" rowspan="9">基本信息</td>
+                            <td class="center red">公司名称</td>
+                            <td class="center">
+                                <select class="inp qygsmc">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+
+                        </tr>
+                        <tr>
+                            <td class="center red">法定代表人</td>
+
+                            <td class="center">
+                                <select class="inp qyfrdb">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="center red">成立时间</td>
+
+                            <td class="center">
+                                <select class="inp qyclsj">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="center red">注册资本</td>
+
+                            <td class="center">
+                                <select class="inp qyzczb">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="center red">注册地址</td>
+
+                            <td class="center">
+                                <select class="inp qyzcdz">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="center red">营业范围</td>
+
+                            <td class="center">
+                                <select class="inp qyyyfw">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="center left">公司规模</td>
+
+                            <td class="center">
+                                <select class="inp qygsgm">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="center red">资金用途</td>
+
+                            <td class="center">
+                                <select class="inp qyzjyt">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="center red">还款来源</td>
+
+                            <td class="center">
+                                <select class="inp qyhkly">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="center" rowspan="8">其他信息</td>
+
+                            <td class="center red">借款企业收入情况</td>
+                            <td class="center">
+                                <select class="inp qysrqk">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+
+                        </tr>
+                        <tr>
+                            <td class="center red">借款人企业负债情况</td>
+                            <td class="center">
+                                <select class="inp qyfzqk">
+                                    <option value=""></option>
+                                   <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td class="center red">借款人借款前6个月征信报告</td>
+                            <td class="center">
+                                <select class="inp qyzxbg">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td class="center red">借款人是否在其他平台借款</td>
+                            <td class="center">
+                                <select class="inp qijk_flag">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td class="center left">股东信息</td>
+                            <td class="center">
+                                <select class="inp qygdxx">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td class="center left">法人信用信息</td>
+                            <td class="center">
+                                <select class="inp frxyxx">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td class="center left">增信措施</td>
+                            <td class="center">
+                                <select class="inp qyzxcs">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td class="center left">涉诉信息</td>
+                            <td class="center">
+                                <select class="inp qyssxx">
+                                    <option value=""></option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
+                                </select>
+                            </td>
+
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="${contextPath}/static/asserts/js/echarts-4.0.js"></script>
+<script src="${contextPath}/static/asserts/js/jquery-2.2.4.js"></script>
+<script src="${contextPath}/static/js/main.js"></script>
+<script src="${contextPath}/static/js/chartsCom.js"></script>
+<script type="text/javascript" src="${contextPath}/static/js/04_04superTables.js"></script>
+
+</body>
+</html>
+<script type="text/javascript">
+//$(".sfz").find("option[value = '√']").attr("selected","selected"); 默认对号
+	var jysinfo = "";
+	var jysc = "";
+	var jyscmc = "";
+	//根据平台名称改变平台
+	$(".pt").change(function () {
+		var info = new Array();
+		info = $(this).val().split(',');
+		jysinfo = info[0];
+		jysc = info[1];
+		jyscmc = info[2];
+		$(".ptmc").html(jysinfo)
+		//获取自然人基础信息
+		$.ajax({
+			type:"POST",
+			url:"${contextPath}/qdch/borrowerfill/getBasicInfo",
+			data:{"jysc":jysc},
+			dataType:"json",
+			success:function(data){
+				$(".pname").val(data.pname);
+				$(".sfz").val(data.sfz);
+				$(".jkyt").val(data.jkyt);
+				$(".sex").val(data.sex);
+				$(".age").val(data.age);
+				$(".xuel").val(data.xuel);
+				$(".hyzk").val(data.hyzk);
+				$(".hjszd").val(data.hjszd);
+				$(".hkly").val(data.hkly);
+			}
+		})
+		//获取自然人信用信息
+		$.ajax({
+			type:"POST",
+			url:"${contextPath}/qdch/borrowerfill/getCreditinfoByJysc",
+			data:{"jysc":jysc},
+			dataType:"json",
+			success:function(data){
+				$(".yqcs").val(data.yqcs);
+				$(".yqje").val(data.yqje);
+				$(".zxbg").val(data.zxbg);
+				$(".jkrxy").val(data.jkrxy);
+				$(".jkbs").val(data.jkbs);
+				$(".jkze").val(data.jkze);
+				$(".zxcs").val(data.zxcs);
+			}
+		})
+		//获取自然人资产信息
+		$.ajax({
+			type:"POST",
+			url:"${contextPath}/qdch/borrowerfill/getAssetInfoByJysc",
+			data:{"jysc":jysc},
+			dataType:"json",
+			success:function(data){
+				$(".srqk").val(data.srqk);
+				$(".gf_flag").val(data.gf_flag);
+				$(".gc_flag").val(data.gc_flag);
+				$(".fd_flag").val(data.fd_flag);
+				$(".cd_flag").val(data.cd_flag);
+			}
+		})
+		//获取自然人工作信息
+		$.ajax({
+			type:"POST",
+			url:"${contextPath}/qdch/borrowerfill/getJobInfoByJysc",
+			data:{"jysc":jysc},
+			dataType:"json",
+			success:function(data){
+				$(".industry").val(data.industry);
+				$(".city").val(data.city);
+				$(".gsgm").val(data.gsgm);
+				$(".gzgw").val(data.gzgw);
+				$(".gznx").val(data.gznx);
+			}
+		})
+		//获取企业基本信息
+		$.ajax({
+			type:"POST",
+			url:"${contextPath}/qdch/borrowerfill/getCompyBasicInfoByJysc",
+			data:{"jysc":jysc},
+			dataType:"json",
+			success:function(data){
+				$(".qygsmc").val(data.gsmc);
+				$(".qyfrdb").val(data.frdb);
+				$(".qyclsj").val(data.clsj);
+				$(".qyzczb").val(data.zczb);
+				$(".qyzcdz").val(data.zcdz);
+				$(".qyyyfw").val(data.yyfw);
+				$(".qygsgm").val(data.gsgm);
+				$(".qyzjyt").val(data.zjyt);
+				$(".qyhkly").val(data.hkly);
+			}
+		})
+		//获取企业其他信息
+		$.ajax({
+			type:"POST",
+			url:"${contextPath}/qdch/borrowerfill/getOtherInfoByJysc",
+			data:{"jysc":jysc},
+			dataType:"json",
+			success:function(data){
+				$(".qysrqk").val(data.srqk);
+				$(".qyfzqk").val(data.fzqk);
+				$(".qyzxbg").val(data.zxbg);
+				$(".qijk_flag").val(data.qijk_flag);
+				$(".qygdxx").val(data.gdxx);
+				$(".frxyxx").val(data.frxyxx);
+				$(".qyzxcs").val(data.zxcs);
+				$(".qyssxx").val(data.ssxx);
+			}
+		})
+		
+	})
+	
+	/*---------------------------提交自然人基本信息start----------------------------------  */
+	var pname = $(".pname").val();
+	var sfz = $(".sfz").val();
+	var jkyt = $(".jkyt").val();
+	var sex = $(".sex").val();
+	var age = $(".age").val();
+	var xuel = $(".xuel").val();
+	var hyzk = $(".hyzk").val();
+	var hjszd = $(".hjszd").val();
+	var hkly = $(".hkly").val();
+	$(".pname").change(function () {
+		pname = $(this).val();
+	})
+	$(".sfz").change(function () {
+		sfz = $(this).val();
+	})
+	$(".jkyt").change(function () {
+		jkyt = $(this).val();
+	})
+	$(".sex").change(function () {
+		sex = $(this).val();
+	})
+	$(".age").change(function () {
+		age = $(this).val();
+	})
+	$(".xuel").change(function () {
+		xuel = $(this).val();
+	})
+	$(".hyzk").change(function () {
+		hyzk = $(this).val();
+	})
+	$(".hjszd").change(function () {
+		hjszd = $(this).val();
+	})
+	$(".hkly").change(function () {
+		hkly = $(this).val();
+	})
+	function zrrjbxx() {
+		var cs = "?pname="+pname+"&sfz="+sfz+"&jkyt="+jkyt+"&sex="+sex+"&age="+age+"&xuel="+xuel+"&hyzk="+hyzk+"&hjszd="+hjszd+"&hkly="+hkly;
+		return cs;
+	}
+	/*---------------------------提交自然人基本信息end----------------------------------  */
+	/*---------------------------提交信用信息start----------------------------------  */
+		var yqcs = $(".yqcs").val();
+		var yqje = $(".yqje").val();
+		var zxbg = $(".zxbg").val();
+		var jkrxy =$(".jkrxy").val();
+		var jkbs = $(".jkbs").val();
+		var jkze = $(".jkze").val();
+		var zxcs = $(".zxcs").val();
+		$(".yqcs").change(function () {
+			yqcs = $(this).val();
+		})
+		$(".yqje").change(function () {
+			yqje = $(this).val();
+		})
+		$(".zxbg").change(function () {
+			zxbg = $(this).val();
+		})
+		$(".jkrxy").change(function () {
+			jkrxy = $(this).val();
+		})
+		$(".jkbs").change(function () {
+			jkbs = $(this).val();
+		})
+		$(".jkze").change(function () {
+			jkze = $(this).val();
+		})
+		$(".zxcs").change(function () {
+			zxcs = $(this).val();
+		})
+		//提交信用信息的参数
+		function zrrxyxx() {
+			var cs = "?yqcs="+yqcs+"&yqje="+yqje+"&zxbg="+zxbg+"&jkrxy="+jkrxy+"&jkbs="+jkbs+"&jkze="+jkze+"&zxcs="+zxcs;
+			return cs;
+		}
+	/*---------------------------提交信用信息end----------------------------------  */
+	
+	/*---------------------------提交资产信息start----------------------------------  */
+		var srqk = $(".srqk").val();
+		var gf_flag = $(".gf_flag").val();
+		var gc_flag = $(".gc_flag").val();
+		var fd_flag = $(".fd_flag").val();
+		var cd_flag = $(".cd_flag").val();
+		$(".srqk").change(function () {
+			srqk = $(this).val();
+		})
+		$(".gf_flag").change(function () {
+			gf_flag = $(this).val();
+		})
+		$(".gc_flag").change(function () {
+			gc_flag = $(this).val();
+		})
+		$(".fd_flag").change(function () {
+			fd_flag = $(this).val();
+		})
+		$(".cd_flag").change(function () {
+			cd_flag = $(this).val();
+		})
+		//提交资产信息的参数
+		function zcxx() {
+			
+			var cs = "?srqk="+srqk+"&gf_flag="+gf_flag+"&gc_flag="+gc_flag+"&fd_flag="+fd_flag+"&cd_flag="+cd_flag;
+			return cs;
+		}
+	/*---------------------------提交资产信息end----------------------------------  */
+	
+	/*---------------------------提交工作信息start----------------------------------  */
+		var industry = $(".industry").val();
+		var city = $(".city").val();
+		var gsgm = $(".gsgm").val();
+		var gzgw = $(".gzgw").val();
+		var gznx = $(".gznx").val();
+		$(".industry").change(function () {
+			industry = $(this).val();
+		})
+		$(".city").change(function () {
+			city = $(this).val();
+		})
+		$(".gsgm").change(function () {
+			gsgm = $(this).val();
+		})
+		$(".gzgw").change(function () {
+			gzgw = $(this).val();
+		})
+		$(".gznx").change(function () {
+			gznx = $(this).val();
+		})
+		//工作信息
+		function gzxx() {
+			
+			var cs = "?industry="+industry+"&city="+city+"&gsgm="+gsgm+"&gzgw="+gzgw+"&gznx="+gznx;
+			return cs;
+		}
+	/*---------------------------提交工作信息end----------------------------------  */
+	
+	/*---------------------------提交企业基本信息start----------------------------------  */
+		var gsmc = $(".qygsmc").val();
+		var frdb = $(".qyfrdb").val();
+		var clsj = $(".qyclsj").val();
+		var zczb = $(".qyzczb").val();
+		var zcdz = $(".qyzcdz").val();
+		var yyfw = $(".qyyyfw").val();
+		var zjyt = $(".qyzjyt").val();
+		var hkly = $(".qyhkly").val();
+		$(".qygsmc").change(function () {
+			gsmc = $(this).val();
+		})
+		$(".qyfrdb").change(function () {
+			frdb = $(this).val();
+		})
+		$(".qyclsj").change(function () {
+			clsj = $(this).val();
+		})
+		$(".qyzczb").change(function () {
+			zczb = $(this).val();
+		})
+		$(".qyzcdz").change(function () {
+			zcdz = $(this).val();
+		})
+		$(".qyyyfw").change(function () {
+			yyfw = $(this).val();
+		})
+		$(".qyzjyt").change(function () {
+			zjyt = $(this).val();
+		})
+		$(".qyhkly").change(function () {
+			hkly = $(this).val();
+		})
+		//企业基本信息
+		function qyjbxx() {
+			var cs = "?gsmc="+gsmc+"&frdb="+frdb+"&clsj="+clsj+"&zczb="+zczb+"&zcdz="+zcdz+"&yyfw="+yyfw+"&zjyt="+zjyt+"&hkly="+hkly;
+			return cs;
+		}
+	/*---------------------------提交企业基本信息end----------------------------------  */
+	
+	/*---------------------------提交企业其他信息start----------------------------------  */
+		
+		//企业其他信息
+		function qyqtxx() {
+			var srqk = $(".qysrqk").val();
+			var fzqk = $(".qyfzqk").val();
+			var zxbg = $(".qyzxbg").val();
+			var qijk_flag = $(".qijk_flag").val();
+			var gdxx = $(".qygdxx").val();
+			var xyxx = $(".frxyxx").val();
+			var zxcs = $(".qyzxcs").val();
+			var ssxx = $(".qyssxx").val();
+			$(".qysrqk").change(function () {
+				srqk = $(this).val();
+			})
+			$(".qyfzqk").change(function () {
+				fzqk = $(this).val();
+			})
+			$(".qyzxbg").change(function () {
+				zxbg = $(this).val();
+			})
+			$(".qijk_flag").change(function () {
+				qijk_flag = $(this).val();
+			})
+			$(".qygdxx").change(function () {
+				gdxx = $(this).val();
+			})
+			$(".frxyxx").change(function () {
+				xyxx = $(this).val();
+			})
+			$(".qyzxcs").change(function () {
+				zxcs = $(this).val();
+			})
+			$(".qyssxx").change(function () {
+				ssxx = $(this).val();
+			})
+			var cs = "?srqk="+srqk+"&fzqk="+fzqk+"&zxbg="+zxbg+"&qijk_flag="+qijk_flag+"&gdxx="+gdxx+"&xyxx="+xyxx+"&zxcs="+zxcs+"&ssxx="+ssxx;
+			return cs;
+		}
+	/*---------------------------提交企业其他信息end----------------------------------  */
+	
+	$("#search").click(function () {
+		var cs = zrrjbxx();
+		
+		//提交自然人基本信息
+		/*  $.ajax({
+			type:"POST",
+			url:"${contextPath}/qdch/borrowerfill/submitZrrxx"+cs,
+			data:{"jysc":jysc},
+			dataType:"json",
+			success:function(data){
+				
+			} 
+		})  */
+	//提交信用信息
+		cs = zrrxyxx();
+		$.ajax({
+			type:"POST",
+			url:"${contextPath}/qdch/borrowerfill/submitXyxx"+cs,
+			data:{"jysc":jysc},
+			dataType:"json",
+			success:function(data){
+				
+			}
+		})
+		/* //提交资产信息
+		cs = zcxx();
+		$.ajax({
+			type:"POST",
+			url:"${contextPath}/qdch/borrowerfill/submitZcxx"+cs,
+			data:{"jysc":jysc},
+			dataType:"json",
+			success:function(data){
+				
+			}
+		})
+		//提交工作信息
+		cs = gzxx();
+		$.ajax({
+			type:"POST",
+			url:"${contextPath}/qdch/borrowerfill/submitGzxx"+cs,
+			data:{"jysc":jysc},
+			dataType:"json",
+			success:function(data){
+				
+			}
+		})
+		//提交企业基本信息
+		cs = qyjbxx();
+		$.ajax({
+			type:"POST",
+			url:"${contextPath}/qdch/borrowerfill/submitQyjbxx"+cs,
+			data:{"jysc":jysc},
+			dataType:"json",
+			success:function(data){
+				
+			}
+		})
+		//提交企业其他信息
+		cs = qyqtxx();
+		$.ajax({
+			type:"POST",
+			url:"${contextPath}/qdch/borrowerfill/submitQtxx"+cs,
+			data:{"jysc":jysc},
+			dataType:"json",
+			success:function(data){
+				
+			}
+		})  */
+	})
+
+    //此处调用superTables.js里需要的函数
+    $(document).ready(function(){
+        // window.onload=function(){
+        new superTable("demoTable", {cssSkin : "sDefault",
+            fixedCols : 2, //固定几列
+            headerRows :2,  //头部固定行数
+            onStart : function () {
+                this.start = new Date();
+            },
+            onFinish : function () {
+            }
+        });
+        $("#div_container").css("width","100%");//这个宽度是容器宽度，不同容器宽度不同
+        $(".fakeContainer").css("height","100%");//这个高度是整个table可视区域的高度，不同情况高度不同
+
+        //.sData是调用superTables.js之后页面自己生成的  这块就是出现滚动条 达成锁定表头和列的效果
+        $(".sData").css("width","100%");//这块的宽度是用$("#div_container")的宽度减去锁定的列的宽度
+        $(".sData").css("height","100%");//这块的高度是用$("#div_container")的高度减去锁定的表头的高度
+
+        //目前谷歌  ie8+  360浏览器均没问题  有些细小的东西要根据项目需求改
+
+        //有兼容问题的话可以在下面判断浏览器的方法里写
+        if(navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion.match(/9./i)=="9.")
+        {//alert("IE 9.0");
+
+        }else if (!!window.ActiveXObject || "ActiveXObject" in window){//alert("IE 10");
+
+        }else{//其他浏览器
+            //alert("其他浏览器");
+        }
+        //模块框
+        $("#score>th:not(.defen)").click(function () {
+            $('#model').css('display','block');
+        });
+        $(".del a").click(function () {
+            $('#model').css('display','none');
+        });
+    });
+
+
+
+
+
+
+</script>

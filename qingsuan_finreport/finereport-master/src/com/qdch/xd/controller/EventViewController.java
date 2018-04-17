@@ -37,6 +37,7 @@ public class EventViewController extends BaseController {
 		RiskEventModel event = riskEventModel.findById(getPara("id"));
 		List<RiskEventHistoryModel> historyModels  = riskEventHistoryModel.getByRiskEvent(getPara("id"));
 		result.put("risk",event);
+		result.put("user",getLoginUser());
 		result.put("history",historyModels);
 		mRenderError(result);
 

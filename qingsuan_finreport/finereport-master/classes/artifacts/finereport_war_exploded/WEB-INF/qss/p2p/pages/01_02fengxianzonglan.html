@@ -206,7 +206,7 @@
        
         
        
-        <div class="main-third">
+<!--         <div class="main-third">
             <div class="chartBox ec003">
                 <div class="chartTitle">
                     <h3>宜人贷有限公司</h3>
@@ -300,7 +300,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         
     </div>
 </div>
@@ -313,44 +313,93 @@
 	//canvasAll("canvasFirst",8);
 	//canvasAll("canvasSecond",5.2);
 	//canvasAll("canvasThird",2.0);
-	/* function getData(){
-		$.post({"",{},function(data){
-			var htmls='';
+
+	/* canvasAll("canvasFourth",2.0); */
+	  getData();
+	  function getData(){
+		$.post("${contextPath}/qdch/risk/getRiskIndex",function(data){
+			
+			var htmls="";
+			var valu=[];
+			console.log("getdata=======================",data);
+
 			$.each(data,function(index,item){
-				if(index==0){
-					htmls+='<div class="main-first">';
-				}else if(index==1){
-					htmls+='<div class="main-second">';
-				}else{
-					htmls+='<div class="main-third">';
-				}
-				var val=[];
-				$.each(item.detaildata,function(ind,it){
-					val.push(it.detailvalue);
-					
-				});
 				
-				
-				htmls+=' ';
-			});
+			
+					htmls+="<div class='main-first'>"
+						htmls+="<div class='chartBox ec003'>""
+						htmls+="<div class='chartTitle'>"
+						htmls+="<h3>"+item.jysinfo+"</h3>""
+						htmls+="<div class='chartTitle_right'>"
+						htmls+="<div class='dayin fr'>"
+						htmls+="<h5>查看监管报告</h5>"
+						htmls+="</div>"
+
+						htmls+="</div>"
+						htmls+="</div>"
+						htmls+="<div class='chartContent'>"
+						htmls+="<div class='chartBody'>"
+						htmls+="<div class='chartBodyLeft fl'>"
+						htmls+="<div class='chartBodyLeftTop'>"
+						htmls+="<img src='${contextPath}/static/img/high.png' alt=''/>"
+						htmls+="<span class='rank'>"+item.keypm+"</span>"
+						htmls+="<p>风险排名</p>"
+						htmls+="<p><img src='${contextPath}/static/img/up.png' alt='' /><span class='colorUp'>"+1+"</span></p>"
+						htmls+="</div>"
+						htmls+="</div>"
+						htmls+="<div class='chartBodyRightCircle fl'>"
+						htmls+="<canvas id='canvas'"+item.keypm+">当前浏览器不支持canvas 请升级！</canvas>"
+						htmls+="<div class='chartBodyNumber'>"
+						htmls+="<p>风险指数</p>"
+						htmls+="<div></div>"
+						htmls+="</div>"
+						htmls+="</div>"
+						htmls+="<div class='chartBodyRight fl'>"
+						htmls+="<div class='chartBodyRightList fl'>"
+						htmls+="<ul>"
+										$.each(item.detaildata,function(ind,it){
+											valu.push(it.detailvalue); 
+											htmls+="<li>"+
+											htmls+="<h3>"+it.detailvalue+"</h3>\n"
+											htmls+="<div>"
+											htmls+="<span class='liContent'>"+it.fxlb+"</span>\n"
+											htmls+="<em>排名：<span>"+it.detailpm+"</span></em>\n"
+											htmls+="<img src='${contextPath}/static/img/up.png' alt='' />\n"
+											htmls+="<small class='colorUp'>"+it.detailpm+"</small>\n"
+											htmls+="</div>\n"
+											htmls+="</li>"
+											
+										});			
+						htmls+="</ul>"
+					    htmls+="</div>"
+					    htmls+="</div>"
+					    htmls+="<div class='chartBodyCharts fr'>"
+					    htmls+="<div id='charts'"+item.keypm+" class='chartsAll'></div>"
+					    htmls+="</div>"
+					    htmls+="</div>"
+					    htmls+="</div>"
+					    htmls+="</div>"
+					    htmls+="</div>"
+							});
 			$(".main").html(htmls);
 			$.each(data,function(index,item){
-				charts("#chartsFourth"+item.jys,_val);
-				canvasAll("canvasFourth",2.0);
+				charts("#charts"+item.keypm,valu);
+				canvasAll("canvas"+item.keypm,item.value); 
 			});
 			
-		}});
+			
+			});		
 	}
-	 */
+	 
 	
-	canvasAll("canvasFourth",2.0);
+	 
 	
-	var val = [4300, 10000, 28000, 35000, 50000, 19000];
-	var _val = [3000,5000,10000,2000,1000,10000];
+	//var val = [4300, 10000, 28000, 35000, 50000, 19000];
+	//var _val = [3000,5000,10000,2000,1000,10000];
 	//charts("#chartsFirst",val);
 	//charts("#chartsSecond",_val);
 	//charts("#chartsThird",_val);
-	charts("#chartsFourth",_val);
+	//charts("#chartsFourth",_val);
 	
 	function charts(id,value){
 		var allCharts = [];
