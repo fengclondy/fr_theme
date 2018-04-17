@@ -31,4 +31,27 @@ public class ZiChanInfoModel extends Model<ZiChanInfoModel>{
 		sql+=" order by vday desc  ";
 		return dao.findFirst(sql);
 	}
+	
+	
+	
+	
+	
+	
+	/**
+	 * 
+	 * @author hanpengda
+	 * @date 2018年4月13日
+	 * @TODO 根据平台获取资产信息
+	 */
+	public ZiChanInfoModel getAssetInfoByJysc(String bigjys,String jysc){
+		String sql="select * from insight_pp_asset_info  where 1=1 "; 
+		if(StringUtils.isNotBlank(bigjys)){
+			sql+=" and jysc in "+bigjys;
+		}
+		if (StringUtils.isNotBlank(jysc)) {
+			sql += " and jysc = '"+jysc+"'";
+		}
+		sql += " order by vday desc";
+		return dao.findFirst(sql);
+	}
 }

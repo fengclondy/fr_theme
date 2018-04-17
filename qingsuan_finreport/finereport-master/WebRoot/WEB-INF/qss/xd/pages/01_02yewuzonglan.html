@@ -355,13 +355,26 @@
       		
       		 ec004.setOption(opt_bar_horizon);
 	       	 ec004.setOption({
+	       		tooltip:{
+     	    		  /* trigger: 'item', */
+     	             formatter: function (params,ticket,callback) {
+				            console.log(params)
+				            var res =  params[0].name;
+				            for (var i = 0, l = params.length; i < l; i++) {
+				                res += '<br/>'+ params[i].value+"%";
+				            }
+				          
+				            return res;
+				        }
+
+     	            },
 	             grid: {
 	                 left: "20%",
 	                 right: "16%",
 	                 top: "15%"
 	             },
 	             xAxis: {
-	                 name: '三农比重',
+	                 name: '三农比重%',
 	                 type: 'value',
 	             },
 	             yAxis: {

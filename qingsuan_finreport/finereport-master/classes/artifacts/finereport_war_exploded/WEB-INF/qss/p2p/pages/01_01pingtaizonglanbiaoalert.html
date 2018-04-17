@@ -60,6 +60,9 @@
         .pingtaiInformationtable tr th span:nth-child(1){
             margin-left: 0.3rem;
         }
+        tbody > tr > td {
+   		 font-size: .8rem;
+		}
     </style>
 </head>
 <body id="01_01pingtaizonglanbiaoalert" data-title="平台总览表alert">
@@ -71,10 +74,9 @@
             <div class="mySelect" id="pingtai">
                 <div class="myOption selected"><span class="text"></span><span class="icon"></span></div>
                 <ul class="myOptionBox">
-                    <li class="myOption selected">条目一</li>
-                    <li class="myOption selected">条目二</li>
-                    <li class="myOption selected">条目三</li>
-
+                ##for(p in ptxxList){
+               		<li class="myOption selected ptmc" value="${p.jysc!}">${p.jysinfo!}</li>
+                 ##}
                 </ul>
             </div>
         </div>
@@ -92,17 +94,17 @@
                         <th>等保</th>
                         <th>运营时间</th>
                         <th>平台实力</th>
-                        <th>法人</th>
+                        <!-- <th>法人</th> -->
                         <th>注册资本</th>
                         <th>总成金额</th>
                         <th>贷款金额</th>
                         <th>在投人数</th>
                         <th>信息披露</th>
-                        <th>详情</th>
+                       
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
+                    <tbody id="ptzl">
+                    <!-- <tr>
                         <td>鲁金宝</td>
                         <td>25</td>
                         <td>是</td>
@@ -116,8 +118,8 @@
                         <td>500万</td>
                         <td>3245</td>
                         <td></td>
-                        <td>查看</td>
-                    </tr>
+                       
+                    </tr> -->
                     </tbody>
                 </table>
             </div>
@@ -135,17 +137,17 @@
                     <thead>
                     <tr>
                         <th>平台名称</th>
-                        <th>机构信息 <span>(26)</span></th>
-                        <th>经营信息 <span>(17)</span></th>
-                        <th>项目信息 <span>(13)</span></th>
-                        <th>附加信息 <span>(7)</span></th>
+                        <th>机构信息 </th>
+                        <th>经营信息</th>
+                        <th>项目信息</th>
+                        <th>附加信息 </th>
                         <th>总计</th>
                         <th>得分</th>
                         <th>排名</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
+                    <tbody id="xxpl">
+                    <!-- <tr>
                         <td>中融宝</td>
                         <td>25</td>
                         <td>15</td>
@@ -154,7 +156,7 @@
                         <td>50.5</td>
                         <td>89.1</td>
                         <td>1</td>
-                    </tr>
+                    </tr> -->
                     </tbody>
                 </table>
             </div>
@@ -175,23 +177,23 @@
                                 <th>总成交额 <span>(万)</span></th>
                                 <th>总借款人数 <span>(万)</span></th>
                                 <th>总投资人数 <span>(万)</span></th>
-                                <th>平均借款期限 <span>(天)</span></th>
+                                <th>平均借款期限 <span>(月)</span></th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <td>76543</td>
-                                <td>67897650</td>
-                                <td>76543</td>
-                                <td>76543</td>
-                                <td>43</td>
+                                <td id="zcjl"></td>
+                                <td id="zcje"></td>
+                                <td id="zjkrs"></td>
+                                <td id="ztzrs"></td>
+                                <td id="pjjkqx"></td>
                             </tr>
                             </tbody>
                         </table>
                         <table class="pingtaiInformationtable">
                             <thead>
                             <tr>
-                                <th>平均满标时间 <span>(小时)</span></th>
+                                <th>平均满标时间 <span>(秒)</span></th>
                                 <th>人均借款金额 <span>(万)</span></th>
                                 <th>人均投资金额 <span>(万)</span></th>
                                 <th>借款分散度</th>
@@ -200,11 +202,11 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td>0.07</td>
-                                <td>650.90</td>
-                                <td>650.90</td>
-                                <td>0.4531</td>
-                                <td>0.4712</td>
+                                <td id="mbys"></td>
+                                <td id="rjjk"></td>
+                                <td id="rjtz"></td>
+                                <td id="jkfsd"></td>
+                                <td id="tzfsd"></td>
                             </tr>
                             </tbody>
                         </table>
@@ -220,10 +222,10 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td>172.27</td>
-                                <td>155.48</td>
-                                <td>155.48</td>
-                                <td>正常</td>
+                                <td id="rjjkcs"></td>
+                                <td id="rjtzcs"></td>
+                                <td id="dkye"></td>
+                                <td id="ptzt"></td>
                                 <td></td>
                             </tr>
                             </tbody>
@@ -240,3 +242,304 @@
 
 </body>
 </html>
+<script type="text/javascript">
+	$(function () {
+		var jysc = '${jysc}';
+		start();
+		function start() {
+			//获取当前平台名称
+			$.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/platformalert/getPtxxByJysc",
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					var content = "";
+					$.each(data,function(index,item){
+						content = content
+						+ item.jysinfo
+					})
+					
+					$(".text").html(content);
+				}
+			});
+			//获去当前平台的总览信息
+			$.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/platformalert/getPlatfromByJysc",
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					var content = "";
+					$.each(data,function(index,item){
+						content = content
+						+'    <tr>'
+	        			+'    	<td>'+item.jysinfo+'</td>'
+	        			+'    	<td>'+item.icp+'</td>'
+	        			+'    	<td>'+item.jrbba+'</td>'
+	        			+'     	<td>'+item.cgyh+'</td>'
+	        			+'    	<td>'+item.db+'</td>'
+	        			+'   	<td>'+item.yysj+'</td>'
+	        			+'   	<td>'+item.ptsl+'</td>'
+	        			+'    	<td>'+item.zczb+'万</td>'
+	        			+'   	<td>'+item.zcje+'</td>'
+	        			+'   	<td>'+item.dkje+'</td>'
+	        			+'    	<td>'+item.ztrs+'</td>'
+	        			+'   	<td>'+item.xxpl+'</td>'
+	        			+'   	<td>查看</td>'
+	        			+'    </tr>'
+					})
+					$("#ptzl").html(content);
+				}
+			})
+			//获取当前平台的信息披露
+			$.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/platformalert/getXxplByJysc",
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){	
+					var content = "";
+					$.each(data,function(index,item){
+						content = content
+						+'<tr>'
+						+'  <td>'+item.jyscmc+'</td>'
+						+'  <td>'+item.jgxx+'</td>'
+						+'  <td>'+item.jyxx+'</td>'
+						+'  <td>'+item.xmxx+'</td>'
+						+'  <td>'+item.fjxx+'</td>'
+						+'  <td>'+item.fvalue+'</td>'
+						+'  <td>'+item.fvalue1+'</td>'
+						+'  <td>'+item.pm+'</td>'
+						+'</tr>'
+						
+					})
+					$("#xxpl").html(content);
+				}
+			})
+			//获取总成交量
+			$.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/platformalert/getZcjl",
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					var content = "";
+					$.each(data,function(index,item){
+						content = content
+						+item.zcjl
+					})
+					$("#zcjl").html(content);
+				}
+			})
+			//获取总成交额
+			$.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/platformalert/getZcje",
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					var content = "";
+					$.each(data,function(index,item){
+						content = content
+						+item.zcje
+					})
+					$("#zcje").html(content);
+				}
+			})
+			//获取总借款人数
+			$.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/platformalert/getZjkrs",
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					var content = "";
+					$.each(data,function(index,item){
+						content = content
+						+item.zjkrs
+					})
+					$("#zjkrs").html(content);
+				}
+			})
+			//获取总投资人数
+			$.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/platformalert/getZtzrs",
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					var content = "";
+					$.each(data,function(index,item){
+						content = content
+						+item.ztzrs
+					})
+					$("#ztzrs").html(content);
+				}
+			})
+			
+			//获取平均借款期限
+			$.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/platformalert/getPjjkqx",
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					var content = "";
+					$.each(data,function(index,item){
+						content = content
+						+item.avge_term  
+					})
+					$("#pjjkqx").html(content);
+				}
+			})
+			//获取平均满标用时
+			$.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/platformalert/getMbys",
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					var content = "";
+					$.each(data,function(index,item){
+					
+						content = content
+						+item.mbys.toFixed(2)  
+					})
+					$("#mbys").html(content);
+				}
+			})
+			//获取人均借款
+			$.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/platformalert/getRjjk",
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					var content = "";
+					var jk = parseInt(data.zcje)/parseInt(data.zjkrs);
+						content = content
+						+jk.toFixed(2)
+					
+					$("#rjjk").html(content);
+				}
+			})
+			//获取人均投资
+			$.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/platformalert/getRjtz",
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					var content = "";
+					var tz = parseInt(data.zcje)/parseInt(data.ztzrs);
+						content = content
+						+tz.toFixed(2);
+					
+					$("#rjtz").html(content);
+				}
+			})
+			//获取借款分散度
+			$.ajax({
+				url:"${contextPath}/qdch/platformalert/getJkfsd",
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					var content = "";
+					$.each(data,function(index,item){
+						content = content
+						+item.hhi_value
+					})
+					$("#jkfsd").html(content);
+				}
+			})
+			//获取投资分散度
+			$.ajax({
+				url:"${contextPath}/qdch/platformalert/getTzfsd",
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					var content = "";
+					$.each(data,function(index,item){
+						content = content
+						+item.hhi_value
+					})
+					$("#tzfsd").html(content);
+				}
+			})
+			//获取人均借款次数
+			$.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/platformalert/getRjjkcs",
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					var content = "";
+					$.each(data,function(index,item){
+						content = content
+						+item.rjjkcs
+					})
+					$("#rjjkcs").html(content);
+				}
+			})
+			//获取人均投资次数
+			$.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/platformalert/getRjtzcs",
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					var content = "";
+					$.each(data,function(index,item){
+						content = content
+						+item.rjtzcs
+					})
+					$("#rjtzcs").html(content);
+				}
+			})
+			
+			//获取贷款余额
+			$.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/platformalert/getDkye",
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					var content = "";
+					$.each(data,function(index,item){
+						content = content
+						+item.je  
+					})
+					$("#dkye").html(content);
+				}
+			})
+			
+			//获取平台状态
+			$.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/platformalert/getPtzt",
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					var content = "";
+					$.each(data,function(index,item){
+						content = content
+						+item.status
+					})
+					$("#ptzt").html(content);
+				}
+			})
+		}
+		
+		
+		//换平台查看的点击事件
+		$(".ptmc").click(function () {
+			jysc = $(this).attr('value');
+			start();
+		})
+		
+		
+	})
+	
+	
+</script>

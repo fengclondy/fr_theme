@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.fr.hailian.core.Constants;
+import com.jfinal.kit.PropKit;
 /***
  * JDBC工具类
  * @author Tom
@@ -54,6 +55,20 @@ public class JDBCUtil {
 		}
 		return conn;
 	}
+	
+	public static Connection getInsightConnection() {
+		try {
+			Class.forName("org.postgresql.Driver");
+			conn = DriverManager.getConnection(PropKit.get("insight_jdbc"),
+					PropKit.get("insight_user"), PropKit.get("insight_pwd"));
+
+		} catch (ClassNotFoundException e) {e.printStackTrace();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return conn;
+	}
 
 	/**
 	 * insert update delete SQL语句的执行的统一方法
@@ -84,6 +99,7 @@ public class JDBCUtil {
 			affectedLine = pst.executeUpdate();
 
 		} catch (SQLException e) {
+			e.printStackTrace();
 			System.out.println(e.getMessage());
 		} finally {
 			// 释放资源
@@ -91,7 +107,41 @@ public class JDBCUtil {
 		}
 		return affectedLine;
 	}
+	public static int executeUpdate(String sql, Object[] params,String type) {
+		// 受影响的行数
+		int affectedLine = 0;
 
+		try {
+			// 获得连接
+			if ("hub".equals(type)) {
+				conn = JDBCUtil.getConnection();
+			}else if("insight".equals(type)){
+				conn = JDBCUtil.getInsightConnection();
+			}
+			
+			// 调用SQL
+			pst = conn.prepareStatement(sql);
+
+			// 参数赋值
+			if (params != null) {
+				for (int i = 0; i < params.length; i++) {
+					pst.setObject(i + 1, params[i]);
+				}
+			}
+            /*在此 PreparedStatement 对象中执行 SQL 语句，
+                                          该语句必须是一个 SQL 数据操作语言（Data Manipulation Language，DML）语句，比如 INSERT、UPDATE 或 DELETE
+                                          语句；或者是无返回内容的 SQL 语句，比如 DDL 语句。    */
+			// 执行
+			affectedLine = pst.executeUpdate();
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			// 释放资源
+			JDBCUtil.closeAll();
+		}
+		return affectedLine;
+	}
 	/**
 	 * SQL 查询将查询结果直接放入ResultSet中
 	 * @param sql SQL语句
@@ -117,6 +167,7 @@ public class JDBCUtil {
 			rst = pst.executeQuery();
 
 		} catch (SQLException e) {
+			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
 
@@ -256,13 +307,13 @@ public class JDBCUtil {
 	 */
 	private static void closeAll() {
 		// 关闭结果集对象
-		if (rst != null) {
-			try {
-				rst.close();
-			} catch (SQLException e) {
-				System.out.println(e.getMessage());
-			}
-		}
+//		if (rst != null) {
+//			try {
+//				rst.close();
+//			} catch (SQLException e) {
+//				System.out.println(e.getMessage());
+//			}
+//		}
 
 		// 关闭PreparedStatement对象
 		if (pst != null) {

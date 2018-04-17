@@ -22,8 +22,12 @@ public class CompanysInfoModel extends Model<CompanysInfoModel> {
 	 * @date 2018年4月10日
 	 * @TODO
 	 */
-	public List<CompanysInfoModel> getInfo(String data){
-		String sql="select m.company_name from hub_commerce_company_info m where m.company_name in (select n.company_name from hub_commerce_ref_jys n ";
+	public List<CompanysInfoModel> getInfo(String data,String name){
+		String sql="select m.company_name from hub_commerce_company_info m where ";
+				if(StringUtils.isNotBlank(name)){
+				sql+=" m.company_name !='"+name+"'";
+				}
+				sql+=" and m.company_name in (select n.company_name from hub_commerce_ref_jys n ";
 				if(StringUtils.isNotBlank(data)){
 					sql+="where n.jys in "+ data;
 				}
