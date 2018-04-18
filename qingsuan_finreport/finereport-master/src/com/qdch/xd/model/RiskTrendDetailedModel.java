@@ -38,4 +38,28 @@ public class RiskTrendDetailedModel extends Model<RiskTrendDetailedModel>{
 		sql+=" GROUP BY jyscmc order by jyscmc";
 		return dao.find(sql);
 	}
+	/**
+	 * 风险雷达图指数获取
+	 * @author lixiaoyi
+	 * @date 2018年4月18日 上午11:19:04
+	 * @TODO
+	 */
+	public RiskTrendDetailedModel getScore(String data,String name){
+		String sql="select t1.jysc,t1.jyscmc, "
+  +"SUM(CASE WHEN fxlb='信用风险' THEN nums ELSE 0 END) as xyfx,"
+  +"SUM(CASE WHEN fxlb='管理风险' THEN nums ELSE 0 END) as xyfx,"
+  +"SUM(CASE WHEN fxlb='资产风险' THEN nums ELSE 0 END) as xyfx, "
+  +"SUM(CASE WHEN fxlb='合规风险' THEN nums ELSE 0 END) as xyfx, "
+  +"SUM(CASE WHEN fxlb='声誉风险' THEN nums ELSE 0 END) as xyfx "
+  +"from hub_xd_fxzsmx t1 where vday=(select max(vday) from hub_xd_fxzsmx where 1=1 ";
+		if(StringUtils.isNotBlank(name)){
+			sql+=" and jyscmc='"+name+"'";
+		}	
+	if(StringUtils.isNotBlank(data)){
+		sql+=" and jysc in "+data;
+	}
+  
+     sql+=" )GROUP BY t1.jysc,t1.jyscmc";
+     return dao.findFirst(sql);
+	}
 }
