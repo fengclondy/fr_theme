@@ -42,7 +42,30 @@ public class IndexRankingModel extends Model<IndexRankingModel>{
 		sql+=" and custype = "+type+" group by t.jyscmc order by t.jyscmc";
 		return dao.find(sql);
 	}
+	public List<IndexRankingModel> getByLoanAmount2(String bigjys,String jyscode,String type){
+		String sql="select t.jyscmc as name,round(sum(t.fvalue)/10000,0) as value from insight_xd_fkamount t where 1=1 ";
+		if(StringUtils.isNotBlank(bigjys)){
+			sql+="and jysc in "+bigjys;
+		} 
+		if(StringUtils.isNotBlank(jyscode)){
+			sql+=" and jysc = '"+jyscode+"'";
+		}
+		sql+=" and custype = "+type+" group by t.jyscmc order by t.jyscmc";
+		return dao.find(sql);
+	}
 	public List<IndexRankingModel> getByYeamount(String bigjys,String jyscode,String type){
+		String sql="select t.jyscmc as name,round(sum(t.fvalue)/10000,0) as value from insight_xd_yeamount t where vday=(select max(vday) from insight_xd_yeamount)";
+		if(StringUtils.isNotBlank(bigjys)){
+			sql+=" and jysc in "+bigjys;
+		} 
+		if(StringUtils.isNotBlank(jyscode)){
+			sql+=" and jysc = '"+jyscode+"'";
+		}
+		sql+=" and custype = "+type+" group by t.jyscmc order by t.jyscmc";
+		//return dao.find(Db.getSqlPara("index.getByDBFS"));
+		return dao.find(sql);
+	}
+	public List<IndexRankingModel> getByYeamount2(String bigjys,String jyscode,String type){
 		String sql="select t.jyscmc as name,round(sum(t.fvalue)/10000,0) as value from insight_xd_yeamount t where vday=(select max(vday) from insight_xd_yeamount)";
 		if(StringUtils.isNotBlank(bigjys)){
 			sql+=" and jysc in "+bigjys;
