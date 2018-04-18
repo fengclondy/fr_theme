@@ -195,7 +195,7 @@ public class PlatformAlertController extends BaseController{
 	 */
 	public void getRjtzcs(){
 		String jysc = getPara("jysc");
-		List<RenJunCiShuModel> rjtzcs = RenJunCiShuModel.dao.getRjjkcs(getDataScopeByUserNameForP2p(), jysc);
+		List<RenJunCiShuModel> rjtzcs = RenJunCiShuModel.dao.getRjtzcs(getDataScopeByUserNameForP2p(), jysc);
 		mRenderJson(rjtzcs);
 	}
 	/**
