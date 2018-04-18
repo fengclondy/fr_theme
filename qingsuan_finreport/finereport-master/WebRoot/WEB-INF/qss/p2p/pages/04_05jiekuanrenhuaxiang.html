@@ -210,14 +210,14 @@
                             <th class="center" rowspan="2">资料类别</th>
                             <th class="center " rowspan="1" id="pingtai">主要信息</th>
                             
-                             ##for(j in pingtailist!){
+                             ##for(j in defenlist!){
                                 <th class="center" rowspan="1" >${j.jysinfo!}</th>
                              ##}
                         </tr>
                         <tr id="score">
                             <th class="center defen">得分</th>
                             
-                          ##for(j in pingtailist!){
+                          ##for(j in defenlist!){
                           	<th class="center defen1" data="${j.jysinfo!}">${j.fscore!}</th>
                           ##}
 

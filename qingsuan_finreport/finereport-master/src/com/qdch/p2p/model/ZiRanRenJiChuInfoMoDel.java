@@ -12,7 +12,7 @@ public class ZiRanRenJiChuInfoMoDel extends Model<ZiRanRenJiChuInfoMoDel>{
 	public static final ZiRanRenJiChuInfoMoDel dao=new ZiRanRenJiChuInfoMoDel();
 	/**
 	 * 获取自然人基本信息
-	 * @author lixiaoyi
+	 * @author gaozhao
 	 * @date 2018年4月8日
 	 * @TODO
 	 */

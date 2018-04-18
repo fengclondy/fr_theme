@@ -14,19 +14,28 @@ public class DefenInfoModel extends Model<DefenInfoModel>{
 	/**
 	 * 
 	 * @author 高照
-	 * @date 2018年4月10日
+	 * @date 2018年4月10日  
 	 * @TODO 平台得分
 	 */
-	public List<DefenInfoModel> getScoreList(String bigjys,String pyType){
-		String sql="select jysinfo,fscore,jysc from insight_pp_score_info where 1=1 ";
-		if(StringUtils.isNotBlank(bigjys)){
-			sql+=" and jysc in "+bigjys;
-		} 
-		if(StringUtils.isNotBlank(pyType)){
-			sql+=" and jysinfo = '"+pyType+"' ";
-		} 
-		sql+=" order by fscore desc";
-	    return	dao.find(sql);
+	public List<DefenInfoModel> getScoreList(String bigjys,String pyType,String hasInfo){
+		String sql = "select"
+				+ " t1.jysc,"
+				+ " t1.jyscmc,"
+				+ " t1.jysinfo,"
+				+ " t1.vday,"
+				+ " t1.fscore"
+				+ " from (select jysc,jyscmc,jysinfo,vday,max(fscore) as fscore from insight_pp_score_info p1"
+				+ " where 1=1";
+				if(StringUtils.isNotBlank(bigjys)){
+					sql+=" and jysc in "+bigjys;
+				} 
+				if(StringUtils.isNotBlank(pyType)){
+					sql+=" and jysinfo = '"+pyType+"' ";
+				} 
+				sql+= "and vday=(SELECT max(vday) from insight_pp_score_info where jysc=p1.jysc)"
+				+ " GROUP BY jysc,jyscmc,jysinfo,vday) t1"
+				+ " order by t1.fscore desc";
+		 return	dao.find(sql);
 	}
 	
     

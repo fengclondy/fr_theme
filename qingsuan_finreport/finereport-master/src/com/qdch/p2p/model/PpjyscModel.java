@@ -27,5 +27,25 @@ public class PpjyscModel extends Model<PpjyscModel> {
 		sql+="order by jysc";
 		return dao.find(sql);
 	}
+	/**
+	 * 前台方法需要，重写一个获得平台方法
+	 * @author gaozhao 
+	 * @date 2018年4月18日上午
+	 * @param dataSql
+	 * @param pyType
+	 * @return
+	 */
+	public List<PpjyscModel> getJyscP2P(String dataSql,String pyType){	
+		String sql="select jysc,jyscmc,jysinfo,jyscfl,zt,djrq from hub_pp_jysc where 1=1 ";
+		
+		if(StringUtils.isNotBlank(dataSql)){
+			sql+=" and jysc in"+ dataSql+"";
+		}
+		if(StringUtils.isNotBlank(pyType)){
+			sql+=" and jysinfo = '"+pyType+"' ";
+		} 
+		sql+="order by jysc";
+		return dao.find(sql);
+	}
 
 }

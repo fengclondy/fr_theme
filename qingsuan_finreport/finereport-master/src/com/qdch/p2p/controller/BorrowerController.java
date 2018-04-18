@@ -35,10 +35,12 @@ public class BorrowerController extends BaseController {
 			ptType=null;
 		}
 		String hasInfo=getPara("hasInfo","");
-		List<DefenInfoModel> ptList=new ArrayList<DefenInfoModel>();
-		ptList=DefenInfoModel.dao.getScoreList(getDataScopeByUserNameForP2p(),ptType);
+		List<PpjyscModel> ptList=new ArrayList<PpjyscModel>();
+		List<DefenInfoModel> defenList=new ArrayList<DefenInfoModel>();
+		ptList=PpjyscModel.dao.getJyscP2P(getDataScopeByUserNameForP2p(),ptType);
 		setAttr("jyslist", PpjyscModel.dao.getJysc(getDataScopeByUserName()));
-		for(DefenInfoModel model:ptList){
+		setAttr("defenlist", DefenInfoModel.dao.getScoreList(getDataScopeByUserNameForP2p(),ptType, hasInfo));
+		for(PpjyscModel model:ptList){
 			ZiRanRenJiChuInfoMoDel zrr=ZiRanRenJiChuInfoMoDel.dao.getBasicinfo(getDataScopeByUserNameForP2p(),model.getStr("jysc"),hasInfo);
 			model.put("zrr",zrr);
 			XinYongInfoModel xinyon=XinYongInfoModel.dao.getCreditinfo(getDataScopeByUserNameForP2p(),model.getStr("jysc"),hasInfo);
@@ -57,6 +59,8 @@ public class BorrowerController extends BaseController {
 			model.put("shqy",shqy);
 			ShenHeZiLiaoZiRanRenModel shzr=ShenHeZiLiaoZiRanRenModel.dao.getShenHeZiRanRen(getDataScopeByUserNameForP2p(),model.getStr("jysc"),hasInfo);
 			model.put("shzr",shzr);
+			/*DefenInfoModel defen=DefenInfoModel.dao.getScoreList(getDataScopeByUserNameForP2p(),model.getStr("jysc"),hasInfo);
+			model.put("defen",defen);*/
 		}
 		setAttr("pingtailist",ptList);
 		setAttr("jys",ptType);
