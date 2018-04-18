@@ -210,14 +210,14 @@
                             <th class="center" rowspan="2">资料类别</th>
                             <th class="center " rowspan="1" id="pingtai">主要信息</th>
                             
-                             ##for(j in defenlist!){
+                             ##for(j in pingtailist!){
                                 <th class="center" rowspan="1" >${j.jysinfo!}</th>
                              ##}
                         </tr>
                         <tr id="score">
                             <th class="center defen">得分</th>
                             
-                          ##for(j in defenlist!){
+                          ##for(j in pingtailist!){
                           	<th class="center defen1" data="${j.jysinfo!}">${j.fscore!}</th>
                           ##}
 
@@ -235,7 +235,7 @@
                             ##for(j in pingtailist!){
                           	<td class="center" id="name2">
                           		
-                          			${j.zrr.jkf!}
+                          			${j.zrr.pname!}
                      	     </td>
                           ##}
                         </tr>
@@ -257,7 +257,7 @@
                            
                           	<td class="center">
                    		
-                          			${j.zrr.sfz!}
+                          			${j.zrr.jkyt!}
                           		
                           	 </td>
                           ##}
@@ -268,7 +268,7 @@
                               ##for(j in pingtailist!){
                            
                           	<td class="center">
-                          		${j.zrr.sex!} 
+                          		${j.zrr.sex!}
                           	 </td>
                           ##}
 					    </tr>
@@ -371,7 +371,7 @@
                             ##for(j in pingtailist!){
                            
                           	<td class="center">
-                          		 ${j.xinyon.qijk!} 
+                          		  ${j.xinyon.qijk!}
                           	</td>
                             ##}
                            
@@ -970,6 +970,10 @@
 	var youwu="${hasInfo!}";
     //此处调用superTables.js里需要的函数
     $(document).ready(function(){
+    	
+    alert('${pingtailist!}');
+    console.log(pt);
+    	console.log('${pingtailist!}');
     	    //获取到选择平台的值
     	    $(".pt").click(function(){
     	    	pt=$(this).attr('value');
@@ -1040,6 +1044,6 @@
         
      
     });
-    
+   
    
 </script>
