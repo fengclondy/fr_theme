@@ -859,7 +859,7 @@
 		var xuel;
 		var hyzk;
 		var hjszd;
-		var hkly;
+		var zrrhkly;
 		$(".pname").change(function () {
 			$(".pname").val($(this).val())
 		})
@@ -892,7 +892,7 @@
 	/*---------------------------提交信用信息start----------------------------------  */
 		var yqcs;
 		var yqje ;
-		var zxbg;
+		var zrrzxbg;
 		var jkrxy;
 		var jkbs;
 		var jkze;
@@ -926,7 +926,7 @@
 	/*---------------------------提交信用信息end----------------------------------  */
 	
 	/*---------------------------提交资产信息start----------------------------------  */
-		var srqk;
+		var zrrsrqk;
 		var gf_flag;
 		var gc_flag;
 		var fd_flag;
@@ -951,7 +951,7 @@
 	/*---------------------------提交工作信息start----------------------------------  */
 		var industry;
 		var city;
-		var gsgm;
+		var zrrgsgm;
 		var gzgw;
 		var gznx;
 		$(".industry").change(function () {
@@ -1055,16 +1055,8 @@
 	function a() {
 		var a = new Promise(function(resolve, reject) { 
 			//提交自然人基本信息
-		 	pname = $(".pname").val();
-			sfz=$(".sfz").val();
-			jkyt = $(".jkyt").val();
-			sex = $(".sex").val();
-			age = $(".age").val();
-			xuel = $(".xuel").val();
-			hyzk = $(".hyzk").val();
-			hjszd = $(".hjszd").val();
-			hkly = $(".hkly").val();
-			cs = "?pname="+pname+"&sfz="+sfz+"&jkyt="+jkyt+"&sex="+sex+"&age="+age+"&xuel="+xuel+"&hyzk="+hyzk+"&hjszd="+hjszd+"&hkly="+hkly;
+		 	
+			cs = "?pname="+pname+"&sfz="+sfz+"&jkyt="+jkyt+"&sex="+sex+"&age="+age+"&xuel="+xuel+"&hyzk="+hyzk+"&hjszd="+hjszd+"&hkly="+zrrhkly;
 			$.ajax({
 				type:"POST",
 				url:"${contextPath}/qdch/borrowerfill/submitZrrxx"+cs,
@@ -1080,14 +1072,8 @@
 	function b() {
 		var b = new Promise(function(resolve, reject) { 
 			//提交信用信息
-			yqcs = $(".yqcs").val()
-			yqje = $(".yqje").val();
-			zxbg = $(".zxbg").val();
-			jkrxy = $(".jkrxy").val();
-			jkbs = $(".jkbs").val();
-			jkze = $(".jkze").val();
-			zxcs = $(".zxcs").val();
-			cs = "?yqcs="+yqcs+"&yqje="+yqje+"&zxbg="+zxbg+"&jkrxy="+jkrxy+"&jkbs="+jkbs+"&jkze="+jkze+"&zxcs="+zxcs;
+			
+			cs = "?yqcs="+yqcs+"&yqje="+yqje+"&zxbg="+zrrzxbg+"&jkrxy="+jkrxy+"&jkbs="+jkbs+"&jkze="+jkze+"&zxcs="+zxcs;
 			$.ajax({
 				type:"POST",
 				url:"${contextPath}/qdch/borrowerfill/submitXyxx"+cs,
@@ -1103,12 +1089,8 @@
 	function c() {
 		var c = new Promise(function(resolve, reject) { 
 			 //提交资产信息
-			srqk = $(".srqk").val();
-			gf_flag = $(".gf_flag").val();
-			gc_flag = $(".gc_flag").val();
-			fd_flag = $(".fd_flag").val();
-			cd_flag = $(".cd_flag").val();
-			cs = "?srqk="+srqk+"&gf_flag="+gf_flag+"&gc_flag="+gc_flag+"&fd_flag="+fd_flag+"&cd_flag="+cd_flag;
+			
+			cs = "?srqk="+zrrsrqk+"&gf_flag="+gf_flag+"&gc_flag="+gc_flag+"&fd_flag="+fd_flag+"&cd_flag="+cd_flag;
 			$.ajax({
 				type:"POST",
 				url:"${contextPath}/qdch/borrowerfill/submitZcxx"+cs,
@@ -1124,12 +1106,8 @@
 	function d() {
 		var d = new Promise(function(resolve, reject) { 
 			//提交工作信息
-			industry = $(".industry").val();
-			city = $(".city").val();
-			gsgm = $(".gsgm").val();
-			gzgw = $(".gzgw").val();
-			gznx = $(".gznx").val();
-			cs = "?industry="+industry+"&city="+city+"&gsgm="+gsgm+"&gzgw="+gzgw+"&gznx="+gznx;
+			
+			cs = "?industry="+industry+"&city="+city+"&gsgm="+zrrgsgm+"&gzgw="+gzgw+"&gznx="+gznx;
 			$.ajax({
 				type:"POST",
 				url:"${contextPath}/qdch/borrowerfill/submitGzxx"+cs,
@@ -1145,15 +1123,7 @@
 	function e() {
 		var e = new Promise(function(resolve, reject) { 
 			//提交企业基本信息
-			gsmc = $(".qygsmc").val();
-			frdb = $(".qyfrdb").val();
-			clsj = $(".qyclsj").val();
-			zczb = $(".qyzczb").val();
-			zcdz = $(".qyzcdz").val();
-			gsgm = $(".qygsgm").val();
-			yyfw = $(".qyyyfw").val();
-			zjyt = $(".qyzjyt").val();
-			hkly = $(".qyhkly").val();
+			
 			cs = "?gsmc="+gsmc+"&frdb="+frdb+"&clsj="+clsj+"&zczb="+zczb+"&zcdz="+zcdz+"&gsgm="+gsgm+"&yyfw="+yyfw+"&zjyt="+zjyt+"&hkly="+hkly
 			$.ajax({
 				type:"POST",
@@ -1170,14 +1140,7 @@
 	function f() {
 		var f = new Promise(function(resolve, reject) { 
 			//提交企业其他信息
-			srqk = $(".qysrqk").val();
-			fzqk = $(".qyfzqk").val();
-			zxbg = $(".qyzxbg").val();
-			qijk_flag = $(".qijk_flag").val();
-			gdxx = $(".qygdxx").val();
-			xyxx = $(".frxyxx").val();
-			zxcs = $(".qyzxcs").val();
-			ssxx = $(".qyssxx").val();
+			
 			cs = "?srqk="+srqk+"&fzqk="+fzqk+"&zxbg="+zxbg+"&qijk_flag="+qijk_flag+"&gdxx="+gdxx+"&xyxx="+xyxx+"&zxcs="+zxcs+"&ssxx="+ssxx;
 			$.ajax({
 				type:"POST",
@@ -1210,7 +1173,54 @@
 		if ($(".inp").val() == "") {
 			return;
 		}
+		pname = $(".pname").val();
+		sfz=$(".sfz").val();
+		jkyt = $(".jkyt").val();
+		sex = $(".sex").val();
+		age = $(".age").val();
+		xuel = $(".xuel").val();
+		hyzk = $(".hyzk").val();
+		hjszd = $(".hjszd").val();
+		zrrhkly = $(".hkly").val();
 		
+		yqcs = $(".yqcs").val()
+		yqje = $(".yqje").val();
+		zrrzxbg = $(".zxbg").val();
+		jkrxy = $(".jkrxy").val();
+		jkbs = $(".jkbs").val();
+		jkze = $(".jkze").val();
+		zxcs = $(".zxcs").val();
+		
+		zrrsrqk = $(".srqk").val();
+		gf_flag = $(".gf_flag").val();
+		gc_flag = $(".gc_flag").val();
+		fd_flag = $(".fd_flag").val();
+		cd_flag = $(".cd_flag").val();
+		
+		industry = $(".industry").val();
+		city = $(".city").val();
+		zrrgsgm = $(".gsgm").val();
+		gzgw = $(".gzgw").val();
+		gznx = $(".gznx").val();
+		
+		gsmc = $(".qygsmc").val();
+		frdb = $(".qyfrdb").val();
+		clsj = $(".qyclsj").val();
+		zczb = $(".qyzczb").val();
+		zcdz = $(".qyzcdz").val();
+		gsgm = $(".qygsgm").val();
+		yyfw = $(".qyyyfw").val();
+		zjyt = $(".qyzjyt").val();
+		hkly = $(".qyhkly").val();
+		
+		srqk = $(".qysrqk").val();
+		fzqk = $(".qyfzqk").val();
+		zxbg = $(".qyzxbg").val();
+		qijk_flag = $(".qijk_flag").val();
+		gdxx = $(".qygdxx").val();
+		xyxx = $(".frxyxx").val();
+		zxcs = $(".qyzxcs").val();
+		ssxx = $(".qyssxx").val();
 		var bb = a().then(function () {
 			return b();
 		});
@@ -1228,7 +1238,8 @@
 		});
 		var gg = ff.then(function () {
 			return g();
-		});
+		}); 
+		
 		$("input[id = 'df']").val("");
 		$(".ptmc").html("");
 		$(".inp").val("");
