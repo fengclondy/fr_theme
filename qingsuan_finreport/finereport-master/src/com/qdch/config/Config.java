@@ -43,6 +43,7 @@ import com.qdch.p2p.model.CoExecptionModel;
 import com.qdch.p2p.model.CoShareholderInfoModel;
 import com.qdch.p2p.model.CollectPrincipalModel;
 import com.qdch.p2p.model.CompositeInterestModel;
+import com.qdch.p2p.model.ConcentrationRatioModel;
 import com.qdch.p2p.model.CustNumberModel;
 import com.qdch.p2p.model.DefenInfoModel;
 import com.qdch.p2p.model.DiYaShenHeModel;
@@ -297,6 +298,7 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("insight_pp_indust_int", CompositeInterestModel.class);//用于平台项目获取行业综合利率
 		insight_arp.addMapping("insight_pp_iterm_count", StructuralDetailsModel.class);//用于平台项目获取项目结构详情
 		insight_arp.addMapping("insight_pp_term_distribute", TermDetailsModel.class);//用于平台项目获取期限分布详情
+		insight_arp.addMapping("insight_pp_hhi_calculate", ConcentrationRatioModel.class);//用于平台项目画像获取集中度
 		arp.addMapping("hub_pp_fxzs", RiskOverviewModel.class);//用于p2p风险总览
 		/***doushuiahi Model START p2p***/
 		
