@@ -42,6 +42,7 @@ import com.qdch.p2p.model.CoCorePersonModel;
 import com.qdch.p2p.model.CoExecptionModel;
 import com.qdch.p2p.model.CoShareholderInfoModel;
 import com.qdch.p2p.model.CollectPrincipalModel;
+import com.qdch.p2p.model.CompanyFeelModel;
 import com.qdch.p2p.model.CompositeInterestModel;
 import com.qdch.p2p.model.CustNumberModel;
 import com.qdch.p2p.model.DefenInfoModel;
@@ -431,6 +432,7 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("insight_pp_avge_term", AvgTermTimeModel.class); //p2p平台总览 alert-平台数据信息
 		insight_arp.addMapping("insight_pp_collect_principal", LoanBalanceModel.class); //p2p 平台总览alert-平台数据信息
 		insight_arp.addMapping("insight_pp_average_time", FullScaleTimeModel.class); //p2p 平台总览alert-平台数据信息
+		arp.addMapping("hub_commerce_meiya_sentiment_news", CompanyFeelModel.class); // p2p 企业舆情
 	}
 
 	public void configInterceptor(Interceptors me) {
