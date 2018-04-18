@@ -124,7 +124,7 @@
 		.top,.tabContent {
 			background: #2c467f99;
 			box-shadow: 0px 0px 15px #2c467f;
-			z-index: 999;
+			z-index: 1;
 			width: 100%;
 			margin: 0.8em .8em;
 		}
@@ -2138,21 +2138,64 @@
 }
  
  $(document).ready(function() {
-     $('#myStathalf').circliful();
-		$('#myStat').circliful();
-		$('#myStathalf2').circliful();
-		$('#myStat2').attr("data-text","85分");
-		$('#myStat2').attr("data-percent","85");
-		$('#myStat2').circliful();
-	    var flexW = $(".chartBodyFlex").width();
-	    var flexH = $(".chartBodyFlex").height();
-	    var absoluteW = $(".chartBodyAbsolute").width();
-	    var absoluteH = $(".chartBodyAbsolute").height();
-	    $(".chartBodyAbsolute").css({
-	    	"marginLeft": (flexW - absoluteW) / 2,
-	    	"marginTop": - (absoluteH / 2)
-	    })
-	    $(".line").show();
+	 name= $("#comm").text();
+		$.post("${contextPath}/qdch/commerce/gainScore",{"name":name},function(data){
+	
+			if(data=="kong"){
+					  /* $('#myStathalf').attr("data-text",item.jzl);
+						$('#myStathalf').attr("data-percent",item.jzl);
+						$('#myStat2').attr("data-text",item.fznl);
+						$('#myStat2').attr("data-percent",item.fznl);
+						$('#myStat').attr("data-text",item.jynl);
+						$('#myStat').attr("data-percent",item.jynl);
+						$('#myStathalf2').attr("data-text",item.ylnl);
+						$('#myStathalf2').attr("data-percent",item.ylnl); */
+					    $('#myStathalf').circliful();
+						$('#myStat').circliful();
+						$('#myStathalf2').circliful();
+						$('#myStat2').circliful();
+						
+					    var flexW = $(".chartBodyFlex").width();
+					    var flexH = $(".chartBodyFlex").height();
+					    var absoluteW = $(".chartBodyAbsolute").width();
+					    var absoluteH = $(".chartBodyAbsolute").height();
+					    $(".chartBodyAbsolute").css({
+					    	"marginLeft": (flexW - absoluteW) / 2,
+					    	"marginTop": - (absoluteH / 2)
+					    })
+					    $(".line").show();
+				  }else{
+					  $('#myStathalf').attr("data-text",data.jzl);
+						$('#myStathalf').attr("data-percent",data.jzl);
+						$('#myStat2').attr("data-text",data.fznl);
+						$('#myStat2').attr("data-percent",data.fznl);
+						$('#myStat').attr("data-text",data.jynl);
+						$('#myStat').attr("data-percent",data.jynl);
+						$('#myStathalf2').attr("data-text",data.ylnl);
+						$('#myStathalf2').attr("data-percent",data.ylnl);
+					    $('#myStathalf').circliful();
+						$('#myStat').circliful();
+						$('#myStathalf2').circliful();
+						$('#myStat2').circliful();
+						
+					    var flexW = $(".chartBodyFlex").width();
+					    var flexH = $(".chartBodyFlex").height();
+					    var absoluteW = $(".chartBodyAbsolute").width();
+					    var absoluteH = $(".chartBodyAbsolute").height();
+					    $(".chartBodyAbsolute").css({
+					    	"marginLeft": (flexW - absoluteW) / 2,
+					    	"marginTop": - (absoluteH / 2)
+					    })
+					    $(".line").show();
+				  }
+				 
+			
+			  
+		});
+		
+
+		
+	
  });
 
     //弹出框
@@ -2187,9 +2230,10 @@
 
                 {
                     indicator: [
+                                
                         {text: '信用风险', max: 100},
+                        {text: '管理风险', max: 100},
                         {text: '资产风险', max: 100},
-                        {text: '周边风险', max: 100},
                         {text: '合规风险', max: 100},
                         {text: '声誉风险', max: 100}
                     ],
@@ -2238,6 +2282,22 @@
         //当前时间
         //本页所有图表
         allCharts = [fxyq003];
+    });
+    //风险种类添加点击事件 
+    $(document).ready(function() {
+      var test= fxyq003.getOption().radar[0].indicator
+     $.each(test,function(index,item){
+	  if(index==0){
+	   var names=item.text
+	  // alert(names+"nnnn");
+	   item.on('click',function () {
+		    alert(1111);
+			window.location.href="${contextPath}/qdch/creditrisks"
+		})
+
+	}
+	  
+  })
     });
 
     var GSXX = {

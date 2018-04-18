@@ -1,5 +1,7 @@
 package com.qdch.xd.model;
 
+import java.util.List;
+
 import org.apache.commons.lang.StringUtils;
 
 import com.jfinal.plugin.activerecord.Model;
@@ -18,15 +20,15 @@ public class CoScabilityModel extends Model<CoScabilityModel> {
 	 * @date 2018年4月17日 下午6:47:19
 	 * @TODO
 	 */
-	public CoScabilityModel getScore(String name,String data){
+	public List<CoScabilityModel> getScore(String name,String data){
 		String sql="select * from insight_xd_scability where 1=1";
 		if(StringUtils.isNotBlank(name)){
-			sql+=" jyscmc'"+name+"'";
+			sql+=" and jyscmc='"+name+"'";
 			}
 		if(StringUtils.isNotBlank(data)){
 			sql+="and  jysc in "+ data;
 		}
-		return dao.findFirst(sql);
+		return dao.find(sql);
 		
 	}
 

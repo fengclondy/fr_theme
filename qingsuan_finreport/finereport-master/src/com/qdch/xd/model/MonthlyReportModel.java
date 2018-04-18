@@ -39,7 +39,7 @@ public class MonthlyReportModel extends Model<MonthlyReportModel>{
 		if(StringUtils.isNotBlank(date)){
 			sql+=" and t.upload_time = '"+ date+"'";
 		}
-		sql+=" order by order_number";
+		sql+=" order by order_number,title";
 		
 		return dao.find(sql);
 	}
