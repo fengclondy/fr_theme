@@ -101,6 +101,7 @@ import com.qdch.xd.model.CoBusinessModel;
 import com.qdch.xd.model.CoChangeLogModel;
 import com.qdch.xd.model.CoCopyrightModel;
 import com.qdch.xd.model.CoDishonestyModel;
+import com.qdch.xd.model.CoEnterpriseModel;
 import com.qdch.xd.model.CoExecutorModel;
 import com.qdch.xd.model.CoJobModel;
 import com.qdch.xd.model.CoJudgmentModel;
@@ -108,6 +109,7 @@ import com.qdch.xd.model.CoMainPersonModel;
 import com.qdch.xd.model.CoPatentModel;
 import com.qdch.xd.model.CoPenaltvModel;
 import com.qdch.xd.model.CoReportModel;
+import com.qdch.xd.model.CoScabilityModel;
 import com.qdch.xd.model.CoShareHolderModel;
 import com.qdch.xd.model.CoSoftcopyModel;
 import com.qdch.xd.model.CoStockchangeModel;
@@ -130,6 +132,7 @@ import com.qdch.xd.model.JyscModel;
 import com.qdch.xd.model.KeyIndicatorsModel;
 import com.qdch.xd.model.LimitQueryModel;
 import com.qdch.xd.model.ManagementRiskListModel;
+import com.qdch.xd.model.MarkNewsModel;
 import com.qdch.xd.model.MigrationRateModel;
 import com.qdch.xd.model.MonthlyReportListModel;
 import com.qdch.xd.model.MonthlyReportModel;
@@ -158,6 +161,7 @@ public class Config extends JFinalConfig {
 		rf.config();
 //		me.setViewType(ViewType.JSP);
 		me.setRenderFactory(rf);
+		//me.setBaseUploadPath("D:\loadup"); 
 		GroupTemplate gt = rf.groupTemplate;
 		gt.registerTag("layout", TemplteLayoutTag.class);
 	}
@@ -230,6 +234,7 @@ public class Config extends JFinalConfig {
 		String pwd = PropKit.get("pwd");
 		DruidPlugin dp = new DruidPlugin(jdbc, user, pwd);
 		//DruidPlugin dp = new DruidPlugin("jdbc:postgresql://172.16.6.61:5432/qdchedw", "hub", "hub@2017");
+		dp.setMaxActive(10);
 		me.add(dp);
 		ActiveRecordPlugin arp = new ActiveRecordPlugin(com.qdch.core.Constants.QSS_GP_HUB,dp);
 		arp.setBaseSqlTemplatePath(PathKit.getRootClassPath());
@@ -251,6 +256,7 @@ public class Config extends JFinalConfig {
 		String insight_user = PropKit.get("insight_user");
 		String insight_pwd = PropKit.get("insight_pwd");
 		DruidPlugin insight_dp = new DruidPlugin(insight_jdbc, insight_user, insight_pwd);
+		insight_dp.setMaxActive(10);
 		me.add(insight_dp);
 		ActiveRecordPlugin insight_arp = new ActiveRecordPlugin(com.qdch.core.Constants.QSS_GP_INSIGHT,insight_dp);
 		insight_arp.setBaseSqlTemplatePath(PathKit.getRootClassPath());
@@ -374,6 +380,7 @@ public class Config extends JFinalConfig {
 		
 		/***小贷 李晓依 insight层 Model START ***/
 		insight_arp.addMapping("insight_xd_jysc_info", ProportionModel.class);//小贷-管理风险-占比
+		insight_arp.addMapping("insight_xd_scability", CoScabilityModel.class);//小贷-市场画像得分
 		/***小贷 李晓依 hub层 Model START***/
 		arp.addMapping("hub_commerce_company_info", CompanysInfoModel.class);//工商-企业信息获取
 		arp.addMapping("hub_commerce_co_shareholder", CoShareHolderModel.class);//工商-股东/对外投资人信息
@@ -394,7 +401,8 @@ public class Config extends JFinalConfig {
         arp.addMapping("hub_commerce_co_website", CoWebsiteModel.class);//工商-网站信息
         arp.addMapping("hub_commerce_co_finance_state", CoReportModel.class);//工商-企业年报-财务信息
         arp.addMapping("hub_commerce_co_stock_change_log", CoStockchangeModel.class);//工商-股权变更
-
+        arp.addMapping("hub_commerce_enterprise", CoEnterpriseModel.class);//舆情关联的企业表
+        arp.addMapping("hub_commerce_meiya_sentiment_news", MarkNewsModel.class);//舆情详情
     	/***p2p 李晓依 hub层 Model START***/
         
         arp.addMapping("hub_static_company_info", CoCompanyInfoModel.class);//p2p-工商静态-公司信息
