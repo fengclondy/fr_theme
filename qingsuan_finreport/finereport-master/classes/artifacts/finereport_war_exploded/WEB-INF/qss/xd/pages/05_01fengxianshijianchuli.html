@@ -731,7 +731,7 @@
         var status = $("input[name='radio1']:checked").val();
 
         var area = $(".inputarea").val();
-        var param = "?status="+status+"&area="+area;
+        var param = "?status="+ encodeURI(encodeURI(status))+"&area="+ encodeURI(encodeURI(area));
 
         $.ajax({
             type: "POST",
@@ -739,7 +739,8 @@
             data: {"id": idvalue},
             dataType: "json",
             success: function (data) {
-
+                alert("操作成功");
+                $(".model").hide();
             }
         });
 

@@ -64,6 +64,7 @@ public class RoleMenuServlet extends BaseServlet {
 			}
 			Constants.ROLE_NAME=roleName;
 			List<RoleMenuModel> list=UserDataFromRoleService.getMenuByRoleName(request,roleName);
+			System.out.println(list);
 			r.put("rolemenu", JSONArray.toJSONString(list));
 		} catch (Exception e) {
 			e.printStackTrace();

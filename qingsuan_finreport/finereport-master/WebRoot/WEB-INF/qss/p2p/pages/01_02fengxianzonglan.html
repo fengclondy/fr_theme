@@ -327,9 +327,9 @@
 				
 			
 					htmls+="<div class='main-first'>"
-						htmls+="<div class='chartBox ec003'>""
+						htmls+="<div class='chartBox ec003'>"
 						htmls+="<div class='chartTitle'>"
-						htmls+="<h3>"+item.jysinfo+"</h3>""
+						htmls+="<h3>"+item.jysinfo+"</h3>"
 						htmls+="<div class='chartTitle_right'>"
 						htmls+="<div class='dayin fr'>"
 						htmls+="<h5>查看监管报告</h5>"
@@ -348,7 +348,7 @@
 						htmls+="</div>"
 						htmls+="</div>"
 						htmls+="<div class='chartBodyRightCircle fl'>"
-						htmls+="<canvas id='canvas'"+item.keypm+">当前浏览器不支持canvas 请升级！</canvas>"
+						htmls+="<canvas id='canvas"+item.keypm+"'>当前浏览器不支持canvas 请升级！</canvas>"
 						htmls+="<div class='chartBodyNumber'>"
 						htmls+="<p>风险指数</p>"
 						htmls+="<div></div>"
@@ -359,7 +359,7 @@
 						htmls+="<ul>"
 										$.each(item.detaildata,function(ind,it){
 											valu.push(it.detailvalue); 
-											htmls+="<li>"+
+											htmls+="<li>"
 											htmls+="<h3>"+it.detailvalue+"</h3>\n"
 											htmls+="<div>"
 											htmls+="<span class='liContent'>"+it.fxlb+"</span>\n"
@@ -368,23 +368,28 @@
 											htmls+="<small class='colorUp'>"+it.detailpm+"</small>\n"
 											htmls+="</div>\n"
 											htmls+="</li>"
+											if(ind==3){
+												
+												htmls+="<br>"
+											}
 											
 										});			
 						htmls+="</ul>"
 					    htmls+="</div>"
 					    htmls+="</div>"
 					    htmls+="<div class='chartBodyCharts fr'>"
-					    htmls+="<div id='charts'"+item.keypm+" class='chartsAll'></div>"
+					    htmls+="<div id='charts"+item.keypm+"' class='chartsAll'></div>"
 					    htmls+="</div>"
 					    htmls+="</div>"
 					    htmls+="</div>"
 					    htmls+="</div>"
 					    htmls+="</div>"
 							});
+			
 			$(".main").html(htmls);
 			$.each(data,function(index,item){
-				charts("#charts"+item.keypm,valu);
-				canvasAll("canvas"+item.keypm,item.value); 
+				charts("#charts"+item.keypm+"",valu);
+				canvasAll("canvas"+item.keypm+"",item.value); 
 			});
 			
 			

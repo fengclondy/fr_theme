@@ -39,7 +39,7 @@ public class XiaoDaiController extends BaseController {
                 checkstatus = "决策人";
             }
         }else{
-           checkstatus="处理人";
+           checkstatus="审核人";
         }
         setAttr("userrole",checkstatus);
     	System.out.println(user);
