@@ -295,11 +295,13 @@
 						htmls+="<div class='chartBodyLeft fl'>"
 						htmls+="<div class='chartBodyLeftTop'>"
 							var riskRank=item.keypm*1;
-						    if(riskRank==1){
+							var risk=item.value*1;
+						    if(risk>7 && risk<=10){
 						    	htmls+="<img src='${contextPath}/static/img/high.png' alt=''/>"
-						    }else if(riskRank==2){
+						    }else if(risk>3 && risk<=7){
 						    	htmls+="<img src='${contextPath}/static/img/middle.png' alt=''/>"
-						    }else{
+						    }else if(risk>0 && risk<=3)
+						    {
 						    	htmls+="<img src='${contextPath}/static/img/low.png' alt=''/>"
 						    }
 						
