@@ -2,6 +2,8 @@ package com.qdch.xd.controller;
 
 import java.util.List;
 
+import org.apache.commons.lang.ObjectUtils.Null;
+
 import com.alibaba.druid.sql.visitor.functions.Now;
 import com.qdch.core.BaseController;
 import com.qdch.xd.model.CoAnnounceModel;
@@ -17,6 +19,7 @@ import com.qdch.xd.model.CoJudgmentModel;
 import com.qdch.xd.model.CoPatentModel;
 import com.qdch.xd.model.CoPenaltvModel;
 import com.qdch.xd.model.CoReportModel;
+import com.qdch.xd.model.CoScabilityModel;
 import com.qdch.xd.model.CoShareHolderModel;
 import com.qdch.xd.model.CoSoftcopyModel;
 import com.qdch.xd.model.CoStockchangeModel;
@@ -24,6 +27,7 @@ import com.qdch.xd.model.CoTradeMarkModel;
 import com.qdch.xd.model.CoWebsiteModel;
 import com.qdch.xd.model.CompanysInfoModel;
 import com.qdch.xd.model.MarkNewsModel;
+import com.qdch.xd.model.RiskTrendDetailedModel;
 /**
  * 工商模块获取数据
  * @author lixiaoyi
@@ -423,5 +427,32 @@ public class CommerceController extends BaseController{
 
 	}
 		mRenderJson(mark);
+	}
+	/**
+	 * 平均综合得分
+	 * @author lixiaoyi
+	 * @date 2018年4月18日 上午9:34:39
+	 * @TODO
+	 */
+	public void gainScore(){
+		 String name=getPara("name");
+	List<CoScabilityModel>	  scability= CoScabilityModel.dao.getScore(name, getDataScopeByUserName());
+	  if (scability.size()==0) {
+		  mRenderJson("kong");
+		
+	}else {
+		mRenderJson(scability.get(0));
+	}    	
+	}
+	/**
+	 * 风险指数
+	 * @author lixiaoyi
+	 * @date 2018年4月18日 上午11:20:23
+	 * @TODO
+	 */
+	public void gainRiskscore(){
+		String name=getPara("name");
+		RiskTrendDetailedModel risk = RiskTrendDetailedModel.dao.getScore(getDataScopeByUserName(), name);
+	    mRenderJson(risk);
 	}
 }
