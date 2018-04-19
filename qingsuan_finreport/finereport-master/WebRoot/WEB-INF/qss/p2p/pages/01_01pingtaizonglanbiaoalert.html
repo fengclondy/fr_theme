@@ -272,6 +272,8 @@
 				success:function(data){
 					var content = "";
 					$.each(data,function(index,item){
+						var xxpl = item.xxpl;
+            			xxpl = parseFloat(xxpl).toFixed(2)
 						content = content
 						+'    <tr>'
 	        			+'    	<td>'+item.jysinfo+'</td>'
@@ -285,8 +287,7 @@
 	        			+'   	<td>'+item.zcje+'</td>'
 	        			+'   	<td>'+item.dkje+'</td>'
 	        			+'    	<td>'+item.ztrs+'</td>'
-	        			+'   	<td>'+item.xxpl+'</td>'
-	        			+'   	<td>查看</td>'
+	        			+'   	<td>'+xxpl+'</td>'
 	        			+'    </tr>'
 					})
 					$("#ptzl").html(content);

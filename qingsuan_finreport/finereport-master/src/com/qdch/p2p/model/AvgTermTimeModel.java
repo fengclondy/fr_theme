@@ -31,6 +31,7 @@ public class AvgTermTimeModel extends Model<AvgTermTimeModel>{
 		if (StringUtils.isNotBlank(jysc)) {
 			sql += " and jysc = '"+jysc+"'";
 		}
+		sql += "and vday_ym = (select to_char(now() - INTERVAL '1 month','yyyymm'))";
 		return find(sql);
 	}
 }

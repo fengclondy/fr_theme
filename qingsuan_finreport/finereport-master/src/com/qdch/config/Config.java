@@ -1,4 +1,6 @@
 package com.qdch.config;
+import com.qdch.core.PostgreSqlDialect;
+import com.qdch.xd.model.*;
 import org.beetl.core.GroupTemplate;
 import org.beetl.ext.jfinal3.JFinal3BeetlRenderFactory;
 
@@ -13,7 +15,7 @@ import com.jfinal.ext.handler.ContextPathHandler;
 import com.jfinal.kit.PathKit;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
-import com.jfinal.plugin.activerecord.dialect.PostgreSqlDialect;
+
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.template.Engine;
 import com.qdch.core.QdchController;
@@ -43,7 +45,9 @@ import com.qdch.p2p.model.CoCorePersonModel;
 import com.qdch.p2p.model.CoExecptionModel;
 import com.qdch.p2p.model.CoShareholderInfoModel;
 import com.qdch.p2p.model.CollectPrincipalModel;
+import com.qdch.p2p.model.CompanyFeelModel;
 import com.qdch.p2p.model.CompositeInterestModel;
+import com.qdch.p2p.model.ConcentrationRatioModel;
 import com.qdch.p2p.model.CustNumberModel;
 import com.qdch.p2p.model.DefenInfoModel;
 import com.qdch.p2p.model.DiYaShenHeModel;
@@ -89,6 +93,7 @@ import com.qdch.xd.controller.EventInputController;
 import com.qdch.xd.controller.EventProcessingController;
 import com.qdch.xd.controller.EventSeeDetailsController;
 import com.qdch.xd.controller.EventViewController;
+import com.qdch.xd.controller.FileUpLoadController;
 import com.qdch.xd.controller.ManagementRiskController;
 import com.qdch.xd.controller.MonthlyReportController;
 import com.qdch.xd.controller.OperationalCapabilityController;
@@ -96,6 +101,7 @@ import com.qdch.xd.controller.ProfitabilityController;
 import com.qdch.xd.controller.ReputationRiskController;
 import com.qdch.xd.controller.RiskOverviewController;
 import com.qdch.xd.controller.XiaoDaiController;
+
 import com.qdch.xd.model.CoAnnounceModel;
 import com.qdch.xd.model.CoBranchModel;
 import com.qdch.xd.model.CoBusinessModel;
@@ -154,7 +160,9 @@ import com.qdch.xd.model.maxIntrateRankModel;
 
 
 
+
 public class Config extends JFinalConfig {
+	
 	public void configConstant(Constants me) {
 		me.setDevMode(true);
 		//添加beetl配置
@@ -162,7 +170,6 @@ public class Config extends JFinalConfig {
 		rf.config();
 //		me.setViewType(ViewType.JSP);
 		me.setRenderFactory(rf);
-		//me.setBaseUploadPath("D:\loadup"); 
 		GroupTemplate gt = rf.groupTemplate;
 		gt.registerTag("layout", TemplteLayoutTag.class);
 	}
@@ -191,6 +198,7 @@ public class Config extends JFinalConfig {
 		me.add("qdch/eventaudit", EventAuditController.class,"/");	//风险事件审核
 		me.add("qdch/eventdecision", EventDecisionController.class,"/");	//风险事件决策
 		me.add("qdch/monthlyrepor", MonthlyReportController.class,"/");	//监管月报
+		me.add("qdch/fileupLoad", FileUpLoadController.class,"/");	//监管月报上传
 		me.add("qdch/commerce",CommerceController.class,"/"); //小贷-工商模块
 		/***小贷doushuihai Controller START***/
 		
@@ -236,7 +244,7 @@ public class Config extends JFinalConfig {
 		String pwd = PropKit.get("pwd");
 		DruidPlugin dp = new DruidPlugin(jdbc, user, pwd);
 		//DruidPlugin dp = new DruidPlugin("jdbc:postgresql://172.16.6.61:5432/qdchedw", "hub", "hub@2017");
-		dp.setMaxActive(10);
+		dp.setInitialSize(0);
 		me.add(dp);
 		ActiveRecordPlugin arp = new ActiveRecordPlugin(com.qdch.core.Constants.QSS_GP_HUB,dp);
 		arp.setBaseSqlTemplatePath(PathKit.getRootClassPath());
@@ -258,7 +266,7 @@ public class Config extends JFinalConfig {
 		String insight_user = PropKit.get("insight_user");
 		String insight_pwd = PropKit.get("insight_pwd");
 		DruidPlugin insight_dp = new DruidPlugin(insight_jdbc, insight_user, insight_pwd);
-		insight_dp.setMaxActive(10);
+		dp.setInitialSize(0);
 		me.add(insight_dp);
 		ActiveRecordPlugin insight_arp = new ActiveRecordPlugin(com.qdch.core.Constants.QSS_GP_INSIGHT,insight_dp);
 		insight_arp.setBaseSqlTemplatePath(PathKit.getRootClassPath());
@@ -299,6 +307,7 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("insight_pp_indust_int", CompositeInterestModel.class);//用于平台项目获取行业综合利率
 		insight_arp.addMapping("insight_pp_iterm_count", StructuralDetailsModel.class);//用于平台项目获取项目结构详情
 		insight_arp.addMapping("insight_pp_term_distribute", TermDetailsModel.class);//用于平台项目获取期限分布详情
+		insight_arp.addMapping("insight_pp_hhi_calculate", ConcentrationRatioModel.class);//用于平台项目画像获取集中度
 		arp.addMapping("hub_pp_fxzs", RiskOverviewModel.class);//用于p2p风险总览
 		/***doushuiahi Model START p2p***/
 		
@@ -329,6 +338,8 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("hub_fxsj","fxsj_id", RiskEventModel.class);//风险事件
 		insight_arp.addMapping("hub_fxsj_audit_new", RiskEventHistoryModel.class);//风险事件历史信息
 		insight_arp.addMapping("hub_commerce_ref_jys", ExchangeInfoModel.class);//交易所信息
+
+		insight_arp.addMapping("hub_dd_tqs_jys", OrganizModel.class);//交易所信息
 		insight_arp.addMapping("hub_fxlb", RiskTypeModel.class);//风险类别
 		insight_arp.addMapping("hub_xd_cont_assu", GuaranteeContrastModel.class);//担保合同
 
@@ -433,6 +444,7 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("insight_pp_avge_term", AvgTermTimeModel.class); //p2p平台总览 alert-平台数据信息
 		insight_arp.addMapping("insight_pp_collect_principal", LoanBalanceModel.class); //p2p 平台总览alert-平台数据信息
 		insight_arp.addMapping("insight_pp_average_time", FullScaleTimeModel.class); //p2p 平台总览alert-平台数据信息
+		arp.addMapping("hub_commerce_meiya_sentiment_news", CompanyFeelModel.class); // p2p 企业舆情
 	}
 
 	public void configInterceptor(Interceptors me) {
@@ -446,4 +458,5 @@ public class Config extends JFinalConfig {
 	public static void main(String[] args){ 
 		JFinal.start("WebRoot", 8080, "/", 5);
 	}
+	
 }

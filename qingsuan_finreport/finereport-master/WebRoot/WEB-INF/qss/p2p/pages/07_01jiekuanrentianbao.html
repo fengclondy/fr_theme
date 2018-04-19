@@ -160,24 +160,25 @@
                             <th class="center" rowspan="2">借款方</th>
                             <th class="center" rowspan="2">资料类别</th>
                             <th class="center" rowspan="1">主要信息</th>
-                            <th class="center ptmc" rowspan="1">鲁金所</th>
+                            <th class="center ptmc" rowspan="1"></th>
                         </tr>
                         <tr id="score">
                             <th class="center defen">得分</th>
                             <th class="center">
-                                <input type="text">
+                                <input type="text" id="df" value="" onblur="scope(this)">
                             </th>
 
                         </tr>
+                        
                         <tr>
                             <td class="center ziranren" rowspan="26">自然人</td>
                             <td class="center" rowspan="9">基础信息</td>
                             <td class="center red" id="userName">姓名</td>
                             <td class="center">
-                                <select class="inp pname">
+                                <select class="inp pname" name="pname">
                                     <option value=""></option>
-                                    <option value="">√</option>
-                                    <option value="">×</option>
+                                    <option value="√">√</option>
+                                    <option value="×">×</option>
                                 </select>
                             </td>
 
@@ -185,7 +186,7 @@
                         <tr>
                             <td class="center red" id="idCard">身份证</td>
                             <td class="center">
-                                <select class="inp sfz">
+                                <select class="inp sfz" name="sfz">
                                     <option value=""></option>
                                     <option value="√">√</option>
                                     <option value="×">×</option>
@@ -197,7 +198,7 @@
                         <tr>
                             <td class="center red" id="purpose">借款用途</td>
                             <td class="center">
-                                <select class="inp jkyt">
+                                <select class="inp jkyt" name="jkyt">
                                     <option value=""></option>
                                     <option value="√">√</option>
                                     <option value="×">×</option>
@@ -208,7 +209,7 @@
                             <td class="center left" id="sex">性别</td>
 
                             <td class="center">
-                                <select class="inp sex">
+                                <select class="inp sex" name="sex" id="ssss">
                                     <option value=""></option>
                                     <option value="√">√</option>
                                     <option value="×">×</option>
@@ -219,7 +220,7 @@
                         <tr>
                             <td class="center left" id="userAge">年龄</td>
                             <td class="center">
-                                <select class="inp age">
+                                <select class="inp age" name="age">
                                     <option value=""></option>
                                     <option value="√">√</option>
                                     <option value="×">×</option>
@@ -231,7 +232,7 @@
                             <td class="center left" id="education">学历</td>
 
                             <td class="center">
-                                <select class="inp xuel">
+                                <select class="inp xuel" name="xuel">
                                     <option value=""></option>
                                     <option value="√">√</option>
                                     <option value="×">×</option>
@@ -244,7 +245,7 @@
                             <td class="center left">婚姻状况</td>
 
                             <td class="center">
-                                <select class="inp hyzk">
+                                <select class="inp hyzk" name="hhyzk">
                                     <option value=""></option>
                                     <option value="√">√</option>
                                     <option value="×">×</option>
@@ -257,7 +258,7 @@
                             <td class="center left">户籍所在地</td>
 
                             <td class="center">
-                                <select class="inp hjszd">
+                                <select class="inp hjszd" name="hjszd">
                                     <option value=""></option>
                                     <option value="√">√</option>
                                     <option value="×">×</option>
@@ -270,7 +271,7 @@
                             <td class="center left">还款来源</td>
 
                             <td class="center">
-                                <select class="inp hkly">
+                                <select class="inp hkly" name="hkly">
                                     <option value=""></option>
                                     <option value="√">√</option>
                                     <option value="×">×</option>
@@ -278,6 +279,7 @@
                             </td>
 
                         </tr>
+                        
                         <tr>
                             <td class="center" rowspan="7">信用信息</td>
 
@@ -733,6 +735,8 @@
 	var jysinfo = "";
 	var jysc = "";
 	var jyscmc = "";
+	var cs;
+	var fscore;
 	//根据平台名称改变平台
 	$(".pt").change(function () {
 		var info = new Array();
@@ -741,6 +745,11 @@
 		jysc = info[1];
 		jyscmc = info[2];
 		$(".ptmc").html(jysinfo)
+		if (jysc == null) {
+			$(".inp").val("");
+			$("input[id = 'df']").val("");
+			return;
+		}
 		//获取自然人基础信息
 		$.ajax({
 			type:"POST",
@@ -842,75 +851,72 @@
 	})
 	
 	/*---------------------------提交自然人基本信息start----------------------------------  */
-	var pname = $(".pname").val();
-	var sfz = $(".sfz").val();
-	var jkyt = $(".jkyt").val();
-	var sex = $(".sex").val();
-	var age = $(".age").val();
-	var xuel = $(".xuel").val();
-	var hyzk = $(".hyzk").val();
-	var hjszd = $(".hjszd").val();
-	var hkly = $(".hkly").val();
-	$(".pname").change(function () {
-		pname = $(this).val();
-	})
-	$(".sfz").change(function () {
-		sfz = $(this).val();
-	})
-	$(".jkyt").change(function () {
-		jkyt = $(this).val();
-	})
-	$(".sex").change(function () {
-		sex = $(this).val();
-	})
-	$(".age").change(function () {
-		age = $(this).val();
-	})
-	$(".xuel").change(function () {
-		xuel = $(this).val();
-	})
-	$(".hyzk").change(function () {
-		hyzk = $(this).val();
-	})
-	$(".hjszd").change(function () {
-		hjszd = $(this).val();
-	})
-	$(".hkly").change(function () {
-		hkly = $(this).val();
-	})
-	function zrrjbxx() {
-		var cs = "?pname="+pname+"&sfz="+sfz+"&jkyt="+jkyt+"&sex="+sex+"&age="+age+"&xuel="+xuel+"&hyzk="+hyzk+"&hjszd="+hjszd+"&hkly="+hkly;
-		return cs;
-	}
+		var pname;
+		var sfz;
+		var jkyt;
+		var sex;
+		var age;
+		var xuel;
+		var hyzk;
+		var hjszd;
+		var zrrhkly;
+		$(".pname").change(function () {
+			$(".pname").val($(this).val())
+		})
+		$(".sfz").change(function () {
+			$(".sfz").val($(this).val())
+		})
+		$(".jkyt").change(function () {
+			$(".jkyt").val($(this).val())
+		})
+		$(".sex").change(function () {
+			$(".sex").val($(this).val())
+		})
+		$(".age").change(function () {
+			$(".age").val($(this).val())
+		})
+		$(".xuel").change(function () {
+			$(".xuel").val($(this).val())
+		})
+		$(".hyzk").change(function () {
+			$(".hyzk").val($(this).val())
+		})
+		$(".hjszd").change(function () {
+			$(".hjszd").val($(this).val())
+		})
+		$(".hkly").change(function () {
+			$(".hkly").val($(this).val())
+		})
+	
 	/*---------------------------提交自然人基本信息end----------------------------------  */
 	/*---------------------------提交信用信息start----------------------------------  */
-		var yqcs = $(".yqcs").val();
-		var yqje = $(".yqje").val();
-		var zxbg = $(".zxbg").val();
-		var jkrxy =$(".jkrxy").val();
-		var jkbs = $(".jkbs").val();
-		var jkze = $(".jkze").val();
-		var zxcs = $(".zxcs").val();
+		var yqcs;
+		var yqje ;
+		var zrrzxbg;
+		var jkrxy;
+		var jkbs;
+		var jkze;
+		var zxcs;
 		$(".yqcs").change(function () {
-			yqcs = $(this).val();
+			$(".yqcs").val($(this).val())
 		})
 		$(".yqje").change(function () {
-			yqje = $(this).val();
+			$(".yqje").val($(this).val())
 		})
 		$(".zxbg").change(function () {
-			zxbg = $(this).val();
+			$(".zxbg").val($(this).val())
 		})
 		$(".jkrxy").change(function () {
-			jkrxy = $(this).val();
+			$(".jkrxy").val($(this).val())
 		})
 		$(".jkbs").change(function () {
-			jkbs = $(this).val();
+			$(".jkbs").val($(this).val())
 		})
 		$(".jkze").change(function () {
-			jkze = $(this).val();
+			$(".jkze").val($(this).val())
 		})
 		$(".zxcs").change(function () {
-			zxcs = $(this).val();
+			$(".zxcs").val($(this).val())
 		})
 		//提交信用信息的参数
 		function zrrxyxx() {
@@ -920,214 +926,326 @@
 	/*---------------------------提交信用信息end----------------------------------  */
 	
 	/*---------------------------提交资产信息start----------------------------------  */
-		var srqk = $(".srqk").val();
-		var gf_flag = $(".gf_flag").val();
-		var gc_flag = $(".gc_flag").val();
-		var fd_flag = $(".fd_flag").val();
-		var cd_flag = $(".cd_flag").val();
+		var zrrsrqk;
+		var gf_flag;
+		var gc_flag;
+		var fd_flag;
+		var cd_flag;
 		$(".srqk").change(function () {
-			srqk = $(this).val();
+			$(".srqk").val($(this).val());
 		})
 		$(".gf_flag").change(function () {
-			gf_flag = $(this).val();
+			$(".gf_flag").val($(this).val());
 		})
 		$(".gc_flag").change(function () {
-			gc_flag = $(this).val();
+			$(".gc_flag").val($(this).val());
 		})
 		$(".fd_flag").change(function () {
-			fd_flag = $(this).val();
+			$(".fd_flag").val($(this).val());
 		})
 		$(".cd_flag").change(function () {
-			cd_flag = $(this).val();
+			$(".cd_flag").val($(this).val());
 		})
-		//提交资产信息的参数
-		function zcxx() {
-			
-			var cs = "?srqk="+srqk+"&gf_flag="+gf_flag+"&gc_flag="+gc_flag+"&fd_flag="+fd_flag+"&cd_flag="+cd_flag;
-			return cs;
-		}
 	/*---------------------------提交资产信息end----------------------------------  */
 	
 	/*---------------------------提交工作信息start----------------------------------  */
-		var industry = $(".industry").val();
-		var city = $(".city").val();
-		var gsgm = $(".gsgm").val();
-		var gzgw = $(".gzgw").val();
-		var gznx = $(".gznx").val();
+		var industry;
+		var city;
+		var zrrgsgm;
+		var gzgw;
+		var gznx;
 		$(".industry").change(function () {
-			industry = $(this).val();
+			$(".industry").val($(this).val());
 		})
 		$(".city").change(function () {
-			city = $(this).val();
+			$(".city").val($(this).val());
 		})
 		$(".gsgm").change(function () {
-			gsgm = $(this).val();
+			$(".gsgm").val($(this).val());
 		})
 		$(".gzgw").change(function () {
-			gzgw = $(this).val();
+			$(".gzgw").val($(this).val());
 		})
 		$(".gznx").change(function () {
-			gznx = $(this).val();
+			$(".gznx").val($(this).val());
 		})
-		//工作信息
-		function gzxx() {
-			
-			var cs = "?industry="+industry+"&city="+city+"&gsgm="+gsgm+"&gzgw="+gzgw+"&gznx="+gznx;
-			return cs;
-		}
+		
 	/*---------------------------提交工作信息end----------------------------------  */
 	
 	/*---------------------------提交企业基本信息start----------------------------------  */
-		var gsmc = $(".qygsmc").val();
-		var frdb = $(".qyfrdb").val();
-		var clsj = $(".qyclsj").val();
-		var zczb = $(".qyzczb").val();
-		var zcdz = $(".qyzcdz").val();
-		var yyfw = $(".qyyyfw").val();
-		var zjyt = $(".qyzjyt").val();
-		var hkly = $(".qyhkly").val();
+		var gsmc;
+		var frdb;
+		var clsj;
+		var zczb;
+		var zcdz;
+		var gsgm;
+		var yyfw;
+		var zjyt;
+		var hkly;
 		$(".qygsmc").change(function () {
-			gsmc = $(this).val();
+			$(".qygsmc").val($(this).val());
 		})
 		$(".qyfrdb").change(function () {
-			frdb = $(this).val();
+			$(".qyfrdb").val($(this).val());
 		})
 		$(".qyclsj").change(function () {
-			clsj = $(this).val();
+			$(".qyclsj").val($(this).val());
 		})
 		$(".qyzczb").change(function () {
-			zczb = $(this).val();
+			$(".qyzczb").val($(this).val());
+		})
+		$(".qygsgm").change(function () {
+			$(".qygsgm").val($(this).val());
 		})
 		$(".qyzcdz").change(function () {
-			zcdz = $(this).val();
+			$(".qyzcdz").val($(this).val());
 		})
 		$(".qyyyfw").change(function () {
-			yyfw = $(this).val();
+			$(".qyyyfw").val($(this).val());
 		})
 		$(".qyzjyt").change(function () {
-			zjyt = $(this).val();
+			$(".qyzjyt").val($(this).val());
 		})
 		$(".qyhkly").change(function () {
-			hkly = $(this).val();
+			$(".qyhkly").val($(this).val());
 		})
-		//企业基本信息
-		function qyjbxx() {
-			var cs = "?gsmc="+gsmc+"&frdb="+frdb+"&clsj="+clsj+"&zczb="+zczb+"&zcdz="+zcdz+"&yyfw="+yyfw+"&zjyt="+zjyt+"&hkly="+hkly;
-			return cs;
-		}
+		
 	/*---------------------------提交企业基本信息end----------------------------------  */
 	
 	/*---------------------------提交企业其他信息start----------------------------------  */
 		
 		//企业其他信息
-		function qyqtxx() {
-			var srqk = $(".qysrqk").val();
-			var fzqk = $(".qyfzqk").val();
-			var zxbg = $(".qyzxbg").val();
-			var qijk_flag = $(".qijk_flag").val();
-			var gdxx = $(".qygdxx").val();
-			var xyxx = $(".frxyxx").val();
-			var zxcs = $(".qyzxcs").val();
-			var ssxx = $(".qyssxx").val();
+			var srqk;
+			var fzqk;
+			var zxbg;
+			var qijk_flag;
+			var gdxx;
+			var xyxx;
+			var zxcs;
+			var ssxx;
 			$(".qysrqk").change(function () {
-				srqk = $(this).val();
+				$(".qysrqk").val($(this).val());
 			})
 			$(".qyfzqk").change(function () {
-				fzqk = $(this).val();
+				$(".qyfzqk").val($(this).val());
 			})
 			$(".qyzxbg").change(function () {
-				zxbg = $(this).val();
+				$(".qyzxbg").val($(this).val());
 			})
 			$(".qijk_flag").change(function () {
-				qijk_flag = $(this).val();
+				$(".qijk_flag").val($(this).val());
 			})
 			$(".qygdxx").change(function () {
-				gdxx = $(this).val();
+				$(".qygdxx").val($(this).val());
 			})
 			$(".frxyxx").change(function () {
-				xyxx = $(this).val();
+				$(".frxyxx").val($(this).val());
 			})
 			$(".qyzxcs").change(function () {
-				zxcs = $(this).val();
+				$(".qyzxcs").val($(this).val());
 			})
 			$(".qyssxx").change(function () {
-				ssxx = $(this).val();
+				$(".qyssxx").val($(this).val());
 			})
-			var cs = "?srqk="+srqk+"&fzqk="+fzqk+"&zxbg="+zxbg+"&qijk_flag="+qijk_flag+"&gdxx="+gdxx+"&xyxx="+xyxx+"&zxcs="+zxcs+"&ssxx="+ssxx;
-			return cs;
-		}
 	/*---------------------------提交企业其他信息end----------------------------------  */
-	
+	var df = 0;
+	function scope(obj) {
+		df = obj.value
+	}
+	function a() {
+		var a = new Promise(function(resolve, reject) { 
+			//提交自然人基本信息
+		 	
+			cs = "?pname="+pname+"&sfz="+sfz+"&jkyt="+jkyt+"&sex="+sex+"&age="+age+"&xuel="+xuel+"&hyzk="+hyzk+"&hjszd="+hjszd+"&hkly="+zrrhkly;
+			$.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/borrowerfill/submitZrrxx"+cs,
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					resolve(data)
+				} 
+			});
+		});
+		return a;
+	}
+	function b() {
+		var b = new Promise(function(resolve, reject) { 
+			//提交信用信息
+			
+			cs = "?yqcs="+yqcs+"&yqje="+yqje+"&zxbg="+zrrzxbg+"&jkrxy="+jkrxy+"&jkbs="+jkbs+"&jkze="+jkze+"&zxcs="+zxcs;
+			$.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/borrowerfill/submitXyxx"+cs,
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					resolve(data)
+				}
+			})
+		});
+		return b;
+	}
+	function c() {
+		var c = new Promise(function(resolve, reject) { 
+			 //提交资产信息
+			
+			cs = "?srqk="+zrrsrqk+"&gf_flag="+gf_flag+"&gc_flag="+gc_flag+"&fd_flag="+fd_flag+"&cd_flag="+cd_flag;
+			$.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/borrowerfill/submitZcxx"+cs,
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					resolve(data)
+				}
+			})
+		});
+		return c;
+	}
+	function d() {
+		var d = new Promise(function(resolve, reject) { 
+			//提交工作信息
+			
+			cs = "?industry="+industry+"&city="+city+"&gsgm="+zrrgsgm+"&gzgw="+gzgw+"&gznx="+gznx;
+			$.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/borrowerfill/submitGzxx"+cs,
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					resolve(data)
+				}
+			})
+		});
+		return d;
+	}
+	function e() {
+		var e = new Promise(function(resolve, reject) { 
+			//提交企业基本信息
+			
+			cs = "?gsmc="+gsmc+"&frdb="+frdb+"&clsj="+clsj+"&zczb="+zczb+"&zcdz="+zcdz+"&gsgm="+gsgm+"&yyfw="+yyfw+"&zjyt="+zjyt+"&hkly="+hkly
+			$.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/borrowerfill/submitQyjbxx"+cs,
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					resolve(data)
+				}
+			})
+		});
+		return e;
+	}
+	function f() {
+		var f = new Promise(function(resolve, reject) { 
+			//提交企业其他信息
+			
+			cs = "?srqk="+srqk+"&fzqk="+fzqk+"&zxbg="+zxbg+"&qijk_flag="+qijk_flag+"&gdxx="+gdxx+"&xyxx="+xyxx+"&zxcs="+zxcs+"&ssxx="+ssxx;
+			$.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/borrowerfill/submitQtxx"+cs,
+				data:{"jysc":jysc},
+				dataType:"json",
+				success:function(data){
+					resolve(data)
+				}
+			}) 
+		});
+		return f;
+	}
+	function g() {
+		var g = new Promise(function(resolve, reject) { 
+			//提交得分信息
+			$.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/borrowerfill/submitDfxx",
+				data:{"jysc":jysc,"fscore":df},
+				dataType:"json",
+				success:function(data){
+					resolve(data)
+				}
+			}) 
+		});
+		return g;
+	}
 	$("#search").click(function () {
-		var cs = zrrjbxx();
+		if ($(".inp").val() == "") {
+			return;
+		}
+		pname = $(".pname").val();
+		sfz=$(".sfz").val();
+		jkyt = $(".jkyt").val();
+		sex = $(".sex").val();
+		age = $(".age").val();
+		xuel = $(".xuel").val();
+		hyzk = $(".hyzk").val();
+		hjszd = $(".hjszd").val();
+		zrrhkly = $(".hkly").val();
 		
-		//提交自然人基本信息
-		/*  $.ajax({
-			type:"POST",
-			url:"${contextPath}/qdch/borrowerfill/submitZrrxx"+cs,
-			data:{"jysc":jysc},
-			dataType:"json",
-			success:function(data){
-				
-			} 
-		})  */
-	//提交信用信息
-		cs = zrrxyxx();
-		$.ajax({
-			type:"POST",
-			url:"${contextPath}/qdch/borrowerfill/submitXyxx"+cs,
-			data:{"jysc":jysc},
-			dataType:"json",
-			success:function(data){
-				
-			}
-		})
-		/* //提交资产信息
-		cs = zcxx();
-		$.ajax({
-			type:"POST",
-			url:"${contextPath}/qdch/borrowerfill/submitZcxx"+cs,
-			data:{"jysc":jysc},
-			dataType:"json",
-			success:function(data){
-				
-			}
-		})
-		//提交工作信息
-		cs = gzxx();
-		$.ajax({
-			type:"POST",
-			url:"${contextPath}/qdch/borrowerfill/submitGzxx"+cs,
-			data:{"jysc":jysc},
-			dataType:"json",
-			success:function(data){
-				
-			}
-		})
-		//提交企业基本信息
-		cs = qyjbxx();
-		$.ajax({
-			type:"POST",
-			url:"${contextPath}/qdch/borrowerfill/submitQyjbxx"+cs,
-			data:{"jysc":jysc},
-			dataType:"json",
-			success:function(data){
-				
-			}
-		})
-		//提交企业其他信息
-		cs = qyqtxx();
-		$.ajax({
-			type:"POST",
-			url:"${contextPath}/qdch/borrowerfill/submitQtxx"+cs,
-			data:{"jysc":jysc},
-			dataType:"json",
-			success:function(data){
-				
-			}
-		})  */
+		yqcs = $(".yqcs").val()
+		yqje = $(".yqje").val();
+		zrrzxbg = $(".zxbg").val();
+		jkrxy = $(".jkrxy").val();
+		jkbs = $(".jkbs").val();
+		jkze = $(".jkze").val();
+		zxcs = $(".zxcs").val();
+		
+		zrrsrqk = $(".srqk").val();
+		gf_flag = $(".gf_flag").val();
+		gc_flag = $(".gc_flag").val();
+		fd_flag = $(".fd_flag").val();
+		cd_flag = $(".cd_flag").val();
+		
+		industry = $(".industry").val();
+		city = $(".city").val();
+		zrrgsgm = $(".gsgm").val();
+		gzgw = $(".gzgw").val();
+		gznx = $(".gznx").val();
+		
+		gsmc = $(".qygsmc").val();
+		frdb = $(".qyfrdb").val();
+		clsj = $(".qyclsj").val();
+		zczb = $(".qyzczb").val();
+		zcdz = $(".qyzcdz").val();
+		gsgm = $(".qygsgm").val();
+		yyfw = $(".qyyyfw").val();
+		zjyt = $(".qyzjyt").val();
+		hkly = $(".qyhkly").val();
+		
+		srqk = $(".qysrqk").val();
+		fzqk = $(".qyfzqk").val();
+		zxbg = $(".qyzxbg").val();
+		qijk_flag = $(".qijk_flag").val();
+		gdxx = $(".qygdxx").val();
+		xyxx = $(".frxyxx").val();
+		zxcs = $(".qyzxcs").val();
+		ssxx = $(".qyssxx").val();
+		var bb = a().then(function () {
+			return b();
+		});
+		var cc = bb.then(function () {
+			return c();
+		});
+		var dd = cc.then(function () {
+			return d();
+		});
+		var ee = dd.then(function () {
+			return e();
+		});
+		var ff = ee.then(function () {
+			return f();
+		});
+		var gg = ff.then(function () {
+			return g();
+		}); 
+		
+		$("input[id = 'df']").val("");
+		$(".ptmc").html("");
+		$(".inp").val("");
 	})
-
+	
+	
     //此处调用superTables.js里需要的函数
     $(document).ready(function(){
         // window.onload=function(){
@@ -1166,7 +1284,10 @@
             $('#model').css('display','none');
         });
     });
+			
 
+			
+		
 
 
 
