@@ -19,7 +19,7 @@ public class StructuralDetailsModel extends Model<StructuralDetailsModel> {
 	private static final long serialVersionUID = 1L;
 	public static final StructuralDetailsModel dao=new StructuralDetailsModel();
 	public List<StructuralDetailsModel> getStructuralDetails(String dataSql,String jys){	
-		String sql="select jyscmc,jysc,xmlx,ywlx,pjlv,je,jezb,pjqx from insight_pp_iterm_struct where 1=1  ";		
+		String sql="select jyscmc,jysc,xmlx,ywlx,pjlv,je,jezb,pjqx from insight_pp_iterm_struct where 1=1 and vday=(select max(vday) from insight_pp_iterm_struct) ";		
 		if(StringUtils.isNotBlank(dataSql)){
 			sql+=" and jysc in"+ dataSql+"";
 		}
