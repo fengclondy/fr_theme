@@ -127,9 +127,9 @@ public class CommerceController extends BaseController{
 	        setAttr("stockc", stockC);
 	     CoEnterpriseModel cc=CoEnterpriseModel.dao.getid(name);
 	   
-	  List<MarkNewsModel> mark =  MarkNewsModel.dao.getNews(cc.get("id"), "", "", "");
-	     setAttr("marknews", mark);  
-	  List<CompanysInfoModel> infoModels= CompanysInfoModel.dao.getCompanybyName(basic.get(0).get("legal_person"));
+	  List<MarkNewsModel> mark =  MarkNewsModel.dao.getNews(cc.get("id")+"", "", "", "");
+	     setAttr("marknews", mark);
+	  List<CompanysInfoModel> infoModels= CompanysInfoModel.dao.getCompanybyName(basic.get(0).get("legal_person")+"");
 	      setAttr("comInfo", infoModels);
 	  render("xd/pages/08_01shichanghuaxiang.html");
 	}
@@ -420,7 +420,7 @@ public class CommerceController extends BaseController{
 	List<MarkNewsModel> mark =null;
 	if (name!=null||"".equals(name)) {
 		 CoEnterpriseModel cc=CoEnterpriseModel.dao.getid(name);
-		  mark  =  MarkNewsModel.dao.getNews(cc.get("id"), keyword, begin,end);
+		  mark  =  MarkNewsModel.dao.getNews(cc.get("id")+"", keyword, begin,end);
 
 	}else {
 	 mark =  MarkNewsModel.dao.getNews("", keyword, begin,end);

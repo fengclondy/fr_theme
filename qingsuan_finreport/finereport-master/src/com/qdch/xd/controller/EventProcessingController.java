@@ -15,6 +15,7 @@ import com.qdch.xd.model.*;
 
 
 import javax.management.relation.Role;
+import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
@@ -29,6 +30,7 @@ import java.util.*;
 public class EventProcessingController extends BaseController {
 	private static RiskEventModel riskEventModelDao = RiskEventModel.dao;
 	private static ExchangeInfoModel exchangeInfoModelDao = ExchangeInfoModel.dao;
+	private static  OrganizModel organizModelDao = OrganizModel.dao;
 	private static RiskTypeModel riskTypeModelDao = RiskTypeModel.dao;
 	private static RiskEventHistoryModel riskEventHistoryModel  = RiskEventHistoryModel.dao;
 	private static DictModel dictModelDao  = DictModel.dao;
@@ -43,6 +45,7 @@ public class EventProcessingController extends BaseController {
 //		renderJsp("xd/pages/riskSolve.jsp");
 		//setAttr("type",getPara("type"));
 		setAttr("user", getLoginUser());
+        HttpServletRequest request = getRequest();
 		render("xd/pages/05_01fengxianshijianchuli.html");
 	}
 
@@ -106,7 +109,8 @@ public class EventProcessingController extends BaseController {
 		Map<String,Object> result  = new HashMap<String, Object>();
 		List<RiskTypeModel> riskTypeList =  riskTypeModelDao.getTypeKind("3"); //风险类别
 		List<RiskTypeModel> riskList =  riskTypeModelDao.getByType("3");
-		List<ExchangeInfoModel> exchangeInfoModelList = exchangeInfoModelDao.getList(); //机构/市场
+//		List<ExchangeInfoModel> exchangeInfoModelList = exchangeInfoModelDao.getList(); //机构/市场
+		List<OrganizModel> exchangeInfoModelList = organizModelDao.getListByType("3");//机构/市场
 
 		result.put("type",riskTypeList);
 		result.put("risk",riskList);

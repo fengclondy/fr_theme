@@ -1,17 +1,10 @@
 package com.qdch.xd.model;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.fr.hailian.util.DateUtil;
-import com.jfinal.kit.Kv;
-import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Model;
-import com.qdch.model.DemoModel;
 
 //@TableBind(tableName="hub_commerce_ref_jys")
 /**
