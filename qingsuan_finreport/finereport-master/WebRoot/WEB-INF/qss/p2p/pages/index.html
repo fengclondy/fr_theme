@@ -24,75 +24,91 @@
     <ul>
         <li class="notice"><a href=""><span class="icon"></span><span class="number">3</span></a></li>
         <li class="message"><a href=""><span class="icon"></span><span class="number">0</span></a></li>
-        <li class="user"><a href=""><span class="icon"></span><span class="name">man</span></a></li>
+        <li class="user"><a href=""><span class="icon"></span><span class="name">${user.username!}</span></a></li>
     </ul>
 </header>
 <div class="navContent">
     <nav id="mainNav">
-        <ul>
-            <li class="">
-                <a class="dropdown-toggle">平台总览 <span class="icon"></span> </a>
-                <ul>
-                    <li data-id="${contextPath}/qdch/platform" data="01_01pingtaizonglanbiao">平台总览表</li>
-                    <li data-id="${contextPath}/qdch/risk" data="01_02fengxianzonglan">风险总览</li>
-                </ul>
-            </li>
-
-            <!--<li class="">-->
-                <!--<a class="dropdown-toggle">风险总览 <span class="icon"></span></a>-->
-                <!--<ul>-->
-                    <!--<li data-id="03_01xinyongfengxian">信用风险</li>-->
-                    <!--<li data-id="03_02guanlifengxian">管理风险</li>-->
-                    <!--<li data-id="03_03zichanfengxian">资产风险</li>-->
-                    <!--<li data-id="03_04heguifengxian">合规风险</li>-->
-                    <!--&lt;!&ndash;<li data-id="03_05shengyufengxian">声誉风险</li>&ndash;&gt;-->
-                <!--</ul>-->
-            <!--</li>-->
-            <!--<li class="">-->
-                <!--<a class="dropdown-toggle">借款人 <span class="icon"></span></a>-->
-                <!--<ul>-->
-                    <!--<li data-id="04_01jingyingnengli">经营能力</li>-->
-                    <!--<li data-id="04_02yinglinengli">盈利能力</li>-->
-                    <!--<li data-id="04_03fazhannengli">发展能力</li>-->
-                <!--</ul>-->
-            <!--</li>-->
-            <li class="">
-                <a class="dropdown-toggle">平台画像 <span class="icon"></span></a>
-                <ul>
-                    <li>平台工商</li>
-                    <li data-id="${contextPath}/qdch/project" data="04_01pingtaixiangmuhuaxiang">平台项目</li>
-                    <li data-id="${contextPath}/qdch/deal" data="04_02pingtaijiaoyihuaxiang" >平台交易</li>
-                    <li data-id="${contextPath}/qdch/borrower" data="04_05jiekuanrenhuaxiang" >借款人总览</li>
-                    <li data-id="${contextPath}/qdch/companyfeel" data="04_04pingtaiyuqing">企业舆情</li>
-
-                </ul>
-            </li>
-            <li class="">
-                <a class="dropdown-toggle">监管报告 <span class="icon"></span></a>
-                <ul>
-                    <li data-id="${contextPath}/qdch/supervise" data="06_01jianguanyuebao">监管月报</li>
-                </ul>
-            </li>
-            <!--<li class="">-->
-                <!--<a class="dropdown-toggle">业务数据 <span class="icon"></span></a>-->
-                <!--<ul>-->
-                    <!--<li><a href="">客户信息</a></li>-->
-                    <!--<li><a href="">产品信息</a></li>-->
-                    <!--<li><a href="">交易信息</a></li>-->
-                <!--</ul>-->
-            <!--</li>-->
-            <li class="">
-                <a class="dropdown-toggle">数据录入 <span class="icon"></span></a>
-                <ul>
-                    <li><a href="">待定</a></li>
-                    <li data-id="${contextPath}/qdch/industry" data="04_01pingtaigongshang">市场画像</li>
-                    <li data-id="${contextPath}/qdch/borrowerfill">借款人填报</li>
-                    <li data-id="${contextPath}/qdch/alert" data="07_alert">alert</li>
-                    <li data-id="${contextPath}/qdch/platformalert" data="01_01pingtaizonglanbiaoalert">平台总览alert</li>
-                    <li data-id="${contextPath}/qdch/borrowerphoto" data="04_06iiekuanrenhuaxiangalert">借款人画像</li>
-                </ul>
-            </li>
-        </ul>
+        
+        	##if(isDev=='false'&&user.id!=''){
+        		<ul>
+        		 ##for(menu in user.menus!){
+        		 	<li class="">
+		                <a class="dropdown-toggle">${menu.name!} <span class="icon"></span> </a>
+		                <ul>
+		                	##for(c in menu.children){
+		                		 <li data-id="${contextPath}${c.reportletpath!}" data="${c.desc!}">${c.name!}</li>
+		                	##}
+		                </ul>
+		            </li>
+        		 ##}
+        		</ul>
+        	##}else{
+        		<ul>
+	            <li class="">
+	                <a class="dropdown-toggle">平台总览 <span class="icon"></span> </a>
+	                <ul>
+	                    <li data-id="${contextPath}/qdch/platform" data="01_01pingtaizonglanbiao">平台总览表</li>
+	                    <li data-id="${contextPath}/qdch/risk" data="01_02fengxianzonglan">风险总览</li>
+	                </ul>
+	            </li>
+	
+	            <!--<li class="">-->
+	                <!--<a class="dropdown-toggle">风险总览 <span class="icon"></span></a>-->
+	                <!--<ul>-->
+	                    <!--<li data-id="03_01xinyongfengxian">信用风险</li>-->
+	                    <!--<li data-id="03_02guanlifengxian">管理风险</li>-->
+	                    <!--<li data-id="03_03zichanfengxian">资产风险</li>-->
+	                    <!--<li data-id="03_04heguifengxian">合规风险</li>-->
+	                    <!--&lt;!&ndash;<li data-id="03_05shengyufengxian">声誉风险</li>&ndash;&gt;-->
+	                <!--</ul>-->
+	            <!--</li>-->
+	            <!--<li class="">-->
+	                <!--<a class="dropdown-toggle">借款人 <span class="icon"></span></a>-->
+	                <!--<ul>-->
+	                    <!--<li data-id="04_01jingyingnengli">经营能力</li>-->
+	                    <!--<li data-id="04_02yinglinengli">盈利能力</li>-->
+	                    <!--<li data-id="04_03fazhannengli">发展能力</li>-->
+	                <!--</ul>-->
+	            <!--</li>-->
+	            <li class="">
+	                <a class="dropdown-toggle">平台画像 <span class="icon"></span></a>
+	                <ul>
+	                    <li>平台工商</li>
+	                    <li data-id="${contextPath}/qdch/project" data="04_01pingtaixiangmuhuaxiang">平台项目</li>
+	                    <li data-id="${contextPath}/qdch/deal" data="04_02pingtaijiaoyihuaxiang" >平台交易</li>
+	                    <li data-id="${contextPath}/qdch/borrower" data="04_05jiekuanrenhuaxiang" >借款人总览</li>
+	                    <li data-id="${contextPath}/qdch/companyfeel" data="04_04pingtaiyuqing">企业舆情</li>
+	
+	                </ul>
+	            </li>
+	            <li class="">
+	                <a class="dropdown-toggle">监管报告 <span class="icon"></span></a>
+	                <ul>
+	                    <li data-id="${contextPath}/qdch/supervise" data="06_01jianguanyuebao">监管月报</li>
+	                </ul>
+	            </li>
+	            <!--<li class="">-->
+	                <!--<a class="dropdown-toggle">业务数据 <span class="icon"></span></a>-->
+	                <!--<ul>-->
+	                    <!--<li><a href="">客户信息</a></li>-->
+	                    <!--<li><a href="">产品信息</a></li>-->
+	                    <!--<li><a href="">交易信息</a></li>-->
+	                <!--</ul>-->
+	            <!--</li>-->
+	            <li class="">
+	                <a class="dropdown-toggle">数据录入 <span class="icon"></span></a>
+	                <ul>
+	                    <li><a href="">待定</a></li>
+	                    <li data-id="${contextPath}/qdch/industry" data="04_01pingtaigongshang">市场画像</li>
+	                    <li data-id="${contextPath}/qdch/borrowerfill">借款人填报</li>
+	                    <li data-id="${contextPath}/qdch/alert" data="07_alert">alert</li>
+	                    <li data-id="${contextPath}/qdch/platformalert" data="01_01pingtaizonglanbiaoalert">平台总览alert</li>
+	                    <li data-id="${contextPath}/qdch/borrowerphoto" data="04_06iiekuanrenhuaxiangalert">借款人画像</li>
+	                </ul>
+	            </li>
+	        </ul>
+        	##}
     </nav>
 
     <div class="mainNavFoldCtr">

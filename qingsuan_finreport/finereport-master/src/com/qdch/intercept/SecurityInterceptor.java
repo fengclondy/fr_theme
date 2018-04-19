@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import com.fr.hailian.core.QdchUser;
 import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
+import com.jfinal.kit.PropKit;
 import com.qdch.core.BaseController;
 
 
@@ -43,6 +44,7 @@ public class SecurityInterceptor implements Interceptor {
 		BaseController c = (BaseController) ai.getController();
 		c.dealUser(c);
 		c.setAttr("user", c.getLoginUser());
+		c.setAttr("isDev", PropKit.get("isDev"));
 		ai.invoke();
 	}
 }

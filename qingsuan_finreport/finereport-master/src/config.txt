@@ -12,3 +12,6 @@ insight_pwd=insight@2017
 #username = postgres
 #password = postgres
 #driver = org.postgresql.Driver
+
+#是否开发环境
+isDev=false
