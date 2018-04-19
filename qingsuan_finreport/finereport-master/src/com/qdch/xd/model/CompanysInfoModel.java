@@ -49,8 +49,16 @@ public class CompanysInfoModel extends Model<CompanysInfoModel> {
 		
 		return dao.find(sql);
 	}
-	
-	
+	/**
+	 * 根据公司法人查询公司情况
+	 * @author lixiaoyi
+	 * @date 2018年4月17日 下午4:51:00
+	 * @TODO
+	 */
+	public  List<CompanysInfoModel> getCompanybyName(String name){
+		String sql="select * from hub_commerce_company_info  where legal_person='"+name+"'";
+		return dao.find(sql);
+	}
 	
 
 }

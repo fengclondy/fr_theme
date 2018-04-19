@@ -44,7 +44,9 @@ import com.qdch.p2p.model.CoCorePersonModel;
 import com.qdch.p2p.model.CoExecptionModel;
 import com.qdch.p2p.model.CoShareholderInfoModel;
 import com.qdch.p2p.model.CollectPrincipalModel;
+import com.qdch.p2p.model.CompanyFeelModel;
 import com.qdch.p2p.model.CompositeInterestModel;
+import com.qdch.p2p.model.ConcentrationRatioModel;
 import com.qdch.p2p.model.CustNumberModel;
 import com.qdch.p2p.model.DefenInfoModel;
 import com.qdch.p2p.model.DiYaShenHeModel;
@@ -98,6 +100,64 @@ import com.qdch.xd.controller.ReputationRiskController;
 import com.qdch.xd.controller.RiskOverviewController;
 import com.qdch.xd.controller.XiaoDaiController;
 
+import com.qdch.xd.model.CoAnnounceModel;
+import com.qdch.xd.model.CoBranchModel;
+import com.qdch.xd.model.CoBusinessModel;
+import com.qdch.xd.model.CoChangeLogModel;
+import com.qdch.xd.model.CoCopyrightModel;
+import com.qdch.xd.model.CoDishonestyModel;
+import com.qdch.xd.model.CoEnterpriseModel;
+import com.qdch.xd.model.CoExecutorModel;
+import com.qdch.xd.model.CoJobModel;
+import com.qdch.xd.model.CoJudgmentModel;
+import com.qdch.xd.model.CoMainPersonModel;
+import com.qdch.xd.model.CoPatentModel;
+import com.qdch.xd.model.CoPenaltvModel;
+import com.qdch.xd.model.CoReportModel;
+import com.qdch.xd.model.CoScabilityModel;
+import com.qdch.xd.model.CoShareHolderModel;
+import com.qdch.xd.model.CoSoftcopyModel;
+import com.qdch.xd.model.CoStockchangeModel;
+import com.qdch.xd.model.CoTradeMarkModel;
+import com.qdch.xd.model.CoWebsiteModel;
+import com.qdch.xd.model.CompanysInfoModel;
+import com.qdch.xd.model.ComparisonOfCompeModel;
+import com.qdch.xd.model.CompetitiveRrendModel;
+import com.qdch.xd.model.ConRatioModel;
+import com.qdch.xd.model.CurrentComRankingModel;
+import com.qdch.xd.model.CustomerInfoModel;
+import com.qdch.xd.model.DefrateModel;
+import com.qdch.xd.model.DetailsQueryModel;
+import com.qdch.xd.model.DictModel;
+import com.qdch.xd.model.ExchangeInfoModel;
+import com.qdch.xd.model.GuaranteeContrastModel;
+import com.qdch.xd.model.IncomeAndLossrateModel;
+import com.qdch.xd.model.IndexRankingModel;
+import com.qdch.xd.model.JyscModel;
+import com.qdch.xd.model.KeyIndicatorsModel;
+import com.qdch.xd.model.LimitQueryModel;
+import com.qdch.xd.model.ManagementRiskListModel;
+import com.qdch.xd.model.MarkNewsModel;
+import com.qdch.xd.model.MigrationRateModel;
+import com.qdch.xd.model.MonthlyReportListModel;
+import com.qdch.xd.model.MonthlyReportModel;
+import com.qdch.xd.model.PersonalCustomModel;
+import com.qdch.xd.model.ProportionModel;
+import com.qdch.xd.model.PublicCustomModel;
+import com.qdch.xd.model.RiskCountModel;
+import com.qdch.xd.model.RiskEventHistoryModel;
+import com.qdch.xd.model.RiskEventModel;
+import com.qdch.xd.model.RiskShowModel;
+import com.qdch.xd.model.RiskTrendDetailedModel;
+import com.qdch.xd.model.RiskTrendModel;
+import com.qdch.xd.model.RiskTypeModel;
+import com.qdch.xd.model.ScabilityModel;
+import com.qdch.xd.model.ThresholdValueModel;
+import com.qdch.xd.model.defrateRankModel;
+import com.qdch.xd.model.maxIntrateRankModel;
+
+
+
 
 public class Config extends JFinalConfig {
 	public void configConstant(Constants me) {
@@ -107,6 +167,7 @@ public class Config extends JFinalConfig {
 		rf.config();
 //		me.setViewType(ViewType.JSP);
 		me.setRenderFactory(rf);
+		//me.setBaseUploadPath("D:\loadup"); 
 		GroupTemplate gt = rf.groupTemplate;
 		gt.registerTag("layout", TemplteLayoutTag.class);
 	}
@@ -179,6 +240,7 @@ public class Config extends JFinalConfig {
 		String pwd = PropKit.get("pwd");
 		DruidPlugin dp = new DruidPlugin(jdbc, user, pwd);
 		//DruidPlugin dp = new DruidPlugin("jdbc:postgresql://172.16.6.61:5432/qdchedw", "hub", "hub@2017");
+		dp.setMaxActive(10);
 		me.add(dp);
 		ActiveRecordPlugin arp = new ActiveRecordPlugin(com.qdch.core.Constants.QSS_GP_HUB,dp);
 		arp.setBaseSqlTemplatePath(PathKit.getRootClassPath());
@@ -200,6 +262,7 @@ public class Config extends JFinalConfig {
 		String insight_user = PropKit.get("insight_user");
 		String insight_pwd = PropKit.get("insight_pwd");
 		DruidPlugin insight_dp = new DruidPlugin(insight_jdbc, insight_user, insight_pwd);
+		insight_dp.setMaxActive(10);
 		me.add(insight_dp);
 		ActiveRecordPlugin insight_arp = new ActiveRecordPlugin(com.qdch.core.Constants.QSS_GP_INSIGHT,insight_dp);
 		insight_arp.setBaseSqlTemplatePath(PathKit.getRootClassPath());
@@ -240,6 +303,7 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("insight_pp_indust_int", CompositeInterestModel.class);//用于平台项目获取行业综合利率
 		insight_arp.addMapping("insight_pp_iterm_count", StructuralDetailsModel.class);//用于平台项目获取项目结构详情
 		insight_arp.addMapping("insight_pp_term_distribute", TermDetailsModel.class);//用于平台项目获取期限分布详情
+		insight_arp.addMapping("insight_pp_hhi_calculate", ConcentrationRatioModel.class);//用于平台项目画像获取集中度
 		arp.addMapping("hub_pp_fxzs", RiskOverviewModel.class);//用于p2p风险总览
 		/***doushuiahi Model START p2p***/
 		
@@ -325,6 +389,7 @@ public class Config extends JFinalConfig {
 		
 		/***小贷 李晓依 insight层 Model START ***/
 		insight_arp.addMapping("insight_xd_jysc_info", ProportionModel.class);//小贷-管理风险-占比
+		insight_arp.addMapping("insight_xd_scability", CoScabilityModel.class);//小贷-市场画像得分
 		/***小贷 李晓依 hub层 Model START***/
 		arp.addMapping("hub_commerce_company_info", CompanysInfoModel.class);//工商-企业信息获取
 		arp.addMapping("hub_commerce_co_shareholder", CoShareHolderModel.class);//工商-股东/对外投资人信息
@@ -345,7 +410,8 @@ public class Config extends JFinalConfig {
         arp.addMapping("hub_commerce_co_website", CoWebsiteModel.class);//工商-网站信息
         arp.addMapping("hub_commerce_co_finance_state", CoReportModel.class);//工商-企业年报-财务信息
         arp.addMapping("hub_commerce_co_stock_change_log", CoStockchangeModel.class);//工商-股权变更
-
+        arp.addMapping("hub_commerce_enterprise", CoEnterpriseModel.class);//舆情关联的企业表
+        arp.addMapping("hub_commerce_meiya_sentiment_news", MarkNewsModel.class);//舆情详情
     	/***p2p 李晓依 hub层 Model START***/
         
         arp.addMapping("hub_static_company_info", CoCompanyInfoModel.class);//p2p-工商静态-公司信息
@@ -374,6 +440,7 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("insight_pp_avge_term", AvgTermTimeModel.class); //p2p平台总览 alert-平台数据信息
 		insight_arp.addMapping("insight_pp_collect_principal", LoanBalanceModel.class); //p2p 平台总览alert-平台数据信息
 		insight_arp.addMapping("insight_pp_average_time", FullScaleTimeModel.class); //p2p 平台总览alert-平台数据信息
+		arp.addMapping("hub_commerce_meiya_sentiment_news", CompanyFeelModel.class); // p2p 企业舆情
 	}
 
 	public void configInterceptor(Interceptors me) {

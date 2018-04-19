@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -9,7 +10,8 @@
     <link rel="stylesheet" href="${contextPath}/static/css/style.css">
     <link rel="stylesheet" href="${contextPath}/static/css/pageCom.css">
     <link rel="stylesheet" href="${contextPath}/static/css/index.css">
-	<style>
+    <link rel="stylesheet" href="${contextPath}/static/css/laydate.css">
+<style>
 		.clearfixed::after {
 			content: '.';
 			display: block;
@@ -122,7 +124,7 @@
 		.top,.tabContent {
 			background: #2c467f99;
 			box-shadow: 0px 0px 15px #2c467f;
-			z-index: 999;
+			z-index: 1;
 			width: 100%;
 			margin: 0.8em .8em;
 		}
@@ -513,7 +515,7 @@
 		}
 		/*右侧两个box*/
 		.containRight{
-			position: absolute;
+			position: fixed;
 			top: 0;
 			right: 0;
 			width: 29.7%;
@@ -616,7 +618,7 @@
 			margin: .3rem 0rem;
 		}
 		.bgi4 {
-			background: url("${contextPath}/static/img/img/03_05shengyufengxian/lticn_eye.png") no-repeat left center;
+			background: url("../img/03_05shengyufengxian/lticn_eye.png") no-repeat left center;
 			padding-left: 1rem;
 			width: 0.6rem;
 			background-size: contain;
@@ -716,7 +718,7 @@
 
 		/*模态框*/
 		.model_faren{
-			background: url("${contextPath}/static/img/img/com/bg_main.jpg") no-repeat;
+			background: url("${contextPath}/static/img/com/bg_main.jpg") no-repeat;
 			position: absolute;
 			left: 50%;
 			top: 50%;
@@ -782,7 +784,85 @@
 			width: 16%;
 			font-size: 0.9rem;
 		}
+		.ec003{
+			margin-top:18px;
+		}
+		.ec003 > div{
+			display: inline-block;
+		}
+		.ec003 > a{
+			display: inline-block;
+    		width: 90px;
+		}
 		/*模态框  end*/
+		#myStathalf{
+			margin:0 auto;
+		}
+		.circliful {
+		    position: relative; 
+		}
+		
+		.circle-text, .circle-info, .circle-text-half, .circle-info-half {
+		    width: 100%;
+		    position: absolute;
+		    text-align: center;
+		    display: inline-block;
+		}
+		
+		.circle-info, .circle-info-half {
+			color: #fff;
+		}
+		
+		.circliful .fa {
+			margin: -10px 3px 0 3px;
+			position: relative;
+			bottom: 4px;
+		}
+		.circle-text{
+			line-height: 80px!important;
+		}
+		#myStathalf .circle-text{
+			line-height: 120px!important;
+		}
+		.chartBody.chartBodyFlex, .chartBodyRelative{
+			position: relative;
+		}
+		.chartBody.chartBodyFlex > .chartBodyAbsolute{
+			position: absolute;
+			top:50%;
+		}
+		.line{
+			position: absolute;
+			border:1px solid #00ADEF; 
+			display: none;
+		}
+		.line01{
+		    width: 1px;
+		    height: 18px;
+		    bottom: 90px;
+		    left: 45px;
+		}
+		.line02{
+		    width: 1px;
+		    height: 26px;
+		    bottom: 90px;
+		    left: 138px;
+		}
+		.line03{
+			width: 187px;
+		    height: 1px;
+		    bottom: 106px;
+		    right: 44px;
+		}
+		.line04{
+		    width: 1px;
+		    height: 18px;
+		    bottom: 90px;
+		    right: 44px;
+		}
+		.pageHeader .selected,.pageHeader .myOptionBox{
+   width:15rem
+  }
 	</style>
 </head>
 <body id="gongshangxinxijiankong" data-title="工商信息监控">
@@ -792,7 +872,7 @@
 		<div class="inputGroup">
 			<label for="pingtai">平台：</label>
 			<div class="mySelect" id="pingtai">
-				<div class="myOption selected"><span class="text"></span><span class="icon"></span></div>
+				<div class="myOption selected"><span class="text" id="comm"></span><span class="icon"></span></div>
 				<ul class="myOptionBox">
 		
                <li id="${company!}" onclick=changecom(this) class="myOption">${company!}</li>                
@@ -808,10 +888,10 @@
 	</div>
 	<div class="top">
 		<li>
-			<a href="#jbxx" class="mdclick" tab-id="1">基本信息：<span>10</span></a>
+			<a href="#jbxx" class="mdclick" tab-id="1">基本信息<span></span></a>
 		</li>
 		<li>
-			<a href="#gsxx" class="mdclick" tab-id="1">工商信息：<span>10</span></a>
+			<a href="#gsxx" class="mdclick" tab-id="1">工商信息<span></span></a>
 		</li>
 		<li>
 			<a href="#hxry" class="mdclick" tab-id="1">核心人员：<span>${core!}</span></a>
@@ -826,7 +906,7 @@
 			<a href="#bgjl" class="mdclick" tab-id="1">变更记录：<span>${changeLog!}</span></a>
 		</li>
 		<li>
-			<a href="#qynb" class="mdclick" tab-id="1">企业年报：<span>10</span></a>
+			<a href="#qynb" class="mdclick" tab-id="1">企业年报<span></span></a>
 		</li>
 		<li>
 			<a href="#fzjg" class="mdclick" tab-id="1">分支机构：<span>${brachsize!}</span></a>
@@ -838,28 +918,28 @@
 			<a href="#zczb" class="mdclick" tab-id="1">注册资本变更：<span>${registSize!}</span></a>
 		</li>
 		<li>
-			<a href="#sxr" class="mdclick" tab-id="2">失信人：<span>10</span></a>
+			<a href="#sxr" class="mdclick" tab-id="2">失信人<span></span></a>
 		</li>
 		<li>
 			<a href="#xzcf" class="mdclick" tab-id="2">行政处罚：<span>${penaltvSize!}</span></a>
 		</li>
 		<li>
-			<a href="#qyzz" class="mdclick" tab-id="5">企业资质类：<span>${typesize!}</span></a>
+			<a href="#qylx" class="mdclick" tab-id="1">企业类型：<span>${typesize!}</span></a>
 		</li>
 		<li>
-			<a href="#cpdjb" class="mdclick" tab-id="5">招聘信息：<span>${jobSize!}</span></a>
+			<a href="#zpxx" class="mdclick" tab-id="2">招聘信息：<span>${jobSize!}</span></a>
 		</li>
 		<li>
-			<a href="#jbxx" class="mdclick" tab-id="1">经营异常：<span>${businesize!}</span></a>
+			<a href="#jyyc" class="mdclick" tab-id="2">经营异常：<span>${businesize!}</span></a>
 		</li>
 		<li>
-			<a href="#jbxx" class="mdclick" tab-id="1">法律诉讼：<span>${judSize!}</span></a>
+			<a href="#flss" class="mdclick" tab-id="2">法律诉讼：<span>${judSize!}</span></a>
 		</li>
 		<li>
-			<a href="#jbxx" class="mdclick" tab-id="1">法律公告：<span>${annSize!}</span></a>
+			<a href="#flgg" class="mdclick" tab-id="2">法律公告：<span>${annSize!}</span></a>
 		</li>
 		<li>
-			<a href="#jbxx" class="mdclick" tab-id="1">执行人：<span>${exeSize!}</span></a>
+			<a href="#bzxr" class="mdclick" tab-id="2">被执行人：<span>${exeSize!}</span></a>
 		</li>
 	</div>
 	<!-- <div class="blank"></div>-->
@@ -1757,7 +1837,7 @@
 									<div class="inputGroup fl">
 										<label for="BeginTime">开始时间：</label>
 										<input placeholder="请输入开始日期" id="BeginTime" class="laydate-icon timeUstyle stateUTime"
-											   onclick="laydate({istime: true,format:'YYYY-MM-DD hh:mm'})">
+											name="begin" type="text"  onclick="laydate({istime: true,format:'YYYYMMDD '})">
 									</div>
 								</div>
 								<div class="customerInformationmiddle fl">
@@ -1771,91 +1851,33 @@
 									<div class="inputGroup fl">
 										<label for="EndTime">结束时间：</label>
 										<input placeholder="请输入开始日期" id="EndTime" class="laydate-icon timeUstyle stateUTime"
-											   onclick="laydate({istime: true,format:'YYYY-MM-DD hh:mm'})">
+											name="end" type="text"  onclick="laydate({istime: true,format:'YYYYMMDD '})">
 									</div>
 								</div>
 								<div class="customerInformationright fl">
 									<div class="inputGroup">
 										<br>
-										<button class="yuqingsearch" type="button">查询</button>
+										<button class="yuqingsearch" type="button" onclick="check()">查询</button>
 									</div>
 								</div>
 							</div>
 							<div class="customerInformationList">
 								<div class="left fl">
 									<ul class="leftBox">
+									##for(info in marknews){
 										<li>
-											<div class="fl pic"><img src="${contextPath}/static/img/img/03_05shengyufengxian/02.png"></div>
+											<div class="fl pic"><img src="${contextPath}/static/img/03_05shengyufengxian/02.png"></div>
 											<p class="fr">
-												<a href="#">保监会启动偿二代二期工程建设</a>
-												<span class="neirong">为进一步补齐制度短板和监管漏洞，提升保险风险管理贺风险抵御能力，保监会于近日印发&gt偿二代二期工程建设方案&lt（一下简称《建设方案》），启动偿二代二期工程建设。</span>
-												<span>来源:</span><a href="#" class="bgi1 source1">中国网</a>
+												<a >${info.title!}</a>
+												<span class="neirong">${info.summary!}</span>
+												<span>来源:</span><a href="#" class="bgi1 source1">${info.data_source}</a>
 												<span>|</span>
-												<span>涉及词:</span><a href="#">保监会、保险</a>
-												<span class="bgi4"><a href="#">256</a></span>
-												<span class="fr bgi2">2014-02-19 12:26</span>
+												<span>涉及词:</span><a href="#">${info.string_agg!}</a>
+												<!-- <span class="bgi4"><a href="#">256</a></span> -->
+												<span class="fr bgi2">${info.publish_date!}</span>
 											</p>
 										</li>
-										<li>
-											<div class="fl pic"><img src="${contextPath}/static/img/img/03_05shengyufengxian/02.png"></div>
-											<p class="fr">
-												<a href="#">保监会启动偿二代二期工程建设</a>
-												<span class="neirong">为进一步补齐制度短板和监管漏洞，提升保险风险管理贺风险抵御能力，保监会于近日印发&gt偿二代二期工程建设方案&lt（一下简称《建设方案》），启动偿二代二期工程建设。</span>
-												<span>来源:</span><a href="#" class="bgi1 source2">中国网</a>
-												<span>|</span>
-												<span>涉及词:</span><a href="#">保监会、保险</a>
-												<span class="bgi4"><a href="#">256</a></span>
-												<span class="fr bgi2">2014-02-19 12:26</span>
-											</p>
-										</li>
-										<li>
-											<div class="fl pic"><img src="${contextPath}/static/img/img/03_05shengyufengxian/02.png"></div>
-											<p class="fr">
-												<a href="#">保监会启动偿二代二期工程建设</a>
-												<span class="neirong">为进一步补齐制度短板和监管漏洞，提升保险风险管理贺风险抵御能力，保监会于近日印发&gt偿二代二期工程建设方案&lt（一下简称《建设方案》），启动偿二代二期工程建设。</span>
-												<span>来源:</span><a href="#" class="bgi1">中国网</a>
-												<span>|</span>
-												<span>涉及词:</span><a href="#">保监会、保险</a>
-												<span class="bgi4"><a href="#">256</a></span>
-												<span class="fr bgi2">2014-02-19 12:26</span>
-											</p>
-										</li>
-										<li>
-											<div class="fl pic"><img src="${contextPath}/static/img/img/03_05shengyufengxian/02.png"></div>
-											<p class="fr">
-												<a href="#">保监会启动偿二代二期工程建设</a>
-												<span class="neirong">为进一步补齐制度短板和监管漏洞，提升保险风险管理贺风险抵御能力，保监会于近日印发&gt偿二代二期工程建设方案&lt（一下简称《建设方案》），启动偿二代二期工程建设。</span>
-												<span>来源:</span><a href="#" class="bgi1 source3">中国网</a>
-												<span>|</span>
-												<span>涉及词:</span><a href="#">保监会、保险</a>
-												<span class="bgi4"><a href="#">256</a></span>
-												<span class="fr bgi2">2014-02-19 12:26</span>
-											</p>
-										</li>
-										<li>
-											<div class="fl pic"><img src="${contextPath}/static/img/img/03_05shengyufengxian/02.png"></div>
-											<p class="fr">
-												<a href="#">保监会启动偿二代二期工程建设</a>
-												<span class="neirong">为进一步补齐制度短板和监管漏洞，提升保险风险管理贺风险抵御能力，保监会于近日印发&gt偿二代二期工程建设方案&lt（一下简称《建设方案》），启动偿二代二期工程建设。</span>
-												<span>来源:</span><a href="#" class="bgi1 source4">中国网</a>
-												<span>|</span>
-												<span>涉及词:</span><a href="#">保监会、保险</a>
-												<span class="bgi4"><a href="#">256</a></span>
-												<span class="fr bgi2">2014-02-19 12:26</span>
-											</p>
-										</li>
-										<li>
-											<div class="fl pic"><img src="${contextPath}/static/img/img/03_05shengyufengxian/02.png"></div>
-											<p class="fr">
-												<a href="#">保监会启动偿二代二期工程建设</a>
-												<span class="neirong">为进一步补齐制度短板和监管漏洞，提升保险风险管理贺风险抵御能力，保监会于近日印发&gt偿二代二期工程建设方案&lt（一下简称《建设方案》），启动偿二代二期工程建设。</span>
-												<span>来源:</span><a href="#" class="bgi1 source5">中国网</a>
-												<span>|</span>
-												<span>涉及词:</span><a href="#">保监会、保险</a>
-												<span class="bgi4"><a href="#">256</a></span>
-												<span class="fr bgi2">2014-02-19 12:26</span>
-											</p>
-										</li>
+										##}
 									</ul>
 								</div>
 							</div>
@@ -1988,44 +2010,16 @@
 
 				<tr>
 					<td class="center faren" rowspan="10">法人</td>
-					<td class="center">阿里巴巴(中国)有限公司</td>
-					<td class="center">北京</td>
-					<td class="center">2012-10-25</td>
-					<td class="center">5665万</td>
-					<td class="center">开业</td>
+					##for(info in comInfo){
+					<td class="center">${info.company_name!}</td>
+					<td class="center">${info.city!}</td>
+					<td class="center">${info.create_date!}</td>
+					<td class="center">${info.register_money_desc!}</td>
+					<td class="center">${info.business_status!}</td>
 
-
+                    ##}
 				</tr>
-				<tr>
-					<td class="center">阿里巴巴(中国)有限公司</td>
-					<td class="center">北京</td>
-					<td class="center">2012-10-25</td>
-					<td class="center">5665万</td>
-					<td class="center">开业</td>
-
-				</tr>
-
-				<tr>
-					<td class="center">阿里巴巴(中国)有限公司</td>
-					<td class="center">北京</td>
-					<td class="center">2012-10-25</td>
-					<td class="center">5665万</td>
-					<td class="center">开业</td>
-				</tr>
-				<tr>
-					<td class="center">阿里巴巴(中国)有限公司</td>
-					<td class="center">北京</td>
-					<td class="center">2012-10-25</td>
-					<td class="center">5665万</td>
-					<td class="center">开业</td>
-				</tr>
-				<tr>
-					<td class="center">阿里巴巴(中国)有限公司</td>
-					<td class="center">北京</td>
-					<td class="center">2012-10-25</td>
-					<td class="center">5665万</td>
-					<td class="center">开业</td>
-				</tr>
+				
 
 			</table>
 		</div>
@@ -2041,8 +2035,25 @@
 				</div>
 				<div class="chartContent">
 					<header></header>
-					<div class="chartBody">
-						<div id="ec002_competitivenessgongshangjiankong1">1</div>
+				<div class="chartBody chartBodyFlex">
+						<div class="chartBodyAbsolute">
+							<div class="chartBodyRelative">
+								<div id="myStathalf" data-dimension="120" data-width="20" data-text="93分" data-fontsize="13" data-percent="93" data-fgcolor="#00ACF0" data-bgcolor="#064983"></div>
+								<div class="ec003">
+		
+							    <a href="${contextPath}/qdch/operationalcapability"><div id="myStat" data-dimension="90" data-text="98分" data-info="经营能力" data-width="12" data-fontsize="13" data-percent="98" data-fgcolor="#95DF64" data-bgcolor="#115006">	</div></a>
+									
+								<a href="${contextPath}/qdch/profitability"><div id="myStathalf2" data-dimension="90" data-text="88分" data-info="盈利能力" data-width="12" data-fontsize="13" data-percent="88" data-fontcolor="#fff" data-fgcolor="#FED569" data-bgcolor="#805000" data-icon="fa-task"></div></a>
+									
+								<a href="${contextPath}/qdch/developmentcapacity"><div id="myStat2" data-dimension="90" data-text="88分" data-info="发展能力" data-width="12" data-fontsize="13" data-percent="88" data-fgcolor="#FC7B70" data-bgcolor="#520316"></div></a>
+									
+								</div>
+								<div class="line line01"></div>
+								<div class="line line02"></div>
+								<div class="line line03"></div>
+								<div class="line line04"></div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -2058,7 +2069,7 @@
 					<header></header>
 					<div class="chartBody">
 						<div class="radarIndexFrame">
-							<div class="icon"><img src="${contextPath}/static/img/img/08shujuluru/radarIndexFrame.png" alt=""></div>
+							<div class="icon"><img src="${contextPath}/static/img/08shujuluru/radarIndexFrame.png" alt=""></div>
 							<div class="textContent">指数: <span>6.6</span></div>
 						</div>
 						<!--<div class="radarIndexChart">-->
@@ -2077,20 +2088,115 @@
 <script src="${contextPath}/static/js/index.js"></script> 
 <script src="${contextPath}/static/js/chartsCom.js"></script>
 <script src="${contextPath}/static/js/main.js"></script>
+<script src="${contextPath}/static/js/laydate.js"></script>
+<script src="${contextPath}/static/js/jquery.circliful.min.js"></script>
 
 
 
 
 <script>
  var jysCode;
+ var name;
+ var key;
+ var begin;
+ var end;
  // 切换公司名称 刷新全部数据
   function changecom(obj){
 	//获取公司 现在下拉选择值
 	jysCode=$(obj).attr("id");
+	       
 
   window.location.href="${contextPath}/qdch/commerce?name="+jysCode;
 
 }
+ //市场画像查询 
+ function check(){
+	 name= $("#comm").text();
+	 key= $(".gjz").val();
+     begin=$("#BeginTime").val();
+     end=$("#EndTime").val();
+    $.post("${contextPath}/qdch/commerce/gainNews",{"name":name,"keyword":key,"begin":begin,"end":end},function(data){
+    	  $(".leftBox li").remove();
+    	  
+   	    var tr=[];
+     	  $.each(data,function(index,item){
+     		var mTr='';
+     		mTr+='<li><div class="fl pic">'
+     		+'<img src="${contextPath}/static/img/03_05shengyufengxian/02.png"></div><p class="fr"><a >'
+     		+item.title+'</a> <span class="neirong">'+item.summary+'</span><span>来源:</span><a href="#" class="bgi1 source1">'
+     		+item.data_source+'</a><span>|</span><span>涉及词:</span><a href="#">'
+   		    +item.string_agg+'</a><span class="fr bgi2">'+item.publish_date+'</span></p></li>'
+     		
+     		tr.push(mTr);
+     	
+     		  });
+     		$(".leftBox").html(tr.join(''));
+       
+    })
+	
+
+}
+ 
+ $(document).ready(function() {
+	 name= $("#comm").text();
+		$.post("${contextPath}/qdch/commerce/gainScore",{"name":name},function(data){
+	
+			if(data=="kong"){
+					  /* $('#myStathalf').attr("data-text",item.jzl);
+						$('#myStathalf').attr("data-percent",item.jzl);
+						$('#myStat2').attr("data-text",item.fznl);
+						$('#myStat2').attr("data-percent",item.fznl);
+						$('#myStat').attr("data-text",item.jynl);
+						$('#myStat').attr("data-percent",item.jynl);
+						$('#myStathalf2').attr("data-text",item.ylnl);
+						$('#myStathalf2').attr("data-percent",item.ylnl); */
+					    $('#myStathalf').circliful();
+						$('#myStat').circliful();
+						$('#myStathalf2').circliful();
+						$('#myStat2').circliful();
+						
+					    var flexW = $(".chartBodyFlex").width();
+					    var flexH = $(".chartBodyFlex").height();
+					    var absoluteW = $(".chartBodyAbsolute").width();
+					    var absoluteH = $(".chartBodyAbsolute").height();
+					    $(".chartBodyAbsolute").css({
+					    	"marginLeft": (flexW - absoluteW) / 2,
+					    	"marginTop": - (absoluteH / 2)
+					    })
+					    $(".line").show();
+				  }else{
+					  $('#myStathalf').attr("data-text",data.jzl);
+						$('#myStathalf').attr("data-percent",data.jzl);
+						$('#myStat2').attr("data-text",data.fznl);
+						$('#myStat2').attr("data-percent",data.fznl);
+						$('#myStat').attr("data-text",data.jynl);
+						$('#myStat').attr("data-percent",data.jynl);
+						$('#myStathalf2').attr("data-text",data.ylnl);
+						$('#myStathalf2').attr("data-percent",data.ylnl);
+					    $('#myStathalf').circliful();
+						$('#myStat').circliful();
+						$('#myStathalf2').circliful();
+						$('#myStat2').circliful();
+						
+					    var flexW = $(".chartBodyFlex").width();
+					    var flexH = $(".chartBodyFlex").height();
+					    var absoluteW = $(".chartBodyAbsolute").width();
+					    var absoluteH = $(".chartBodyAbsolute").height();
+					    $(".chartBodyAbsolute").css({
+					    	"marginLeft": (flexW - absoluteW) / 2,
+					    	"marginTop": - (absoluteH / 2)
+					    })
+					    $(".line").show();
+				  }
+				 
+			
+			  
+		});
+		
+
+		
+	
+ });
 
     //弹出框
 		$(".legalPerson").click(function () {
@@ -2124,9 +2230,10 @@
 
                 {
                     indicator: [
+                                
                         {text: '信用风险', max: 100},
+                        {text: '管理风险', max: 100},
                         {text: '资产风险', max: 100},
-                        {text: '周边风险', max: 100},
                         {text: '合规风险', max: 100},
                         {text: '声誉风险', max: 100}
                     ],
@@ -2175,6 +2282,22 @@
         //当前时间
         //本页所有图表
         allCharts = [fxyq003];
+    });
+    //风险种类添加点击事件 
+    $(document).ready(function() {
+      var test= fxyq003.getOption().radar[0].indicator
+     $.each(test,function(index,item){
+	  if(index==0){
+	   var names=item.text
+	  // alert(names+"nnnn");
+	   item.on('click',function () {
+		    alert(1111);
+			window.location.href="${contextPath}/qdch/creditrisks"
+		})
+
+	}
+	  
+  })
     });
 
     var GSXX = {
@@ -2320,7 +2443,7 @@
 
             $.ajax({
                 type:"get",
-                url:"mydata.json",
+                url:"${contextPath}/WEB-INF/qss/xd/pages/mydata.json",
                 async:true,
                 success:function(res){
                     var webkitDep = res;

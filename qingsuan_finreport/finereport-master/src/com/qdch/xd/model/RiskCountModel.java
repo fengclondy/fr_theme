@@ -42,7 +42,7 @@ public class RiskCountModel extends Model<RiskCountModel>{
 				   + "from (select count(*) zs from hub_xd_jysc) zs,"
 				+ "(select count(DISTINCT jgdm) yc from hub_fxsj where jysfl='3') yc where 1=1 ";
 		if(StringUtils.isNotBlank(dataSql)){
-			sql+=" and jysc in"+ dataSql+" ";
+			sql+=" and jgdm in"+ dataSql+" ";
 		}
 		
 		return dao.find(sql);

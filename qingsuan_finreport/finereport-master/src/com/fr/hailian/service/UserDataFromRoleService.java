@@ -177,6 +177,7 @@ public class UserDataFromRoleService {
         }
         long userId = RoleUtil.getCurrentUser(request).getId();
         sql+=" and t.userid='"+userId+"'";
+        System.out.println(sql);
         PreparedStatement ps = con.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
