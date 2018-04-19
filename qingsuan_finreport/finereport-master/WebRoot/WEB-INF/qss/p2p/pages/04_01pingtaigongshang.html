@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="${contextPath}/static/css/laydate.css">
     
     <style>
-        .fl {
+         .fl {
             float: left;
         }
         .fr {
@@ -180,7 +180,7 @@
             min-height: 70%;
             _height:70%;
             /*margin-top: 15em;*/
-            width: 101%;
+            width: 100%;
         }
 
         .mainContent>div {
@@ -512,7 +512,7 @@
             cursor: pointer;
             padding: .1rem 2rem .1rem .5rem;
             white-space: nowrap;
-            width: 9rem;
+            width: 14rem;
         }
 
         .mySelect > .myOption.selected {
@@ -521,7 +521,6 @@
             border-radius: .2rem;
             text-overflow: ellipsis;
             overflow: hidden;
-            height: 1.3125rem;
             z-index: 100;
         }
 
@@ -537,11 +536,11 @@
         .mySelect > .myOption.selected > .icon {
             display: inline-block;
             position: absolute;
-            top: .46rem;
+            top: .5rem;
             right: .5rem;
             width: .8rem;
-            height: .3rem;
-            background: url({contextPath}/static/img/com/i_arrow_down.png) 50% 40% no-repeat;
+            height: .4rem;
+            background: url(../img/com/i_arrow_down.png) 50% 40% no-repeat;
             background-size: contain;
         }
 
@@ -582,6 +581,93 @@
 		.glqyContent table tbody tr td a:hover, .jkqyContent table tbody tr td a:hover, .dbqyContent table tbody tr td a:hover{
 			color:#00adef;
 		}
+		.customerInformation {
+		    width: 100%;
+		    height: 25%;
+		    padding: 1rem 0rem;
+		    border-bottom: 2px solid #00adef;
+		    overflow: hidden;
+		}
+		.customerInformationleft, .customerInformationmiddle {
+    width: 33.33%;
+    height: 100%;
+}
+.timeUstyle {
+    background: transparent;
+    border: 2px solid #00abde;
+    width: 14rem;
+    border-radius: 0.1rem;
+    height: 28%;
+    line-height: 28%;
+}
+.gjz {
+    width: 14rem;
+    background: transparent;
+    border: 2px solid #00abde;
+    border-radius: 0.1rem;
+}
+input::-webkit-input-placeholder {color:#fff;}
+input::-moz-placeholder {color:#fff}
+input::-ms-input-placeholder {color:#fff}
+.yuqingsearch {
+    padding: 0rem 2rem;
+    background: #00abde;
+    border: 2px solid #00abde;
+    margin-top: 50%;
+    border-radius: 0.1rem;
+}
+.customerInformationList {
+    width: 100%;
+    height: 75%;
+    overflow: hidden;
+}
+.leftBox {
+    width: 100%;
+    /*height: 20rem;*/
+    overflow: auto;
+}
+.left > ul > li {
+    width: 100%;
+    color: #756F71;
+    padding: .3rem 0.1rem;
+    font-size: 12px;
+    float: left;
+}
+.left > ul > li > .pic {
+    width: 16%;
+    height: 16%;
+    margin: 1%;
+}
+.left > ul > li > div > img {
+    width: 100%;
+    height: 100%;
+    margin-left: 0.5rem;
+        max-height: 160px;
+}
+.left > ul > li > p {
+    width: 78%;
+    padding: 0.2rem 0.2rem;
+    margin: 1%;
+}
+.left > ul > li > p a {
+    color: #fff;
+}
+.left > ul > li > p > a:first-child {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+.left > ul > li > p > .neirong {
+    margin: 0.1rem 0 0.5rem 0;
+    color: #00b0f4;
+    font-size: 14px;
+}
+.left > ul > li > p > span {
+    line-height: 1.3rem;
+    display: inline-block;
+    margin: 0 .5rem .5rem .5rem;
+}
     </style>
 </head>
 <body id="gongshangxinxijiankong" data-title="工商信息监控">
@@ -592,10 +678,10 @@
         <div class="inputGroup">
             <label>平台：</label>
             <div class="mySelect" id="jingzhenglizhibiao4">
-                <div class="myOption selected"><span class="text"></span><span class="icon"></span>
+                <div class="myOption selected"><span class="text" id="comm"></span><span class="icon"></span>
                 </div>
                 <ul class="myOptionBox">
-                    <li class="myOption selected">鲁金宝1</li>
+                   
                     <li id="${company!}" onclick=changecom(this) class="myOption">${company!}</li>                
 					   ##for(company in companyName!){
                          <li id="${company.company_name!}" onclick=changecom(this)   class="myOption">${company.company_name!}</li>                
@@ -668,8 +754,8 @@
     </div>
     <!--切换tab-->
     <div class="tabContent">
-        <li class="activeTab">企业信息  <span></span></li>
-        <li>经营状态  <span></span></li>
+        <li class="activeTab">企业信息  <span>${all!}</span></li>
+        <li>经营状态  <span>${allsize!}</span></li>
         <li>关系图谱<span></span></li>
         <li>市场舆情<span></span></li>
         <li>关联企业<span></span></li>
@@ -1530,7 +1616,79 @@
 
         </div>
         <div class="scyqContent">
+			<div class="bottomBox">
+                <div class="chartBox ec002">
+                    <!--舆情详情-->
+                    <div class="chartContent">
+                        <div class="chartBody chartBody1">
+                            <div class="customerInformation">
+                                <div class="customerInformationleft fl">
+                                    <div class="inputGroup fl">
+                                        <label class="jiaoyishichang">交易市场：</label>
+                                        <div class="mySelect" id="jiaoyishichang">
+                                            <div class="myOption selected"><span class="text"></span><span class="icon"></span></div>
+                                            <ul class="myOptionBox">
+                                                <li class="myOption selected">青岛华银有限公司</li>
+                                                <li class="myOption">青岛华银有限公司</li>
+                                                <li class="myOption">青岛华银有限公司</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div class="inputGroup fl">
+                                        <label for="BeginTime">开始时间：</label>
+                                        <input placeholder="请输入开始日期" id="BeginTime" class="laydate-icon timeUstyle stateUTime"
+                                               onclick="laydate({istime: true,format:'YYYYMMDD'})">
+                                        <!--<input type="Date" id="BeginTime">-->
+                                    </div>
+                                </div>
+                                <div class="customerInformationmiddle fl">
+                                    <div class="inputGroup fl">
+                                        <label class="guanjianzi">关键字：</label>&nbsp;&nbsp;&nbsp;
+                                        <input type="text" class="gjz" placeholder="青岛华银有限公司">
 
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div class="inputGroup fl">
+                                        <label for="EndTime">结束时间：</label>
+                                        <input placeholder="请输入开始日期" id="EndTime" class="laydate-icon timeUstyle stateUTime"
+                                               onclick="laydate({istime: true,format:'YYYYMMDD '})">
+                                        <!--<input type="Date" id="EndTime">-->
+                                    </div>
+                                </div>
+                                <div class="customerInformationright fl">
+
+                                    <div class="inputGroup">
+                                        <button class="yuqingsearch" onclick="check()">查询</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="customerInformationList">
+                                <div class="left fl">
+                                    <ul class="leftBox">
+                                      ##for(info in marknews){
+										<li>
+											<div class="fl pic"><img src="${contextPath}/static/img/03_05shengyufengxian/02.png"></div>
+											<p class="fr">
+												<a >${info.title!}</a>
+												<span class="neirong">${info.summary!}</span>
+												<span>来源:</span><a href="#" class="bgi1 source1">${info.data_source}</a>
+												<span>|</span>
+												<span>涉及词:</span><a href="#">${info.string_agg!}</a>
+												<!-- <span class="bgi4"><a href="#">256</a></span> -->
+												<span class="fr bgi2">${info.publish_date!}</span>
+											</p>
+										</li>
+										##}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="glqyContent" style="height: 45em;">
             <div id="div_container" style="text-align:center;position:relative;height: 95%; overflow: auto;">
@@ -1548,86 +1706,16 @@
                         </tr>
                         </thead>
                         <tbody>
+                        ##for(info in senior!){
                             <tr>
-                                <td class="center faren" rowspan="2">法人</td>
-                                <td class="center" rowspan="2">张某</td>
-                                <td class="center"><a href="#">青岛国版</a></td>
-                                <td class="center">高管</td>
-                                <td class="center">23</td>
-
-
-
+                                <td class="center faren" >法人</td>
+                                <td class="center" >${info.name!}</td>
+                                <td class="center"><a href="#">${info.company_name}</a></td>
+                                <td class="center">${info.position}</td>
+                                <td class="center">${info.total_num!}</td>
                             </tr>
-                            <tr>
-                                <td class="center"><a href="#">青岛国版111</a></td>
-                                <td class="center">高管</td>
-                                <td class="center">23</td>
-
-                            </tr>
-
-                            <tr>
-                                <td class="center" rowspan="6">股东(自然人)</td>
-                                <td class="center">张某</td>
-                                <td class="center">青岛国版</td>
-                                <td class="center">高管</td>
-                                <td class="center">23</td>
-                            </tr>
-                            <tr>
-                                <td class="center">张某</td>
-                                <td class="center">青岛国版</td>
-                                <td class="center">高管</td>
-                                <td class="center">23</td>
-                            </tr>
-                            <tr>
-                                <td class="center">张某</td>
-                                <td class="center">青岛国版</td>
-                                <td class="center">高管</td>
-                                <td class="center">23</td>
-                            </tr>
-                            <tr>
-                                <td class="center">张某</td>
-                                <td class="center">青岛国版</td>
-                                <td class="center">高管</td>
-                                <td class="center">23</td>
-                            </tr>
-                            <tr>
-                                <td class="center">张某</td>
-                                <td class="center">青岛国版</td>
-                                <td class="center">高管</td>
-                                <td class="center">23</td>
-                            </tr>
-                            <tr>
-                                <td class="center">张某</td>
-                                <td class="center">青岛国版</td>
-                                <td class="center">高管</td>
-                                <td class="center">23</td>
-                            </tr>
-
-                            <tr>
-                                <td class="center" rowspan="4">股东(企业)</td>
-                                <td class="center">张某</td>
-                                <td class="center">青岛国版</td>
-                                <td class="center">高管</td>
-                                <td class="center">23</td>
-                            </tr>
-                            <tr>
-                                <td class="center">张某</td>
-                                <td class="center">青岛国版</td>
-                                <td class="center">高管</td>
-                                <td class="center">23</td>
-                            </tr>
-                            <tr>
-                                <td class="center">张某</td>
-                                <td class="center">青岛国版</td>
-                                <td class="center">高管</td>
-                                <td class="center">23</td>
-                            </tr>
-                            <tr>
-                                <td class="center">张某</td>
-                                <td class="center">青岛国版</td>
-                                <td class="center">高管</td>
-                                <td class="center">23</td>
-                            </tr>
+                            ##}
+                           
                         </tbody>
 
                     </table>
@@ -1796,6 +1884,48 @@
 <script src="${contextPath}/static/js/jquery.circliful.min.js"></script>
 
 <script>
+var jysCode;
+var name;
+var key;
+var begin;
+var end;
+// 切换公司名称 刷新全部数据
+ function changecom(obj){
+	//获取公司 现在下拉选择值
+	jysCode=$(obj).attr("id");
+	       
+
+ window.location.href="${contextPath}/qdch/industry?name="+jysCode;
+
+}
+//市场画像查询 
+function check(){
+	 name= $("#comm").text();
+	 key= $(".gjz").val();
+    begin=$("#BeginTime").val();
+    end=$("#EndTime").val();
+   $.post("${contextPath}/qdch/commerce/gainNews",{"name":name,"keyword":key,"begin":begin,"end":end},function(data){
+   	  $(".leftBox li").remove();
+   	  
+  	    var tr=[];
+    	  $.each(data,function(index,item){
+    		var mTr='';
+    		mTr+='<li><div class="fl pic">'
+    		+'<img src="${contextPath}/static/img/03_05shengyufengxian/02.png"></div><p class="fr"><a >'
+    		+item.title+'</a> <span class="neirong">'+item.summary+'</span><span>来源:</span><a href="#" class="bgi1 source1">'
+    		+item.data_source+'</a><span>|</span><span>涉及词:</span><a href="#">'
+  		    +item.string_agg+'</a><span class="fr bgi2">'+item.publish_date+'</span></p></li>'
+    		
+    		tr.push(mTr);
+    	
+    		  });
+    		$(".leftBox").html(tr.join(''));
+      
+   })
+	
+
+}
+
     var allCharts = [];
     var GSXX = {
         init:function(){

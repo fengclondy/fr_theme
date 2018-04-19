@@ -944,8 +944,8 @@
 	</div>
 	<!-- <div class="blank"></div>-->
 	<div class="tabContent">
-		<li class="activeTab">企业信息  <span></span></li>
-		<li>经营状态  <span></span></li>
+		<li class="activeTab">企业信息  <span>${all!}</span></li>
+		<li>经营状态  <span>${allsize!}</span></li>
 		<li>关系图谱<span></span></li>
 		<li>市场画像<span></span></li>
 		<!-- <li>附件查看<span></span></li> -->
@@ -2081,7 +2081,11 @@
 		</div>
 	</div>
 </div>
-
+<input type="hidden" value="${risk.xyfx!}" id="xyfx">
+<input type="hidden" value="${risk.xyfx1!}" id="xyfx1">
+<input type="hidden" value="${risk.xyfx2!}" id="xyfx2">
+<input type="hidden" value="${risk.xyfx3!}" id="xyfx3">
+<input type="hidden" value="${risk.xyfx4!}" id="xyfx4">
 <!--js-->
 <script src="${contextPath}/static/asserts/js/echarts-4.0.js"></script>
 <script src="${contextPath}/static/asserts/js/jquery-2.2.4.js"></script>
@@ -2206,13 +2210,31 @@
     $(".model_faren>.header>span").click(function () {
         $('.model_faren').hide(500);
     });
-    var allCharts = [];
-
+ var allCharts = [];
+    
+ var xyfx = $("#xyfx").val();
+	var zcfx = $("#xyfx1").val();
+	var zbfx = $("#xyfx2").val();
+	var hgfx = $("#xyfx3").val();
+	var syfx = $("#xyfx4").val();
+	if(xyfx == undefined){
+		xyfx = ' ';
+	}
+	if(zcfx == undefined){
+		zcfx = ' ';
+	}
+	if(zbfx == undefined){
+		zbfx = ' ';
+	}
+	if(hgfx == undefined){
+		hgfx = ' ';
+	}
+	if(syfx == undefined){
+		syfx = ' ';
+	}
     var fxyq003 = echarts.init($("#ec002_competitivenessgongshangjiankong2")[0]);
-    $(function () {
 
         fxyq003.setOption(opt_com);
-        fxyq003.setOption(opt_line);
         fxyq003.setOption({
             tooltip: {
                 trigger: 'axis'
@@ -2226,79 +2248,75 @@
 			xYxis:{
                 show:false
 			},
-            radar: [
-
-                {
-                    indicator: [
-                                
-                        {text: '信用风险', max: 100},
-                        {text: '管理风险', max: 100},
-                        {text: '资产风险', max: 100},
-                        {text: '合规风险', max: 100},
-                        {text: '声誉风险', max: 100}
-                    ],
-                    radius: 60,
-                    center: ['50%','40%'],
-                    axisLine: {
-                        lineStyle: {
-                            color: '#00abde'
-                        }
-                    },
-                    splitLine: {
-                        lineStyle: {
-                            color: '#00abde'
-                        }
-                    },
-                    splitArea: {
-                        show: false
-                    },
-
-
+            radar:{
+                indicator: [
+                    {text: '信用风险('+ xyfx +')',max:100},
+                    {text: '管理风险('+ zcfx +')',max:100},
+                    {text: '资产风险('+ zbfx +')',max:100},
+                    {text: '合规风险('+ hgfx +')',max:100},
+                    {text: '声誉风险('+ syfx +')',max:100}
+                ],
+                radius: 60,
+                center: ['50%','40%'],
+                axisLine: {
+                    lineStyle: {
+                        color: '#00abde'
+                    }
                 },
-
-
-
-            ],
-            series: [
-
-                {
-                    type: 'radar',
-                    radarIndex: 1,
-                    itemStyle: {normal: {areaStyle: {type: 'default'}}},
-                    data: [
-                        {
-                            // name: '某风险',
-                            value: [85, 90, 90, 95, 95],
-
-                        },
-
-                    ],
-
+                splitLine: {
+                    lineStyle: {
+                        color: '#00abde'
+                    }
                 },
-
-            ]
-
-        });
+                splitArea: {
+                    show: false
+                },
+                name:{
+	                formatter:function(v){
+	                    return v;
+	                }
+	            },
+	            triggerEvent:true//绑定点击事件
+            },
+            series: [{
+            	name: '',
+                type: 'radar',
+                itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                data: [
+                    {
+                        // name: '某风险',
+                        value: [85, 90, 90, 95, 95],
+					},
+				],
+			}]
+    	});
+    	//添加点击事件
+	    fxyq003.on('click', function (params) {
+	        if(params.name.indexOf("信用风险") != -1){ //判断点击文字
+	            window.location.href="${contextPath}/qdch/creditrisk"
+	        }
+	        else if(params.name.indexOf("管理风险") != -1){ //判断点击文字
+	        	  window.location.href="${contextPath}/qdch/managementrisk"
+	        }
+	        else if(params.name.indexOf("资产风险") != -1){ //判断点击文字
+	        	  window.location.href="${contextPath}/qdch/assetrisk"
+	        }
+	        else if(params.name.indexOf("合规风险") != -1){ //判断点击文字
+	        	  window.location.href="${contextPath}/qdch/compliancerisk"
+	        }
+	        else if(params.name.indexOf("声誉风险") != -1){ //判断点击文字
+	        	  window.location.href="${contextPath}/qdch/reputationrisk"
+	        }
+	     })
         //当前时间
         //本页所有图表
         allCharts = [fxyq003];
-    });
-    //风险种类添加点击事件 
-    $(document).ready(function() {
-      var test= fxyq003.getOption().radar[0].indicator
-     $.each(test,function(index,item){
-	  if(index==0){
-	   var names=item.text
-	  // alert(names+"nnnn");
-	   item.on('click',function () {
-		    alert(1111);
-			window.location.href="${contextPath}/qdch/creditrisks"
-		})
 
-	}
-	  
-  })
-    });
+    
+   
+    
+    
+	
 
     var GSXX = {
         init:function(){
