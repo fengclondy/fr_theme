@@ -206,101 +206,7 @@
        
         
        
-<!--         <div class="main-third">
-            <div class="chartBox ec003">
-                <div class="chartTitle">
-                    <h3>宜人贷有限公司</h3>
-                    <div class="chartTitle_right">
-                        <div class="dayin fr">
-                            <h5>查看监管报告</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="chartContent">
-                    <div class="chartBody">
-                        <div class="chartBodyLeft fl">
-                        	<div class="chartBodyLeftTop">
-                        		<img src="${contextPath}/static/img/low.png" alt=""/>
-                        		<span class="rank">3</span>
-                        		<p>风险排名</p>
-                        		<p><img src="${contextPath}/static/img/just.png" alt="" /><span class="colorJust">0</span></p>
-                        	</div>
-                        </div>
-                    	<div class="chartBodyRightCircle fl">
-                    		<canvas id="canvasFourth">当前浏览器不支持canvas 请升级！</canvas>
-                    		<div class="chartBodyNumber">
-                    			<p>风险指数</p>
-                    			<div></div>
-                    		</div>
-                    	</div>
-                        <div class="chartBodyRight fl">
-                        	<div class="chartBodyRightList fl">
-                        		<ul>
-                        			<li>
-                        				<h3>8.1</h3>
-                        				<div>
-                        					<span class="liContent">合规风险</span>
-                        					<em>排名：<span>1</span></em>
-                        					<img src="${contextPath}/static/img/up.png" alt="" />
-                        					<small class="colorUp">1</small>
-                        				</div>
-                        			</li>
-                        			<li>
-                        				<h3>5.6</h3>
-                        				<div>
-                        					<span class="liContent">信用风险</span>
-                        					<em>排名：<span>4</span></em>
-                        					<img src="${contextPath}/static/img/down.png" alt="" />
-                        					<small class="colorDown">1</small>
-                        				</div>
-                        			</li>
-                        			<li>
-                        				<h3>9.2</h3>
-                        				<div>
-                        					<span class="liContent">市场风险</span>
-                        					<em>排名：<span>2</span></em>
-                        					<img src="${contextPath}/static/img/just.png" alt="" />
-                        					<small class="colorJust">0</small>
-                        				</div>
-                        			</li>
-                        			<br>
-                        			<li>
-                        				<h3>9.1</h3>
-                        				<div>
-                        					<span class="liContent">资金风险</span>
-                        					<em>排名：<span>1</span></em>
-                        					<img src="${contextPath}/static/img/up.png" alt="" />
-                        					<small class="colorUp">1</small>
-                        				</div>
-                        			</li>
-                        			<li>
-                        				<h3>9.2</h3>
-                        				<div>
-                        					<span class="liContent">声誉风险</span>
-                        					<em>排名：<span>1</span></em>
-                        					<img src="${contextPath}/static/img/up.png" alt="" />
-                        					<small class="colorUp">1</small>
-                        				</div>
-                        			</li>
-                        			<li>
-                        				<h3>8.8</h3>
-                        				<div>
-                        					<span class="liContent">周边风险</span>
-                        					<em>排名：<span>1</span></em>
-                        					<img src="${contextPath}/static/img/just.png" alt="" />
-                        					<small class="colorJust">0</small>
-                        				</div>
-                        			</li>
-                        		</ul>
-                        	</div>
-                        </div>
-                        <div class="chartBodyCharts fr">
-                        	<div id="chartsFourth" class="chartsAll"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
+
         
     </div>
 </div>
@@ -310,22 +216,70 @@
 <script src="${contextPath}/static/js/main.js"></script>
 <script src="${contextPath}/static/js/chartsCom.js"></script>
 <script type="text/javascript">
-	//canvasAll("canvasFirst",8);
-	//canvasAll("canvasSecond",5.2);
-	//canvasAll("canvasThird",2.0);
 
-	/* canvasAll("canvasFourth",2.0); */
+	 /**  
+     * 描述：js实现的map方法 
+     * @returns {Map} 
+     */  
+    function Map(){  
+     var struct = function(key, value) {  
+      this.key = key;  
+      this.value = value;  
+     };  
+    // 添加map键值对  
+     var put = function(key, value){  
+       for (var i = 0; i < this.arr.length; i++) {  
+       if ( this.arr[i].key === key ) {  
+        this.arr[i].value = value;  
+        return;  
+       }  
+      };  
+      this.arr[this.arr.length] = new struct(key, value);  
+     };  
+    //  根据key获取value   
+     var get = function(key) {  
+      for (var i = 0; i < this.arr.length; i++) {  
+       if ( this.arr[i].key === key ) {  
+        return this.arr[i].value;  
+       }  
+      }  
+     return null;  
+     };  
+    //   根据key删除  
+     var remove = function(key) {  
+      var v;  
+      for (var i = 0; i < this.arr.length; i++) {  
+       v = this.arr.pop();  
+       if ( v.key === key ) {  
+        continue;  
+       }  
+       this.arr.unshift(v);  
+      }  
+     };  
+    //   获取map键值对个数  
+     var size = function() {  
+      return this.arr.length;  
+     };  
+    // 判断map是否为空    
+     var isEmpty = function() {  
+      return this.arr.length <= 0;  
+     };  
+     this.arr = new Array();  
+     this.get = get;  
+     this.put = put;  
+     this.remove = remove;  
+     this.size = size;  
+     this.isEmpty = isEmpty;  
+    }  
 	  getData();
 	  function getData(){
 		$.post("${contextPath}/qdch/risk/getRiskIndex",function(data){
-			
 			var htmls="";
-			var valu=[];
-			console.log("getdata=======================",data);
-
+			var seriesDataMap=new Map();
+			var yAxisDataMap=new Map();
 			$.each(data,function(index,item){
-				
-			
+					var seriesData=[];
+					var yAxisData=[];
 					htmls+="<div class='main-first'>"
 						htmls+="<div class='chartBox ec003'>"
 						htmls+="<div class='chartTitle'>"
@@ -334,17 +288,39 @@
 						htmls+="<div class='dayin fr'>"
 						htmls+="<h5>查看监管报告</h5>"
 						htmls+="</div>"
-
 						htmls+="</div>"
 						htmls+="</div>"
 						htmls+="<div class='chartContent'>"
 						htmls+="<div class='chartBody'>"
 						htmls+="<div class='chartBodyLeft fl'>"
 						htmls+="<div class='chartBodyLeftTop'>"
-						htmls+="<img src='${contextPath}/static/img/high.png' alt=''/>"
+							var riskRank=item.keypm*1;
+							var risk=item.value*1;
+						    if(risk>7 && risk<=10){
+						    	htmls+="<img src='${contextPath}/static/img/high.png' alt=''/>"
+						    }else if(risk>3 && risk<=7){
+						    	htmls+="<img src='${contextPath}/static/img/middle.png' alt=''/>"
+						    }else if(risk>0 && risk<=3)
+						    {
+						    	htmls+="<img src='${contextPath}/static/img/low.png' alt=''/>"
+						    }
+						
 						htmls+="<span class='rank'>"+item.keypm+"</span>"
 						htmls+="<p>风险排名</p>"
-						htmls+="<p><img src='${contextPath}/static/img/up.png' alt='' /><span class='colorUp'>"+1+"</span></p>"
+							var riskRankingCom=item.keypm*1-item.pre_keypm*1;
+							var riskRanking=Math.abs(riskRankingCom);
+							if(riskRankingCom*1<0){
+								
+								htmls+="<p><img src='${contextPath}/static/img/up.png' alt='' /><span class='colorUp'>"+riskRanking+"</span></p>"
+								
+							}else if(riskRankingCom*1==0){
+								htmls+="<p><img src='${contextPath}/static/img/just.png' alt='' /><span class='colorJust'>"+riskRanking+"</span></p>"
+								
+							}else if(riskRankingCom*1>0){
+								htmls+="<p><img src='${contextPath}/static/img/down.png' alt='' /><span class='colorDown'>"+riskRanking+"</span></p>"
+								
+							}
+						
 						htmls+="</div>"
 						htmls+="</div>"
 						htmls+="<div class='chartBodyRightCircle fl'>"
@@ -356,24 +332,39 @@
 						htmls+="</div>"
 						htmls+="<div class='chartBodyRight fl'>"
 						htmls+="<div class='chartBodyRightList fl'>"
-						htmls+="<ul>"
-										$.each(item.detaildata,function(ind,it){
-											valu.push(it.detailvalue); 
-											htmls+="<li>"
-											htmls+="<h3>"+it.detailvalue+"</h3>\n"
-											htmls+="<div>"
-											htmls+="<span class='liContent'>"+it.fxlb+"</span>\n"
-											htmls+="<em>排名：<span>"+it.detailpm+"</span></em>\n"
-											htmls+="<img src='${contextPath}/static/img/up.png' alt='' />\n"
-											htmls+="<small class='colorUp'>"+it.detailpm+"</small>\n"
-											htmls+="</div>\n"
-											htmls+="</li>"
-											if(ind==3){
-												
-												htmls+="<br>"
-											}
-											
-										});			
+						htmls+="<ul>"	
+						$.each(item.detaildata,function(ind,it){
+				  			yAxisData.push({name:it.fxlb})
+				  			seriesData.push(it.detailvalue); 
+							htmls+="<li>"
+							htmls+="<h3>"+it.detailvalue+"</h3>\n"
+							htmls+="<div>"
+							htmls+="<span class='liContent'>"+it.fxlb+"</span>\n"
+							htmls+="<em>排名：<span>"+it.detailpm+"</span></em>\n"
+							var RankingCom=it.detailpm*1-it.old_pm*1;
+							var Ranking=Math.abs(RankingCom);
+							
+							if(RankingCom*1<0){
+								
+								htmls+="<img src='${contextPath}/static/img/up.png' alt='' />\n"
+								htmls+="<small class='colorUp'>"+Ranking+"</small>\n"
+							}else if(RankingCom*1==0){
+								console.log("==============进入到判断============")
+								htmls+="<img src='${contextPath}/static/img/just.png' alt='' />\n"
+								htmls+="<small class='colorJust'>"+Ranking+"</small>\n"
+							}else if(RankingCom*1>0){
+								htmls+="<img src='${contextPath}/static/img/down.png' alt='' />\n"
+								htmls+="<small class='colorDown'>"+Ranking+"</small>\n"
+							}
+							
+							htmls+="</div>\n"
+							htmls+="</li>"
+							if(ind==2){
+								
+								htmls+="<br>"
+							}
+							
+						});			
 						htmls+="</ul>"
 					    htmls+="</div>"
 					    htmls+="</div>"
@@ -383,34 +374,32 @@
 					    htmls+="</div>"
 					    htmls+="</div>"
 					    htmls+="</div>"
-					    htmls+="</div>"
-							});
+					    htmls+="</div>";
+					    
+						seriesDataMap.put(item.keypm,yAxisData);
+						yAxisDataMap.put(item.keypm,seriesData);
+				});
 			
-			$(".main").html(htmls);
-			$.each(data,function(index,item){
-				charts("#charts"+item.keypm+"",valu);
-				canvasAll("canvas"+item.keypm+"",item.value); 
-			});
-			
-			
+				$(".main").html(htmls);
+				$.each(data,function(index,item){
+					charts("charts"+item.keypm,yAxisDataMap.get(item.keypm),seriesDataMap.get(item.keypm));
+					canvasAll("canvas"+item.keypm+"",item.value); 
+				});
 			});		
-	}
+	};
 	 
 	
 	 
 	
-	//var val = [4300, 10000, 28000, 35000, 50000, 19000];
-	//var _val = [3000,5000,10000,2000,1000,10000];
-	//charts("#chartsFirst",val);
-	//charts("#chartsSecond",_val);
-	//charts("#chartsThird",_val);
-	//charts("#chartsFourth",_val);
 	
-	function charts(id,value){
+	
+	function charts(id,yAxisData,seriesData){
 		var allCharts = [];
-        var myChart1 = echarts.init($(id)[0]);
+        var myChart1 = echarts.init($("#"+id)[0]);
+        console.log(myChart1,yAxisData)
         myChart1.setOption(opt_com);
-        myChart1.setOption({
+       
+         myChart1.setOption({
             tooltip: {},
             legend: {
                 show:false
@@ -438,14 +427,7 @@
                 splitArea: {
                     show: false
                 },
-                indicator: [
-                    { name: '合规风险'},
-                    { name: '信用风险'},
-                    { name: '资产风险'},
-                    { name: '市场风险'},
-                    { name: '声誉风险'},
-                    { name: '周边风险'}
-                ]
+                indicator: seriesData
             },
             series: [{
                 name: '预算 vs 开销（Budget vs spending）',
@@ -453,14 +435,13 @@
                 areaStyle: {normal: {}},
                 data : [
                     {
-                         value : value, //[4300, 10000, 28000, 35000, 50000, 19000] 
-                       /*  value : [4300, 10000, 28000, 35000, 50000, 19000] */
+                         value :yAxisData , 
                         name : '预算分配（Allocated Budget）'
                     }
 
                 ]
             }]
-        });
+        }); 
     }
 </script>
 </body>

@@ -6,6 +6,7 @@ import java.util.List;
 import com.fr.hailian.util.JDBCUtil;
 import com.fr.report.core.A.m;
 import com.qdch.core.BaseController;
+import com.qdch.p2p.model.DefenInfoModel;
 import com.qdch.p2p.model.PingTaiXinXiModel;
 import com.qdch.p2p.model.QiYeJiBenInFoModel;
 import com.qdch.p2p.model.QiYeQiTaInFoModel;
@@ -113,8 +114,8 @@ public class BorrowerFillController extends BaseController{
 	public void submitZrrxx(){
 		String jysc = getPara("jysc");
 		ZiRanRenJiChuInfoMoDel zrr = ZiRanRenJiChuInfoMoDel.dao.getInfoByJysc(getDataScopeByUserNameForP2p(), jysc);
-		String sql = "insert into insight_pp_person_info(vday,jysc,jysinfo,jyscmc,jkf,pname,sfz,sex,age,xuel,hyzk,hjszd,hkly,jyscfl)"
-				+ " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into insight_pp_person_info(vday,jysc,jysinfo,jyscmc,jkf,pname,sfz,jkyt,sex,age,xuel,hyzk,hjszd,hkly,jyscfl)"
+				+ " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		Object params [] = {
 							new SimpleDateFormat("yyyyMMdd").format(System.currentTimeMillis()),
 							jysc,
@@ -123,6 +124,7 @@ public class BorrowerFillController extends BaseController{
 							zrr.get("jkf"),
 							getPara("pname"),
 							getPara("sfz"),
+							getPara("jkyt"),
 							getPara("sex"),
 							getPara("age"),
 							getPara("xuel"),
@@ -144,10 +146,10 @@ public class BorrowerFillController extends BaseController{
 	public void submitXyxx(){
 		String jysc = getPara("jysc");
 		XinYongInfoModel xModel = XinYongInfoModel.dao.getCreditInfoByJysc(getDataScopeByUserNameForP2p(), jysc);
-		String sql = "insert into insight_pp_credit_info(vday,jysc,jyscmc,jysinfo,jkf,yqcs,yqje,zxbg,jkbs,jkze,zxcs,jyscfl)"
-				+ " values(?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into insight_pp_credit_info(vday,jysc,jyscmc,jysinfo,jkf,yqcs,yqje,zxbg,jkbs,jkze,zxcs,jyscfl,jkrxy,qijk)"
+				+ " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		Object params [] = {
-							new SimpleDateFormat("yyyy-MM-dd").format(System.currentTimeMillis()),
+							new SimpleDateFormat("yyyyMMdd").format(System.currentTimeMillis()),
 							jysc,
 							xModel.get("jyscmc"),
 							xModel.get("jysinfo"),
@@ -158,7 +160,9 @@ public class BorrowerFillController extends BaseController{
 							getPara("jkbs"),
 							getPara("jkze"),
 							getPara("zxcs"),
-							xModel.get("jyscfl")
+							xModel.get("jyscfl"),
+							getPara("jkrxy"),
+							xModel.get("qijk")
 							}; 
 		JDBCUtil.executeUpdate(sql, params,"insight");
 		mRenderJson(null);
@@ -176,7 +180,7 @@ public class BorrowerFillController extends BaseController{
 		String sql = "insert into insight_pp_asset_info(vday,jysc,jyscmc,jysinfo,jkf,srqk,gf_flag,gc_flag,fd_flag,cd_flag,jyscfl)"
 				+ " values(?,?,?,?,?,?,?,?,?,?,?)";
 		Object params [] = {
-							new SimpleDateFormat("yyyy-MM-dd").format(System.currentTimeMillis()),
+							new SimpleDateFormat("yyyyMMdd").format(System.currentTimeMillis()),
 							jysc,
 							zModel.get("jyscmc"),
 							zModel.get("jysinfo"),
@@ -204,7 +208,7 @@ public class BorrowerFillController extends BaseController{
 		String sql = "insert into insight_pp_job_info(vday,jysc,jyscmc,jysinfo,jkf,city,industry,gsgm,gzgw,gznx,jyscfl)"
 				+ " values(?,?,?,?,?,?,?,?,?,?,?)";
 		Object params [] = {
-							new SimpleDateFormat("yyyy-MM-dd").format(System.currentTimeMillis()),
+							new SimpleDateFormat("yyyyMMdd").format(System.currentTimeMillis()),
 							jysc,
 							wModel.get("jyscmc"),
 							wModel.get("jysinfo"),
@@ -213,7 +217,7 @@ public class BorrowerFillController extends BaseController{
 							getPara("industry"),
 							getPara("gsgm"),
 							getPara("gzgw"),
-							getPara("cd_flag"),
+							getPara("gznx"),
 							wModel.get("jyscfl")
 							}; 
 		JDBCUtil.executeUpdate(sql, params,"insight");
@@ -232,7 +236,7 @@ public class BorrowerFillController extends BaseController{
 		String sql = "insert into insight_pp_corp_info(vday,jysc,jyscmc,jysinfo,jkf,gsmc,frdb,clsj,zczb,zcdz,gsgm,yyfw,zjyt,hkly,jyscfl)"
 				+ " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		Object params [] = {
-							new SimpleDateFormat("yyyy-MM-dd").format(System.currentTimeMillis()),
+							new SimpleDateFormat("yyyyMMdd").format(System.currentTimeMillis()),
 							jysc,
 							qModel.get("jyscmc"),
 							qModel.get("jysinfo"),
@@ -261,10 +265,10 @@ public class BorrowerFillController extends BaseController{
 	public void submitQtxx(){
 		String jysc = getPara("jysc");
 		QiYeQiTaInFoModel qModel = QiYeQiTaInFoModel.dao.getOtherInfoByJysc(getDataScopeByUserNameForP2p(), jysc);
-		String sql = "insert into insight_pp_othe_info(vday,jysc,jyscmc,jysinfo,jkf,srqk,fzqk,zxbg,qijk_flag,gdxx,gsgm,frxyxx,zxcs,ssxx,jyscfl)"
-				+ " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into insight_pp_othe_info(vday,jysc,jyscmc,jysinfo,jkf,srqk,fzqk,zxbg,qijk_flag,gdxx,frxyxx,zxcs,ssxx,jyscfl)"
+				+ " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		Object params [] = {
-							new SimpleDateFormat("yyyy-MM-dd").format(System.currentTimeMillis()),
+							new SimpleDateFormat("yyyyMMdd").format(System.currentTimeMillis()),
 							jysc,
 							qModel.get("jyscmc"),
 							qModel.get("jysinfo"),
@@ -274,11 +278,33 @@ public class BorrowerFillController extends BaseController{
 							getPara("zxbg"),
 							getPara("qijk_flag"),
 							getPara("gdxx"),
-							getPara("gsgm"),
-							getPara("frxyxx"),
+							getPara("xyxx"),
 							getPara("zxcs"),
 							getPara("ssxx"),
 							qModel.get("jyscfl")
+							}; 
+		JDBCUtil.executeUpdate(sql, params,"insight");
+		mRenderJson(null);
+	}
+	
+	/**
+	 * 
+	 * @author hanpengda
+	 * @date 2018年4月17日
+	 * @TODO 录入得分信息
+	 */
+	public void submitDfxx(){
+		String jysc = getPara("jysc");
+		DefenInfoModel dModel = DefenInfoModel.dao.getDeFenByJysc(getDataScopeByUserNameForP2p(), jysc);
+		String sql = "insert into insight_pp_score_info(vday,jysc,jyscmc,jysinfo,fscore,jyscfl)"
+				+ " values(?,?,?,?,?,?)";
+		Object params [] = {
+							new SimpleDateFormat("yyyyMMdd").format(System.currentTimeMillis()),
+							jysc,
+							dModel.get("jyscmc"),
+							dModel.get("jysinfo"),
+							Double.parseDouble(getPara("fscore")),
+							dModel.get("jyscfl")
 							}; 
 		JDBCUtil.executeUpdate(sql, params,"insight");
 		mRenderJson(null);

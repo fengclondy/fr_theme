@@ -137,10 +137,10 @@
                     <thead>
                     <tr>
                         <th>平台名称</th>
-                        <th>机构信息 </th>
-                        <th>经营信息</th>
-                        <th>项目信息</th>
-                        <th>附加信息 </th>
+                        <th>机构信息 <span>(28)</span> </th>
+                        <th>经营信息 <span>(17)</span></th>
+                        <th>项目信息 <span>(13)</span></th>
+                        <th>附加信息 <span>(7)</span> </th>
                         <th>总计</th>
                         <th>得分</th>
                         <th>排名</th>
@@ -272,6 +272,8 @@
 				success:function(data){
 					var content = "";
 					$.each(data,function(index,item){
+						var xxpl = item.xxpl;
+            			xxpl = parseFloat(xxpl).toFixed(2)
 						content = content
 						+'    <tr>'
 	        			+'    	<td>'+item.jysinfo+'</td>'
@@ -285,8 +287,7 @@
 	        			+'   	<td>'+item.zcje+'</td>'
 	        			+'   	<td>'+item.dkje+'</td>'
 	        			+'    	<td>'+item.ztrs+'</td>'
-	        			+'   	<td>'+item.xxpl+'</td>'
-	        			+'   	<td>查看</td>'
+	        			+'   	<td>'+xxpl+'</td>'
 	        			+'    </tr>'
 					})
 					$("#ptzl").html(content);

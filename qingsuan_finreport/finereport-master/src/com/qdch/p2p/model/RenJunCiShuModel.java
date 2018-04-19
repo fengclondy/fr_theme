@@ -30,7 +30,7 @@ public class RenJunCiShuModel extends Model<RenJunCiShuModel>{
 		if (StringUtils.isNotBlank(jysc)) {
 			sql += " and jysc = '"+jysc+"'";
 		}
-		sql += " and avge_type = '借款' and vday_ym = (select to_char(now() - INTERVAL '1 month','yyyymm'))";
+		sql += " and avge_type = '人均借款次数' and vday_ym = (select to_char(now() - INTERVAL '1 month','yyyymm'))";
 		return dao.find(sql);
 	}
 	/**
@@ -47,7 +47,7 @@ public class RenJunCiShuModel extends Model<RenJunCiShuModel>{
 		if (StringUtils.isNotBlank(jysc)) {
 			sql += " and jysc = '"+jysc+"'";
 		}
-		sql += " and avge_type = '投资' and vday_ym = (select to_char(now() - INTERVAL '1 month','yyyymm'))";
+		sql += " and avge_type = '人均投资次数' and vday_ym = (select to_char(now() - INTERVAL '1 month','yyyymm'))";
 		return dao.find(sql);
 	}
 }

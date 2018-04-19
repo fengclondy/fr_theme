@@ -83,7 +83,8 @@ var axis_com = {
         lineStyle: {
             color: "#369"
         }
-    }
+    },
+    
 };
 
 //条形图(水平)公共属性
@@ -121,6 +122,15 @@ $.extend(true, opt_line, opt_com, {
     yAxis: $.extend({
         type: 'value'
     }, axis_com),
+    tooltip:{
+        position: function (pos, params, dom, rect, size) {
+            // 鼠标在左侧时 tooltip 显示到右侧，鼠标在右侧时 tooltip 显示到左侧。
+            var obj = {top: 15};
+            obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
+            return obj;
+        }
+
+    }
 
 
     //这里写此类图表其他属性
@@ -154,7 +164,8 @@ $.extend(true, opt_pie, opt_com,
         animationEasing: 'elasticOut',
         animationDelay: function (idx) {
             return Math.random() * 200;
-        }
+        },
+        
 
     });
 
