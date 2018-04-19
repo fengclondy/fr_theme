@@ -14,6 +14,9 @@ import java.util.Map;
 
 
 
+
+import javax.servlet.http.HttpServletRequest;
+
 import com.qdch.core.BaseController;
 import com.qdch.p2p.model.AverageTimeModel;
 import com.qdch.p2p.model.CollectPrincipalModel;
