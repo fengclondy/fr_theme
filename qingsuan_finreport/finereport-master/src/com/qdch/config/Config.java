@@ -236,7 +236,7 @@ public class Config extends JFinalConfig {
 		String pwd = PropKit.get("pwd");
 		DruidPlugin dp = new DruidPlugin(jdbc, user, pwd);
 		//DruidPlugin dp = new DruidPlugin("jdbc:postgresql://172.16.6.61:5432/qdchedw", "hub", "hub@2017");
-		dp.setMaxActive(10);
+		dp.setInitialSize(0);
 		me.add(dp);
 		ActiveRecordPlugin arp = new ActiveRecordPlugin(com.qdch.core.Constants.QSS_GP_HUB,dp);
 		arp.setBaseSqlTemplatePath(PathKit.getRootClassPath());
@@ -258,7 +258,7 @@ public class Config extends JFinalConfig {
 		String insight_user = PropKit.get("insight_user");
 		String insight_pwd = PropKit.get("insight_pwd");
 		DruidPlugin insight_dp = new DruidPlugin(insight_jdbc, insight_user, insight_pwd);
-		insight_dp.setMaxActive(10);
+		dp.setInitialSize(0);
 		me.add(insight_dp);
 		ActiveRecordPlugin insight_arp = new ActiveRecordPlugin(com.qdch.core.Constants.QSS_GP_INSIGHT,insight_dp);
 		insight_arp.setBaseSqlTemplatePath(PathKit.getRootClassPath());
