@@ -304,7 +304,7 @@
                                 </div>
                             </div>
                             <div class="jdt">
-                                <h3 class="center">地区集中度</h3>
+                                <h3 class="center">地区HHI指数</h3>
                                 <div id="outDiv4" class="progress_out">
                                     <div id="progressbar4" class="progress_inner">
                                         <div id="proc4"></div>
@@ -839,6 +839,7 @@
        	});
       } 
   	function getInterest(){
+  		alert("===")
   		$.post("${contextPath}/qdch/project/getInterest",{"jys":jysCode,"rangeType":rangetype},function(data){
   			var seriesData=[];
   			var yAxisData=[];
@@ -896,6 +897,7 @@
   			        });
   				}
 				if("投资人HHI"==name){
+					alert("====")
 					 $('#progressbar2').LineProgressbar({
 				            percentage: item.hhi_value*100,
 				            fillBackgroundColor: '#5cdbd3',
@@ -906,7 +908,8 @@
 				  				}
   				
 				if("行业HHI"==name){
-					var val=item.hhi_value*1
+					alert("==")
+					var val=0.9;
 					var w =$('.progress_inner').width();
 		            (function progressBar3(){
 
