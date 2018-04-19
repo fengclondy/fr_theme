@@ -45,12 +45,7 @@ public class MonthlyReportModel extends Model<MonthlyReportModel>{
 		if(StringUtils.isNotBlank(date)){
 			sql+=" and t.upload_time = '"+ date+"'";
 		}
-
 		sql+=" order by upload_time desc";
-
-
-
-		
 		return dao.find(sql);
 	}
 
