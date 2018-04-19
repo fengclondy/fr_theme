@@ -506,7 +506,6 @@ td.more:active > a {
         position: relative;
         height: 2rem;
         line-height: 2rem;
-        height: 6%;
         font-size: 0.8rem;
         border-radius: .5rem .5rem 0 0;
         background-color: #0080ff;
