@@ -18,7 +18,7 @@ public class JDBCUtil {
 	private static CallableStatement callableStatement = null;
 	private static Connection conn = null;
 	private static PreparedStatement pst = null;
-	private static ResultSet rst = null;
+	private  ResultSet rst = null;
 
 	/***
 	 * 
@@ -26,12 +26,12 @@ public class JDBCUtil {
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
-//	public static Connection getConnection() throws ClassNotFoundException, SQLException {
-//		Class.forName("org.postgresql.Driver");
-//		 conn = DriverManager.getConnection(Constants.JDBC_HUB,
-//				Constants.JDBC_USER_HUB, Constants.JDBC_USER_PWD_HUB);
-//		return conn;
-//	}
+	public static Connection getConnection() throws ClassNotFoundException, SQLException {
+		Class.forName("org.postgresql.Driver");
+		 conn = DriverManager.getConnection(Constants.JDBC_HUB,
+				Constants.JDBC_USER_HUB, Constants.JDBC_USER_PWD_HUB);
+		return conn;
+	}
 	
 	/***
 	 * 关闭连接
@@ -42,7 +42,7 @@ public class JDBCUtil {
 		conn.close();
 	}
 
-	public static Connection getConnection() {
+	public static Connection getConnection1() {
 		try {
 			Class.forName("org.postgresql.Driver");
 			conn = DriverManager.getConnection(Constants.JDBC_HUB,
@@ -55,7 +55,7 @@ public class JDBCUtil {
 		}
 		return conn;
 	}
-	
+
 	public static Connection getInsightConnection() {
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -82,7 +82,7 @@ public class JDBCUtil {
 
 		try {
 			// 获得连接
-			conn = JDBCUtil.getConnection();
+			conn = JDBCUtil.getConnection1();
 			// 调用SQL
 			pst = conn.prepareStatement(sql);
 
@@ -114,11 +114,11 @@ public class JDBCUtil {
 		try {
 			// 获得连接
 			if ("hub".equals(type)) {
-				conn = JDBCUtil.getConnection();
+				conn = JDBCUtil.getConnection1();
 			}else if("insight".equals(type)){
 				conn = JDBCUtil.getInsightConnection();
 			}
-			
+
 			// 调用SQL
 			pst = conn.prepareStatement(sql);
 
@@ -148,10 +148,10 @@ public class JDBCUtil {
 	 * @param params 参数数组，若没有参数则为null
 	 * @return 结果集
 	 */
-	private static ResultSet executeQueryRS(String sql, Object[] params) {
+	private  ResultSet executeQueryRS(String sql, Object[] params) {
 		try {
 			// 获得连接
-			conn = JDBCUtil.getConnection();
+			conn = JDBCUtil.getConnection1();
 
 			// 调用SQL
 			pst = conn.prepareStatement(sql);
@@ -184,7 +184,7 @@ public class JDBCUtil {
 		Object object = null;
 		try {
 			// 获得连接
-			conn = JDBCUtil.getConnection();
+			conn = JDBCUtil.getConnection1();
 
 			// 调用SQL
 			pst = conn.prepareStatement(sql);
@@ -196,12 +196,12 @@ public class JDBCUtil {
 				}
 			}
 
-			// 执行
-			rst = pst.executeQuery();
-
-			if(rst.next()) {
-				object = rst.getObject(1);
-			}
+//			// 执行
+//			rst = pst.executeQuery();
+//
+//			if(rst.next()) {
+//				object = rst.getObject(1);
+//			}
 
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -270,7 +270,7 @@ public class JDBCUtil {
 	 */
 	public Object excuteQuery(String sql, Object[] params,int outParamPos, int SqlType) throws SQLException, ClassNotFoundException {
 		Object object = null;
-		conn = this.getConnection();
+		conn = this.getConnection1();
 		try {
 			// 调用存储过程
 			// prepareCall:创建一个 CallableStatement 对象来调用数据库存储过程。

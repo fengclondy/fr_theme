@@ -1,4 +1,6 @@
 package com.qdch.config;
+import com.qdch.core.PostgreSqlDialect;
+import com.qdch.xd.model.*;
 import org.beetl.core.GroupTemplate;
 import org.beetl.ext.jfinal3.JFinal3BeetlRenderFactory;
 
@@ -13,7 +15,7 @@ import com.jfinal.ext.handler.ContextPathHandler;
 import com.jfinal.kit.PathKit;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
-import com.jfinal.plugin.activerecord.dialect.PostgreSqlDialect;
+
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.template.Engine;
 import com.qdch.core.QdchController;
@@ -95,59 +97,6 @@ import com.qdch.xd.controller.ProfitabilityController;
 import com.qdch.xd.controller.ReputationRiskController;
 import com.qdch.xd.controller.RiskOverviewController;
 import com.qdch.xd.controller.XiaoDaiController;
-import com.qdch.xd.model.CoAnnounceModel;
-import com.qdch.xd.model.CoBranchModel;
-import com.qdch.xd.model.CoBusinessModel;
-import com.qdch.xd.model.CoChangeLogModel;
-import com.qdch.xd.model.CoCopyrightModel;
-import com.qdch.xd.model.CoDishonestyModel;
-import com.qdch.xd.model.CoExecutorModel;
-import com.qdch.xd.model.CoJobModel;
-import com.qdch.xd.model.CoJudgmentModel;
-import com.qdch.xd.model.CoMainPersonModel;
-import com.qdch.xd.model.CoPatentModel;
-import com.qdch.xd.model.CoPenaltvModel;
-import com.qdch.xd.model.CoReportModel;
-import com.qdch.xd.model.CoShareHolderModel;
-import com.qdch.xd.model.CoSoftcopyModel;
-import com.qdch.xd.model.CoStockchangeModel;
-import com.qdch.xd.model.CoTradeMarkModel;
-import com.qdch.xd.model.CoWebsiteModel;
-import com.qdch.xd.model.CompanysInfoModel;
-import com.qdch.xd.model.ComparisonOfCompeModel;
-import com.qdch.xd.model.CompetitiveRrendModel;
-import com.qdch.xd.model.ConRatioModel;
-import com.qdch.xd.model.CurrentComRankingModel;
-import com.qdch.xd.model.CustomerInfoModel;
-import com.qdch.xd.model.DefrateModel;
-import com.qdch.xd.model.DetailsQueryModel;
-import com.qdch.xd.model.DictModel;
-import com.qdch.xd.model.ExchangeInfoModel;
-import com.qdch.xd.model.GuaranteeContrastModel;
-import com.qdch.xd.model.IncomeAndLossrateModel;
-import com.qdch.xd.model.IndexRankingModel;
-import com.qdch.xd.model.JyscModel;
-import com.qdch.xd.model.KeyIndicatorsModel;
-import com.qdch.xd.model.LimitQueryModel;
-import com.qdch.xd.model.ManagementRiskListModel;
-import com.qdch.xd.model.MigrationRateModel;
-import com.qdch.xd.model.MonthlyReportListModel;
-import com.qdch.xd.model.MonthlyReportModel;
-import com.qdch.xd.model.PersonalCustomModel;
-import com.qdch.xd.model.ProportionModel;
-import com.qdch.xd.model.PublicCustomModel;
-import com.qdch.xd.model.RiskCountModel;
-import com.qdch.xd.model.RiskEventHistoryModel;
-import com.qdch.xd.model.RiskEventModel;
-import com.qdch.xd.model.RiskShowModel;
-import com.qdch.xd.model.RiskTrendDetailedModel;
-import com.qdch.xd.model.RiskTrendModel;
-import com.qdch.xd.model.RiskTypeModel;
-import com.qdch.xd.model.ScabilityModel;
-import com.qdch.xd.model.ThresholdValueModel;
-import com.qdch.xd.model.defrateRankModel;
-import com.qdch.xd.model.maxIntrateRankModel;
-
 
 
 public class Config extends JFinalConfig {
@@ -321,6 +270,8 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("hub_fxsj","fxsj_id", RiskEventModel.class);//风险事件
 		insight_arp.addMapping("hub_fxsj_audit_new", RiskEventHistoryModel.class);//风险事件历史信息
 		insight_arp.addMapping("hub_commerce_ref_jys", ExchangeInfoModel.class);//交易所信息
+
+		insight_arp.addMapping("hub_dd_tqs_jys", OrganizModel.class);//交易所信息
 		insight_arp.addMapping("hub_fxlb", RiskTypeModel.class);//风险类别
 		insight_arp.addMapping("hub_xd_cont_assu", GuaranteeContrastModel.class);//担保合同
 

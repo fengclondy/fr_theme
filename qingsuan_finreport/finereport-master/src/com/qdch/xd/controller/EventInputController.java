@@ -29,7 +29,7 @@ public class EventInputController extends BaseController {
 		List<RiskTypeModel> riskTypeList =  riskTypeModelDao.getTypeKind("3"); //风险类别
 		setAttr("type",riskTypeList);
 		setAttr("status",dictModelDao.getLabel(getPara("note")));
-		setAttr("exchange",ExchangeInfoModel.dao.getList());  //机构/市场)
+		setAttr("exchange",OrganizModel.dao.getListByType("3"));  //机构/市场)
 		render("xd/pages/05_05fengxianshijiantianbao.html");
 	}
 
@@ -38,7 +38,7 @@ public class EventInputController extends BaseController {
 		RiskEventModel riskEventModel  = new RiskEventModel();
 
 		StringBuffer sb = new StringBuffer();
-		sb.append("insert into hub_fxsj(fxlb,fxzb,fxzbz,yuzhi,cce,jgmc,jgdm,khmc,cust_id,ywlx,ywbm," +
+		sb.append("insert into hub_fxsj(jysfl,fxlb,fxzb,fxzbz,yuzhi,cce,jgmc,jgdm,khmc,cust_id,ywlx,ywbm," +
 				"ywcdmc,ywcdbm,clzt,fxsm,bz) values");
 		try {
 
@@ -64,6 +64,7 @@ public class EventInputController extends BaseController {
 
 			for(int i=0;i<Integer.parseInt(length);i++){
 				sb.append("('");
+				sb.append("3','"); //交易所分类 3为小贷
 				sb.append(ptypes[i]).append("','");
 				sb.append(prisks[i]).append("','");
 				sb.append(priskvalues[i]).append("','");
@@ -105,7 +106,8 @@ public class EventInputController extends BaseController {
 		result.put("type",riskTypeList);
 		result.put("status",dictModelDao.getLabel(getPara("note")));
 		result.put("risk",riskTypeModelDao.getByType("3"));
-		result.put("exchange",	ExchangeInfoModel.dao.getList()); //机构/市场)
+//		result.put("exchange",	ExchangeInfoModel.dao.getList()); //机构/市场)
+		result.put("exchange",	OrganizModel.dao.getListByType("3")); //机构/市场)
 		mRenderJson(result);
 	}
 	private String decode(String str) throws UnsupportedEncodingException {

@@ -148,9 +148,10 @@
                 <th>阙值</th>
                 <th>超出额</th>
                 <th>机构名称</th>
-                <th>结构代码</th>
-                <th>客户号</th>
+                <th>机构代码</th>
+
                 <th>客户名称</th>
+                <th>客户号</th>
                 <th>业务菜单名称</th>
                 <th>业务菜单编码</th>
                 <th>业务类型</th>
@@ -205,10 +206,10 @@
                 <td>
                     <div class="one">
                         <span class="sel">
-                            <select name="makeupCoSe" id="organname" class="selected organname" >
+                            <select name="makeupCoSe" onchange="seleOrganCode(0)" id="organname" class="selected organname" >
                             <option value=""></option>
                                  ##for(e in exchange!){
-                                <option id="${e.jysinfo}" >${e.jysinfo!}</option>
+                                <option id="${e.jysmc}" >${e.jysmc!}</option>
                                      ##}
 
                             </select>
@@ -218,7 +219,7 @@
                 <td>
                     <div class="one">
                         <span class="sel">
-                                <select name="makeupCoSe" id="organcode" class="selected organcode" >
+                                <select name="makeupCoSe"  id="organcode" class="selected organcode" >
                                 <option value=""></option>
                                  ##for(e in exchange!){
                                     <option id="${e.jys}" >${e.jys!}</option>
@@ -338,7 +339,7 @@
                 "<td>" +
                     "<div class='one'>"+
                     "<span class='sel'>"+
-                    "<select name='makeupCoSe' class='selected organname'>"+
+                    "<select name='makeupCoSe' onchange='seleOrganCode("+index+")' class='selected organname'>"+
                     "<option value=''></option>"+
 
                     "</select>"+
@@ -348,7 +349,7 @@
                 "<td>" +
                     "<div class='one'>"+
                     "<span class='sel'>"+
-                    "<select name='makeupCoSe' class='selected organcode'>"+
+                    "<select disabled name='makeupCoSe' class='selected organcode'>"+
                     "<option value=''></option>"+
 
                     "</select>"+
@@ -478,14 +479,14 @@
         var exchange = "<option value=''></option>";
         var exchangecode = "<option value=''></option>";
         $.each(data, function(index, value, array) {
-            exchange+="<option value='"+value.jysinfo+"'>"+value.jysinfo+"</option>"
+            exchange+="<option value='"+value.jysmc+"'>"+value.jysmc+"</option>"
             exchangecode+="<option value='"+value.jys+"'>"+value.jys+"</option>"
         });
         $(".organname").eq(index).empty();
         $(".organname").eq(index).append(exchange);
 
-        $(".organcode").eq(index).empty();
-        $(".organcode").eq(index).append(exchangecode);
+       // $(".organcode").eq(index).empty();
+        //$(".organcode").eq(index).append(exchangecode);
     }
 
     //计算阈值
@@ -512,9 +513,21 @@
             $(".chaochuclass").eq(index).val(c+"%");
         }
 
+    }
 
+    function seleOrganCode(index) {
+        console.log(1)
+        if(!index) index=0;
+        var a = $(".organname").eq(index).val();
+        var statushtml ="";
+        $.each(exchangedataIndex, function(index, value, array) {
+            if(value.jysmc==a){
+                statushtml+="<option checked='checked' value='"+value.jys+"'>"+value.jys+"</option>";
 
-
+            }
+        });
+        console.log(statushtml)
+        $(".organcode").eq(index).empty().html(statushtml)
 
 
     }
@@ -674,6 +687,7 @@
         var pstatus =  encodeURI(encodeURI(astatus.join(',')))
         var pintro =  encodeURI(encodeURI(aintro.join(',')))
         var premarks =  encodeURI(encodeURI(aremarks.join(',')))
+        console.log(pcusname+","+pcuscode)
 
         var paradata ='?length='+length+'&ptype='+ptype+"&prisk="+prisk+"&priskvalue="+priskvalue+
             "&pyuzhi="+pyuzhi+"&pchaochu="+pchaochu+"&porgnname="+porgnname+"&porgncode="+porgncode+
@@ -726,6 +740,8 @@
             return false;
         
     }
+
+
 
 </script>
 
