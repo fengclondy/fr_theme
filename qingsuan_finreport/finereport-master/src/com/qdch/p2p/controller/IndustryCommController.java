@@ -123,9 +123,9 @@ public class IndustryCommController extends BaseController {
 		        setAttr("stockc", stockC);
 		     CoEnterpriseModel cc=CoEnterpriseModel.dao.getid(name);
 		   
-		  List<MarkNewsModel> mark =  MarkNewsModel.dao.getNews(cc.get("id"), "", "", "");
-		     setAttr("marknews", mark);  
-		  List<CompanysInfoModel> infoModels= CompanysInfoModel.dao.getCompanybyName(basic.get(0).get("legal_person"));
+		  List<MarkNewsModel> mark =  MarkNewsModel.dao.getNews(cc.get("id")+"", "", "", "");
+		     setAttr("marknews", mark);
+		  List<CompanysInfoModel> infoModels= CompanysInfoModel.dao.getCompanybyName(basic.get(0).get("legal_person")+"");
 		      setAttr("comInfo", infoModels);
 		 render("p2p/pages/04_01pingtaigongshang.html");
 	 }

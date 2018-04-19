@@ -1,4 +1,6 @@
 package com.qdch.config;
+import com.qdch.core.PostgreSqlDialect;
+import com.qdch.xd.model.*;
 import org.beetl.core.GroupTemplate;
 import org.beetl.ext.jfinal3.JFinal3BeetlRenderFactory;
 
@@ -13,7 +15,7 @@ import com.jfinal.ext.handler.ContextPathHandler;
 import com.jfinal.kit.PathKit;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
-import com.jfinal.plugin.activerecord.dialect.PostgreSqlDialect;
+
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.template.Engine;
 import com.qdch.core.QdchController;
@@ -90,6 +92,7 @@ import com.qdch.xd.controller.EventInputController;
 import com.qdch.xd.controller.EventProcessingController;
 import com.qdch.xd.controller.EventSeeDetailsController;
 import com.qdch.xd.controller.EventViewController;
+import com.qdch.xd.controller.FileUpLoadController;
 import com.qdch.xd.controller.ManagementRiskController;
 import com.qdch.xd.controller.MonthlyReportController;
 import com.qdch.xd.controller.OperationalCapabilityController;
@@ -97,6 +100,7 @@ import com.qdch.xd.controller.ProfitabilityController;
 import com.qdch.xd.controller.ReputationRiskController;
 import com.qdch.xd.controller.RiskOverviewController;
 import com.qdch.xd.controller.XiaoDaiController;
+
 import com.qdch.xd.model.CoAnnounceModel;
 import com.qdch.xd.model.CoBranchModel;
 import com.qdch.xd.model.CoBusinessModel;
@@ -155,7 +159,9 @@ import com.qdch.xd.model.maxIntrateRankModel;
 
 
 
+
 public class Config extends JFinalConfig {
+	
 	public void configConstant(Constants me) {
 		me.setDevMode(true);
 		//添加beetl配置
@@ -163,7 +169,6 @@ public class Config extends JFinalConfig {
 		rf.config();
 //		me.setViewType(ViewType.JSP);
 		me.setRenderFactory(rf);
-		//me.setBaseUploadPath("D:\loadup"); 
 		GroupTemplate gt = rf.groupTemplate;
 		gt.registerTag("layout", TemplteLayoutTag.class);
 	}
@@ -192,6 +197,7 @@ public class Config extends JFinalConfig {
 		me.add("qdch/eventaudit", EventAuditController.class,"/");	//风险事件审核
 		me.add("qdch/eventdecision", EventDecisionController.class,"/");	//风险事件决策
 		me.add("qdch/monthlyrepor", MonthlyReportController.class,"/");	//监管月报
+		me.add("qdch/fileupLoad", FileUpLoadController.class,"/");	//监管月报上传
 		me.add("qdch/commerce",CommerceController.class,"/"); //小贷-工商模块
 		/***小贷doushuihai Controller START***/
 		
@@ -330,6 +336,8 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("hub_fxsj","fxsj_id", RiskEventModel.class);//风险事件
 		insight_arp.addMapping("hub_fxsj_audit_new", RiskEventHistoryModel.class);//风险事件历史信息
 		insight_arp.addMapping("hub_commerce_ref_jys", ExchangeInfoModel.class);//交易所信息
+
+		insight_arp.addMapping("hub_dd_tqs_jys", OrganizModel.class);//交易所信息
 		insight_arp.addMapping("hub_fxlb", RiskTypeModel.class);//风险类别
 		insight_arp.addMapping("hub_xd_cont_assu", GuaranteeContrastModel.class);//担保合同
 
@@ -448,4 +456,5 @@ public class Config extends JFinalConfig {
 	public static void main(String[] args){ 
 		JFinal.start("WebRoot", 8080, "/", 5);
 	}
+	
 }
