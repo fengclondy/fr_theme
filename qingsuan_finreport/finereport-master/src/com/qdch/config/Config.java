@@ -88,6 +88,7 @@ import com.qdch.xd.controller.EventInputController;
 import com.qdch.xd.controller.EventProcessingController;
 import com.qdch.xd.controller.EventSeeDetailsController;
 import com.qdch.xd.controller.EventViewController;
+import com.qdch.xd.controller.FileUpLoadController;
 import com.qdch.xd.controller.ManagementRiskController;
 import com.qdch.xd.controller.MonthlyReportController;
 import com.qdch.xd.controller.OperationalCapabilityController;
@@ -151,6 +152,7 @@ import com.qdch.xd.model.maxIntrateRankModel;
 
 
 public class Config extends JFinalConfig {
+	
 	public void configConstant(Constants me) {
 		me.setDevMode(true);
 		//添加beetl配置
@@ -158,7 +160,6 @@ public class Config extends JFinalConfig {
 		rf.config();
 //		me.setViewType(ViewType.JSP);
 		me.setRenderFactory(rf);
-		//me.setBaseUploadPath("D:\loadup"); 
 		GroupTemplate gt = rf.groupTemplate;
 		gt.registerTag("layout", TemplteLayoutTag.class);
 	}
@@ -187,6 +188,7 @@ public class Config extends JFinalConfig {
 		me.add("qdch/eventaudit", EventAuditController.class,"/");	//风险事件审核
 		me.add("qdch/eventdecision", EventDecisionController.class,"/");	//风险事件决策
 		me.add("qdch/monthlyrepor", MonthlyReportController.class,"/");	//监管月报
+		me.add("qdch/fileupLoad", FileUpLoadController.class,"/");	//监管月报上传
 		me.add("qdch/commerce",CommerceController.class,"/"); //小贷-工商模块
 		/***小贷doushuihai Controller START***/
 		
@@ -437,4 +439,5 @@ public class Config extends JFinalConfig {
 	public static void main(String[] args){ 
 		JFinal.start("WebRoot", 8080, "/", 5);
 	}
+	
 }

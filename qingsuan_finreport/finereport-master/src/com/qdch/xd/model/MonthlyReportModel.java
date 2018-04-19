@@ -1,15 +1,21 @@
 package com.qdch.xd.model;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.fr.hailian.core.QdchUser;
+import com.fr.hailian.util.JDBCUtil;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Page;
-import com.qdch.util.FileUpLoad;
+import com.qdch.core.Constants;
+import com.qdch.p2p.model.TotalTranNumModel;
+import com.qdch.xd.controller.FileUpLoadController;
 
 //@TableBind(tableName="hub_commerce_ref_jys")
 /**
@@ -39,25 +45,25 @@ public class MonthlyReportModel extends Model<MonthlyReportModel>{
 		if(StringUtils.isNotBlank(date)){
 			sql+=" and t.upload_time = '"+ date+"'";
 		}
-		sql+=" order by order_number";
+		sql+=" order by upload_time desc";
 		
 		return dao.find(sql);
 	}
-	//文件上传
-/*	public List<MonthlyReportModel> getFileUpLoad(String datasql){
-		String sql=" ";
-		
+
+	//获取交易所分类
+	public List<MonthlyReportModel> getJyscfl(String jys){	
+		String sql = "select DISTINCT(jysfl) as jysfl from insight_regulatory_report where jys="+"'"+jys+"'";
+		return dao.find(sql);
+	}
+	
+	//获取市场名称
+	public List<MonthlyReportModel> getJys(String datasql){
+		String sql = "select DISTINCT(jys) as jys from insight_regulatory_report where 1=1 ";
 		if(StringUtils.isNotBlank(datasql)){
 			sql+=" and jysc in "+datasql;
 		}
-		if(StringUtils.isNotBlank(name)){
-			sql+=" and jysc in "+datasql;
-		}
-		
-		sql+=" and jysc in "+datasql;
-	return null;
-}
-*/
+		return dao.find(sql);
+	}
 
 	
 	
