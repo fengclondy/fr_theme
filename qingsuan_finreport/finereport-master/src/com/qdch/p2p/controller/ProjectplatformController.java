@@ -106,14 +106,25 @@ public class ProjectplatformController  extends BaseController{
 		mRenderJson(termdetailsmodel);
 	}
 	/**
-	 * 获取平台项目画像的集中度
+	 * 获取平台项目画像的地区和行业的HHI
 	* @author doushuihai  
 	* @date 2018年4月18日下午2:39:07  
 	* @TODO
 	 */
-	public void getconRatio(){
+	public void getconRatioHHI(){
 		String jys=getPara("jys");		
-		List<ConcentrationRatioModel> concentrationratiomodel=ConcentrationRatioModel.dao.getConRatio(getDataScopeByUserNameForP2p(), jys);
+		List<ConcentrationRatioModel> concentrationratiomodel=ConcentrationRatioModel.dao.getConRatioHHI(getDataScopeByUserNameForP2p(), jys);
+		mRenderJson(concentrationratiomodel);
+	}
+	/**
+	 * 获取平台项目画像的前十大借款人和投资人占比
+	* @author doushuihai  
+	* @date 2018年4月19日上午10:07:14  
+	* @TODO
+	 */
+	public void getconRatioProportion(){
+		String jys=getPara("jys");		
+		List<ConcentrationRatioModel> concentrationratiomodel=ConcentrationRatioModel.dao.getConRatioPro(getDataScopeByUserNameForP2p(), jys);
 		mRenderJson(concentrationratiomodel);
 	}
 	

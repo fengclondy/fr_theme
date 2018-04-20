@@ -176,7 +176,9 @@ public class UserDataFromRoleService {
         	sql+="  and r.rolename like '%"+roleName+"%' ";
         }
         long userId = RoleUtil.getCurrentUser(request).getId();
-        sql+=" and t.userid='"+userId+"'";
+        if(!"null".equals(userId)&&!"".equals(userId)){
+        	sql+=" and t.userid='"+userId+"'";
+        }
         System.out.println(sql);
         PreparedStatement ps = con.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();

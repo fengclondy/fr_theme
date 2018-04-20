@@ -32,53 +32,40 @@
       <file leaf-file-name="EventProcessingController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/qdch/xd/controller/EventProcessingController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="181">
-              <caret line="284" column="14" lean-forward="false" selection-start-line="284" selection-start-column="14" selection-end-line="284" selection-end-column="14" />
+            <state relative-caret-position="3816">
+              <caret line="178" column="26" lean-forward="false" selection-start-line="178" selection-start-column="26" selection-end-line="178" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RiskEventHistoryModel.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/qdch/xd/model/RiskEventHistoryModel.java">
+      <file leaf-file-name="RiskEventModel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/qdch/xd/model/RiskEventModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+            <state relative-caret-position="2760">
+              <caret line="125" column="32" lean-forward="false" selection-start-line="125" selection-start-column="32" selection-end-line="125" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Db.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/jfinal-3.3.jar!/com/jfinal/plugin/activerecord/Db.class">
+      <file leaf-file-name="EventInputController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/qdch/xd/controller/EventInputController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="293" column="22" lean-forward="false" selection-start-line="293" selection-start-column="22" selection-end-line="293" selection-end-column="22" />
+            <state relative-caret-position="240">
+              <caret line="110" column="28" lean-forward="true" selection-start-line="110" selection-start-column="28" selection-end-line="110" selection-end-column="28" />
               <folding>
-                <element signature="e#1405#1406#0" expanded="true" />
-                <element signature="e#1432#1433#0" expanded="true" />
-                <element signature="e#9071#9072#0" expanded="true" />
-                <element signature="e#9122#9123#0" expanded="true" />
+                <element signature="e#3479#3495#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DbPro.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/jfinal-3.3.jar!/com/jfinal/plugin/activerecord/DbPro.class">
+      <file leaf-file-name="config.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/config.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="417">
-              <caret line="489" column="71" lean-forward="true" selection-start-line="489" selection-start-column="71" selection-end-line="489" selection-end-column="71" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Config.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/jfinal-3.3.jar!/com/jfinal/plugin/activerecord/Config.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="219" column="22" lean-forward="false" selection-start-line="219" selection-start-column="22" selection-end-line="219" selection-end-column="22" />
+            <state relative-caret-position="288">
+              <caret line="12" column="20" lean-forward="true" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -87,51 +74,64 @@
       <file leaf-file-name="Config.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/qdch/config/Config.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="183" column="36" lean-forward="false" selection-start-line="183" selection-start-column="16" selection-end-line="183" selection-end-column="36" />
+            <state relative-caret-position="186">
+              <caret line="158" column="0" lean-forward="false" selection-start-line="158" selection-start-column="0" selection-end-line="158" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1523877254872" expanded="true" signature="9651:9765" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EventInputController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/qdch/xd/controller/EventInputController.java">
+      <file leaf-file-name="05_05fengxianshijiantianbao.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WebRoot/WEB-INF/qss/xd/pages/05_05fengxianshijiantianbao.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="116" column="5" lean-forward="true" selection-start-line="110" selection-start-column="4" selection-end-line="116" selection-end-column="5" />
+            <state relative-caret-position="192">
+              <caret line="592" column="14" lean-forward="true" selection-start-line="592" selection-start-column="14" selection-end-line="592" selection-end-column="14" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JDBCUtil.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/fr/hailian/util/JDBCUtil.java">
+      <file leaf-file-name="IndustryCommController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/qdch/p2p/controller/IndustryCommController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-312">
-              <caret line="39" column="7" lean-forward="true" selection-start-line="39" selection-start-column="7" selection-end-line="39" selection-end-column="7" />
+            <state relative-caret-position="286">
+              <caret line="127" column="119" lean-forward="false" selection-start-line="127" selection-start-column="119" selection-end-line="127" selection-end-column="119" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Constants.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/fr/hailian/core/Constants.java">
+      <file leaf-file-name="CommerceController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/qdch/xd/controller/CommerceController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="42" column="85" lean-forward="false" selection-start-line="42" selection-start-column="43" selection-end-line="42" selection-end-column="85" />
+            <state relative-caret-position="186">
+              <caret line="422" column="59" lean-forward="false" selection-start-line="422" selection-start-column="59" selection-end-line="422" selection-end-column="59" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DriverManager.java" pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.7.0_80/src.zip!/java/sql/DriverManager.java">
+      <file leaf-file-name="05_01fengxianshijianchuli.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WebRoot/WEB-INF/qss/xd/pages/05_01fengxianshijianchuli.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="203" column="29" lean-forward="false" selection-start-line="203" selection-start-column="29" selection-end-line="203" selection-end-column="29" />
+            <state relative-caret-position="14664">
+              <caret line="611" column="49" lean-forward="false" selection-start-line="611" selection-start-column="49" selection-end-line="611" selection-end-column="49" />
+              <folding>
+                <marker date="1524039446537" expanded="true" signature="27075:27081" ph="&amp;nbsp;" />
+                <marker date="1524039446537" expanded="true" signature="27081:27087" ph="&amp;nbsp;" />
+                <marker date="1524039446537" expanded="true" signature="27087:27093" ph="&amp;nbsp;" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="05_02fengxianshijianchakan.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WebRoot/WEB-INF/qss/xd/pages/05_02fengxianshijianchakan.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15768">
+              <caret line="657" column="87" lean-forward="false" selection-start-line="657" selection-start-column="80" selection-end-line="657" selection-end-column="87" />
               <folding />
             </state>
           </provider>
@@ -143,28 +143,13 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Jsp File" />
-        <option value="Class" />
         <option value="JavaScript File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>for\(var i \= 0\;i\&lt;\$\(\'\#tbody tr\'\)\.length\;i\+\+\)\{\n            \n            if\(\!\$\(\'\.typeclass option\:selected\'\)\.eq\(i\)\.val\(\)\)\{\n                atype\.push\(\&quot;\&quot;\)\;\n            \}else\{\n                atype\.push\(\$\(\'\.typeclass option\:selected\'\)\.eq\(i\)\.val\(\)\)\;\n            \}\n            if\(\!\$\(\'\.riskclass option\:selected\'\)\.val\(\)\)\{\n                arisk\.push\(\&quot;\&quot;\)\;\n            \}else\{\n                arisk\.push\(\$\(\'\.typeclass option\:selected\'\)\.eq\(i\)\.val\(\)\)\;\n            \}\n            if\(\!\$\(\'\.riskvalueclass\'\)\.eq\(i\)\.val\(\)\)\{\n                ariskvalue\.push\(\&quot;\&quot;\)\;\n            \}else\{\n                ariskvalue\.push\(\$\(\'\.riskvalueclass\'\)\.eq\(i\)\.val\(\)\)\;\n            \}\n            if\(\!\$\(\'\.yuzhiclass\'\)\.eq\(i\)\.val\(\)\)\{\n                ayuzhi\.push\(\&quot;\&quot;\)\;\n            \}else\{\n                ayuzhi\.push\(\$\(\'\.yuzhiclass\'\)\.eq\(i\)\.val\(\)\)\;\n            \}\n            if\(\!\$\(\'\.chaochuclass\'\)\.eq\(i\)\.val\(\)\)\{\n                achaochu\.push\(\&quot;\&quot;\)\;\n            \}else\{\n                ayuzhi\.push\(\$\(\'\.yuzhiclass\'\)\.eq\(i\)\.val\(\)\)\;\n            \}\n            \/\/\n            if\(\!\$\(\'\.organname\'\)\.eq\(i\)\.val\(\)\)\{\n                aorgnname\.push\(\&quot;\&quot;\)\;\n            \}else\{\n                aorgnname\.push\(\$\(\'\.organname\'\)\.eq\(i\)\.val\(\)\)\;\n            \}\n            if\(\!\$\(\'\.organcode\'\)\.eq\(i\)\.val\(\)\)\{\n                aorgncode\.push\(\&quot;\&quot;\)\;\n            \}else\{\n                aorgncode\.push\(\$\(\'\.organcode\'\)\.eq\(i\)\.val\(\)\)\;\n            \}\n\n            if\(\!\$\(\'\.cusnameclass\'\)\.eq\(i\)\.val\(\)\)\{\n                acusname\.push\(\&quot;\&quot;\)\;\n            \}else\{\n                acusname\.push\(\$\(\'\.cusnameclass\'\)\.eq\(i\)\.val\(\)\)\;\n            \}\n            if\(\!\$\(\'\.cuscodeclass\'\)\.eq\(i\)\.val\(\)\)\{\n                acuscode\.push\(\&quot;\&quot;\)\;\n            \}else\{\n                acuscode\.push\(\$\(\'\.cuscodeclass\'\)\.eq\(i\)\.val\(\)\)\;\n            \}\n            if\(\!\$\(\'\.menunameclass\'\)\.eq\(i\)\.val\(\)\)\{\n                amenuname\.push\(\&quot;\&quot;\)\;\n            \}else\{\n                amenuname\.push\(\$\(\'\.menunameclass\'\)\.eq\(i\)\.val\(\)\)\;\n            \}\n            if\(\!\$\(\'\.menucodeclass\'\)\.eq\(i\)\.val\(\)\)\{\n                amenucode\.push\(\&quot;\&quot;\)\;\n            \}else\{\n                amenucode\.push\(\$\(\'\.menucodeclass\'\)\.eq\(i\)\.val\(\)\)\;\n            \}\n            if\(\!\$\(\'\.busnameclass\'\)\.eq\(i\)\.val\(\)\)\{\n                abusname\.push\(\&quot;\&quot;\)\;\n            \}else\{\n                abusname\.push\(\$\(\'\.busnameclass\'\)\.eq\(i\)\.val\(\)\)\;\n            \}\n            if\(\!\$\(\'\.buscodeclass\'\)\.eq\(i\)\.val\(\)\)\{\n                abuscode\.push\(\&quot;\&quot;\)\;\n            \}else\{\n                abuscode\.push\(\$\(\'\.buscodeclass\'\)\.eq\(i\)\.val\(\)\)\;\n            \}\n\n            if\(\!\$\(\'\.statusclass\'\)\.eq\(i\)\.val\(\)\)\{\n                astatus\.push\(\&quot;\&quot;\)\;\n            \}else\{\n                astatus\.push\(\$\(\'\.statusclass\'\)\.eq\(i\)\.val\(\)\)\;\n            \}\n\n            if\(\!\$\(\'\.introclass\'\)\.eq\(i\)\.val\(\)\)\{\n                aintro\.push\(\&quot;\&quot;\)\;\n            \}else\{\n                aintro\.push\(\$\(\'\.introclass\'\)\.eq\(i\)\.val\(\)\)\;\n            \}\n            if\(\!\$\(\'\.remarksclass\'\)\.eq\(i\)\.val\(\)\)\{\n                aremarks\.push\(\&quot;\&quot;\)\;\n            \}else\{\n                aremarks\.push\(\$\(\'\.remarksclass\'\)\.eq\(i\)\.val\(\)\)\;\n            \}</find>
-      <find>.push(&quot;&quot;)</find>
-      <find>.append(&quot;'),&quot;);</find>
-      <find>&quot;&quot;+&quot;&quot;</find>
-      <find>HEAD</find>
-      <find>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</find>
-      <find>===</find>
-      <find>model</find>
-      <find>QdchUser</find>
-      <find>executeQueryRS</find>
-      <find>null</find>
-      <find>2018</find>
-      <find>inputradio</find>
-      <find>审核人</find>
-      <find>state</find>
       <find>pst</find>
       <find>set</find>
       <find>redirect</find>
@@ -180,6 +165,21 @@
       <find>PropKit</find>
       <find>processing</find>
       <find>sa</find>
+      <find>dia</find>
+      <find>executeQueryRS</find>
+      <find>testsave</find>
+      <find>marketname</find>
+      <find>getrequest</find>
+      <find>organ</find>
+      <find>organname</find>
+      <find>sel</find>
+      <find>seleOrganCode</find>
+      <find>disabled</find>
+      <find>acusname</find>
+      <find>cusnameclass</find>
+      <find>pull</find>
+      <find>pulld</find>
+      <find>exportExcel</find>
     </findStrings>
     <replaceStrings>
       <replace>guaranteevalue</replace>
@@ -198,6 +198,7 @@
       <replace>.append(&quot;','&quot;);</replace>
       <replace>null</replace>
       <replace>'null'</replace>
+      <replace>getConnection</replace>
     </replaceStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -221,7 +222,6 @@
         <option value="$PROJECT_DIR$/src/com/qdch/xd/model/ContrastBaseModel.java" />
         <option value="$PROJECT_DIR$/src/com/qdch/xd/controller/MonthlyReportController.java" />
         <option value="$PROJECT_DIR$/src/com/qdch/xd/model/RoleEnum.java" />
-        <option value="$PROJECT_DIR$/src/com/qdch/xd/model/RiskEventModel.java" />
         <option value="$PROJECT_DIR$/WebRoot/static/js/page.js" />
         <option value="$PROJECT_DIR$/src/com/qdch/xd/controller/EventSeeDetailsController.java" />
         <option value="$PROJECT_DIR$/src/com/qdch/xd/model/DictModel.java" />
@@ -236,19 +236,24 @@
         <option value="$PROJECT_DIR$/src/com/qdch/xd/model/RiskTypeModel.java" />
         <option value="$PROJECT_DIR$/src/com/fr/hailian/service/UpdateRejectStatusService.java" />
         <option value="$PROJECT_DIR$/src/com/qdch/xd/controller/ThresholdValueController.java" />
-        <option value="$PROJECT_DIR$/src/com/qdch/config/Config.java" />
         <option value="$PROJECT_DIR$/src/com/qdch/xd/model/ThresholdValueModel.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/src/com/qdch/xd/controller/EventViewController.java" />
-        <option value="$PROJECT_DIR$/src/com/fr/hailian/util/JDBCUtil.java" />
-        <option value="$PROJECT_DIR$/src/com/qdch/xd/controller/EventInputController.java" />
         <option value="$PROJECT_DIR$/WebRoot/WEB-INF/qss/xd/pages/index.html" />
-        <option value="$PROJECT_DIR$/WebRoot/WEB-INF/qss/xd/pages/05_05fengxianshijiantianbao.html" />
-        <option value="$PROJECT_DIR$/WebRoot/WEB-INF/qss/xd/pages/05_02fengxianshijianchakan.html" />
-        <option value="$PROJECT_DIR$/WebRoot/WEB-INF/qss/xd/pages/05_01fengxianshijianchuli.html" />
         <option value="$PROJECT_DIR$/src/com/qdch/xd/controller/XiaoDaiController.java" />
         <option value="$PROJECT_DIR$/src/config.txt" />
+        <option value="$PROJECT_DIR$/src/com/qdch/xd/controller/EventViewController.java" />
+        <option value="$PROJECT_DIR$/src/com/qdch/core/PostgreSqlDialect.java" />
+        <option value="$PROJECT_DIR$/src/com/fr/hailian/util/JDBCUtil.java" />
+        <option value="$PROJECT_DIR$/src/com/qdch/xd/model/OrganizModel.java" />
         <option value="$PROJECT_DIR$/src/com/qdch/xd/controller/EventProcessingController.java" />
+        <option value="$PROJECT_DIR$/WebRoot/WEB-INF/qss/xd/pages/05_05fengxianshijiantianbao.html" />
+        <option value="$PROJECT_DIR$/src/com/qdch/xd/controller/EventInputController.java" />
+        <option value="$PROJECT_DIR$/WebRoot/WEB-INF/qss/xd/pages/05_01fengxianshijianchuli.html" />
+        <option value="$PROJECT_DIR$/WebRoot/WEB-INF/qss/xd/pages/05_02fengxianshijianchakan.html" />
+        <option value="$PROJECT_DIR$/src/com/qdch/xd/model/RiskEventModel.java" />
+        <option value="$PROJECT_DIR$/src/com/qdch/config/Config.java" />
+        <option value="$PROJECT_DIR$/src/com/qdch/p2p/controller/IndustryCommController.java" />
+        <option value="$PROJECT_DIR$/src/com/qdch/xd/controller/CommerceController.java" />
       </list>
     </option>
   </component>
@@ -290,6 +295,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -301,28 +308,50 @@
             <path>
               <item name="finereport" type="b2602c69:ProjectViewProjectNode" />
               <item name="finereport-master" type="462c0819:PsiDirectoryNode" />
-              <item name="WebRoot" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="finereport" type="b2602c69:ProjectViewProjectNode" />
               <item name="finereport-master" type="462c0819:PsiDirectoryNode" />
-              <item name="WebRoot" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="finereport" type="b2602c69:ProjectViewProjectNode" />
+              <item name="finereport-master" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="qdch" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="finereport" type="b2602c69:ProjectViewProjectNode" />
+              <item name="finereport-master" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="qdch" type="462c0819:PsiDirectoryNode" />
+              <item name="xd" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="finereport" type="b2602c69:ProjectViewProjectNode" />
+              <item name="finereport-master" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="qdch" type="462c0819:PsiDirectoryNode" />
+              <item name="xd" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../qdchproject/qdchportal" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -564,12 +593,23 @@
       <workItem from="1523855099971" duration="7613000" />
       <workItem from="1523863107214" duration="7868000" />
       <workItem from="1523871914985" duration="7167000" />
-      <workItem from="1523879381106" duration="2562000" />
+      <workItem from="1523879381106" duration="4283000" />
+      <workItem from="1523927490593" duration="59000" />
+      <workItem from="1523931333985" duration="2898000" />
+      <workItem from="1523943853213" duration="85000" />
+      <workItem from="1523957095819" duration="1117000" />
+      <workItem from="1523958856770" duration="1971000" />
+      <workItem from="1524014959650" duration="1701000" />
+      <workItem from="1524027083527" duration="594000" />
+      <workItem from="1524033173969" duration="7002000" />
+      <workItem from="1524045421486" duration="4368000" />
+      <workItem from="1524102671212" duration="2381000" />
+      <workItem from="1524115156275" duration="1805000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="205090000" />
+    <option name="totallyTimeSpent" value="230792000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -594,7 +634,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42647058" sideWeight="0.4969743" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5277778" sideWeight="0.4969743" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -603,11 +643,10 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35098335" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36157337" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -615,6 +654,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -631,7 +671,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.42647058" sideWeight="0.4969743" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5277778" sideWeight="0.4969743" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -641,9 +681,9 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35098335" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36157337" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -658,12 +698,25 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="47" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/qdch/core/PostgreSqlDialect.java</url>
+          <line>22</line>
+          <properties />
+          <option name="timeStamp" value="47" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="54" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>request.getParameter(&quot;jgmc&quot;)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>decode(request.getParameter(&quot;custname&quot;))</expression-string>
         <language-id>JAVA</language-id>
@@ -686,11 +739,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6816">
           <caret line="284" column="44" lean-forward="false" selection-start-line="284" selection-start-column="41" selection-end-line="284" selection-end-column="44" />
-          <folding>
-            <marker date="1523878285009" expanded="true" signature="28977:28983" ph="&amp;nbsp;" />
-            <marker date="1523878285009" expanded="true" signature="28983:28989" ph="&amp;nbsp;" />
-            <marker date="1523878285009" expanded="true" signature="28989:28995" ph="&amp;nbsp;" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -698,71 +746,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="14328">
           <caret line="597" column="0" lean-forward="false" selection-start-line="597" selection-start-column="0" selection-end-line="597" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/WEB-INF/qss/xd/pages/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="35" column="93" lean-forward="false" selection-start-line="35" selection-start-column="73" selection-end-line="35" selection-end-column="93" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/qdch/xd/controller/EventInputController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="3" column="38" lean-forward="false" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/qdch/xd/controller/EventProcessingController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4824">
-          <caret line="212" column="30" lean-forward="false" selection-start-line="212" selection-start-column="30" selection-end-line="212" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/qdch/xd/model/RiskTypeModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/qdch/config/Config.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4080">
-          <caret line="260" column="53" lean-forward="false" selection-start-line="260" selection-start-column="53" selection-end-line="260" selection-end-column="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1523877254872" expanded="true" signature="9651:9765" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/WEB-INF/qss/xd/pages/05_02fengxianshijianchakan.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6816">
-          <caret line="284" column="44" lean-forward="false" selection-start-line="284" selection-start-column="41" selection-end-line="284" selection-end-column="44" />
-          <folding>
-            <marker date="1523878285009" expanded="true" signature="28977:28983" ph="&amp;nbsp;" />
-            <marker date="1523878285009" expanded="true" signature="28983:28989" ph="&amp;nbsp;" />
-            <marker date="1523878285009" expanded="true" signature="28989:28995" ph="&amp;nbsp;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/WEB-INF/qss/xd/pages/05_05fengxianshijiantianbao.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="14328">
-          <caret line="597" column="0" lean-forward="false" selection-start-line="597" selection-start-column="0" selection-end-line="597" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -777,7 +760,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5088">
           <caret line="212" column="30" lean-forward="false" selection-start-line="212" selection-start-column="30" selection-end-line="212" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -785,7 +767,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="600">
           <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -793,9 +774,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1008">
           <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -803,7 +781,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="600">
           <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -814,32 +791,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/jfinal-3.3.jar!/com/jfinal/aop/Invocation.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="107">
-          <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
           <caret line="13" column="11" lean-forward="true" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/qdch/intercept/SecurityInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_80/src.zip!/java/sql/Connection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="141" column="66" lean-forward="true" selection-start-line="141" selection-start-column="66" selection-end-line="141" selection-end-column="66" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -854,7 +809,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="24">
           <caret line="60" column="17" lean-forward="false" selection-start-line="60" selection-start-column="17" selection-end-line="60" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -883,9 +837,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="186">
           <caret line="70" column="14" lean-forward="true" selection-start-line="70" selection-start-column="14" selection-end-line="70" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -893,7 +844,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-22">
           <caret line="88" column="79" lean-forward="false" selection-start-line="88" selection-start-column="79" selection-end-line="88" selection-end-column="79" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -908,7 +858,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="384">
           <caret line="21" column="4" lean-forward="false" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -933,19 +882,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/qdch/xd/model/RiskEventModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="31" column="63" lean-forward="false" selection-start-line="31" selection-start-column="52" selection-end-line="31" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WebRoot/WEB-INF/qss/xd/pages/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1656">
           <caret line="69" column="78" lean-forward="false" selection-start-line="69" selection-start-column="49" selection-end-line="69" selection-end-column="78" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -953,7 +893,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -961,58 +900,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
           <caret line="11" column="7" lean-forward="false" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/WEB-INF/qss/xd/pages/05_05fengxianshijiantianbao.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="659" column="37" lean-forward="false" selection-start-line="659" selection-start-column="16" selection-end-line="659" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/WEB-INF/qss/xd/pages/05_02fengxianshijianchakan.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="709" column="29" lean-forward="true" selection-start-line="709" selection-start-column="29" selection-end-line="709" selection-end-column="29" />
-          <folding>
-            <marker date="1523878285009" expanded="true" signature="28977:28983" ph="&amp;nbsp;" />
-            <marker date="1523878285009" expanded="true" signature="28983:28989" ph="&amp;nbsp;" />
-            <marker date="1523878285009" expanded="true" signature="28989:28995" ph="&amp;nbsp;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/WEB-INF/qss/xd/pages/05_01fengxianshijianchuli.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="735" column="16" lean-forward="true" selection-start-line="735" selection-start-column="16" selection-end-line="735" selection-end-column="16" />
-          <folding>
-            <marker date="1523880067697" expanded="true" signature="27075:27081" ph="&amp;nbsp;" />
-            <marker date="1523880067697" expanded="true" signature="27081:27087" ph="&amp;nbsp;" />
-            <marker date="1523880067697" expanded="true" signature="27087:27093" ph="&amp;nbsp;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/qdch/xd/controller/EventViewController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding>
-            <element signature="e#628#629#0" expanded="true" />
-            <element signature="e#686#687#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/config.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="10" column="52" lean-forward="true" selection-start-line="10" selection-start-column="52" selection-end-line="10" selection-end-column="52" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1020,94 +907,209 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="103">
           <caret line="16" column="23" lean-forward="true" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_80/src.zip!/java/sql/DriverManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
+        <state relative-caret-position="4128">
           <caret line="203" column="29" lean-forward="false" selection-start-line="203" selection-start-column="29" selection-end-line="203" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/fr/hailian/core/Constants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
+        <state relative-caret-position="1008">
           <caret line="42" column="85" lean-forward="false" selection-start-line="42" selection-start-column="43" selection-end-line="42" selection-end-column="85" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/jfinal-3.3.jar!/com/jfinal/plugin/activerecord/Db.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4536">
+          <caret line="293" column="22" lean-forward="false" selection-start-line="293" selection-start-column="22" selection-end-line="293" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/jfinal-3.3.jar!/com/jfinal/plugin/activerecord/Config.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4200">
+          <caret line="219" column="22" lean-forward="false" selection-start-line="219" selection-start-column="22" selection-end-line="219" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/jfinal-3.3.jar!/com/jfinal/plugin/activerecord/DbPro.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9768">
+          <caret line="489" column="71" lean-forward="false" selection-start-line="489" selection-start-column="71" selection-end-line="489" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/jfinal-3.3.jar!/com/jfinal/plugin/activerecord/dialect/PostgreSqlDialect.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3624">
+          <caret line="167" column="12" lean-forward="false" selection-start-line="167" selection-start-column="0" selection-end-line="168" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/jfinal-3.3.jar!/com/jfinal/core/ActionHandler.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2568">
+          <caret line="118" column="25" lean-forward="false" selection-start-line="118" selection-start-column="25" selection-end-line="118" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/jfinal-3.3.jar!/com/jfinal/aop/Invocation.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/qdch/xd/model/RiskEventHistoryModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="18" column="7" lean-forward="false" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/fr/hailian/util/JDBCUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-312">
-          <caret line="39" column="7" lean-forward="true" selection-start-line="39" selection-start-column="7" selection-end-line="39" selection-end-column="7" />
-          <folding />
+        <state relative-caret-position="1896">
+          <caret line="86" column="34" lean-forward="false" selection-start-line="86" selection-start-column="34" selection-end-line="86" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/qdch/config/Config.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_80/src.zip!/java/sql/Connection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="183" column="36" lean-forward="false" selection-start-line="183" selection-start-column="16" selection-end-line="183" selection-end-column="36" />
+        <state relative-caret-position="194">
+          <caret line="137" column="22" lean-forward="false" selection-start-line="137" selection-start-column="22" selection-end-line="137" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/qdch/core/PostgreSqlDialect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="12" column="52" lean-forward="false" selection-start-line="12" selection-start-column="52" selection-end-line="12" selection-end-column="52" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1523877254872" expanded="true" signature="9651:9765" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/qdch/xd/controller/EventInputController.java">
+    <entry file="file://$PROJECT_DIR$/src/com/qdch/xd/controller/EventViewController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="116" column="5" lean-forward="true" selection-start-line="110" selection-start-column="4" selection-end-line="116" selection-end-column="5" />
+        <state relative-caret-position="888">
+          <caret line="45" column="16" lean-forward="false" selection-start-line="45" selection-start-column="16" selection-end-line="45" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/qdch/xd/model/ExchangeInfoModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/qdch/intercept/SecurityInterceptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-9">
+          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/qdch/xd/model/OrganizModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="9" column="29" lean-forward="false" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRoot/WEB-INF/qss/xd/pages/05_01fengxianshijianchuli.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14664">
+          <caret line="611" column="49" lean-forward="false" selection-start-line="611" selection-start-column="49" selection-end-line="611" selection-end-column="49" />
+          <folding>
+            <marker date="1524039446537" expanded="true" signature="27075:27081" ph="&amp;nbsp;" />
+            <marker date="1524039446537" expanded="true" signature="27081:27087" ph="&amp;nbsp;" />
+            <marker date="1524039446537" expanded="true" signature="27087:27093" ph="&amp;nbsp;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRoot/WEB-INF/qss/xd/pages/05_02fengxianshijianchakan.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15768">
+          <caret line="657" column="87" lean-forward="false" selection-start-line="657" selection-start-column="80" selection-end-line="657" selection-end-column="87" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/qdch/xd/model/RiskEventModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2760">
+          <caret line="125" column="32" lean-forward="false" selection-start-line="125" selection-start-column="32" selection-end-line="125" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/qdch/xd/controller/EventProcessingController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="284" column="14" lean-forward="false" selection-start-line="284" selection-start-column="14" selection-end-line="284" selection-end-column="14" />
+        <state relative-caret-position="3816">
+          <caret line="178" column="26" lean-forward="false" selection-start-line="178" selection-start-column="26" selection-end-line="178" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/jfinal-3.3.jar!/com/jfinal/plugin/activerecord/Db.class">
+    <entry file="file://$PROJECT_DIR$/src/com/qdch/xd/controller/EventInputController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="293" column="22" lean-forward="false" selection-start-line="293" selection-start-column="22" selection-end-line="293" selection-end-column="22" />
+        <state relative-caret-position="240">
+          <caret line="110" column="28" lean-forward="true" selection-start-line="110" selection-start-column="28" selection-end-line="110" selection-end-column="28" />
           <folding>
-            <element signature="e#1405#1406#0" expanded="true" />
-            <element signature="e#1432#1433#0" expanded="true" />
-            <element signature="e#9071#9072#0" expanded="true" />
-            <element signature="e#9122#9123#0" expanded="true" />
+            <element signature="e#3479#3495#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/jfinal-3.3.jar!/com/jfinal/plugin/activerecord/Config.class">
+    <entry file="file://$PROJECT_DIR$/WebRoot/WEB-INF/qss/xd/pages/05_05fengxianshijiantianbao.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="219" column="22" lean-forward="false" selection-start-line="219" selection-start-column="22" selection-end-line="219" selection-end-column="22" />
+        <state relative-caret-position="192">
+          <caret line="592" column="14" lean-forward="true" selection-start-line="592" selection-start-column="14" selection-end-line="592" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/jfinal-3.3.jar!/com/jfinal/plugin/activerecord/DbPro.class">
+    <entry file="file://$PROJECT_DIR$/src/com/qdch/config/Config.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
-          <caret line="489" column="71" lean-forward="true" selection-start-line="489" selection-start-column="71" selection-end-line="489" selection-end-column="71" />
+        <state relative-caret-position="186">
+          <caret line="158" column="0" lean-forward="false" selection-start-line="158" selection-start-column="0" selection-end-line="158" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/config.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="12" column="20" lean-forward="true" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/qdch/xd/model/RiskEventHistoryModel.java">
+    <entry file="file://$PROJECT_DIR$/src/com/qdch/p2p/controller/IndustryCommController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        <state relative-caret-position="286">
+          <caret line="127" column="119" lean-forward="false" selection-start-line="127" selection-start-column="119" selection-end-line="127" selection-end-column="119" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/qdch/xd/controller/CommerceController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="422" column="59" lean-forward="false" selection-start-line="422" selection-start-column="59" selection-end-line="422" selection-end-column="59" />
           <folding />
         </state>
       </provider>
