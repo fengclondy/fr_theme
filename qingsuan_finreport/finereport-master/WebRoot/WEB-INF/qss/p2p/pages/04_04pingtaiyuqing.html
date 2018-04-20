@@ -8,8 +8,9 @@
     <link rel="stylesheet" href="${contextPath}/static/css/style.css">
     <link rel="stylesheet" href="${contextPath}/static/css/pageCom.css">
     <link rel="stylesheet" href="${contextPath}/static/css/laydate.css">
+     <link rel="stylesheet" href="${contextPath}/static/css/page.css">
     <style>
-        .pageBody {
+         .pageBody {
             display: flex;
             flex: 1;
         }
@@ -40,7 +41,7 @@
             flex: 7;
             height: 70%;
         }
-      
+
         /*舆情详情*/
         .customerSelect {
             padding: 0.5rem 1rem;
@@ -87,57 +88,6 @@
             text-decoration: none;
         }
 
-        .left {
-            width: 100%;
-        }
-        .left > h2 > span {
-            font-size: 1rem;
-            font-weight: normal;
-        }
-        .left > ul > li {
-            width: 100%;
-            color: #756F71;
-            padding: .3rem 0.1rem;
-            font-size: 12px;
-        }
-        .left > ul > li > .pic {
-            width: 16%;
-            height: 16%;
-            margin: 1%;
-        }
-        .left > ul > li > div > img {
-            width: 100%;
-            height: 100%;
-            margin-left: 0.5rem;
-        }
-        .left > ul > li > p {
-            width: 78%;
-            padding: 0.2rem 0.2rem;
-        }
-        .left > ul > li > p > .neirong {
-            margin: 0.1rem 0 0.5rem 0;
-            color: #00b0f4;
-            font-size: 14px;
-        }
-        .left > ul > li > p > span {
-            line-height: 1.3rem;
-            display: inline-block;
-            margin: 0 .5rem .5rem .5rem;
-        }
-        .bgi4 {
-            background: url("${contextPath}/static/img/03_05shengyufengxian/lticn_eye.png") no-repeat left center;
-            padding-left: 1.8rem;
-            background-size: transparent;
-        }
-        .left > ul > li > p > a:first-child {
-            display: block;
-            font-size: 0.95rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem   ;
-        }
-        .left > ul > li > p a {
-            color: #fff;
-        }
         /*查询*/
         .yuqingsearch{
             padding:0rem 2rem;
@@ -149,20 +99,24 @@
 
         /*舆情详情 图片展示区*/
         .customerInformationList {
+            position: relative;
             width: 100%;
             height: 75%;
-            /*background: #00ff00;*/
+
+        }
+        .customerInformationList thead tr th{
+            font-size: 0.8rem;
         }
         .leftBox {
             width: 100%;
-            height: 20rem;
+            height: 15rem;
             overflow: auto;
         }
 
         /*舆情详情 输入框*/
         .customerInformation {
             width: 100%;
-            height: 25%;
+            height: 27%;
             padding: 1rem 0rem;
             border-bottom: 2px solid #00adef;
         }
@@ -170,6 +124,7 @@
             width: 33.33%;
             height: 100%;
         }
+        /*下拉框宽度重新定义*/
         .mySelect{
             width: 9rem;
         }
@@ -180,7 +135,15 @@
             border: 2px solid #00abde;
             border-radius: 0.1rem;
         }
-          /*newsInformation 最新资讯*/
+        /*市场预期概览tabel*/
+
+        #table tbody tr td,#table1 thead tr th{
+            width: 20%;
+            text-align: center;
+            font-size: 0.65rem;
+
+        }
+        /*最新资讯*/
         #informationBox1{
             width: 100%;
             height: 100%;
@@ -197,7 +160,7 @@
         .myscroll1 li{
             list-style: none;
             height: 45px;
-            line-height: 15px;
+            line-height: 16px;
             margin-left: 20px;
 
         }
@@ -206,12 +169,76 @@
             color: #fff;
             text-decoration: none;
         }
-
-
-        #informationBox1 li>a:hover {
-            color: var(--themeBlue);
+        #informationBox1 li>a:hover{
+            color:#006aa3;
         }
-  
+
+        /*图文展示*/
+
+        .infomationContent {
+            float: left;
+            width: 100%;
+            height: 100%;
+        }
+        .infomationContent > h2 > span {
+            font-size: 1rem;
+            font-weight: normal;
+        }
+        .infomationContent > ul > li {
+            width: 100%;
+            color: #756F71;
+            padding: .1rem 0.1rem;
+            font-size: 12px;
+        }
+        .infomationContent > ul > li > .pic {
+            width: 16%;
+            height: 16%;
+            margin: 1%;
+        }
+        .infomationContent > ul > li > div > img {
+            width: 100%;
+            height: 100%;
+            margin-left: 0.5rem;
+        }
+        .infomationContent > ul > li > p {
+            width: 78%;
+            padding: 0.2rem 0.2rem;
+        }
+        .infomationContent > ul > li > p > .neirong {
+            margin: 0.1rem 0 0.5rem 0;
+            color: #00b0f4;
+            font-size: 0.8rem;
+        }
+        .infomationContent > ul > li > p > span {
+            line-height: 1.3rem;
+            display: inline-block;
+            margin: 0 .5rem .5rem .5rem;
+        }
+        .bgi4 {
+            background: url("../img/03_05shengyufengxian/lticn_eye.png") no-repeat left center;
+            padding-left: 1rem;
+            width: 0.6rem;
+            background-size: contain;
+        }
+        .infomationContent > ul > li > p > a:first-child {
+            display: block;
+            font-size: 0.95rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem   ;
+        }
+        .infomationContent > ul > li > p a {
+            color: #fff;
+        }
+        /*分页样式*/
+        .pageye{
+            width: 100%;
+            height: 30%;
+
+        }
+        .page{
+            position: absolute;
+            bottom: 5px;
+        }
 
     </style>
 </head>
@@ -315,8 +342,8 @@
                             <div class="chartBody">
                                 <div id="informationBox1">
 								    <div class="myscroll1">
-								        <ul>
-								          <!-- <li>1</li>
+								        <ul id="gundong">
+								         <!-- <li>1</li>
 								          <li>1</li>
 								          <li>1</li>
 								          <li>1</li>
@@ -385,10 +412,11 @@
                                 </div>
                             </div>
                             <div class="customerInformationList">
-                                <div class="left fl">
+                                <div class="infomationContent fl">
                                     <ul class="leftBox">
                                     </ul>
                                 </div>
+                                <ul class="page" maxshowpageitem="5" pagelistcount="5"  id="page"></ul>
                             </div>
                         </div>
                     </div>
@@ -403,20 +431,17 @@
 <script src="${contextPath}/static/js/chartsCom.js"></script>
 <script src="${contextPath}/static/js/pageCom.js"></script>
 <script src="${contextPath}/static/js/laydate.js"></script>
+<script src="${contextPath}/static/js/pagefenye.js"></script>
 <script>
-$(function(){
-    $('.myscroll1').myScroll({
-        speed: 100, //数值越大，速度越慢
-        rowHeight: 36 //li的高度
-    });
-});
-// JavaScript Document
+
+
+// JavaScript Document  滚动
 (function($){
     $.fn.myScroll = function(options){
         //默认配置
         var defaults = {
             speed:1,  //滚动速度,值越大速度越慢
-            rowHeight:36 //每行的高度
+            rowHeight:45 //每行的高度
         };
 
         var opts = $.extend({}, defaults, options),intId = [];
@@ -467,37 +492,59 @@ $(function(){
     var fxyq001;
     var fxyq002;
     $(function () {
+    	var pageSize=$("#page").attr('pagelistcount');
+    	var currentPage;
+		
+    	
+		
+    	/*-----------分页---------*/
+        function tt(dd){
+            //alert(dd);
+        }
+        var GG = {
+            "kk":function(mm){
+                //alert(mm);
+                currentPage = mm
+                detail();
+            }
+        }
+       $("#page").initPage(pageSize,1,GG.kk);
+        /*-----------分页---------*/
+        detailCount();
     	detail();
     	realCompanyFeel();
     	overView();
     	getNews();
+    	
     	/*-----全局变量--------*/
        var jysinfo = "";
        var jysc = "";
        var startTime = "";
        var endTime = "";
        var keyword = "";
+       
        /*-----全局变量--------*/
+      
        $(".jysc").click(function () {
 			jysc = $(this).attr('value');
 	   })
 	   $(".liandong").click(function () {
 		   jysinfo = $(this).attr('value');
-			
 			realCompanyFeel();
-			getNews(); 
+			getNews();
 		})
-		
 	   $(".yuqingsearch").click(function () {
 			startTime = $("#BeginTime").val().substring(0,4)+$("#BeginTime").val().substring(5,7)+$("#BeginTime").val().substring(8,10)
 			endTime = $("#EndTime").val().substring(0,4)+$("#EndTime").val().substring(5,7)+$("#EndTime").val().substring(8,10)
 			keyword = $(".gjz").val();
+			
 			/* if (startTime > endTime) {
 				alert("结束时间不能小于开始时间");
 				return;
 			} */
 			
 			detail();
+			detailCount();
 	   })
      	/*-----------------市场舆情浏览 模块一 ---------------*/
        function overView() {
@@ -606,11 +653,13 @@ $(function(){
         		   if (item.news != null) {
         			   content = content
             		   +' <li><a href="#68.html">'+item.news+'</a></li>'
-					}
-        		   
-        		   
+					}  
         	   })
-        	  $(".myscroll1").find("ul").html(content);
+        	 $(".myscroll1").find("ul").html(content);
+        	   $('.myscroll1').myScroll({
+        	        speed: 100, //数值越大，速度越慢
+        	        rowHeight: 45 //li的高度
+        	    });
            })
        }
        /*-----------------最新资讯 ---------------*/
@@ -620,7 +669,7 @@ $(function(){
     	   $.ajax({
 				type:"POST",
 				url:"${contextPath}/qdch/companyfeel/getDetailCompanyFeel",
-				data:{"jysc":jysc,"startTime":startTime,"endTime":endTime,"keyword":keyword},
+				data:{"jysc":jysc,"startTime":startTime,"endTime":endTime,"keyword":keyword,"pageSize":pageSize,"currentPage":currentPage},
 				dataType:"json",
 				success:function(data){
 					console.log(data);
@@ -645,9 +694,35 @@ $(function(){
 			})
 		}
        /*-----------------舆情详情---------------*/
+       
+        /*-----------------舆情详情条数 ---------------*/
+       function detailCount() {
+    	   
+    	   $.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/companyfeel/getDetailCount",
+				data:{"jysc":jysc,"startTime":startTime,"endTime":endTime,"keyword":keyword,"pageSize":pageSize,"currentPage":currentPage},
+				dataType:"json",
+				success:function(data){
+					console.log(data);
+					var content = ""
+					$.each(data,function(data,item){
+						$("#page").initPage(item.count,1,GG.kk);
+					})
+					
+				}
+			})
+		}
+       /*-----------------舆情详情条数---------------*/
+       
+       
+       
+       
         //当前时间
         //本页所有图表
         allCharts = [fxyq001, fxyq002];
+      	
+        
     });
 
 </script>

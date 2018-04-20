@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.commons.lang.StringUtils;
 
 import com.jfinal.plugin.activerecord.Model;
+import com.jfinal.plugin.activerecord.Page;
 
 /**
  * @author hanpengda
@@ -96,8 +97,55 @@ public class CompanyFeelModel extends Model<CompanyFeelModel>{
 	 * @date 2018年4月19日
 	 * @TODO 舆情详情
 	 */
-	public List<CompanyFeelModel> getDetailCompanyFeel(String jysIds,String startTime,String endTime,String jysc,String keyword){
+	public List<CompanyFeelModel> getDetailCompanyFeel(String jysIds,String startTime,String endTime,String jysc,String keyword,int pageSize,int currentPage){
 		String sql = "select rm.ENTERPRISE_ID,TITLE,SUMMARY,URL,DATA_SOURCE,PUBLISH_DATE,content, string_agg(keyword,',')  "
+				+ "from ("
+				+ " select ENTERPRISE_ID,TITLE,SUMMARY,URL,DATA_SOURCE,PUBLISH_DATE,keyword ,content,"
+				+ " ROW_NUMBER()OVER(partition by ENTERPRISE_ID,TITLE,SUMMARY,URL,DATA_SOURCE,PUBLISH_DATE ORDER BY keyword) as rank_num "
+				+ " from(select DISTINCT  ENTERPRISE_ID,TITLE,SUMMARY,URL,DATA_SOURCE,PUBLISH_DATE,content,"
+				+ " regexp_split_to_table(hit_keyword,'\"') as keyword "
+				+ " from public.hub_commerce_meiya_sentiment_news where 1=1";
+		if (StringUtils.isNotBlank(jysIds)) {
+			sql += " ENTERPRISE_ID in '"+jysIds+"'";
+		}
+		if (StringUtils.isNotBlank(startTime)) {
+			sql += " and publish_date >= '"+startTime+"'";
+		}
+		if (StringUtils.isNotBlank(endTime)) {
+			sql += " and publish_date <= '"+endTime+"'";
+		}
+		if (StringUtils.isNotBlank(jysc)) {
+			sql += " and ENTERPRISE_ID = '"+jysc+"'";
+		}
+		if (StringUtils.isNotBlank(keyword)) {
+			sql += " )rx WHERE rx.keyword ~ '[\u4e00-\u9fa5]' and SUMMARY like '%"+keyword+"%' "
+					+ " )rm left join hub_commerce_ref_jys hcrj "
+					+ " on rm.ENTERPRISE_ID = hcrj.ENTERPRISE_ID "
+					+ " left join hub_dd_tqs_jys hdtj on hcrj.jys = hdtj.jys "
+					+ " where rm.rank_num<=2 and hdtj.jysfl = '1' group by rm.ENTERPRISE_ID,TITLE,SUMMARY,URL,DATA_SOURCE,PUBLISH_DATE,content limit '"+pageSize+"' OFFSET '"+currentPage+"'";
+		}else{
+			sql += " )rx where rx.keyword ~ '[\u4e00-\u9fa5]'"
+					+ " )rm left join hub_commerce_ref_jys hcrj "
+					+ " on rm.ENTERPRISE_ID = hcrj.ENTERPRISE_ID "
+					+ " left join hub_dd_tqs_jys hdtj on hcrj.jys = hdtj.jys "
+					+ " where rm.rank_num<=2 and hdtj.jysfl = '1' group by rm.ENTERPRISE_ID,TITLE,SUMMARY,URL,DATA_SOURCE,PUBLISH_DATE,content limit '"+pageSize+"' OFFSET '"+(currentPage-1)*pageSize+"'";
+		}
+		
+		
+		
+		//return dao.paginate(currentPage, pageSize, null, sql);
+		return dao.find(sql);
+	}
+	
+	
+	/**
+	 * 
+	 * @author hanpengda
+	 * @date 2018年4月19日
+	 * @TODO 舆情详情条数
+	 */
+	public List<CompanyFeelModel> getDetailCount(String jysIds,String startTime,String endTime,String jysc,String keyword){
+		String sql = " select count(0) as count from (select rm.ENTERPRISE_ID,TITLE,SUMMARY,URL,DATA_SOURCE,PUBLISH_DATE,content, string_agg(keyword,',')  "
 				+ "from ("
 				+ " select ENTERPRISE_ID,TITLE,SUMMARY,URL,DATA_SOURCE,PUBLISH_DATE,keyword ,content,"
 				+ " ROW_NUMBER()OVER(partition by ENTERPRISE_ID,TITLE,SUMMARY,URL,DATA_SOURCE,PUBLISH_DATE ORDER BY keyword) as rank_num "
@@ -128,16 +176,14 @@ public class CompanyFeelModel extends Model<CompanyFeelModel>{
 					+ " )rm left join hub_commerce_ref_jys hcrj "
 					+ " on rm.ENTERPRISE_ID = hcrj.ENTERPRISE_ID "
 					+ " left join hub_dd_tqs_jys hdtj on hcrj.jys = hdtj.jys "
-					+ " where rm.rank_num<=2 and hdtj.jysfl = '1' group by rm.ENTERPRISE_ID,TITLE,SUMMARY,URL,DATA_SOURCE,PUBLISH_DATE,content"
-					+ " limit 5";
+					+ " where rm.rank_num<=2 and hdtj.jysfl = '1' group by rm.ENTERPRISE_ID,TITLE,SUMMARY,URL,DATA_SOURCE,PUBLISH_DATE,content ) as a";
 		}
 		
 		
 		
+		//return dao.paginate(currentPage, pageSize, null, sql);
 		return dao.find(sql);
+		
 	}
-	
-	
-	
 	
 }
