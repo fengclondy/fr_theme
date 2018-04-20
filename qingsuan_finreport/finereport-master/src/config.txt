@@ -14,4 +14,4 @@ insight_pwd=insight@2017
 #driver = org.postgresql.Driver
 
 #是否开发环境
-isDev=false
+isDev=true
