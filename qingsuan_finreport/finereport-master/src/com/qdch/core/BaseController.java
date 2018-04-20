@@ -5,6 +5,7 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -129,10 +130,12 @@ public class BaseController extends Controller{
 			Set<String> pNames=map.keySet();
 			List<String> names=new ArrayList<String>();
 			names.addAll(pNames);
+			Collections.reverse(names) ;
 			for(String pname:names){
 				RoleMenuModel m=new RoleMenuModel();
 				m.setName(pname);
 				Set<RoleMenuModel> children=map.get(pname);
+				//子排序 按照sortIndex
 				List<RoleMenuModel> cmenus=new ArrayList<RoleMenuModel>();
 				cmenus.addAll(children);
 				m.setChildren(cmenus);
@@ -187,6 +190,7 @@ public class BaseController extends Controller{
 				&&user.getUsername().equals(userName)){
 			return user;
 		}
+		user.setType(roleType);
 		if(StringUtils.isNotBlank(userName)){
 			//获取用户信息
 			//String url="http://localhost:8075/WebReport/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
