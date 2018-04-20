@@ -92,6 +92,9 @@
             color: #fffb8f;
             text-align: left;
         }
+        .red ~ td{
+            color:#fffb8f;
+        }
         .left{
             text-align: left;
         }
@@ -109,13 +112,14 @@
             display: none;
             border-radius: 8px 8px 0 0;
         }
-        .modelTitle{
+      /*   .modelTitle{
             height: 30px;
             border-radius: 8px 8px 0 0;
             background-color: blue;
             line-height: 30px;
 
-        }
+        } */
+       
         .del{
             position: absolute;
             top: 5px;
@@ -176,7 +180,7 @@
                         </div>
                  
                     </div>
-                    <div class="inputGroup">
+                   <!--  <div class="inputGroup">
                         <label for="pingtaimingcheng">信息有无：</label>
                         <div class="mySelect" id="pingtaimingcheng">
                             <div class="myOption selected inputWidth"><span
@@ -192,7 +196,7 @@
                             </ul>
                         </div>
                  
-                    </div>
+                    </div> -->
                     <div class="inputGroup">
                         <div class="btnGroup search">
                             <button class="active" id="search" type="button">查询</button>
@@ -221,9 +225,6 @@
                           ##for(j in pingtailist!){
                           	<th class="center defen1" data="${j.jysinfo!}">${j.fscore!}</th>
                           ##}
-
-
-
 
                         </tr>
                         <tr>
@@ -761,6 +762,29 @@
                             
                           
                         </tr>
+                        <tr>
+                            <td class="center left"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.qqt.ssxx!} 
+                          	</td>
+                            ##}
+                            
+                          
+                        </tr>
+                        <tr>
+                            <td class="center left"></td>
+                            ##for(j in pingtailist!){
+                           
+                          	<td class="center">
+                          		 ${j.qqt.ssxx!} 
+                          	</td>
+                            ##}
+                            
+                          
+                        </tr>
+                        
                     </table>
                 </div>
             </div>

@@ -18,6 +18,58 @@
         .tableBox tbody tr td:last-child{
             color: #00abde;
         }
+		.inforContainer{
+			width:60%;
+			margin:0 auto;
+			padding:50px 80px;
+			text-align: center;
+			position: relative;
+		}
+		.inforContainer ul{
+			list-style: none;
+			position: absolute;
+			top:50%;
+			left:50%;
+		}
+		.inforContainer ul li{
+		    margin: 40px 0;
+		}
+		.inforContainer ul li span{				
+			margin-right: 30px;
+		}
+		.inforContainer ul li select{
+			min-width:260px;
+			height:30px;
+		}
+		.inforContainer ul li:last-child input{
+			width:100px;
+			padding:6px 12px;
+			background: #07729F;
+		    border: none;
+		    color: #fff;
+		    border-radius:15px;
+		}
+		#inforBtn{
+			margin-left: 60px;
+		}
+		.inforContainer{
+			display: none;
+			width:100%;
+			height:100%;
+			background: #fff;
+			position: absolute;
+			top:0;
+			left:0;
+			z-index: 10;
+			color:#000;
+		}
+		.file{
+			display: inline-block;
+			min-width: 260px;
+		}
+		.file input{
+			width:260px;
+		}
     </style>
  
 </head>
@@ -38,7 +90,25 @@
             <li class="next" id="pagenext">下一页</li>
             <li class="split">|</li>
             <li class="end" id="pageend">末页</li>
-          
+            <li class="output">
+                <a class="dropDown">输出</a>
+                <ul>
+                    <li class="pdf"><span class="icon"></span> PDF</li>
+                    <li class="excel"><span class="icon"></span>
+                        <a class="dropDown">EXCEL</a>
+                        <ul>
+                            <li>分页导出</li>
+                            <li>原样导出</li>
+                            <li>分页分sheet导出</li>
+                        </ul>
+                    </li>
+                    <li class="word"><span class="icon"></span> WORD</li>
+                    <li class="picture"><span class="icon"></span> 图片</li>
+                </ul>
+            </li>
+            <li class="add">
+            	<a href="${contextPath}/qdch/monthlyrepor/addnew">增加</a>
+            </li>
         </ul>
     </nav>
     <div class="formBox open">
@@ -50,8 +120,8 @@
                 
                     <option value="" selected>全部</option> 
                      ##for(j in jyslist!){
-                                    <option id="${j.jysc!}" value="${j.jyscmc!}" class="myOption" >${j.jyscmc!}</li>
-                                     ##}
+                           <option id="${j.jysc!}" value="${j.jyscmc!}" class="myOption" >${j.jyscmc!}</li>
+                     ##}
 
                 </select>
             </div>
@@ -95,6 +165,37 @@
     </div>
 </div>
 
+<div id="" class="inforContainer">
+		<ul>
+			<li>
+				<span>报告类型：</span>
+				<select id="selectReport" name="bglx">
+					<option value="1">日报</option>
+					<option value="2">月报</option>
+					<option value="3">年报</option>
+				</select>
+			</li>
+			<li>
+				<span>交易市场：</span>
+				<select id="selectDeal" name="jys">
+					<option value="1">海尔云贷</option>
+					<option value="2">海尔云贷</option>
+					<option value="3">海尔云贷</option>
+				</select>
+			</li>
+			<li>
+				<span>操&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;作：</span>
+				<div class="file">
+					<input id="file" type="file" value="文件名"/>
+				</div>
+			</li>
+			<li>
+				<input id="inforSub" type="button" value="保存"/>
+				<input id="inforBtn" type="button" value="取消"/>
+			</li>
+		</ul>
+</div>
+
 <script src="${contextPath}/static/asserts/js/echarts-4.0.js"></script>
 <script src="${contextPath}/static/asserts/js/jquery-2.2.4.js"></script>
 <script src="${contextPath}/static/js/pageCom.js"></script>
@@ -104,7 +205,7 @@
 	var riskIndex;
      $(function () {
         $(".formFoldHandle").click(function () {
-					$(".formBox").toggleClass("open")
+			$(".formBox").toggleClass("open")
         })
         
     }); 
@@ -193,13 +294,68 @@
 								"                <td>"+item.jys+"</td>\n" +
 								"               <td>"+item.upload_user+"</td>\n" +
 								"               <td>"+item.upload_time+"</td>\n" +
-								"                <td><span><a href='/QDCH/pdf/web/viewer.html?file=test.pdf' target='_Blank'>预览</a></span><span><a href='/QDCH/pdf/web/test.pdf' download='监管报告'>下载</a></span></td></tr>  " 
+								"                <td><span><a href='/QDCH/pdf/web/viewer.html?file=test.pdf' target='_Blank'>预览</a></span>"+
+										            "<span><a href='/QDCH/pdf/web/test.pdf' download='监管报告'>下载</a></span></td></tr>  " 
  		
  			})
 				$('tbody').html(tableList)
 			})
 		}
-		 function getTableBody(pageNum,pageSize,appenddata) {
+		
+		
+		/* dsh */
+		
+		function getTableBody(pageNum,pageSize,appenddata) {
+		        if(!appenddata){
+		            appenddata = "";
+
+		        }
+		        $.ajax({
+		            type: "POST",
+		            url: "monthlyrepor/getMonthlyReportList"+appenddata,
+		            data: {"pageNum":pageNum,"pageSize":pageSize},
+		            dataType: "json",
+		            success: function(data){
+		                var  append = "";
+		                $(".nuber").text(data.totalRow);
+		                $('#pageCurrent').val(data.pageNumber);
+
+		                $('.pageTotal').text(data.totalPage);
+		                totalPage = data.totalPage;
+		                pageNumber = data.pageNumber;
+				       $.each(data.list, function(index, value, array) {
+				    	   
+				           append +=
+				               "  <tr>       <td><a href=\"\" class=\"fengxian001\">"+(index+1)+"</a></td>\n" +
+				               "                <td>"+value.type+"</td>\n" +
+				               "                <td>"+value.jys+"</td>\n" +
+				               "               <td>"+value.upload_user+"</td>\n" +
+				               "               <td>"+value.upload_time+"</td>\n" +
+				               "                <td><span><a href='/QDCH/pdf/web/viewer.html?file=test.pdf' target='_Blank'>预览</a></span>" +    
+				               "                <span onclick='downFile(\""+value.file_name+"\")'>下载</span></td></tr>  ";
+				              
+				       });
+			       $('tbody').html(append);
+					                
+					               
+					                
+					            }
+					        })
+		    }
+		
+		
+	
+			//文件下载
+			function downFile(str){
+		        var url = "${contextPath}/qdch/fileupLoad/downLoad?fileName="+str;  
+		        window.open(url);
+			}
+
+		
+		
+		/* 源代码 */
+		
+		/*  function getTableBody(pageNum,pageSize,appenddata) {
 		        if(!appenddata){
 		            appenddata = "";
 
@@ -230,12 +386,9 @@
 		                });
 		                // append +="</tr>";
 		                $('tbody').html(append);
-
 		            }
-
 		        })
-		    }
-
+		    } */
 </script>
 </body>
 </html>
