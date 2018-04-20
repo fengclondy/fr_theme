@@ -21,9 +21,11 @@ public class CoCompanyBrachModel extends Model<CoCompanyBrachModel>{
 	 * @TODO
 	 */
 	public List<CoCompanyBrachModel> getBrach(String name){
-		String sql ="select * from hub_static_company_branch ";
+		String sql ="select c.company_name,c.legal_person,c.company_status,c.establish_date from hub_static_company_branch b"
+   +" LEFT JOIN hub_static_company_info c on c.company_name=b.company_name ";
+
 		if(StringUtils.isNotBlank(name)){
-			sql+=" where company_name='"+name+"'";
+			sql+=" where b.company_name='"+name+"'";
 		} 
 		return dao.find(sql);
 		
