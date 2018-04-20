@@ -8,10 +8,10 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 
+
 import com.fr.hailian.util.JDBCUtil;
 import com.jfinal.upload.UploadFile;
 import com.qdch.core.BaseController;
-import com.qdch.util.Preference;
 import com.qdch.xd.model.MonthlyReportModel;
 
 
@@ -26,14 +26,11 @@ public class FileUpLoadController extends BaseController {
 		setAttr("jyslist", MonthlyReportModel.dao.getJys(getDataScopeByUserName()));//在进入页面时就获取权限内表为条件下拉框做准备
 		render("xd/pages/06_02yuebaoshangchuan.html");
 	}
+	//文件上传
 	public void upload(){  
         HttpServletRequest request = getRequest();  
-        String basePath = request.getContextPath();   
         //存储路径  
-        String path1 = getSession().getServletContext().getRealPath(Preference._PATH);  
-        String path ="D:/loadup";  
-        System.out.println(basePath);
-        System.out.println(path1);
+        String path ="D:/apache-tomcat-7.0.78/webapps/WebReport/pdf-files";  
         UploadFile file = getFile("file");  
         String fileName = "";  
         if(file.getFile().length() > 3*1024*1024) {  
@@ -41,20 +38,16 @@ public class FileUpLoadController extends BaseController {
         }else{  
             //上传文件  
             String type = file.getFileName().substring(file.getFileName().lastIndexOf(".")); // 获取文件的后缀  
-            fileName = System.currentTimeMillis()+type; // 对文件重命名取得的文件名+后缀  
+            fileName = file.getFileName(); // 对文件重命名取得的文件名+后缀  
             String dest = path + "/" + fileName;  
             file.getFile().renameTo(new File(dest));  
-           // String realFile = basePath + "/" + Preference._PATH +  fileName;          
-            String fname="/"+fileName;  
-            setAttr("fname", fname);  
-            //setAttr("url", realFile);  
-              
         }  
         String fname = file.getFileName();
         String title = fname;
-        fname = fileName;
+        fname = title;
 
         String jys = getPara("jys");
+        //获取交易所分类
         int jysfl = 0;
         List<MonthlyReportModel> list = MonthlyReportModel.dao.getJyscfl(jys);
         for (MonthlyReportModel m : list) {
@@ -77,5 +70,24 @@ public class FileUpLoadController extends BaseController {
 		renderJson();  
 		
     }  
+	
+	//文件下载
+	public void downLoad(){ 
+		String fileName = getPara("fileName");
+		
+        String downPath = "D:/apache-tomcat-7.0.78/webapps/WebReport/pdf-files";  
+       
+        File file=new File(downPath+"/"+fileName);  
+          
+        if(file.exists()){  
+        	renderFile(file);
+
+        }  
+        else{  
+            renderJson();  
+        }  
+    } 
+	
+	
 	
 }

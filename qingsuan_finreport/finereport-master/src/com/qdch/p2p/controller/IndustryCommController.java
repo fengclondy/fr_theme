@@ -21,6 +21,7 @@ import com.qdch.xd.model.CoEnterpriseModel;
 import com.qdch.xd.model.CoExecutorModel;
 import com.qdch.xd.model.CoJobModel;
 import com.qdch.xd.model.CoJudgmentModel;
+import com.qdch.xd.model.CoMainPersonModel;
 import com.qdch.xd.model.CoPatentModel;
 import com.qdch.xd.model.CoPenaltvModel;
 import com.qdch.xd.model.CoReportModel;
@@ -127,7 +128,14 @@ public class IndustryCommController extends BaseController {
 		     setAttr("marknews", mark);
 		  List<CompanysInfoModel> infoModels= CompanysInfoModel.dao.getCompanybyName(basic.get(0).get("legal_person")+"");
 		      setAttr("comInfo", infoModels);
-		 render("p2p/pages/04_01pingtaigongshang.html");
+		      
+		      setAttr("all", CoShareHolderModel.dao.getMainSize(name).size()+CoShareHolderModel.dao.getManagerSize(name).size()
+					  +CoShareHolderModel.dao.getDirectSize(name).size()+CoShareHolderModel.dao.getSuperSize(name).size()+stackInfo.size()+
+					  invest.size()+changeLog.size()+branch.size()+liaison.size()+ register.size()+companyType.size());
+		     setAttr("allsize", judgment.size()+announce.size()+exector.size()+businesExeption.size()+penaltv.size()+job.size()); 
+		      List<CoMainPersonModel> senior= CoMainPersonModel.dao.getRelact(basic.get(0).get("legal_person"));
+		     setAttr("senior", senior);
+		     render("p2p/pages/04_01pingtaigongshang.html");
 	 }
 
 	/**

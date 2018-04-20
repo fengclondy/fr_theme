@@ -40,25 +40,7 @@
             flex: 7;
             height: 70%;
         }
-        /*newsInformation 最新资讯*/
-        .newsInformation {
-            width: 100%;
-            margin: 6% 10%;
-            height: 100%;
-        }
-        .newsInformation li{
-            height: 33.33%;
-            line-height: 33.33%;
-        }
-        .newsInformation li a, .newsInformation li span {
-            font-size: 0.9rem;
-        }
-        .newsInformation li span {
-            margin-right: .8rem;
-        }
-        .newsInformation li>a:hover {
-            color: var(--themeBlue);
-        }
+      
         /*舆情详情*/
         .customerSelect {
             padding: 0.5rem 1rem;
@@ -104,10 +86,7 @@
         a {
             text-decoration: none;
         }
-        li {
-            float: left;
-            list-style: none;
-        }
+
         .left {
             width: 100%;
         }
@@ -148,6 +127,7 @@
         .bgi4 {
             background: url("${contextPath}/static/img/03_05shengyufengxian/lticn_eye.png") no-repeat left center;
             padding-left: 1.8rem;
+            background-size: transparent;
         }
         .left > ul > li > p > a:first-child {
             display: block;
@@ -200,12 +180,38 @@
             border: 2px solid #00abde;
             border-radius: 0.1rem;
         }
-        /*#BeginTime,#EndTime{*/
-            /*width: 9rem;*/
-            /*height: 28%;*/
-            /*background: transparent;*/
-            /*border: 2px solid #00abde;*/
-        /*}*/
+          /*newsInformation 最新资讯*/
+        #informationBox1{
+            width: 100%;
+            height: 100%;
+            margin: 0 auto;
+            /*background: pink;*/
+        }
+
+        .myscroll1{
+            width: 100%;
+            height: 220px;
+            /*border: 1px solid #000;*/
+            overflow: hidden;
+        }
+        .myscroll1 li{
+            list-style: none;
+            height: 45px;
+            line-height: 15px;
+            margin-left: 20px;
+
+        }
+        .myscroll1 li a{
+            font-size:0.8rem;
+            color: #fff;
+            text-decoration: none;
+        }
+
+
+        #informationBox1 li>a:hover {
+            color: var(--themeBlue);
+        }
+  
 
     </style>
 </head>
@@ -221,7 +227,22 @@
                     </div>
                     <div class="chartContent">
                         <div class="chartBody">
-                            <div id="ec_03_05shichangyuqinggailan"></div>
+						
+							    <div class="inputGroup" style="margin-top: 0.2rem">
+							        <label>交易市场:</label>&nbsp;&nbsp;
+							        <div class="mySelect">
+							            <div class="myOption selected"><span class="text"></span><span class="icon"></span></div>
+							            <ul class="myOptionBox">
+							            	<li class="myOption selected liandong" value="">全部</li>
+							                ##for(p in flist){
+                                               		<li class="myOption liandong" value="${p.jysinfo!}">${p.jysinfo!}</li>
+                                                ##}
+							            </ul>
+							        </div>
+							    </div>
+						
+							
+	                         <div id="ec_03_05shichangyuqinggailan"></div>
                         </div>
                     </div>
                 </div>
@@ -292,12 +313,17 @@
                         </div>
                         <div class="chartContent">
                             <div class="chartBody">
-                                <ul class="newsInformation">
-                                    <li><a href="#">期货日报:上市钢企积极参与期货套保</a></li>
-                                    <li><a href="#">期货日报:上市钢企积极参与期货套保</a></li>
-                                    <li><a href="#">期货日报:上市钢企积极参与期货套保</a></li>
-
-                                </ul>
+                                <div id="informationBox1">
+								    <div class="myscroll1">
+								        <ul>
+								          <!-- <li>1</li>
+								          <li>1</li>
+								          <li>1</li>
+								          <li>1</li>
+								          <li>1</li> -->
+								        </ul>
+								    </div>
+								</div>
                             </div>
                         </div>
                     </div>
@@ -319,9 +345,11 @@
                                         <div class="mySelect" id="jiaoyishichang">
                                             <div class="myOption selected"><span class="text"></span><span class="icon"></span></div>
                                             <ul class="myOptionBox">
-                                                <li class="myOption selected">青岛华银有限公司</li>
-                                                <li class="myOption">青岛华银有限公司</li>
-                                                <li class="myOption">青岛华银有限公司</li>
+                                            	<li class="myOption selected jysc" value="">全部</li>
+                                                
+                                            	##for(p in flist){
+                                               		<li class="myOption jysc" value="${p.enterprise_id!}">${p.jysinfo!}</li>
+                                                ##}
                                             </ul>
                                         </div>
                                     </div>
@@ -330,7 +358,7 @@
                                     <div class="inputGroup fl">
                                         <label for="BeginTime">开始时间：</label>
                                         <input placeholder="请输入开始日期" id="BeginTime" class="laydate-icon timeUstyle stateUTime"
-                                               onclick="laydate({istime: true,format:'YYYY-MM-DD hh:mm'})">
+                                               onclick="laydate({istime: true,format:'YYYY-MM-DD '})">
                                         <!--<input type="Date" id="BeginTime">-->
                                     </div>
                                 </div>
@@ -345,7 +373,7 @@
                                     <div class="inputGroup fl">
                                         <label for="EndTime">结束时间：</label>
                                         <input placeholder="请输入开始日期" id="EndTime" class="laydate-icon timeUstyle stateUTime"
-                                               onclick="laydate({istime: true,format:'YYYY-MM-DD hh:mm'})">
+                                               onclick="laydate({istime: true,format:'YYYY-MM-DD '})">
                                         <!--<input type="Date" id="EndTime">-->
                                     </div>
                                 </div>
@@ -359,78 +387,6 @@
                             <div class="customerInformationList">
                                 <div class="left fl">
                                     <ul class="leftBox">
-                                        <li>
-                                            <div class="fl pic"><img src="${contextPath}/static/img/03_05shengyufengxian/02.png"></div>
-                                            <p class="fr">
-                                                <a href="#">保监会启动偿二代二期工程建设</a>
-                                                <span class="neirong">为进一步补齐制度短板和监管漏洞，提升保险风险管理贺风险抵御能力，保监会于近日印发&gt偿二代二期工程建设方案&lt（一下简称《建设方案》），启动偿二代二期工程建设。</span>
-                                                <span>来源:</span><a href="#" class="bgi1 source1">中国网</a>
-                                                <span>|</span>
-                                                <span>涉及词:</span><a href="#">保监会、保险</a>
-                                                <span class="bgi4"><a href="#">256</a></span>
-                                                <span class="fr bgi2">2014-02-19 12:26</span>
-                                            </p>
-                                        </li>
-                                        <li>
-                                            <div class="fl pic"><img src="${contextPath}/static/img/03_05shengyufengxian/02.png"></div>
-                                            <p class="fr">
-                                                <a href="#">保监会启动偿二代二期工程建设</a>
-                                                <span class="neirong">为进一步补齐制度短板和监管漏洞，提升保险风险管理贺风险抵御能力，保监会于近日印发&gt偿二代二期工程建设方案&lt（一下简称《建设方案》），启动偿二代二期工程建设。</span>
-                                                <span>来源:</span><a href="#" class="bgi1 source2">中国网</a>
-                                                <span>|</span>
-                                                <span>涉及词:</span><a href="#">保监会、保险</a>
-                                                <span class="bgi4"><a href="#">256</a></span>
-                                                <span class="fr bgi2">2014-02-19 12:26</span>
-                                            </p>
-                                        </li>
-                                        <li>
-                                            <div class="fl pic"><img src="${contextPath}/static/img/03_05shengyufengxian/02.png"></div>
-                                            <p class="fr">
-                                                <a href="#">保监会启动偿二代二期工程建设</a>
-                                                <span class="neirong">为进一步补齐制度短板和监管漏洞，提升保险风险管理贺风险抵御能力，保监会于近日印发&gt偿二代二期工程建设方案&lt（一下简称《建设方案》），启动偿二代二期工程建设。</span>
-                                                <span>来源:</span><a href="#" class="bgi1">中国网</a>
-                                                <span>|</span>
-                                                <span>涉及词:</span><a href="#">保监会、保险</a>
-                                                <span class="bgi4"><a href="#">256</a></span>
-                                                <span class="fr bgi2">2014-02-19 12:26</span>
-                                            </p>
-                                        </li>
-                                        <li>
-                                            <div class="fl pic"><img src="${contextPath}/static/img/03_05shengyufengxian/02.png"></div>
-                                            <p class="fr">
-                                                <a href="#">保监会启动偿二代二期工程建设</a>
-                                                <span class="neirong">为进一步补齐制度短板和监管漏洞，提升保险风险管理贺风险抵御能力，保监会于近日印发&gt偿二代二期工程建设方案&lt（一下简称《建设方案》），启动偿二代二期工程建设。</span>
-                                                <span>来源:</span><a href="#" class="bgi1 source3">中国网</a>
-                                                <span>|</span>
-                                                <span>涉及词:</span><a href="#">保监会、保险</a>
-                                                <span class="bgi4"><a href="#">256</a></span>
-                                                <span class="fr bgi2">2014-02-19 12:26</span>
-                                            </p>
-                                        </li>
-                                        <li>
-                                            <div class="fl pic"><img src="${contextPath}/static/img/03_05shengyufengxian/02.png"></div>
-                                            <p class="fr">
-                                                <a href="#">保监会启动偿二代二期工程建设</a>
-                                                <span class="neirong">为进一步补齐制度短板和监管漏洞，提升保险风险管理贺风险抵御能力，保监会于近日印发&gt偿二代二期工程建设方案&lt（一下简称《建设方案》），启动偿二代二期工程建设。</span>
-                                                <span>来源:</span><a href="#" class="bgi1 source4">中国网</a>
-                                                <span>|</span>
-                                                <span>涉及词:</span><a href="#">保监会、保险</a>
-                                                <span class="bgi4"><a href="#">256</a></span>
-                                                <span class="fr bgi2">2014-02-19 12:26</span>
-                                            </p>
-                                        </li>
-                                        <li>
-                                            <div class="fl pic"><img src="${contextPath}/static/img/03_05shengyufengxian/02.png"></div>
-                                            <p class="fr">
-                                                <a href="#">保监会启动偿二代二期工程建设</a>
-                                                <span class="neirong">为进一步补齐制度短板和监管漏洞，提升保险风险管理贺风险抵御能力，保监会于近日印发&gt偿二代二期工程建设方案&lt（一下简称《建设方案》），启动偿二代二期工程建设。</span>
-                                                <span>来源:</span><a href="#" class="bgi1 source5">中国网</a>
-                                                <span>|</span>
-                                                <span>涉及词:</span><a href="#">保监会、保险</a>
-                                                <span class="bgi4"><a href="#">256</a></span>
-                                                <span class="fr bgi2">2014-02-19 12:26</span>
-                                            </p>
-                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -448,100 +404,247 @@
 <script src="${contextPath}/static/js/pageCom.js"></script>
 <script src="${contextPath}/static/js/laydate.js"></script>
 <script>
+$(function(){
+    $('.myscroll1').myScroll({
+        speed: 100, //数值越大，速度越慢
+        rowHeight: 36 //li的高度
+    });
+});
+// JavaScript Document
+(function($){
+    $.fn.myScroll = function(options){
+        //默认配置
+        var defaults = {
+            speed:1,  //滚动速度,值越大速度越慢
+            rowHeight:36 //每行的高度
+        };
+
+        var opts = $.extend({}, defaults, options),intId = [];
+
+        function marquee(obj, step){
+
+            obj.find("ul").animate({
+                marginTop: '-=1'
+            },0,function(){
+                var s = Math.abs(parseInt($(this).css("margin-top")));
+                if(s >= step){
+                    $(this).find("li").slice(0, 1).appendTo($(this));
+                    $(this).css("margin-top", 0);
+                }
+            });
+        }
+
+        this.each(function(i){
+            var sh = opts["rowHeight"],speed = opts["speed"],_this = $(this);
+            intId[i] = setInterval(function(){
+                if(_this.find("ul").height()<=_this.height()){
+                    clearInterval(intId[i]);
+                }else{
+                    marquee(_this, sh);
+                }
+            }, speed);
+
+            _this.hover(function(){
+                clearInterval(intId[i]);
+            },function(){
+                intId[i] = setInterval(function(){
+                    if(_this.find("ul").height()<=_this.height()){
+                        clearInterval(intId[i]);
+                    }else{
+                        marquee(_this, sh);
+                    }
+                }, speed);
+            });
+
+        });
+
+    }
+
+})(jQuery);
+
+
     var allCharts = [];
+    var fxyq001;
+    var fxyq002;
     $(function () {
-    	var jysinfo = "";
-        //市场舆情浏览 模块一
-        $.post("${contextPath}/qdch/companyfeel/getOverviewCompanFeel",function(data){
-        	var seriesData = [];
-        	$.each(data,function(index,item){
-        		seriesData.push({value:item.qty,name:item.jysinfo});
-        	})
-        	console.log(seriesData);
-        	var fxyq001 = echarts.init($("#ec_03_05shichangyuqinggailan")[0]);
-             fxyq001.setOption(opt_pie);
-             fxyq001.setOption({
-            	 label: {
-                     fontSize:10,
-                     
-                 },
-                 legend:{
-                     textStyle:{
-                         fontSize:12
-                     }
-                 },
-                 series: [
-                     {
-                         name:'',
-                         type: 'pie',
-                         radius: '50%',
-                         center: ['36%', '50%'],
-                         data: seriesData
-                     }
-                 ]
-             });
-        })
-       $.post("${contextPath}/qdch/companyfeel/getRealCompanyFeel",{"jysinfo":jysinfo},function(data){
-    	   var xAxisData = [];
-    	   var seriesData = [];
-    	   var length = data.length;
-    	  
-    	   $.each(data,function(index,item){
-    		   xAxisData.push(item.publish_date);
-    		   seriesData.push(item.qty);
-    	   })
-    	   console.log(xAxisData);
-    	   console.log(seriesData);
-    	   //实时舆情
-           var fxyq002 = echarts.init($("#ec_shishiyuqing001")[0]);
-           fxyq002.setOption(opt_com);
-           fxyq002.setOption(opt_line);
-           fxyq002.setOption({
-               legend: {
-                   show: false
-               },
-               grid: {
-                   top: '20%',
-                   left: '10%',
-                   right: '10%',
-                   bottom: '20%'
-               },
-               xAxis: {
-                   name: '日',
-                   // type: 'category',
-                   // boundaryGap: false,
-                   data: xAxisData
-               },
-               yAxis: {
-                   name: '热度值',
-                   type: 'value'
-
-               },
-               series: [
-                   {
-                       name: '数量',
-                       type: 'line',
-                       symbol: 'circle',
-                       data: seriesData,
-                       areaStyle: {
-                           color: {
-                               x: 0,
-                               y: 0,
-                               x2: 0,
-                               y2: 1,
-                               colorStops: [{
-                                   offset: 0, color: colors[0] // 0% 处的颜色
-                               }, {
-                                   offset: 1, color: '#00adef11' // 100% 处的颜色
-                               }]
-                           }
+    	detail();
+    	realCompanyFeel();
+    	overView();
+    	getNews();
+    	/*-----全局变量--------*/
+       var jysinfo = "";
+       var jysc = "";
+       var startTime = "";
+       var endTime = "";
+       var keyword = "";
+       /*-----全局变量--------*/
+       $(".jysc").click(function () {
+			jysc = $(this).attr('value');
+	   })
+	   $(".liandong").click(function () {
+		   jysinfo = $(this).attr('value');
+			
+			realCompanyFeel();
+			getNews(); 
+		})
+		
+	   $(".yuqingsearch").click(function () {
+			startTime = $("#BeginTime").val().substring(0,4)+$("#BeginTime").val().substring(5,7)+$("#BeginTime").val().substring(8,10)
+			endTime = $("#EndTime").val().substring(0,4)+$("#EndTime").val().substring(5,7)+$("#EndTime").val().substring(8,10)
+			keyword = $(".gjz").val();
+			/* if (startTime > endTime) {
+				alert("结束时间不能小于开始时间");
+				return;
+			} */
+			
+			detail();
+	   })
+     	/*-----------------市场舆情浏览 模块一 ---------------*/
+       function overView() {
+  		 
+          $.post("${contextPath}/qdch/companyfeel/getOverviewCompanFeel",function(data){
+          	var seriesData = [];
+          	$.each(data,function(index,item){
+          		seriesData.push({value:item.qty,name:item.jysinfo});
+          	})
+          	console.log(seriesData);
+          	 fxyq001 = echarts.init($("#ec_03_05shichangyuqinggailan")[0]);
+               fxyq001.setOption(opt_pie);
+               fxyq001.setOption({
+              	 label: {
+                       fontSize:10,
+                       
+                   },
+                   legend:{
+                  	 show:false,
+                       textStyle:{
+                           fontSize:12
                        }
-                   }
+                   },
+                   series: [
+                       {
+                           name:'',
+                           type: 'pie',
+                           radius: '50%',
+                           center: ['50%', '50%'],
+                           data: seriesData
+                       }
+                   ]
+               });
+          })
+		}
+       /*-----------------市场舆情浏览 模块一 ---------------*/
+        /*-----------------实时舆情 ---------------*/
+       function realCompanyFeel(){
+   		$.post("${contextPath}/qdch/companyfeel/getRealCompanyFeel",{"jysinfo":jysinfo},function(data){
+   	    	   var xAxisData = [];
+   	    	   var seriesData = [];
+   	    	   var length = data.length;
+   	    	  
+   	    	   $.each(data,function(index,item){
+   	    		   xAxisData.push(item.publish_date);
+   	    		   seriesData.push(item.qty);
+   	    	   })
+   	    	   console.log(xAxisData);
+   	    	   console.log(seriesData);
+   	    	   //实时舆情
+   	           fxyq002 = echarts.init($("#ec_shishiyuqing001")[0]);
+   	           fxyq002.setOption(opt_com);
+   	           fxyq002.setOption(opt_line);
+   	           fxyq002.setOption({
+   	               legend: {
+   	                   show: false
+   	               },
+   	               grid: {
+   	                   top: '20%',
+   	                   left: '10%',
+   	                   right: '10%',
+   	                   bottom: '20%'
+   	               },
+   	               xAxis: {
+   	                   name: '日',
+   	                   // type: 'category',
+   	                   // boundaryGap: false,
+   	                   data: xAxisData
+   	               },
+   	               yAxis: {
+   	                   name: '热度值',
+   	                   type: 'value'
 
-               ]
-           });
-       })
+   	               },
+   	               series: [
+   	                   {
+   	                       name: '数量',
+   	                       type: 'line',
+   	                       symbol: 'circle',
+   	                       data: seriesData,
+   	                       areaStyle: {
+   	                           color: {
+   	                               x: 0,
+   	                               y: 0,
+   	                               x2: 0,
+   	                               y2: 1,
+   	                               colorStops: [{
+   	                                   offset: 0, color: colors[0] // 0% 处的颜色
+   	                               }, {
+   	                                   offset: 1, color: '#00adef11' // 100% 处的颜色
+   	                               }]
+   	                           }
+   	                       }
+   	                   }
+
+   	               ]
+   	           });
+   	       })
+   	}
+    /*-----------------实时舆情 ---------------*/
+    /*-----------------最新资讯 ---------------*/
+       function getNews(){
+    	   $.post("${contextPath}/qdch/companyfeel/getNews",{"jysinfo":jysinfo},function(data){
+        	   var content = "";
+        	   $.each(data,function(index,item){
+        		   if (item.news != null) {
+        			   content = content
+            		   +' <li><a href="#68.html">'+item.news+'</a></li>'
+					}
+        		   
+        		   
+        	   })
+        	  $(".myscroll1").find("ul").html(content);
+           })
+       }
+       /*-----------------最新资讯 ---------------*/
        
+       /*-----------------舆情详情 ---------------*/
+       function detail() {
+    	   $.ajax({
+				type:"POST",
+				url:"${contextPath}/qdch/companyfeel/getDetailCompanyFeel",
+				data:{"jysc":jysc,"startTime":startTime,"endTime":endTime,"keyword":keyword},
+				dataType:"json",
+				success:function(data){
+					console.log(data);
+					var content = ""
+					$.each(data,function(data,item){
+						content = content
+						+' <li class="fl">'
+						+'		<div class="fl pic"><img src="${contextPath}/static/img/03_05shengyufengxian/02.png"></div>'
+						+'		<p class="fr">'
+						+'   	<a href="#">'+item.title+'</a>'
+						+'    	<span class="neirong">'+item.summary+'</span>'
+						+'   	<span>来源:</span><a href="#" class="bgi1 source2">'+item.data_source+'</a>'
+						+'    	<span>|</span>'
+						+'      <span>涉及词:</span><a href="#">'+item.string_agg+'</a>'
+						+'    	<span class="bgi4"><a href="#">256</a></span>'
+						+'     	<span class="fr bgi2">'+item.publish_date+'</span>'
+						+' 		</p>'
+						+'</li>'
+					})
+					$(".leftBox").html(content);
+				}
+			})
+		}
+       /*-----------------舆情详情---------------*/
         //当前时间
         //本页所有图表
         allCharts = [fxyq001, fxyq002];

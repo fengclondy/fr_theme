@@ -131,7 +131,13 @@ public class CommerceController extends BaseController{
 	     setAttr("marknews", mark);
 	  List<CompanysInfoModel> infoModels= CompanysInfoModel.dao.getCompanybyName(basic.get(0).get("legal_person")+"");
 	      setAttr("comInfo", infoModels);
-	  render("xd/pages/08_01shichanghuaxiang.html");
+	      setAttr("all", CoShareHolderModel.dao.getMainSize(name).size()+CoShareHolderModel.dao.getManagerSize(name).size()
+				  +CoShareHolderModel.dao.getDirectSize(name).size()+CoShareHolderModel.dao.getSuperSize(name).size()+stackInfo.size()+
+				  invest.size()+changeLog.size()+branch.size()+liaison.size()+ register.size()+companyType.size());
+	     setAttr("allsize", judgment.size()+announce.size()+exector.size()+businesExeption.size()+penaltv.size()+job.size()); 
+	     RiskTrendDetailedModel risk = RiskTrendDetailedModel.dao.getScore(getDataScopeByUserName(), name);
+	     setAttr("risk", risk);
+	     render("xd/pages/08_01shichanghuaxiang.html");
 	}
 	/**
 	 * 获取企业基本信息 工商信息 
@@ -435,7 +441,7 @@ public class CommerceController extends BaseController{
 	 * @TODO
 	 */
 	public void gainScore(){
-		 String name=getPara("name");
+	String name=getPara("name");
 	List<CoScabilityModel>	  scability= CoScabilityModel.dao.getScore(name, getDataScopeByUserName());
 	  if (scability.size()==0) {
 		  mRenderJson("kong");
