@@ -1,6 +1,7 @@
 package com.qdch.config;
 import com.qdch.core.PostgreSqlDialect;
 import com.qdch.xd.model.*;
+
 import org.beetl.core.GroupTemplate;
 import org.beetl.ext.jfinal3.JFinal3BeetlRenderFactory;
 
@@ -15,7 +16,6 @@ import com.jfinal.ext.handler.ContextPathHandler;
 import com.jfinal.kit.PathKit;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
-
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.template.Engine;
 import com.qdch.core.QdchController;
@@ -37,13 +37,23 @@ import com.qdch.p2p.controller.SuperviseController;
 import com.qdch.p2p.model.AverageTimeModel;
 import com.qdch.p2p.model.AvgTermTimeModel;
 import com.qdch.p2p.model.CoBusinessTypeModel;
+import com.qdch.p2p.model.CoBzxpersonModel;
 import com.qdch.p2p.model.CoChangeModel;
+import com.qdch.p2p.model.CoComPatentModel;
+import com.qdch.p2p.model.CoComReportModel;
+import com.qdch.p2p.model.CoComcopyrightModel;
+import com.qdch.p2p.model.CoComjobModel;
 import com.qdch.p2p.model.CoCompanyBrachModel;
 import com.qdch.p2p.model.CoCompanyInfoModel;
 import com.qdch.p2p.model.CoCompanyTypeModel;
 import com.qdch.p2p.model.CoCorePersonModel;
+import com.qdch.p2p.model.CoDishonestModel;
 import com.qdch.p2p.model.CoExecptionModel;
+import com.qdch.p2p.model.CoLegalModel;
+import com.qdch.p2p.model.CoLegalPublicModel;
 import com.qdch.p2p.model.CoShareholderInfoModel;
+import com.qdch.p2p.model.CoSoftrightModel;
+import com.qdch.p2p.model.CoTrademarkModel;
 import com.qdch.p2p.model.CollectPrincipalModel;
 import com.qdch.p2p.model.CompanyFeelModel;
 import com.qdch.p2p.model.CompositeInterestModel;
@@ -101,7 +111,6 @@ import com.qdch.xd.controller.ProfitabilityController;
 import com.qdch.xd.controller.ReputationRiskController;
 import com.qdch.xd.controller.RiskOverviewController;
 import com.qdch.xd.controller.XiaoDaiController;
-
 import com.qdch.xd.model.CoAnnounceModel;
 import com.qdch.xd.model.CoBranchModel;
 import com.qdch.xd.model.CoBusinessModel;
@@ -429,8 +438,16 @@ public class Config extends JFinalConfig {
         arp.addMapping("hub_static_operation_exception", CoExecptionModel.class);//p2p-工商-静态-经营异常
         arp.addMapping("hub_static_shareholder_info", CoShareholderInfoModel.class);//p2p-工商-静态-股东信息
         arp.addMapping("hub_static_business_type", CoBusinessTypeModel.class);//p2p-工商-静态-行业分类
-		
-		
+		arp.addMapping("hub_static_legal", CoLegalModel.class);//p2p-工商-静态-法律诉讼
+		arp.addMapping("hub_static_legal_public", CoLegalPublicModel.class);//p2p-工商-静态 法律公告
+		arp.addMapping("hub_static_dishonest", CoDishonestModel.class);//p2p-工商-静态-失信人
+		arp.addMapping("hub_static_bzx_person", CoBzxpersonModel.class);//p2p-工商-静态-被执行人
+		arp.addMapping("hub_static_trade_mark", CoTrademarkModel.class);//p2p-工商-静态-商标
+		arp.addMapping("hub_static_company_report", CoComReportModel.class);//p2p-静态-工商-年报
+		arp.addMapping("hub_static_patent_info", CoComPatentModel.class);//p2p-静态-工商-专利
+		arp.addMapping("hub_static_copyright_info", CoComcopyrightModel.class);//p2p-静态-工商-著作权
+		arp.addMapping("hub_static_softright_info", CoSoftrightModel.class);//p2p-静态-工商-软件著作权
+		arp.addMapping("hub_static_company_job_info", CoComjobModel.class);//p2p-静态-工商-招聘
 		/***小贷 王风 insight层 Model START***/
 		
 		

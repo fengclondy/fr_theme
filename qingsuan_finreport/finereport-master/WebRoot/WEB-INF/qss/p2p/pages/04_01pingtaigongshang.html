@@ -589,85 +589,85 @@
 		    overflow: hidden;
 		}
 		.customerInformationleft, .customerInformationmiddle {
-    width: 33.33%;
-    height: 100%;
-}
-.timeUstyle {
-    background: transparent;
-    border: 2px solid #00abde;
-    width: 14rem;
-    border-radius: 0.1rem;
-    height: 28%;
-    line-height: 28%;
-}
-.gjz {
-    width: 14rem;
-    background: transparent;
-    border: 2px solid #00abde;
-    border-radius: 0.1rem;
-}
-input::-webkit-input-placeholder {color:#fff;}
-input::-moz-placeholder {color:#fff}
-input::-ms-input-placeholder {color:#fff}
-.yuqingsearch {
-    padding: 0rem 2rem;
-    background: #00abde;
-    border: 2px solid #00abde;
-    margin-top: 50%;
-    border-radius: 0.1rem;
-}
-.customerInformationList {
-    width: 100%;
-    height: 75%;
-    overflow: hidden;
-}
-.leftBox {
-    width: 100%;
-    /*height: 20rem;*/
-    overflow: auto;
-}
-.left > ul > li {
-    width: 100%;
-    color: #756F71;
-    padding: .3rem 0.1rem;
-    font-size: 12px;
-    float: left;
-}
-.left > ul > li > .pic {
-    width: 16%;
-    height: 16%;
-    margin: 1%;
-}
-.left > ul > li > div > img {
-    width: 100%;
-    height: 100%;
-    margin-left: 0.5rem;
-        max-height: 160px;
-}
-.left > ul > li > p {
-    width: 78%;
-    padding: 0.2rem 0.2rem;
-    margin: 1%;
-}
-.left > ul > li > p a {
-    color: #fff;
-}
-.left > ul > li > p > a:first-child {
-    display: block;
-    font-size: 0.95rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-}
-.left > ul > li > p > .neirong {
-    margin: 0.1rem 0 0.5rem 0;
-    color: #00b0f4;
-    font-size: 14px;
-}
-.left > ul > li > p > span {
-    line-height: 1.3rem;
-    display: inline-block;
-    margin: 0 .5rem .5rem .5rem;
-}
+		    width: 33.33%;
+		    height: 100%;
+		}
+		.timeUstyle {
+		    background: transparent;
+		    border: 2px solid #00abde;
+		    width: 14rem;
+		    border-radius: 0.1rem;
+		    height: 28%;
+		    line-height: 28%;
+		}
+		.gjz {
+		    width: 14rem;
+		    background: transparent;
+		    border: 2px solid #00abde;
+		    border-radius: 0.1rem;
+		}
+		input::-webkit-input-placeholder {color:#fff;}
+		input::-moz-placeholder {color:#fff}
+		input::-ms-input-placeholder {color:#fff}
+		.yuqingsearch {
+		    padding: 0rem 2rem;
+		    background: #00abde;
+		    border: 2px solid #00abde;
+		    margin-top: 50%;
+		    border-radius: 0.1rem;
+		}
+		.customerInformationList {
+		    width: 100%;
+		    height: 75%;
+		    overflow: hidden;
+		}
+		.leftBox {
+		    width: 100%;
+		    /*height: 20rem;*/
+		    overflow: auto;
+		}
+		.left > ul > li {
+		    width: 100%;
+		    color: #756F71;
+		    padding: .3rem 0.1rem;
+		    font-size: 12px;
+		    float: left;
+		}
+		.left > ul > li > .pic {
+		    width: 16%;
+		    height: 16%;
+		    margin: 1%;
+		}
+		.left > ul > li > div > img {
+		    width: 100%;
+		    height: 100%;
+		    margin-left: 0.5rem;
+		        max-height: 160px;
+		}
+		.left > ul > li > p {
+		    width: 78%;
+		    padding: 0.2rem 0.2rem;
+		    margin: 1%;
+		}
+		.left > ul > li > p a {
+		    color: #fff;
+		}
+		.left > ul > li > p > a:first-child {
+		    display: block;
+		    font-size: 0.95rem;
+		    font-weight: bold;
+		    margin-bottom: 0.5rem;
+		}
+		.left > ul > li > p > .neirong {
+		    margin: 0.1rem 0 0.5rem 0;
+		    color: #00b0f4;
+		    font-size: 14px;
+		}
+		.left > ul > li > p > span {
+		    line-height: 1.3rem;
+		    display: inline-block;
+		    margin: 0 .5rem .5rem .5rem;
+		}
     </style>
 </head>
 <body id="gongshangxinxijiankong" data-title="工商信息监控">
@@ -1927,6 +1927,7 @@ function check(){
 
 }
 
+var deleteBtn = '';
     var allCharts = [];
     var GSXX = {
         init:function(){
@@ -2045,34 +2046,19 @@ function check(){
     						$(".glqyContent table tbody tr td a").click(function(){
     							var _this = $(this);
                         		that.qyClick(_this,".glqyContent table tbody tr td a");
-    							that.addTabNavBtn("04_01guanlianqiyeInfor");
-    							that.addPageContent("04_01guanlianqiyeInfor");
     						});
-                            //that.sxcp();
-                            // ec001.resize();
-                            // ec002.resize();
                         }
                         if($(lis[i]).text() == "借款企业") {
     						$(".jkqyContent table tbody tr td a").click(function(){
     							var _this = $(this);
                         		that.qyClick(_this,".jkqyContent table tbody tr td a");
-    							that.addTabNavBtn("04_01jiekuanqiyeInfor");
-    							that.addPageContent("04_01jiekuanqiyeInfor");
     						});
-                            //that.sxcp();
-                            // ec001.resize();
-                            // ec002.resize();
                         }
                         if($(lis[i]).text() == "担保企业") {
     						$(".dbqyContent table tbody tr td a").click(function(){
     							var _this = $(this);
                         		that.qyClick(_this,".dbqyContent table tbody tr td a");
-    							that.addTabNavBtn("04_01danbaoqiyeInfor");
-    							that.addPageContent("04_01danbaoqiyeInfor");
     						});
-                            //that.sxcp();
-                            // ec001.resize();
-                            // ec002.resize();
                         }
                     })
                 })(i);
@@ -2253,52 +2239,11 @@ function check(){
 
         },
         qyClick:function(obj,str){
-        	pingtai = '';
-			var liArr = obj.parents(".container").find(".myOptionBox li");
-			liArr.each(function(){
-				if($(this)[0].className.indexOf("selected") != -1){
-					pingtai = $(this)[0].innerText;
-				}
-			});//平台
-			var qyName = obj.text();//企业名称
-			if(str == ".glqyContent table tbody tr td a"){//关联企业
-				var faren = obj.parents("tr").children("td:eq(1)").text();//法人
-				qyInfor = pingtai +" 法人"+ faren +" 企业"+ qyName;
-			}
-			else if(str == ".jkqyContent table tbody tr td a"){//借款企业
-				qyInfor = pingtai +" 企业"+ qyName;
-			}
-			else{//担保企业
-				var faren = obj.parents("tr").children("td:eq(0)").text();//法人
-				qyInfor = pingtai +" 借款人"+ faren +" 企业"+ qyName;
-			}
-        },
-        addTabNavBtn:function(pageId) {// 添加tab按钮
-		    var $navTabsUl = $('#navTabs', parent.document).children("ul");
-		    $navTabsUl.append($navTabsUl.children("li:eq(0)").clone());
-		    $navTabsUl.children("li").removeClass("active")
-		        .last().addClass("active")
-		        .attr({
-		            "data-id": pageId,
-		            "data-title": "企业详情"
-		        })
-		        .children("a").attr("title", "企业详情")
-		        .children(".text").text("企业详情");
-		},
-		addPageContent:function(pageId) {// 添加页面
-		    var $pageBox = $(".pageBox", parent.document);
-		    $pageBox.append($pageBox.children(".pageContent:eq(0)").clone());
-		    $pageBox.children(".pageContent").removeClass("current")
-		        .last().addClass("current")
-		        .attr({
-		            "id": pageId,
-		            "data-title": "企业详情"
-		        })
-		        .children("iframe").attr({
-		        	"src": pageId + ".html",
-		        	"data-infor":qyInfor
-		        });	
-		}
+        	
+        	var qyName = obj.text();//企业名称
+        	alert(qyName);
+        	window.location.href="${contextPath}/qdch/relact?name="+qyName;
+       }
     }
 
     GSXX.init();

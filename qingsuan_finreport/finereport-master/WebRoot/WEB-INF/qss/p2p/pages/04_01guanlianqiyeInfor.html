@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="shortcut icon" href="{contextPath}/static/img/com/logo.png">
-    <link rel="stylesheet" href="{contextPath}/static/asserts/css/normalize.css">
-    <link rel="stylesheet" href="{contextPath}/static/css/style.css">
-    <link rel="stylesheet" href="{contextPath}/static/css/laydate.css">
-    <!--<link rel="stylesheet" href="{contextPath}/static/css/pageCom.css">-->
+   <link rel="shortcut icon" href="${contextPath}/static/img/com/logo.png">
+	<link rel="stylesheet" href="${contextPath}/static/asserts/css/normalize.css">
+	<link rel="stylesheet" href="${contextPath}/static/asserts/css/normalize.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/style.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/pageCom.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/index.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/laydate.css">
     <style>
         .fl {
             float: left;
@@ -22,9 +24,7 @@
             overflow: hidden;
             height: 0;
             font-size: 0;
-
         }
-
         .chartBox {
             display: flex;
             flex-direction: column;
@@ -34,7 +34,6 @@
             box-shadow: 0 0 0.3rem 0.1rem rgba(0, 0, 0, .2);
             margin-top: 0em;
         }
-
         .chartBox > .chartTitle {
             /*flex: 1;*/
             height: 2rem;
@@ -42,7 +41,6 @@
             padding: .3rem 1rem;
             background-color: rgba(0, 0, 0, .2);
         }
-
         .chartBox > .chartTitle > h3 {
             position: absolute;
             top: 50%;
@@ -50,22 +48,18 @@
             font-size: .95rem;
             font-weight: normal;
         }
-
         .chartBox > .chartContent {
             display: flex;
             flex-direction: column;
             flex: 12;
             overflow: hidden;
         }
-
         .chartBox > .chartContent > .chartBody {
             flex: 10;
         }
-
         .chartBox > .chartContent > .chartBody > [id^=ec] {
             height: 100%;
         }
-
         /*定义滚动条宽高及背景，宽高分别对应横竖滚动条的尺寸*/
         body::-webkit-scrollbar{
             width: .3%;
@@ -85,13 +79,9 @@
             -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
             background-color: #000511;
         }
-
         html, body, .container {
             height: 89%;
         }
-
-
-
         html {
             font-size: 12px!important;
         }
@@ -105,9 +95,6 @@
         .top, .bottom {
             display: block;
         }
-
-
-
         .top{
             min-height: 29%;
             _height:29%;
@@ -115,7 +102,6 @@
             /*position: fixed;*/
             top:0em;
         }
-
         .top,.tabContent {
             background: #2c467f99;
             box-shadow: 0px 0px 15px #2c467f;
@@ -123,7 +109,6 @@
             width: 99%;
             margin: 0.8em .8em;
         }
-
         .top li {
             float:left;
             width:16.6%;
@@ -147,7 +132,6 @@
             width: 99%;
             z-index: 999;
         }
-
         .tabContent {
             height: 11%;
             /* margin: 0 auto; */
@@ -167,42 +151,34 @@
             cursor: pointer;
             height:100%;
         }
-
         .tabContent span {
             color:#dd0;
             font-size: 12px;
         }
-
         .mainContent{
             min-height: 70%;
             _height:70%;
             /*margin-top: 15em;*/
             width: 101%;
         }
-
         .mainContent>div {
             height: 38em;
             display: none;
         }
-
         .activeTab {
             background: linear-gradient(to bottom,rgba(0,173,239,0),#2196d0);
             border-bottom: solid 3px #09b1ef;
         }
-
         .mainContent .activeCon {
             display: block;
         }
-
         table {
             margin:1em;
             border: 0;
             border-color: #006aa3;
             background: #004d7d99;
             box-shadow: 0px 0 15px #2c467f;
-
         }
-
         .oneTable {
             min-height: 20%;
             _height:20%;
@@ -210,11 +186,9 @@
             margin-left: -.5em;
             margin-right: .3em;
         }
-
         .container {
             transition: all linear 2s;
         }
-
         .ltitle {
             display: block;
             height: 3em;
@@ -235,7 +209,6 @@
             width: 10em;
             text-align: center;
         }
-
         table td {
             padding:1em 1em;
             line-height: 1.8em;
@@ -244,14 +217,11 @@
         .textCenter {
             text-align: center;
         }
-
-
         /*实现锚点距离顶部有一段距离*/
         a:target{
             /*padding-top: 12.9em;*/
             /*margin-bottom: 3.8em;*/
         }
-
         .qyfxContent {
             height:36em!important;
         }
@@ -264,9 +234,6 @@
             cursor: pointer;
             border-radius: 5px;
         }
-
-
-
         .alertInfo,.alertInfo2 {
             width: 200px;
             height: 340px;
@@ -304,7 +271,6 @@
         .person {
             color:#04b0f1;
         }
-
         .infomation span:first-child {
             padding-left: 1.5em;
             color: #fff;
@@ -314,7 +280,6 @@
             font-size: 13px;
             float: left;
         }
-
         .address {
             width: 8em;
             height: 0em;
@@ -322,7 +287,6 @@
             float: left;
             margin-top: 0.5em;
         }
-
         .cktp {
             width: 16em;
             margin: .1em auto;
@@ -332,9 +296,6 @@
             cursor: pointer;
             background: #00adef;
         }
-
-
-
         .fixedlegend {
             height: 50px;
             width: 100%;
@@ -358,7 +319,6 @@
             height: 20px;
             margin-top:12px;
         }
-
         .thistable td{
             padding: 0.2em 1em;
         }
@@ -374,7 +334,6 @@
             text-align: center;
             color: #fff;
             padding: 0.25em 1.2em;
-
         }
         .preview{
             background-color: #09b1ef;
@@ -383,7 +342,6 @@
         .downLoad{
             background-color: #faad14;
         }
-
         /*上线产品*/
         .bottom{
             flex: 1
@@ -392,7 +350,6 @@
         .bottom > div {
             flex: 1;
         }
-
         .top1, .bottom {
             display: flex;
             height: 20em;
@@ -435,9 +392,6 @@
         .top1>div{
             height: 23em;
         }
-
-
-
         .menuTree{ margin-left:0px;margin: 100px auto!important;
             width: 600px;}
         .menuTree div{ padding-left:1px;}
@@ -451,8 +405,6 @@
             font-size: 14px;}
         /*.menuTree a:hover{ color:#06F;}*/
         .menuTree span{height: 50px;border: solid #00bcff;border-width: 1px 1px 1px 4px;line-height:50px ;}
-
-
         /*返回顶部*/
         .container .returnTop {
             width:50px;
@@ -493,7 +445,6 @@
         .glqyContent{
             height: 55em;
         }
-
         /*自定义下拉框*/
         .mySelect {
             position: relative;
@@ -504,14 +455,12 @@
             vertical-align: middle;
             z-index: 500;
         }
-
         .mySelect .myOption {
             cursor: pointer;
             padding: .1rem 2rem .1rem .5rem;
             white-space: nowrap;
             width: 9rem;
         }
-
         .mySelect > .myOption.selected {
             position: relative;
             border: .1em solid var(--themeBlue);
@@ -521,16 +470,13 @@
             height: 1.3125rem;
             z-index: 100;
         }
-
         .mySelect.open > .myOption.selected,
         .mySelect > .myOption.selected:hover {
             box-shadow: 0 0 .3em var(--themeBlue);
         }
-
         .mySelect > .myOption.selected:active {
             box-shadow: 0 0 .5em var(--themeBlue);
         }
-
         .mySelect > .myOption.selected > .icon {
             display: inline-block;
             position: absolute;
@@ -538,15 +484,13 @@
             right: .5rem;
             width: .8rem;
             height: .3rem;
-            background: url({contextPath}/static/img/com/i_arrow_down.png) 50% 40% no-repeat;
+            background: url(${contextPath}/static/img/com/i_arrow_down.png) 50% 40% no-repeat;
             background-size: contain;
         }
-
         /*展开状态*/
         .mySelect.open > .myOption.selected > .icon {
             transform: rotate(180deg);
         }
-
         .mySelect > .myOptionBox {
             position: absolute;
             display: none;
@@ -558,19 +502,15 @@
             transition: all .5s ease;
             z-index:1001;
         }
-
         .mySelect.open > .myOptionBox {
             display: block;
         }
-
         .mySelect > .myOptionBox > .myOption.selected {
             background-color: #0005;
         }
-
         .mySelect > .myOptionBox > .myOption:hover {
             background-color: #0002;
         }
-
         /*市场舆情*/
 		/*zgc*/
 		.glqyContent table tbody tr td a, .jkqyContent table tbody tr td a, .dbqyContent table tbody tr td a{
@@ -578,6 +518,17 @@
 		}
 		.glqyContent table tbody tr td a:hover, .jkqyContent table tbody tr td a:hover, .dbqyContent table tbody tr td a:hover{
 			color:#00adef;
+		}
+		.deleteBtn{
+		    position: absolute;
+		    top: 5px;
+		    right: 8px;
+		    z-index: 101;
+		    cursor: pointer;
+		    font-size: 22px;
+		}
+		.deleteBtn:hover{
+			background: var(--themeBlue);
 		}
     </style>
 </head>
@@ -587,11 +538,12 @@
     <h2 hidden>工商信息监控</h2>
     <header class="pageHeader">
         <div class="inputGroup">
-            <label></label>
+            <label>法人：${basic.legal_person!}</label>
+             <label>公司姓名： ${basic.company_name}</label>
         </div>
     </header>
     <div class="returnTop">
-        <img src="{contextPath}/static/img/icons/goTop.png" alt="" />
+        <img src="${contextPath}/static/img/icons/goTop.png" alt="" />
     </div>
 
     <!--展示信息-->
@@ -633,22 +585,22 @@
             <a href="#xzcf" class="mdclick" tab-id="2">行政处罚：<span>10</span></a>
         </li>
         <li>
-            <a href="#qyzz" class="mdclick" tab-id="5">企业资质类：<span>10</span></a>
+            <a href="#qylx" class="mdclick" tab-id="1">企业类型：<span>10</span></a>
         </li>
         <li>
-            <a href="#cpdjb" class="mdclick" tab-id="5">产品登记表：<span>10</span></a>
+            <a href="#zpxx" class="mdclick" tab-id="2">招聘信息：<span>10</span></a>
         </li>
         <li>
-            <a href="#jbxx" class="mdclick" tab-id="1">基本信息：<span>10</span></a>
+            <a href="#jyyc" class="mdclick" tab-id="2">经营异常：<span>10</span></a>
         </li>
         <li>
-            <a href="#jbxx" class="mdclick" tab-id="1">基本信息：<span>10</span></a>
+            <a href="#flss" class="mdclick" tab-id="2">法律诉讼：<span>10</span></a>
         </li>
         <li>
-            <a href="#jbxx" class="mdclick" tab-id="1">基本信息：<span>10</span></a>
+            <a href="#flgg" class="mdclick" tab-id="2">法律公告：<span>10</span></a>
         </li>
         <li>
-            <a href="#jbxx" class="mdclick" tab-id="1">基本信息：<span>10</span></a>
+            <a href="#bzxr" class="mdclick" tab-id="2">被执行人：<span>10</span></a>
         </li>
     </div>
     <!--切换tab-->
@@ -667,24 +619,24 @@
                     <table width="98%" height="100%" border="1" cellspacing="0" cellpadding="0">
                         <tr>
                             <td class="tbbg">公司名称</td>
-                            <td>青岛国际版权交易中心有限公司</td>
+                            <td>${company.company_name!}</td>
                             <td class="tbbg">电话</td>
-                            <td>0532-68851217</td>
+                            <td>${company.contact_num!}</td>
                         </tr>
                         <tr>
                             <td class="tbbg">邮箱</td>
-                            <td>1923698984@qq.com</td>
+                            <td>${type.email!}</td>
                             <td class="tbbg">网址</td>
                             <td></td>
                         </tr>
                         <tr>
                             <td class="tbbg">地址</td>
-                            <td colspan="3">山东省青岛市黄岛区江山南路458号1701室   附近公司</td>
+                            <td colspan="3">${company.company_address!}</td>
                         </tr>
                         <tr>
                             <td class="tbbg">简介</td>
-                            <td colspan="3">青岛国际版权交易中心是由国家版权局下属中国版权保护中心在山东和青岛设置的第一个，也是唯一的国家级权威分站和中心，是科技和创意文化产业、知识产权一站式的、综合性的公共服务平台，在科技服务和版权创意产业的业务创新、管理、运营方面具全国前列，注册资金1000万人民币。下设三个核心产业板块：科技文化服务，科技文化金融，科技文化产业运营。 1) 科技文化服务：商标专利代理注册发证、各类影视图片设计图书的等登记发证。 2)科技文化金融： 知识产权和创意文化等无形资产的评估、质押、贷款、股权投资、三板四板上市孵化一条龙式的科技文化金融服务。经过独有的评估体系评估，出具国家证书，并协助企业能融到发展所需资金。 3)科技文化产业： 创意文化博览会、版权博览会、高峰论坛和研讨会、创客孵化基地、科技文化产业园 中心先后组织和承办了全国性和地区性大型博览会和研讨会活动。中心服务对象主要是大中小型的科技创新企业，产业园孵化器，创意文化企业，影视动漫、图片、创意设计、互联网数字化等内容产业，艺术品书画产业等。 公司紧紧围绕版权、商标、专利为核心的知识产权产业和以影视动漫、互联网数字化等为核心的创意文化产业展开产业促进和服务。致力于搭建一个国家级、权威性、信息化、互联网化、平台化、国际化的综合性知识产权服务机构。 1.正式员工编制，上岗即签正规合同，五险一金。 2.多项福利补贴，包括年终奖金、节日费等。 3.收入=职位基薪+绩效+奖金(提成) 。 4.公司发展迅速，扁平化管理，多种晋升通道和空缺高级岗位，具广阔的职业发展前景。 5.上下班时间8:40-17:30，双休、法定节假日。 6.欢迎各种形式担任兼职！ 企业理念：扎实 积极 认真 乐观 超越 企业使命：助天下科技和创意实现价值和财富。 企业远景：做中国一流的创意和科技转化的一站式综合服务平台 公司文化：做，就做最好的；拼，就尽全力。 舍小我，成大义;心协力，其断金。 真诚沟通，换位思考，乐观积极，全力拼搏。 实现个人梦想和企业目标的最完美结合，在风雨中共同成长。 我们的团队是一个足球队，总经理就是队长，大家换位补位，齐心协力，不分你我，共同实现心中的理想 公司信念：科技兴业，版权兴国，立足万众，助力梦想 福利及其它待遇： 1.正式员工编制，上岗即签正规合同，五险一金。 2.多项福利补贴，包括年终奖金、节日费等。 3.收入=职位基薪+绩效+奖金(提成) 。 4.产业发展空间大，公司发展迅速，扁平化管理，多种晋升通道和空缺高级岗位，具广阔的职业发展前景。 5.上下班时间8:40-17:30，双休、法定节假日、有带薪年假。 6.欢迎以提成模式担任兼职。</td>
-                        </tr>
+                            <td colspan="3">${company.bussiness_scope!}</td>
+                            </tr>
                     </table>
                 </div>
                 <a class="gsxx ltitle" name="gsxx"><span></span>工商信息<span></span></a>
@@ -697,12 +649,12 @@
                         </tr>
                         <tr>
                             <td rowspan="3" class="textCenter">法人姓名</td>
-                            <td rowspan="2"  colspan="2" class="textCenter">注册资本（万元）：5000</td>
+                            <td rowspan="2"  colspan="2" class="textCenter">注册资本（万元）：${company.register_money!}${company.register_type!}</td>
                             <td rowspan="6" style="position: relative;">
-                                <img src="{contextPath}/static/img/gsxx/gqjgt.jpg" style="margin-left: 5em;"/>
+                                <img src="${contextPath}/static/img/gsxx/gqjgt.jpg" style="margin-left: 5em;"/>
 
                                 <div style="position: absolute;left: 16em;top: 1.8em;width: 22em;
-    height: 2.2em;text-align: center;line-height: 2.2em;background: #004d7d;">威海中韩文化产权交易中心有限公司</div>
+    height: 2.2em;text-align: center;line-height: 2.2em;background: #004d7d;">${hold.company_name!}</div>
                                 <div style="position: absolute;
     left: 7em;
     eft: 16em;
@@ -711,50 +663,50 @@
     height: 2.2em;
     text-align: center;
     line-height: 2.2em;
-    background: #004d7d;">威海南海科创投资有限公司</div>
+    background: #004d7d;">${hold.investor!}</div>
                                 <div class="ck">查看详情</div>
                             </td>
                         </tr>
                         <tr>
                         </tr>
                         <tr>
-                            <td rowspan="2" colspan="2" class="textCenter">注册时间：20111201</td>
+                            <td rowspan="2" colspan="2" class="textCenter">注册时间：${company.establish_date!}</td>
                         </tr>
                         <tr>
-                            <td rowspan="3" class="textCenter">张春亮</td>
+                            <td rowspan="3" class="textCenter">${company.legal_person!}</td>
                         </tr>
                         <tr>
-                            <td rowspan="2" colspan="2" class="textCenter">企业状态：其他有限责任公司</td>
+                            <td rowspan="2" colspan="2" class="textCenter">企业状态：${company.company_status!}</td>
                         </tr>
                         <tr>
                         </tr>
                         <tr>
                             <td class="tbbg">工商注册号</td>
-                            <td>370200230026367</td>
+                            <td>${company.register_num!}</td>
                             <td class="tbbg">组织机构代码</td>
-                            <td>58369687-0</td>
+                            <td>${type.org_id!}</td>
                         </tr>
                         <tr>
                             <td class="tbbg">统一信用代码</td>
-                            <td>91370220583696870Y</td>
+                            <td>${company.union_code!}</td>
                             <td class="tbbg">企业类型</td>
-                            <td>其他有限责任公司</td>
+                            <td>${company.company_type!}</td>
                         </tr>
                         <tr>
                             <td class="tbbg">纳税人纳税号</td>
                             <td></td>
                             <td class="tbbg">行业</td>
-                            <td>金融业</td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td class="tbbg">营业期限</td>
-                            <td>2011-12-01 至 无固定期限</td>
+                            <td>${company.bussiness_start!}至${company.bussiness_end!}</td>
                             <td class="tbbg">核准日期</td>
                             <td></td>
                         </tr>
                         <tr>
                             <td class="tbbg">登记机关</td>
-                            <td>青岛市保税区工商行政管理局</td>
+                            <td></td>
                             <td class="tbbg">英文名称</td>
                             <td></td>
                         </tr>
@@ -764,8 +716,8 @@
                         </tr>
                         <tr>
                             <td class="tbbg">经营范围</td>
-                            <td colspan="3">黄金、白银的销售及相关配套服务；铂金、钯金、镍、铜、铝、钢、金属原料及矿产品、工艺品、集邮用品、文化艺术品和收藏品(不含文物)、橡胶制品、石化制品(不含危险品)、煤炭、农副产品(不含国家专营、专控产品)的现货批发零售及网上销售；燃料油(仅限重油、渣油)的国际贸易、转口贸易、区内企业之间贸易及贸易项下加工整理；为以上商品和石化产品(不含危险品)的现货交易提供电子平台交易的经纪服务、物流服务(不含运输)、供应链管理；一般经济信息咨询服务、商务咨询服务(不含金融、证券、期货)；网络信息技术开发及技术咨询；计算机软硬件开发、技术服务、培训服务；设计、制作、代理、发布国内广告业务。 (依法须经批准的项目，经相关部门批准后方可开展经营活动)。</td>
-                        </tr>
+                            <td colspan="3">${company.bussiness_scope!}</td>
+                            </tr>
                     </table>
                 </div>
                 <a class="hxry ltitle" name="hxry"><span></span>核心人员<span></span></a>
@@ -773,15 +725,32 @@
                     <table width="98%" height="100%" border="1" cellspacing="0" cellpadding="0">
                         <tr>
                             <td class="tbbg">自然人股东</td>
-                            <td></td>
+                             ##for(info in person!){
+                            <td>
+                                 ${info.string_agg!}
+                            </td>
+                            ##}
                             <td class="tbbg">总经理</td>
-                            <td>张春亮</td>
+                           
+                             ##for(info in manager!){
+                            <td>
+                                 ${info.string_agg!}
+                            </td>
+                            ##}
                         </tr>
                         <tr>
                             <td class="tbbg">执行董事</td>
-                            <td></td>
+                             ##for(info in dongshi!){
+                            <td>
+                                 ${info.string_agg!}
+                            </td>
+                            ##}
                             <td class="tbbg">监事</td>
-                            <td>杨小平</td>
+                             ##for(info in jianshi!){
+                            <td>
+                                 ${info.string_agg!}
+                            </td>
+                            ##}
                         </tr>
                     </table>
                 </div>
@@ -793,21 +762,13 @@
                             <td class="tbbg">出资比例(%)</td>
                             <td class="tbbg">认缴出资(万元)</td>
                         </tr>
+                        ##for(info in holder!){
                         <tr>
-                            <td class="textCenter">中经网数据有限公司</td>
-                            <td class="textCenter">15.0</td>
-                            <td class="textCenter">750.0</td>
+                            <td class="textCenter">${info.investor!}</td>
+                            <td class="textCenter">${info.invest_rate!}</td>
+                            <td class="textCenter">${info.subcribe_money}${info.subcribe_type}</td>
                         </tr>
-                        <tr>
-                            <td class="textCenter">青岛百富基金管理股份有限公司</td>
-                            <td class="textCenter">59.2</td>
-                            <td class="textCenter">2960.0</td>
-                        </tr>
-                        <tr>
-                            <td class="textCenter">产经天下(北京)科技发展有限公司</td>
-                            <td class="textCenter">20.0</td>
-                            <td class="textCenter">1000.0</td>
-                        </tr>
+                        ##}
                     </table>
                 </div>
                 <a class="dwtz ltitle" name="dwtz"><span></span>对外投资<span></span></a>
@@ -822,33 +783,18 @@
                             <td class="tbbg">注册时间</td>
                             <td class="tbbg">状态</td>
                         </tr>
+                        ##for(info in invest!){
                         <tr>
-                            <td class="textCenter">青岛华银商品交易中心有限公司</td>
-                            <td class="textCenter"></td>
-                            <td class="textCenter"></td>
-                            <td class="textCenter">750.0</td>
-                            <td class="textCenter">15.0</td>
-                            <td class="textCenter"></td>
-                            <td class="textCenter"></td>
+                            <td class="textCenter">${info.company_name!}</td>
+                            <td class="textCenter">${info.legal_person!}</td>
+                            <td class="textCenter">${info.register_money!}</td>
+                            <td class="textCenter">${info.subcribe_money!}${info.subcribe_type!}</td>
+                            <td class="textCenter">${info.invest_rate!}</td>
+                            <td class="textCenter">${info.establish_date!}</td>
+                            <td class="textCenter">${info.company_status!}</td>
                         </tr>
-                        <tr>
-                            <td class="textCenter">青岛华银商品交易中心有限公司</td>
-                            <td class="textCenter"></td>
-                            <td class="textCenter"></td>
-                            <td class="textCenter">750.0</td>
-                            <td class="textCenter">15.0</td>
-                            <td class="textCenter"></td>
-                            <td class="textCenter"></td>
-                        </tr>
-                        <tr>
-                            <td class="textCenter">青岛华银商品交易中心有限公司</td>
-                            <td class="textCenter"></td>
-                            <td class="textCenter"></td>
-                            <td class="textCenter">750.0</td>
-                            <td class="textCenter">15.0</td>
-                            <td class="textCenter"></td>
-                            <td class="textCenter"></td>
-                        </tr>
+                        ##}
+                        
                     </table>
                 </div>
                 <a class="bgjl ltitle" name="bgjl"><span></span>变更记录<span></span></a>
@@ -860,65 +806,88 @@
                             <td class="tbbg" style="width:40em">变更前</td>
                             <td class="tbbg" style="width:40em">变更后</td>
                         </tr>
+                        ##for(info in change){
                         <tr>
-                            <td class="textCenter">20150724</td>
-                            <td class="textCenter">投资人(股权)变更??带有*标记的为法定代表人</td>
-                            <td class="textCenter">股东(发起人)名称:杨小平,证件(照)类型:中华人民共和国居民身份证,证件(照)号码:***********,认缴出资额:1290万,币种: 人民币,认缴出资额折万美元:0,持股比例:,认缴出资方式: 货币,认缴出资时间:,实缴出资额:1290万,币种: 人民币实缴出资额折万美元:0,实缴出资方式:,实缴出资时间:; 股东(发起人)名称:青岛百富股权基金管理股份有限公司,证件(照)类型:,证件(照)号码:,认缴出资额: 1710万,币种:,认缴出资额折万美元:,持股比例:,认缴出资方式: 货币,认缴出资时间:,实缴出资额:1710万,币种:实缴出资额折万美元:,实缴出资方式:,实缴出资时间:;</td>
-                            <td class="textCenter">股东(发起人)名称:杨小平,证件(照)类型:中华人民共和国居民身份证,证件(照)号码:***********,认缴出资额:1290万,币种:,认缴出资额折万美元:0,持股比例: 0,认缴出资方式:,认缴出资时间:,实缴出资额:1290万,币种:实缴出资额折万美元:0,实缴出资方式:,实缴出资时间:; 股东(发起人)名称:青岛百富股权基金管理股份有限公司,证件(照)类型: 企业法人营业执照(公司),证件(照)号码: ***********,认缴出资额: 3710万,币种:,认缴出资额折万美元:,持股比例: 0,认缴出资方式:,认缴出资时间:,实缴出资额:1710万,币种:实缴出资额折万美元:,实缴出资方式:,实缴出资时间:;</td>
-                        </tr>
-                        <tr>
-                            <td class="textCenter">20141017</td>
-                            <td class="textCenter">名称变更</td>
-                            <td class="textCenter">青岛华银贵金属交易中心有限公司</td>
-                            <td class="textCenter">名称序号:***********企业名称:青岛贵金属交易中心有限公司</td>
-                        </tr>
-                        <tr>
-                            <td class="textCenter">20151224</td>
-                            <td class="textCenter">投资人(股权)变更</td>
-                            <td class="textCenter">股东(发起人)名称:杨小平,证件(照)类型:中华人民共和国居民身份证,证件(照)号码:***********,认缴出资额: 1290万,币种:,认缴出资额折万美元:0,持股比例:0,认缴出资方式:货币,认缴出资时间:***********,实缴出资额:1290万,币种:实缴出资额折万美元:0,实缴出资方式:,实缴出资时间: 股东(发起人)名称:青岛百富基金管理股份有限公司,证件(照)类型:企业法人营业执照(公司),证件(照)号码:***********,认缴出资额: 3710万,币种:,认缴出资额折万美元:,持股比例:0,认缴出资方式:货币,认缴出资时间:***********,实缴出资额:1710万,币种:实缴出资额折万美元:,实缴出资方式:,实缴出资时间:</td>
-                            <td class="textCenter">股东(发起人)名称:产经天下(北京)科技发展有限公司,证件(照)类型:企业法人营业执照(公司),证件(照)号码:***********,认缴出资额:1000万,币种:,认缴出资额折万美元:,持股比例:0,认缴出资方式:货币,认缴出资时间:***********,实缴出资额:1000万,币种:实缴出资额折万美元:,实缴出资方式:,实缴出资时间: 股东(发起人)名称:青岛百富基金管理股份有限公司,证件(照)类型:企业法人营业执照(公司),证件(照)号码:***********,认缴出资额: 2960万,币种:,认缴出资额折万美元:,持股比例:0,认缴出资方式:货币,认缴出资时间:***********,实缴出资额:960万,币种:实缴出资额折万美元:,实缴出资方式:,实缴出资时间: 股东(发起人)名称:《中国产经新闻》报社,证件(照)类型:企业法人营业执照(公司),证件(照)号码:***********,认缴出资额:250万,币种:,认缴出资额折万美元:,持股比例:0,认缴出资方式:货币,认缴出资时间:***********,实缴出资额:250万,币种:实缴出资额折万美元:,实缴出资方式:,实缴出资时间: 股东(发起人)名称:中经网数据有限公司,证件(照)类型:企业法人营业执照(公司),证件(照)号码:***********,认缴出资额:750万,币种:,认缴出资额折万美元:,持股比例:0,认缴出资方式:货币,认缴出资时间:***********,实缴出资额:750万,币种:实缴出资额折万美元:,实缴出资方式:,实缴出资时间: 股东(发起人)名称:杨小平,证件(照)类型:中华人民共和国居民身份证,证件(照)号码:***********,认缴出资额: 40万,币种:,认缴出资额折万美元:0,持股比例:0,认缴出资方式:货币,认缴出资时间:***********,实缴出资额:40万,币种:实缴出资额折万美元:0,实缴出资方式:,实缴出资时间:</td>
-                        </tr>
+                            <td class="textCenter">${info.change_date!}</td>
+                            <td class="textCenter">${info.change_info!}</td>
+                            <td class="textCenter">${info.change_before_detail!}</td>
+                            <td class="textCenter">${info.change_after_detail!}</td>
+                            </tr>
+                        ##}
+                       
                     </table>
                 </div>
                 <a class="qynb ltitle" name="qynb"><span></span>企业年报<span></span></a>
                 <div class="qynbContent oneTable">
                     <table width="98%" height="100%" border="1" cellspacing="0" cellpadding="0">
-                        <tr>
-                            <td class="tbbg">注册号</td>
-                            <td>370200230026367	</td>
-                            <td class="tbbg">从业人数</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td class="tbbg">是否有网站或网店</td>
-                            <td>ct-chn.com,www.qdpme.cn,qdpme.com,www.qdpme.com,219.146.67.242,qdpme.cn,www.ct-chn.com</td>
-                            <td class="tbbg">企业是否有投资信息或购买其他公司股权</td>
-                            <td>无</td>
-                        </tr>
-                        <tr>
-                            <td class="tbbg">资产总额(万元)</td>
-                            <td></td>
-                            <td class="tbbg">所有者权益合计</td>
-                            <td>企业是否有投资信息或购买其他公司股权</td>
-                        </tr>
-                        <tr>
-                            <td class="tbbg">销售总额(万元)</td>
-                            <td></td>
-                            <td class="tbbg">利润总额</td>
-                            <td>企业是否有投资信息或购买其他公司股权</td>
-                        </tr>
-                        <tr>
-                            <td class="tbbg">营业总收入中主营业务收入</td>
-                            <td></td>
-                            <td class="tbbg">净利润</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td class="tbbg">纳税总额</td>
-                            <td>企业是否有投资信息或购买其他公司股权</td>
-                            <td class="tbbg">负债总额</td>
-                            <td>企业是否有投资信息或购买其他公司股权</td>
-                        </tr>
+                       <tr>
+							<td class="tbbg">注册号</td>
+						<td>
+						##for(re in report!){	
+						${re.regist_num!}
+						##}
+						</td>
+							<td class="tbbg">从业人数</td>
+						<td>
+						##for(re in report!){	
+						${re.staff_num!}
+						##}
+						</td>
+						</tr>
+						<tr>
+							<td class="tbbg">是否有网站或网店</td>
+						<td>
+						##for(re in report!){
+						${re.is_website!}
+						##}
+						</td>
+							<td class="tbbg">企业是否有投资信息或购买其他公司股权</td>
+						<td>##for(re in report!){
+						${re.is_invest!}
+						##}
+						</td>
+						</tr>
+						<tr>
+							<td class="tbbg">资产总额(万元)</td>
+						<td>
+						
+						</td>
+						
+							<td class="tbbg">所有者权益合计</td>
+							<td>
+				    	
+					   </td>
+						</tr>
+						<tr>
+							<td class="tbbg">销售总额(万元)</td>
+						<td>
+						
+						</td>
+							<td class="tbbg">利润总额</td>
+						<td>
+					
+						</td>
+						</tr>
+						<tr>
+							<td class="tbbg">营业总收入中主营业务收入</td>
+					    <td>
+					 
+					   </td>
+							<td class="tbbg">净利润</td>
+						<td>
+					
+						</td>
+						</tr>
+						<tr>
+							<td class="tbbg">纳税总额</td>
+						<td>
+						
+						</td>
+							<td class="tbbg">负债总额</td>
+						<td>
+						
+						</td>
+						</tr>
                     </table>
                 </div>
                 <a class="fzjg ltitle" name="fzjg"><span></span>分支机构<span></span></a>
@@ -930,12 +899,14 @@
                             <td class="tbbg">状态</td>
                             <td class="tbbg">注册时间</td>
                         </tr>
+                        ##for(info in brach!){
                         <tr>
-                            <td class="textCenter">青岛华银商品交易中心有限公司青岛邮币卡分公司</td>
-                            <td class="textCenter">张春亮</td>
-                            <td class="textCenter">注销</td>
-                            <td class="textCenter"></td>
+                            <td class="textCenter">${info.company_name!}</td>
+                            <td class="textCenter">${info.legal_person!}</td>
+                            <td class="textCenter">${info.company_status!}</td>
+                            <td class="textCenter">${info.establish_date!}</td>
                         </tr>
+                        ##}
                     </table>
                 </div>
                 <a class="mcbg ltitle" name="mcbg"><span></span>名称变更<span></span></a>
@@ -1413,11 +1384,14 @@
 
 </div>
 
-<script src="{contextPath}/static/asserts/js/echarts-4.0.js"></script>
-<script src="{contextPath}/static/asserts/js/jquery-2.2.4.js"></script>
-<script src="{contextPath}/static/js/main.js"></script>
-<script src="{contextPath}/static/js/chartsCom.js"></script>
-<script src="{contextPath}/static/js/laydate.js"></script>
+<div class="deleteBtn">×</div>
+<script src="${contextPath}/static/asserts/js/echarts-4.0.js"></script>
+<script src="${contextPath}/static/asserts/js/jquery-2.2.4.js"></script>
+<script src="${contextPath}/static/js/index.js"></script> 
+<script src="${contextPath}/static/js/chartsCom.js"></script>
+<script src="${contextPath}/static/js/main.js"></script>
+<script src="${contextPath}/static/js/laydate.js"></script>
+<script src="${contextPath}/static/js/jquery.circliful.min.js"></script>
 
 <script>
 	var qyInfor = $(".pageBox", parent.document).children(".pageContent").last().children("iframe").attr("data-infor");
@@ -1456,7 +1430,6 @@
                     /*if($("."+txt)){
                           document.getElementsByClassName(txt)[0].scrollIntoView(false);
                       }else {
-
                       }*/
                     switch(+tabId) {
                         case 1:
@@ -1495,10 +1468,8 @@
                             document.getElementsByClassName(txt)[0].scrollIntoView(false);
                             break;
                     }
-
                 });
             }
-
             $(".qyxxContent").scroll(function(){
                 $(".mainContent").offset({top:-500})
             })
@@ -1511,14 +1482,12 @@
             var lis = $(".tabContent").children();
             var cons = $(".mainContent").children();
             var num = 0;
-
             for(var i =0;i<lis.length;i++){
                 //匿名函数的自运行
                 (function(i){
                     $(lis[i]).click(function(){
                         $(this).addClass("activeTab").siblings().removeClass("activeTab");
                         $(cons[i]).css({"display":"block"}).siblings().css("display","none");
-
                         if($(lis[i]).text() == "关系图谱" && num==0) {
                             num++;
                             setTimeout(function(){
@@ -1526,7 +1495,6 @@
                                 that.gxtp();
                             },200)
                         }
-
                         if($(lis[i]).text() == "市场舆情") {
                             //that.sxcp();
                             // ec001.resize();
@@ -1540,15 +1508,11 @@
                     })
                 })(i);
             }
-
-
         },
         gxtp:function(){
             var that = this;
             var myChart  = echarts.init(document.getElementById("box"));
-
             myChart.showLoading();
-
             //任职
             var emphasis_renzhi = {
                 "label":{
@@ -1558,7 +1522,6 @@
                 "lineStyle":{
                     "color":"#00abed"
                 }
-
             };
             var lineStyle_renzhi ={
                 "color":"#2c467f"
@@ -1572,13 +1535,10 @@
                 "lineStyle":{
                     "color":"#ff4a5d"
                 }
-
             };
             var lineStyle_touzi ={
                 "color":"#ff4a5d"
             };
-
-
             $.ajax({
                 type:"get",
                 url:"mydata.json",
@@ -1587,8 +1547,6 @@
                     var webkitDep = res;
                     console.log(1)
                     myChart.hideLoading();
-
-
                     //根据关系标志放置样式
                     res.links.forEach(function(item,index){
                         console.log(item.relationship)
@@ -1603,8 +1561,6 @@
                     /*res.nodes.forEach(function(item,index){
                         item.fixed = false;
                     })*/
-
-
                     var option = {
                         textStyle:{color:"#fff"},
                         color:["#ff9e00","#00adef","#fc4a5d"],
@@ -1656,7 +1612,6 @@
                                 verticalAlign: 'middle',
                             },
                             emphasis:{//高亮时候的样式
-
                                 lineStyle:{
                                     color:"#d00",
                                     width:2,
@@ -1665,10 +1620,8 @@
                         }]
                     };
                     $(function(){
-
                         myChart.setOption(option);
                     })
-
                     myChart.on("click",function(params){
                         console.log(params)
                         var info = params["data"]["info"];
@@ -1677,7 +1630,6 @@
                             $('.alertInfo2').css("display","none");
                         }else if($('.alertInfo').css("display") == "block") {
                             $('.alertInfo').css("display","none");
-
                         }else if(params["data"]['name'] != "line" && params["data"]["flag"] == "公司"){
                             $('.alertInfo').css("display","block");
 //				    		$('.alertInfo').html(info);
@@ -1693,33 +1645,26 @@
                             $(".company2").html(info.compony);
                             $(".money2").html(info.money);
                         }
-
-
                         //console.log(params["data"]['name'])
-
                     })
-
                     myChart.on("mousedown",function(params){
                         console.log(params)
-
                     })
                 }
             });
-
             $(".close").on("click",function(){
                 $(".alertInfo").css("display","none");
                 $(".alertInfo2").css("display","none");
             })
-
         },
         sxcp:function(){
-
         }
     }
-
     GSXX.init();
-
-
+    $(".deleteBtn").on("click",function(){
+    	window.history.go(-1);
+    
+	})
     var json = [
         {
             "name": "",
@@ -1817,7 +1762,6 @@
     }
     /*添加无级树*/
     document.getElementById("menuTree").innerHTML = forTree(json);
-
     /*树形菜单*/
     var menuTree = function(){
         //给有子对象的元素加
@@ -1828,7 +1772,6 @@
                 $(element).siblings("span").html(spanContent)
             }
         });
-
         $("#menuTree").find("div span").click(function(){
             var ul = $(this).siblings("ul");
             var spanStr = $(this).html();
@@ -1844,13 +1787,11 @@
             }
         })
     }()
-
     /*树形列表展开*/
     $("#btn_open").click(function(){
         $("#menuTree ul").show(300);
         curzt("-");
     })
-
     /*收缩*/
     $("#btn_close").click(function(){
         $("#menuTree ul").hide(300);
@@ -1866,6 +1807,8 @@
             }
         });
     }
+    
+    
 </script>
 </body>
 </html>
