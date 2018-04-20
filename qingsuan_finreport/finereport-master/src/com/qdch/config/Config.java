@@ -164,13 +164,14 @@ import com.qdch.xd.model.maxIntrateRankModel;
 public class Config extends JFinalConfig {
 	
 	public void configConstant(Constants me) {
+		PropKit.use("config.txt");
 		me.setDevMode(true);
 		//添加beetl配置
 		JFinal3BeetlRenderFactory rf = new JFinal3BeetlRenderFactory();
 		rf.config();
 //		me.setViewType(ViewType.JSP);
 		me.setRenderFactory(rf);
-		me.setBaseUploadPath("D:/apache-tomcat-7.0.78/webapps/WebReport/pdf-files");  
+		me.setBaseUploadPath(PropKit.get("uploadPath"));  
 		GroupTemplate gt = rf.groupTemplate;
 		gt.registerTag("layout", TemplteLayoutTag.class);
 	}
@@ -237,7 +238,7 @@ public class Config extends JFinalConfig {
 	}
 
 	public void configPlugin(Plugins me) {
-		PropKit.use("config.txt");
+		
 
 		//----qdchedw hub用户连接方式 start----
 		String jdbc = PropKit.get("jdbc");
