@@ -180,7 +180,7 @@ public class Config extends JFinalConfig {
 		
 
 	
-		me.add("qdch/auth", QdchController.class);
+		me.add("qdch/auth", QdchController.class,"/");
 		me.add("qdch/xiaodai", XiaoDaiController.class,"/");
 		
 		/***小贷 doushuihai Controller START***/

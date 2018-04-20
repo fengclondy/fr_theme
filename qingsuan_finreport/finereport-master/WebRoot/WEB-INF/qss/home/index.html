@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="${contextPath}/static/img/com/logo.png">
+    <title>${title!'首页'}</title>
+    <link rel="stylesheet" href="${contextPath}/static/asserts/css/normalize.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/style.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/index.css">
+</head>
+<body id="index">
+
+<!--规范约定-->
+<!--本页面的布局样式和图表的js代码都写本页面内-->
+<!--body的直接子元素是.container，-->
+<!--每个页面都有全局变量allCharts用来存放所有图表-->
+
+<header id="mainHeader">
+    <div class="logoBox">
+        <div class="logo"></div>
+        <h1>${title!'首页'}</h1>
+    </div>
+    <ul>
+        <li class="notice"><a href="javascript:void(0);"><span class="icon"></span><span class="number">3</span></a></li>
+        <li class="message"><a href="javascript:void(0);"><span class="icon"></span><span class="number">0</span></a></li>
+        <li class="user"><a href="javascript:void(0);"><span class="icon"></span><span class="name">${user.username!}</span></a></li>
+    </ul>
+</header>
+<div class="navContent">
+    <nav id="mainNav">
+        		<ul>
+        		 ##for(menu in user.menus!){
+        		 	<li class="">
+		                <a class="dropdown-toggle">${menu.name!} <span class="icon"></span> </a>
+		                <ul>
+		                	##for(c in menu.children){
+		                		 <li data-id="${contextPath}${c.reportletpath!}" data="${c.desc!}">${c.name!}</li>
+		                	##}
+		                </ul>
+		            </li>
+        		 ##}
+        		</ul>
+    </nav>
+
+    <div class="mainNavFoldCtr">
+        <div class="icon"></div>
+    </div>
+    <div class="container">
+        <div class="nav-tabs" id="navTabs">
+            <ul>
+                <li class="active" data-id="00_01home">
+                    <a title="首页" ><span class="text"></span><span class="close">×</span> </a>
+                    <span class="tab-tip">
+                        <a class="refresh"><span class="icon"></span>刷新</a>
+                        <span class="separator">|</span>
+                        <a class="favorite"><span class="icon"></span>收藏</a>
+                    </span>
+                </li>
+                <li class="collapse">
+                    <button type="button" class="collapsed" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <ul style="display: none">
+                        <li onclick="toggleFullScreen(event)">全屏</li>
+                        <li>关闭全部</li>
+                        <li>关闭其它标签</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="pageBox">
+            <div class="pageContent current" id="00_01home" data-title="主页">
+                <iframe src=""></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${contextPath}/static/asserts/js/jquery-2.2.4.js"></script>
+<script src="${contextPath}/static/js/index.js"></script>
+<script>
+
+</script>
+</body>
+</html>

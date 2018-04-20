@@ -186,12 +186,9 @@ public class BaseController extends Controller{
 		String userName=c.getPara("userName");
 		String roleType=c.getPara("type");
 		String uid=c.getPara("uid");
-		if(user!=null&&StringUtils.isNotBlank(user.getUsername())
-				&&user.getUsername().equals(userName)){
-			return user;
-		}
-		user.setType(roleType);
-		if(StringUtils.isNotBlank(userName)){
+		if(StringUtils.isNotBlank(roleType)||StringUtils.isNotBlank(userName)){
+			//切换用户或者类型重新认证
+			user.setType(roleType);
 			//获取用户信息
 			//String url="http://localhost:8075/WebReport/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
 			String url=com.fr.hailian.core.Constants.WEB_DOMAIN+"/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
@@ -245,6 +242,7 @@ public class BaseController extends Controller{
 			user.setMenus(menus);
 			//处理审批流权限
 			user.setActivity(judgeActivity(user));
+		
 		}
 		c.setSession(Constants.SESSION_USER, user);
 		return user;
