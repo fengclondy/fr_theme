@@ -142,6 +142,7 @@
             <thead>
             <tr>
                 <th>选择</th>
+                <th>报警时间</th>
                 <th>风险类别</th>
                 <th>风险指标</th>
                 <th>风险指标值</th>
@@ -164,6 +165,7 @@
             <tbody id="tbody">
             <tr>
                 <td><input type="radio" name="radio" id="radio0" class="radioBtn"></td>
+                <td><input class="bjsjclass" type="date"></td>
                 <td>
                     <div class="one">
                         <span class="sel">
@@ -242,7 +244,7 @@
                             <select name="makeupCoSe" id="business" class="selected statusclass" >
                             <option value=""></option>
                                  ##for(e in status!){
-                                                <option id="${e.fvalue}" >${e.fvalue!}</option>
+                                                <option id="${e}" >${e!}</option>
                                  ##}
                             </select>
                         </span>
@@ -297,7 +299,8 @@
         function appendTr(index){
             console.log('append'+index)
             append="<tr id='line"+index+"'>"+
-                "<td><input type='radio' name='radio' id='radio"+index+"' class='radioBtn'></td>"+
+                "<td><input type='radio' name='radio' id='radio"+index+"' class='radioBtn'>" +
+                " <td><input class='bjsjclass' type='date'></td></td>"+
                 "<td><div class='one'>"+
                 "<span class='sel'>"+
                 "<select name='makeupCoSe' onchange='getrisk("+index+")' onclick='getrisk("+index+")' class='selected typeclass'>"+
@@ -447,7 +450,7 @@
     function statusdata(data,index) {
         var appendhtml = "<option value=''></option>";
         $.each(data, function(index, value, array) {
-            appendhtml+="<option value='"+value.fvalue+"'>"+value.fvalue+"</option>"
+            appendhtml+="<option value='"+value+"'>"+value+"</option>"
         });
         $(".statusclass").eq(index).empty();
         $(".statusclass").eq(index).append(appendhtml);
@@ -534,7 +537,6 @@
 
     //提交
     function sumitfuc() {
-
         // var ptype =  $('.typeclass option:selected').val());
         // var prisk =  $('.riskclass option:selected').val());
         // var priskvalue =  $('.riskvalueclass').val());
@@ -558,94 +560,109 @@
 
         var length = $('#tbody tr').length;
        console.log($('#tbody tr').length);
-        var atype = new Array(),arisk = new Array(),ariskvalue = new Array(),ayuzhi = new Array(),
+        var abjsj = new Array(),atype = new Array(),arisk = new Array(),ariskvalue = new Array(),ayuzhi = new Array(),
             achaochu = new Array(),aorgnname = new Array(),aorgncode = new Array(),acusname = new Array(),
             acuscode = new Array(),amenuname = new Array(),amenucode = new Array(),abusname = new Array(),
             abuscode = new Array(),astatus = new Array(),aintro = new Array(),aremarks = new Array();
         
         for(var i = 0;i<$('#tbody tr').length;i++){
+
+            if(!$('.bjsjclass').eq(i).val()){
+                abjsj.push(' ');
+            }else{
+                abjsj.push(($('.bjsjclass').eq(i).val()).replace(/-/g,""));
+            }
             
             if(!$('.typeclass option:selected').eq(i).val()){
-                atype.push('null');
+                atype.push(' ');
             }else{
                 atype.push($('.typeclass option:selected').eq(i).val());
             }
             if(!$('.riskclass option:selected').val()){
-                arisk.push('null');
+                arisk.push(' ');
             }else{
                 arisk.push($('.typeclass option:selected').eq(i).val());
             }
             if(!$('.riskvalueclass').eq(i).val()){
-                ariskvalue.push('null');
+                ariskvalue.push(' ');
             }else{
                 ariskvalue.push($('.riskvalueclass').eq(i).val());
             }
             if(!$('.yuzhiclass').eq(i).val()){
-                ayuzhi.push('null');
+                ayuzhi.push(' ');
             }else{
                 ayuzhi.push($('.yuzhiclass').eq(i).val());
             }
             if(!$('.chaochuclass').eq(i).val()){
-                achaochu.push('null');
+                achaochu.push(' ');
             }else{
                 ayuzhi.push($('.yuzhiclass').eq(i).val());
             }
             //
             if(!$('.organname').eq(i).val()){
-                aorgnname.push('null');
+                aorgnname.push(' ');
             }else{
                 aorgnname.push($('.organname').eq(i).val());
             }
             if(!$('.organcode').eq(i).val()){
-                aorgncode.push('null');
+                aorgncode.push(' ');
             }else{
                 aorgncode.push($('.organcode').eq(i).val());
             }
 
             if(!$('.cusnameclass').eq(i).val()){
-                acusname.push('null');
+                acusname.push(' ');
             }else{
                 acusname.push($('.cusnameclass').eq(i).val());
             }
             if(!$('.cuscodeclass').eq(i).val()){
-                acuscode.push('null');
+                acuscode.push(' ');
             }else{
                 acuscode.push($('.cuscodeclass').eq(i).val());
             }
             if(!$('.menunameclass').eq(i).val()){
-                amenuname.push('null');
+                amenuname.push(' ');
             }else{
                 amenuname.push($('.menunameclass').eq(i).val());
             }
             if(!$('.menucodeclass').eq(i).val()){
-                amenucode.push('null');
+                amenucode.push(' ');
             }else{
                 amenucode.push($('.menucodeclass').eq(i).val());
             }
             if(!$('.busnameclass').eq(i).val()){
-                abusname.push('null');
+                abusname.push(' ');
             }else{
                 abusname.push($('.busnameclass').eq(i).val());
             }
             if(!$('.buscodeclass').eq(i).val()){
-                abuscode.push('null');
+                abuscode.push(' ');
             }else{
                 abuscode.push($('.buscodeclass').eq(i).val());
             }
 
             if(!$('.statusclass').eq(i).val()){
-                astatus.push('null');
+                if('${rolename}'=='处理人'){
+                    astatus.push('未处理');
+                }else  if('${rolename}'=='审核人'){
+                    astatus.push('未提交');
+                }else  if('${rolename}'!='决策人'){
+                    astatus.push('未处理');
+                }else  if('${rolename}'=='决策人'){
+                    astatus.push('已上报');
+                }
+
             }else{
                 astatus.push($('.statusclass').eq(i).val());
             }
 
             if(!$('.introclass').eq(i).val()){
-                aintro.push('null');
+                aintro.push(' ');
             }else{
                 aintro.push($('.introclass').eq(i).val());
             }
             if(!$('.remarksclass').eq(i).val()){
-                aremarks.push('null');
+                aremarks.push(' ');
             }else{
                 aremarks.push($('.remarksclass').eq(i).val());
             }
@@ -667,9 +684,10 @@
             // aintro.push($('.introclass').val());
             // aremarks.push($('.remarksclass').val());
         }
-        console.log(ariskvalue)
-        console.log(ariskvalue.join(','))
+        console.log('astatus:'+astatus)
+        // console.log(ariskvalue.join(','))
 
+        var pbjsj =  encodeURI(encodeURI(abjsj.join(',')));
     var ptype =  encodeURI(encodeURI(atype.join(',')));
     var prisk =  encodeURI(encodeURI(arisk.join(',')));
     var priskvalue =  encodeURI(encodeURI(ariskvalue))
@@ -689,11 +707,12 @@
         var premarks =  encodeURI(encodeURI(aremarks.join(',')))
         console.log(pcusname+","+pcuscode)
 
-        var paradata ='?length='+length+'&ptype='+ptype+"&prisk="+prisk+"&priskvalue="+priskvalue+
+        var paradata ='?length='+length+'&pbjsj='+pbjsj+'&ptype='+ptype+"&prisk="+prisk+"&priskvalue="+priskvalue+
             "&pyuzhi="+pyuzhi+"&pchaochu="+pchaochu+"&porgnname="+porgnname+"&porgncode="+porgncode+
             "&pcusname="+pcusname+"&pcuscode="+pcuscode+"&pmenuname="+pmenuname+"&pmenucode="+pmenucode+
             "&pbusname="+pbusname+"&pbuscode="+pbuscode+"&pstatus="+pstatus+"&pintro="+pintro+"&premarks="+premarks;
 
+        console.log('paradata='+paradata)
         $.ajax({
             type: "POST",
             url: "eventinput/saveEvent"+paradata,

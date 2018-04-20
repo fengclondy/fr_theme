@@ -36,7 +36,8 @@ public class RiskEventHistoryModel extends Model<RiskEventHistoryModel>{
 	}
 
 	public List<RiskEventHistoryModel> getByRiskEvent(String id){
-		String sql = "select report_id checker,clzt checkstatus,update_time checktime,bz remarks from hub_fxsj_audit_new WHERE fxsj_id="+id+" ORDER BY update_time asc";
+		String sql = "select shr checker,clzt checkstatus,update_time checktime," +
+				"bz remarks from hub_fxsj_audit_new WHERE fxsj_id='"+id+"' ORDER BY update_time asc";
 		return dao.find(sql);
 	}
 
