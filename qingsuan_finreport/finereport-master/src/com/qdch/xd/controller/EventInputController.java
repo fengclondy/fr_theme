@@ -2,6 +2,8 @@ package com.qdch.xd.controller;
 
 
 import com.alibaba.fastjson.JSONArray;
+import com.fr.hailian.core.QdchUser;
+import com.fr.hailian.model.RoleModel;
 import com.fr.hailian.util.JDBCUtil;
 import com.fr.stable.StringUtils;
 import com.fr.web.core.A.O;
@@ -28,7 +30,42 @@ public class EventInputController extends BaseController {
 	public void index(){
 		List<RiskTypeModel> riskTypeList =  riskTypeModelDao.getTypeKind("3"); //风险类别
 		setAttr("type",riskTypeList);
-		setAttr("status",dictModelDao.getLabel(getPara("note")));
+        QdchUser user=getLoginUser();
+
+		String checkstatus = ""; // 处理状态
+		List<String> statuss = new ArrayList<>();
+		List<RoleModel> roles = getLoginUser().getRoles();
+		String rolename = "";
+		if(roles!=null && roles.size()>0) {
+
+			List<String> rr = new ArrayList<>();
+			for (RoleModel roleModel : roles) {
+				if (roleModel.getRoleName().contains("处理人")) {
+					rolename = "处理人";
+					statuss.add("已提交");
+					statuss.add("已排除");
+					checkstatus = " and clzt in ('未处理','驳回') ";
+					break;
+				} else if (roleModel.getRoleName().contains("审核人")) {
+					rolename = "审核人";
+					checkstatus = " and clzt in ('已提交') ";
+					statuss.add("已上报");
+					statuss.add("驳回");
+					statuss.add("已排查");
+					break;
+				} else if (roleModel.getRoleName().contains("决策人")) {
+					rolename = "决策人";
+					checkstatus = " and clzt in ('已上报') ";
+					statuss.add("已查阅");
+					statuss.add("已确认");
+					break;
+				}
+
+			}
+		}
+		setAttr("rolename",rolename);
+		setAttr("alstatus",checkstatus);
+		setAttr("status",statuss);
 		setAttr("exchange",OrganizModel.dao.getListByType("3"));  //机构/市场)
 		render("xd/pages/05_05fengxianshijiantianbao.html");
 	}
@@ -38,11 +75,12 @@ public class EventInputController extends BaseController {
 		RiskEventModel riskEventModel  = new RiskEventModel();
 
 		StringBuffer sb = new StringBuffer();
-		sb.append("insert into hub_fxsj(jysfl,fxlb,fxzb,fxzbz,yuzhi,cce,jgmc,jgdm,khmc,cust_id,ywlx,ywbm," +
+		sb.append("insert into hub_fxsj(jysfl,bjsj,fxlb,fxzb,fxzbz,yuzhi,cce,jgmc,jgdm,khmc,cust_id,ywlx,ywbm," +
 				"ywcdmc,ywcdbm,clzt,fxsm,bz) values");
 		try {
 
 			String length  =  getPara("length"); //总共有几行
+			String[] pbjsj = decode(getPara("pbjsj")).split(",");
 			String[] ptypes = decode(getPara("ptype")).split(",");
 			String[] prisks = decode(getPara("prisk")).split(",");
 			String[] priskvalues = decode(getPara("priskvalue")).split(",");
@@ -65,6 +103,7 @@ public class EventInputController extends BaseController {
 			for(int i=0;i<Integer.parseInt(length);i++){
 				sb.append("('");
 				sb.append("3','"); //交易所分类 3为小贷
+				sb.append(pbjsj[i]).append("','");
 				sb.append(ptypes[i]).append("','");
 				sb.append(prisks[i]).append("','");
 				sb.append(priskvalues[i]).append("','");
@@ -99,12 +138,43 @@ public class EventInputController extends BaseController {
 	}
 
 	public void getRisk(){
+		String checkstatus = ""; // 处理状态
+		List<String> statuss = new ArrayList<>();
+		List<RoleModel> roles = getLoginUser().getRoles();
+		String rolename = "";
+		if(roles!=null && roles.size()>0) {
+
+			List<String> rr = new ArrayList<>();
+			for (RoleModel roleModel : roles) {
+				if (roleModel.getRoleName().contains("处理人")) {
+					rolename = "处理人";
+					statuss.add("已提交");
+					statuss.add("已排除");
+					checkstatus = " and clzt in ('未处理','驳回') ";
+					break;
+				} else if (roleModel.getRoleName().contains("审核人")) {
+					rolename = "审核人";
+					checkstatus = " and clzt in ('已提交') ";
+					statuss.add("已上报");
+					statuss.add("驳回");
+					statuss.add("已排查");
+					break;
+				} else if (roleModel.getRoleName().contains("决策人")) {
+					rolename = "决策人";
+					checkstatus = " and clzt in ('已上报') ";
+					statuss.add("已查阅");
+					statuss.add("已确认");
+					break;
+				}
+
+			}
+		}
 		Map<String,Object> result = new HashMap<String, Object>();
 		List<RiskTypeModel> riskTypeList =  riskTypeModelDao.getTypeKind("3"); //风险类别
 //		setAttr("type",riskTypeList);
 		result.put("yuzhi",ThresholdValueModel.dao.getInfoList("3"));
 		result.put("type",riskTypeList);
-		result.put("status",dictModelDao.getLabel(getPara("note")));
+		result.put("status",statuss);
 		result.put("risk",riskTypeModelDao.getByType("3"));
 //		result.put("exchange",	ExchangeInfoModel.dao.getList()); //机构/市场)
 		result.put("exchange",	OrganizModel.dao.getListByType("3")); //机构/市场)
