@@ -19,13 +19,15 @@ public class TermDetailsModel extends Model<TermDetailsModel> {
 	private static final long serialVersionUID = 1L;
 	public static final TermDetailsModel dao=new TermDetailsModel();
 	public List<TermDetailsModel> getTermDetails(String dataSql,String jys){	
-		String sql="select jyscmc,jysc,term,pjlv,je,jezb,hkfs from insight_pp_term_distribute where 1=1 and vday=(select max(vday) from insight_pp_term_distribute) ";		
+		String sql="select jyscmc,jysc,term,pjlv,je,(jezb::NUMERIC*100) as jezb,hkfs from insight_pp_term_distribute where 1=1  ";		
 		if(StringUtils.isNotBlank(dataSql)){
 			sql+=" and jysc in"+ dataSql+"";
 		}
 		if(StringUtils.isNotBlank(jys)){
 			sql+=" and jysc='"+ jys+"'  ";			
-		}		
+		}
+		sql+=" and vday=(select max(vday) from insight_pp_term_distribute where jysc ='"+jys+"')";
+		sql+=" order by term,jyscmc,jysc,pjlv,je,jezb,hkfs";
 		return dao.find(sql);
 	}
 

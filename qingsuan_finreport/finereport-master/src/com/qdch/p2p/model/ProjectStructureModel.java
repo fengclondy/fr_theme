@@ -20,7 +20,7 @@ public class ProjectStructureModel extends Model<ProjectStructureModel> {
 	public static final ProjectStructureModel dao=new ProjectStructureModel();
 	public List<ProjectStructureModel> getProjectStructure(String dataSql,String jys){	
 		String sql="select vday,jyscmc,jysc,iterm_type,sum(iterm_value) as value "
-				+ "from insight_pp_iterm_count where 1=1 and vday=(select max(vday) from insight_pp_iterm_count) ";
+				+ "from insight_pp_iterm_count where 1=1  ";
 
 		
 		if(StringUtils.isNotBlank(dataSql)){
@@ -30,12 +30,13 @@ public class ProjectStructureModel extends Model<ProjectStructureModel> {
 			sql+="and jysc='"+ jys+"'  ";
 			
 		}
+		sql+=" and vday=(select max(vday) from insight_pp_iterm_count where jysc ='"+jys+"')";
 		sql+="group by vday,iterm_type,jyscmc,jysc";
 		return dao.find(sql);
 	}
 	public List<ProjectStructureModel> getProjectIterm(String dataSql,String jys){	
 		String sql="select vday,jyscmc,jysc,iterm_term,sum(iterm_value) as value "
-				+ "from insight_pp_iterm_count where 1=1  and vday=(select max(vday) from insight_pp_iterm_count)";
+				+ "from insight_pp_iterm_count where 1=1  ";
 
 		
 		if(StringUtils.isNotBlank(dataSql)){
@@ -45,6 +46,7 @@ public class ProjectStructureModel extends Model<ProjectStructureModel> {
 			sql+="and jysc='"+ jys+"'  ";
 			
 		}
+		sql+=" and vday=(select max(vday) from insight_pp_iterm_count where jysc ='"+jys+"')";
 		sql+="group by vday,iterm_term,jyscmc,jysc";
 		return dao.find(sql);
 	}
