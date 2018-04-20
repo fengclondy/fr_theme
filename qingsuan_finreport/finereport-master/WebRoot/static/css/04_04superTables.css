@@ -175,7 +175,7 @@
 
 
 
-/*閫氱敤鏍峰紡*/
+/*通用样式*/
 * {
     margin: 0;
     padding: 0
@@ -198,7 +198,7 @@ p{
     float:right;
 }
 
-/*宸︿晶瀵艰埅*/
+/*左侧导航*/
 .left_navbar{
     width:15%;
     height:80%;
@@ -245,7 +245,7 @@ p{
     margin:0 auto;
 
 }
-/*琛ㄦ牸涓婃柟鏌ヨ绛夊姛鑳界殑鏍峰紡*/
+/*表格上方查询等功能的样式*/
 .radius{
     border-radius:8px;
 }
