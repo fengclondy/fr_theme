@@ -14,7 +14,7 @@ import com.qdch.core.BaseController;
 public class QdchController extends BaseController {
 	/**
 	 * 
-	 * @todo   TODO
+	 * @todo   中转
 	 * @time   2018年4月20日 上午9:46:36
 	 * @author zuoqb
 	 * @return_type   void
@@ -40,7 +40,12 @@ public class QdchController extends BaseController {
 			 renderText("认证失败!");
 		 }
 	 }
-	 
+	 /**
+	  * @todo   系统首页
+	  * @time   2018年4月20日 上午11:44:15
+	  * @author zuoqb
+	  * @return_type   void
+	  */
 	 public void home(){
 		 QdchUser user=getLoginUser();
 		 if("2".equals(user.getType())){
@@ -49,6 +54,12 @@ public class QdchController extends BaseController {
 			 setAttr("title", "小贷");
 		 }
 		 render("home/index.html");
+	 }
+	 public void getUnReadMsg(){
+		 QdchUser user=getLoginUser();
+		 String jysStr=user.getDataScope();
+		 //String type="";
+		 //String url=com.fr.hailian.core.Constants.WEB_DOMAIN+"/getNotReadAllMsg?jysStr="+jysStr+"&uid="+uid;
 	 }
 
 }
