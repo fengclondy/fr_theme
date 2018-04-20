@@ -21,7 +21,7 @@ public class DictModel extends Model<DictModel>{
 		StringBuffer sb = new StringBuffer();
 		sb.append("select fvalue from  hub_comm_param where 1=1 ");
 		if(StringUtils.isNotBlank(note)){
-			sb.append(" and note ='").append(note).append("'");
+			sb.append(note);
 		}
 		sb.append("ORDER BY param_type,fkey");
 		return dao.find(sb.toString());

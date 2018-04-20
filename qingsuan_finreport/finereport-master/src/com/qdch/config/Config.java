@@ -170,6 +170,7 @@ public class Config extends JFinalConfig {
 		rf.config();
 //		me.setViewType(ViewType.JSP);
 		me.setRenderFactory(rf);
+		me.setBaseUploadPath("D:/apache-tomcat-7.0.78/webapps/WebReport/pdf-files");  
 		GroupTemplate gt = rf.groupTemplate;
 		gt.registerTag("layout", TemplteLayoutTag.class);
 	}
@@ -458,5 +459,4 @@ public class Config extends JFinalConfig {
 	public static void main(String[] args){ 
 		JFinal.start("WebRoot", 8080, "/", 5);
 	}
-	
 }
