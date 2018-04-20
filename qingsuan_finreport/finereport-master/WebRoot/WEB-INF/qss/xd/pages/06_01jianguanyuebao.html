@@ -268,7 +268,7 @@
     	var jys = $('#marketName option:selected').val();
     	
 	 	var reportType = $('#reportType option:selected').val();
-	 	alert(reportType)
+	 
    		var date = $('#alarmTimeEnd').val();       
         var htmlstr = "";     
         return htmlstr+="?jys="+jys+"&reportType="+reportType+"&upload_time="+date;
@@ -285,7 +285,7 @@
        		/* var date = $('#alarmTimeEnd').val().replace(/-/g,""); */
        		var date = $('#alarmTimeEnd').val();
 			$.post('${contextPath}/qdch/monthlyrepor/getMonthlyReport',{jys,reportType,date},function(res){
-				alert(date);
+				
 				console.log(res)
 				$.each(res,function(index,item){
 						tableList+=
@@ -294,13 +294,74 @@
 								"                <td>"+item.jys+"</td>\n" +
 								"               <td>"+item.upload_user+"</td>\n" +
 								"               <td>"+item.upload_time+"</td>\n" +
-								"                <td><span><a href='/QDCH/pdf/web/viewer.html?file=test.pdf' target='_Blank'>预览</a></span><span><a href='/QDCH/pdf/web/test.pdf' download='监管报告'>下载</a></span></td></tr>  " 
+								"                <td><span><a href='/QDCH/pdf/web/viewer.html?file=test.pdf' target='_Blank'>预览</a></span>"+
+										            "<span><a href='/QDCH/pdf/web/test.pdf' download='监管报告'>下载</a></span></td></tr>  " 
  		
  			})
 				$('tbody').html(tableList)
 			})
 		}
-		 function getTableBody(pageNum,pageSize,appenddata) {
+		
+		
+		/* dsh */
+		
+		function getTableBody(pageNum,pageSize,appenddata) {
+		        if(!appenddata){
+		            appenddata = "";
+
+		        }
+		        $.ajax({
+		            type: "POST",
+		            url: "monthlyrepor/getMonthlyReportList"+appenddata,
+		            data: {"pageNum":pageNum,"pageSize":pageSize},
+		            dataType: "json",
+		            success: function(data){
+		                var  append = "";
+		                $(".nuber").text(data.totalRow);
+		                $('#pageCurrent').val(data.pageNumber);
+
+		                $('.pageTotal').text(data.totalPage);
+		                totalPage = data.totalPage;
+		                pageNumber = data.pageNumber;
+				       $.each(data.list, function(index, value, array) {
+				    	   
+				           append +=
+				               "  <tr>       <td><a href=\"\" class=\"fengxian001\">"+(index+1)+"</a></td>\n" +
+				               "                <td>"+value.type+"</td>\n" +
+				               "                <td>"+value.jys+"</td>\n" +
+				               "               <td>"+value.upload_user+"</td>\n" +
+				               "               <td>"+value.upload_time+"</td>\n" +
+				               //"                <td><span><a href='/QDCH/pdf/web/viewer.html?file=test.pdf' target='_Blank'>预览</a></span>" +    
+				               "                <td><span onclick='fileView(\""+value.file_name+"\")'>预览</a></span>" +    
+				               "                <span onclick='downFile(\""+value.file_name+"\")'>下载</span></td></tr>  ";
+				       });
+			       $('tbody').html(append);
+					                
+					               
+					                
+					            }
+					        })
+		    }
+		
+		
+	
+			//文件下载
+			function downFile(str){
+		        var url = "${contextPath}/qdch/fileupLoad/downLoad?fileName="+str;  
+		        window.open(url);
+			}
+			
+			//文件预览
+			function fileView(str){
+		        var url = "${contextPath}/qdch/fileupLoad/fileView?fileName="+str;  
+		        window.open(url);
+			}
+
+		
+		
+		/* 源代码 */
+		
+		/*  function getTableBody(pageNum,pageSize,appenddata) {
 		        if(!appenddata){
 		            appenddata = "";
 
@@ -333,7 +394,7 @@
 		                $('tbody').html(append);
 		            }
 		        })
-		    }
+		    } */
 </script>
 </body>
 </html>

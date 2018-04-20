@@ -1,17 +1,27 @@
 package com.qdch.xd.controller;
 
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 
+
+import javax.servlet.http.HttpServletResponse;
+
 import com.fr.hailian.util.JDBCUtil;
 import com.jfinal.upload.UploadFile;
 import com.qdch.core.BaseController;
-import com.qdch.util.Preference;
 import com.qdch.xd.model.MonthlyReportModel;
 
 
@@ -26,35 +36,27 @@ public class FileUpLoadController extends BaseController {
 		setAttr("jyslist", MonthlyReportModel.dao.getJys(getDataScopeByUserName()));//在进入页面时就获取权限内表为条件下拉框做准备
 		render("xd/pages/06_02yuebaoshangchuan.html");
 	}
+	//文件上传
 	public void upload(){  
-        HttpServletRequest request = getRequest();  
-        String basePath = request.getContextPath();   
         //存储路径  
-        String path1 = getSession().getServletContext().getRealPath(Preference._PATH);  
-        String path ="D:/loadup";  
-        System.out.println(basePath);
-        System.out.println(path1);
+        String path ="D:/apache-tomcat-7.0.78/webapps/WebReport/pdf-files";  
         UploadFile file = getFile("file");  
         String fileName = "";  
-        if(file.getFile().length() > 3*1024*1024) {  
-            System.err.println("文件长度超过限制，必须小于3M");  
+        String type = file.getFileName().substring(file.getFileName().lastIndexOf(".")); // 获取文件的后缀  
+        if(!type.equals(".pdf")) {  //只能上传pdf格式文件
+           return; 
         }else{  
             //上传文件  
-            String type = file.getFileName().substring(file.getFileName().lastIndexOf(".")); // 获取文件的后缀  
-            fileName = System.currentTimeMillis()+type; // 对文件重命名取得的文件名+后缀  
+            fileName = file.getFileName();
             String dest = path + "/" + fileName;  
             file.getFile().renameTo(new File(dest));  
-           // String realFile = basePath + "/" + Preference._PATH +  fileName;          
-            String fname="/"+fileName;  
-            setAttr("fname", fname);  
-            //setAttr("url", realFile);  
-              
         }  
         String fname = file.getFileName();
         String title = fname;
-        fname = fileName;
+        fname = title;
 
         String jys = getPara("jys");
+        //获取交易所分类
         int jysfl = 0;
         List<MonthlyReportModel> list = MonthlyReportModel.dao.getJyscfl(jys);
         for (MonthlyReportModel m : list) {
@@ -78,4 +80,61 @@ public class FileUpLoadController extends BaseController {
 		
     }  
 	
+	//文件下载
+
+	
+	public void downLoad(){ 
+		String fileName = getPara("fileName");
+        String downPath = "D:/apache-tomcat-7.0.78/webapps/WebReport/pdf-files";  
+        File file=new File(downPath+"/"+fileName);  
+        if(file.exists()){  
+        	renderFile(file);
+        }  
+        else{  
+            renderJson();  
+        }  
+    } 
+	
+	//文件预览
+	public void fileView() {
+		try {
+			HttpServletResponse response = getResponse();
+			boolean boo = true;
+			
+			String fileName = getPara("fileName");
+			String filePath = "D:/apache-tomcat-7.0.78/webapps/WebReport/pdf-files"+"/"+fileName;
+			
+			File f = new File(filePath);
+			if (!f.exists()) {
+				response.sendError(404, "File not found!");
+				return;
+			}
+			BufferedInputStream br = new BufferedInputStream(new FileInputStream(f));
+			byte[] buf = new byte[1024];
+			int len = 0;
+			response.reset(); // 非常重要
+			if (boo) { // 在线打开（预览）
+				URL u = new URL("file:///" + filePath);
+				response.setContentType(u.openConnection().getContentType());
+				response.setHeader("Content-Disposition", "inline; fileName=" + f.getName());
+			} 
+			OutputStream out = response.getOutputStream();
+			while ((len = br.read(buf)) > 0)
+				out.write(buf, 0, len);
+			br.close();
+			out.close();
+			renderNull();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+	}
+	
+
+	
+	
+	
+	
 }
+	
+	
+

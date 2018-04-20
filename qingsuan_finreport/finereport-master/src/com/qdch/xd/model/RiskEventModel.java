@@ -139,4 +139,6 @@ public class RiskEventModel extends Model<RiskEventModel>{
 		String sql = "select * from hub_fxsj where fxsj_id="+idValue;
 		return dao.findFirst(sql);
 	}
+
+
 }

@@ -32,7 +32,8 @@ public class MonthlyReportController extends BaseController {
 	}
 	
 	public void addnew() {
-		setAttr("jyslist", MonthlyReportModel.dao.getJys(getDataScopeByUserName()));//在进入页面时就获取权限内表为条件下拉框做准备
+		//setAttr("jyslist", MonthlyReportModel.dao.getJys(getDataScopeByUserName()));//在进入页面时就获取权限内表为条件下拉框做准备
+		setAttr("jyslist", JyscModel.dao.getJysc(getDataScopeByUserName()));//在进入页面时就获取权限内表为条件下拉框做准备
 		render("xd/pages/06_02yuebaoshangchuan.html");
 	}
 	/**

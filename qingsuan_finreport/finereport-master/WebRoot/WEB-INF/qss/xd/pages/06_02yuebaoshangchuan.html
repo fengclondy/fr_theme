@@ -79,7 +79,7 @@
 						<span>交易市场：</span>
 						<select id="selectDeal" name="jys">
 							 ##for(j in jyslist!){
-				                <option  value="${j.jys!}">${j.jys!}</option>
+				                <option  value="${j.jyscmc!}">${j.jyscmc!}</option>
 				             ##}
 						</select>
 					</li>
@@ -138,7 +138,7 @@ $(".inforContainer ul").css({
 		if (type !='pdf') {
 	        alert('请上传pdf格式的文件!');
 	    }
-	    else if (size > 3) {
+	    else if (size > 50) {
 	        alert('pdf文件大小不得超过3M!');
 	    }
 	    else{
@@ -146,11 +146,7 @@ $(".inforContainer ul").css({
 			//window.location.reload();
 	    }
 		initUploadForm();  
-		
-/* 		$('input[name=file]').change(function () {  
-		    initUploadForm();  
-		}); */  
-		  
+ 
 		function initUploadForm () {  
 		        var url = "${contextPath}/qdch/fileupLoad/upload";  
 		        var options = {   
