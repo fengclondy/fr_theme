@@ -96,9 +96,9 @@
                         <th>平台实力</th>
                         <!-- <th>法人</th> -->
                         <th>注册资本</th>
-                        <th>总成金额</th>
-                        <th>贷款金额</th>
-                        <th>在投人数</th>
+                        <th>累计成交额 <span>(万)</span></th>
+                        <th>待偿金额 <span>(万)</span></th>
+                        <th>投资人数</th>
                         <th>信息披露</th>
                        
                     </tr>
@@ -215,7 +215,7 @@
                             <tr>
                                 <th>人均借款次数 <span>(次)</span></th>
                                 <th>人均投资次数 <span>(次)</span></th>
-                                <th>贷款余额 <span>(万)</span></th>
+                                <th>待偿金额<span>(万)</span></th>
                                 <th>平台状态</th>
                                 <th></th>
                             </tr>
@@ -403,9 +403,14 @@
 				success:function(data){
 					var content = "";
 					$.each(data,function(index,item){
-					
+					if (item.mbys == null) {
+						content = content
+						+""
+					}else {
 						content = content
 						+item.mbys.toFixed(2)  
+					}
+						
 					})
 					$("#mbys").html(content);
 				}

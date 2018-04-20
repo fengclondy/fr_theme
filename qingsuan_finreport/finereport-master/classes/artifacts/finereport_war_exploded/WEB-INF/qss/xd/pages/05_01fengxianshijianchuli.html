@@ -22,42 +22,7 @@
         }
         li{
             list-style: none;
-        }
-        .model{
 
-            background: url("${contextPath}/static/img/com/bg_main.jpg") no-repeat;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            border-radius: .5rem .5rem 0 0;
-            width: 50%;
-            height: 60%;
-            margin-left: -30%;
-            margin-top: -15%;
-            color: #fff;
-            display: none;
-
-        }
-        /*头部 header*/
-        .header{
-            position: relative;
-            height: 2rem;
-            height: 8%;
-            border-radius: .5rem .5rem 0 0;
-            background-color: #0080ff;
-        }
-        .header span{
-            position: absolute;
-            right: .8rem;
-            top: 0.3rem;
-            width: 1rem;
-            height: 1rem;
-            text-align: center;
-            background-color: #fff;
-            border-radius: 50%;
-            line-height: 1rem;
-            cursor: pointer;
-            color: #00abde;
         }
         /*模态框  start*/
         .model{
@@ -72,6 +37,7 @@
             margin-top: -250px;
             color: #fff;
             display: none;
+            z-index: 1001;
 
         }
         /*头部 header*/
@@ -174,7 +140,6 @@
         .operation .NavList li span{
             margin-left: 0.5rem;
         }
-        /*模态框  end*/
     </style>
 </head>
 <body class="whitePage" id="05_01fengxianshijianchuli" data-title="风险事件处理">
@@ -340,74 +305,43 @@
             </div>
             <div class="modelMiddle">
                 <div class="modelMiddleContent">
-                    <ul>
-                        <li>
-                            <label >处理人: <span class="processingPerson">123</span></label>
-
-                        </li>
-                        <li>
-                            <label >处理状态: <span class="processState">已提交</span></label>
-
-                        </li>
-                        <li>
-                            <a href="">处理时间: <span class="processData">2018-1-1 00:00:00</span> </a>
-                        </li>
-                        <li style="width: 100%;">
-                            <label >备注: <span></span></label>
-
-                        </li>
-                    </ul>
-                    <ul>
-                        <li>
-                            <label >处理人: <span class="processingPerson">123</span></label>
-
-                        </li>
-                        <li>
-                            <label >处理状态: <span class="processState">已提交</span></label>
-
-                        </li>
-                        <li>
-                            <a href="">处理时间: <span class="processData">2018-1-1 00:00:00</span> </a>
-                        </li>
-                        <li style="width: 100%;">
-                            <label >备注: <span></span></label>
-
-                        </li>
-                    </ul>
-                    <ul>
-                        <li>
-                            <label >处理人: <span class="processingPerson">123</span></label>
-
-                        </li>
-                        <li>
-                            <label >处理状态: <span class="processState">已提交</span></label>
-
-                        </li>
-                        <li>
-                            <a href="">处理时间: <span class="processData">2018-1-1 00:00:00</span> </a>
-                        </li>
-                        <li style="width: 100%;">
-                            <label >备注: <span></span></label>
-
-                        </li>
-                    </ul>
-
-
-
                 </div>
             </div>
             <div class="modelFooter">
                 <div class="modelFooterContent">
+
+                    <!--<ul>-->
+                        <!--<li>-->
+                            <!--<label>审核人:</label>-->
+                            <!--<input type="text" id="Auditor">-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<label >处理状态</label>-->
+                            <!--<input  name="radio1" type="radio" checked="checked">未处理-->
+                            <!--<input name="radio1" type="radio">已提交-->
+                            <!--<input name="radio1" type="radio">已排查-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<a >处理时间: <span id="processingData">2018-1-1 00:00:00</span> </a>-->
+                        <!--</li>-->
+                        <!--<li style="width: 100%;">-->
+                            <!--<label><strong>备注：</strong></label>-->
+                            <!--<textarea cols="100" rows="4"></textarea><br>-->
+                        <!--</li>-->
+                    <!--</ul>-->
                     <ul>
                         <li>
-                            <label>审核人:</label>
-                            <input disabled  type="text"  id="Auditor">
+                            <label>${rolename}:</label>
+                            <input disabled  type="text" value="${user.realname}"  id="Auditor">
                         </li>
                         <li>
                             <label >处理状态</label>
-                            <input class="inputradio"  name="radio1" value="未处理" type="radio">未处理
-                            <input  class="inputradio"   name="radio1" value="已提交"  checked="checked" type="radio">已提交
-                            <input  class="inputradio"   name="radio1" value="已排查" type="radio">已排查
+                            ##for(a in statuslist){
+                            <input class="inputradio"  name="radio1" value="${a}" type="radio">${a}
+                            ##}
+                            <!--<input class="inputradio"  name="radio1" value="未处理" type="radio">未处理-->
+                            <!--<input  class="inputradio"   name="radio1" value="已提交"  checked="checked" type="radio">已提交-->
+                            <!--<input  class="inputradio"   name="radio1" value="已排查" type="radio">已排查-->
                         </li>
                         <li>
                             <a href="">处理时间: <span id="processingData"></span> </a>
@@ -688,33 +622,52 @@
 
                 var checkhtml = "";
                 $.each(data.history, function(index, value, array) {
-                    checkhtml +=" <li>\n" +
-                        "                        <div class=\"\">\n" +
-                        "                            <span class=\"\">审核人:</span>\n" +
-                        "                            <span id=\"checker\" class=\"Auditor\">"+value.checker+"</span>\n" +
-                        "                        </div>\n" +
-                        "                    </li>\n" +
-                        "                    <li>\n" +
-                        "                        <div class=\"\">\n" +
-                        "                            <span class=\"\">处理状态:</span>\n" +
-                        "                            <span id=\"checkstatus\" class=\"HandleState\">"+value.checkstatus+"</span>\n" +
-                        "                        </div>\n" +
-                        "                    </li>\n" +
-                        "                    <li>\n" +
-                        "                        <div class=\"\">\n" +
-                        "                            <span class=\"Auditor\">处理时间:</span>\n" +
-                        "                            <span id=\"checktime\" class=\"AuditorData\">"+value.checktime+"</span>\n" +
-                        "                        </div>\n" +
-                        "                    </li>\n" +
-                        "                    <br>\n" +
-                        "                    <li>\n" +
-                        "                        <div class=\"\">\n" +
-                        "                            <span class=\"Auditor\">备&nbsp;&nbsp;&nbsp;注:</span>\n" +
-                        "                            <span id=\"remarks\">"+value.remarks+"</span>\n" +
-                        "                        </div>\n" +
-                        "                    </li>";
+
+                    checkhtml+=" <ul>\n" +
+                        "                        <li>\n" +
+                        "                            <label >处理人: <span class=\"processingPerson\">"+value.checker+"</span></label>\n" +
+                        "\n" +
+                        "                        </li>\n" +
+                        "                        <li>\n" +
+                        "                            <label >处理状态: <span class=\"processState\">"+value.checkstatus+"</span></label>\n" +
+                        "\n" +
+                        "                        </li>\n" +
+                        "                        <li>\n" +
+                        "                            <a >处理时间: <span class=\"processData\">"+value.checktime+"</span> </a>\n" +
+                        "                        </li>\n" +
+                        "                        <li style=\"width: 100%;\">\n" +
+                        "                            <label >备注: <span>"+value.remarks+"</span></label>\n" +
+                        "\n" +
+                        "                        </li>\n" +
+                        "                    </ul>";
+
+                    // checkhtml +=" <li>\n" +
+                    //     "                        <div class=\"\">\n" +
+                    //     "                            <span class=\"\">审核人:</span>\n" +
+                    //     "                            <span id=\"checker\" class=\"Auditor\">"+value.checker+"</span>\n" +
+                    //     "                        </div>\n" +
+                    //     "                    </li>\n" +
+                    //     "                    <li>\n" +
+                    //     "                        <div class=\"\">\n" +
+                    //     "                            <span class=\"\">处理状态:</span>\n" +
+                    //     "                            <span id=\"checkstatus\" class=\"HandleState\">"+value.checkstatus+"</span>\n" +
+                    //     "                        </div>\n" +
+                    //     "                    </li>\n" +
+                    //     "                    <li>\n" +
+                    //     "                        <div class=\"\">\n" +
+                    //     "                            <span class=\"Auditor\">处理时间:</span>\n" +
+                    //     "                            <span id=\"checktime\" class=\"AuditorData\">"+value.checktime+"</span>\n" +
+                    //     "                        </div>\n" +
+                    //     "                    </li>\n" +
+                    //     "                    <br>\n" +
+                    //     "                    <li>\n" +
+                    //     "                        <div class=\"\">\n" +
+                    //     "                            <span class=\"Auditor\">备&nbsp;&nbsp;&nbsp;注:</span>\n" +
+                    //     "                            <span id=\"remarks\">"+value.remarks+"</span>\n" +
+                    //     "                        </div>\n" +
+                    //     "                    </li>";
                 });
-                $('.modelMiddle ul').html(checkhtml);
+                $('.modelMiddleContent ').html(checkhtml);
 
 
             }
@@ -729,6 +682,11 @@
     function submitcheck() {
         // var status = $(".inputradio.checked").attr('value')
         var status = $("input[name='radio1']:checked").val();
+        if(!status){
+            alert("请选择状态");
+            return ;
+        }
+
 
         var area = $(".inputarea").val();
         var param = "?status="+ encodeURI(encodeURI(status))+"&area="+ encodeURI(encodeURI(area));
@@ -740,7 +698,8 @@
             dataType: "json",
             success: function (data) {
                 alert("操作成功");
-                $(".model").hide();
+                window.location.href="${contextPath}/qdch/eventprocessing";
+
             }
         });
 
