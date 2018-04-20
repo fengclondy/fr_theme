@@ -187,7 +187,7 @@
                             <th>平台实力</th>
                             <th>注册资本</th>
                             <th>累计成交额 <span>(万)</span></th>
-                            <th>待偿总额 <span>(万)</span></th>
+                            <th>待偿金额 <span>(万)</span></th>
                             <th>投资人数</th>
                             <th>信息披露</th>
                             <th>详情</th>
@@ -256,6 +256,18 @@
             		$("tbody").remove();
             		$.each(data,function(index,item){
             			var xxpl = item.xxpl;
+            			var zcje = item.zcje;
+            			if (zcje == null || zcje == '-' || zcje == "") {
+							zcje = item.zcje
+						}else {
+							var arry = [];
+							arry = zcje.split('.');
+							if (arry.length == 1) {
+								zcje = item.zcje;
+							}else {
+								zcje = parseFloat(zcje).toFixed(2)
+							}
+						}
             			xxpl = parseFloat(xxpl).toFixed(2)
             			content = content
             			+'<tbody>'
@@ -268,7 +280,7 @@
             			+'   	<td>'+item.yysj+'</td>'
             			+'   	<td>'+item.ptsl+'</td>'
             			+'    	<td>'+item.zczb+'万</td>'
-            			+'   	<td>'+item.zcje+'</td>'
+            			+'   	<td>'+zcje+'</td>'
             			+'   	<td>'+item.dkje+'</td>'
             			+'    	<td>'+item.ztrs+'</td>'
             			+'   	<td>'+xxpl+'</td>'

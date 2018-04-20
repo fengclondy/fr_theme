@@ -268,7 +268,7 @@
     	var jys = $('#marketName option:selected').val();
     	
 	 	var reportType = $('#reportType option:selected').val();
-	 	alert(reportType)
+	 
    		var date = $('#alarmTimeEnd').val();       
         var htmlstr = "";     
         return htmlstr+="?jys="+jys+"&reportType="+reportType+"&upload_time="+date;
@@ -285,7 +285,7 @@
        		/* var date = $('#alarmTimeEnd').val().replace(/-/g,""); */
        		var date = $('#alarmTimeEnd').val();
 			$.post('${contextPath}/qdch/monthlyrepor/getMonthlyReport',{jys,reportType,date},function(res){
-				alert(date);
+				
 				console.log(res)
 				$.each(res,function(index,item){
 						tableList+=

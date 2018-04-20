@@ -156,8 +156,8 @@
             transform: scale(1.3);
         }
         #my_tr1 th,#my_tr2 th{
-            font-size: .85rem;
-            background-color: #00abde;
+            font-size: .75rem;
+         
         }
         tbody > tr:nth-of-type(odd),tbody > tr:nth-of-type(even) {
             background-color: transparent;
@@ -475,9 +475,9 @@
 							"  <tr>            <td class='center ziranren'>"+item.xmlx+"</td>\n" +
 							"                 <td class='center left'>"+item.ywlx+"</td>\n" +
 							"                 <td class='center'>"+item.pjlv+"</td>\n" +
-							"               <td class='center'>"+item.je+"</td>\n" +
-							"               <td class='center'>"+item.jezb+"</td>\n" +
-							"                <td class='center'>"+item.pjqx+"</td></tr>  " 
+							"               <td class='center'>"+item.je*1/10000+"万</td>\n" +
+							"               <td class='center'>"+item.jezb*100+"%</td>\n" +
+							"                <td class='center'>"+item.pjqx+"(月)</td></tr>  " 
 		
 			})
 			
@@ -497,8 +497,8 @@
 							"  <tr>            <td class='center ziranren'>"+item.term+"</td>\n" +
 							
 							"                 <td class='center'>"+item.pjlv+"</td>\n" +
-							"               <td class='center'>"+item.je+"</td>\n" +
-							"               <td class='center'>"+item.jezb+"</td>\n" +
+							"               <td class='center'>"+item.je*1/10000+"万</td>\n" +
+							"               <td class='center'>"+(item.jezb*1)+"%</td>\n" +
 							"                <td class='center'>"+item.hkfs+"</td></tr>  " 
 		
 			})
@@ -883,7 +883,7 @@
   								}  				
   	  				})
 		  			}else{
-		  				alert("地区、行业hhi没查到")
+		  				
 		  				var val=null;
   						var w =$('.progress_inner').width();
   			            (function progressBar3(){
@@ -910,7 +910,7 @@
   	  					
   	  					$('#progressbar1').LineProgressbar({
   	  			            percentage: item.iterm_value*100,
-  	  			            fillBackgroundColor: '#ff7875',
+  	  			            fillBackgroundColor: '#00adef',
   	  			            height: '15px',
   	  			            radius: '20px',
   	  			            backgroundColor:'rgba(0,0,0,0.2)'
@@ -930,7 +930,7 @@
   	  			})
   			}
   			else{
-  				alert("zhanbi没查到")
+  				
   			}
   		
   		})
