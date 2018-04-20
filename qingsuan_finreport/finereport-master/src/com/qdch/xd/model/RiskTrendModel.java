@@ -13,6 +13,7 @@ public class RiskTrendModel extends Model<RiskTrendModel>{
 	 * @time   2018年4月9日 
 	 * @author ljm 
 	 */
+	//2
 	public List<RiskTrendModel> getRiskTrend(String datasql,String jysc){
 		String sql = "select jyscmc,fvalue,jysc,vday from hub_xd_fxzs where 1=1";
 		if(StringUtils.isNotBlank(datasql)){

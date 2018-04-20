@@ -14,6 +14,8 @@ public class RiskTrendDetailedModel extends Model<RiskTrendDetailedModel>{
 	 * @time   2018年4月9日 
 	 * @author ljm 
 	 */
+	
+	//1
 	public List<RiskTrendDetailedModel> getRiskTrendDetailed(String datasql,String jysc,String riskType){
 		String sql = "select jyscmc,fxlb,nums As fvalue ,jysc,vday from hub_xd_fxzsmx where 1=1";
 		if(StringUtils.isNotBlank(datasql)){
@@ -31,11 +33,11 @@ public class RiskTrendDetailedModel extends Model<RiskTrendDetailedModel>{
 	
 	
 	public List<RiskTrendDetailedModel> getPlat(String datasql){
-		String sql = "SELECT jyscmc from hub_pp_jysc where 1=1";
+		String sql = "SELECT jyscmc,jysc from hub_xd_jysc where 1=1";
 		if(StringUtils.isNotBlank(datasql)){
-			sql+=" and jyscmc in "+datasql;
+			sql+=" and jysc in "+datasql;
 		}
-		sql+=" GROUP BY jyscmc order by jyscmc";
+		sql+=" GROUP BY jyscmc,jysc order by jyscmc";
 		return dao.find(sql);
 	}
 	/**
