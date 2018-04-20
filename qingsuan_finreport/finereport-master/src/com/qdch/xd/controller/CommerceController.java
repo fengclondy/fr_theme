@@ -28,6 +28,7 @@ import com.qdch.xd.model.CoWebsiteModel;
 import com.qdch.xd.model.CompanysInfoModel;
 import com.qdch.xd.model.MarkNewsModel;
 import com.qdch.xd.model.RiskTrendDetailedModel;
+import com.qdch.xd.model.RiskTrendModel;
 /**
  * 工商模块获取数据
  * @author lixiaoyi
@@ -135,9 +136,11 @@ public class CommerceController extends BaseController{
 				  +CoShareHolderModel.dao.getDirectSize(name).size()+CoShareHolderModel.dao.getSuperSize(name).size()+stackInfo.size()+
 				  invest.size()+changeLog.size()+branch.size()+liaison.size()+ register.size()+companyType.size());
 	     setAttr("allsize", judgment.size()+announce.size()+exector.size()+businesExeption.size()+penaltv.size()+job.size()); 
-	     RiskTrendDetailedModel risk = RiskTrendDetailedModel.dao.getScore(getDataScopeByUserName(), name);
+	   RiskTrendDetailedModel risk = RiskTrendDetailedModel.dao.getScore(getDataScopeByUserName(), name);
 	     setAttr("risk", risk);
-	     render("xd/pages/08_01shichanghuaxiang.html");
+	   RiskTrendModel valueList=RiskTrendModel.dao.getFxzs(getDataScopeByUserName(), name);
+	    setAttr("value", valueList);
+	  render("xd/pages/08_01shichanghuaxiang.html");
 	}
 	/**
 	 * 获取企业基本信息 工商信息 
