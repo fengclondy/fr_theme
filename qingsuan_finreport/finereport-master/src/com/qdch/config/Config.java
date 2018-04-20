@@ -170,7 +170,10 @@ public class Config extends JFinalConfig {
 		rf.config();
 //		me.setViewType(ViewType.JSP);
 		me.setRenderFactory(rf);
-		me.setBaseUploadPath("D:/apache-tomcat-7.0.78/webapps/WebReport/pdf-files");  
+		//上传路径
+		me.setBaseUploadPath("D:/apache-tomcat-7.0.78/webapps/WebReport/pdf-files");
+		//设置上传文件大小
+		me.setMaxPostSize(104857600);
 		GroupTemplate gt = rf.groupTemplate;
 		gt.registerTag("layout", TemplteLayoutTag.class);
 	}
@@ -457,6 +460,6 @@ public class Config extends JFinalConfig {
 	}
 
 	public static void main(String[] args){ 
-		JFinal.start("WebRoot", 8080, "/", 5);
+		JFinal.start("WebRoot", 8090, "/", 5);
 	}
 }
