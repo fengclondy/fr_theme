@@ -20,7 +20,7 @@ public class ImportantRatioModel extends Model<ImportantRatioModel> {
 	public static final ImportantRatioModel dao=new ImportantRatioModel();
 	public List<ImportantRatioModel> getImportantRatio(String dataSql,String jys){	
 		String sql="select vday"
-				+ ",jyscmc,jysc,yql,(yqje::NUMERIC/10000) as yqje,(dcje::NUMERIC/10000) as dcje,dcbs  from insight_pp_netinfo where 1=1  and vday=(select max(vday) from insight_pp_netinfo)";
+				+ ",jyscmc,jysc,yql,(yqje::NUMERIC/10000) as yqje,(dcje::NUMERIC/10000) as dcje,dcbs  from insight_pp_netinfo where 1=1  ";
 		
 		if(StringUtils.isNotBlank(dataSql)){
 			sql+=" and  jysc in"+ dataSql+"";
@@ -29,7 +29,8 @@ public class ImportantRatioModel extends Model<ImportantRatioModel> {
 			sql+=" and jysc='"+ jys+"'  ";
 			
 		}
-		sql+="group by vday,jyscmc,jysc,yql,yqje,dcje,dcbs order by vday,jyscmc,jysc,yql,yqje,dcje,dcbs";
+		sql+=" and vday=(select max(vday) from insight_pp_netinfo where jysc ='"+jys+"')";
+		sql+=" group by vday,jyscmc,jysc,yql,yqje,dcje,dcbs order by vday,jyscmc,jysc,yql,yqje,dcje,dcbs";
 		return dao.find(sql);
 	}
 
