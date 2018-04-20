@@ -50,6 +50,7 @@ public class NotReadAllMsgServlet extends BaseServlet{
 			//System.out.println("name:" + name);
 			String type = java.net.URLDecoder.decode(hrequest.getParameter("type"), "UTF-8");
 			String roleName = user.getRoleNameByUserId(userId+"");
+			String jysStr=hrequest.getParameter("jysStr");
 			//String roleName = KeyUtil.getKeyValue("DZ");
 			//System.out.println("roleName:" + roleName);
 			//System.out.println("type:" + type);
@@ -73,6 +74,20 @@ public class NotReadAllMsgServlet extends BaseServlet{
 				count = notReadAllMsg.getUnReadAllMsgCount("JUDGE",type,jys);
 			}else if(roleName.contains(KeyUtil.getKeyValue("QYJCR"))){
 				count = notReadAllMsg.getUnReadAllMsgCount("JUDGE",type,jys);
+			}
+			//P2P 小贷
+			else if(roleName.contains(KeyUtil.getKeyValue("P2PCLR"))){//P2P处理人
+				count = notReadAllMsg.getUnReadAllMsgCount("DEAL",type,jysStr);
+			}else if(roleName.contains(KeyUtil.getKeyValue("XDCLR"))){//小贷处理人
+				count = notReadAllMsg.getUnReadAllMsgCount("DEAL",type,jysStr);
+			}else if(roleName.contains(KeyUtil.getKeyValue("P2PSHR"))){//审核人
+				count = notReadAllMsg.getUnReadAllMsgCount("AUDIT",type,jysStr);
+			}else if(roleName.contains(KeyUtil.getKeyValue("XDSHR"))){
+				count = notReadAllMsg.getUnReadAllMsgCount("AUDIT",type,jysStr);
+			}else if(roleName.contains(KeyUtil.getKeyValue("P2PJCR"))){//政府
+				count = notReadAllMsg.getUnReadAllMsgCount("JUDGE",type,jysStr);
+			}else if(roleName.contains(KeyUtil.getKeyValue("P2PJCR"))){
+				count = notReadAllMsg.getUnReadAllMsgCount("JUDGE",type,jysStr);
 			}
 			//先获取消息总数
 			r.put("unReadAllCount", count);

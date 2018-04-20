@@ -88,7 +88,7 @@
                 <div class="search">
                     <form action="">
                         <div class="inputGroup">
-                            <label for="pingtaimingcheng">平台名称1：</label>
+                            <label for="pingtaimingcheng">平台名称：</label>
                             <div class="mySelect" id="pingtaimingcheng">
                                 <div class="myOption selected inputWidth"><span
                                         class="text"></span><span
@@ -189,7 +189,7 @@
                             <th>累计成交额 <span>(万)</span></th>
                             <th>代偿总额 <span>(万)</span></th>
                             <th>在投人数</th>
-                            <th>信息纰漏</th>
+                            <th>信息披露</th>
                             <th>详情</th>
                         </tr>                    
                         </thead>
@@ -255,6 +255,8 @@
             		var content = "";
             		$("tbody").remove();
             		$.each(data,function(index,item){
+            			var xxpl = item.xxpl;
+            			xxpl = parseFloat(xxpl).toFixed(2)
             			content = content
             			+'<tbody>'
             			+'    <tr>'
@@ -269,7 +271,7 @@
             			+'   	<td>'+item.zcje+'</td>'
             			+'   	<td>'+item.dkje+'</td>'
             			+'    	<td>'+item.ztrs+'</td>'
-            			+'   	<td>'+item.xxpl.toFixed(2)+'</td>'
+            			+'   	<td>'+xxpl+'</td>'
             			+'   	<td class="more"><a href="${contextPath}/qdch/platformalert/index?jysc='+item.jysc+'" data-id="01_01pingtaizonglanalert" data-title="平台总览"> 查看</a></td>'
             			+'    </tr>'
             			+'</tbody>'

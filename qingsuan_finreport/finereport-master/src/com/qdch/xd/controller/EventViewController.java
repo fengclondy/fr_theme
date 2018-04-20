@@ -42,6 +42,11 @@ public class EventViewController extends BaseController {
 		mRenderError(result);
 
 	}
+
+	public void testsave(){
+		new RiskEventHistoryModel().set("fxsj_id","1").save();
+		System.out.println("111");
+	}
 	
 
 }

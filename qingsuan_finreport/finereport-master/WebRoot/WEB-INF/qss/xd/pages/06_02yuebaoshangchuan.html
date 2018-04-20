@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" name="viewport"  content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="${contextPath}/static/img/com/logo.png">
+    <link rel="stylesheet" href="${contextPath}/static/asserts/css/normalize.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/style.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/pageCom.css">
+    <style>
+		.inforContainer{
+			width:60%;
+			margin:0 auto;
+			padding:50px 80px;
+			text-align: center;
+			position: relative;
+		}
+		.inforContainer ul{
+			list-style: none;
+			position: absolute;
+			top:50%;
+			left:50%;
+		}
+		.inforContainer ul li{
+		    margin: 40px 0;
+		}
+		.inforContainer ul li span{				
+			margin-right: 30px;
+		}
+		.inforContainer ul li select{
+			min-width:260px;
+			height:30px;
+		}
+		.inforContainer ul li:last-child input{
+			width:100px;
+			padding:6px 12px;
+			background: #07729F;
+		    border: none;
+		    color: #fff;
+		    border-radius:15px;
+		}
+		#inforBtn{
+			margin-left: 60px;
+		}
+		.inforContainer{
+			display: none;
+			width:100%;
+			height:100%;
+			background: #fff;
+			position: absolute;
+			top:0;
+			left:0;
+			z-index: 10;
+			color:#000;
+		}
+		.file{
+			display: inline-block;
+			min-width: 260px;
+		}
+		.file input{
+			width:260px;
+		}
+    </style>
+ 	
+</head>
+<form id="myform" name="myform"  method="post" enctype="multipart/form-data">
+	<body class="whitePage" id="06_02yuebaoshangchuan" data-title="监管报告">
+		<div id="" class="inforContainer">
+				<ul>
+					<li>
+						<span>报告类型：</span>
+						<select id="selectReport" name="bglx">
+							<option value="日报">日报</option>
+							<option value="月报">月报</option>
+							<option value="年报">年报</option>
+						</select>
+					</li>
+					<li>
+						<span>交易市场：</span>
+						<select id="selectDeal" name="jys">
+							 ##for(j in jyslist!){
+				                <option  value="${j.jys!}">${j.jys!}</option>
+				             ##}
+						</select>
+					</li>
+					<li>
+						<span>操&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;作：</span>
+						<div class="file">
+							<input id="file" type="file" name="file" value="文件名"/>
+						</div>
+					</li>
+					<li>
+						<input id="inforSub" type="submit" value="保存"/>
+						<input id="inforBtn" type="button" value="取消"/>
+					</li>
+				</ul>
+		</div>
+	</body>
+</form>
+
+<script src="${contextPath}/static/asserts/js/echarts-4.0.js"></script>
+<script src="${contextPath}/static/asserts/js/jquery-2.2.4.js"></script>
+<script src="${contextPath}/static/asserts/js/jquery-form.js"></script>
+<script src="${contextPath}/static/js/pageCom.js"></script>
+<script src="${contextPath}/static/js/chartsCom.js"></script>
+
+<script type="text/javascript">
+
+$(".inforContainer").show();
+
+
+jys=$("#jysiselectDealnfo").eq(0).attr("data");
+
+
+function changeJysData(obj){
+	//获取交易所现在下拉选择值
+	jys=$(obj).attr("data");
+}
+
+var ulH = $(".inforContainer ul").height();
+var ulW = $(".inforContainer ul").width();
+$(".inforContainer ul").css({
+	"marginTop":- (ulH / 2),
+	"marginLeft":-(ulW / 2)
+});
+
+//保存
+	$("#inforSub").click(function(){
+		var file = $("#file")[0].files[0];//获取File对象，这里是上传单张图片，[0]代表第一张图片。如果多张，就是一个var file = e.target.files;
+		var type = file.type.split('/')[1];
+	    var size = Math.round(file.size / 1024 / 1024);
+	    
+	   var bglx = $("#selectReport").val();
+	   var jys = $("#selectDeal").val();
+	   console.log(bglx);
+	   console.log(jys);
+	   
+		if (type !='pdf') {
+	        alert('请上传pdf格式的文件!');
+	    }
+	    else if (size > 3) {
+	        alert('pdf文件大小不得超过3M!');
+	    }
+	    else{
+	    	$(".inforContainer").hide();
+			//window.location.reload();
+	    }
+		initUploadForm();  
+ 
+		function initUploadForm () {  
+		        var url = "${contextPath}/qdch/fileupLoad/upload";  
+		        var options = {   
+		                    type: 'post',  
+		                    url: url,
+		                    data:{"bglx":bglx,"jys":jys},
+						    success:function(data) {   
+								window.location.href = "${contextPath}/qdch/monthlyrepor"
+				            }
+		        };   
+		        $('#myform').ajaxForm(options);  
+		      
+		} 
+		
+		
+	}) 
+	
+	//取消
+	$("#inforBtn").click(function(){
+		window.location.href = "${contextPath}/qdch/monthlyrepor"
+	})
+</script>
+
+</html>
