@@ -3,6 +3,7 @@ package com.qdch.core;
 import org.apache.commons.lang.StringUtils;
 
 import com.fr.hailian.core.QdchUser;
+import com.fr.hailian.util.HttpClientUtil;
 import com.jfinal.kit.PropKit;
 import com.qdch.core.BaseController;
 /**
@@ -58,8 +59,15 @@ public class QdchController extends BaseController {
 	 public void getUnReadMsg(){
 		 QdchUser user=getLoginUser();
 		 String jysStr=user.getDataScope();
-		 //String type="";
-		 //String url=com.fr.hailian.core.Constants.WEB_DOMAIN+"/getNotReadAllMsg?jysStr="+jysStr+"&uid="+uid;
+		 String type="";
+		 if("2".equals(user.getType())){
+			 type="3";
+		 }else  if("3".equals(user.getType())){
+			 type="4";
+		 }
+		 String url=PropKit.get("webSite")+"/getNotReadAllMsg?jysStr="+jysStr+"&type="+type;
+		 String result=HttpClientUtil.sendGetRequest(url, null);
+		 System.out.println(result);
 	 }
 
 }

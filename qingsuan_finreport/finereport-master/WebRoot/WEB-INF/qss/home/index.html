@@ -81,7 +81,12 @@
 <script src="${contextPath}/static/asserts/js/jquery-2.2.4.js"></script>
 <script src="${contextPath}/static/js/index.js"></script>
 <script>
-
+function getAllUnReadMsg(){
+	//
+	$.post("${contextPath}/qdch/commerce/gainNews",{},function(data){
+		
+	});
+}
 </script>
 </body>
 </html>

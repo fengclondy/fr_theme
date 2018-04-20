@@ -172,7 +172,7 @@ public class Config extends JFinalConfig {
 //		me.setViewType(ViewType.JSP);
 		me.setRenderFactory(rf);
 		me.setBaseUploadPath(PropKit.get("uploadPath"));  
-		me.setMaxPostSize(104857600);
+		me.setMaxPostSize(Integer.valueOf(PropKit.get("uploadMaxSize")));
 		GroupTemplate gt = rf.groupTemplate;
 		gt.registerTag("layout", TemplteLayoutTag.class);
 	}
@@ -459,6 +459,6 @@ public class Config extends JFinalConfig {
 	}
 
 	public static void main(String[] args){ 
-		JFinal.start("WebRoot", 8090, "/", 5);
+		JFinal.start("WebRoot", 8080, "/", 5);
 	}
 }

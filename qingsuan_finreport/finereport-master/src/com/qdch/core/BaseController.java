@@ -26,6 +26,7 @@ import com.fr.hailian.util.HttpClientUtil;
 import com.fr.hailian.util.HttpJsonHelper;
 import com.jfinal.core.Controller;
 import com.jfinal.kit.JsonKit;
+import com.jfinal.kit.PropKit;
 /**
  * 
  * @todo  p2p 小贷公共父类
@@ -191,7 +192,7 @@ public class BaseController extends Controller{
 			user.setType(roleType);
 			//获取用户信息
 			//String url="http://localhost:8075/WebReport/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
-			String url=com.fr.hailian.core.Constants.WEB_DOMAIN+"/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
+			String url=PropKit.get("webSite")+"/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
 			
 			//正式环境也需要写localhost  服务器设置了外网权限
 			//String url="http://localhost/WebReport/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
