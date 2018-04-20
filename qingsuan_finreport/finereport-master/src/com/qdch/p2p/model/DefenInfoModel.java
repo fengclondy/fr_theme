@@ -36,46 +36,22 @@ public class DefenInfoModel extends Model<DefenInfoModel>{
 				+ " GROUP BY jysc,jyscmc,jysinfo,vday) t1"
 				+ " order by t1.fscore desc";
 		 return	dao.find(sql);
-	}
-	
-    
-	
-	
-	
-	
-	
+	}	
 	/**
-	 * 获取企业基本信息
-	 * @author lixiaoyi
-	 * @date 2018年4月8日
-	 * @TODO
+	 * 
+	 * @author hanpengda
+	 * @date 2018年4月13日
+	 * @TODO 根据平台获取得分信息
 	 */
-	public List<DefenInfoModel> getCompybasicinfo(String bigjys){
-		String sql="select * from insight_pp_corp_info";
-		return dao.find(sql);
-	}
-	/**
-	 * 获取企业其他信息
-	 * @author lixiaoyi
-	 * @date 2018年4月8日
-	 * @TODO
-	 */
-	public List<DefenInfoModel> getOtherinfo(String bigjys){
-		String sql="select * from insight_pp_othe_info";
-		return dao.find(sql);
-	}
-	/**
-	 * 根据平台查询
-	 * @author 高照
-	 * @date 2018年4月10日
-	 * @TODO
-	 */
-	public List<DefenInfoModel> getPingtai(String bigjys,String pingtai){
-		String sql="select jysinfo,fscore from insight_pp_score_info i where i.jysinfo like pingtai ";
+	public DefenInfoModel getDeFenByJysc(String bigjys,String jysc){
+		String sql="select * from insight_pp_score_info  where 1=1 "; 
 		if(StringUtils.isNotBlank(bigjys)){
 			sql+=" and jysc in "+bigjys;
-		} 
-		
-	    return	dao.find(sql);
+		}
+		if (StringUtils.isNotBlank(jysc)) {
+			sql += " and jysc = '"+jysc+"'";
+		}
+		sql += " order by vday desc";
+		return dao.findFirst(sql);
 	}
 }

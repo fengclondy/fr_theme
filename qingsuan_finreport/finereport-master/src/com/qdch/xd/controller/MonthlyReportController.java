@@ -66,5 +66,14 @@ public class MonthlyReportController extends BaseController {
 		mRenderJson(page);
 		
 	}
+	//文件上传
+/*	public List<MonthlyReportModel> FileUpLoad(String datasql){
+		String sql=" ";
+		if(StringUtils.isNotBlank(datasql)){
+			sql+=" and jysc in "+datasql;
+		}
+		
+		mRenderJson(sql);
+	}*/
 
 }

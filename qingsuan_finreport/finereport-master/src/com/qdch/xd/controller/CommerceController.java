@@ -2,6 +2,9 @@ package com.qdch.xd.controller;
 
 import java.util.List;
 
+import org.apache.commons.lang.ObjectUtils.Null;
+
+import com.alibaba.druid.sql.visitor.functions.Now;
 import com.qdch.core.BaseController;
 import com.qdch.xd.model.CoAnnounceModel;
 import com.qdch.xd.model.CoBranchModel;
@@ -9,18 +12,22 @@ import com.qdch.xd.model.CoBusinessModel;
 import com.qdch.xd.model.CoChangeLogModel;
 import com.qdch.xd.model.CoCopyrightModel;
 import com.qdch.xd.model.CoDishonestyModel;
+import com.qdch.xd.model.CoEnterpriseModel;
 import com.qdch.xd.model.CoExecutorModel;
 import com.qdch.xd.model.CoJobModel;
 import com.qdch.xd.model.CoJudgmentModel;
 import com.qdch.xd.model.CoPatentModel;
 import com.qdch.xd.model.CoPenaltvModel;
 import com.qdch.xd.model.CoReportModel;
+import com.qdch.xd.model.CoScabilityModel;
 import com.qdch.xd.model.CoShareHolderModel;
 import com.qdch.xd.model.CoSoftcopyModel;
 import com.qdch.xd.model.CoStockchangeModel;
 import com.qdch.xd.model.CoTradeMarkModel;
 import com.qdch.xd.model.CoWebsiteModel;
 import com.qdch.xd.model.CompanysInfoModel;
+import com.qdch.xd.model.MarkNewsModel;
+import com.qdch.xd.model.RiskTrendDetailedModel;
 /**
  * 工商模块获取数据
  * @author lixiaoyi
@@ -36,9 +43,12 @@ public class CommerceController extends BaseController{
 	 * @TODO
 	 */
 	public void index(){
-		String name="青岛国际商品交易所有限公司";//getPara("name");
-		
-	    List<CompanysInfoModel> info = CompanysInfoModel.dao.getInfo(getDataScopeByUserName());
+		String name=getPara("name");
+		if (name==null||"".equals(name)) {
+			name="青岛国际版权交易中心有限公司";
+		}
+		setAttr("company", name);
+	    List<CompanysInfoModel> info = CompanysInfoModel.dao.getInfo(getDataScopeByUserName(),name);
 	    setAttr("companyName", info);
 	    List<CompanysInfoModel> basic = CompanysInfoModel.dao.getBasicinfo(getDataScopeByUserName(),name);
 	     setAttr("basic", basic);
@@ -50,42 +60,57 @@ public class CommerceController extends BaseController{
 		  setAttr("director", dierctor);
 		List<CoShareHolderModel> supervisor = CoShareHolderModel.dao.getJian(name);
 		  setAttr("supervisor", supervisor); 
+		  setAttr("core",CoShareHolderModel.dao.getMainSize(name).size()+CoShareHolderModel.dao.getManagerSize(name).size()
+				  +CoShareHolderModel.dao.getDirectSize(name).size()+CoShareHolderModel.dao.getSuperSize(name).size());
 		List<CoShareHolderModel> stackInfo = CoShareHolderModel.dao.getStackInfo(name);
 		  setAttr("stackInfo", stackInfo);
+		  setAttr("stacksize", stackInfo.size());
 		List<CoShareHolderModel> invest = CoShareHolderModel.dao.getInvest(name);
 		  setAttr("invest", invest);  
+		  setAttr("investSize", invest.size());
 		List<CoChangeLogModel> changeLog = CoChangeLogModel.dao.getChange(name);
 		  setAttr("change", changeLog);
-		List<CoReportModel> report = CoReportModel.dao.getReport(name);  
-		  setAttr("report", report.get(0));
+		  setAttr("changeLog", changeLog.size()+"");
+		List<CoReportModel> report = CoReportModel.dao.getReport(name); 
+		  setAttr("report", report);
 		List<CoBranchModel> branch = CoBranchModel.dao.getBranch(name);  
 		  setAttr("brach", branch);
+		  setAttr("brachsize", branch.size());
 		List<CoChangeLogModel> nameChange = CoChangeLogModel.dao.getNamechange(name);
 		  setAttr("nameChange", nameChange);
 		List<CoChangeLogModel> investChange =  CoChangeLogModel.dao.getInvestchange(name);  
 		  setAttr("investChange", investChange);
 		List<CoChangeLogModel> liaison = CoChangeLogModel.dao.getLiaisonchange(name);
 		  setAttr("liaison", liaison);
+		  setAttr("liaiSize", liaison.size());
 		List<CoChangeLogModel> business = CoChangeLogModel.dao.getBuinesschange(name);
           setAttr("business", business);
         List<CoChangeLogModel> companyType = CoChangeLogModel.dao.getComtypechange(name);
           setAttr("com", companyType);
+          setAttr("typesize", companyType.size());
         List<CoChangeLogModel> register  = CoChangeLogModel.dao.getRegisterchange(name);
           setAttr("register", register);
+          setAttr("registSize", register.size());
         List<CoJudgmentModel> judgment = CoJudgmentModel.dao.getJudgment(name);
           setAttr("judgment", judgment);  
+          setAttr("judSize", judgment.size());
         List<CoAnnounceModel> announce = CoAnnounceModel.dao.getAnnounce(name);
           setAttr("announce", announce);
+          setAttr("annSize", announce.size());
         CoDishonestyModel dishonesty = CoDishonestyModel.dao.getDishonesty(name); 
 		   setAttr("dishonesty", dishonesty);
 		List<CoExecutorModel> exector = CoExecutorModel.dao.getExecutor(name);
 		   setAttr("exector", exector);
+		   setAttr("exeSize", exector.size());
 		List<CoBusinessModel> businesExeption = CoBusinessModel.dao.getBusiness(name);
 		   setAttr("buExecption", businesExeption);
+		   setAttr("businesize", businesExeption.size());
 		List<CoPenaltvModel> penaltv = CoPenaltvModel.dao.getPenalt(name); 
            setAttr("penalt", penaltv);
+           setAttr("penaltvSize", penaltv.size());
         List<CoJobModel> job = CoJobModel.dao.getJob(name);  
            setAttr("job", job);
+           setAttr("jobSize", job.size());
         List<CoTradeMarkModel> tradeMark =  CoTradeMarkModel.dao.getMark(name);  
            setAttr("trade", tradeMark);
         List<CoPatentModel> patent = CoPatentModel.dao.getPatent(name);   
@@ -98,7 +123,15 @@ public class CommerceController extends BaseController{
            setAttr("website", website);
         CoShareHolderModel count = CoShareHolderModel.dao.getCount(name);
 	       setAttr("count", count);
-        render("xd/pages/08_01shichanghuaxiang.html");
+	    List<CoShareHolderModel> stockC = CoShareHolderModel.dao.getStockc(name);
+	        setAttr("stockc", stockC);
+	     CoEnterpriseModel cc=CoEnterpriseModel.dao.getid(name);
+	   
+	  List<MarkNewsModel> mark =  MarkNewsModel.dao.getNews(cc.get("id"), "", "", "");
+	     setAttr("marknews", mark);  
+	  List<CompanysInfoModel> infoModels= CompanysInfoModel.dao.getCompanybyName(basic.get(0).get("legal_person"));
+	      setAttr("comInfo", infoModels);
+	  render("xd/pages/08_01shichanghuaxiang.html");
 	}
 	/**
 	 * 获取企业基本信息 工商信息 
@@ -372,5 +405,54 @@ public class CommerceController extends BaseController{
 		String name = getPara("name");
 		List<CoWebsiteModel> website = CoWebsiteModel.dao.getWebsite(name);
 	    mRenderJson(website);
+	}
+	/**
+	 * 舆情详情
+	 * @author lixiaoyi
+	 * @date 2018年4月17日 下午3:05:46
+	 * @TODO
+	 */
+	public void gainNews(){
+	String name =	getPara("name");
+	String keyword = getPara("keyword");
+	String begin= getPara("begin");
+	String end = getPara("end");
+	List<MarkNewsModel> mark =null;
+	if (name!=null||"".equals(name)) {
+		 CoEnterpriseModel cc=CoEnterpriseModel.dao.getid(name);
+		  mark  =  MarkNewsModel.dao.getNews(cc.get("id"), keyword, begin,end);
+
+	}else {
+	 mark =  MarkNewsModel.dao.getNews("", keyword, begin,end);
+
+	}
+		mRenderJson(mark);
+	}
+	/**
+	 * 平均综合得分
+	 * @author lixiaoyi
+	 * @date 2018年4月18日 上午9:34:39
+	 * @TODO
+	 */
+	public void gainScore(){
+		 String name=getPara("name");
+	List<CoScabilityModel>	  scability= CoScabilityModel.dao.getScore(name, getDataScopeByUserName());
+	  if (scability.size()==0) {
+		  mRenderJson("kong");
+		
+	}else {
+		mRenderJson(scability.get(0));
+	}    	
+	}
+	/**
+	 * 风险指数
+	 * @author lixiaoyi
+	 * @date 2018年4月18日 上午11:20:23
+	 * @TODO
+	 */
+	public void gainRiskscore(){
+		String name=getPara("name");
+		RiskTrendDetailedModel risk = RiskTrendDetailedModel.dao.getScore(getDataScopeByUserName(), name);
+	    mRenderJson(risk);
 	}
 }

@@ -86,6 +86,7 @@
         .center{
             color: #fff;
             background:transparent;
+            font-size:0.8rem;
         }
         .red{
             color: #fffb8f;
@@ -132,7 +133,7 @@
       	#demoTable1{
             border: 1px solid #00abde;
         }
-
+		
     </style>
 </head>
 <body id="04_04jiekuanrenhuaxiang" data-title="借款人画像">
@@ -767,7 +768,7 @@
            <!--模态框 start-->
       ##for(j in pingtailist!){
       	<div class="model"  id="model_${j.jysinfo!}">
-                <div class="header"><span>X</span></div>
+                <div class="header"><h4>审核资料</h4><span>X</span></div>
                 <div id="div_container1" style="text-align:center;position:relative;height: 95%; overflow: auto;">
                     <!-- 固定表头 table外层必须包有一个div  id="my_div"   class="fakeContainer first_div" 引入superTables.js  在页面下面还需要调用 -->
                     <div style="height:100%;width: 100%;overflow: auto;" id="my_div1" class="fakeContainer first_div" >
@@ -970,10 +971,6 @@
 	var youwu="${hasInfo!}";
     //此处调用superTables.js里需要的函数
     $(document).ready(function(){
-    	
-    alert('${pingtailist!}');
-    console.log(pt);
-    	console.log('${pingtailist!}');
     	    //获取到选择平台的值
     	    $(".pt").click(function(){
     	    	pt=$(this).attr('value');

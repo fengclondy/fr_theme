@@ -15,16 +15,19 @@
             float: right;
         }
         .container {
-            /*flex-direction: row;*/
-        }
+		    display: block;
+		    flex-direction: row;
+		}
        .main {
-            display: flex;
-            flex-direction: column;
-            flex: 1;
+       		height:100%;
         }
         .main > div {
-            flex: 1;
             height: 33.33%;
+        }
+        .chartBox{
+        	display: block;
+    		flex-direction: row;
+		    margin: 0 .5rem;
         }
         .chartTitle_right img{
             width: 0.8rem;
@@ -36,419 +39,269 @@
             position: absolute;
             right: 1rem;
         }
-        .chartContent{
-            height: 100%;
+        .chartBox > .chartContent{
+    	    display: block;
+		    flex-direction: row;
+            height: calc(100% - 2rem);
         }
-        .dayin{
+        .chartBox > .chartContent > .chartBody{
+        	position: relative;
+    		height: 100%;
+        }
+        .dayin h5{
             vertical-align: middle;
-            font-size: 0.76rem;
+            font-size: 0.6rem;
         }
         .chartTitle_right h5{
             display: inline-block;
             vertical-align: middle;
-
+			cursor: pointer;
         }
-        .main_top_left{
-            height: 100%;
-            width: 15%;
+      	.chartBodyLeft{
+      		/*width:7.5rem;*/
+      		width:120px;
+      		height: 100%;
+      	}
+		.chartBodyRight{
+			width:100%;
+			height: 100%;
+			/*background: rgba(255,255,255,.05);*/
+		    position: absolute;
+    		/*margin-left: calc(160px + 7.5rem);*/
+    		margin-left: 280px;
+		}
+        .chartBodyLeftTop{
+    		padding: 10px 20px;
+    		position: relative;
+		    top: 50%;
+    		margin-top: -65px;
         }
-        .main_top_middle{
-            height: 100%;
-            width: 60%;
+        .chartBodyLeftTop > img{
+        	width:80px;
+        	opacity: 0.8;
+        	filter:alpha(opacity:80);
+    	    display: block;
         }
-
-        /*中间的五个盒子*/
-        .main_top_middle{
-            padding: 0.5rem 0;
+        .chartBodyLeftTop p{
+        	text-align: center;
+        	font-size: 0.8rem;
         }
-
-
-        .main_top_up,.main_top_down{
-            width: 100%;
-            height: 50%;
-            margin: 0 auto;
-        }
-        .main_top_upBox,.main_top_downBox{
-            width: 30%;
-            height: 90%;
-            background-color:rgba(0,0,0,.2);
-            margin-left: 2%;
-        }
-        .main_top_upBox:nth-child(1){
-            margin-left: 19%;
-        }
-        .main_top_upBoxContent{
-            padding: .2rem .5rem;
-        }
-        .main_top_upBoxContent,.main_top_downBoxContent{
-            padding: 0.2rem 0.8rem;
-        }
-        .main_top_upBoxContent span,.main_top_downBoxContent span{
-            font-size: 0.76rem;
-        }
-        .main_top_upBoxContent .total a, .main_top_downBoxContent .total a{
-            color: #fff;
-            font-size: 1.3rem;
-        }
-        /*右侧的雷达图*/
-        .main_top_right{
-            height: 100%;
-            width: 25%;
-
-        }
-        .chartBox > .chartContent > .chartBody  [id^=ec] {
-            height: 100%;
-        }
-
-        /*左侧综合得分部分 start*/
-        .main_top_leftContent{
-            position: relative;
-            top: 15%;
-            left: 20%;
-        }
-        .main_top_leftContentPic{
-            position: relative;
-            width: 60%;
-            height: 60%;
-        }
-        .main_top_leftContentPic img{
-            width: 100%;
-        }
-        .main_top_leftContentWords{
-            position: absolute;
-            text-align: center;
-            width: 40%;
-            top: 15%;
-            left: 10%;
-        }
-        .main_top_leftContentWords span:nth-child(1){
-            font-size: 2rem;
-            color:#fffb8f;
-            /*font-weight:500;*/
-        }
-        .main_top_leftContentWords span:last-child{
-            font-size: 0.9rem;
-            color:#00adef;
-            vertical-align: middle;
-        }
-
-        .icon{
-            position: absolute;
-            top: -10%;
-            left: -13%;
-            display: inline-block;
-            width: 2rem;
-            height: 2rem;
-            background-size:contain;
-        }
-        .icon span{
-            position: absolute;
-            font-size: 0.95rem;
-            top: 0.2rem;
-            left: 0.55rem;
-        }
-        .first .icon{
-            background: url("${contextPath}/static/img/tinified/1.png") no-repeat;
-            -webkit-background-size: contain;
-            background-size: contain;
-        }
-        .second .icon{
-            background: url("${contextPath}/static/img/tinified/2.png") no-repeat;
-            -webkit-background-size: contain;
-            background-size: contain;
-
-        }
-        .third .icon{
-            background: url("${contextPath}/static/img/tinified/3.png") no-repeat;
-            -webkit-background-size: contain;
-            background-size: contain;
-        }
-        .fourth .icon{
-            background: url("${contextPath}/static/img/tinified/4.png") no-repeat;
-            -webkit-background-size: contain;
-            background-size: contain;
-        }
-
-
-
+		.rank{
+			position: absolute;
+		    top: 40px;
+		    left: 55px;
+		    font-weight: 600;
+		}
+		.chartBodyLeftTop p img{
+			width:0.5rem;
+		}
+		.chartBodyRightCircle{
+			width:160px;
+			height: 100%;
+			position: relative;
+			/*background: rgba(255,255,255,.05);*/
+		}
+		canvas{
+			position: absolute;
+			top:50%;
+			left: 50%;
+			margin-top:-65px;
+			margin-left: -65px;
+		}
+		.chartBodyNumber{
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top:0;
+		}
+		.chartBodyNumber > p{
+			position:absolute;
+			top:50%;
+		    left: 50%;
+		    font-size: 0.8rem;
+		    margin-left: -1.5rem;
+		    margin-top: 0.5rem;
+		}
+		.chartBodyNumber > div{
+			position: absolute;
+		    top: 67%;
+		    left: 50%;
+	        font-size: 0.8rem;
+    		margin-left: -6px;
+		}
+		.chartBodyRightList{
+			width:auto;
+			height:100%;
+		}
+		.chartBodyRightList ul{
+			height:130px;
+		    position: relative;
+		    top: 50%;
+		    margin-top: -65px;
+		}
+		.chartBodyRightList ul li{
+			float: left;
+			/*height:46%;*/
+			border:2px solid #2386C0;
+			border-radius: 3px;
+		    padding: 3px 15px;
+		    margin-left: 2rem;
+		    margin-top: 1%;
+		}
+		.chartBodyRightList ul li h3{
+			font-size: 1.4rem;
+		}
+		.chartBodyRightList ul li div{
+			font-size: 0.75rem;			
+		}
+		.chartBodyRightList ul li div em{
+			font-style: normal;
+		    margin-right: 0.4rem;
+		}
+		.liContent{
+		    margin-right: 0.8rem;
+		}
+		.chartBodyRightList ul li div img{
+			width:0.5rem;
+			vertical-align: middle;
+		}
+		.colorUp{
+			color:#FF4D4F;
+		}
+		.colorDown{
+			color:#73D13D;
+		}
+		.colorJust{
+			color:#00ADEF;
+		}
+		.colorHigh{
+			color:#FF4D4F;
+		}
+		.colorMiddle{
+			color:#FA8C16;
+		}
+		.colorLow{
+			color:#52C41A;
+		}
+		.chartBodyCharts{
+			width:280px;
+			height:100%;
+			position: relative;
+		}
+		.chartsAll{
+			width:280px;
+			height:130px;
+			position: absolute;
+			top:50%;
+			left:50%;
+			margin-top:-65px;
+			margin-left: -140px;
+		}
         /*左侧综合得分部分 end*/
     </style>
 </head>
-<body id="04_01jingyingnengli" data-title="经营能力">
+<body id="04_01jingyingnengli" data-title="经营能力" style="overflow-y: auto;">
 <div class="container">
     <div class="main">
-        <div class="main-first">
+       
+        
+       
+<!--         <div class="main-third">
             <div class="chartBox ec003">
                 <div class="chartTitle">
                     <h3>宜人贷有限公司</h3>
                     <div class="chartTitle_right">
-                        <img src="${contextPath}/static/img/chartTitle_right.png" alt="">
                         <div class="dayin fr">
-                            <h5>打印监管报告</h5>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="chartContent">
-                    <div class="chartBody">
-                        <!--最左侧 综合得分-->
-                        <div class="main_top_left fl">
-                            <div class="main_top_leftContent">
-                                <div class="main_top_leftContentPic first">
-                                    <img src="${contextPath}/static/img/defen.png" alt="">
-                                    <span class="icon"><span>1</span></span>
-
-                                </div>
-                                <div class="main_top_leftContentWords">
-                                    <span id="zonghedefen1">9</span><br>
-                                    <span>风险排名</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!--middle五个盒子-->
-                        <div class="main_top_middle fl">
-                            <div class="main_top_up">
-                                <div class="main_top_upBox fl">
-                                    <div class="main_top_upBoxContent">
-                                        <span>成交额</span><br><span class="total"><a href="#">347564</a></span>&nbsp;<span>万元</span>
-                                    </div>
-                                </div>
-                                <div class="main_top_upBox fl">
-                                    <div class="main_top_upBoxContent">
-                                        <span>成交量</span><br><span class="total"><a href="#">34476</a></span>&nbsp;<span>笔</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="main_top_down">
-                                <div class="main_top_downBox fl">
-                                    <div class="main_top_downBoxContent">
-                                        <span>平均满标天数</span><br><span class="total"><a href="#">34</a></span>&nbsp;<span>天</span>
-                                    </div>
-                                </div>
-                                <div class="main_top_downBox fl">
-                                    <div class="main_top_downBoxContent">
-                                        <span>贷款余额</span><br><span class="total"><a href="#">34476</a></span>&nbsp;<span>万元</span>
-                                    </div>
-                                </div>
-                                <div class="main_top_downBox fl">
-                                    <div class="main_top_downBoxContent">
-                                        <span>借款人数</span><br><span class="total"><a href="#">6543</a></span>&nbsp;<span>人</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--最右侧 雷达图-->
-                        <div class="main_top_right fl">
-                            <div id="ec0102_001"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="main-second">
-            <div class="chartBox ec003">
-                <div class="chartTitle">
-                    <h3>宜人贷有限公司</h3>
-                    <div class="chartTitle_right">
-                        <img src="${contextPath}/static/img/chartTitle_right.png" alt="">
-                        <div class="dayin fr">
-                            <h5>打印监管报告</h5>
+                            <h5>查看监管报告</h5>
                         </div>
                     </div>
                 </div>
                 <div class="chartContent">
                     <div class="chartBody">
-                        <!--最左侧 综合得分-->
-                        <div class="main_top_left fl">
-                            <div class="main_top_leftContent">
-                                <div class="main_top_leftContentPic second">
-                                    <img src="${contextPath}/static/img/defen.png" alt="">
-                                    <span class="icon">
-                                        <span>2</span>
-                                    </span>
-                                </div>
-                                <div class="main_top_leftContentWords" >
-                                    <span id="zonghedefen2">8</span><br>
-                                    <span>风险排名</span>
-                                </div>
-                            </div>
+                        <div class="chartBodyLeft fl">
+                        	<div class="chartBodyLeftTop">
+                        		<img src="${contextPath}/static/img/low.png" alt=""/>
+                        		<span class="rank">3</span>
+                        		<p>风险排名</p>
+                        		<p><img src="${contextPath}/static/img/just.png" alt="" /><span class="colorJust">0</span></p>
+                        	</div>
                         </div>
-                        <!--middle五个盒子-->
-                        <div class="main_top_middle fl">
-                            <div class="main_top_up">
-                                <div class="main_top_upBox fl">
-                                    <div class="main_top_upBoxContent">
-                                        <span>成交额</span><br><span class="total"><a href="#">347564</a></span>&nbsp;<span>万元</span>
-                                    </div>
-                                </div>
-                                <div class="main_top_upBox fl">
-                                    <div class="main_top_upBoxContent">
-                                        <span>成交量</span><br><span class="total"><a href="#">34476</a></span>&nbsp;<span>笔</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="main_top_down">
-                                <div class="main_top_downBox fl">
-                                    <div class="main_top_downBoxContent">
-                                        <span>平均满标天数</span><br><span class="total"><a href="#">34</a></span>&nbsp;<span>天</span>
-                                    </div>
-                                </div>
-                                <div class="main_top_downBox fl">
-                                    <div class="main_top_downBoxContent">
-                                        <span>贷款余额</span><br><span class="total"><a href="#">34476</a></span>&nbsp;<span>万元</span>
-                                    </div>
-                                </div>
-                                <div class="main_top_downBox fl">
-                                    <div class="main_top_downBoxContent">
-                                        <span>借款人数</span><br><span class="total"><a href="#">6543</a></span>&nbsp;<span>人</span>
-                                    </div>
-                                </div>
-                            </div>
+                    	<div class="chartBodyRightCircle fl">
+                    		<canvas id="canvasFourth">当前浏览器不支持canvas 请升级！</canvas>
+                    		<div class="chartBodyNumber">
+                    			<p>风险指数</p>
+                    			<div></div>
+                    		</div>
+                    	</div>
+                        <div class="chartBodyRight fl">
+                        	<div class="chartBodyRightList fl">
+                        		<ul>
+                        			<li>
+                        				<h3>8.1</h3>
+                        				<div>
+                        					<span class="liContent">合规风险</span>
+                        					<em>排名：<span>1</span></em>
+                        					<img src="${contextPath}/static/img/up.png" alt="" />
+                        					<small class="colorUp">1</small>
+                        				</div>
+                        			</li>
+                        			<li>
+                        				<h3>5.6</h3>
+                        				<div>
+                        					<span class="liContent">信用风险</span>
+                        					<em>排名：<span>4</span></em>
+                        					<img src="${contextPath}/static/img/down.png" alt="" />
+                        					<small class="colorDown">1</small>
+                        				</div>
+                        			</li>
+                        			<li>
+                        				<h3>9.2</h3>
+                        				<div>
+                        					<span class="liContent">市场风险</span>
+                        					<em>排名：<span>2</span></em>
+                        					<img src="${contextPath}/static/img/just.png" alt="" />
+                        					<small class="colorJust">0</small>
+                        				</div>
+                        			</li>
+                        			<br>
+                        			<li>
+                        				<h3>9.1</h3>
+                        				<div>
+                        					<span class="liContent">资金风险</span>
+                        					<em>排名：<span>1</span></em>
+                        					<img src="${contextPath}/static/img/up.png" alt="" />
+                        					<small class="colorUp">1</small>
+                        				</div>
+                        			</li>
+                        			<li>
+                        				<h3>9.2</h3>
+                        				<div>
+                        					<span class="liContent">声誉风险</span>
+                        					<em>排名：<span>1</span></em>
+                        					<img src="${contextPath}/static/img/up.png" alt="" />
+                        					<small class="colorUp">1</small>
+                        				</div>
+                        			</li>
+                        			<li>
+                        				<h3>8.8</h3>
+                        				<div>
+                        					<span class="liContent">周边风险</span>
+                        					<em>排名：<span>1</span></em>
+                        					<img src="${contextPath}/static/img/just.png" alt="" />
+                        					<small class="colorJust">0</small>
+                        				</div>
+                        			</li>
+                        		</ul>
+                        	</div>
                         </div>
-                        <!--最右侧 雷达图-->
-                        <div class="main_top_right fl">
-                            <div id="ec0102_002"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="main-third">
-            <div class="chartBox ec003">
-                <div class="chartTitle">
-                    <h3>宜人贷有限公司</h3>
-                    <div class="chartTitle_right">
-                        <img src="${contextPath}/static/img/chartTitle_right.png" alt="">
-                        <div class="dayin fr">
-                            <h5>打印监管报告</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="chartContent">
-                    <div class="chartBody">
-                        <!--最左侧 综合得分-->
-                        <div class="main_top_left fl">
-                            <div class="main_top_leftContent">
-                                <div class="main_top_leftContentPic third">
-                                    <img src="${contextPath}/static/img/defen.png" alt="">
-                                    <span class="icon">
-                                        <span>3</span>
-                                    </span>
-                                </div>
-                                <div class="main_top_leftContentWords" >
-                                    <span id="zonghedefen3">6</span><br>
-                                    <span>风险排名</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!--middle五个盒子-->
-                        <div class="main_top_middle fl">
-                            <div class="main_top_up">
-                                <div class="main_top_upBox fl">
-                                    <div class="main_top_upBoxContent">
-                                        <span>成交额</span><br><span class="total"><a href="#">347564</a></span>&nbsp;<span>万元</span>
-                                    </div>
-                                </div>
-                                <div class="main_top_upBox fl">
-                                    <div class="main_top_upBoxContent">
-                                        <span>成交量</span><br><span class="total"><a href="#">34476</a></span>&nbsp;<span>笔</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="main_top_down">
-                                <div class="main_top_downBox fl">
-                                    <div class="main_top_downBoxContent">
-                                        <span>平均满标天数</span><br><span class="total"><a href="#">34</a></span>&nbsp;<span>天</span>
-                                    </div>
-                                </div>
-                                <div class="main_top_downBox fl">
-                                    <div class="main_top_downBoxContent">
-                                        <span>贷款余额</span><br><span class="total"><a href="#">34476</a></span>&nbsp;<span>万元</span>
-                                    </div>
-                                </div>
-                                <div class="main_top_downBox fl">
-                                    <div class="main_top_downBoxContent">
-                                        <span>借款人数</span><br><span class="total"><a href="#">6543</a></span>&nbsp;<span>人</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--最右侧 雷达图-->
-                        <div class="main_top_right fl">
-                            <div id="ec0102_003"></div>
+                        <div class="chartBodyCharts fr">
+                        	<div id="chartsFourth" class="chartsAll"></div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="main-fourth">
-            <div class="chartBox ec003">
-                <div class="chartTitle">
-                    <h3>宜人贷有限公司</h3>
-                    <div class="chartTitle_right">
-                        <img src="${contextPath}/static/img/chartTitle_right.png" alt="">
-                        <div class="dayin fr">
-                            <h5>打印监管报告</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="chartContent">
-                    <div class="chartBody">
-                        <!--最左侧 综合得分-->
-                        <div class="main_top_left fl">
-                            <div class="main_top_leftContent">
-                                <div class="main_top_leftContentPic third">
-                                    <img src="${contextPath}/static/img/defen.png" alt="">
-                                    <span class="icon">
-                                        <span>4</span>
-                                    </span>
-                                </div>
-                                <div class="main_top_leftContentWords" >
-                                    <span id="zonghedefen4">5</span><br>
-                                    <span>风险排名</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!--middle五个盒子-->
-                        <div class="main_top_middle fl">
-                            <div class="main_top_up">
-                                <div class="main_top_upBox fl">
-                                    <div class="main_top_upBoxContent">
-                                        <span>成交额</span><br><span class="total"><a href="#">347564</a></span>&nbsp;<span>万元</span>
-                                    </div>
-                                </div>
-                                <div class="main_top_upBox fl">
-                                    <div class="main_top_upBoxContent">
-                                        <span>成交量</span><br><span class="total"><a href="#">34476</a></span>&nbsp;<span>笔</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="main_top_down">
-                                <div class="main_top_downBox fl">
-                                    <div class="main_top_downBoxContent">
-                                        <span>平均满标天数</span><br><span class="total"><a href="#">34</a></span>&nbsp;<span>天</span>
-                                    </div>
-                                </div>
-                                <div class="main_top_downBox fl">
-                                    <div class="main_top_downBoxContent">
-                                        <span>贷款余额</span><br><span class="total"><a href="#">34476</a></span>&nbsp;<span>万元</span>
-                                    </div>
-                                </div>
-                                <div class="main_top_downBox fl">
-                                    <div class="main_top_downBoxContent">
-                                        <span>借款人数</span><br><span class="total"><a href="#">6543</a></span>&nbsp;<span>人</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--最右侧 雷达图-->
-                        <div class="main_top_right fl">
-                            <div id="ec0102_004"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </div> -->
+        
     </div>
 </div>
 
@@ -456,13 +309,101 @@
 <script src="${contextPath}/static/asserts/js/jquery-2.2.4.js"></script>
 <script src="${contextPath}/static/js/main.js"></script>
 <script src="${contextPath}/static/js/chartsCom.js"></script>
+<script type="text/javascript">
+	//canvasAll("canvasFirst",8);
+	//canvasAll("canvasSecond",5.2);
+	//canvasAll("canvasThird",2.0);
 
-</body>
-</html>
-<script>
-    var allCharts = [];
-    $(function(){
-        var myChart1 = echarts.init($("#ec0102_001")[0]);
+	/* canvasAll("canvasFourth",2.0); */
+	  getData();
+	  function getData(){
+		$.post("${contextPath}/qdch/risk/getRiskIndex",function(data){
+			
+			var htmls="";
+			var valu=[];
+			console.log("getdata=======================",data);
+
+			$.each(data,function(index,item){
+				
+			
+					htmls+="<div class='main-first'>"
+						htmls+="<div class='chartBox ec003'>""
+						htmls+="<div class='chartTitle'>"
+						htmls+="<h3>"+item.jysinfo+"</h3>""
+						htmls+="<div class='chartTitle_right'>"
+						htmls+="<div class='dayin fr'>"
+						htmls+="<h5>查看监管报告</h5>"
+						htmls+="</div>"
+
+						htmls+="</div>"
+						htmls+="</div>"
+						htmls+="<div class='chartContent'>"
+						htmls+="<div class='chartBody'>"
+						htmls+="<div class='chartBodyLeft fl'>"
+						htmls+="<div class='chartBodyLeftTop'>"
+						htmls+="<img src='${contextPath}/static/img/high.png' alt=''/>"
+						htmls+="<span class='rank'>"+item.keypm+"</span>"
+						htmls+="<p>风险排名</p>"
+						htmls+="<p><img src='${contextPath}/static/img/up.png' alt='' /><span class='colorUp'>"+1+"</span></p>"
+						htmls+="</div>"
+						htmls+="</div>"
+						htmls+="<div class='chartBodyRightCircle fl'>"
+						htmls+="<canvas id='canvas'"+item.keypm+">当前浏览器不支持canvas 请升级！</canvas>"
+						htmls+="<div class='chartBodyNumber'>"
+						htmls+="<p>风险指数</p>"
+						htmls+="<div></div>"
+						htmls+="</div>"
+						htmls+="</div>"
+						htmls+="<div class='chartBodyRight fl'>"
+						htmls+="<div class='chartBodyRightList fl'>"
+						htmls+="<ul>"
+										$.each(item.detaildata,function(ind,it){
+											valu.push(it.detailvalue); 
+											htmls+="<li>"+
+											htmls+="<h3>"+it.detailvalue+"</h3>\n"
+											htmls+="<div>"
+											htmls+="<span class='liContent'>"+it.fxlb+"</span>\n"
+											htmls+="<em>排名：<span>"+it.detailpm+"</span></em>\n"
+											htmls+="<img src='${contextPath}/static/img/up.png' alt='' />\n"
+											htmls+="<small class='colorUp'>"+it.detailpm+"</small>\n"
+											htmls+="</div>\n"
+											htmls+="</li>"
+											
+										});			
+						htmls+="</ul>"
+					    htmls+="</div>"
+					    htmls+="</div>"
+					    htmls+="<div class='chartBodyCharts fr'>"
+					    htmls+="<div id='charts'"+item.keypm+" class='chartsAll'></div>"
+					    htmls+="</div>"
+					    htmls+="</div>"
+					    htmls+="</div>"
+					    htmls+="</div>"
+					    htmls+="</div>"
+							});
+			$(".main").html(htmls);
+			$.each(data,function(index,item){
+				charts("#charts"+item.keypm,valu);
+				canvasAll("canvas"+item.keypm,item.value); 
+			});
+			
+			
+			});		
+	}
+	 
+	
+	 
+	
+	//var val = [4300, 10000, 28000, 35000, 50000, 19000];
+	//var _val = [3000,5000,10000,2000,1000,10000];
+	//charts("#chartsFirst",val);
+	//charts("#chartsSecond",_val);
+	//charts("#chartsThird",_val);
+	//charts("#chartsFourth",_val);
+	
+	function charts(id,value){
+		var allCharts = [];
+        var myChart1 = echarts.init($(id)[0]);
         myChart1.setOption(opt_com);
         myChart1.setOption({
             tooltip: {},
@@ -471,11 +412,11 @@
             },
             radar: {
                 center:['50%','50%'],
-                radius:'55%',
+                radius:'60%',
                 name: {
                     textStyle: {
                         color: '#fff',
-                        fontSize:12
+                        fontSize:10
 
                     }
                 },
@@ -493,195 +434,30 @@
                     show: false
                 },
                 indicator: [
-                    { name: '信用风险', max: 6500},
-                    { name: '信用风险', max: 16000},
-                    { name: '信用风险', max: 30000},
-                    { name: '信用风险', max: 38000},
-                    { name: '信用风险', max: 52000},
-                    { name: '信用风险', max: 25000}
+                    { name: '合规风险'},
+                    { name: '信用风险'},
+                    { name: '资产风险'},
+                    { name: '市场风险'},
+                    { name: '声誉风险'},
+                    { name: '周边风险'}
                 ]
             },
-
-
             series: [{
                 name: '预算 vs 开销（Budget vs spending）',
                 type: 'radar',
                 areaStyle: {normal: {}},
                 data : [
                     {
-                        value : [4300, 10000, 28000, 35000, 50000, 19000],
+                         value : value, //[4300, 10000, 28000, 35000, 50000, 19000] 
+                       /*  value : [4300, 10000, 28000, 35000, 50000, 19000] */
                         name : '预算分配（Allocated Budget）'
                     }
 
                 ]
             }]
         });
-
-    //    第二个模块  右二
-        var myChart2 = echarts.init($("#ec0102_002")[0]);
-        myChart2.setOption(opt_com);
-        myChart2.setOption({
-            tooltip: {},
-            legend: {
-                show:false
-            },
-            radar: {
-                center:['50%','50%'],
-                radius:'55%',
-                name: {
-                    textStyle: {
-                        color: '#fff',
-                        fontSize:12
-                    }
-                },
-                axisLine: {
-                    lineStyle: {
-                        color: '#00abde'
-                    }
-                },
-                splitLine: {
-                    lineStyle: {
-                        color: '#00abde'
-                    }
-                },
-                splitArea: {
-                    show: false
-                },
-                indicator: [
-                    { name: '信用风险', max: 6500},
-                    { name: '信用风险', max: 16000},
-                    { name: '信用风险', max: 30000},
-                    { name: '信用风险', max: 38000},
-                    { name: '信用风险', max: 52000},
-                    { name: '信用风险', max: 25000}
-                ]
-            },
-
-
-            series: [{
-                name: '预算 vs 开销（Budget vs spending）',
-                type: 'radar',
-                areaStyle: {normal: {}},
-                data : [
-                    {
-                        value : [4300, 10000, 28000, 35000, 50000, 19000],
-                        name : '预算分配（Allocated Budget）'
-                    }
-
-                ]
-            }]
-        });
-
-    //    模块三  右三
-        var myChart3 = echarts.init($("#ec0102_003")[0]);
-        myChart3.setOption(opt_com);
-        myChart3.setOption({
-            tooltip: {},
-            legend: {
-                show:false
-            },
-            radar: {
-                center:['50%','50%'],
-                radius:'55%',
-                name: {
-                    textStyle: {
-                        color: '#fff',
-                        fontSize:12
-                    }
-                },
-                axisLine: {
-                    lineStyle: {
-                        color: '#00abde'
-                    }
-                },
-                splitLine: {
-                    lineStyle: {
-                        color: '#00abde'
-                    }
-                },
-                splitArea: {
-                    show: false
-                },
-                indicator: [
-                    { name: '信用风险', max: 6500},
-                    { name: '信用风险', max: 16000},
-                    { name: '信用风险', max: 30000},
-                    { name: '信用风险', max: 38000},
-                    { name: '信用风险', max: 52000},
-                    { name: '信用风险', max: 25000}
-                ]
-            },
-
-
-            series: [{
-                name: '预算 vs 开销（Budget vs spending）',
-                type: 'radar',
-                areaStyle: {normal: {}},
-                data : [
-                    {
-                        value : [4300, 10000, 28000, 35000, 50000, 19000],
-                        name : '预算分配（Allocated Budget）'
-                    }
-
-                ]
-            }]
-        });
-
-        // 模块三  右三
-        var myChart4 = echarts.init($("#ec0102_004")[0]);
-        myChart4.setOption(opt_com);
-        myChart4.setOption({
-            tooltip: {},
-            legend: {
-                show:false
-            },
-            radar: {
-                center:['50%','50%'],
-                radius:'55%',
-                name: {
-                    textStyle: {
-                        color: '#fff',
-                        fontSize:12
-                    }
-                },
-                axisLine: {
-                    lineStyle: {
-                        color: '#00abde'
-                    }
-                },
-                splitLine: {
-                    lineStyle: {
-                        color: '#00abde'
-                    }
-                },
-                splitArea: {
-                    show: false
-                },
-                indicator: [
-                    { name: '信用风险', max: 6500},
-                    { name: '信用风险', max: 16000},
-                    { name: '信用风险', max: 30000},
-                    { name: '信用风险', max: 38000},
-                    { name: '信用风险', max: 52000},
-                    { name: '信用风险', max: 25000}
-                ]
-            },
-
-
-            series: [{
-                name: '预算 vs 开销（Budget vs spending）',
-                type: 'radar',
-                areaStyle: {normal: {}},
-                data : [
-                    {
-                        value : [4300, 10000, 28000, 35000, 50000, 19000],
-                        name : '预算分配（Allocated Budget）'
-                    }
-
-                ]
-            }]
-        });
-        //本页所有图表
-        allCharts = [myChart1, myChart2, myChart3];
-    })
+    }
 </script>
+</body>
+</html>
+

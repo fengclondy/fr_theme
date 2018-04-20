@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.qdch.core.BaseController;
 import com.qdch.p2p.model.CompositeInterestModel;
+import com.qdch.p2p.model.ConcentrationRatioModel;
 import com.qdch.p2p.model.ImportantRatioModel;
 import com.qdch.p2p.model.InterestModel;
 import com.qdch.p2p.model.PpjyscModel;
@@ -34,6 +35,18 @@ public class ProjectplatformController  extends BaseController{
 		String jys=getPara("jys");
 		
 		List<ProjectStructureModel> projectstructuremodel=ProjectStructureModel.dao.getProjectStructure(getDataScopeByUserNameForP2p(),jys);
+		mRenderJson(projectstructuremodel);
+	}
+	/**
+	 * 获取期限分布
+	* @author doushuihai  
+	* @date 2018年4月18日下午5:50:13  
+	* @TODO
+	 */
+	public void getProjectIterm(){
+		String jys=getPara("jys");
+		
+		List<ProjectStructureModel> projectstructuremodel=ProjectStructureModel.dao.getProjectIterm(getDataScopeByUserNameForP2p(),jys);
 		mRenderJson(projectstructuremodel);
 	}
 	/**
@@ -91,6 +104,17 @@ public class ProjectplatformController  extends BaseController{
 		String jys=getPara("jys");		
 		List<TermDetailsModel> termdetailsmodel=TermDetailsModel.dao.getTermDetails(getDataScopeByUserNameForP2p(),jys);
 		mRenderJson(termdetailsmodel);
+	}
+	/**
+	 * 获取平台项目画像的集中度
+	* @author doushuihai  
+	* @date 2018年4月18日下午2:39:07  
+	* @TODO
+	 */
+	public void getconRatio(){
+		String jys=getPara("jys");		
+		List<ConcentrationRatioModel> concentrationratiomodel=ConcentrationRatioModel.dao.getConRatio(getDataScopeByUserNameForP2p(), jys);
+		mRenderJson(concentrationratiomodel);
 	}
 	
 

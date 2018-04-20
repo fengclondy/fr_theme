@@ -234,55 +234,37 @@
                             <button>客户黑名单</button>
                         </div>
                     </div>
-                    <div class="customerInformationList">
-                        <table>
-                            <thead>
-                            <tr>
-                                <th>时间</th>
-                                <th>投诉人</th>
-                                <th>投诉电话</th>
-                                <th>投诉原因</th>
-                                <th>查看详情</th>
+                   <div class="chartContent">
+                        <table id="table1" align="center" width="100%">
+                            <thead style="font-size: 0.8rem;">
+                            <tr><th>时间</th><th>投诉人</th><th>投诉电话</th><th>投诉原因</th><th>查看详情</th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <tr>
-                                <td>20180307</td>
-                                <td>王建国</td>
-                                <td>15888888888</td>
-                                <td>交易市场</td>
-                                <td class="more"><a href=""> 查看</a></td>
-                            </tr>
-                            <tr>
-                                <td>20180307</td>
-                                <td>王建国</td>
-                                <td>15888888888</td>
-                                <td>交易市场</td>
-                                <td class="more"><a href=""> 查看</a></td>
-                            </tr>
-                            <tr>
-                                <td>20180307</td>
-                                <td>王建国</td>
-                                <td>15888888888</td>
-                                <td>交易市场</td>
-                                <td class="more"><a href=""> 查看</a></td>
-                            </tr>
-                            <tr>
-                                <td>20180307</td>
-                                <td>王建国</td>
-                                <td>15888888888</td>
-                                <td>交易市场</td>
-                                <td class="more"><a href=""> 查看</a></td>
-                            </tr>
-                            <tr>
-                                <td>20180307</td>
-                                <td>王建国</td>
-                                <td>15888888888</td>
-                                <td>交易市场</td>
-                                <td class="more"><a href=""> 查看</a></td>
-                            </tr>
-                            </tbody>
                         </table>
+                        <div style="overflow-x: auto; overflow-y: auto; height: 100%; width:100%;">
+                            <table id="table" width="100%" height="100%">
+                                <tbody>
+                                	<tr><td>20180307</td><td>王建国</td><td>15888888888</td><td>交易市场</td><td class="more"> 查看</td></tr>
+                                 	<tr><td>20180307</td><td>王建国</td><td>15888888888</td><td>交易市场</td><td class="more"> 查看</td></tr>
+                                  	<tr><td>20180307</td><td>王建国</td><td>15888888888</td><td>交易市场</td><td class="more"> 查看</td></tr>
+                                   	<tr><td>20180307</td><td>王建国</td><td>15888888888</td><td>交易市场</td><td class="more"> 查看</td></tr>
+                                    <tr><td>20180307</td><td>王建国</td><td>15888888888</td><td>交易市场</td><td class="more"> 查看</td></tr>
+                                    <tr><td>20180307</td><td>王建国</td><td>15888888888</td><td>交易市场</td><td class="more"> 查看</td></tr>
+                                    <tr><td>20180307</td><td>王建国</td><td>15888888888</td><td>交易市场</td><td class="more"> 查看</td></tr>
+                                    <tr><td>20180307</td><td>王建国</td><td>15888888888</td><td>交易市场</td><td class="more"> 查看</td></tr>
+                                    <tr><td>20180307</td><td>王建国</td><td>15888888888</td><td>交易市场</td><td class="more"> 查看</td></tr>
+                                    <tr><td>20180307</td><td>王建国</td><td>15888888888</td><td>交易市场</td><td class="more"> 查看</td></tr>
+                                 	<tr><td>20180307</td><td>王建国</td><td>15888888888</td><td>交易市场</td><td class="more"> 查看</td></tr>
+                                  	<tr><td>20180307</td><td>王建国</td><td>15888888888</td><td>交易市场</td><td class="more"> 查看</td></tr>
+                                   	<tr><td>20180307</td><td>王建国</td><td>15888888888</td><td>交易市场</td><td class="more"> 查看</td></tr>
+                                    <tr><td>20180307</td><td>王建国</td><td>15888888888</td><td>交易市场</td><td class="more"> 查看</td></tr>
+                                    <tr><td>20180307</td><td>王建国</td><td>15888888888</td><td>交易市场</td><td class="more"> 查看</td></tr>
+                                    <tr><td>20180307</td><td>王建国</td><td>15888888888</td><td>交易市场</td><td class="more"> 查看</td></tr>
+                                    <tr><td>20180307</td><td>王建国</td><td>15888888888</td><td>交易市场</td><td class="more"> 查看</td></tr>
+                                    <tr><td>20180307</td><td>王建国</td><td>15888888888</td><td>交易市场</td><td class="more"> 查看</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -468,74 +450,98 @@
 <script>
     var allCharts = [];
     $(function () {
+    	var jysinfo = "";
         //市场舆情浏览 模块一
-        var fxyq001 = echarts.init($("#ec_03_05shichangyuqinggailan")[0]);
-        fxyq001.setOption(opt_pie);
-        fxyq001.setOption({
-            series: [
-                {
-                    name: '高管资质',
-                    type: 'pie',
-                    radius: '60%',
-                    center: ['36%', '50%'],
-                    data: [
-                        {value: 10, name: '10年以上'},
-                        {value: 14, name: '5-10年'},
-                        {value: 16, name: '3年'},
-                        {value: 18, name: '2年'},
-                        {value: 22, name: '1年'}
-                    ]
-                }
-            ]
-        });
-        //实时舆情
-        var fxyq002 = echarts.init($("#ec_shishiyuqing001")[0]);
-        fxyq002.setOption(opt_com);
-        fxyq002.setOption(opt_line);
-        fxyq002.setOption({
-            legend: {
-                show: false
-            },
-            grid: {
-                top: '20%',
-                left: '10%',
-                right: '10%',
-                bottom: '20%'
-            },
-            xAxis: {
-                name: '日',
-                // type: 'category',
-                // boundaryGap: false,
-                data: ['9-12', '9-13', '9-14', '9-15', '9-16', '9-17', '9-18', '9-19']
-            },
-            yAxis: {
-                name: '热度值',
-                type: 'value'
+        $.post("${contextPath}/qdch/companyfeel/getOverviewCompanFeel",function(data){
+        	var seriesData = [];
+        	$.each(data,function(index,item){
+        		seriesData.push({value:item.qty,name:item.jysinfo});
+        	})
+        	console.log(seriesData);
+        	var fxyq001 = echarts.init($("#ec_03_05shichangyuqinggailan")[0]);
+             fxyq001.setOption(opt_pie);
+             fxyq001.setOption({
+            	 label: {
+                     fontSize:10,
+                     
+                 },
+                 legend:{
+                     textStyle:{
+                         fontSize:12
+                     }
+                 },
+                 series: [
+                     {
+                         name:'',
+                         type: 'pie',
+                         radius: '50%',
+                         center: ['36%', '50%'],
+                         data: seriesData
+                     }
+                 ]
+             });
+        })
+       $.post("${contextPath}/qdch/companyfeel/getRealCompanyFeel",{"jysinfo":jysinfo},function(data){
+    	   var xAxisData = [];
+    	   var seriesData = [];
+    	   var length = data.length;
+    	  
+    	   $.each(data,function(index,item){
+    		   xAxisData.push(item.publish_date);
+    		   seriesData.push(item.qty);
+    	   })
+    	   console.log(xAxisData);
+    	   console.log(seriesData);
+    	   //实时舆情
+           var fxyq002 = echarts.init($("#ec_shishiyuqing001")[0]);
+           fxyq002.setOption(opt_com);
+           fxyq002.setOption(opt_line);
+           fxyq002.setOption({
+               legend: {
+                   show: false
+               },
+               grid: {
+                   top: '20%',
+                   left: '10%',
+                   right: '10%',
+                   bottom: '20%'
+               },
+               xAxis: {
+                   name: '日',
+                   // type: 'category',
+                   // boundaryGap: false,
+                   data: xAxisData
+               },
+               yAxis: {
+                   name: '热度值',
+                   type: 'value'
 
-            },
-            series: [
-                {
-                    name: '平均单笔贷款',
-                    type: 'line',
-                    symbol: 'circle',
-                    data: [200, 255, 290, 320, 380, 430, 470, 490],
-                    areaStyle: {
-                        color: {
-                            x: 0,
-                            y: 0,
-                            x2: 0,
-                            y2: 1,
-                            colorStops: [{
-                                offset: 0, color: colors[0] // 0% 处的颜色
-                            }, {
-                                offset: 1, color: '#00adef11' // 100% 处的颜色
-                            }]
-                        }
-                    }
-                }
+               },
+               series: [
+                   {
+                       name: '数量',
+                       type: 'line',
+                       symbol: 'circle',
+                       data: seriesData,
+                       areaStyle: {
+                           color: {
+                               x: 0,
+                               y: 0,
+                               x2: 0,
+                               y2: 1,
+                               colorStops: [{
+                                   offset: 0, color: colors[0] // 0% 处的颜色
+                               }, {
+                                   offset: 1, color: '#00adef11' // 100% 处的颜色
+                               }]
+                           }
+                       }
+                   }
 
-            ]
-        });
+               ]
+           });
+       })
+       
         //当前时间
         //本页所有图表
         allCharts = [fxyq001, fxyq002];

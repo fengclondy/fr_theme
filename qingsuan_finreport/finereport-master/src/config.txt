@@ -5,3 +5,10 @@ pwd=hub@2017
 insight_jdbc=jdbc:postgresql://172.16.6.61:5432/qdchedw
 insight_user=insight
 insight_pwd=insight@2017
+
+
+
+#jdbcUrl = jdbc:postgresql://172.16.6.61:5432/qdchedw
+#username = postgres
+#password = postgres
+#driver = org.postgresql.Driver

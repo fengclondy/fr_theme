@@ -59,8 +59,8 @@ public class ConRatioModel extends Model<ConRatioModel>{
 		return dao.find(sql);
 	}
 	public List<ConRatioModel> getConRatioByRegion(String bigjys,String jyscode){
-		String sql=" SELECT jyscmc,provice,round(SUM(custnum)::NUMERIC/(SELECT SUM(custnum) FROM insight_xd_cust_tongji WHERE jyscmc=t1.jyscmc),4)*100 AS nums "
-				+ "FROM insight_xd_cust_tongji t1 where 1=1 ";
+		String sql=" SELECT jyscmc,provice,round(SUM(custnum)::NUMERIC/(SELECT SUM(custnum) FROM insight_xd_cust_tongji WHERE jyscmc=t1.jyscmc and provice is not null),4)*100 AS nums "
+				+ "FROM insight_xd_cust_tongji t1 where 1=1  and t1.provice is not null ";
 				
 		if(StringUtils.isNotBlank(bigjys)){
 			sql+=" and jysc in "+ bigjys;

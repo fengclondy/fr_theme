@@ -64,6 +64,7 @@
     }
     /*输入组框*/
     .inputGroup {
+    position: relative;
         display: inline-block;
         margin-left: 1rem;
         font-size: .72rem;
@@ -82,6 +83,7 @@
         background-color: transparent;
         border: 1px solid var(--themeBlue);
         border-radius: .2rem;
+        
     }
 
     .btnGroup>button.active {
