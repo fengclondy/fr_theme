@@ -27,7 +27,7 @@ public class ConcentrationRatioModel extends Model<ConcentrationRatioModel> {
 		if(StringUtils.isNotBlank(jys)){
 			sql+=" and jysc='"+ jys+"'  ";
 		}
-		sql+="and vday=(select max(vday) from insight_pp_hhi_calculate) group by vday,jysc,hhi_type,hhi_value order by vday,jysc,hhi_type,hhi_value";
+		sql+="and vday=(select max(vday) from insight_pp_hhi_calculate where jysc ='"+jys+"') group by vday,jysc,hhi_type,hhi_value order by vday,jysc,hhi_type,hhi_value";
 		return dao.find(sql);
 	}
 	public List<ConcentrationRatioModel> getConRatioPro(String dataSql,String jys){	
@@ -38,7 +38,7 @@ public class ConcentrationRatioModel extends Model<ConcentrationRatioModel> {
 		if(StringUtils.isNotBlank(jys)){
 			sql+=" and jysc='"+ jys+"'  ";
 		}
-		sql+="and vday=(select max(vday) from insight_pp_ledger_rate) group by vday,jysc,rate_type,iterm_value order by vday,jysc,rate_type,iterm_value";
+		sql+=" and vday=(select max(vday) from insight_pp_ledger_rate where jysc ='"+jys+"') group by vday,jysc,rate_type,iterm_value order by vday,jysc,rate_type,iterm_value";
 		return dao.find(sql);
 	}
 

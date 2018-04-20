@@ -27,5 +27,7 @@ public class CoChangeModel extends Model<CoChangeModel> {
 		} 
 		return dao.find(sql);
 	}
+	
+
 
 }

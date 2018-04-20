@@ -2,6 +2,7 @@ package com.qdch.p2p.controller;
 
 import java.util.List;
 
+import com.jfinal.plugin.activerecord.Page;
 import com.qdch.core.BaseController;
 import com.qdch.p2p.model.CompanyFeelModel;
 /**
@@ -63,7 +64,28 @@ public class CompanyFeelController extends BaseController {
 		String startTime = getPara("startTime");
 		String endTime = getPara("endTime");
 		String keyword = getPara("keyword");
-		List<CompanyFeelModel> companyFeelModels = CompanyFeelModel.dao.getDetailCompanyFeel(getDataScopeByUserNameForP2p(), startTime, endTime, jysc,keyword);
+		int pageSize = Integer.valueOf(getPara("pageSize"));
+		int currentPage = Integer.valueOf(getPara("currentPage"));
+		List<CompanyFeelModel> companyFeelModels = CompanyFeelModel.dao.getDetailCompanyFeel(getDataScopeByUserNameForP2p(), startTime, endTime, jysc,keyword,pageSize,currentPage);
 		mRenderJson(companyFeelModels);
 	}
+	
+	/**
+	 * 
+	 * @author hanpengda
+	 * @date 2018年4月19日
+	 * @TODO 舆情详情
+	 */
+	public void getDetailCount(){
+		String jysc = getPara("jysc");
+		String startTime = getPara("startTime");
+		String endTime = getPara("endTime");
+		String keyword = getPara("keyword");
+		
+		List<CompanyFeelModel> companyFeelModels = CompanyFeelModel.dao.getDetailCount(getDataScopeByUserNameForP2p(), startTime, endTime, jysc,keyword);
+		mRenderJson(companyFeelModels);
+	}
+	
+	
+	
 }
