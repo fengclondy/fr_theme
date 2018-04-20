@@ -287,6 +287,7 @@
 	                    data: month
 	                },
 	                yAxis: {
+	                	name:'人数',
 	                    type: 'value'
 
 	                },
@@ -297,7 +298,6 @@
 		//投资金额区间人数
 		function getRangeNumber(){
 			var ppType = $("#tzr").html().substr(0,3);
-
  			$.post("${contextPath}/qdch/deal/getRangeNumber",{"jysinfo":jysinfo,"ppType":ppType},function(data){
  		    	var month=[];
  		    	var lines=[];
@@ -346,6 +346,7 @@
 	                    data: month
 	                },
 	                yAxis: {
+	                	name:'人数',
 	                    type: 'value'
 
 	                },
@@ -397,7 +398,7 @@
 	                yAxis: [
 	                    {
 	                        type: 'value',
-	                        name: '金额',
+	                        name: '万',
 	                        nameGap: 4 * bodyScale
 	                    },
 	                    {
@@ -467,7 +468,7 @@
 	                ],
 	                yAxis: [
 	                    {
-	                        name: '时间',
+	                        name: '秒',
 	                        type: 'value'
 	                    }
 	                ],
@@ -578,7 +579,7 @@
 	                ],
 	                yAxis: [
 	                    {
-	                        name: '金额',
+	                        name: '万',
 	                        type: 'value'
 	                    }
 	                ],
@@ -632,7 +633,7 @@
 	                    }
 	                ],
 	                yAxis : [
-	                    {   name:'金额',
+	                    {   name:'万',
 	                        type : 'value'
 	                    }
 	                ],
@@ -681,7 +682,7 @@
 	                ],
 	                yAxis: [
 	                    {
-	                        name: '金额',
+	                        name: '万',
 	                        type: 'value'
 	                    }
 	                ],
