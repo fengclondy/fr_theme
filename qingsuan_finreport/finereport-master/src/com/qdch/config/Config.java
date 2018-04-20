@@ -31,6 +31,7 @@ import com.qdch.p2p.controller.IndustryCommController;
 import com.qdch.p2p.controller.PlatformAlertController;
 import com.qdch.p2p.controller.PlatformController;
 import com.qdch.p2p.controller.ProjectplatformController;
+import com.qdch.p2p.controller.RelactCompanyController;
 import com.qdch.p2p.controller.RiskController;
 import com.qdch.p2p.controller.SuperviseController;
 import com.qdch.p2p.model.AverageTimeModel;
@@ -224,6 +225,7 @@ public class Config extends JFinalConfig {
 		me.add("qdch/platformalert",PlatformAlertController.class,"/"); //p2p-平台总览弹出
 		me.add("qdch/industry",IndustryCommController.class,"/");//p2p-工商新内容
 		me.add("qdch/borrowerfill",BorrowerFillController.class,"/"); //p2p-借款人填报
+		me.add("qdch/relact",RelactCompanyController.class,"/");//p2p-工商-关联企业信息
 		/***工商 lixiaoyi Controller START ***/
 		//me.add("qdch/industry",IndustryComController.class,"/"); //工商入口
 		
@@ -242,7 +244,7 @@ public class Config extends JFinalConfig {
 		String pwd = PropKit.get("pwd");
 		DruidPlugin dp = new DruidPlugin(jdbc, user, pwd);
 		//DruidPlugin dp = new DruidPlugin("jdbc:postgresql://172.16.6.61:5432/qdchedw", "hub", "hub@2017");
-		dp.setMaxActive(10);
+		dp.setInitialSize(0);
 		me.add(dp);
 		ActiveRecordPlugin arp = new ActiveRecordPlugin(com.qdch.core.Constants.QSS_GP_HUB,dp);
 		arp.setBaseSqlTemplatePath(PathKit.getRootClassPath());
@@ -264,7 +266,7 @@ public class Config extends JFinalConfig {
 		String insight_user = PropKit.get("insight_user");
 		String insight_pwd = PropKit.get("insight_pwd");
 		DruidPlugin insight_dp = new DruidPlugin(insight_jdbc, insight_user, insight_pwd);
-		insight_dp.setMaxActive(10);
+		dp.setInitialSize(0);
 		me.add(insight_dp);
 		ActiveRecordPlugin insight_arp = new ActiveRecordPlugin(com.qdch.core.Constants.QSS_GP_INSIGHT,insight_dp);
 		insight_arp.setBaseSqlTemplatePath(PathKit.getRootClassPath());

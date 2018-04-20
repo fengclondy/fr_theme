@@ -56,16 +56,15 @@ public class ReadAllMsgServlet extends BaseServlet{
 			//System.out.println("roleName:" + roleName);
 			//判断当前用户为何种角色，通过角色去寻找当前的用户
 			//如果角色为处理人,把未读的风险事件也置为已读
-			if(KeyUtil.getKeyValue("DZ").equals(roleName)){
-				readAllMsg.setAllToRead("DEAL",type);
-				readMsg.setAllToRead(username,type);
-			}else if(KeyUtil.getKeyValue("QY").equals(roleName)){
-				readAllMsg.setAllToRead("DEAL",type);
-				readMsg.setAllToRead(username,type);
-			}else if(KeyUtil.getKeyValue("SH").equals(roleName)){
-				readAllMsg.setAllToRead("AUDIT",type);
-			}else if(KeyUtil.getKeyValue("JC").equals(roleName)){
-				readAllMsg.setAllToRead("JUDGE",type);
+			if(!"".equals(roleName)){
+				if(roleName.contains(KeyUtil.getKeyValue("DZ"))){
+					readAllMsg.setAllToRead("DEAL",type);
+					readMsg.setAllToRead(username,type);
+				}else if(KeyUtil.getKeyValue("SH").equals(roleName)){
+					readAllMsg.setAllToRead("AUDIT",type);
+				}else if(KeyUtil.getKeyValue("JC").equals(roleName)){
+					readAllMsg.setAllToRead("JUDGE",type);
+				}
 			}
 			//先获取消息总数
 			r.put("success", true);

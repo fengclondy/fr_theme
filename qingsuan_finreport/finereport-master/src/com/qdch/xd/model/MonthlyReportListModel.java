@@ -33,6 +33,9 @@ public class MonthlyReportListModel extends Model<MonthlyReportListModel> {
 				String sql=" and t.upload_time = '"+ request.getParameter("upload_time")+"'";
 				sb.append(sql);
 			}
+			
+
+
 
 			sb.append(" order by upload_time desc");
 

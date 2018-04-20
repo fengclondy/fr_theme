@@ -13,7 +13,7 @@ import com.qdch.p2p.model.CompanyFeelModel;
 public class CompanyFeelController extends BaseController {
 
 	public void index(){
-		
+		setAttr("flist", CompanyFeelModel.dao.getOverviewCompanFeel(getDataScopeByUserNameForP2p()));
 		render("p2p/pages/04_04pingtaiyuqing.html");
 	}
 	
@@ -37,6 +37,33 @@ public class CompanyFeelController extends BaseController {
 	public void getRealCompanyFeel(){
 		String jysinfo = getPara("jysinfo");
 		List<CompanyFeelModel> companyFeelModels = CompanyFeelModel.dao.getRealCompanyFeel(getDataScopeByUserNameForP2p(), jysinfo);
+		mRenderJson(companyFeelModels);
+	}
+	
+	/**
+	 * 
+	 * @author hanpengda
+	 * @date 2018年4月18日
+	 * @TODO 最新资讯
+	 */
+	public void getNews(){
+		String jysinfo = getPara("jysinfo");
+		List<CompanyFeelModel> companyFeelModels = CompanyFeelModel.dao.getNews(getDataScopeByUserNameForP2p(),jysinfo);
+		mRenderJson(companyFeelModels);
+	}
+	
+	/**
+	 * 
+	 * @author hanpengda
+	 * @date 2018年4月19日
+	 * @TODO 舆情详情
+	 */
+	public void getDetailCompanyFeel(){
+		String jysc = getPara("jysc");
+		String startTime = getPara("startTime");
+		String endTime = getPara("endTime");
+		String keyword = getPara("keyword");
+		List<CompanyFeelModel> companyFeelModels = CompanyFeelModel.dao.getDetailCompanyFeel(getDataScopeByUserNameForP2p(), startTime, endTime, jysc,keyword);
 		mRenderJson(companyFeelModels);
 	}
 }
