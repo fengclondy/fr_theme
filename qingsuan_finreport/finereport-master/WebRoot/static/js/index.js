@@ -25,6 +25,7 @@ $(function () {
 
     $("#mainNav").find(".dropdown-toggle:eq(0)").click()
         .next("ul").children("li:eq(1)").click();
+  
 });
 
 function windowResize() {
@@ -181,4 +182,8 @@ function currentPageChartsResize() {
         })
     }
 }
+
+
+
+
 
