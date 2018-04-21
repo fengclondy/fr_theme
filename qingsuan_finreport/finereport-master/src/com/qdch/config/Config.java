@@ -173,16 +173,15 @@ import com.qdch.xd.model.maxIntrateRankModel;
 public class Config extends JFinalConfig {
 	
 	public void configConstant(Constants me) {
+		PropKit.use("config.txt");
 		me.setDevMode(true);
 		//添加beetl配置
 		JFinal3BeetlRenderFactory rf = new JFinal3BeetlRenderFactory();
 		rf.config();
 //		me.setViewType(ViewType.JSP);
 		me.setRenderFactory(rf);
-		//上传路径
-		me.setBaseUploadPath("D:/apache-tomcat-7.0.78/webapps/WebReport/pdf-files");
-		//设置上传文件大小
-		me.setMaxPostSize(104857600);
+		me.setBaseUploadPath(PropKit.get("uploadPath"));  
+		me.setMaxPostSize(Integer.valueOf(PropKit.get("uploadMaxSize")));
 		GroupTemplate gt = rf.groupTemplate;
 		gt.registerTag("layout", TemplteLayoutTag.class);
 	}
@@ -193,7 +192,7 @@ public class Config extends JFinalConfig {
 		
 
 	
-		me.add("qdch/auth", QdchController.class);
+		me.add("qdch/auth", QdchController.class,"/");
 		me.add("qdch/xiaodai", XiaoDaiController.class,"/");
 		
 		/***小贷 doushuihai Controller START***/
@@ -249,7 +248,7 @@ public class Config extends JFinalConfig {
 	}
 
 	public void configPlugin(Plugins me) {
-		PropKit.use("config.txt");
+		
 
 		//----qdchedw hub用户连接方式 start----
 		String jdbc = PropKit.get("jdbc");
@@ -477,6 +476,6 @@ public class Config extends JFinalConfig {
 	}
 
 	public static void main(String[] args){ 
-		JFinal.start("WebRoot", 8090, "/", 5);
+		JFinal.start("WebRoot", 8080, "/", 5);
 	}
 }

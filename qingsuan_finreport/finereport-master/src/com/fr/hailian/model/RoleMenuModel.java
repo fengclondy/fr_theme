@@ -20,6 +20,13 @@ public class RoleMenuModel implements Serializable{
 	private String reportletpath;
 	private String desc;
 	private List<RoleMenuModel> children;
+	private String sortIndex;
+	public String getSortIndex() {
+		return sortIndex;
+	}
+	public void setSortIndex(String sortIndex) {
+		this.sortIndex = sortIndex;
+	}
 	public String getDesc() {
 		return desc;
 	}

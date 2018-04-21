@@ -256,6 +256,18 @@
             		$("tbody").remove();
             		$.each(data,function(index,item){
             			var xxpl = item.xxpl;
+            			var zcje = item.zcje;
+            			if (zcje == null || zcje == '-' || zcje == "") {
+							zcje = item.zcje
+						}else {
+							var arry = [];
+							arry = zcje.split('.');
+							if (arry.length == 1) {
+								zcje = item.zcje;
+							}else {
+								zcje = parseFloat(zcje).toFixed(2)
+							}
+						}
             			xxpl = parseFloat(xxpl).toFixed(2)
             			content = content
             			+'<tbody>'
@@ -268,7 +280,7 @@
             			+'   	<td>'+item.yysj+'</td>'
             			+'   	<td>'+item.ptsl+'</td>'
             			+'    	<td>'+item.zczb+'万</td>'
-            			+'   	<td>'+item.zcje+'</td>'
+            			+'   	<td>'+zcje+'</td>'
             			+'   	<td>'+item.dkje+'</td>'
             			+'    	<td>'+item.ztrs+'</td>'
             			+'   	<td>'+xxpl+'</td>'

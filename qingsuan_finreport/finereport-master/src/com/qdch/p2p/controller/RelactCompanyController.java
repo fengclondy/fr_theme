@@ -1,3 +1,4 @@
+
 package com.qdch.p2p.controller;
 
 import java.util.List;
@@ -46,8 +47,7 @@ public class RelactCompanyController extends BaseController{
 		 setAttr("type", type);
 		CoShareholderInfoModel holder = CoShareholderInfoModel.dao.getHolder(name);
 		 setAttr("hold",holder );
-
-		List<CoCorePersonModel> corePerson = CoCorePersonModel.dao.getMainperson(name);
+    	List<CoCorePersonModel> corePerson = CoCorePersonModel.dao.getMainperson(name);
           setAttr("person", corePerson);
   		List<CoCorePersonModel> manager = CoCorePersonModel.dao.getManger(name);
           setAttr("manager", manager);

@@ -128,10 +128,10 @@ public class CommerceController extends BaseController{
 	        setAttr("stockc", stockC);
 	     CoEnterpriseModel cc=CoEnterpriseModel.dao.getid(name);
 	   
-	  List<MarkNewsModel> mark =  MarkNewsModel.dao.getNews(cc.get("id")+"", "", "", "");
-	     setAttr("marknews", mark);
-	  List<CompanysInfoModel> infoModels= CompanysInfoModel.dao.getCompanybyName(basic.get(0).get("legal_person")+"");
-	      setAttr("comInfo", infoModels);
+//	  List<MarkNewsModel> mark =  MarkNewsModel.dao.getNews(cc.get("id")+"", "", "", "");
+//	     setAttr("marknews", mark);
+	/*  List<CompanysInfoModel> infoModels= CompanysInfoModel.dao.getCompanybyName(basic.get(0).get("legal_person")+"");
+	      setAttr("comInfo", infoModels);*/
 	      setAttr("all", CoShareHolderModel.dao.getMainSize(name).size()+CoShareHolderModel.dao.getManagerSize(name).size()
 				  +CoShareHolderModel.dao.getDirectSize(name).size()+CoShareHolderModel.dao.getSuperSize(name).size()+stackInfo.size()+
 				  invest.size()+changeLog.size()+branch.size()+liaison.size()+ register.size()+companyType.size());
