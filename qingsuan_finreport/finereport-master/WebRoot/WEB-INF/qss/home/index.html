@@ -22,9 +22,9 @@
         <h1>${title!'首页'}</h1>
     </div>
     <ul>
-        <li class="notice"><a href="javascript:void(0);"><span class="icon"></span><span class="number">3</span></a></li>
-        <li class="message"><a href="javascript:void(0);"><span class="icon"></span><span class="number">0</span></a></li>
-        <li class="user"><a href="javascript:void(0);"><span class="icon"></span><span class="name">${user.username!}</span></a></li>
+        <li class="notice" onclick="p2pXdFxsjReadMsg()"><a href="javascript:void(0);"><span class="icon"></span><span class="number" id="unreadfxsj" >0</span></a></li>
+        <li class="message" onclick="readAllMsg()"><a href="javascript:void(0);"><span class="icon"></span><span class="number" id="unreadmsg" >0</span></a></li>
+        <li class="user"><a href="javascript:void(0);"><span class="icon"></span><span class="name" onclick="logout()">${user.username!}</span></a></li>
     </ul>
 </header>
 <div class="navContent">
@@ -32,10 +32,10 @@
         		<ul>
         		 ##for(menu in user.menus!){
         		 	<li class="">
-		                <a class="dropdown-toggle">${menu.name!} <span class="icon"></span> </a>
+		                <a class="dropdown-toggle">${menu.name!}<span class="icon"></span> </a>
 		                <ul>
 		                	##for(c in menu.children){
-		                		 <li data-id="${contextPath}${c.reportletpath!}" data="${c.desc!}">${c.name!}</li>
+		                		 <li sort="${c.sortIndex!}" data-id="${contextPath}${c.reportletpath!}" data="${c.desc!}">${c.name!}</li>
 		                	##}
 		                </ul>
 		            </li>
@@ -81,10 +81,45 @@
 <script src="${contextPath}/static/asserts/js/jquery-2.2.4.js"></script>
 <script src="${contextPath}/static/js/index.js"></script>
 <script>
-function getAllUnReadMsg(){
-	//
-	$.post("${contextPath}/qdch/commerce/gainNews",{},function(data){
-		
+var fxsjInterval;
+$(function(){
+	getP2PXdAllFxsjUnReadMsg();
+	getAllUnRead();
+	setInterval(getAllUnRead,5000);
+	setInterval(getP2PXdAllFxsjUnReadMsg,5000);
+	$(".user").click(logout);
+});
+//获取小信封事件
+function getAllUnRead(){
+	$.post("${contextPath}/qdch/auth/getUnReadMsg",{},function(data){
+		$("#unreadmsg").html(data.unReadAllCount);
+	});
+}
+//小信封清零
+function readAllMsg(){
+	$.post("${contextPath}/qdch/auth/readAllMsg",{},function(data){
+		$("#unreadmsg").html(0);
+	});
+}
+//获取风险事件数量
+function getP2PXdAllFxsjUnReadMsg(){
+	$.post("${contextPath}/qdch/auth/getP2PXdAllFxsjUnReadMsg",{},function(data){
+		$("#unreadfxsj").html(data.unReadAllCount);
+	});
+}
+//风险事件数量清零
+function p2pXdFxsjReadMsg(){
+	$.post("${contextPath}/qdch/auth/p2pXdFxsjReadMsg",{},function(data){
+		$("#unreadfxsj").html(0);
+	});
+}
+function logout(){
+	$.post("${contextPath}/qdch/auth/logout",{},function(data){
+		console.log("logout",data);
+		if(data=="true"||data){
+			//window.location="http://144.123.36.214/WebReport/QDCH/login.html";
+			window.location="http://localhost:8075/WebReport/QDCH/login.html";
+		}
 	});
 }
 </script>

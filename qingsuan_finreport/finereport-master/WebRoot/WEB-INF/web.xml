@@ -301,5 +301,60 @@
 		<servlet-name>LoginUserInfoServlet</servlet-name>
 		<url-pattern>/getLoginUserInfo</url-pattern>
 	</servlet-mapping>
+	
+	<!--P2P、小贷注销 -->
+	<servlet>
+		<servlet-name>P2PXdLogoutServlet</servlet-name>
+		<servlet-class>com.fr.hailian.servlet.P2PXdLogoutServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>P2PXdLogoutServlet</servlet-name>
+		<url-pattern>/logoutP2PXd</url-pattern>
+	</servlet-mapping>
+	
+	<!-- -P2P、小贷获取所有未读消息数 -->
+	<servlet>
+		<servlet-name>P2PXdUnReadServlet</servlet-name>
+		<servlet-class>com.fr.hailian.servlet.P2PXdUnReadServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>P2PXdUnReadServlet</servlet-name>
+		<url-pattern>/getP2PXdAllUnReadMsg</url-pattern>
+	</servlet-mapping>
+	
+	<!-- -P2P、小贷将所有未读消息变为已读 -->
+	<servlet>
+		<servlet-name>P2PXdReadAllMsgServlet</servlet-name>
+		<servlet-class>com.fr.hailian.servlet.P2PXdReadAllMsgServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>P2PXdReadAllMsgServlet</servlet-name>
+		<url-pattern>/readAllP2PXdMsg</url-pattern>
+	</servlet-mapping>
+	
+	<!-- session监听 -->
+	<listener>
+		<listener-class>com.fr.hailian.core.MySessionListener</listener-class>
+	</listener>
+	
+	<!-- -P2P、小贷将风险事件未读数量-->
+	<servlet>
+		<servlet-name>P2PXdFxsjNotReadMsgServlet</servlet-name>
+		<servlet-class>com.fr.hailian.servlet.P2PXdFxsjNotReadMsgServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>P2PXdFxsjNotReadMsgServlet</servlet-name>
+		<url-pattern>/getP2PXdAllFxsjUnReadMsg</url-pattern>
+	</servlet-mapping>
+	
+	<!-- -P2P、小贷将风险事件变已读 -->
+	<servlet>
+		<servlet-name>P2PXdFxsjReadMsgServlet</servlet-name>
+		<servlet-class>com.fr.hailian.servlet.P2PXdFxsjReadMsgServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>P2PXdFxsjReadMsgServlet</servlet-name>
+		<url-pattern>/p2pXdFxsjReadMsg</url-pattern>
+	</servlet-mapping>
 
 </web-app>

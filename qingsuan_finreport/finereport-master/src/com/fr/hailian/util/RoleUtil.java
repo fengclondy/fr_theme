@@ -210,7 +210,7 @@ public class RoleUtil {
 		Connection con = null;
 		List<RoleMenuModel> list=new ArrayList<RoleMenuModel>();
         con = C3P0Utils.getInstance().getConnection();
-        String sql = "select p.name as pname,a.type||b.id as id,'0'||b.parent as pid,b.name,b.url as reportletpath,b.description,sortindex  ";
+        String sql = "select p.name as pname,a.type||b.id as id,'0'||b.parent as pid,b.name,b.url as reportletpath,b.description, b.sortindex,p.sortindex AS pindex  ";
         sql+=" from fr_t_customroleentryprivilege a inner join FR_URLENTRY b ";
         sql+=" on b.id=a.entryid left join fr_folderentry p on p.id=b.parent left join fr_t_customrole r on r.id=a.roleid ";
         sql+=" left join fr_t_customrole_user t on r.id = t.customroleid  where 1=1 ";
@@ -220,7 +220,7 @@ public class RoleUtil {
         if(!isSuperAdmin){
         	sql+=" and t.userid='"+userId+"'";
         }
-        sql +="  order by b.parent,b.sortindex ";
+        sql +="  order by p.sortindex,b.sortindex ";
         System.out.println(sql);
         try {
         	 PreparedStatement ps = con.prepareStatement(sql);
@@ -234,6 +234,7 @@ public class RoleUtil {
              	m.setReportletpath(rs.getString("reportletpath"));
              	m.setDesc(rs.getString("description"));
              	m.setSortIndex(rs.getString("sortindex"));
+             	m.setPindex(rs.getString("pindex"));
              	list.add(m);
              }
              rs.close();

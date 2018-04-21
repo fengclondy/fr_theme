@@ -26,7 +26,6 @@ import com.fr.hailian.util.HttpClientUtil;
 import com.fr.hailian.util.HttpJsonHelper;
 import com.jfinal.core.Controller;
 import com.jfinal.kit.JsonKit;
-import com.jfinal.kit.PropKit;
 /**
  * 
  * @todo  p2p 小贷公共父类
@@ -115,6 +114,7 @@ public class BaseController extends Controller{
 			//按照pname/pid分组
 			List<RoleMenuModel> allMenu=new ArrayList<RoleMenuModel>();
 			allMenu.addAll(menuSet);
+			Collections.reverse(allMenu) ;
 			HashMap<String,Set<RoleMenuModel>> map=new HashMap<String, Set<RoleMenuModel>>();
 			for(RoleMenuModel m:allMenu){
 				String pname=m.getPname();
@@ -139,6 +139,7 @@ public class BaseController extends Controller{
 				//子排序 按照sortIndex
 				List<RoleMenuModel> cmenus=new ArrayList<RoleMenuModel>();
 				cmenus.addAll(children);
+				//Collections.reverse(cmenus) ;
 				m.setChildren(cmenus);
 				menus.add(m);
 			}
@@ -187,12 +188,13 @@ public class BaseController extends Controller{
 		String userName=c.getPara("userName");
 		String roleType=c.getPara("type");
 		String uid=c.getPara("uid");
+		String sessionId=c.getPara("sessionId");
 		if(StringUtils.isNotBlank(roleType)||StringUtils.isNotBlank(userName)){
 			//切换用户或者类型重新认证
 			user.setType(roleType);
 			//获取用户信息
-			//String url="http://localhost:8075/WebReport/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
-			String url=PropKit.get("webSite")+"/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
+			String url="http://localhost:8075/WebReport/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
+			//String url=PropKit.get("webSite")+"/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
 			
 			//正式环境也需要写localhost  服务器设置了外网权限
 			//String url="http://localhost/WebReport/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
@@ -212,6 +214,7 @@ public class BaseController extends Controller{
 						roles.add(r);
 					}
 					user.setRoles(roles);
+					user.setSessionId(sessionId);
 					if(arr.has("id")){
 						user.setId(arr.get("id").toString());
 					}
