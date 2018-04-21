@@ -980,18 +980,14 @@
                             <td class="tbbg">变更前</td>
                             <td class="tbbg">变更后</td>
                         </tr>
+                        ##for(info in namechange!){
                         <tr>
-                            <td class="textCenter">1</td>
-                            <td class="textCenter">20141017</td>
-                            <td class="textCenter">青岛华银贵金属交易中心有限公司</td>
-                            <td class="textCenter">名称序号:***********企业名称:青岛贵金属交易中心有限公司</td>
+                            <td class="textCenter">${info.compang_id!}</td>
+                            <td class="textCenter">${info.change_date!}</td>
+                            <td class="textCenter">${info.change_before_detail!}</td>
+                            <td class="textCenter">${info.change_after_detail!}</td>
                         </tr>
-                        <tr>
-                            <td class="textCenter">4</td>
-                            <td class="textCenter">20141017</td>
-                            <td class="textCenter">青岛华银贵金属交易中心有限公司</td>
-                            <td class="textCenter">名称序号:***********企业名称:青岛贵金属交易中心有限公司</td>
-                        </tr>
+                       ##}
                     </table>
                 </div>
                 <a class="tzrbg ltitle" name="tzrbg"><span></span>投资人（股权）变更<span></span></a>
@@ -1003,18 +999,14 @@
                             <td class="tbbg">变更前</td>
                             <td class="tbbg">变更后</td>
                         </tr>
+                      ##for(info in stock!){
                         <tr>
-                            <td class="textCenter">1</td>
-                            <td class="textCenter">20141017</td>
-                            <td class="textCenter">股东(发起人)名称:杨小平,证件(照)类型:中华人民共和国居民身份证,证件(照)号码:***********,认缴出资额: 1290万,币种:,认缴出资额折万美元:0,持股比例:0,认缴出资方式:货币,认缴出资时间:***********,实缴出资额:1290万,币种:实缴出资额折万美元:0,实缴出资方式:,实缴出资时间: 股东(发起人)名称:青岛百富基金管理股份有限公司,证件(照)类型:企业法人营业执照(公司),证件(照)号码:***********,认缴出资额: 3710万,币种:,认缴出资额折万美元:,持股比例:0,认缴出资方式:货币,认缴出资时间:***********,实缴出资额:1710万,币种:实缴出资额折万美元:,实缴出资方式:,实缴出资时间:</td>
-                            <td class="textCenter">股东(发起人)名称:产经天下(北京)科技发展有限公司,证件(照)类型:企业法人营业执照(公司),证件(照)号码:***********,认缴出资额:1000万,币种:,认缴出资额折万美元:,持股比例:0,认缴出资方式:货币,认缴出资时间:***********,实缴出资额:1000万,币种:实缴出资额折万美元:,实缴出资方式:,实缴出资时间: 股东(发起人)名称:青岛百富基金管理股份有限公司,证件(照)类型:企业法人营业执照(公司),证件(照)号码:***********,认缴出资额: 2960万,币种:,认缴出资额折万美元:,持股比例:0,认缴出资方式:货币,认缴出资时间:***********,实缴出资额:960万,币种:实缴出资额折万美元:,实缴出资方式:,实缴出资时间: 股东(发起人)名称:《中国产经新闻》报社,证件(照)类型:企业法人营业执照(公司),证件(照)号码:***********,认缴出资额:250万,币种:,认缴出资额折万美元:,持股比例:0,认缴出资方式:货币,认缴出资时间:***********,实缴出资额:250万,币种:实缴出资额折万美元:,实缴出资方式:,实缴出资时间: 股东(发起人)名称:中经网数据有限公司,证件(照)类型:企业法人营业执照(公司),证件(照)号码:***********,认缴出资额:750万,币种:,认缴出资额折万美元:,持股比例:0,认缴出资方式:货币,认缴出资时间:***********,实缴出资额:750万,币种:实缴出资额折万美元:,实缴出资方式:,实缴出资时间: 股东(发起人)名称:杨小平,证件(照)类型:中华人民共和国居民身份证,证件(照)号码:***********,认缴出资额: 40万,币种:,认缴出资额折万美元:0,持股比例:0,认缴出资方式:货币,认缴出资时间:***********,实缴出资额:40万,币种:实缴出资额折万美元:0,实缴出资方式:,实缴出资时间:</td>
+                            <td class="textCenter">${info.compang_id!}</td>
+                            <td class="textCenter">${info.change_date!}</td>
+                            <td class="textCenter">${info.change_before_detail!}</td>
+                            <td class="textCenter">${info.change_after_detail!}</td>
                         </tr>
-                        <tr>
-                            <td class="textCenter">4</td>
-                            <td class="textCenter">20141017</td>
-                            <td class="textCenter">股东名录:法人股东:自然人股东:杨小平1290 张春亮*240晏加铭1020晏加竹450</td>
-                            <td class="textCenter">股东名录:法人股东: 青岛百富股权基金管理股份有限公司1710自然人股东:杨小平1290</td>
-                        </tr>
+                       ##}
                     </table>
                 </div>
                 <a class="llyxx ltitle" name="llyxx"><span></span>联络员信息<span></span></a>
@@ -1026,18 +1018,15 @@
                             <td class="tbbg">变更前</td>
                             <td class="tbbg">变更后</td>
                         </tr>
+                        ##for(info in lian!){
                         <tr>
-                            <td class="textCenter">1</td>
-                            <td class="textCenter">20141017</td>
-                            <td class="textCenter"></td>
-                            <td class="textCenter">姓名王玲,证件类型：中华人民共和国居民身份证,证件号码：***********,固定电话：***********,移动电话：***********,邮箱：***********</td>
+                            <td class="textCenter">${info.compang_id!}</td>
+                            <td class="textCenter">${info.change_date!}</td>
+                            <td class="textCenter">${info.change_before_detail!}</td>
+                            <td class="textCenter">${info.change_after_detail!}</td>
                         </tr>
-                        <tr>
-                            <td class="textCenter">4</td>
-                            <td class="textCenter">20141017</td>
-                            <td class="textCenter"></td>
-                            <td class="textCenter">姓名王玲,证件类型：中华人民共和国居民身份证,证件号码：***********,固定电话：***********,移动电话：***********,邮箱：***********</td>
-                        </tr>
+                       ##}
+                       
                     </table>
                 </div>
                 <a class="jyfw ltitle" name="jyfw"><span></span>经营范围变更<span></span></a>
@@ -1049,18 +1038,14 @@
                             <td class="tbbg">变更前</td>
                             <td class="tbbg">变更后</td>
                         </tr>
+                       ##for(info in busi!){
                         <tr>
-                            <td class="textCenter">20</td>
-                            <td class="textCenter">20141017</td>
-                            <td class="textCenter">黄金、白银的销售及相关配套服务 铂金、钯金、镍、铜、铝 及其矿产品、 金属原料的现货批发零售 燃料油(仅限重油、渣油)的国际贸易、转口贸易、区内企业之间贸易及贸易项下加工整理 物流服务(不含运输) 一般经济信息咨询服务、商务咨询服务 网络信息技术开发及技术咨询 计算机软硬件开发、技术服务、培训服务 设计、制作、代理、发布国内广告业务 自有资金对外投资。 (依法须经批准的项目,经相关部门批准后方可开展经营活动)。</td>
-                            <td class="textCenter">黄金、白银的销售及相关配套服务 铂金、钯金、镍、铜、铝 、钢、金属原料 及矿产品、工艺品、集邮用品、文化艺术品和收藏品(不含 文物)、橡胶制品、石化制品(不含危险品)、煤炭、农副产品(不含国家专营、专控产品)的现货批发零售及网上销售 燃料油(仅限重油、渣油)的国际贸易、转口贸易、区内企业之间贸易及贸易项下加工整理 为以上商品和石化产品(不含危险品)的现货交易提供电子平台交易的经纪服务、 物流服务(不含运输)、供应链管理 一般经济信息咨询服务 、商务咨询服务(不含金融、证券、期货) 网络信息技术开发及技术咨询 计算机软硬件开发、技术服务、培训服务 设计、制作、代理、发布国内广告业务。 (依法须经批准的项目,经相关部门批准后方可开展经营活动)。</td>
+                            <td class="textCenter">${info.compang_id!}</td>
+                            <td class="textCenter">${info.change_date!}</td>
+                            <td class="textCenter">${info.change_before_detail!}</td>
+                            <td class="textCenter">${info.change_after_detail!}</td>
                         </tr>
-                        <tr>
-                            <td class="textCenter">4</td>
-                            <td class="textCenter">20141017</td>
-                            <td class="textCenter">黄金、白银的销售及相关配套服务；铂金、钯金、镍、铜、铝及其矿产品、金属原料的现货批发零售；燃料油(仅限重油、渣油)的国际贸易、转口贸易、区内企业之间贸易及贸易项下加工整理；物流服务(不含运输)；一般经济信息咨询服务、商务咨询服务；网络信息技术开发及技术咨询；计算机软硬件开发、技术服务、培训服务；设计、制作、代理、发布国内广告业务；自有资金对外投资。 (依法须经批准的项目，经相关部门批准后方可开展经营活动)。</td>
-                            <td class="textCenter">黄金、白银的销售及相关配套服务；铂金、钯金、镍、铜、铝、钢、金属原料及矿产品、工艺品、集邮用品、文化艺术品和收藏品(不含文物)、橡胶制品、石化制品(不含危险品)、煤炭、农副产品(不含国家专营、专控产品)的现货批发零售及网上销售；燃料油(仅限重油、渣油)的国际贸易、转口贸易、区内企业之间贸易及贸易项下加工整理；为以上商品和石化产品(不含危险品)的现货交易提供电子平台交易的经纪服务、物流服务(不含运输)、供应链管理；一般经济信息咨询服务、商务咨询服务(不含金融、证券、期货)；网络信息技术开发及技术咨询；计算机软硬件开发、技术服务、培训服务；设计、制作、代理、发布国内广告业务。 (依法须经批准的项目，经相关部门批准后方可开展经营活动)。</td>
-                        </tr>
+                       ##}
                     </table>
                 </div>
                 <a class="qylx ltitle" name="qylx"><span></span>企业类型变更<span></span></a>
@@ -1072,12 +1057,14 @@
                             <td class="tbbg">变更前</td>
                             <td class="tbbg">变更后</td>
                         </tr>
+                         ##for(info in comtype!){
                         <tr>
-                            <td class="textCenter">20</td>
-                            <td class="textCenter">20141017</td>
-                            <td class="textCenter">企业类型:1130</td>
-                            <td class="textCenter">企业类型:1190</td>
+                            <td class="textCenter">${info.compang_id!}</td>
+                            <td class="textCenter">${info.change_date!}</td>
+                            <td class="textCenter">${info.change_before_detail!}</td>
+                            <td class="textCenter">${info.change_after_detail!}</td>
                         </tr>
+                       ##}
                     </table>
                 </div>
                 <a class="zczb ltitle" name="zczb"><span></span>注册资本变更<span></span></a>
@@ -1089,12 +1076,14 @@
                             <td class="tbbg">变更前</td>
                             <td class="tbbg">变更后</td>
                         </tr>
+                         ##for(info in regist!){
                         <tr>
-                            <td class="textCenter">20</td>
-                            <td class="textCenter">20141017</td>
-                            <td class="textCenter">3000.0</td>
-                            <td class="textCenter">5000</td>
+                            <td class="textCenter">${info.compang_id!}</td>
+                            <td class="textCenter">${info.change_date!}</td>
+                            <td class="textCenter">${info.change_before_detail!}</td>
+                            <td class="textCenter">${info.change_after_detail!}</td>
                         </tr>
+                       ##}
                     </table>
 
                 </div>
@@ -1106,33 +1095,20 @@
                 <table width="98%" height="100%" border="1" cellspacing="0" cellpadding="0">
                     <tr>
                         <td class="tbbg">日期</td>
-                        <td class="tbbg">裁判文书</td>
+                      <!--   <td class="tbbg">裁判文书</td> -->
                         <td class="tbbg">案件由</td>
                         <td class="tbbg">案件身份</td>
                         <td class="tbbg">案件号</td>
                     </tr>
+                    ##for(info in legal!){
                     <tr>
-                        <td class="textCenter">20160601</td>
-                        <td class="textCenter">姚雯霏与青岛国际版权交易中心有限公司劳动争议纠纷一案执行裁定书</td>
-                        <td class="textCenter"></td>
-                        <td class="textCenter">0</td>
-                        <td class="textCenter">鲁0211执2215-1号</td>
+                        <td class="textCenter">${info.case_year!}</td>
+                     <!--    <td class="textCenter">${info.!}</td> -->
+                        <td class="textCenter">${info.case_name!}</td>
+                        <td class="textCenter">${info.case_role!}</td>
+                        <td class="textCenter">${info.case_no!}</td>
                     </tr>
-                    <tr>
-                        <td class="textCenter">20160601</td>
-                        <td class="textCenter">姚雯霏与青岛国际版权交易中心有限公司劳动争议纠纷一案执行裁定书</td>
-                        <td class="textCenter"></td>
-                        <td class="textCenter">0</td>
-                        <td class="textCenter">鲁0211执2215-1号</td>
-                    </tr>
-                    <tr>
-                        <td class="textCenter">20160601</td>
-                        <td class="textCenter">姚雯霏与青岛国际版权交易中心有限公司劳动争议纠纷一案执行裁定书</td>
-                        <td class="textCenter"></td>
-                        <td class="textCenter">0</td>
-                        <td class="textCenter">鲁0211执2215-1号</td>
-                    </tr>
-
+                    ##}
                 </table>
 
             </div>
@@ -1141,20 +1117,22 @@
                 <table width="98%" height="100%" border="1" cellspacing="0" cellpadding="0">
                     <tr>
                         <td class="tbbg">公告时间</td>
-                        <td class="tbbg">上诉方</td>
+                        <!-- <td class="tbbg">上诉方</td> -->
                         <td class="tbbg">当事人</td>
                         <td class="tbbg">公告类型</td>
                         <td class="tbbg">法院</td>
                         <td class="tbbg">公告内容</td>
                     </tr>
+                    ##for(info in public!){
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>${info.commit_time!}</td>
+                       <!--  <td>${info.!}</td> -->
+                        <td>${info.partice!}</td>
+                        <td>${info.type!}</td>
+                        <td>${info.court!}</td>
+                        <td>${info.content!}</td>
                     </tr>
+                    ##}
                 </table>
             </div>
 
@@ -1214,28 +1192,18 @@
                 <table width="98%" height="100%" border="1" cellspacing="0" cellpadding="0">
                     <tr>
                         <td class="tbbg">立案时间</td>
-                        <td>20171009</td>
+                       <td class="tbbg">案号</td>
                         <td class="tbbg">执行标的</td>
-                        <td>36005</td>
+                       <td class="tbbg">执行法院</td>
                     </tr>
+                    ##for(info in person!){
                     <tr>
-                        <td class="tbbg">立案时间</td>
-                        <td>20170710</td>
-                        <td class="tbbg">执行标的</td>
-                        <td>149596</td>
+                        <td class="tbbg">${info.case_time!}</td>
+                        <td>${info.case_no!}</td>
+                        <td class="tbbg">${info.exec_area!}</td>
+                        <td>${info.court!}</td>
                     </tr>
-                    <tr>
-                        <td class="tbbg">案号</td>
-                        <td>(2017)鲁0211执4365号</td>
-                        <td class="tbbg">执行法院</td>
-                        <td>青岛市黄岛区人民法院</td>
-                    </tr>
-                    <tr>
-                        <td class="tbbg">案号</td>
-                        <td>(2017)鲁0211执4365号</td>
-                        <td class="tbbg">执行法院</td>
-                        <td>青岛市黄岛区人民法院</td>
-                    </tr>
+                     ##}
                 </table>
             </div>
             <a class="jyyc ltitle" name="jyyc"><span></span>经营异常<span></span></a>
@@ -1249,14 +1217,16 @@
                         <td class="tbbg">移除原因</td>
                         <td class="tbbg">移除机关</td>
                     </tr>
+                   ##for(info in business!){
                     <tr>
-                        <td>20160708</td>
-                        <td>未依照《企业信息公示暂行条例》第八条规定的期限公示年度报告的</td>
-                        <td>青岛市黄岛区工商行政管理局</td>
-                        <td>20160914</td>
-                        <td>列入经营异常名录3年内且依照《经营异常名录管理办法》第六条规定被列入经营异常名录的企业，可以在补报未报年份的年度报告并公示后，申请移出</td>
-                        <td>青岛市黄岛区工商行政管理局</td>
+                        <td>${info.add_date!}</td>
+                        <td>${info.add_reason!}</td>
+                        <td>${info.add_authority!}</td>
+                        <td>${info.remove_date!}</td>
+                        <td>${info.remove_reason!}</td>
+                        <td>${info.remove_authority!}</td>
                     </tr>
+                    ##}
                 </table>
             </div>
             <a class="xzcf ltitle" name="xzcf"><span></span>行政处罚<span></span></a>
@@ -1271,6 +1241,7 @@
                         <td class="tbbg">法人</td>
                         <td class="tbbg">处罚内容</td>
                     </tr>
+                   
                     <tr>
                         <td></td>
                         <td></td>
@@ -1280,6 +1251,7 @@
                         <td></td>
                         <td></td>
                     </tr>
+                   
                 </table>
             </div>
             <a class="zpxx ltitle" name="zpxx"><span></span>招聘信息<span></span></a>
@@ -1292,13 +1264,15 @@
                         <td class="tbbg">岗位坐标</td>
                         <td class="tbbg">招聘信息来源</td>
                     </tr>
+                    ##for(info in job!){
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>${info.public_time!}</td>
+                        <td>${info.position!}</td>
+                        <td>${info.salary!}</td>
+                        <td>${info.job_area!}</td>
+                        <td>${info.resource!}</td>
                     </tr>
+                    ##}
                 </table>
             </div>
             <a class="sbxx ltitle" name="sbxx"><span></span>商标信息<span></span></a>
@@ -1312,30 +1286,17 @@
                         <td class="tbbg">类别</td>
                         <td class="tbbg">流程状态</td>
                     </tr>
+                    ##for(info in mark!){
                     <tr>
-                        <td>20140928</td>
-                        <td></td>
-                        <td>国版</td>
-                        <td>15437877</td>
-                        <td>社会法律</td>
-                        <td>无效</td>
+                        <td>${info.apply_time!}</td>
+                        <td><img alt="" src="${info.hrf!}" width="178px" height="30px"></td>
+                        <td>${info.name!}</td>
+                        <td>${info.regist_num!}</td>
+                        <td>${info.type!}</td>
+                        <td>${info.status!}</td>
                     </tr>
-                    <tr>
-                        <td>20140928</td>
-                        <td></td>
-                        <td>国版</td>
-                        <td>15437877</td>
-                        <td>社会法律</td>
-                        <td>无效</td>
-                    </tr>
-                    <tr>
-                        <td>20140928</td>
-                        <td></td>
-                        <td>国版</td>
-                        <td>15437877</td>
-                        <td>社会法律</td>
-                        <td>无效</td>
-                    </tr>
+                    ##}
+                   
                 </table>
             </div>
             <a class="zlxx ltitle" name="zlxx"><span></span>专利信息<span></span></a>
@@ -1345,20 +1306,22 @@
                         <td class="tbbg">专利名称</td>
                         <td class="tbbg">代理人</td>
                         <td class="tbbg">分类号</td>
-                        <td class="tbbg">著作权人（国籍）</td>
+                        <td class="tbbg">著作权人</td>
                         <td class="tbbg">登记号</td>
                         <td class="tbbg">国家代码</td>
                         <td class="tbbg">登记日期</td>
                     </tr>
+                    ##for(info in patent!){
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>${info.name!}</td>
+                        <td>${info.agent!}</td>
+                        <td>${info.type!}</td>
+                        <td>${info.inventor!}</td>
+                        <td>${info.apply_num!}</td>
+                        <td>${info.apply_public_num!}</td>
+                        <td>${info.apply_public_date!}</td>
                     </tr>
+                    ##}
                 </table>
             </div>
             <a class="rjzzq ltitle" name="rjzzq"><span></span>软件著作权<span></span></a>
@@ -1367,19 +1330,21 @@
                     <tr>
                         <td class="tbbg">软件全称</td>
                         <td class="tbbg">分类号</td>
-                        <td class="tbbg">来源</td>
+                       <!--  <td class="tbbg">来源</td> -->
                         <td class="tbbg">登记号/td>
                         <td class="tbbg">更新时间</td>
                         <td class="tbbg">批准日期</td>
                     </tr>
+                    ##for(info in soft!){
                     <tr>
-                        <td>中国出版集团青岛产业基地中国国际数字化出版产业园</td>
-                        <td></td>
-                        <td></td>
-                        <td>国作登字-2012-L-00062433	</td>
-                        <td>20180129180904</td>
-                        <td></td>
+                        <td>${info.name!}</td>
+                        <td>${info.classes_num!}</td>
+                       <!--  <td>${info.!}</td> -->
+                        <td>${info.regist_num!}</td>
+                        <td>${info.public_time!}</td>
+                        <td>${info.regist_time!}</td>
                     </tr>
+                    ##}
                 </table>
             </div>
             <a class="zpzzq ltitle" name="zpzzq"><span></span>作品著作权<span></span></a>
@@ -1393,14 +1358,16 @@
                         <td class="tbbg">登记日期</td>
                         <td class="tbbg">更新日期</td>
                     </tr>
+                    ##for(info in copy!){
                     <tr>
-                        <td>中国出版集团青岛产业基地中国国际数字化出版产业园</td>
-                        <td>国作登字-2012-L-00062433	</td>
-                        <td>其他</td>
-                        <td>20171220105953</td>
-                        <td>20120613</td>
-                        <td>20180129180904</td>
+                        <td>${info.name!}</td>
+                        <td>${info.regist_num!}</td>
+                        <td>${info.type!}</td>
+                        <td>${info.finsh_time!}</td>
+                        <td>${info.regist_time!}</td>
+                        <td>${info.public_time!}</td>
                     </tr>
+                    ##}
                 </table>
             </div>
             <a class="wzba ltitle" name="wzba"><span></span>网站备案<span></span></a>
@@ -1414,30 +1381,16 @@
                         <td class="tbbg">备案号</td>
                         <td class="tbbg">单位性质</td>
                     </tr>
+                   
                     <tr>
-                        <td>20160226</td>
                         <td></td>
-                        <td>["www.bantaotao.com"]</td>
-                        <td>bantaotao.com</td>
-                        <td>鲁ICP备15018730号-2</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <td></td>
                     </tr>
-                    <tr>
-                        <td>20160226</td>
-                        <td></td>
-                        <td>["www.bantaotao.com"]</td>
-                        <td>bantaotao.com</td>
-                        <td>鲁ICP备15018730号-2</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>20160226</td>
-                        <td></td>
-                        <td>["www.bantaotao.com"]</td>
-                        <td>bantaotao.com</td>
-                        <td>鲁ICP备15018730号-2</td>
-                        <td></td>
-                    </tr>
+                    
                 </table>
             </div>
         </div>

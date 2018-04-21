@@ -57,6 +57,18 @@ public class RelactCompanyController extends BaseController{
           setAttr("jianshi", jianshi);
         List<CoChangeModel> change = CoChangeModel.dao.getChange(name);
           setAttr("change", change);
+        List<CoChangeModel> nameChange =   CoChangeModel.dao.getName(name);
+          setAttr("namechange", nameChange);
+        List<CoChangeModel> stocks =  CoChangeModel.dao.getStock(name);
+          setAttr("stock", stocks);
+        List<CoChangeModel> lian= CoChangeModel.dao.getliain(name);
+          setAttr("lian", lian);
+         List<CoChangeModel> businesscope= CoChangeModel.dao.getBusiness(name);
+           setAttr("busi", businesscope);
+        List<CoChangeModel> comtype=   CoChangeModel.dao.getType(name);
+           setAttr("comtype", comtype);
+        List<CoChangeModel> regist=   CoChangeModel.dao.getRegist(name);
+           setAttr("regist", regist);
         List<CoCompanyBrachModel> brachs=   CoCompanyBrachModel.dao.getBrach(name);  
           setAttr("brach", brachs);
         List<CoExecptionModel> execption =	CoExecptionModel.dao.getExecption(name);
