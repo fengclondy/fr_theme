@@ -376,6 +376,42 @@ body {
     border: none;
 }
 
+/*user*/
+@media all{
+    .user > ul{
+        position: absolute;
+        width: 8rem;
+        right: 0px;
+        background-color: #fff;
+        box-shadow: 0 0.05rem 0.3rem #666;
+        z-index: 5;
+    }
+    .user > ul >li>img{
+        display: inline-block;
+        width: 8rem;
+        height: 8rem;
+        border-bottom: 1px solid gray;
+
+    }
+    .user > ul >li>a{
+        padding: 0.3rem 0.5rem;
+        color: #000;
+        font-size: 0.75rem;
+    }
+    .user > ul >li:hover{
+        color: #fff;
+        background-color: var(--themeBlue);
+        cursor: pointer;
+    }
+    .user > ul >li:first-of-type:hover{
+        color: #fff;
+        background-color:#fff;
+        cursor: pointer;
+    }
+
+}
+
+
 
 
 

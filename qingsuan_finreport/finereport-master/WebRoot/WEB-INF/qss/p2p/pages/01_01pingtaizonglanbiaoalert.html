@@ -8,16 +8,17 @@
     <link rel="stylesheet" href="${contextPath}/static/css/style.css">
     <link rel="stylesheet" href="${contextPath}/static/css/pageCom.css">
     <style>
-        .top {
+       .top {
             display: flex;
             flex: 1;
         }
         .top > div {
-            flex: 1;
+            flex: 2;
         }
         .bottom {
             flex: 5;
             display: flex;
+            margin-top:1rem;
         }
         .bottom>.chartBox{
             flex: 1;
@@ -26,14 +27,22 @@
             display: flex;
             flex-direction: column;
             margin: .5rem;
-            height: calc(100% - 1rem);
-            background-color: #0d175066;
-            box-shadow: 0 0 0.3rem 0.1rem rgba(0, 0, 0, .2);
+            /*background-color: #0d175066;*/
+            /*box-shadow: 0 0 0.3rem 0.1rem rgba(0, 0, 0, .2);*/
+        }
+        .pageHeader {
+            padding: 0.3rem .15rem;
         }
         /*table 表格*/
-        .chartBox1 .chartContent1 .tableBoxs tr th{
+        .top .chartContent1 .tableBoxs tr th{
             font-size: 0.8rem;
-            background-color:rgba(0,0,0,.2);
+            background-color:rgba(0,0,0,.3);
+        }
+        .top tbody > tr > td {
+            background-color:rgba(0,0,0,.15);
+            padding: 0.5rem;
+            font-size: .8rem;
+            cursor: pointer;
         }
         /*覆盖公共样式里的属性*/
         tbody > tr:nth-of-type(odd) {
@@ -41,14 +50,15 @@
         }
         /*披露信息*/
         .pilouInformation p{
-            font-size: 0.8rem;
+            font-size: 0.95rem;
             margin-left: 1.5rem;
         }
         /*平台数据信息*/
         .chartBodyTable{
-            padding: 1.5rem 2rem;
+            padding: 3%;
         }
-        .pingtaiInformationtable thead tr th,.pingtaiInformationtable tbody tr td{
+
+        .pingtaiInformationtable tbody tr td{
             padding: 0.6rem 1rem;
             width: 18%;
             font-size: 0.8rem;
@@ -60,9 +70,9 @@
         .pingtaiInformationtable tr th span:nth-child(1){
             margin-left: 0.3rem;
         }
-        tbody > tr > td {
-   		 font-size: .8rem;
-		}
+        header label{
+            font-size: 0.95rem;
+        }
     </style>
 </head>
 <body id="01_01pingtaizonglanbiaoalert" data-title="平台总览表alert">
