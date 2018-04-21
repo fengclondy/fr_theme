@@ -30,6 +30,12 @@ public class MonthlyReportController extends BaseController {
 		setAttr("jyslist", JyscModel.dao.getJysc(getDataScopeByUserName()));//在进入页面时就获取权限内表为条件下拉框做准备
 		render("xd/pages/06_01jianguanyuebao.html");
 	}
+	
+	public void addnew() {
+		//setAttr("jyslist", MonthlyReportModel.dao.getJys(getDataScopeByUserName()));//在进入页面时就获取权限内表为条件下拉框做准备
+		setAttr("jyslist", JyscModel.dao.getJysc(getDataScopeByUserName()));//在进入页面时就获取权限内表为条件下拉框做准备
+		render("xd/pages/06_02yuebaoshangchuan.html");
+	}
 	/**
 	 * 获取监管月报
 	* @author doushuihai  
@@ -60,20 +66,8 @@ public class MonthlyReportController extends BaseController {
 				getPara("pageSize").equals("undefined")
 				==true?
 				"10":getPara("pageSize"));
-//		getPara(getRequest());
 		getResponse().setCharacterEncoding("UTF-8");
 		Page<MonthlyReportListModel> page = MonthlyReportListModel.getMonthlyReportList(getDataScopeByUserName(),pageNum,pageSize,getRequest());
 		mRenderJson(page);
-		
 	}
-	//文件上传
-/*	public List<MonthlyReportModel> FileUpLoad(String datasql){
-		String sql=" ";
-		if(StringUtils.isNotBlank(datasql)){
-			sql+=" and jysc in "+datasql;
-		}
-		
-		mRenderJson(sql);
-	}*/
-
 }

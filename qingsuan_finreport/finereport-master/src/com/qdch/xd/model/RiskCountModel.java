@@ -31,6 +31,11 @@ public class RiskCountModel extends Model<RiskCountModel>{
 		sql+=" order by x.fvalue asc";
 		return dao.find(sql);
 	}
+	
+	
+	
+	
+	
 	/**
 	 * @todo   平台运营监控 (环形图)
 	 * @time   2018年4月4日 
@@ -38,13 +43,17 @@ public class RiskCountModel extends Model<RiskCountModel>{
 	 */
 	//获取平台总数，无报警平台数量，有报警平台数量
 	public List<RiskCountModel> getAllPlatform(String dataSql){
-		String sql = "select  zs,yc,zs-yc As zc "
-				   + "from (select count(*) zs from hub_xd_jysc) zs,"
-				+ "(select count(DISTINCT jgdm) yc from hub_fxsj where jysfl='3') yc where 1=1 ";
+		String sql = "select  zs,yc,zs-yc As zc from (select count(*) zs from hub_xd_jysc where 1=1";
+		
+		if(StringUtils.isNotBlank(dataSql)){
+			sql+=" and jysc in"+ dataSql+" ";
+		}
+		sql += ") zs,(select count(DISTINCT jgdm) yc from hub_fxsj where jysfl='3' ";
 		if(StringUtils.isNotBlank(dataSql)){
 			sql+=" and jgdm in"+ dataSql+" ";
+			
 		}
-		
+		sql += ")yc";
 		return dao.find(sql);
 	}
 	/**
@@ -54,6 +63,7 @@ public class RiskCountModel extends Model<RiskCountModel>{
 	 */
 	public List<RiskCountModel> getRiskCount(String dataSql){
 		String sql = "select count(fxlb),fxlb from hub_fxsj where jysfl='3' ";
+		
 		if(StringUtils.isNotBlank(dataSql)){
 			sql+=" and jgdm in"+ dataSql+" ";
 		}

@@ -1,3 +1,4 @@
+
 package com.qdch.p2p.controller;
 
 import java.util.ArrayList;
@@ -36,8 +37,10 @@ public class BorrowerController extends BaseController {
 		}
 		String hasInfo=getPara("hasInfo","");
 		List<DefenInfoModel> ptList=new ArrayList<DefenInfoModel>();
-		ptList=DefenInfoModel.dao.getScoreList(getDataScopeByUserNameForP2p(),ptType);
+		//List<PpjyscModel> ptList=new ArrayList<PpjyscModel>();
+		//ptList=PpjyscModel.dao.getJyscP2P(getDataScopeByUserNameForP2p(),ptType);
 		setAttr("jyslist", PpjyscModel.dao.getJysc(getDataScopeByUserName()));
+		ptList= DefenInfoModel.dao.getScoreList(getDataScopeByUserNameForP2p(),ptType, hasInfo);
 		for(DefenInfoModel model:ptList){
 			ZiRanRenJiChuInfoMoDel zrr=ZiRanRenJiChuInfoMoDel.dao.getBasicinfo(getDataScopeByUserNameForP2p(),model.getStr("jysc"),hasInfo);
 			model.put("zrr",zrr);
@@ -57,15 +60,13 @@ public class BorrowerController extends BaseController {
 			model.put("shqy",shqy);
 			ShenHeZiLiaoZiRanRenModel shzr=ShenHeZiLiaoZiRanRenModel.dao.getShenHeZiRanRen(getDataScopeByUserNameForP2p(),model.getStr("jysc"),hasInfo);
 			model.put("shzr",shzr);
+			/*DefenInfoModel defen=DefenInfoModel.dao.getScoreList(getDataScopeByUserNameForP2p(),model.getStr("jysc"),hasInfo);
+			model.put("defen",defen);*/
 		}
 		setAttr("pingtailist",ptList);
 		setAttr("jys",ptType);
 		setAttr("hasInfo",hasInfo);
 	
-		
-		
-		
-		
 		
 		render("p2p/pages/04_05jiekuanrenhuaxiang.html");
 	}
@@ -76,3 +77,5 @@ public class BorrowerController extends BaseController {
 	
 	
 }
+
+

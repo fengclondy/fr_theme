@@ -96,9 +96,9 @@
                         <th>平台实力</th>
                         <!-- <th>法人</th> -->
                         <th>注册资本</th>
-                        <th>总成金额</th>
-                        <th>贷款金额</th>
-                        <th>在投人数</th>
+                        <th>累计成交额 <span>(万)</span></th>
+                        <th>待偿金额 <span>(万)</span></th>
+                        <th>投资人数</th>
                         <th>信息披露</th>
                        
                     </tr>
@@ -215,7 +215,7 @@
                             <tr>
                                 <th>人均借款次数 <span>(次)</span></th>
                                 <th>人均投资次数 <span>(次)</span></th>
-                                <th>贷款余额 <span>(万)</span></th>
+                                <th>待偿金额<span>(万)</span></th>
                                 <th>平台状态</th>
                                 <th></th>
                             </tr>
@@ -273,6 +273,18 @@
 					var content = "";
 					$.each(data,function(index,item){
 						var xxpl = item.xxpl;
+						var zcje = item.zcje;
+            			if (zcje == null || zcje == '-' || zcje == "") {
+							zcje = item.zcje
+						}else {
+							var arry = [];
+							arry = zcje.split('.');
+							if (arry.length == 1) {
+								zcje = item.zcje;
+							}else {
+								zcje = parseFloat(zcje).toFixed(2)
+							}
+						}
             			xxpl = parseFloat(xxpl).toFixed(2)
 						content = content
 						+'    <tr>'
@@ -284,7 +296,7 @@
 	        			+'   	<td>'+item.yysj+'</td>'
 	        			+'   	<td>'+item.ptsl+'</td>'
 	        			+'    	<td>'+item.zczb+'万</td>'
-	        			+'   	<td>'+item.zcje+'</td>'
+	        			+'   	<td>'+zcje+'</td>'
 	        			+'   	<td>'+item.dkje+'</td>'
 	        			+'    	<td>'+item.ztrs+'</td>'
 	        			+'   	<td>'+xxpl+'</td>'
@@ -403,9 +415,14 @@
 				success:function(data){
 					var content = "";
 					$.each(data,function(index,item){
-					
+					if (item.mbys == null) {
+						content = content
+						+""
+					}else {
 						content = content
 						+item.mbys.toFixed(2)  
+					}
+						
 					})
 					$("#mbys").html(content);
 				}
@@ -418,9 +435,15 @@
 				dataType:"json",
 				success:function(data){
 					var content = "";
-					var jk = parseInt(data.zcje)/parseInt(data.zjkrs);
+					if (data.zcje == null || data.zjkrs == null) {
+						content = content 
+						+""
+					}else {
+						var jk = parseInt(data.zcje)/parseInt(data.zjkrs);
 						content = content
 						+jk.toFixed(2)
+					}
+					
 					
 					$("#rjjk").html(content);
 				}
@@ -433,9 +456,15 @@
 				dataType:"json",
 				success:function(data){
 					var content = "";
-					var tz = parseInt(data.zcje)/parseInt(data.ztzrs);
+					if (data.zcje == null || data.ztzrs == null) {
+						content = content
+						+""
+					}else {
+						var tz = parseInt(data.zcje)/parseInt(data.ztzrs);
 						content = content
 						+tz.toFixed(2);
+					}
+					
 					
 					$("#rjtz").html(content);
 				}

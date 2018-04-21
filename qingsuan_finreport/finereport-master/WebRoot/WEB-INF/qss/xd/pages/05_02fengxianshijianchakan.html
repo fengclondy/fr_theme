@@ -616,7 +616,7 @@
                 riskIndex = data.risk;
                 var exchangeHtml = "",typehtml,riskhtml,statushtml;
                 $.each(data.exchange, function(index, value, array) {
-                    exchangeHtml+="<option value='"+value.jys+"'>"+value.jysinfo+"</option>";
+                    exchangeHtml+="<option value='"+value.jysmc+"'>"+value.jysmc+"</option>";
                 });
                 $.each(data.type, function(index, value, array) {
                     typehtml+="<option value='"+value.fxlb+"'>"+value.fxlb+"</option>";
@@ -713,7 +713,7 @@
                 var value = data.risk;
 
                 $(".shijianId").text(value.fxsj_id);
-                $(".fenxianzhibiao").text(value.fxsj_id);
+                $(".fenxianzhibiao").text(value.fxzb);
                 $(".Beyond").text(value.cce);
                 $(".CustomerNo").text(value.cust_id);
                 $(".Business").text(value.ywlx);
@@ -781,6 +781,8 @@
         });
 
     }
+
+
 
 
 

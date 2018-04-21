@@ -38,7 +38,7 @@ public class RiskOverviewController extends BaseController {
 	}
 	/**
 	 * @todo   平台运营监控 (环形图)
-	 * @time   2018年4月4日 下午14:40:09
+	 * @time   2018年4月4日 
 	 * @author ljm
 	 */
 	public void getAllPlatform(){
@@ -48,7 +48,7 @@ public class RiskOverviewController extends BaseController {
 	
 	/**
 	 * @todo   平台运营监控 (风险种类，数量)
-	 * @time   2018年4月4日 下午14:40:09
+	 * @time   2018年4月4日 
 	 * @author ljm
 	 */
 	public void getRiskCount(){
@@ -65,6 +65,7 @@ public class RiskOverviewController extends BaseController {
 	public void getRiskTrend(){
 		String jysc=getPara("jysc");//获取参数1：交易市场	
 		String fxlb = getPara("fxlb");//获取参数2：风险类型
+		
 		List list = new ArrayList();
 		if(StringUtils.isNotBlank(fxlb)){
 			list = RiskTrendDetailedModel.dao.getRiskTrendDetailed(getDataScopeByUserName(),jysc,fxlb);

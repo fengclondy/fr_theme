@@ -241,7 +241,6 @@
  			$.post("${contextPath}/qdch/deal/getLoanRangeNumber",{"jysinfo":jysinfo,"ppType":ppType},function(data){
  		    	var month=[];
  		    	var lines1=[];
- 		    	console.log(data)
  				$.each(data,function(index,item){
  					var num=[];
 	    			$.each(item.numlist,function(index2,item2){
@@ -262,7 +261,7 @@
 	    			
 	    			lines1.push(ser1);
 	    		});   
- 		    	myChart4.clear();
+ 				myChart4.clear();
  		        myChart4.setOption(opt_bar_vertical);
  		        myChart4.setOption(opt_line);
 	            myChart4.setOption({
@@ -276,10 +275,10 @@
 	                    show:false
 	                },
 	                grid: {
-	                    left: '7%',
-	                    right: '5%',
+	                    left: '15%',
+	                    right: '10%',
 	                    bottom: '22%',
-	                    top: '5%'
+	                    top: '24%'
 	                },
 	                xAxis:  {
 	                    name:'月份',
@@ -287,6 +286,7 @@
 	                    data: month
 	                },
 	                yAxis: {
+	                	name:'人数',
 	                    type: 'value'
 
 	                },
@@ -297,7 +297,6 @@
 		//投资金额区间人数
 		function getRangeNumber(){
 			var ppType = $("#tzr").html().substr(0,3);
-
  			$.post("${contextPath}/qdch/deal/getRangeNumber",{"jysinfo":jysinfo,"ppType":ppType},function(data){
  		    	var month=[];
  		    	var lines=[];
@@ -318,7 +317,7 @@
 	                        barWidth:barWidth,
 	                        data: num
 	                };	
-	    			console.log(item.pp_range)
+	    		
 	    			lines.push(ser);
 	    		}); 
  				myChart4.clear();
@@ -335,10 +334,10 @@
 	                    show:false
 	                },
 	                grid: {
-	                    left: '7%',
-	                    right: '5%',
+	                    left: '15%',
+	                    right: '10%',
 	                    bottom: '22%',
-	                    top: '5%'
+	                    top: '24%'
 	                },
 	                xAxis:  {
 	                    name:'月份',
@@ -346,6 +345,7 @@
 	                    data: month
 	                },
 	                yAxis: {
+	                	name:'人数',
 	                    type: 'value'
 
 	                },
@@ -381,7 +381,7 @@
 	            myChart1.setOption(opt_bar_vertical);
 	            myChart1.setOption({
 	                grid: {
-	                    left: '8%',
+	                    left: '9%',
 	                    right: '8%',
 	                    bottom: '18%',
 	                    top: '30%'
@@ -397,7 +397,7 @@
 	                yAxis: [
 	                    {
 	                        type: 'value',
-	                        name: '金额',
+	                        name: '万',
 	                        nameGap: 4 * bodyScale
 	                    },
 	                    {
@@ -447,8 +447,8 @@
 	            myChart2.setOption(opt_line);
 	            myChart2.setOption({
 	                grid: {
-	                    left: '8%',
-	                    right: '8%',
+	                    left: '9%',
+	                    right: '10%',
 	                    bottom: '25%',
 	                    top: '20%'
 	                },
@@ -467,7 +467,7 @@
 	                ],
 	                yAxis: [
 	                    {
-	                        name: '时间',
+	                        name: '秒',
 	                        type: 'value'
 	                    }
 	                ],
@@ -501,8 +501,8 @@
 	            myChart3.setOption(opt_line);
 	            myChart3.setOption({
 	                grid: {
-	                    left: '8%',
-	                    right: '8%',
+	                    left: '9%',
+	                    right: '5%',
 	                    bottom: '18%',
 	                    top: '20%'
 	                },
@@ -558,8 +558,8 @@
 	            myChart5.setOption(opt_line);
 	            myChart5.setOption({
 	                grid: {
-	                    left: '8%',
-	                    right: '8%',
+	                    left: '10%',
+	                    right: '10%',
 	                    bottom: '18%',
 	                    top: '20%'
 	                },
@@ -578,7 +578,7 @@
 	                ],
 	                yAxis: [
 	                    {
-	                        name: '金额',
+	                        name: '万',
 	                        type: 'value'
 	                    }
 	                ],
@@ -617,10 +617,10 @@
 	                    show:false
 	                },
 	                grid: {
-	                    left: '8%',
-	                    right: '8%',
-	                    bottom: '18%',
-	                    top:'15%'
+	                    left: '9%',
+	                    right: '10%',
+	                    bottom: '20%',
+	                    top:'20%' 
 	                },
 	                xAxis : [
 
@@ -632,7 +632,7 @@
 	                    }
 	                ],
 	                yAxis : [
-	                    {   name:'金额',
+	                    {   name:'万',
 	                        type : 'value'
 	                    }
 	                ],
@@ -648,7 +648,7 @@
 	            });
 		 	});
 		}
-		//代偿本金
+		//待偿本金
 		function getCollectPrincipal(){
 		 	$.post("${contextPath}/qdch/deal/getCollectPrincipal",{"jysinfo":jysinfo},function(data){
 				var bz=[];
@@ -662,8 +662,8 @@
 	            myChart7.setOption({
 	                grid: {
 	                    left: '15%',
-	                    right: '15%',
-	                    bottom: '15%',
+	                    right: '10%',
+	                    bottom: '20%',
 	                    top: '20%'
 	                },
 	                legend:{
@@ -681,7 +681,7 @@
 	                ],
 	                yAxis: [
 	                    {
-	                        name: '金额',
+	                        name: '万',
 	                        type: 'value'
 	                    }
 	                ],

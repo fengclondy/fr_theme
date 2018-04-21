@@ -58,8 +58,8 @@ public class RiskEventModel extends Model<RiskEventModel>{
 			}
 			if(StringUtils.isNotBlank(request.getParameter("alarmTimeStart"))
 					&&StringUtils.isNotBlank(request.getParameter("alarmTimeEnd"))){ //报警时间
-				sb.append(" and bjsj  BETWEEN").append(request.getParameter("alarmTimeStart"))
-						.append(" and ").append(request.getParameter("alarmTimeEnd"));
+				sb.append(" and bjsj  BETWEEN '").append(request.getParameter("alarmTimeStart"))
+						.append("' and '").append(request.getParameter("alarmTimeEnd")).append("' ");
 			}
 			if(StringUtils.isNotBlank(request.getParameter("khmc"))){ //客户名称
 				sb.append(" and khmc  like '%").append(decode(request.getParameter("khmc"))).append("%'");
@@ -70,6 +70,7 @@ public class RiskEventModel extends Model<RiskEventModel>{
 			if(StringUtils.isNotBlank(request.getParameter("ywbm"))){ //业务编码
 				sb.append(" and ywbm  like '%").append(request.getParameter("ywbm")).append("%'");
 			}
+            sb.append(" order by fxsj_id desc");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
@@ -81,10 +82,13 @@ public class RiskEventModel extends Model<RiskEventModel>{
 
 	public List<RiskEventModel> getRiskEventList(String checkstatus,HttpServletRequest request){
 		StringBuffer sb = new StringBuffer();
-		sb.append(" from hub_fxsj a where 1=1 and clzt='").append(checkstatus).append("' ");
+		sb.append(" from hub_fxsj a where 1=1 ");
 		sb.append(" and jysfl='3' ");//交易所分类 3--小贷 4--p2p
 //		String sql = " ";khmc
 		try {
+            if(StringUtils.isNotBlank(checkstatus)){ //风险事件id
+                sb.append(" and clzt='").append(checkstatus).append("'");
+            }
 			if(StringUtils.isNotBlank(request.getParameter("fxsj_id"))){ //风险事件id
 				sb.append(" and fxsj_id  like '%").append(request.getParameter("fxsj_id")).append("%'");
 			}
@@ -117,6 +121,7 @@ public class RiskEventModel extends Model<RiskEventModel>{
 			if(StringUtils.isNotBlank(request.getParameter("ywbm"))){ //业务编码
 				sb.append(" and ywbm  like '%").append(request.getParameter("ywbm")).append("%'");
 			}
+			sb.append(" order by fxsj_id desc");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
@@ -134,4 +139,6 @@ public class RiskEventModel extends Model<RiskEventModel>{
 		String sql = "select * from hub_fxsj where fxsj_id="+idValue;
 		return dao.findFirst(sql);
 	}
+
+
 }

@@ -69,9 +69,9 @@ public class AuthorityServlet extends BaseServlet {
 			}else if("1".equals(roleType)){
 				roleName="权益";
 			}else if("2".equals(roleType)){
-				roleName="小贷";
-			}else if("3".equals(roleType)){
 				roleName="P2P";
+			}else if("3".equals(roleType)){
+				roleName="小贷";
 			}
 			System.out.println("---roleName-------"+roleName);
 			QdchUser user=RoleUtil.authorityUser(request, userName, roleName,uid);

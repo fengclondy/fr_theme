@@ -15,6 +15,7 @@ import com.qdch.xd.model.*;
 
 
 import javax.management.relation.Role;
+import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
@@ -29,6 +30,7 @@ import java.util.*;
 public class EventProcessingController extends BaseController {
 	private static RiskEventModel riskEventModelDao = RiskEventModel.dao;
 	private static ExchangeInfoModel exchangeInfoModelDao = ExchangeInfoModel.dao;
+	private static  OrganizModel organizModelDao = OrganizModel.dao;
 	private static RiskTypeModel riskTypeModelDao = RiskTypeModel.dao;
 	private static RiskEventHistoryModel riskEventHistoryModel  = RiskEventHistoryModel.dao;
 	private static DictModel dictModelDao  = DictModel.dao;
@@ -43,6 +45,38 @@ public class EventProcessingController extends BaseController {
 //		renderJsp("xd/pages/riskSolve.jsp");
 		//setAttr("type",getPara("type"));
 		setAttr("user", getLoginUser());
+		String checkstatus = ""; // 处理状态
+		List<String> statuss = new ArrayList<>();
+		List<RoleModel> roles = getLoginUser().getRoles();
+		String rolename = "";
+		if(roles!=null && roles.size()>0) {
+
+			List<String> rr = new ArrayList<>();
+			for (RoleModel roleModel : roles) {
+				if (roleModel.getRoleName().contains("处理人")) {
+					rolename = "处理人";
+					statuss.add("已提交");
+					statuss.add("已排除");
+					break;
+				} else if (roleModel.getRoleName().contains("审核人")) {
+                    rolename = "审核人";
+                    statuss.add("已上报");
+					statuss.add("驳回");
+					statuss.add("已排查");
+					break;
+				} else if (roleModel.getRoleName().contains("决策人")) {
+                    rolename = "决策人";
+
+					statuss.add("已查阅");
+					statuss.add("已确认");
+					break;
+				}
+
+			}
+		}
+		setAttr("rolename",rolename);
+		setAttr("statuslist",statuss);
+        HttpServletRequest request = getRequest();
 		render("xd/pages/05_01fengxianshijianchuli.html");
 	}
 
@@ -68,26 +102,42 @@ public class EventProcessingController extends BaseController {
 		String checkstatus = ""; // 处理状态
 		List<RoleModel> roles = getLoginUser().getRoles();
 		if(roles!=null && roles.size()>0){
+
 			List<String> rr = new ArrayList<>();
 			for(RoleModel roleModel:roles){
-				rr.add(roleModel.getRoleName());
+				if(roleModel.getRoleName().contains("处理人")){
+					checkstatus = " and clzt in ('未处理','驳回') ";
+					break;
+				}else  if(roleModel.getRoleName().contains("审核人")){
+					checkstatus = " and clzt in ('已提交') ";
+					break;
+				}else  if(roleModel.getRoleName().contains("决策人")){
+					checkstatus = " and clzt in ('已上报') ";
+					break;
+				}
+
 			}
-			if(rr.contains("处理人")){
-				checkstatus = " and clzt in ('未处理','驳回','已排除') ";
-			}else if (rr.contains("审核人")){
-				checkstatus = " and clzt in ('已提交','已排查') ";
-			}else if (rr.contains("决策人")){
-				checkstatus = " and clzt in ('已上报','已查阅''已确认') ";
-			}
+
+//			List<String> rr = new ArrayList<>();
+//			for(RoleModel roleModel:roles){
+//				rr.add(roleModel.getRoleName());
+//			}
+//			if(rr.contains("处理人")){
+//				checkstatus = " and clzt in ('未处理','驳回','已排除') ";
+//			}else if (rr.contains("审核人")){
+//				checkstatus = " and clzt in ('已提交','已排查') ";
+//			}else if (rr.contains("决策人")){
+//				checkstatus = " and clzt in ('已上报','已查阅''已确认') ";
+//			}
 		}else{
-			String role  = "审核人";
-			if(role.equals("处理人")){
-				checkstatus = " and clzt in ('未处理','驳回','已排除') ";
-			}else if(role.equals("审核人")){
-				checkstatus = " and clzt in ('已提交','已排查') ";
-			}else if(role.equals("决策人")){
-				checkstatus = " and clzt in ('已上报','已查阅''已确认') ";
-			}
+//			String role  = "审核人";
+//			if(role.equals("处理人")){
+//				checkstatus = " and clzt in ('未处理','驳回','已排除') ";
+//			}else if(role.equals("审核人")){
+//				checkstatus = " and clzt in ('已提交','已排查') ";
+//			}else if(role.equals("决策人")){
+//				checkstatus = " and clzt in ('已上报','已查阅','已确认') ";
+//			}
 		}
 
 
@@ -106,7 +156,8 @@ public class EventProcessingController extends BaseController {
 		Map<String,Object> result  = new HashMap<String, Object>();
 		List<RiskTypeModel> riskTypeList =  riskTypeModelDao.getTypeKind("3"); //风险类别
 		List<RiskTypeModel> riskList =  riskTypeModelDao.getByType("3");
-		List<ExchangeInfoModel> exchangeInfoModelList = exchangeInfoModelDao.getList(); //机构/市场
+//		List<ExchangeInfoModel> exchangeInfoModelList = exchangeInfoModelDao.getList(); //机构/市场
+		List<OrganizModel> exchangeInfoModelList = organizModelDao.getListByType("3");//机构/市场
 
 		result.put("type",riskTypeList);
 		result.put("risk",riskList);
@@ -115,6 +166,10 @@ public class EventProcessingController extends BaseController {
 		mRenderJson(result);
 	}
 
+
+	/**
+	 * 风险事件查看--没有任何状态
+	 */
 
 	public void getListSee(){
 		int pageNum =Integer.parseInt(StringUtils.isBlank(getPara("pageNum"))||
@@ -189,12 +244,20 @@ public class EventProcessingController extends BaseController {
 	public void submitCheck(){
 		try {
 			RiskEventModel eventModel = riskEventModelDao.findById(getPara("id"));
-			eventModel.set("clzt",getPara("status"));
-			eventModel.set("shr",getLoginUser().getUsername());
-			eventModel.set("report_id",getPara("id"));
-			eventModel.set("bz",getPara("area"));
-			eventModel.set("update_time",new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(System.currentTimeMillis()));
-			eventModel.dao.update();
+//			eventModel.set("clzt",decode(getPara("status")));
+//			eventModel.set("shr",getLoginUser().getUsername());
+//			eventModel.set("report_id",getPara("id"));
+//			eventModel.set("bz",decode(getPara("area")));
+//			eventModel.set("update_time",new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(System.currentTimeMillis()));
+//			eventModel.dao.update();
+			String sql = "update hub_fxsj set clzt='"+decode(getPara("status"))
+					+"',shr='"+getLoginUser().getUsername()
+					+"',report_id='"+getPara("id")+
+					"',update_time='"+
+					new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(System.currentTimeMillis())+
+					"' where fxsj_id='"+getPara("id")+"'";
+
+			JDBCUtil.executeUpdate(sql,null);
 
 
 //			RiskEventHistoryModel historyModel  = RiskEventHistoryModel.dao;
@@ -256,12 +319,13 @@ public class EventProcessingController extends BaseController {
 //			sb.append(")");
 
 			StringBuffer buffer  = new StringBuffer();
-			buffer.append("insert into hub_fxsj_audit_new(shr,clzt,fxsj_id,update_time,bz) values(");
+			buffer.append("insert into hub_fxsj_audit_new(shr,clzt,fxsj_id,update_time,bz,report_id) values(");
 			buffer.append("'").append(getLoginUser().getUsername()).append("'");
 			buffer.append(",'").append(decode(getPara("status"))).append("'");
 			buffer.append(",'").append(getPara("id")).append("'");
 			buffer.append(",'").append(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(System.currentTimeMillis())).append("'");
-			buffer.append(",'").append(decode(getPara("area"))).append("')");
+			buffer.append(",'").append(decode(getPara("area"))).append("'");
+			buffer.append(",'").append(decode(getPara("rolename"))).append("')");
 			JDBCUtil.executeUpdate(buffer.toString(),null);
 			mRenderJson(true);
 		} catch (Exception e) {

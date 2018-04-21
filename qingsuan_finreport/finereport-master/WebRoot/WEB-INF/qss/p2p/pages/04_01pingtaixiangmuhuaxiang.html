@@ -156,8 +156,8 @@
             transform: scale(1.3);
         }
         #my_tr1 th,#my_tr2 th{
-            font-size: .85rem;
-            background-color: #00abde;
+            font-size: .75rem;
+         
         }
         tbody > tr:nth-of-type(odd),tbody > tr:nth-of-type(even) {
             background-color: transparent;
@@ -233,13 +233,13 @@
         #proc{
             height: 15px;
             border-radius: 7.5px;
-            background-color:red;
+           
 
         }
         #proc4{
             height: 15px;
             border-radius: 7.5px;
-            background-color:pink;
+         
 
         }
     </style>
@@ -304,7 +304,7 @@
                                 </div>
                             </div>
                             <div class="jdt">
-                                <h3 class="center">地区集中度</h3>
+                                <h3 class="center">地区HHI指数</h3>
                                 <div id="outDiv4" class="progress_out">
                                     <div id="progressbar4" class="progress_inner">
                                         <div id="proc4"></div>
@@ -475,9 +475,9 @@
 							"  <tr>            <td class='center ziranren'>"+item.xmlx+"</td>\n" +
 							"                 <td class='center left'>"+item.ywlx+"</td>\n" +
 							"                 <td class='center'>"+item.pjlv+"</td>\n" +
-							"               <td class='center'>"+item.je+"</td>\n" +
-							"               <td class='center'>"+item.jezb+"</td>\n" +
-							"                <td class='center'>"+item.pjqx+"</td></tr>  " 
+							"               <td class='center'>"+item.je*1/10000+"万</td>\n" +
+							"               <td class='center'>"+item.jezb*100+"%</td>\n" +
+							"                <td class='center'>"+item.pjqx+"(月)</td></tr>  " 
 		
 			})
 			
@@ -497,8 +497,8 @@
 							"  <tr>            <td class='center ziranren'>"+item.term+"</td>\n" +
 							
 							"                 <td class='center'>"+item.pjlv+"</td>\n" +
-							"               <td class='center'>"+item.je+"</td>\n" +
-							"               <td class='center'>"+item.jezb+"</td>\n" +
+							"               <td class='center'>"+item.je*1/10000+"万</td>\n" +
+							"               <td class='center'>"+(item.jezb*1)+"%</td>\n" +
 							"                <td class='center'>"+item.hkfs+"</td></tr>  " 
 		
 			})
@@ -506,49 +506,12 @@
 			$('#tbody2').html(tableList)
             })
             $('.model1').css('display','block');
-            console.log('aaa');
         });
         $(".model1>.header>span").click(function () {
             $('.model1').hide(500)
         });
         
-        //percentage  数据值
-        //percentage  数据值 直接设置percentage
-       /*  $('#progressbar1').LineProgressbar({
-            percentage: 64,
-            fillBackgroundColor: '#ff7875',
-            height: '15px',
-            radius: '20px',
-            backgroundColor:'rgba(0,0,0,0.2)'
-
-        });
-        $('#progressbar2').LineProgressbar({
-            percentage: 42,
-            fillBackgroundColor: '#5cdbd3',
-            height: '15px',
-            radius: '20px',
-            backgroundColor:'rgba(0,0,0,0.2)'
-        });
-        //行业HHI指数  取值设置i
-        $(function(){
-            var i=6;
-            var w =$('.progress_inner').width();
-            (function progressBar3(){
-
-                $("#proc").animate({width:i*(w*0.1)},200).css('background','#73d13d');
-                $("#progressWord").text(i);
-            })();
-        });
-        $(function(){
-            var h=5;
-            var w =$('.progress_inner').width();
-            (function progressBar3(){
-               
-                $("#proc4").animate({width:h*(w*0.1)},200).css('background','#b37feb');
-                $("#progressWord4").text(h);
-                
-            })();
-        }); */
+        
     });
 
     (function($){
@@ -645,7 +608,8 @@
     function init(){
     	getProjectStructure();
         getProjectterm();
-        getConRate();
+        getConRateHHI();
+        getConRatePro();
         getImportantRatio();
         if(rangetype=="全部"){
         	$("#rangetypeSelect>li").removeClass("selected");
@@ -704,7 +668,8 @@
   			})  
   			console.log(seriesData1)
   			console.log(seriesData2)
-  			
+  			ec003.clear();
+  			ec003.setOption(opt_line);
   			ec003.setOption({
   	            grid: {
   	                top: "12%",
@@ -815,30 +780,43 @@
   //获取四个重要比率
     function getImportantRatio(){
       	 $.post("${contextPath}/qdch/project/getImporttantRatio",{"jys":jysCode},function(data){
-      		var yql=data[0].yql;
-      		var yqje=data[0].yqje;
-      		var dcje=data[0].dcje;
-      		var dcbs=data[0].dcbs;
-      		
-      		if(yql == null ){
-      			yql="/";
-      		}
-      		if(yqje == null ){
-      			yqje="/";
-      		}
-      		if(dcje == null ){
-      			dcje="/";
-      		}
-      		if(dcbs == null ){
-      			dcbs="/";
-      		}
-       		$("#BoxContentNub01").html(yql);
-       		$("#BoxContentNub02").html(yqje);
-       		$("#BoxContentNub03").html(dcje);
-       		$("#BoxContentNub04").html(dcbs);     		
+      		 console.log("======ppp=====",data)
+      		 if(data.length==0){
+      			$("#BoxContentNub01").html("/");
+           		$("#BoxContentNub02").html("/");
+           		$("#BoxContentNub03").html("/");
+           		$("#BoxContentNub04").html("/");
+      		 }else if(data.length>1){
+      			 alert("数据源存在问题！")
+      		 }
+      		 else{
+      			var yql=data[0].yql;
+          		var yqje=data[0].yqje;
+          		var dcje=data[0].dcje;
+          		var dcbs=data[0].dcbs;
+          		
+          		if(yql == null ){
+          			yql="/";
+          		}
+          		if(yqje == null ){
+          			yqje="/";
+          		}
+          		if(dcje == null ){
+          			dcje="/";
+          		}
+          		if(dcbs == null ){
+          			dcbs="/";
+          		}
+           		$("#BoxContentNub01").html(yql);
+           		$("#BoxContentNub02").html(yqje);
+           		$("#BoxContentNub03").html(dcje);
+           		$("#BoxContentNub04").html(dcbs);    
+      		 }
+      		 		
        	});
       } 
   	function getInterest(){
+  		
   		$.post("${contextPath}/qdch/project/getInterest",{"jys":jysCode,"rangeType":rangetype},function(data){
   			var seriesData=[];
   			var yAxisData=[];
@@ -848,6 +826,8 @@
   				
   			})
   			console.log("=========利率========",data)
+  			ec003.clear();
+  			ec003.setOption(opt_line);
   			ec003.setOption({
   	            grid: {
   	                top: "12%",
@@ -878,58 +858,81 @@
   	        });
   		})
   	}
-  	function getConRate(){
-  		$.post("${contextPath}/qdch/project/getconRatio",{"jys":jysCode},function(data){
-  			var seriesData=[];
-  			var yAxisData=[];
-  			$.each(data,function(index,item){
-  				var name=item.hhi_type;
-  				if("借款人HHI"==name){
-  					
-  					$('#progressbar1').LineProgressbar({
-  			            percentage: item.hhi_value*100,
-  			            fillBackgroundColor: '#ff7875',
-  			            height: '15px',
-  			            radius: '20px',
-  			            backgroundColor:'rgba(0,0,0,0.2)'
-
-  			        });
-  				}
-				if("投资人HHI"==name){
-					 $('#progressbar2').LineProgressbar({
-				            percentage: item.hhi_value*100,
-				            fillBackgroundColor: '#5cdbd3',
-				            height: '15px',
-				            radius: '20px',
-				            backgroundColor:'rgba(0,0,0,0.2)'
-				        });				
-				  				}
-  				
-				if("行业HHI"==name){
-					var val=item.hhi_value*1
-					var w =$('.progress_inner').width();
-		            (function progressBar3(){
-
-		                $("#proc").animate({width:val*(w*0.1)},200).css('background','#73d13d');
-		                $("#progressWord").text(val);
-		            })();		
-				  				}
-				if("地区HHI"==name){
-					 	var h=item.hhi_value*1;
+  //获取地区和行业的HHI
+  	function getConRateHHI(){
+  		$.post("${contextPath}/qdch/project/getconRatioHHI",{"jys":jysCode},function(data){
+  			 if(data.length>0){
+  				$.each(data,function(index,item){
+  	  				var name=item.hhi_type;
+  					if("行业HHI"==name){
+  						var val=item.hhi_value*1;
+  						var w =$('.progress_inner').width();
+  			            (function progressBar3(){
+  			                $("#proc").animate({width:val*(w*1)},200).css('background','#73d13d');
+  			                $("#progressWord").text(val);
+  			            })();		
+  					  				}
+  					if("地区HHI"==name){
+  						 	var h=item.hhi_value*1;
+  				            var w =$('.progress_inner').width();
+  				            (function progressBar3(){
+  				                $("#proc4").animate({width:h*(w*1)},200).css('background','#b37feb');
+  				                $("#progressWord4").text(h);
+  				            })();
+  				        
+  								}  				
+  	  				})
+		  			}else{
+		  				
+		  				var val=null;
+  						var w =$('.progress_inner').width();
+  			            (function progressBar3(){
+  			                $("#proc").animate({width:val*(w*1)},200).css('background','#73d13d');
+  			                $("#progressWord").text(val);
+  			            })();
+  			          	var h=null;
 			            var w =$('.progress_inner').width();
 			            (function progressBar3(){
-			               
-			                $("#proc4").animate({width:h*(w*0.1)},200).css('background','#b37feb');
+			                $("#proc4").animate({width:h*(w*1)},200).css('background','#b37feb');
 			                $("#progressWord4").text(h);
-			                
 			            })();
-			        
-  				}
-  				
-  				
-  			})
-  			console.log("=========利率========",data)
+		  			} 
   			
+  		})
+  	}
+  	//获取前十大借款人和投资人占比
+  	function getConRatePro(){
+  		$.post("${contextPath}/qdch/project/getconRatioProportion",{"jys":jysCode},function(data){
+  			if(data.length>0){
+  				$.each(data,function(index,item){
+  	  				var name=item.rate_type;
+  	  				 if("借款"==name){
+  	  					
+  	  					$('#progressbar1').LineProgressbar({
+  	  			            percentage: item.iterm_value*100,
+  	  			            fillBackgroundColor: '#00adef',
+  	  			            height: '15px',
+  	  			            radius: '20px',
+  	  			            backgroundColor:'rgba(0,0,0,0.2)'
+
+  	  			        });
+  	  				}
+  					if("投资"==name){
+  						
+  						 $('#progressbar2').LineProgressbar({
+  					            percentage: item.iterm_value*100,
+  					            fillBackgroundColor: '#5cdbd3',
+  					            height: '15px',
+  					            radius: '20px',
+  					            backgroundColor:'rgba(0,0,0,0.2)'
+  					        });				
+  					  				} 
+  	  			})
+  			}
+  			else{
+  				
+  			}
+  		
   		})
   	}
 </script>

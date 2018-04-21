@@ -1,4 +1,7 @@
 package com.qdch.config;
+import com.qdch.core.PostgreSqlDialect;
+import com.qdch.xd.model.*;
+
 import org.beetl.core.GroupTemplate;
 import org.beetl.ext.jfinal3.JFinal3BeetlRenderFactory;
 
@@ -13,7 +16,6 @@ import com.jfinal.ext.handler.ContextPathHandler;
 import com.jfinal.kit.PathKit;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
-import com.jfinal.plugin.activerecord.dialect.PostgreSqlDialect;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.template.Engine;
 import com.qdch.core.QdchController;
@@ -29,18 +31,29 @@ import com.qdch.p2p.controller.IndustryCommController;
 import com.qdch.p2p.controller.PlatformAlertController;
 import com.qdch.p2p.controller.PlatformController;
 import com.qdch.p2p.controller.ProjectplatformController;
+import com.qdch.p2p.controller.RelactCompanyController;
 import com.qdch.p2p.controller.RiskController;
 import com.qdch.p2p.controller.SuperviseController;
 import com.qdch.p2p.model.AverageTimeModel;
 import com.qdch.p2p.model.AvgTermTimeModel;
 import com.qdch.p2p.model.CoBusinessTypeModel;
+import com.qdch.p2p.model.CoBzxpersonModel;
 import com.qdch.p2p.model.CoChangeModel;
+import com.qdch.p2p.model.CoComPatentModel;
+import com.qdch.p2p.model.CoComReportModel;
+import com.qdch.p2p.model.CoComcopyrightModel;
+import com.qdch.p2p.model.CoComjobModel;
 import com.qdch.p2p.model.CoCompanyBrachModel;
 import com.qdch.p2p.model.CoCompanyInfoModel;
 import com.qdch.p2p.model.CoCompanyTypeModel;
 import com.qdch.p2p.model.CoCorePersonModel;
+import com.qdch.p2p.model.CoDishonestModel;
 import com.qdch.p2p.model.CoExecptionModel;
+import com.qdch.p2p.model.CoLegalModel;
+import com.qdch.p2p.model.CoLegalPublicModel;
 import com.qdch.p2p.model.CoShareholderInfoModel;
+import com.qdch.p2p.model.CoSoftrightModel;
+import com.qdch.p2p.model.CoTrademarkModel;
 import com.qdch.p2p.model.CollectPrincipalModel;
 import com.qdch.p2p.model.CompanyFeelModel;
 import com.qdch.p2p.model.CompositeInterestModel;
@@ -90,6 +103,7 @@ import com.qdch.xd.controller.EventInputController;
 import com.qdch.xd.controller.EventProcessingController;
 import com.qdch.xd.controller.EventSeeDetailsController;
 import com.qdch.xd.controller.EventViewController;
+import com.qdch.xd.controller.FileUpLoadController;
 import com.qdch.xd.controller.ManagementRiskController;
 import com.qdch.xd.controller.MonthlyReportController;
 import com.qdch.xd.controller.OperationalCapabilityController;
@@ -155,15 +169,19 @@ import com.qdch.xd.model.maxIntrateRankModel;
 
 
 
+
 public class Config extends JFinalConfig {
+	
 	public void configConstant(Constants me) {
+		PropKit.use("config.txt");
 		me.setDevMode(true);
 		//添加beetl配置
 		JFinal3BeetlRenderFactory rf = new JFinal3BeetlRenderFactory();
 		rf.config();
 //		me.setViewType(ViewType.JSP);
 		me.setRenderFactory(rf);
-		//me.setBaseUploadPath("D:\loadup"); 
+		me.setBaseUploadPath(PropKit.get("uploadPath"));  
+		me.setMaxPostSize(Integer.valueOf(PropKit.get("uploadMaxSize")));
 		GroupTemplate gt = rf.groupTemplate;
 		gt.registerTag("layout", TemplteLayoutTag.class);
 	}
@@ -174,7 +192,7 @@ public class Config extends JFinalConfig {
 		
 
 	
-		me.add("qdch/auth", QdchController.class);
+		me.add("qdch/auth", QdchController.class,"/");
 		me.add("qdch/xiaodai", XiaoDaiController.class,"/");
 		
 		/***小贷 doushuihai Controller START***/
@@ -192,6 +210,7 @@ public class Config extends JFinalConfig {
 		me.add("qdch/eventaudit", EventAuditController.class,"/");	//风险事件审核
 		me.add("qdch/eventdecision", EventDecisionController.class,"/");	//风险事件决策
 		me.add("qdch/monthlyrepor", MonthlyReportController.class,"/");	//监管月报
+		me.add("qdch/fileupLoad", FileUpLoadController.class,"/");	//监管月报上传
 		me.add("qdch/commerce",CommerceController.class,"/"); //小贷-工商模块
 		/***小贷doushuihai Controller START***/
 		
@@ -218,6 +237,7 @@ public class Config extends JFinalConfig {
 		me.add("qdch/platformalert",PlatformAlertController.class,"/"); //p2p-平台总览弹出
 		me.add("qdch/industry",IndustryCommController.class,"/");//p2p-工商新内容
 		me.add("qdch/borrowerfill",BorrowerFillController.class,"/"); //p2p-借款人填报
+		me.add("qdch/relact",RelactCompanyController.class,"/");//p2p-工商-关联企业信息
 		/***工商 lixiaoyi Controller START ***/
 		//me.add("qdch/industry",IndustryComController.class,"/"); //工商入口
 		
@@ -228,7 +248,7 @@ public class Config extends JFinalConfig {
 	}
 
 	public void configPlugin(Plugins me) {
-		PropKit.use("config.txt");
+		
 
 		//----qdchedw hub用户连接方式 start----
 		String jdbc = PropKit.get("jdbc");
@@ -236,7 +256,7 @@ public class Config extends JFinalConfig {
 		String pwd = PropKit.get("pwd");
 		DruidPlugin dp = new DruidPlugin(jdbc, user, pwd);
 		//DruidPlugin dp = new DruidPlugin("jdbc:postgresql://172.16.6.61:5432/qdchedw", "hub", "hub@2017");
-		dp.setMaxActive(10);
+		dp.setInitialSize(0);
 		me.add(dp);
 		ActiveRecordPlugin arp = new ActiveRecordPlugin(com.qdch.core.Constants.QSS_GP_HUB,dp);
 		arp.setBaseSqlTemplatePath(PathKit.getRootClassPath());
@@ -258,7 +278,7 @@ public class Config extends JFinalConfig {
 		String insight_user = PropKit.get("insight_user");
 		String insight_pwd = PropKit.get("insight_pwd");
 		DruidPlugin insight_dp = new DruidPlugin(insight_jdbc, insight_user, insight_pwd);
-		insight_dp.setMaxActive(10);
+		dp.setInitialSize(0);
 		me.add(insight_dp);
 		ActiveRecordPlugin insight_arp = new ActiveRecordPlugin(com.qdch.core.Constants.QSS_GP_INSIGHT,insight_dp);
 		insight_arp.setBaseSqlTemplatePath(PathKit.getRootClassPath());
@@ -330,6 +350,8 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("hub_fxsj","fxsj_id", RiskEventModel.class);//风险事件
 		insight_arp.addMapping("hub_fxsj_audit_new", RiskEventHistoryModel.class);//风险事件历史信息
 		insight_arp.addMapping("hub_commerce_ref_jys", ExchangeInfoModel.class);//交易所信息
+
+		insight_arp.addMapping("hub_dd_tqs_jys", OrganizModel.class);//交易所信息
 		insight_arp.addMapping("hub_fxlb", RiskTypeModel.class);//风险类别
 		insight_arp.addMapping("hub_xd_cont_assu", GuaranteeContrastModel.class);//担保合同
 
@@ -416,8 +438,16 @@ public class Config extends JFinalConfig {
         arp.addMapping("hub_static_operation_exception", CoExecptionModel.class);//p2p-工商-静态-经营异常
         arp.addMapping("hub_static_shareholder_info", CoShareholderInfoModel.class);//p2p-工商-静态-股东信息
         arp.addMapping("hub_static_business_type", CoBusinessTypeModel.class);//p2p-工商-静态-行业分类
-		
-		
+		arp.addMapping("hub_static_legal", CoLegalModel.class);//p2p-工商-静态-法律诉讼
+		arp.addMapping("hub_static_legal_public", CoLegalPublicModel.class);//p2p-工商-静态 法律公告
+		arp.addMapping("hub_static_dishonest", CoDishonestModel.class);//p2p-工商-静态-失信人
+		arp.addMapping("hub_static_bzx_person", CoBzxpersonModel.class);//p2p-工商-静态-被执行人
+		arp.addMapping("hub_static_trade_mark", CoTrademarkModel.class);//p2p-工商-静态-商标
+		arp.addMapping("hub_static_company_report", CoComReportModel.class);//p2p-静态-工商-年报
+		arp.addMapping("hub_static_patent_info", CoComPatentModel.class);//p2p-静态-工商-专利
+		arp.addMapping("hub_static_copyright_info", CoComcopyrightModel.class);//p2p-静态-工商-著作权
+		arp.addMapping("hub_static_softright_info", CoSoftrightModel.class);//p2p-静态-工商-软件著作权
+		arp.addMapping("hub_static_company_job_info", CoComjobModel.class);//p2p-静态-工商-招聘
 		/***小贷 王风 insight层 Model START***/
 		
 		

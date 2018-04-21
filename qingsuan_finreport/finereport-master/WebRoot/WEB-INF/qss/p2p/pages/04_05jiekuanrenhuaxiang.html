@@ -84,6 +84,7 @@
             background-color: transparent;
         }
         .center{
+            width:287px;
             color: #fff;
             background:transparent;
             font-size:0.8rem;
@@ -223,7 +224,7 @@
                             <th class="center defen">得分</th>
                             
                           ##for(j in pingtailist!){
-                          	<th class="center defen1" data="${j.jysinfo!}">${j.fscore!}</th>
+                          	<th class="center defen1" onclick='aab("${j.jysinfo!}")' data="${j.jysinfo!}">${j.fscore!}</th>
                           ##}
 
                         </tr>
@@ -237,7 +238,7 @@
                             ##for(j in pingtailist!){
                           	<td class="center" id="name2">
                           		
-                          			${j.zrr.jkf!}
+                          			${j.zrr.pname!}
                      	     </td>
                           ##}
                         </tr>
@@ -373,7 +374,7 @@
                             ##for(j in pingtailist!){
                            
                           	<td class="center">
-                          		 ${j.xinyon.jkf!} 
+                          		 ${j.xinyon.qijk!} 
                           	</td>
                             ##}
                            
@@ -762,28 +763,13 @@
                             
                           
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <td class="center left"></td>
-                            ##for(j in pingtailist!){
                            
-                          	<td class="center">
-                          		 ${j.qqt.ssxx!} 
-                          	</td>
-                            ##}
                             
                           
-                        </tr>
-                        <tr>
-                            <td class="center left"></td>
-                            ##for(j in pingtailist!){
-                           
-                          	<td class="center">
-                          		 ${j.qqt.ssxx!} 
-                          	</td>
-                            ##}
-                            
-                          
-                        </tr>
+                        </tr> -->
+             
                         
                     </table>
                 </div>
@@ -809,7 +795,7 @@
 
                             <tr>
                                 <td class="center ziranren" rowspan="13">基本资料</td>
-                                <td class="center" rowspan="7">自热人</td>
+                                <td class="center" rowspan="7">自然人</td>
                                 <td class="center left">身份证明</td>
                                 <td class="center">${j.shzr.sfrz!}</td>
                                 <td class="center">${j.shzr.sfrz_flag!}</td>
@@ -1052,8 +1038,16 @@
         }
         
         //模态框触发绑定
-        $("#score>th:not(.defen)").click(function () {
+      /*   $("#score>th:not(.defen)").click(function () {
        		
+       		var jys=$(this).attr("data");
+        	$('#model_'+jys).css('display','block');
+      		
+        }); 
+        $(".header span").click(function () {
+            $('.model').css('display','none');
+        }); */
+      $(".defen1").eq(0).click(function () {
        		
        		var jys=$(this).attr("data");
         	$('#model_'+jys).css('display','block');
@@ -1064,7 +1058,25 @@
         });
         
      
-    });
+    }); 
+    
+    function aab(str){
+    	var jys=str
+    	$('#model_'+jys).css('display','block');
+    	/*  new superTable("demoTable", {cssSkin : "sDefault",
+             fixedCols : 2, //固定几列
+             headerRows :2,  //头部固定行数
+             onStart : function () {
+                 this.start = new Date();
+             },
+             onFinish : function () {
+             }
+         }); */
+
+    	 $(".header span").click(function () {
+             $('.model').css('display','none');
+         });
+    }
     
    
 </script>
