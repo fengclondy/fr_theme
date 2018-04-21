@@ -42,7 +42,12 @@ public class CoShareholderInfoModel extends Model<CoShareholderInfoModel> {
           sql+="limit 1";
     	return dao.findFirst(sql);
     }
-    
+    /**
+     * 对外投资
+     * @author lixiaoyi
+     * @date 2018年4月21日 上午11:39:09
+     * @TODO
+     */
     public  List<CoShareholderInfoModel> getInvers(String name){
     	String sql="SELECT T.company_name,m.legal_person,m.register_money,T.subcribe_money,T.subcribe_type,"
                   +"T.invest_rate,m.establish_date,m.company_status FROM hub_static_shareholder_info T"
