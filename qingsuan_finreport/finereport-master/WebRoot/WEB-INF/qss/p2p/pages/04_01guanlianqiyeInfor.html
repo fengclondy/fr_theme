@@ -593,6 +593,25 @@
 		.deleteBtn:hover{
 			background: var(--themeBlue);
 		}
+		.legalPerson:hover{
+			background-color:rgba(0,0,0,.2);
+			cursor: pointer;
+		}
+		/*模态框*/
+		.model_faren{
+			background: url("${contextPath}/static/img/com/bg_main.jpg") no-repeat;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			border-radius: .5rem .5rem 0 0;
+			width: 900px;
+			height: 500px;
+			margin-left: -450px;
+			margin-top: -250px;
+			color: #fff;
+			display: none;
+			z-index: 1002;
+		}
     </style>
 </head>
 <body id="gongshangxinxijiankong" data-title="工商信息监控">
@@ -736,7 +755,7 @@
                             <td rowspan="2" colspan="2" class="textCenter">注册时间：${company.establish_date!}</td>
                         </tr>
                         <tr>
-                            <td rowspan="3" class="textCenter">${company.legal_person!}</td>
+                            <td rowspan="3" class="textCenter"><span class="legalPerson">${company.legal_person!}</span></td>
                         </tr>
                         <tr>
                             <td rowspan="2" colspan="2" class="textCenter">企业状态：${company.company_status!}</td>
@@ -1452,6 +1471,41 @@
 </div>
 
 <div class="deleteBtn">×</div>
+<!--模态框 start-->
+<div class="model_faren">
+	<div class="header">项目结构详情<span>X</span></div>
+	<div id="div_container1" style="text-align:center;position:relative;height: 95%; overflow: auto;">
+		<!-- 固定表头 table外层必须包有一个div  id="my_div"   class="fakeContainer first_div" 引入superTables.js  在页面下面还需要调用 -->
+		<div id="my_div1" class="fakeContainer first_div" >
+			<table border="1" id="demoTable1" style="">
+				<tr id="my_tr1">
+					<th class="center" rowspan="1">角色</th>
+					<th class="center" rowspan="1">公司</th>
+					<th class="center" rowspan="1">省份地区</th>
+					<th class="center" rowspan="1">开业日期</th>
+					<th class="center" rowspan="1">注册资本</th>
+					<th class="center" rowspan="1">经营状态</th>
+
+				</tr>
+
+				<tr>
+					<td class="center faren" rowspan="10">法人</td>
+					##for(info in comInfo){
+					<td class="center">${info.company_name!}</td>
+					<td class="center">${info.province!}</td>
+					<td class="center">${info.establish_date!}</td>
+					<td class="center">${info.register_money!}${info.register_type!}</td>
+					<td class="center">${info.company_status!}</td>
+
+                    ##}
+				</tr>
+				
+
+			</table>
+		</div>
+	</div>
+</div>
+<!--模态框 end-->
 <script src="${contextPath}/static/asserts/js/echarts-4.0.js"></script>
 <script src="${contextPath}/static/asserts/js/jquery-2.2.4.js"></script>
 <script src="${contextPath}/static/js/index.js"></script> 
@@ -1461,6 +1515,14 @@
 <script src="${contextPath}/static/js/jquery.circliful.min.js"></script>
 
 <script>
+
+//弹出框
+$(".legalPerson").click(function () {
+$('.model_faren').css('display','block');
+});
+$(".model_faren>.header>span").click(function () {
+$('.model_faren').hide(500);
+});
 	var qyInfor = $(".pageBox", parent.document).children(".pageContent").last().children("iframe").attr("data-infor");
 	$(".inputGroup label").text(qyInfor);
 	

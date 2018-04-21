@@ -1,5 +1,7 @@
 package com.qdch.p2p.model;
 
+import java.util.List;
+
 import org.apache.commons.lang.StringUtils;
 
 import com.jfinal.plugin.activerecord.Model;
@@ -25,5 +27,17 @@ public class CoCompanyInfoModel extends Model<CoCompanyInfoModel> {
 		} 
 		return dao.findFirst(sql);
 	}
-
+ /**
+  * 根据法人名字查询相关企业
+  * @author lixiaoyi
+  * @date 2018年4月21日 下午3:19:58
+  * @TODO
+  */
+	public List<CoCompanyInfoModel> getRe(String name){
+		String sql="select * from hub_static_company_info";
+		if(StringUtils.isNotBlank(name)){
+			sql+=" where legal_person='"+name+"'";
+		} 
+		return dao.find(sql);
+	}
 }
