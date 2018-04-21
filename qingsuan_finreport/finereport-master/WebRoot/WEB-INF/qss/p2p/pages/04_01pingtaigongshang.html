@@ -692,7 +692,7 @@
         </div>
     </header>
     <div class="returnTop">
-        <img src="{contextPath}/static/img/icons/goTop.png" alt="" />
+        <img src="${contextPath}/static/img/icons/goTop.png" alt="" />
     </div>
 
     <!--展示信息-->
@@ -1487,6 +1487,7 @@
                 </table>
             </div>
         </div>
+        
         <div class="qyfxContent">
             <a class="qytp ltitle" name="qytp"><span></span>企业图谱<span></span></a>
 
@@ -2241,7 +2242,7 @@ var deleteBtn = '';
         qyClick:function(obj,str){
         	
         	var qyName = obj.text();//企业名称
-        	alert(qyName);
+        	
         	window.location.href="${contextPath}/qdch/relact?name="+qyName;
        }
     }

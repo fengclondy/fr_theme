@@ -20,6 +20,7 @@ public class CoComReportModel extends Model<CoComReportModel>{
 		if(StringUtils.isNotBlank(name)){
 			sql+=" and company_name='"+name+"'";
 		}
+		sql+=" limit 1";
 		return dao.find(sql);
 		
 	}

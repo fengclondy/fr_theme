@@ -612,64 +612,64 @@
     <!--展示信息-->
     <div class="top">
         <li>
-            <a href="#jbxx" class="mdclick" tab-id="1">基本信息：<span>10</span></a>
+            <a href="#jbxx" class="mdclick" tab-id="1">基本信息<span></span></a>
         </li>
         <li>
-            <a href="#gsxx" class="mdclick" tab-id="1">工商信息：<span>10</span></a>
+            <a href="#gsxx" class="mdclick" tab-id="1">工商信息<span></span></a>
         </li>
         <li>
-            <a href="#hxry" class="mdclick" tab-id="1">核心人员：<span>10</span></a>
+            <a href="#hxry" class="mdclick" tab-id="1">核心人员：<span>${core!}</span></a>
         </li>
         <li>
-            <a href="#gdxx" class="mdclick" tab-id="1">股东信息：<span>10</span></a>
+            <a href="#gdxx" class="mdclick" tab-id="1">股东信息：<span>${holdsize!}</span></a>
         </li>
         <li>
-            <a href="#dwtz" class="mdclick" tab-id="1">对外投资：<span>10</span></a>
+            <a href="#dwtz" class="mdclick" tab-id="1">对外投资：<span>${investSize!}</span></a>
         </li>
         <li>
-            <a href="#bgjl" class="mdclick" tab-id="1">变更记录：<span>10</span></a>
+            <a href="#bgjl" class="mdclick" tab-id="1">变更记录：<span>${chanegsiez!}</span></a>
         </li>
         <li>
-            <a href="#qynb" class="mdclick" tab-id="1">企业年报：<span>10</span></a>
+            <a href="#qynb" class="mdclick" tab-id="1">企业年报<span></span></a>
         </li>
         <li>
-            <a href="#fzjg" class="mdclick" tab-id="1">分支机构：<span>10</span></a>
+            <a href="#fzjg" class="mdclick" tab-id="1">分支机构：<span>${brachsize!}</span></a>
         </li>
         <li>
-            <a href="#llyxx" class="mdclick" tab-id="1">联络员信息：<span>10</span></a>
+            <a href="#llyxx" class="mdclick" tab-id="1">联络员信息：<span>${liansize!}</span></a>
         </li>
         <li>
-            <a href="#zczb" class="mdclick" tab-id="1">注册资本变更：<span>10</span></a>
+            <a href="#zczb" class="mdclick" tab-id="1">注册资本变更：<span>${registSize!}</span></a>
         </li>
         <li>
-            <a href="#sxr" class="mdclick" tab-id="2">失信人：<span>10</span></a>
+            <a href="#sxr" class="mdclick" tab-id="2">失信人：<span>${dishonestsize!}</span></a>
         </li>
-        <li>
+       <!--  <li>
             <a href="#xzcf" class="mdclick" tab-id="2">行政处罚：<span>10</span></a>
+        </li> -->
+        <li>
+            <a href="#qylx" class="mdclick" tab-id="1">企业类型：<span>${typesize!}</span></a>
         </li>
         <li>
-            <a href="#qylx" class="mdclick" tab-id="1">企业类型：<span>10</span></a>
+            <a href="#zpxx" class="mdclick" tab-id="2">招聘信息：<span>${jobsize!}</span></a>
         </li>
         <li>
-            <a href="#zpxx" class="mdclick" tab-id="2">招聘信息：<span>10</span></a>
+            <a href="#jyyc" class="mdclick" tab-id="2">经营异常：<span>${businessSize}</span></a>
         </li>
         <li>
-            <a href="#jyyc" class="mdclick" tab-id="2">经营异常：<span>10</span></a>
+            <a href="#flss" class="mdclick" tab-id="2">法律诉讼：<span>${legalsize!}</span></a>
         </li>
         <li>
-            <a href="#flss" class="mdclick" tab-id="2">法律诉讼：<span>10</span></a>
+            <a href="#flgg" class="mdclick" tab-id="2">法律公告：<span>${publicsize!}</span></a>
         </li>
         <li>
-            <a href="#flgg" class="mdclick" tab-id="2">法律公告：<span>10</span></a>
-        </li>
-        <li>
-            <a href="#bzxr" class="mdclick" tab-id="2">被执行人：<span>10</span></a>
+            <a href="#bzxr" class="mdclick" tab-id="2">被执行人：<span>${bzxsize!}</span></a>
         </li>
     </div>
     <!--切换tab-->
     <div class="tabContent">
-        <li class="activeTab">企业信息  <span>04</span></li>
-        <li>经营状态  <span>08</span></li>
+        <li class="activeTab">企业信息  <span>${all!}</span></li>
+        <li>经营状态  <span>${allsize}</span></li>
     </div>
 
     <!--content内容-->
@@ -788,32 +788,40 @@
                     <table width="98%" height="100%" border="1" cellspacing="0" cellpadding="0">
                         <tr>
                             <td class="tbbg">自然人股东</td>
-                             ##for(info in person!){
+                            
                             <td>
-                                 ${info.string_agg!}
+                             ##for(info in person!){
+                                 ${info.string_agg!},
+                                  ##}
                             </td>
-                            ##}
+                           
                             <td class="tbbg">总经理</td>
                            
-                             ##for(info in manager!){
+                            
                             <td>
-                                 ${info.string_agg!}
+                             ##for(info in manager!){
+                                 ${info.string_agg!},
+                                   ##}
                             </td>
-                            ##}
+                          
                         </tr>
                         <tr>
                             <td class="tbbg">执行董事</td>
+                            
+                            <td>
                              ##for(info in dongshi!){
-                            <td>
-                                 ${info.string_agg!}
+                                 ${info.string_agg!},
+                                  ##}
                             </td>
-                            ##}
+                           
                             <td class="tbbg">监事</td>
-                             ##for(info in jianshi!){
+                            
                             <td>
-                                 ${info.string_agg!}
+                             ##for(info in jianshi!){
+                                 ${info.string_agg!},
+                                   ##}
                             </td>
-                            ##}
+                          
                         </tr>
                     </table>
                 </div>
@@ -1104,7 +1112,7 @@
                     ##for(info in legal!){
                     <tr>
                         <td class="textCenter">${info.case_year!}</td>
-                     <!--    <td class="textCenter">${info.!}</td> -->
+                     <!--    <td class="textCenter"></td> -->
                         <td class="textCenter">${info.case_name!}</td>
                         <td class="textCenter">${info.case_role!}</td>
                         <td class="textCenter">${info.case_no!}</td>
@@ -1127,7 +1135,7 @@
                     ##for(info in public!){
                     <tr>
                         <td>${info.commit_time!}</td>
-                       <!--  <td>${info.!}</td> -->
+                       <!--  <td></td> -->
                         <td>${info.partice!}</td>
                         <td>${info.type!}</td>
                         <td>${info.court!}</td>
@@ -1142,47 +1150,90 @@
                 <table width="98%" height="100%" border="1" cellspacing="0" cellpadding="0">
                     <tr>
                         <td class="tbbg">名称</td>
-                        <td></td>
+                        <td>
+                        ##for(info in dishonest!){
+                        ${info.dishonest_name!}
+                        ##}
+                        </td>
                         <td class="tbbg">身份证号码/组织机构代码</td>
-                        <td></td>
+                        <td>
+                         ##for(info in dishonest!){
+                        ${info.origin_id!}
+                        ##}
+                        </td>
                     </tr>
                     <tr>
                         <td class="tbbg">法定代表人</td>
-                        <td></td>
+                        <td>
+                         ##for(info in dishonest!){
+                        ${info.legal_person!}
+                        ##}
+                        </td>
                         <td class="tbbg">发布时间</td>
-                        <td></td>
+                        <td>
+                         ##for(info in dishonest!){
+                        ${info.create_time!}
+                        ##}
+                        </td>
                     </tr>
                     <tr>
                         <td class="tbbg">执行法院</td>
-                        <td></td>
+                        <td>
+                         ##for(info in dishonest!){
+                        ${info.court!}
+                        ##}
+                        </td>
                         <td class="tbbg">省份</td>
-                        <td></td>
+                        <td>
+                         ##for(info in dishonest!){
+                        ${info.city!}
+                        ##}
+                        </td>
                     </tr>
                     <tr>
                         <td class="tbbg">执行依据文号</td>
-                        <td></td>
+                        <td>
+                         ##for(info in dishonest!){
+                        ${info.accord_no!}
+                        ##}
+                        </td>
                         <td class="tbbg">立案时间</td>
-                        <td></td>
+                        <td>
+                        ##for(info in dishonest!){
+                        ${info.case_time!}
+                        ##}
+                        </td>
                     </tr>
                     <tr>
                         <td class="tbbg">案号</td>
-                        <td></td>
+                        <td>
+                         ##for(info in dishonest!){
+                        ${info.case_no!}
+                        ##}
+                        </td>
                         <td class="tbbg">做出执行依据单位	</td>
-                        <td></td>
+                        <td>
+                         ##for(info in dishonest!){
+                        ${info.unit!}
+                         ##}
+                        </td>
                     </tr>
-                    <tr>
-                        <td class="tbbg">案号</td>
-                        <td></td>
-                        <td class="tbbg">做出执行依据单位	</td>
-                        <td></td>
-                    </tr>
+                   
                     <tr>
                         <td class="tbbg">履行情况</td>
-                        <td colspan="3"></td>
+                        <td colspan="3">
+                         ##for(info in dishonest!){
+                        ${info.condition!}
+                        ##}
+                        </td>
                     </tr>
                     <tr>
                         <td class="tbbg">生效法律文书确定的义务</td>
-                        <td colspan="3"></td>
+                        <td colspan="3">
+                         ##for(info in dishonest!){
+                        ${info.duty!}
+                        ##}
+                        </td>
                     </tr>
 
                 </table>
@@ -1197,7 +1248,7 @@
                         <td class="tbbg">执行标的</td>
                        <td class="tbbg">执行法院</td>
                     </tr>
-                    ##for(info in person!){
+                    ##for(info in bzxperson!){
                     <tr>
                         <td class="tbbg">${info.case_time!}</td>
                         <td>${info.case_no!}</td>
@@ -1332,7 +1383,7 @@
                         <td class="tbbg">软件全称</td>
                         <td class="tbbg">分类号</td>
                        <!--  <td class="tbbg">来源</td> -->
-                        <td class="tbbg">登记号/td>
+                        <td class="tbbg">登记号</td>
                         <td class="tbbg">更新时间</td>
                         <td class="tbbg">批准日期</td>
                     </tr>
@@ -1340,7 +1391,7 @@
                     <tr>
                         <td>${info.name!}</td>
                         <td>${info.classes_num!}</td>
-                       <!--  <td>${info.!}</td> -->
+                       <!--  <td></td> -->
                         <td>${info.regist_num!}</td>
                         <td>${info.public_time!}</td>
                         <td>${info.regist_time!}</td>
@@ -1355,7 +1406,7 @@
                         <td class="tbbg">作品名称</td>
                         <td class="tbbg">登记号</td>
                         <td class="tbbg">类别</td>
-                        <td class="tbbg">采集日期/td>
+                        <td class="tbbg">采集日期</td>
                         <td class="tbbg">登记日期</td>
                         <td class="tbbg">更新日期</td>
                     </tr>
@@ -1378,7 +1429,7 @@
                         <td class="tbbg">审核时间</td>
                         <td class="tbbg">网站名称</td>
                         <td class="tbbg">网站首页</td>
-                        <td class="tbbg">域名/td>
+                        <td class="tbbg">域名</td>
                         <td class="tbbg">备案号</td>
                         <td class="tbbg">单位性质</td>
                     </tr>
