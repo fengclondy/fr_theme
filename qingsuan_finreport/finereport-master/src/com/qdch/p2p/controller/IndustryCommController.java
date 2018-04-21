@@ -42,7 +42,7 @@ public class IndustryCommController extends BaseController {
 	 public void index(){
 			String name=getPara("name");
 			if (name==null||"".equals(name)) {
-				name="青岛国际版权交易中心有限公司";
+				name="青岛国富金融资产交易中心有限公司";
 			}
 			setAttr("company", name);
 		    List<CompanysInfoModel> info = CompanysInfoModel.dao.getInfo(getDataScopeByUserName(),name);
