@@ -332,10 +332,6 @@
 		<url-pattern>/readAllP2PXdMsg</url-pattern>
 	</servlet-mapping>
 	
-	<!-- session监听 -->
-	<listener>
-		<listener-class>com.fr.hailian.core.MySessionListener</listener-class>
-	</listener>
 	
 	<!-- -P2P、小贷将风险事件未读数量-->
 	<servlet>

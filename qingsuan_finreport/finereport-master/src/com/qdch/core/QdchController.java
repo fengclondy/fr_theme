@@ -71,11 +71,11 @@ public class QdchController extends BaseController {
 		 }else  if("3".equals(user.getType())){
 			 type="4";
 		 }
-		 //String url=PropKit.get("webSite")+"/getP2PXdAllUnReadMsg?jysStr="+jysStr+"&type="+type+"&uid="+user.getId();
-		 String url="http://localhost:8075/WebReport/getP2PXdAllUnReadMsg?jysStr="+jysStr+"&type="+type+"&uid="+user.getId();
+		 String url=PropKit.get("webSite")+"/getP2PXdAllUnReadMsg?jysStr="+jysStr+"&type="+type+"&uid="+user.getId();
+		 //String url="http://localhost:8075/WebReport/getP2PXdAllUnReadMsg?jysStr="+jysStr+"&type="+type+"&uid="+user.getId();
 		
 		 String result=HttpClientUtil.sendGetRequest(url, null);
-		 System.out.println(result);
+		 //System.out.println(result);
 		 renderJson(result);
 	 }
 	 /**
@@ -92,8 +92,8 @@ public class QdchController extends BaseController {
 		 }else  if("3".equals(user.getType())){
 			 type="4";
 		 }
-		 //String url=PropKit.get("webSite")+"/readAllP2PXdMsg?type="+type+"&uid="+user.getId();
-		 String url="http://localhost:8075/WebReport/readAllP2PXdMsg?type="+type+"&uid="+user.getId();
+		 String url=PropKit.get("webSite")+"/readAllP2PXdMsg?type="+type+"&uid="+user.getId();
+		 //String url="http://localhost:8075/WebReport/readAllP2PXdMsg?type="+type+"&uid="+user.getId();
 		 String result=HttpClientUtil.sendGetRequest(url, null);
 		 renderJson(result);
 	 }
@@ -118,11 +118,10 @@ public class QdchController extends BaseController {
 		 }else  if("3".equals(user.getType())){
 			 type="4";
 		 }
-		 //String url=PropKit.get("webSite")+"/getP2PXdAllFxsjUnReadMsg?jysStr="+jysStr+"&type="+type+"&uid="+user.getId();
-		 String url="http://localhost:8075/WebReport/getP2PXdAllFxsjUnReadMsg?jysStr="+jysStr+"&type="+type+"&uid="+user.getId();
+		 String url=PropKit.get("webSite")+"/getP2PXdAllFxsjUnReadMsg?jysStr="+jysStr+"&type="+type+"&uid="+user.getId();
+		 //String url="http://localhost:8075/WebReport/getP2PXdAllFxsjUnReadMsg?jysStr="+jysStr+"&type="+type+"&uid="+user.getId();
 		
 		 String result=HttpClientUtil.sendGetRequest(url, null);
-		 System.out.println(result);
 		 renderJson(result);
 	 }
 	 /**
@@ -139,8 +138,8 @@ public class QdchController extends BaseController {
 		 }else  if("3".equals(user.getType())){
 			 type="4";
 		 }
-		 //String url=PropKit.get("webSite")+"/p2pXdFxsjReadMsg?type="+type+"&uid="+user.getId();
-		 String url="http://localhost:8075/WebReport/p2pXdFxsjReadMsg?type="+type+"&uid="+user.getId();
+		 String url=PropKit.get("webSite")+"/p2pXdFxsjReadMsg?type="+type+"&uid="+user.getId();
+		 //String url="http://localhost:8075/WebReport/p2pXdFxsjReadMsg?type="+type+"&uid="+user.getId();
 		 String result=HttpClientUtil.sendGetRequest(url, null);
 		 renderJson(result);
 	 }
@@ -153,15 +152,15 @@ public class QdchController extends BaseController {
 	  */
 	 public void logout(){
 		 QdchUser user=getLoginUser();
-		 //String url=PropKit.get("webSite")+"/logoutP2PXd?uid="+user.getId()+"&sessionId="+user.getSessionId();
-		 String url="http://localhost:8075/WebReport/logoutP2PXd?uid="+user.getId()+"&sessionId="+user.getSessionId();
+		 String url=PropKit.get("webSite")+"/logoutP2PXd?uid="+user.getId()+"&sessionId="+user.getSessionId();
+		 //String url="http://localhost:8075/WebReport/logoutP2PXd?uid="+user.getId()+"&sessionId="+user.getSessionId();
 		 String result=HttpClientUtil.sendGetRequest(url, null);
-		 System.out.println(result);
+		 setSession(Constants.SESSION_USER, null);
 		 renderJson(result);
 	 }
-	 public static void main(String[] args) {
+	/* public static void main(String[] args) {
 		 String url="http://localhost:8075/WebReport/getP2PXdAllFxsjUnReadMsg?type=3&uid=41&jysStr=('1')";
 		 String result=HttpClientUtil.sendGetRequest(url, null);
 		 System.out.println(result);
-	}
+	}*/
 }

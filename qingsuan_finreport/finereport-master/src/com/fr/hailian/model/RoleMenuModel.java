@@ -77,5 +77,4 @@ public class RoleMenuModel implements Serializable{
 	public void setChildren(List<RoleMenuModel> children) {
 		this.children = children;
 	}
-	
 }

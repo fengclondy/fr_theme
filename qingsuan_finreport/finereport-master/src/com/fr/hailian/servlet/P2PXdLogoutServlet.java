@@ -8,13 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.fr.fs.base.entity.User;
 import com.fr.fs.control.UserControl;
 import com.fr.fs.web.FSConstants;
 import com.fr.hailian.core.BaseServlet;
-import com.fr.hailian.core.MySessionContext;
-import com.fr.hailian.util.RoleUtil;
-import com.fr.json.JSONObject;
 import com.fr.stable.Constants;
 
 /**
@@ -57,8 +53,8 @@ public class P2PXdLogoutServlet extends BaseServlet {
 			String userId = request.getParameter("uid");
 			String sessionId=request.getParameter("sessionId");
 			UserControl.getInstance().logout(Long.parseLong(userId));
-			//HttpSession session = request.getSession();
-			HttpSession session = MySessionContext.getSession(sessionId);
+			HttpSession session = request.getSession();
+			//HttpSession session = MySessionContext.getSession(sessionId);
 			System.out.println("P2P、小贷退出----"+userId+"---"+sessionId+"---"+session);
 			if(session!=null){
 				session.removeAttribute(FSConstants.P_KEYS.PRIVILEGE_AUTHENCATION_KEY);

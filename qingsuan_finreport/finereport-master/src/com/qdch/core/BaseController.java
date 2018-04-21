@@ -24,6 +24,7 @@ import com.fr.hailian.model.RoleMenuModel;
 import com.fr.hailian.model.RoleModel;
 import com.fr.hailian.util.HttpClientUtil;
 import com.fr.hailian.util.HttpJsonHelper;
+import com.fr.hailian.util.SortListUtil;
 import com.jfinal.core.Controller;
 import com.jfinal.kit.JsonKit;
 /**
@@ -136,16 +137,35 @@ public class BaseController extends Controller{
 				RoleMenuModel m=new RoleMenuModel();
 				m.setName(pname);
 				Set<RoleMenuModel> children=map.get(pname);
-				//子排序 按照sortIndex
 				List<RoleMenuModel> cmenus=new ArrayList<RoleMenuModel>();
 				cmenus.addAll(children);
 				//Collections.reverse(cmenus) ;
-				m.setChildren(cmenus);
+				List<RoleMenuModel> f = dealMenu(cmenus);
+				m.setChildren(f);
 				menus.add(m);
 			}
 			
 		}
 		return menus;
+	}
+	private List<RoleMenuModel> dealMenu(List<RoleMenuModel> cmenus) {
+		//再次去重
+		List<RoleMenuModel> f=new ArrayList<RoleMenuModel>();
+		 for (RoleMenuModel cd:cmenus) {
+			 boolean has=false;
+			 for(RoleMenuModel x:f){
+				 if(x.getId().equals(cd.getId())){
+					 has=true;
+					 break;
+				 }
+			 }
+		    if(!has){
+		        f.add(cd);
+		    }
+		}
+		//子排序 按照sortIndex
+		SortListUtil.sort(f, "sortIndex",SortListUtil.ASC);
+		return f;
 	}
 	/**
 	 * 
@@ -193,11 +213,11 @@ public class BaseController extends Controller{
 			//切换用户或者类型重新认证
 			user.setType(roleType);
 			//获取用户信息
-			String url="http://localhost:8075/WebReport/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
+			//String url="http://localhost:8075/WebReport/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
 			//String url=PropKit.get("webSite")+"/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
 			
 			//正式环境也需要写localhost  服务器设置了外网权限
-			//String url="http://localhost/WebReport/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
+			String url="http://localhost/WebReport/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
 			if(StringUtils.isNotBlank(roleType)){
 				url+="&roleType="+roleType;
 			};
