@@ -930,10 +930,18 @@
       				} 
       			})
       			dataArr.sort();	
-      			for(var x=0;x<dataArr.length;x++){
-      				seriesData1.push(0);
-      				seriesData2.push(0);
-      			}
+      			/* for(var x=0;x<dataArr.length;x++){
+      				seriesData1.push(null);
+      				seriesData2.push(null);
+      			} */
+	      		for(var x=0;x<data.incomerate.length;x++){
+	    				seriesData1.push(null);
+	    				
+	    			}
+		      	for(var x=0;x<data.lossrate.length;x++){
+		  				
+		  				seriesData2.push(null);
+		  			}
       			$.each(data.incomerate,function(index,item){
       				var num=dataArr.indexOf(item.month1);
       				seriesData1[num]=item.incomerate;

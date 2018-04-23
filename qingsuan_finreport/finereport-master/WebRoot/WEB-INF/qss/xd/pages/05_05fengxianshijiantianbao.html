@@ -507,8 +507,8 @@
     //当划过阈值，计算超出额
     function calcover(index) {
         if(!index) index=0;
-        var a = $(".riskvalueclass").eq(index).val();
-        var b = $(".yuzhiclass").eq(index).val();
+        var a = $(".riskvalueclass").eq(index).val().replace(/%/g,"");
+        var b = $(".yuzhiclass").eq(index).val().replace(/%/g,"");
         if(a && b){
             var c = (a-b)/b;
             $(".chaochuclass").eq(index).val(c+"%");
