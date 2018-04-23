@@ -8,10 +8,6 @@ package com.qdch.intercept;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.fr.hailian.core.QdchUser;
 import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
 import com.qdch.core.BaseController;

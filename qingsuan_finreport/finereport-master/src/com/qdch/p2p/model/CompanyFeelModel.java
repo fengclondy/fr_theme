@@ -1,3 +1,4 @@
+
 package com.qdch.p2p.model;
 
 
@@ -187,3 +188,4 @@ public class CompanyFeelModel extends Model<CompanyFeelModel>{
 	}
 	
 }
+
