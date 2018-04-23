@@ -26,7 +26,6 @@ public class CurrentComRankingModel extends Model<CurrentComRankingModel>{
 			sql+=" and jysc in "+bigjys;
 		} 
 		sql+=" GROUP BY jysc,jyscmc,jzl order by jysc";
-		//return dao.find(Db.getSqlPara("index.getByDBFS"));
 		return dao.find(sql);
 	}
 	
