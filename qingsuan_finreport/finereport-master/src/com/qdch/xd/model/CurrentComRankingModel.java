@@ -21,12 +21,11 @@ public class CurrentComRankingModel extends Model<CurrentComRankingModel>{
 	public static final CurrentComRankingModel dao = new CurrentComRankingModel();
 
 	public List<CurrentComRankingModel> getCurrentComRanking(String bigjys){
-		String sql="select jysc,jyscmc,jzl from insight_xd_scability where vday_ym=(select max(vday_ym) from insight_xd_scability) ";
+		String sql="select t1.jysc,t1.jyscmc,t1.jzl,t1.vday_ym from insight_xd_scability t1 where vday_ym=(select max(vday_ym) from insight_xd_scability where jysc=t1.jysc) ";
 		if(StringUtils.isNotBlank(bigjys)){
 			sql+=" and jysc in "+bigjys;
 		} 
-		sql+=" GROUP BY jysc,jyscmc,jzl order by jysc";
-		//return dao.find(Db.getSqlPara("index.getByDBFS"));
+		sql+=" GROUP BY jysc,jyscmc,jzl,vday_ym order by jysc";
 		return dao.find(sql);
 	}
 	
