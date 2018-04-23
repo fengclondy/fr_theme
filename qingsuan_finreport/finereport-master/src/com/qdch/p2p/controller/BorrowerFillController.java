@@ -3,6 +3,8 @@ package com.qdch.p2p.controller;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.fr.hailian.util.JDBCUtil;
 import com.fr.report.core.A.m;
 import com.qdch.core.BaseController;
@@ -295,6 +297,10 @@ public class BorrowerFillController extends BaseController{
 	 */
 	public void submitDfxx(){
 		String jysc = getPara("jysc");
+		String df = "0";
+		if (StringUtils.isNotBlank(getPara("fscore"))) {
+			 df = getPara("fscore");
+		}
 		DefenInfoModel dModel = DefenInfoModel.dao.getDeFenByJysc(getDataScopeByUserNameForP2p(), jysc);
 		String sql = "insert into insight_pp_score_info(vday,jysc,jyscmc,jysinfo,fscore,jyscfl)"
 				+ " values(?,?,?,?,?,?)";
@@ -303,7 +309,7 @@ public class BorrowerFillController extends BaseController{
 							jysc,
 							dModel.get("jyscmc"),
 							dModel.get("jysinfo"),
-							Double.parseDouble(getPara("fscore")),
+							Double.parseDouble(df),
 							dModel.get("jyscfl")
 							}; 
 		JDBCUtil.executeUpdate(sql, params,"insight");
