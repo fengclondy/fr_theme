@@ -21,7 +21,7 @@ public class RiskOverviewModel extends Model<RiskOverviewModel> {
 	public static final RiskOverviewModel dao=new RiskOverviewModel();
 
 	public List<RiskOverviewModel> getRiskIndex(String dataSql){	
-		String sql="select t1.vday as day,t1.jysc,t1.jysinfo,t1.fvalue as value,t1.pm  as keypm ,t2.pm as pre_keypm from hub_pp_fxzs t1 left join hub_pp_fxzs t2 ON t1.jysc=t2.jysc and substr(t1.vday,1,6)=to_char(to_date(substr(t2.vday,1,6),'yyyymm')+INTERVAL '1 month','yyyymm') where 1=1 and t1.vday=(select max(vday) from hub_pp_fxzs)";
+		String sql="select t1.vday as day,t1.jysc,t1.jysinfo,t1.fvalue as value,t1.pm  as keypm ,t2.pm as pre_keypm from hub_pp_fxzs t1 left join hub_pp_fxzs t2 ON t1.jysc=t2.jysc and substr(t1.vday,1,6)=to_char(to_date(substr(t2.vday,1,6),'yyyymm')+INTERVAL '1 month','yyyymm') where 1=1 and t1.vday=(select max(vday) from hub_pp_fxzs where jysc=t1.jysc)";
 		
 		if(StringUtils.isNotBlank(dataSql)){
 			sql+="  and t1.jysc in"+ dataSql+" ";

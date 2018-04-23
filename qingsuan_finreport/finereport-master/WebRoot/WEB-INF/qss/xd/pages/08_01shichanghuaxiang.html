@@ -798,6 +798,11 @@
 		.pageHeader .selected,.pageHeader .myOptionBox{
    width:15rem
   }
+  
+  .leftBox .kuaizhao a{
+            color: #faad14;
+            margin-right: 1rem;
+        }
 	</style>
 </head>
 <body id="gongshangxinxijiankong" data-title="工商信息监控">
@@ -1803,13 +1808,14 @@
 										<li>
 											<div class="fl pic"><img src="${contextPath}/static/img/03_05shengyufengxian/02.png"></div>
 											<p class="fr">
-												<a >${info.title!}</a>
+												<a href="${info.url}" target="_black">${info.title!}</a>
 												<span class="neirong">${info.summary!}</span>
 												<span>来源:</span><a href="#" class="bgi1 source1">${info.data_source}</a>
 												<span>|</span>
 												<span>涉及词:</span><a href="#">${info.string_agg!}</a>
 												<!-- <span class="bgi4"><a href="#">256</a></span> -->
 												<span class="fr bgi2">${info.publish_date!}</span>
+												<span class="fr kuaizhao"><a href=""  onclick="kuaizhao('${info.content}')">快照</a></span>
 											</p>
 										</li>
 										##}
@@ -2046,6 +2052,13 @@
 	       
   window.location.href="${contextPath}/qdch/commerce?name="+jysCode;
 }
+ 
+ function kuaizhao(obj){
+	 
+	 var p='<html><head><title>舆情信息</title></head><body><div>'+obj+'</div></body></html>';
+	 w=window.open('about:blank');
+	 w.document.write(p);
+ }
  //市场画像查询 
  function check(){
 	 name= $("#comm").text();

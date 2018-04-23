@@ -25,6 +25,7 @@ public class KeyIndicatorsModel extends Model<KeyIndicatorsModel>{
 		if(StringUtils.isNotBlank(bigjys)){
 			sql+="  and jysc in "+bigjys;
 		} 
+		//sql+=" and vday=(select max(vday) from insight_pp_iterm_struct where jysc ='"+jys+"')";
 		sql+=" group by t.jyscmc order by value,t.jyscmc";
 		//return dao.find(Db.getSqlPara("index.getByDBFS"));
 		return dao.find(sql);
