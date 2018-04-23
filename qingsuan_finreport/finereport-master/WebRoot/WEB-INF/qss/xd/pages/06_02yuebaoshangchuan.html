@@ -71,7 +71,7 @@
 						<span>报告类型：</span>
 						<select id="selectReport" name="bglx">
 							<option value="日报">日报</option>
-							<option value="月报">月报</option>
+							<option value="月报">季报</option>
 							<option value="年报">年报</option>
 						</select>
 					</li>
@@ -133,9 +133,11 @@ $(".inforContainer ul").css({
 	    var jyscfl = $("#selectDeal option:selected").attr("datab");
 		if (type !='pdf') {
 	        alert('请上传pdf格式的文件!');
+	        return;
 	    }
 	    else if (size > 100) {
 	        alert('pdf文件大小不得超过100M!');
+	        return;
 	    }
 	    else{
 	    	$(".inforContainer").hide();
