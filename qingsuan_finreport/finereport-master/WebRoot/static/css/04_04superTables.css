@@ -175,7 +175,7 @@
 
 
 
-/*Í¨ÓÃÑùÊ½*/
+/*Í¨ï¿½ï¿½ï¿½ï¿½Ê½*/
 * {
     margin: 0;
     padding: 0
@@ -198,7 +198,7 @@ p{
     float:right;
 }
 
-/*×ó²àµ¼º½*/
+
 .left_navbar{
     width:15%;
     height:80%;
@@ -210,7 +210,7 @@ p{
     height:30px;
     min-width:100px;
     font-family:"Helvetica Neue", "Microsoft Yahei", Arial, sans-serif;
-    font-size:14px;
+    font-size:0.7rem;
 }
 #demoTable th{
     background-color:#336799;
@@ -245,7 +245,7 @@ p{
     margin:0 auto;
 
 }
-/*±í¸ñÉÏ·½²éÑ¯µÈ¹¦ÄÜµÄÑùÊ½*/
+/*ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½Ñ¯ï¿½È¹ï¿½ï¿½Üµï¿½ï¿½ï¿½Ê½*/
 .radius{
     border-radius:8px;
 }
