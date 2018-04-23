@@ -8,62 +8,52 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fr.fs.base.entity.User;
+import com.fr.fs.control.UserControl;
 import com.fr.hailian.core.BaseServlet;
-import com.fr.hailian.util.RoleUtil;
-import com.fr.json.JSONObject;
-
+import com.fr.hailian.service.ReadMsgService;
 /**
  * 
- * @todo   获取用户名称
- * @time   2018年4月8日 下午2:55:03
+ * @todo   读取风险事件消息-P2P、小贷
+ * @time   2018年4月21日 下午2:43:25
  * @author zuoqb
  */
-public class LoginUserInfoServlet extends BaseServlet {
+public class P2PXdFxsjReadMsgServlet extends BaseServlet{
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -8091436245999618392L;
-
-	/**
-	 * Constructor of the object.
-	 */
-	public LoginUserInfoServlet() {
-		super();
-	}
-
-	/**
-	 * Destruction of the servlet. <br>
-	 */
+	private static final long serialVersionUID = 1L;
+	
 	public void destroy() {
 		super.destroy(); // Just puts "destroy" string in log
 	}
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		getLoginUserInfo(request, response);
+		readMsg(request, response);
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		getLoginUserInfo(request, response);
+		readMsg(request, response);
 	}
-	/**
-	 * 
-	 * @todo   获取用户相关信息
-	 * @time   2018年4月8日 下午6:17:39
-	 * @author zuoqb
-	 * @return_type   void
-	 */
-	private void getLoginUserInfo(HttpServletRequest request, HttpServletResponse response) {
-		JSONObject r = new JSONObject();
+	
+	private void readMsg(HttpServletRequest request, HttpServletResponse response) {
+		HttpServletRequest hrequest = (HttpServletRequest) request;//web资源
+		ReadMsgService readMsg = new ReadMsgService();
+		String uid=hrequest.getParameter("uid");
+		String type = hrequest.getParameter("type");
+		String username="";
 		try {
-			User  user = RoleUtil.getCurrentUser(request);
-			user.setEmail(request.getSession().getId());
+			User u=UserControl.getInstance().getUser(Long.parseLong(uid));
+			if(u!=null){
+				username=u.getUsername();
+			}
+			readMsg.setAllToRead(username,type);
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("application/json; charset=utf-8");
 			PrintWriter out = null;
 			try {
 				out = response.getWriter();
-				out.append(com.alibaba.fastjson.JSONObject.toJSONString(user));
+				out.append(com.alibaba.fastjson.JSONObject.toJSONString(true));
 			} catch (IOException e) {
 				e.printStackTrace();
 			} finally {
@@ -74,10 +64,6 @@ public class LoginUserInfoServlet extends BaseServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		responseOutWithJson(response, r);
-	}
-
-	public void init() throws ServletException {
 	}
 
 }

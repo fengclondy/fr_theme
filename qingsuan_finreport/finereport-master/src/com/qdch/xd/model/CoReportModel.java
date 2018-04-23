@@ -30,6 +30,7 @@ public class CoReportModel extends Model<CoReportModel>{
 		   if(StringUtils.isNotBlank(name)){
 			sql+="m.company_name ='"+ name+"' WHERE T .company_name ='"+name+"'";
 		     }
+		   sql+=" limit 1";
 			return dao.find(sql);
 		
 	}

@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.fr.hailian.core.BaseServlet;
 import com.fr.hailian.core.QdchUser;
 import com.fr.hailian.util.RoleUtil;
-import com.fr.json.JSONObject;
 
 /**
  * 

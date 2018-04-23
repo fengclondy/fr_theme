@@ -21,6 +21,14 @@ public class RoleMenuModel implements Serializable{
 	private String desc;
 	private List<RoleMenuModel> children;
 	private String sortIndex;
+	private String pindex;
+	
+	public String getPindex() {
+		return pindex;
+	}
+	public void setPindex(String pindex) {
+		this.pindex = pindex;
+	}
 	public String getSortIndex() {
 		return sortIndex;
 	}
@@ -69,5 +77,4 @@ public class RoleMenuModel implements Serializable{
 	public void setChildren(List<RoleMenuModel> children) {
 		this.children = children;
 	}
-	
 }

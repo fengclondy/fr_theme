@@ -22,9 +22,20 @@
         <h1>${title!'首页'}</h1>
     </div>
     <ul>
-        <li class="notice"><a href="javascript:void(0);"><span class="icon"></span><span class="number">3</span></a></li>
-        <li class="message"><a href="javascript:void(0);"><span class="icon"></span><span class="number">0</span></a></li>
-        <li class="user"><a href="javascript:void(0);"><span class="icon"></span><span class="name">${user.username!}</span></a></li>
+        <li class="notice" onclick="p2pXdFxsjReadMsg()"><a href="javascript:void(0);"><span class="icon"></span><span class="number" id="unreadfxsj" >0</span></a></li>
+        <li class="message" onclick="readAllMsg()"><a href="javascript:void(0);"><span class="icon"></span><span class="number" id="unreadmsg" >0</span></a></li>
+        <li class="user">
+        	<a id="top_menu" href="javascript:void(0);">
+        		<span class="icon"></span><span class="name" >${user.username!}</span>
+        	</a>
+        	<ul class="userNav" style="display: none">
+                <li><img src="${contextPath}/static/img/com/erweima.png" alt=""></li>
+                <li onclick="navigation()"><a href="javascript:void(0);">导航页</a></li>
+               <!--  <li><a href="javascript:void(0);">账号设置</a></li> -->
+                <li onclick="logout()"><a href="javascript:void(0);">退出</a></li>
+            </ul>
+        
+        </li>
     </ul>
 </header>
 <div class="navContent">
@@ -32,10 +43,10 @@
         		<ul>
         		 ##for(menu in user.menus!){
         		 	<li class="">
-		                <a class="dropdown-toggle">${menu.name!} <span class="icon"></span> </a>
+		                <a class="dropdown-toggle">${menu.name!}<span class="icon"></span> </a>
 		                <ul>
 		                	##for(c in menu.children){
-		                		 <li data-id="${contextPath}${c.reportletpath!}" data="${c.desc!}">${c.name!}</li>
+		                		 <li sort="${c.sortIndex!}" data-id="${contextPath}${c.reportletpath!}" data="${c.desc!}">${c.name!}</li>
 		                	##}
 		                </ul>
 		            </li>
@@ -81,11 +92,69 @@
 <script src="${contextPath}/static/asserts/js/jquery-2.2.4.js"></script>
 <script src="${contextPath}/static/js/index.js"></script>
 <script>
-function getAllUnReadMsg(){
-	//
-	$.post("${contextPath}/qdch/commerce/gainNews",{},function(data){
-		
+var fxsjInterval;
+$(function(){
+	getP2PXdAllFxsjUnReadMsg();
+	getAllUnRead();
+	//setInterval(getAllUnRead,5000);
+	//setInterval(getP2PXdAllFxsjUnReadMsg,5000);
+	 $("#top_menu").click(function () {
+         //alert(1);
+        $('.userNav').slideToggle(200);
+        $('.userNav').css('display','block');
+    });
+
+    $(".user").mouseleave(function () {
+        $('.userNav').css('display','none');
+    });
+});
+//获取小信封事件
+function getAllUnRead(){
+	$.post("${contextPath}/qdch/auth/getUnReadMsg",{},function(data){
+		$("#unreadmsg").html(data.unReadAllCount);
 	});
+}
+//小信封清零
+function readAllMsg(){
+	$.post("${contextPath}/qdch/auth/readAllMsg",{},function(data){
+		$("#unreadmsg").html(0);
+	});
+}
+//获取风险事件数量
+function getP2PXdAllFxsjUnReadMsg(){
+	$.post("${contextPath}/qdch/auth/getP2PXdAllFxsjUnReadMsg",{},function(data){
+		$("#unreadfxsj").html(data.unReadAllCount);
+	});
+}
+//风险事件数量清零
+function p2pXdFxsjReadMsg(){
+	$.post("${contextPath}/qdch/auth/p2pXdFxsjReadMsg",{},function(data){
+		$("#unreadfxsj").html(0);
+	});
+	//如果是小贷 根据登陆人权限进入相应处理页面
+	if('${user.type}'=='3'){
+		// activity;//审批流权限  处理/审核/决策
+		if('${user.activity}'=='处理'){
+			$("li[data='05_01fengxianshijianchuli']").trigger("click");
+		}else if('${user.activity}'=='审核'){
+			$("li[data='05_03fengxianshijianshenhe']").trigger("click");
+		}else if('${user.activity}'=='决策'){
+			$("li[data='05_04fengxianshijianjuece']").trigger("click");
+		}
+	}
+}
+function logout(){
+	$.post("${contextPath}/qdch/auth/logout",{},function(data){
+		console.log("logout",data);
+		if(data=="true"||data){
+			window.location="http://144.123.36.214/WebReport/QDCH/login.html";
+			//window.location="http://localhost:8075/WebReport/QDCH/login.html";
+		}
+	});
+}
+function navigation(){
+	//window.location="http://localhost:8075/WebReport/navigation/navigation.html";
+	window.location="http://144.123.36.214/WebReport/navigation/navigation.html";
 }
 </script>
 </body>
