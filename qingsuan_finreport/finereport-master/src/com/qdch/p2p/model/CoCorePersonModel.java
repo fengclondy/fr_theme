@@ -21,11 +21,40 @@ public class CoCorePersonModel extends Model<CoCorePersonModel>{
 	 * @TODO
 	 */
 	public List<CoCorePersonModel> getMainperson(String name){
-		String sql ="select * from hub_static_important_person ";
+		String sql ="select name from hub_static_important_person ";
 		if(StringUtils.isNotBlank(name)){
 			sql+=" where company_name='"+name+"'";
 		} 
+		  sql+=" and holder_type like'%执行董事%'";
 		return dao.find(sql);
 	}
-
+	
+	public List<CoCorePersonModel> getManger(String name){
+		String sql ="select name from hub_static_important_person ";
+		if(StringUtils.isNotBlank(name)){
+			sql+=" where company_name='"+name+"'";
+		} 
+		  sql+=" and holder_type like'%总经理%'";
+		return dao.find(sql);
+		
+	}
+	
+	public List<CoCorePersonModel> getDongshi(String name){
+		String sql ="select name from hub_static_important_person ";
+		if(StringUtils.isNotBlank(name)){
+			sql+=" where company_name='"+name+"'";
+		} 
+		  sql+=" and holder_type like'%董事%'";
+		return dao.find(sql);
+		
+	}
+	public List<CoCorePersonModel> getJianshi(String name){
+		String sql ="select name from hub_static_important_person ";
+		if(StringUtils.isNotBlank(name)){
+			sql+=" where company_name='"+name+"'";
+		} 
+		  sql+=" and holder_type like'%监事%'";
+		return dao.find(sql);
+		
+	}
 }

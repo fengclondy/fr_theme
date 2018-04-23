@@ -28,4 +28,34 @@ public class CoShareholderInfoModel extends Model<CoShareholderInfoModel> {
 		return dao.find(sql);
 	}
 
+    /**
+     * 股权结构
+     * @author lixiaoyi
+     * @date 2018年4月20日 下午4:27:54
+     * @TODO
+     */
+    public CoShareholderInfoModel getHolder(String name){
+    	String sql="SELECT distinct t.investor,t.company_name from hub_static_shareholder_info t"; 
+    	if(StringUtils.isNotBlank(name)){
+			sql+=" WHERE t.company_name='"+name+"'";
+		} 
+          sql+="limit 1";
+    	return dao.findFirst(sql);
+    }
+    /**
+     * 对外投资
+     * @author lixiaoyi
+     * @date 2018年4月21日 上午11:39:09
+     * @TODO
+     */
+    public  List<CoShareholderInfoModel> getInvers(String name){
+    	String sql="SELECT T.company_name,m.legal_person,m.register_money,T.subcribe_money,T.subcribe_type,"
+                  +"T.invest_rate,m.establish_date,m.company_status FROM hub_static_shareholder_info T"
+             +" LEFT JOIN hub_static_company_info m ON m.company_name = T.company_name ";
+         
+          if(StringUtils.isNotBlank(name)){
+  			sql+="  WHERE T.investor ='"+name+"'";
+  		} 
+          return dao.find(sql);
+    }
 }

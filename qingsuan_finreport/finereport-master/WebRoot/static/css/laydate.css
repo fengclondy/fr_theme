@@ -10,7 +10,7 @@
 
 /*修改日期背景颜色*/
 #laydate_box {
-    background: transparent;
+    background: #004d7d;
 }
 
 .laydate-icon,
@@ -85,7 +85,7 @@
     height: 0;
     border-width: 5px;
     border-style: dashed;
-    border-color: transparent;
+    border-color: #004d7d;
     overflow: hidden;
     cursor: pointer;
 }

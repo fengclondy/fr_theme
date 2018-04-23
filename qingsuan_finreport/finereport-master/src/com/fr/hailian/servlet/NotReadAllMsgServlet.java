@@ -1,6 +1,7 @@
 package com.fr.hailian.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -44,11 +45,12 @@ public class NotReadAllMsgServlet extends BaseServlet{
 		//NotReadMsgService notReadMsg = new NotReadMsgService();
 		long userId = RoleUtil.getCurrentUser(hrequest).getId();
 		String userName = RoleUtil.getCurrentUser(hrequest).getUsername();
+		String type ="";
 		//String userName = "Test";
 		try {
 			//name = java.net.URLDecoder.decode(hrequest.getParameter("username"), "UTF-8");
 			//System.out.println("name:" + name);
-			String type = java.net.URLDecoder.decode(hrequest.getParameter("type"), "UTF-8");
+			type = java.net.URLDecoder.decode(hrequest.getParameter("type"), "UTF-8");
 			String roleName = user.getRoleNameByUserId(userId+"");
 			String jysStr=hrequest.getParameter("jysStr");
 			//String roleName = KeyUtil.getKeyValue("DZ");
@@ -57,6 +59,7 @@ public class NotReadAllMsgServlet extends BaseServlet{
 			//获取角色具有查看信息的交易所
 			String jys=UserDataFromRoleService.getDepartMenByUserName(userName);
 			jys = "("+jys+")";
+			System.out.println(jys);
 			long count = 0L;
 			//判断当前用户为何种角色，通过角色去寻找当前的用户
 			//如果是处理人，总的未读数应该加上风险事件数
@@ -89,12 +92,29 @@ public class NotReadAllMsgServlet extends BaseServlet{
 			}else if(roleName.contains(KeyUtil.getKeyValue("P2PJCR"))){
 				count = notReadAllMsg.getUnReadAllMsgCount("JUDGE",type,jysStr);
 			}
+			System.out.println(count);
 			//先获取消息总数
 			r.put("unReadAllCount", count);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		responseOutWithJson(response, r);
+		if("3".equals(type)||"4".equals(type)){
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("application/json; charset=utf-8");
+			PrintWriter out = null;
+			try {
+				out = response.getWriter();
+				out.append(com.alibaba.fastjson.JSONObject.toJSONString(user));
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				if (out != null) {
+					out.close();
+				}
+			}
+		}else{
+			responseOutWithJson(response, r);
+		}
 	}
 
 }

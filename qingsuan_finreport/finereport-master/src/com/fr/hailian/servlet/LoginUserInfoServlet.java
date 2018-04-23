@@ -57,6 +57,7 @@ public class LoginUserInfoServlet extends BaseServlet {
 		JSONObject r = new JSONObject();
 		try {
 			User  user = RoleUtil.getCurrentUser(request);
+			user.setEmail(request.getSession().getId());
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("application/json; charset=utf-8");
 			PrintWriter out = null;

@@ -28,8 +28,26 @@ public class QdchUser implements Serializable {
 	private List<String> jysList;//数据权限相关  交易所信息
 	private List<RoleMenuModel> menus;//菜单 包含父子级关系
 	private String activity;//审批流权限  处理/审核/决策
+	private String type;//2-P2P 3-小贷
+	private String sessionId;//大宗权益sessionId
 	
 	
+	public String getSessionId() {
+		return sessionId;
+	}
+
+	public void setSessionId(String sessionId) {
+		this.sessionId = sessionId;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 	public List<RoleMenuModel> getMenus() {
 		return menus;
 	}

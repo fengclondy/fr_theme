@@ -5,6 +5,7 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -23,8 +24,10 @@ import com.fr.hailian.model.RoleMenuModel;
 import com.fr.hailian.model.RoleModel;
 import com.fr.hailian.util.HttpClientUtil;
 import com.fr.hailian.util.HttpJsonHelper;
+import com.fr.hailian.util.SortListUtil;
 import com.jfinal.core.Controller;
 import com.jfinal.kit.JsonKit;
+import com.jfinal.kit.PropKit;
 /**
  * 
  * @todo  p2p 小贷公共父类
@@ -113,6 +116,7 @@ public class BaseController extends Controller{
 			//按照pname/pid分组
 			List<RoleMenuModel> allMenu=new ArrayList<RoleMenuModel>();
 			allMenu.addAll(menuSet);
+			Collections.reverse(allMenu) ;
 			HashMap<String,Set<RoleMenuModel>> map=new HashMap<String, Set<RoleMenuModel>>();
 			for(RoleMenuModel m:allMenu){
 				String pname=m.getPname();
@@ -129,18 +133,40 @@ public class BaseController extends Controller{
 			Set<String> pNames=map.keySet();
 			List<String> names=new ArrayList<String>();
 			names.addAll(pNames);
+			Collections.reverse(names) ;
 			for(String pname:names){
 				RoleMenuModel m=new RoleMenuModel();
 				m.setName(pname);
 				Set<RoleMenuModel> children=map.get(pname);
 				List<RoleMenuModel> cmenus=new ArrayList<RoleMenuModel>();
 				cmenus.addAll(children);
-				m.setChildren(cmenus);
+				//Collections.reverse(cmenus) ;
+				List<RoleMenuModel> f = dealMenu(cmenus);
+				m.setChildren(f);
 				menus.add(m);
 			}
 			
 		}
 		return menus;
+	}
+	private List<RoleMenuModel> dealMenu(List<RoleMenuModel> cmenus) {
+		//再次去重
+		List<RoleMenuModel> f=new ArrayList<RoleMenuModel>();
+		 for (RoleMenuModel cd:cmenus) {
+			 boolean has=false;
+			 for(RoleMenuModel x:f){
+				 if(x.getId().equals(cd.getId())){
+					 has=true;
+					 break;
+				 }
+			 }
+		    if(!has){
+		        f.add(cd);
+		    }
+		}
+		//子排序 按照sortIndex
+		SortListUtil.sort(f, "sortIndex",SortListUtil.ASC);
+		return f;
 	}
 	/**
 	 * 
@@ -183,14 +209,13 @@ public class BaseController extends Controller{
 		String userName=c.getPara("userName");
 		String roleType=c.getPara("type");
 		String uid=c.getPara("uid");
-		if(user!=null&&StringUtils.isNotBlank(user.getUsername())
-				&&user.getUsername().equals(userName)){
-			return user;
-		}
-		if(StringUtils.isNotBlank(userName)){
+		String sessionId=c.getPara("sessionId");
+		if(StringUtils.isNotBlank(roleType)||StringUtils.isNotBlank(userName)){
+			//切换用户或者类型重新认证
+			user.setType(roleType);
 			//获取用户信息
 			//String url="http://localhost:8075/WebReport/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
-			String url=com.fr.hailian.core.Constants.WEB_DOMAIN+"/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
+			String url=PropKit.get("webSite")+"/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
 			
 			//正式环境也需要写localhost  服务器设置了外网权限
 			//String url="http://localhost/WebReport/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
@@ -210,6 +235,7 @@ public class BaseController extends Controller{
 						roles.add(r);
 					}
 					user.setRoles(roles);
+					user.setSessionId(sessionId);
 					if(arr.has("id")){
 						user.setId(arr.get("id").toString());
 					}
@@ -241,6 +267,7 @@ public class BaseController extends Controller{
 			user.setMenus(menus);
 			//处理审批流权限
 			user.setActivity(judgeActivity(user));
+		
 		}
 		c.setSession(Constants.SESSION_USER, user);
 		return user;

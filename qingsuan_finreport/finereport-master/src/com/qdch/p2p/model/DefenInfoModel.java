@@ -24,16 +24,16 @@ public class DefenInfoModel extends Model<DefenInfoModel>{
 				+ " t1.jysinfo,"
 				+ " t1.vday,"
 				+ " t1.fscore"
-				+ " from (select jysc,jyscmc,jysinfo,vday,max(fscore) as fscore from insight_pp_score_info p1"
+				+ " from (select pp1.jysc,pp1.jyscmc,pp1.jysinfo,p1.vday,max(coalesce(p1.fscore,0.00)) as fscore from hub_pp_jysc pp1 left join insight_pp_score_info p1 on pp1.jysc=p1.jysc"
 				+ " where 1=1";
 				if(StringUtils.isNotBlank(bigjys)){
-					sql+=" and jysc in "+bigjys;
+					sql+=" and pp1.jysc in "+bigjys;
 				} 
 				if(StringUtils.isNotBlank(pyType)){
-					sql+=" and jysinfo = '"+pyType+"' ";
+					sql+=" and pp1.jysinfo = '"+pyType+"' ";
 				} 
-				sql+= "and vday=(SELECT max(vday) from insight_pp_score_info where jysc=p1.jysc)"
-				+ " GROUP BY jysc,jyscmc,jysinfo,vday) t1"
+				sql+= "and coalesce(p1.vday,'~')=coalesce((SELECT max(vday) from insight_pp_score_info where jysc=p1.jysc),'~')"
+				+ " GROUP BY pp1.jysc,pp1.jyscmc,pp1.jysinfo,p1.vday) t1"
 				+ " order by t1.fscore desc";
 		 return	dao.find(sql);
 	}	
