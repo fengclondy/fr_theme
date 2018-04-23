@@ -77,9 +77,9 @@
 					</li>
 					<li>
 						<span>交易市场：</span>
-						<select id="selectDeal" name="jys">
+						<select id="selectDeal" name="jyscmc">
 							 ##for(j in jyslist!){
-				                <option  value="${j.jyscmc!}">${j.jyscmc!}</option>
+				                <option  datab="${j.jyscfl!}" value="${j.jyscmc!}">${j.jyscmc!}</option>
 				             ##}
 						</select>
 					</li>
@@ -109,12 +109,11 @@
 $(".inforContainer").show();
 
 
-jys=$("#jysiselectDealnfo").eq(0).attr("data");
-
+jysc=$("#selectDeal").eq(0).attr("data");
 
 function changeJysData(obj){
 	//获取交易所现在下拉选择值
-	jys=$(obj).attr("data");
+	jysc=$(obj).attr("data");
 }
 
 var ulH = $(".inforContainer ul").height();
@@ -129,30 +128,25 @@ $(".inforContainer ul").css({
 		var file = $("#file")[0].files[0];//获取File对象，这里是上传单张图片，[0]代表第一张图片。如果多张，就是一个var file = e.target.files;
 		var type = file.type.split('/')[1];
 	    var size = Math.round(file.size / 1024 / 1024);
-	    
-	   var bglx = $("#selectReport").val();
-	   var jys = $("#selectDeal").val();
-	   console.log(bglx);
-	   console.log(jys);
-	   
+	    var bglx = $("#selectReport").val();
+	    var jysc = $("#selectDeal").val();
+	    var jyscfl = $("#selectDeal option:selected").attr("datab");
 		if (type !='pdf') {
 	        alert('请上传pdf格式的文件!');
 	    }
-	    else if (size > 50) {
-	        alert('pdf文件大小不得超过3M!');
+	    else if (size > 100) {
+	        alert('pdf文件大小不得超过100M!');
 	    }
 	    else{
 	    	$(".inforContainer").hide();
-			//window.location.reload();
 	    }
 		initUploadForm();  
- 
 		function initUploadForm () {  
 		        var url = "${contextPath}/qdch/fileupLoad/upload";  
 		        var options = {   
 		                    type: 'post',  
 		                    url: url,
-		                    data:{"bglx":bglx,"jys":jys},
+		                    data:{"bglx":bglx,"jysc":jysc,"jyscfl":jyscfl},
 						    success:function(data) {   
 								window.location.href = "${contextPath}/qdch/monthlyrepor"
 				            }
@@ -160,8 +154,6 @@ $(".inforContainer ul").css({
 		        $('#myform').ajaxForm(options);  
 		      
 		} 
-		
-		
 	}) 
 	
 	//取消
