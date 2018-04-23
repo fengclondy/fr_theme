@@ -23,8 +23,8 @@ $(function () {
     tabNav();
 
 
-    $("#mainNav").find(".dropdown-toggle:eq(0)").click()
-        .next("ul").children("li:eq(1)").click();
+    $("#mainNav").find(".dropdown-toggle:eq(1)").click()
+        .next("ul").children("li:eq(4)").click();
   
 });
 

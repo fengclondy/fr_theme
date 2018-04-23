@@ -1,3 +1,4 @@
+
 package com.qdch.p2p.model;
 
 
@@ -31,7 +32,7 @@ public class CompanyFeelModel extends Model<CompanyFeelModel>{
 				+ " WHERE m.enterprise_id in(SELECT enterprise_id FROM hub_commerce_ref_jys n left join public.hub_dd_tqs_jys t1"
 				+ " on n.company_name=t1.jysmc where 1=1";
 		if (StringUtils.isNotBlank(jysIds)) {
-			sql += " and enterprise_id in '"+jysIds+"'";
+			sql += " and enterprise_id in "+jysIds;
 		}
 		if (StringUtils.isNotBlank(jysinfo)) {
 			sql += " and jysinfo = '"+jysinfo+"'";
@@ -58,7 +59,7 @@ public class CompanyFeelModel extends Model<CompanyFeelModel>{
 				+ " where t1.jysfl=1 )"
 				+ " and M.create_time<=to_char(now()- interval'1 day','yyyymmdd') ";
 				if (StringUtils.isNotBlank(jysIds)) {
-					sql += " and m.ENTERPRISE_ID in '"+jysIds+"'";
+					sql += " and m.ENTERPRISE_ID in "+jysIds;
 				}
 				sql += " GROUP BY ENTERPRISE_ID,n. NAME,M.create_time"
 					+ " ORDER BY M.create_time desc";
@@ -82,7 +83,7 @@ public class CompanyFeelModel extends Model<CompanyFeelModel>{
 				+ " where t.enterprise_id in (SELECT enterprise_id FROM hub_commerce_ref_jys t left join public.hub_dd_tqs_jys t1"
 				+ " on t.company_name=t1.jysmc where t1.jysfl=1";
 				if (StringUtils.isNotBlank(jysIds)) {
-					sql += " enterprise_id in '"+jysIds+"'";
+					sql += " and enterprise_id in "+jysIds;
 				}
 				sql+= ")"
 					+ " ORDER BY T .publish_date DESC LIMIT 7";
@@ -106,7 +107,7 @@ public class CompanyFeelModel extends Model<CompanyFeelModel>{
 				+ " regexp_split_to_table(hit_keyword,'\"') as keyword "
 				+ " from public.hub_commerce_meiya_sentiment_news where 1=1";
 		if (StringUtils.isNotBlank(jysIds)) {
-			sql += " ENTERPRISE_ID in '"+jysIds+"'";
+			sql += " and ENTERPRISE_ID in "+jysIds;
 		}
 		if (StringUtils.isNotBlank(startTime)) {
 			sql += " and publish_date >= '"+startTime+"'";
@@ -153,7 +154,7 @@ public class CompanyFeelModel extends Model<CompanyFeelModel>{
 				+ " regexp_split_to_table(hit_keyword,'\"') as keyword "
 				+ " from public.hub_commerce_meiya_sentiment_news where 1=1";
 		if (StringUtils.isNotBlank(jysIds)) {
-			sql += " ENTERPRISE_ID in '"+jysIds+"'";
+			sql += " and ENTERPRISE_ID in "+jysIds;
 		}
 		if (StringUtils.isNotBlank(startTime)) {
 			sql += " and publish_date >= '"+startTime+"'";
@@ -187,3 +188,4 @@ public class CompanyFeelModel extends Model<CompanyFeelModel>{
 	}
 	
 }
+
