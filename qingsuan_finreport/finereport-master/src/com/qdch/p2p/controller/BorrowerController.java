@@ -32,7 +32,6 @@ public class BorrowerController extends BaseController {
 	public void index(){
 		
 		String ptType=getPara("jys","");
-				
 		if("全部".equals(ptType)){
 			ptType=null;
 		}

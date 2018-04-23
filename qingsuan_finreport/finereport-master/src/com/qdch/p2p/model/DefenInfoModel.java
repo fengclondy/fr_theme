@@ -24,7 +24,7 @@ public class DefenInfoModel extends Model<DefenInfoModel>{
 				+ " t1.jysinfo,"
 				+ " t1.vday,"
 				+ " t1.fscore"
-				+ " from (select pp1.jysc,pp1.jyscmc,pp1.jysinfo,p1.vday,max(coalesce(p1.fscore,0)) as fscore from hub_pp_jysc pp1 left join insight_pp_score_info p1 on pp1.jysc=p1.jysc"
+				+ " from (select pp1.jysc,pp1.jyscmc,pp1.jysinfo,p1.vday,max(coalesce(p1.fscore,0.00)) as fscore from hub_pp_jysc pp1 left join insight_pp_score_info p1 on pp1.jysc=p1.jysc"
 				+ " where 1=1";
 				if(StringUtils.isNotBlank(bigjys)){
 					sql+=" and pp1.jysc in "+bigjys;
