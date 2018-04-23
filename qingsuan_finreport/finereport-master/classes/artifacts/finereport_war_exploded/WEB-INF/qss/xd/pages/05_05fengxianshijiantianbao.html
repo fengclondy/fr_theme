@@ -242,10 +242,8 @@
                     <div class="one">
                         <span class="sel">
                             <select name="makeupCoSe" id="business" class="selected statusclass" >
-                            <option value=""></option>
-                                 ##for(e in status!){
-                                                <option id="${e}" >${e!}</option>
-                                 ##}
+                            <option value="未处理">未处理</option>
+
                             </select>
                         </span>
                 </div></td>
@@ -372,7 +370,7 @@
                     "<td><div class='one'>"+
                     "<span class='sel'>"+
                     "<select name='makeupCoSe' class='selected statusclass'>"+
-                    "<option value=''></option>"+
+                    "<option value='未处理'>未处理</option>"+
 
                     "</select>"+
                     "</span>"+
@@ -385,7 +383,7 @@
 
             $('tbody').append(append)
             exchangedata(exchangedataIndex,index);
-            statusdata(statusIndex,index)
+           // statusdata(statusIndex,index)
 
         }
 
