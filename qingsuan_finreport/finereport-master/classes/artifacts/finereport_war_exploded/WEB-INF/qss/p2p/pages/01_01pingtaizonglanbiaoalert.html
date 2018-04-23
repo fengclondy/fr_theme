@@ -8,17 +8,16 @@
     <link rel="stylesheet" href="${contextPath}/static/css/style.css">
     <link rel="stylesheet" href="${contextPath}/static/css/pageCom.css">
     <style>
-       .top {
+        .top {
             display: flex;
             flex: 1;
         }
         .top > div {
-            flex: 2;
+            flex: 1;
         }
         .bottom {
             flex: 5;
             display: flex;
-            margin-top:1rem;
         }
         .bottom>.chartBox{
             flex: 1;
@@ -27,56 +26,29 @@
             display: flex;
             flex-direction: column;
             margin: .5rem;
-            /*background-color: #0d175066;*/
-            /*box-shadow: 0 0 0.3rem 0.1rem rgba(0, 0, 0, .2);*/
-        }
-        .pageHeader {
-            padding: 0.3rem .15rem;
+            height: calc(100% - 1rem);
+            background-color: #0d175066;
+            box-shadow: 0 0 0.3rem 0.1rem rgba(0, 0, 0, .2);
         }
         /*table 表格*/
-        .top .chartContent1 .tableBoxs tr th{
-            font-size: 0.7rem;
-            background-color:rgba(0,0,0,.3);
-        }
-        .top tbody > tr > td {
-            background-color:rgba(0,0,0,.15);
-            padding: 0.4rem;
-            font-size: .7rem;
-            cursor: pointer;
+        .chartBox1 .chartContent1 .tableBoxs tr th{
+            font-size: 0.8rem;
+            background-color:rgba(0,0,0,.2);
         }
         /*覆盖公共样式里的属性*/
         tbody > tr:nth-of-type(odd) {
             background-color: transparent;
         }
         /*披露信息*/
-        .pilouInformation{
-            width: 98.5%;
-            margin: 0.1rem auto;
-        }
         .pilouInformation p{
-            font-size: 0.95rem;
-            padding-left: 1rem;
-            border-left: 5px solid #00abde;
-            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            margin-left: 1.5rem;
         }
-        .pilou{
-        	margin-top:0.5rem;
-        }
-        /* 覆盖公共样式padding */
-        td, th {
-        	font-size:.7rem;
-		    padding: .4rem 0;
-		    text-align: center;
-		}
         /*平台数据信息*/
-        .chartBodyTableBox{
-        	height:100%;
-            padding: 1%;
+        .chartBodyTable{
+            padding: 1.5rem 2rem;
         }
-		.pingtaiInformationtable{
-			height:33.33%;
-		}
-        .pingtaiInformationtable tbody tr td{
+        .pingtaiInformationtable thead tr th,.pingtaiInformationtable tbody tr td{
             padding: 0.6rem 1rem;
             width: 18%;
             font-size: 0.8rem;
@@ -84,12 +56,13 @@
         .pingtaiInformationtable tbody tr td{
             color: #ffec3d;
             cursor: pointer;
-            font-size:1.2rem;
         }
         .pingtaiInformationtable tr th span:nth-child(1){
             margin-left: 0.3rem;
         }
-       
+        tbody > tr > td {
+   		 font-size: .8rem;
+		}
     </style>
 </head>
 <body id="01_01pingtaizonglanbiaoalert" data-title="平台总览表alert">
@@ -108,9 +81,6 @@
             </div>
         </div>
     </header>
-    <div class="pilouInformation">
-        <p>基础信息</p>
-    </div>
     <div class="top">
         <div class="chartBox1">
             <div class="chartContent1">
@@ -155,9 +125,9 @@
             </div>
         </div>
     </div>
-   
+    <br>
     <!--信息纰漏-->
-    <div class="pilouInformation pilou">
+    <div class="pilouInformation">
         <p>信息披露</p>
     </div>
     <div class="top">
@@ -199,7 +169,7 @@
             </div>
             <div class="chartContent">
                 <div class="chartBody">
-                    <div class="chartBodyTableBox">
+                    <div class="chartBodyTable">
                         <table class="pingtaiInformationtable">
                             <thead>
                             <tr>

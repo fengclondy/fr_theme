@@ -31,14 +31,9 @@ public class CompositeInterestModel extends Model<CompositeInterestModel> {
 		return dao.find(sql);
 	}
 	public List<CompositeInterestModel> getIndustryComInterest(String dataSql,String jyscode){	
-		String sql="select vday_ym,jysc,avg(interest) as interestNum from insight_pp_indust_int where 1=1 and interest != 0 and interest is not null";
+		String sql="select vday_ym,jysc,avg(interest) as interestNum from insight_pp_indust_int where 1=1 ";
 		
-		if(StringUtils.isNotBlank(dataSql)){
-			sql+="  and jysc in"+ dataSql+"";
-		}
-		if(StringUtils.isNotBlank(jyscode)){
-			sql+="  and jysc = '"+ jyscode+"'";
-		}
+		
 		
 		sql+=" group by vday_ym,jysc,interest order by vday_ym,jysc,interest";
 		return dao.find(sql);
