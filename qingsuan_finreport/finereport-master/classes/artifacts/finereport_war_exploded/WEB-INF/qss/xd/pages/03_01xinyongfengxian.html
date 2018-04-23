@@ -634,8 +634,6 @@
 	    			seriesData.push(ser);
 	    			
        	 		});
-        		ec002.clear();
-        		ec002.setOption(opt_line);
         		 ec002.setOption({
         			 tooltip:{
        	    		  /* trigger: 'item', */
@@ -932,18 +930,10 @@
       				} 
       			})
       			dataArr.sort();	
-      			/* for(var x=0;x<dataArr.length;x++){
-      				seriesData1.push(null);
-      				seriesData2.push(null);
-      			} */
-	      		for(var x=0;x<data.incomerate.length;x++){
-	    				seriesData1.push(null);
-	    				
-	    			}
-		      	for(var x=0;x<data.lossrate.length;x++){
-		  				
-		  				seriesData2.push(null);
-		  			}
+      			for(var x=0;x<dataArr.length;x++){
+      				seriesData1.push(0);
+      				seriesData2.push(0);
+      			}
       			$.each(data.incomerate,function(index,item){
       				var num=dataArr.indexOf(item.month1);
       				seriesData1[num]=item.incomerate;

@@ -22,11 +22,10 @@
             flex: 1;
         }
         /*search 搜查框区域*/
-       .search{
-       width: 100%;
-       padding: .5rem 2rem;
-       height: 10%;
-      }
+        .search{
+            padding: 1rem 2rem;
+            height: 16%;
+        }
         form {
             width: 57rem;
             margin: auto;
@@ -56,7 +55,11 @@
             padding: 0.1rem 2rem;
             margin-left: 7.5rem;
         }
-  
+        .search{
+            width: 100%;
+            height: 15%;
+
+        }
 
         #div_container{
             width: 100%;
@@ -554,7 +557,7 @@
                         </tr>
                         <!-- 企业 -->
                         <tr>
-                            <td class="center jiekuanfang" rowspan="18" style="background:#00568c">企业</td>
+                            <td class="center jiekuanfang" rowspan="17" style="background:#00568c">企业</td>
 
                             <td class="center" rowspan="9" style="background:#00568c">基本信息</td>
                             <td class="center red">公司名称</td>
@@ -671,7 +674,7 @@
                         </tr>
 
                         <tr>
-                            <td class="center" rowspan="9" style="background:#00568c">其他信息</td>
+                            <td class="center" rowspan="8" style="background:#00568c">其他信息</td>
 
                             <td class="center red">借款企业收入情况</td>
                             ##for(j in pingtailist!){
@@ -760,23 +763,12 @@
                             
                           
                         </tr>
-                         <tr>
+                        <!-- <tr>
                             <td class="center left"></td>
-                            ##for(j in pingtailist!){
                            
-                          	<td class="center">
-                          		 
-                          	</td>
-                            ##}
                             
                           
-                        </tr>
-                       
-                       
-                        
-                            
-                          
-                         
+                        </tr> -->
              
                         
                     </table>
@@ -1031,7 +1023,7 @@
 
         //.sData是调用superTables.js之后页面自己生成的  这块就是出现滚动条 达成锁定表头和列的效果
         $(".sData").css("width","100%");//这块的宽度是用$("#div_container")的宽度减去锁定的列的宽度
-        $(".sData").css("height","90%");//这块的高度是用$("#div_container")的高度减去锁定的表头的高度
+        $(".sData").css("height","100%");//这块的高度是用$("#div_container")的高度减去锁定的表头的高度
 
         //目前谷歌  ie8+  360浏览器均没问题  有些细小的东西要根据项目需求改
 
