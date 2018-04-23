@@ -3,16 +3,16 @@
 }
 .page>li{
     float: left;
-    padding: 1px 10px;
+    padding: 0px 10px;
     cursor: pointer;
 }
 .page .pageItem{
-    border: solid thin #DDDDDD;
-    margin: 5px;
+    border: solid thin rgba(0,0,0,.2);
+    margin: 3px;
 }
 .page .pageItemActive{
     border: solid thin #0099FF;
-    margin: 5px;
+    margin: 3px;
     background-color: #0099FF;
     color:white;
 }
