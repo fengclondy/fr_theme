@@ -233,10 +233,11 @@
         .page{
             width: 98%;
             margin:0 auto;
-
-
         }
         
+        .leftBox .kuaizhao a{
+            color: #faad14;
+        }
     </style>
 </head>
 <body id="04_04pingtaiyuqing" data-title="平台舆情">
@@ -411,6 +412,7 @@
                             <div class="customerInformationList">
                                 <div class="infomationContent fl">
                                     <ul class="leftBox">
+                                   		
                                     </ul>
                                 </div>
                                 
@@ -673,17 +675,21 @@
 					console.log(data);
 					var content = ""
 					$.each(data,function(data,item){
+						
+						
 						content = content
 						+' <li class="fl">'
 						+'		<div class="fl pic"><img src="${contextPath}/static/img/03_05shengyufengxian/02.png"></div>'
 						+'		<p class="fr">'
-						+'   	<a href="#">'+item.title+'</a>'
+						+'   	<a href="'+item.url+'" target="_blank">'+item.title+'</a>'
 						+'    	<span class="neirong">'+item.summary+'</span>'
 						+'   	<span>来源:</span><a href="#" class="bgi1 source2">'+item.data_source+'</a>'
 						+'    	<span>|</span>'
 						+'      <span>涉及词:</span><a href="#">'+item.string_agg+'</a>'
 						+'    	<span class="bgi4"><a href="#">256</a></span>'
 						+'     	<span class="fr bgi2">'+item.publish_date+'</span>'
+						+'		<span class="fr kuaizhao"><a class="aid" target="_blank">快照</a></span>'
+						+'		<input type="hidden" value="'+item.content+'" class="con" />'
 						+' 		</p>'
 						+'</li>'
 					})
@@ -692,7 +698,13 @@
 			})
 		}
        /*-----------------舆情详情---------------*/
-       
+      $("body").on("click", ".aid", function() {
+    	  var content = $(this).parent().siblings(".con").val();
+    	  	var p='<html><head><title>舆情信息</title></head><body><div>'+content+'</div></body></html>';
+			w=window.open('about:blank');
+			w.document.write(p)
+			
+      	})
         /*-----------------舆情详情条数 ---------------*/
        function detailCount() {
     	   

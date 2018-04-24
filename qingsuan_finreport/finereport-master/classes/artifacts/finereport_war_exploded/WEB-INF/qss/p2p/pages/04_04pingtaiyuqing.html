@@ -41,13 +41,31 @@
             flex: 7;
             height: 70%;
         }
-
-        /*舆情详情*/
+        .fl {
+            float: left;
+        }
+        .fr {
+            float: right;
+        }
+        a {
+            text-decoration: none;
+        }
+   
+        .chartBody1{
+        	height:100%;
+        }
+        /*客户黑名单*/
         .customerSelect {
             padding: 0.5rem 1rem;
         }
         .btnGroup1 {
             margin-top: 10px;
+        }
+         #table tbody tr td,#table1 thead tr th{
+            width: 20%;
+            text-align: center;
+            font-size: 0.65rem;
+
         }
         .timeUstyle {
             background: transparent;
@@ -78,16 +96,7 @@
         }
         /*修改输入框 placeholder字体颜色 END*/
         /*customerInformationList start*/
-        .fl {
-            float: left;
-        }
-        .fr {
-            float: right;
-        }
-        a {
-            text-decoration: none;
-        }
-
+        
         /*查询*/
         .yuqingsearch{
             padding:0rem 2rem;
@@ -101,15 +110,11 @@
         .customerInformationList {
             position: relative;
             width: 100%;
-            height: 75%;
-
-        }
-        .customerInformationList thead tr th{
-            font-size: 0.8rem;
+            height: 63%;
         }
         .leftBox {
             width: 100%;
-            height: 15rem;
+            height: 100%;
             overflow: auto;
         }
 
@@ -117,10 +122,11 @@
         .customerInformation {
             width: 100%;
             height: 27%;
-            padding: 1rem 0rem;
+            padding: 0.8rem 0;
             border-bottom: 2px solid #00adef;
         }
         .customerInformationleft,.customerInformationmiddle{
+        	padding-top: 0.5rem;
             width: 33.33%;
             height: 100%;
         }
@@ -135,14 +141,7 @@
             border: 2px solid #00abde;
             border-radius: 0.1rem;
         }
-        /*市场预期概览tabel*/
-
-        #table tbody tr td,#table1 thead tr th{
-            width: 20%;
-            text-align: center;
-            font-size: 0.65rem;
-
-        }
+        
         /*最新资讯*/
         #informationBox1{
             width: 100%;
@@ -230,16 +229,15 @@
             color: #fff;
         }
         /*分页样式*/
-        .pageye{
-            width: 100%;
-            height: 30%;
-
-        }
+       
         .page{
-            position: absolute;
-            bottom: 5px;
+            width: 98%;
+            margin:0 auto;
         }
-
+        
+        .leftBox .kuaizhao a{
+            color: #faad14;
+        }
     </style>
 </head>
 <body id="04_04pingtaiyuqing" data-title="平台舆情">
@@ -414,10 +412,12 @@
                             <div class="customerInformationList">
                                 <div class="infomationContent fl">
                                     <ul class="leftBox">
+                                   		
                                     </ul>
                                 </div>
-                                <ul class="page" maxshowpageitem="5" pagelistcount="5"  id="page"></ul>
+                                
                             </div>
+                            <ul class="page" maxshowpageitem="5" pagelistcount="5"  id="page"></ul>
                         </div>
                     </div>
                 </div>
@@ -675,17 +675,21 @@
 					console.log(data);
 					var content = ""
 					$.each(data,function(data,item){
+						
+						
 						content = content
 						+' <li class="fl">'
 						+'		<div class="fl pic"><img src="${contextPath}/static/img/03_05shengyufengxian/02.png"></div>'
 						+'		<p class="fr">'
-						+'   	<a href="#">'+item.title+'</a>'
+						+'   	<a href="'+item.url+'" target="_blank">'+item.title+'</a>'
 						+'    	<span class="neirong">'+item.summary+'</span>'
 						+'   	<span>来源:</span><a href="#" class="bgi1 source2">'+item.data_source+'</a>'
 						+'    	<span>|</span>'
 						+'      <span>涉及词:</span><a href="#">'+item.string_agg+'</a>'
 						+'    	<span class="bgi4"><a href="#">256</a></span>'
 						+'     	<span class="fr bgi2">'+item.publish_date+'</span>'
+						+'		<span class="fr kuaizhao"><a class="aid" target="_blank">快照</a></span>'
+						+'		<input type="hidden" value="'+item.content+'" class="con" />'
 						+' 		</p>'
 						+'</li>'
 					})
@@ -694,7 +698,13 @@
 			})
 		}
        /*-----------------舆情详情---------------*/
-       
+      $("body").on("click", ".aid", function() {
+    	  var content = $(this).parent().siblings(".con").val();
+    	  	var p='<html><head><title>舆情信息</title></head><body><div>'+content+'</div></body></html>';
+			w=window.open('about:blank');
+			w.document.write(p)
+			
+      	})
         /*-----------------舆情详情条数 ---------------*/
        function detailCount() {
     	   

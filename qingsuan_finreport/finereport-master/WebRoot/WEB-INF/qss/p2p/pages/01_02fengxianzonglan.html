@@ -63,12 +63,12 @@
       		height: 100%;
       	}
 		.chartBodyRight{
-			width:100%;
+			width:calc(100% - 560px);
 			height: 100%;
 			/*background: rgba(255,255,255,.05);*/
-		    position: absolute;
+		    /*position: relative;*/
     		/*margin-left: calc(160px + 7.5rem);*/
-    		margin-left: 280px;
+    		/*margin-left: 280px;*/
 		}
         .chartBodyLeftTop{
     		padding: 10px 20px;
@@ -111,42 +111,43 @@
 		.chartBodyNumber{
 			position: absolute;
 			width: 100%;
-			height: 100%;
-			top:0;
+			text-align: center;
+			top: 52%;
 		}
 		.chartBodyNumber > p{
-			position:absolute;
+			/*position:absolute;
 			top:50%;
-		    left: 50%;
+		    left: 50%;*/
 		    font-size: 0.8rem;
-		    margin-left: -1.5rem;
-		    margin-top: 0.5rem;
+		    /*margin-left: -1.5rem;
+		    margin-top: 0.5rem;*/
 		}
 		.chartBodyNumber > div{
-			position: absolute;
+			/*position: absolute;
 		    top: 67%;
-		    left: 50%;
+		    left: 50%;*/
 	        font-size: 0.8rem;
-    		margin-left: -6px;
+    		/*margin-left: -6px;*/
 		}
 		.chartBodyRightList{
-			width:auto;
+			width:100%;
 			height:100%;
 		}
 		.chartBodyRightList ul{
-			height:130px;
+			/*height:130px;
 		    position: relative;
 		    top: 50%;
-		    margin-top: -65px;
+		    margin-top: -65px;*/
+		   height: 100%;
 		}
 		.chartBodyRightList ul li{
 			float: left;
-			/*height:46%;*/
-			border:2px solid #2386C0;
+			height: 35%;
+			border: 2px solid #2386C0;
 			border-radius: 3px;
-		    padding: 3px 15px;
-		    margin-left: 2rem;
-		    margin-top: 1%;
+			margin-left: 7%;
+			margin-top: 2%;
+			width: 24%;
 		}
 		.chartBodyRightList ul li h3{
 			font-size: 1.4rem;

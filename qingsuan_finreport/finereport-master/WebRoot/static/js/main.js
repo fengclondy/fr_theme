@@ -47,6 +47,7 @@ $("body").click(function () {
     $(".output").children("ul").hide();
 });
 function canvasAll(obj,val){
+	
 	var canvas = document.getElementById(obj);
 	var ctx  = canvas.getContext("2d");
 	var oRange = Number(val);
@@ -71,8 +72,16 @@ function canvasAll(obj,val){
 	var PI = M.PI;
 	var Round = M.round;
 	
-	var oW = canvas.width = 130;
-	var oH = canvas.height = 130;
+	var oW = 0;
+	var oH = 0;
+	if(screen.width == 1920){
+		oW = canvas.width = 160;
+		oH = canvas.height = 160;
+	}
+	else{
+		oW = canvas.width = 130;
+		oH = canvas.height = 130;	
+	}
 	
 	// 线宽
 	var lineWidth = 0.8
