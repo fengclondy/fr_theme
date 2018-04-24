@@ -112,6 +112,7 @@
     .chartBodyRight .chartBodyRightList ul li{
 	    height: 40%;
 	    margin-top:1%;
+	    padding-left:5px;
 	}
 	.chartBodyLeft .rank {
 	    top: 37px;
@@ -150,6 +151,7 @@
 	.chartBodyRight .chartBodyRightList ul li{
 		margin-left: 6%;
 	    width: 27%;
+	    padding-left:5px;
 	}
 }
 @media screen and (min-width: 1367px) and (max-width: 1440px){
@@ -159,6 +161,7 @@
     .chartBodyRight .chartBodyRightList ul li{
 	    margin-left: 6%;
 	    width: 27%;
+	    padding-left:5px;
 	}
 }
 @media screen and (min-width: 900px) and (max-width: 1366px){
@@ -168,5 +171,6 @@
     .chartBodyRight .chartBodyRightList ul li{
 	    height: 40%;
 	    margin-top:1.5%;
+	    padding-left:5px;
 	}
 }

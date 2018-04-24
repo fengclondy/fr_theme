@@ -155,6 +155,7 @@ td.more:active > a {
     position: absolute;
     display: none;
     margin-top: .3em;
+    width: 9rem;
     padding: 0;
     min-width: 100%;
     background: #004d7d;
@@ -177,7 +178,21 @@ td.more:active > a {
 .mySelect > .myOptionBox > .myOption:hover {
     background-color: #00adef;
 }
-
+/* 修改滚动条样式 */
+.myOptionBox::-webkit-scrollbar {/*滚动条整体样式*/
+            width: 4px;     /*高宽分别对应横竖滚动条的尺寸*/
+            height: 4px;
+        }
+.myOptionBox::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+     border-radius: 5px;
+     -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+     background: rgba(0,0,0,0.2);
+ }
+.myOptionBox::-webkit-scrollbar-track {/*滚动条里面轨道*/
+     -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+     border-radius: 0;
+     background: rgba(0,0,0,0.1);
+ }
 /*像风险查看一类页面的白色底样式*/
 
 /*分页*/
