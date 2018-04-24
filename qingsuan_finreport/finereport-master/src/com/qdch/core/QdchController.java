@@ -73,7 +73,10 @@ public class QdchController extends BaseController {
 		 }
 		 String url=PropKit.get("webSite")+"/getP2PXdAllUnReadMsg?jysStr="+jysStr+"&type="+type+"&uid="+user.getId();
 		 //String url="http://localhost:8075/WebReport/getP2PXdAllUnReadMsg?jysStr="+jysStr+"&type="+type+"&uid="+user.getId();
-		
+		 if("false".equals(PropKit.get("isDev"))){
+			 //正式发布 正式环境也需要写localhost  服务器设置了外网权限
+			 url=PropKit.get("localSite")+"/getP2PXdAllUnReadMsg?jysStr="+jysStr+"&type="+type+"&uid="+user.getId();
+		 }
 		 String result=HttpClientUtil.sendGetRequest(url, null);
 		 //System.out.println(result);
 		 renderJson(result);
@@ -93,6 +96,10 @@ public class QdchController extends BaseController {
 			 type="4";
 		 }
 		 String url=PropKit.get("webSite")+"/readAllP2PXdMsg?type="+type+"&uid="+user.getId();
+		 if("false".equals(PropKit.get("isDev"))){
+			 //正式发布 正式环境也需要写localhost  服务器设置了外网权限
+			 url=PropKit.get("localSite")+"/readAllP2PXdMsg?type="+type+"&uid="+user.getId();
+		 }
 		 //String url="http://localhost:8075/WebReport/readAllP2PXdMsg?type="+type+"&uid="+user.getId();
 		 String result=HttpClientUtil.sendGetRequest(url, null);
 		 renderJson(result);
@@ -120,7 +127,10 @@ public class QdchController extends BaseController {
 		 }
 		 String url=PropKit.get("webSite")+"/getP2PXdAllFxsjUnReadMsg?jysStr="+jysStr+"&type="+type+"&uid="+user.getId();
 		 //String url="http://localhost:8075/WebReport/getP2PXdAllFxsjUnReadMsg?jysStr="+jysStr+"&type="+type+"&uid="+user.getId();
-		
+		 if("false".equals(PropKit.get("isDev"))){
+			 //正式发布 正式环境也需要写localhost  服务器设置了外网权限
+			 url=PropKit.get("localSite")+"/getP2PXdAllFxsjUnReadMsg?jysStr="+jysStr+"&type="+type+"&uid="+user.getId();
+		 }
 		 String result=HttpClientUtil.sendGetRequest(url, null);
 		 renderJson(result);
 	 }
@@ -139,6 +149,10 @@ public class QdchController extends BaseController {
 			 type="4";
 		 }
 		 String url=PropKit.get("webSite")+"/p2pXdFxsjReadMsg?type="+type+"&uid="+user.getId();
+		 if("false".equals(PropKit.get("isDev"))){
+			 //正式发布 正式环境也需要写localhost  服务器设置了外网权限
+			 url=PropKit.get("localSite")+"/p2pXdFxsjReadMsg?type="+type+"&uid="+user.getId();
+		 }
 		 //String url="http://localhost:8075/WebReport/p2pXdFxsjReadMsg?type="+type+"&uid="+user.getId();
 		 String result=HttpClientUtil.sendGetRequest(url, null);
 		 renderJson(result);
@@ -153,6 +167,10 @@ public class QdchController extends BaseController {
 	 public void logout(){
 		 QdchUser user=getLoginUser();
 		 String url=PropKit.get("webSite")+"/logoutP2PXd?uid="+user.getId()+"&sessionId="+user.getSessionId();
+		 if("false".equals(PropKit.get("isDev"))){
+			 //正式发布 正式环境也需要写localhost  服务器设置了外网权限
+			 url=PropKit.get("localSite")+"/logoutP2PXd?uid="+user.getId()+"&sessionId="+user.getSessionId();
+		 }
 		 //String url="http://localhost:8075/WebReport/logoutP2PXd?uid="+user.getId()+"&sessionId="+user.getSessionId();
 		 String result=HttpClientUtil.sendGetRequest(url, null);
 		 setSession(Constants.SESSION_USER, null);
