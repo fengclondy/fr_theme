@@ -45,7 +45,7 @@ public class RelactCompanyController extends BaseController{
 		CoCompanyInfoModel company = CoCompanyInfoModel.dao.getInfo(name);
 		 setAttr("company", company);
 		 if (company!=null) {
-			 List<CoCompanyInfoModel> comInfo= CoCompanyInfoModel.dao.getRe(company.get("legal_person"));
+			 List<CoCompanyInfoModel> comInfo= CoCompanyInfoModel.dao.getRe(company.get("legal_person")+"");
 		     setAttr("comInfo", comInfo);
 		 }
 		  

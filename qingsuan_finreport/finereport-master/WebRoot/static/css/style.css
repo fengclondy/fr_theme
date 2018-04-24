@@ -64,7 +64,6 @@
     }
     /*输入组框*/
     .inputGroup {
-    position: relative;
         display: inline-block;
         margin-left: 1rem;
         font-size: .72rem;
@@ -83,7 +82,6 @@
         background-color: transparent;
         border: 1px solid var(--themeBlue);
         border-radius: .2rem;
-        
     }
 
     .btnGroup>button.active {
@@ -102,23 +100,77 @@
 }
 
 
-@media screen and (min-width: 900px) and (max-width: 1366px){
+@media screen and (min-width: 1921px) {
     html{
-        font-size: 16px;
+        font-size: 28px;
     }
+}
+@media screen and (min-width: 1441px) and (max-width: 1920px){
+    html{
+        font-size: 20px;
+    }
+    .chartBodyRight .chartBodyRightList ul li{
+	    height: 40%;
+	    margin-top:1%;
+	    padding-left:5px;
+	}
+	.chartBodyLeft .rank {
+	    top: 37px;
+	    left: 53px;
+	 }
+}
+@media screen and (min-width: 1681px) and (max-width: 1920px){
+    html{
+        font-size: 20px;
+    }
+    .chartBody .chartBodyLeft {
+	    width: 160px;
+	}
+	.chartBody .chartBodyLeftTop {
+	    margin-top: -92px;
+	}
+	.chartBody .chartBodyLeftTop > img {
+	    width: 120px;
+	}
+	.chartBodyLeft .rank {
+	    top: 56px;
+	    left: 73px;
+	 }
+	 .chartBody .chartBodyRight {
+	    width: calc(100% - 600px);
+	}
+	.chartBodyRightCircle canvas {
+	    margin-top: -80px;
+	    margin-left: -80px;
+	}
+	.chartBodyRightCircle .chartBodyNumber {
+	    top: 54%;
+	}
+}
+@media only screen and (max-width: 1600px){
+	.chartBodyRight .chartBodyRightList ul li{
+		margin-left: 6%;
+	    width: 27%;
+	    padding-left:5px;
+	}
 }
 @media screen and (min-width: 1367px) and (max-width: 1440px){
     html{
         font-size: 18px;
     }
+    .chartBodyRight .chartBodyRightList ul li{
+	    margin-left: 6%;
+	    width: 27%;
+	    padding-left:5px;
+	}
 }
-@media screen and (min-width: 1441px) and (max-width: 1920px){
+@media screen and (min-width: 900px) and (max-width: 1366px){
     html{
-        font-size: 22px;
+        font-size: 16px;
     }
-}
-@media screen and (min-width: 1921px) {
-    html{
-        font-size: 28px;
-    }
+    .chartBodyRight .chartBodyRightList ul li{
+	    height: 40%;
+	    margin-top:1.5%;
+	    padding-left:5px;
+	}
 }

@@ -348,6 +348,7 @@
 }
 
 .laydate_body .laydate_bottom input {
+	display:none;
     float: left;
     width: 21px;
     height: 20px;
@@ -357,6 +358,7 @@
     cursor: pointer;
     font-size: 12px;
     font-weight: 400;
+    
 }
 
 .laydate_body .laydate_bottom .laydte_hsmtex {

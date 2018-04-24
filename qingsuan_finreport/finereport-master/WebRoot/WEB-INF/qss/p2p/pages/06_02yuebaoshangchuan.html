@@ -144,13 +144,13 @@ $(".inforContainer ul").css({
 	    }
 		initUploadForm();  
 		function initUploadForm () {  
-		        var url = "${contextPath}/qdch/fileupLoad/upload";  
+		        var url = "${contextPath}/qdch/fileupLoadp2p/upload";  
 		        var options = {   
 		                    type: 'post',  
 		                    url: url,
 		                    data:{"bglx":bglx,"jysc":jysc,"jyscfl":jyscfl},
 						    success:function(data) {   
-								window.location.href = "${contextPath}/qdch/monthlyrepor"
+								window.location.href = "${contextPath}/qdch/supervise"
 				            }
 		        };   
 		        $('#myform').ajaxForm(options);  
@@ -160,7 +160,7 @@ $(".inforContainer ul").css({
 	
 	//取消
 	$("#inforBtn").click(function(){
-		window.location.href = "${contextPath}/qdch/monthlyrepor"
+		window.location.href = "${contextPath}/qdch/supervise"
 	})
 </script>
 

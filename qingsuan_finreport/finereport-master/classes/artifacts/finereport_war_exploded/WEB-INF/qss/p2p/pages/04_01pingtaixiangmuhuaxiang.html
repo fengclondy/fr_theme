@@ -471,13 +471,12 @@
             var tableList = "";
             $.post("${contextPath}/qdch/project/getStructuralDetails",{"jys":jysCode},function(data){            
                 $.each(data,function(index,item){
-                	
 					tableList+=
 							"  <tr>            <td class='center ziranren'>"+item.xmlx+"</td>\n" +
 							"                 <td class='center left'>"+item.ywlx+"</td>\n" +
 							"                 <td class='center'>"+item.pjlv+"</td>\n" +
 							"               <td class='center'>"+item.je*1/10000+"万</td>\n" +
-							"               <td class='center'>"+item.jezb*1+"%</td>\n" +
+							"               <td class='center'>"+item.jezb*100+"%</td>\n" +
 							"                <td class='center'>"+item.pjqx+"(月)</td></tr>  " 
 		
 			})
@@ -866,42 +865,20 @@
   				$.each(data,function(index,item){
   	  				var name=item.hhi_type;
   					if("行业HHI"==name){
-  							if(item.hhi_value=="-"){
-  								var val=0;
-  		  						var w =$('.progress_inner').width();
-  		  			            (function progressBar3(){
-  		  			                $("#proc").animate({width:val*(w*1)},200).css('background','#73d13d');
-  		  			                $("#progressWord").text("");
-  		  			            })();	
-  							}
-  								else{
-  								var val=item.hhi_value*1;
-  		  						var w =$('.progress_inner').width();
-  		  			            (function progressBar3(){
-  		  			                $("#proc").animate({width:val*(w*1)},200).css('background','#73d13d');
-  		  			                $("#progressWord").text(val);
-  		  			            })();	
-  							}
-  							
+  						var val=item.hhi_value*1;
+  						var w =$('.progress_inner').width();
+  			            (function progressBar3(){
+  			                $("#proc").animate({width:val*(w*1)},200).css('background','#73d13d');
+  			                $("#progressWord").text(val);
+  			            })();		
   					  				}
   					if("地区HHI"==name){
-  						if(item.hhi_value=="-"){
-  							var h=0;
-  				            var w =$('.progress_inner').width();
-  				            (function progressBar3(){
-  				                $("#proc4").animate({width:h*(w*1)},200).css('background','#b37feb');
-  				                $("#progressWord4").text("");
-  				            })();
-  							
-  						}else{
-  							var h=item.hhi_value*1;
+  						 	var h=item.hhi_value*1;
   				            var w =$('.progress_inner').width();
   				            (function progressBar3(){
   				                $("#proc4").animate({width:h*(w*1)},200).css('background','#b37feb');
   				                $("#progressWord4").text(h);
   				            })();
-  						}
-  						 	
   				        
   								}  				
   	  				})
@@ -930,52 +907,25 @@
   				$.each(data,function(index,item){
   	  				var name=item.rate_type;
   	  				 if("借款"==name){
-  	  						if(item.iterm_value==null){
-  	  						
-  	  						  $('#progressbar1').LineProgressbar({
-  	  							percentage: 0,
-  	  	  			            fillBackgroundColor: '#00adef',
-  	  	  			            height: '15px',
-  	  	  			            radius: '20px',
-  	  	  			            backgroundColor:'rgba(0,0,0,0.2)'
-
-  	  	  			        }); 
-  	  						 $('.percentCount').css('display','none');
-  	  						}else{
-  	  						$('#progressbar1').LineProgressbar({
-  	  	  			            percentage: item.iterm_value*100,
-  	  	  			            fillBackgroundColor: '#00adef',
-  	  	  			            height: '15px',
-  	  	  			            radius: '20px',
-  	  	  			            backgroundColor:'rgba(0,0,0,0.2)'
-
-  	  	  			        }); 
-  	  						}
   	  					
-  	  					    
+  	  					$('#progressbar1').LineProgressbar({
+  	  			            percentage: item.iterm_value*100,
+  	  			            fillBackgroundColor: '#00adef',
+  	  			            height: '15px',
+  	  			            radius: '20px',
+  	  			            backgroundColor:'rgba(0,0,0,0.2)'
+
+  	  			        });
   	  				}
   					if("投资"==name){
-  						if(item.iterm_value==null){
-  							
-  							$('#progressbar2').LineProgressbar({
-  								percentage: 0,
-  					            fillBackgroundColor: '#5cdbd3',
-  					            height: '15px',
-  					            radius: '20px',
-  					            backgroundColor:'rgba(0,0,0,0.2)'
-  					           
-  					        });	
-  							 $('.percentCount').css('display','none');
-  						}else{
-  							$('#progressbar2').LineProgressbar({
+  						
+  						 $('#progressbar2').LineProgressbar({
   					            percentage: item.iterm_value*100,
   					            fillBackgroundColor: '#5cdbd3',
   					            height: '15px',
   					            radius: '20px',
   					            backgroundColor:'rgba(0,0,0,0.2)'
-  					        });		
-  						}
-  						 		
+  					        });				
   					  				} 
   	  			})
   			}

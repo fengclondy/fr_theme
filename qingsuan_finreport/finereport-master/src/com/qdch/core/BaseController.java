@@ -215,9 +215,15 @@ public class BaseController extends Controller{
 			user.setType(roleType);
 			//获取用户信息
 			//String url="http://localhost:8075/WebReport/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
-			String url=PropKit.get("webSite")+"/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
+			String url="";
+			 if("false".equals(PropKit.get("isDev"))){
+				 //正式发布 正式环境也需要写localhost  服务器设置了外网权限
+				 url=PropKit.get("localSite")+"/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
+			 }else{
+				 url=PropKit.get("webSite")+"/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
+			 }
 			
-			//正式环境也需要写localhost  服务器设置了外网权限
+			//
 			//String url="http://localhost/WebReport/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
 			if(StringUtils.isNotBlank(roleType)){
 				url+="&roleType="+roleType;

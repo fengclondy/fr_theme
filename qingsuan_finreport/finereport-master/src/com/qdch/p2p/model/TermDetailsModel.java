@@ -27,7 +27,7 @@ public class TermDetailsModel extends Model<TermDetailsModel> {
 			sql+=" and jysc='"+ jys+"'  ";			
 		}
 		sql+=" and vday=(select max(vday) from insight_pp_term_distribute where jysc ='"+jys+"')";
-		sql+=" order by term,jyscmc,jysc,pjlv,je,jezb,hkfs";
+		sql+=" order by term='12月以上', term='6-12月', term='3-6月', term='0-3月'";
 		return dao.find(sql);
 	}
 

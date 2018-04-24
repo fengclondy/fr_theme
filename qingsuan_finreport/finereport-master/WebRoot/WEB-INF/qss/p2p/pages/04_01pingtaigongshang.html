@@ -137,7 +137,9 @@
         .top li a{
             float: left;
             width: 100%;
-            font-size: 1.2rempx 
+            font-size: 1.2rem;
+            
+
         }
         tbody > tr > td {
     font-size: 1rem;
@@ -167,7 +169,7 @@
         .tabContent  li {
             float: left;
             line-height: 3em;
-            font-size: 16px;
+            font-size: 1.5rem;
             margin: 0 1em;
             padding:0 1em;
             cursor: pointer;
@@ -176,7 +178,7 @@
 
         .tabContent span {
             color:#dd0;
-            font-size: 12px;
+            font-size: 1.2rem;
         }
 
         .mainContent{
@@ -505,7 +507,7 @@
             position: relative;
             display: inline-block;
             top: -.15em;
-            width: 9rem;
+            width: 18rem;
             text-align: left;
             vertical-align: middle;
             z-index: 500;
@@ -515,7 +517,10 @@
             cursor: pointer;
             padding: .1rem 2rem .1rem .5rem;
             white-space: nowrap;
-            width: 14rem;
+            width: 18rem;
+            font-size:1rem;
+            line-height:1rem;
+           
         }
 
         .mySelect > .myOption.selected {
@@ -553,15 +558,18 @@
         }
 
         .mySelect > .myOptionBox {
-            position: absolute;
+            position: abssolute;
             display: none;
             margin-top: .1em;
             padding: 0;
             min-width: 100%;
-            background-color: #0006;
+            width: 18rem;
+            background-color:#004d7d;
             border-radius: .2rem;
             transition: all .5s ease;
             z-index:1001;
+            box-shadow: 0rem 0.2rem .2rem #1F547E;
+      
         }
 
         .mySelect.open > .myOptionBox {
@@ -576,7 +584,7 @@
             background-color: #0002;
         }
 
-        /*市场舆情*/
+        /*企业舆情*/
 		/*zgc*/
 		.glqyContent table tbody tr td a, .jkqyContent table tbody tr td a, .dbqyContent table tbody tr td a{
 			display: block;
@@ -602,12 +610,14 @@
 		    border-radius: 0.1rem;
 		    height: 28%;
 		    line-height: 28%;
+		    font-size:1rem;
 		}
 		.gjz {
 		    width: 14rem;
 		    background: transparent;
 		    border: 2px solid #00abde;
 		    border-radius: 0.1rem;
+		    font-size:1rem;
 		}
 		input::-webkit-input-placeholder {color:#fff;}
 		input::-moz-placeholder {color:#fff}
@@ -675,6 +685,9 @@
 			background-color:rgba(0,0,0,.2);
 			cursor: pointer;
 		}
+		label{
+			font-size:1rem;
+		}
 		/*模态框*/
 		.model_faren{
 			background: url("${contextPath}/static/img/com/bg_main.jpg") no-repeat;
@@ -695,6 +708,10 @@
             color: #faad14;
             margin-right: 1rem;
         }
+        
+        tbody > tr > td,tbody > tr > th {
+		    font-size: 1rem;
+		}
 	</style>
     </style>
 </head>
@@ -784,8 +801,8 @@
     <div class="tabContent">
         <li class="activeTab">企业信息  <span>${all!}</span></li>
         <li>经营状态  <span>${allsize!}</span></li>
-        <li>关系图谱<span></span></li>
-        <li>市场舆情<span></span></li>
+        <!-- <li>关系图谱<span></span></li> -->
+        <li>企业舆情<span></span></li>
         <li>关联企业<span></span></li>
         <li>借款企业<span></span></li>
         <li>担保企业<span></span></li>
@@ -1517,7 +1534,7 @@
             </div>
         </div>
         
-        <div class="qyfxContent">
+       <!--  <div class="qyfxContent">
             <a class="qytp ltitle" name="qytp"><span></span>企业图谱<span></span></a>
 
             <div id="box" style="height:100%;width:100%"></div>
@@ -1644,8 +1661,8 @@
             <a class="gqjgt ltitle" name="gqjgt"><span></span>股权结构图<span></span></a>
             <div id="menuTree" class="menuTree"></div>
 
-        </div>
-        <div class="scyqContent">
+        </div> -->
+        <div class="qyqContent">
 			<div class="bottomBox">
                 <div class="chartBox ec002">
                     <!--舆情详情-->
@@ -1655,10 +1672,10 @@
                                 <div class="customerInformationleft fl">
                                     <div class="inputGroup fl">
                                         <label class="jiaoyishichang">交易市场：</label>
-                                        <div class="mySelect" id="jiaoyishichang">
-                                            <div class="myOption selected"><span class="text"></span><span class="icon"></span></div>
-                                            <ul class="myOptionBox">
-                                                <li class="myOption selected">青岛华银有限公司</li>
+                                        <div class="mySelect" id="jiaoyishichang" style="width:14rem;">
+                                            <div class="myOption selected" style="width:14rem;"><span class="text"></span><span class="icon"></span></div>
+                                            <ul class="myOptionBox" style="width:14rem;">
+                                                <li class="myOption selected" style="width:14rem;">青岛华银有限公司</li>
                                                 <li class="myOption">青岛华银有限公司</li>
                                                 <li class="myOption">青岛华银有限公司</li>
                                             </ul>
@@ -2119,26 +2136,21 @@ var deleteBtn = '';
                             document.getElementsByClassName(txt)[0].scrollIntoView(false);
                             break;
                         case 3:
-                            $(".qyfxContent").css("display","block").siblings().css("display","none");
-                            $($(".tabContent").children("li")[2]).addClass("activeTab").siblings().removeClass("activeTab");
-                            document.getElementsByClassName(txt)[0].scrollIntoView(false);
-                            break;
-                        case 4:
-                            $(".scyqContent").css("display","block").siblings().css("display","none");
+                            $(".qyyqContent").css("display","block").siblings().css("display","none");
                             $($(".tabContent").children("li")[3]).addClass("activeTab").siblings().removeClass("activeTab");
                             document.getElementsByClassName(txt)[0].scrollIntoView(false);
                             break;
-                        case 5:
+                        case 4:
                             $(".glqyContent").css("display","block").siblings().css("display","none");
                             $($(".tabContent").children("li")[2]).addClass("activeTab").siblings().removeClass("activeTab");
                             document.getElementsByClassName(txt)[0].scrollIntoView(false);
                             break;
-                        case 6:
+                        case 5:
                             $(".jkqyContent").css("display","block").siblings().css("display","none");
                             $($(".tabContent").children("li")[3]).addClass("activeTab").siblings().removeClass("activeTab");
                             document.getElementsByClassName(txt)[0].scrollIntoView(false);
                             break;
-                        case 7:
+                        case 6:
                             $(".dbqyContent").css("display","block").siblings().css("display","none");
                             $($(".tabContent").children("li")[4]).addClass("activeTab").siblings().removeClass("activeTab");
                             document.getElementsByClassName(txt)[0].scrollIntoView(false);
@@ -2181,7 +2193,7 @@ var deleteBtn = '';
                             },200)
                         }
 
-                        if($(lis[i]).text() == "市场舆情") {
+                        if($(lis[i]).text() == "企业舆情") {
                             //that.sxcp();
                             // ec001.resize();
                             // ec002.resize();
