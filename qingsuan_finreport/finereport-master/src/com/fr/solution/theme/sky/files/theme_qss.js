@@ -22,6 +22,17 @@ var qyAuditRole = '权益风控总监';
 var qyJudgeRole = '权益政府';
 var rolemenu;//当前大类对应菜单
 var menuId;//获取所有菜单的id，通过json文件
+window.onerror = function(message, source, lineno, colno, error) { 
+	//mesage为异常基本信息，source为发生异常Javascript文件url，lineno为发生错误的行号，我们可以通过error.stack获取异常的堆栈信息
+	console.log("----error----");
+	console.log(message);
+	console.log(source);
+	console.log(error);
+	console.log(error.stack);
+	if(error.stack.indexOf("this.content.setMinSize")!=-1){
+		window.location.reload(true);
+	};
+}; 
 (function ($) {
    init();
    FS.THEME = $.extend(true, FS.THEME, {
