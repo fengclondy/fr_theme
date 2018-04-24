@@ -1,20 +1,20 @@
 #正式库
-jdbc=jdbc:postgresql://172.16.6.61:5432/qdchedw
-user=hub
-pwd=hub@2017
+#jdbc=jdbc:postgresql://172.16.6.61:5432/qdchedw
+#user=hub
+#pwd=hub@2017
 
-insight_jdbc=jdbc:postgresql://172.16.6.61:5432/qdchedw
-insight_user=insight
-insight_pwd=insight@2017
+#insight_jdbc=jdbc:postgresql://172.16.6.61:5432/qdchedw
+#insight_user=insight
+#insight_pwd=insight@2017
 
 #测试库
-#jdbc=jdbc:postgresql://192.168.1.110:5432/dev_db
-#user=user_test
-#pwd=test
+jdbc=jdbc:postgresql://192.168.1.110:5432/qdchedw
+user=insight
+pwd=insight@2017
 
-#insight_jdbc=jdbc:postgresql://192.168.1.110:5432/dev_db
-#insight_user=user_test
-#insight_pwd=test
+insight_jdbc=jdbc:postgresql://192.168.1.110:5432/qdchedw
+insight_user=hub
+insight_pwd=hub@2017
 
 #jdbcUrl = jdbc:postgresql://172.16.6.61:5432/qdchedw
 #username = postgres
