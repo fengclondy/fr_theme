@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -7,32 +8,88 @@
     <link rel="stylesheet" href="${contextPath}/static/asserts/css/normalize.css">
     <link rel="stylesheet" href="${contextPath}/static/css/style.css">
     <link rel="stylesheet" href="${contextPath}/static/css/pageCom.css">
+   <!--  <script type="text/javascript" src="${contextPath}/QDCH/pdf/build//pdf.js"></script> -->
     <style>
+        .pdf-container { height: 500px;}
+        .pdf { border: 1px solid #666; }
         .tableBox tbody tr td:last-child span:nth-child(1) a{
             margin-right: 6rem;
-        }
+        }        
         .tableBox tbody tr td:last-child{
             color: #00abde;
         }
+		.inforContainer{
+			width:60%;
+			margin:0 auto;
+			padding:50px 80px;
+			text-align: center;
+			position: relative;
+		}
+		.inforContainer ul{
+			list-style: none;
+			position: absolute;
+			top:50%;
+			left:50%;
+		}
+		.inforContainer ul li{
+		    margin: 40px 0;
+		}
+		.inforContainer ul li span{				
+			margin-right: 30px;
+		}
+		.inforContainer ul li select{
+			min-width:260px;
+			height:30px;
+		}
+		.inforContainer ul li:last-child input{
+			width:100px;
+			padding:6px 12px;
+			background: #07729F;
+		    border: none;
+		    color: #fff;
+		    border-radius:15px;
+		}
+		#inforBtn{
+			margin-left: 60px;
+		}
+		.inforContainer{
+			display: none;
+			width:100%;
+			height:100%;
+			background: #fff;
+			position: absolute;
+			top:0;
+			left:0;
+			z-index: 10;
+			color:#000;
+		}
+		.file{
+			display: inline-block;
+			min-width: 260px;
+		}
+		.file input{
+			width:260px;
+		}
     </style>
+ 
 </head>
-<body class="whitePage" id="06_01jianguanyuebao" data-title="风险事件查看">
+<body class="whitePage" id="06_01jianguanyuebao" data-title="监管报告">
 <div class="container">
     <nav class="pagination">
         <ul>
-            <li class="home">首页</li>
+             <li class="home" id="pagehome">首页</li>
             <li class="split">|</li>
-            <li class="prev">上一页</li>
+            <li class="prev" id="pageprev">上一页</li>
             <li class="split">|</li>
             <li class="pageNumber">
                 <label for="pageCurrent" hidden></label>
-                <input id="pageCurrent" type="number" value="1">&nbsp;/
-                <span class="pageTotal">30</span>
+                <input id="pageCurrent" type="number" >&nbsp;/
+                <span class="pageTotal"></span>
             </li>
             <li class="split">|</li>
-            <li class="next">下一页</li>
+            <li class="next" id="pagenext">下一页</li>
             <li class="split">|</li>
-            <li class="end">末页</li>
+            <li class="end" id="pageend">末页</li>
             <li class="output">
                 <a class="dropDown">输出</a>
                 <ul>
@@ -49,6 +106,9 @@
                     <li class="picture"><span class="icon"></span> 图片</li>
                 </ul>
             </li>
+            <li class="add">
+            	<a href="${contextPath}/qdch/supervise/addnew">增加</a>
+            </li>
         </ul>
     </nav>
     <div class="formBox open">
@@ -57,31 +117,22 @@
             <div class="inputGroup">
                 <label for="marketName">市场名称：</label>
                 <select id="marketName">
-                    <option value=""></option>
-                    <option value="">青岛国际版权</option>
-                    <option value="">上海石油化工</option>
-                    <option value="">中韩文化产权</option>
-                    <option value="">山东天地红</option>
-                    <option value="">青岛国新大宗</option>
-                    <option value="">联合信用资产</option>
-                    <option value="">吉林文化产权</option>
-                    <option value="">青岛华银商品</option>
-                    <option value="">青岛华益金安</option>
-                    <option value="">中国国金(青岛)</option>
+                
+                    <option value="" selected>全部</option> 
+                     ##for(j in jyslist!){
+                           <option id="${j.jysc!}" value="${j.jyscmc!}" class="myOption" >${j.jyscmc!}</li>
+                     ##}
 
                 </select>
             </div>
             <div class="inputGroup">
-                <label for="riskCategories">报告类型：</label>
-                <select id="riskCategories">
-                    <option value=""></option>
-                    <option value="">舆情风险</option>
-                    <option value="">资金风险</option>
-                    <option value="">客户风险</option>
-                    <option value="">工商风险</option>
-                    <option value="">交易风险</option>
-                    <option value="">商品风险</option>
-                    <option value="">不选</option>
+                <label for="reportType">报告类型：</label>
+                <select id="reportType">
+                    <option value="" selected>不选</option>
+                    <option value="月报">日报</option>
+                    <option value="季报">季报</option>
+                    <option value="年报">年报</option>   
+                    
                 </select>
             </div>
             <div class="inputGroup">
@@ -89,7 +140,7 @@
                 <input id="alarmTimeEnd" type="date">
             </div>
             <div class="btnGroup search">
-                <button class="active">查询</button>
+                <button class="active" type="button" id="btnCheck" >查询</button>
             </div>
         </form>
     </div>
@@ -107,36 +158,173 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>1</td>
-                <td>月报</td>
-                <td>青岛华益金安</td>
-                <td>时鸿岩</td>
-                <td>2018-01-25</td>
-                <td>
-                    <span><a href="#">预览</a></span>
-                    <span><a href="#">下载</a></span>
-                </td>
-            </tr>
-
-            </tr>
+							
+          
             </tbody>
         </table>
     </div>
 </div>
 
+<div id="" class="inforContainer">
+		<ul>
+			<li>
+				<span>报告类型：</span>
+				<select id="selectReport" name="bglx">
+					<option value="1">日报</option>
+					<option value="2">月报</option>
+					<option value="3">年报</option>
+				</select>
+			</li>
+			<li>
+				<span>交易市场：</span>
+				<select id="selectDeal" name="jys">
+					<option value="1">海尔云贷</option>
+					<option value="2">海尔云贷</option>
+					<option value="3">海尔云贷</option>
+				</select>
+			</li>
+			<li>
+				<span>操&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;作：</span>
+				<div class="file">
+					<input id="file" type="file" value="文件名"/>
+				</div>
+			</li>
+			<li>
+				<input id="inforSub" type="button" value="保存"/>
+				<input id="inforBtn" type="button" value="取消"/>
+			</li>
+		</ul>
+</div>
+
 <script src="${contextPath}/static/asserts/js/echarts-4.0.js"></script>
 <script src="${contextPath}/static/asserts/js/jquery-2.2.4.js"></script>
-<script src="${contextPath}/static/js/main.js"></script>
+<script src="${contextPath}/static/js/pageCom.js"></script>
 <script src="${contextPath}/static/js/chartsCom.js"></script>
 <script>
-
-    $(function () {
+	var totalPage,totalNum,pageNumber;
+	var riskIndex;
+     $(function () {
         $(".formFoldHandle").click(function () {
-            $(".formBox").toggleClass("open")
+			$(".formBox").toggleClass("open")
         })
-    });
+        
+    }); 
+    init()
+    function init(){
+    	getTableBody();
+    }
+  //显示model
+    $(".tableBox tbody tr td:nth-child(1) a").click(function(e){
+        e.preventDefault();
 
+        $(".model").css("display","block");
+
+    });
+    //异常model
+    $(".header span").click(function (e) {
+        e.preventDefault();
+        $(".model").hide();
+    })
+    
+    //第一页
+    $('#pagehome').on('click',function(){
+        getTableBody()
+    })
+    //最后一页
+    $('#pageend').on('click',function(){
+        getTableBody(totalPage)
+    })
+    //上一页
+    $('#pageprev').on('click',function(){
+        if(pageNumber==1){
+            alert("已经是第一页了")
+        }else{
+            getTableBody(pageNumber-1)
+        }
+
+    })
+    //下一页
+    $('#pagenext').on('click',function(){
+        console.log(pageNumber,totalPage)
+        if(pageNumber== totalPage){
+            alert("已经是最后一页了")
+        }else{
+            getTableBody(pageNumber+1)
+        }
+
+    })
+    $('#pageCurrent').bind('keypress',function(event){
+        console.log(11,event.keyCode)
+        if(event.keyCode == 13){
+            getTableBody($(this).val(),10)
+            }
+        });	
+    $('#btnCheck').on('click',function () {
+       
+		var con = getCondition();
+        getTableBody(null,null,con);
+    })
+		function getCondition() {
+    	var jys = $('#marketName option:selected').val();
+    	
+	 	var reportType = $('#reportType option:selected').val();
+	 
+   		var date = $('#alarmTimeEnd').val();       
+        var htmlstr = "";     
+        return htmlstr+="?jys="+jys+"&reportType="+reportType+"&upload_time="+date;
+            
+
+    }	
+		/* dsh */
+		
+		function getTableBody(pageNum,pageSize,appenddata) {
+		        if(!appenddata){
+		            appenddata = "";
+		        }
+		        $.ajax({
+		            type: "POST",
+		            url: "supervise/getMonthlyReportList"+appenddata,
+		            data: {"pageNum":pageNum,"pageSize":pageSize},
+		            dataType: "json",
+		            success: function(data){
+		                var  append = "";
+		                $(".nuber").text(data.totalRow);
+		                $('#pageCurrent').val(data.pageNumber);
+
+		                $('.pageTotal').text(data.totalPage);
+		                totalPage = data.totalPage;
+		                pageNumber = data.pageNumber;
+				       $.each(data.list, function(index, value, array) {
+				    	   
+				           append +=
+				               "  <tr>       <td><a href=\"\" class=\"fengxian001\">"+(index+1)+"</a></td>\n" +
+				               "                <td>"+value.type+"</td>\n" +
+				               "                <td>"+value.jys+"</td>\n" +
+				               "               <td>"+value.upload_user+"</td>\n" +
+				               "               <td>"+value.upload_time+"</td>\n" +
+				               "                <td><span onclick='fileView(\""+value.file_name+"\")'>预览</a></span>" +    
+				               "                <span onclick='downFile(\""+value.file_name+"\")'>下载</span></td></tr>  ";
+				       });
+			       $('tbody').html(append);
+					            }
+					        })
+		    }
+		
+		
+	
+			//文件下载
+			function downFile(str){
+		        var url = "${contextPath}/qdch/fileupLoadp2p/downLoad?fileName="+str;  
+		        window.open(url);
+			}
+			
+			//文件预览
+			function fileView(str){
+		        var url = "${contextPath}/qdch/fileupLoadp2p/fileView?fileName="+str;  
+		        window.open(url);
+			}
+
+		
 
 </script>
 </body>
