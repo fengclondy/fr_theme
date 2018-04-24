@@ -27,6 +27,7 @@ import com.qdch.p2p.controller.BorrowerFillController;
 import com.qdch.p2p.controller.BorrowerPhotoController;
 import com.qdch.p2p.controller.CompanyFeelController;
 import com.qdch.p2p.controller.DealplatformController;
+import com.qdch.p2p.controller.FileUpLoadControllerp2p;
 import com.qdch.p2p.controller.IndustryCommController;
 import com.qdch.p2p.controller.PlatformAlertController;
 import com.qdch.p2p.controller.PlatformController;
@@ -68,6 +69,7 @@ import com.qdch.p2p.model.ImportantRatioModel;
 import com.qdch.p2p.model.InterestModel;
 import com.qdch.p2p.model.JiaoYiLiangModel;
 import com.qdch.p2p.model.LoanBalanceModel;
+import com.qdch.p2p.model.MonthlyReportListModelp2p;
 import com.qdch.p2p.model.PingTaiRenShuModel;
 import com.qdch.p2p.model.PingTaiXinXiModel;
 import com.qdch.p2p.model.PingTaiZhuangTaiModel;
@@ -234,6 +236,7 @@ public class Config extends JFinalConfig {
 		me.add("qdch/borrowerphoto",BorrowerPhotoController.class,"/"); //p2p-借款人画像
 		me.add("qdch/companyfeel",CompanyFeelController.class,"/");  //p2p-企业舆情
 		me.add("qdch/supervise",SuperviseController.class,"/");  //p2p-监管月报
+		me.add("qdch/fileupLoadp2p", FileUpLoadControllerp2p.class,"/");	//监管月报上传
 		me.add("qdch/platformalert",PlatformAlertController.class,"/"); //p2p-平台总览弹出
 		me.add("qdch/industry",IndustryCommController.class,"/");//p2p-工商新内容
 		me.add("qdch/borrowerfill",BorrowerFillController.class,"/"); //p2p-借款人填报
@@ -397,6 +400,8 @@ public class Config extends JFinalConfig {
 			insight_arp.addMapping("insight_pp_flow_amount",FlowAmountModel.class);//资金流入
 			insight_arp.addMapping("insight_pp_collect_principal",CollectPrincipalModel.class);//资金流入
 			
+			insight_arp.addMapping("insight_regulatory_report",MonthlyReportListModelp2p.class);//监管月报 列表文件上传下载预览
+			
 		/***p2p 连纪明 insight层 Model END***/
 		
 		
@@ -476,7 +481,10 @@ public class Config extends JFinalConfig {
 	}
 
 	public static void main(String[] args){ 
+
+
 		JFinal.start("WebRoot", 8080, "/", 5);
+
 
 	}
 	
