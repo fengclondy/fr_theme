@@ -367,7 +367,7 @@ public class Config extends JFinalConfig {
 
 		arp.addMapping("hub_xd_cust_pers", PersonalCustomModel.class);//个人客户
 
-		arp.addMapping("hub_xd_loan_ledger", DetailsQueryModel.class);//明细查询
+		arp.addMapping("hub_xd_loan_ledger", DetailsQueryModel.class);//明细查询     
 
 		arp.addMapping("hub_xd_cred_indus_info", LimitQueryModel.class);//额度查询
 		arp.addMapping("hub_fxsj_yuzhi", ThresholdValueModel.class);//阈值信息

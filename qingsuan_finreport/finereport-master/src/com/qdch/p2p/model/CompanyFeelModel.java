@@ -30,14 +30,14 @@ public class CompanyFeelModel extends Model<CompanyFeelModel>{
 				+ " M.create_time,COUNT (1) QTY"
 				+ " FROM hub_commerce_meiya_sentiment_news M"
 				+ " WHERE m.enterprise_id in(SELECT enterprise_id FROM hub_commerce_ref_jys n left join public.hub_dd_tqs_jys t1"
-				+ " on n.jysmc=t1.jysmc where 1=1";
+				+ " on n.company_name=t1.jysmc where 1=1";
 		if (StringUtils.isNotBlank(jysIds)) {
-			sql += " and t1.jys in "+jysIds;
+			sql += " and enterprise_id in "+jysIds;
 		}
 		if (StringUtils.isNotBlank(jysinfo)) {
 			sql += " and jysinfo = '"+jysinfo+"'";
 		}
-		sql += " and t1.jysfl='4') and M.create_time<=to_char(now()- interval'1 day','yyyymmdd') "
+		sql += " and t1.jysfl='1') and M.create_time<=to_char(now()- interval'1 day','yyyymmdd') "
 				+ " GROUP BY M .PUBLISH_DATE,M.enterprise_id,jys,M.create_time"
 				+ " ORDER BY M .PUBLISH_DATE,M .ENTERPRISE_ID) as a group by a.publish_date order by a.publish_date";
 		
@@ -52,17 +52,17 @@ public class CompanyFeelModel extends Model<CompanyFeelModel>{
 	 */
 	public List<CompanyFeelModel> getOverviewCompanFeel(String jysIds){
 		String sql = "SELECT (SELECT ENTERPRISE_ID FROM hub_commerce_ref_jys WHERE company_name = n. NAME) ENTERPRISE_ID,"
-				+ " (SELECT jysinfo FROM hub_commerce_ref_jys t where t.company_name = n. NAME) jysinfo,COUNT (1) QTY"
+				+ " (SELECT jysinfo FROM hub_commerce_ref_jys t where t.company_name = n. NAME) jysinfo,M.create_time,COUNT (1) QTY"
 				+ " FROM PUBLIC .hub_commerce_meiya_sentiment_news M "
 				+ " LEFT JOIN PUBLIC .hub_commerce_enterprise n ON M .ENTERPRISE_ID = n. ID"
-				+ " WHERE n. NAME IN (SELECT company_name FROM hub_commerce_ref_jys t left join public.hub_dd_tqs_jys t1 on t.jysmc=t1.jysmc"
-				+ " where t1.jysfl=4 ";
+				+ " WHERE n. NAME IN (SELECT company_name FROM hub_commerce_ref_jys t left join public.hub_dd_tqs_jys t1 on t.company_name=t1.jysmc"
+				+ " where t1.jysfl=1 )"
+				+ " and M.create_time<=to_char(now()- interval'1 day','yyyymmdd') ";
 				if (StringUtils.isNotBlank(jysIds)) {
-					sql += " and t.jys in "+jysIds;
+					sql += " and m.ENTERPRISE_ID in "+jysIds;
 				}
-				sql+= ")"
-				+ " and M.create_time<=to_char(now()- interval'1 day','yyyymmdd') "
-				 + " GROUP BY ENTERPRISE_ID,n. NAME";
+				sql += " GROUP BY ENTERPRISE_ID,n. NAME,M.create_time"
+					+ " ORDER BY M.create_time desc";
 		return dao.find(sql);
 	}
 	
@@ -81,9 +81,9 @@ public class CompanyFeelModel extends Model<CompanyFeelModel>{
 				sql +=") news"
 				+ " FROM hub_commerce_meiya_sentiment_news T"
 				+ " where t.enterprise_id in (SELECT enterprise_id FROM hub_commerce_ref_jys t left join public.hub_dd_tqs_jys t1"
-				+ " on t.jysmc=t1.jysmc where t1.jysfl=4";
+				+ " on t.company_name=t1.jysmc where t1.jysfl=1";
 				if (StringUtils.isNotBlank(jysIds)) {
-					sql += " and t.jys in "+jysIds;
+					sql += " and enterprise_id in "+jysIds;
 				}
 				sql+= ")"
 					+ " ORDER BY T .publish_date DESC LIMIT 7";
@@ -106,6 +106,9 @@ public class CompanyFeelModel extends Model<CompanyFeelModel>{
 				+ " from(select DISTINCT  ENTERPRISE_ID,TITLE,SUMMARY,URL,DATA_SOURCE,PUBLISH_DATE,content,"
 				+ " regexp_split_to_table(hit_keyword,'\"') as keyword "
 				+ " from public.hub_commerce_meiya_sentiment_news where 1=1";
+		if (StringUtils.isNotBlank(jysIds)) {
+			sql += " and ENTERPRISE_ID in "+jysIds;
+		}
 		if (StringUtils.isNotBlank(startTime)) {
 			sql += " and publish_date >= '"+startTime+"'";
 		}
@@ -120,21 +123,13 @@ public class CompanyFeelModel extends Model<CompanyFeelModel>{
 					+ " )rm left join hub_commerce_ref_jys hcrj "
 					+ " on rm.ENTERPRISE_ID = hcrj.ENTERPRISE_ID "
 					+ " left join hub_dd_tqs_jys hdtj on hcrj.jys = hdtj.jys "
-					+ " where rm.rank_num<=2 and hdtj.jysfl = '4' ";
-					if (StringUtils.isNotBlank(jysIds)) {
-						sql += " and  hdtj.jys  in "+jysIds;
-					}
-					sql+= "group by rm.ENTERPRISE_ID,TITLE,SUMMARY,URL,DATA_SOURCE,PUBLISH_DATE,content limit '"+pageSize+"' OFFSET '"+currentPage+"'";
+					+ " where rm.rank_num<=2 and hdtj.jysfl = '1' group by rm.ENTERPRISE_ID,TITLE,SUMMARY,URL,DATA_SOURCE,PUBLISH_DATE,content limit '"+pageSize+"' OFFSET '"+currentPage+"'";
 		}else{
 			sql += " )rx where rx.keyword ~ '[\u4e00-\u9fa5]'"
 					+ " )rm left join hub_commerce_ref_jys hcrj "
 					+ " on rm.ENTERPRISE_ID = hcrj.ENTERPRISE_ID "
 					+ " left join hub_dd_tqs_jys hdtj on hcrj.jys = hdtj.jys "
-					+ " where rm.rank_num<=2 and hdtj.jysfl = '4' ";
-					if (StringUtils.isNotBlank(jysIds)) {
-						sql += " and  hdtj.jys  in "+jysIds;
-					}
-					sql+= "group by rm.ENTERPRISE_ID,TITLE,SUMMARY,URL,DATA_SOURCE,PUBLISH_DATE,content limit '"+pageSize+"' OFFSET '"+(currentPage-1)*pageSize+"'";
+					+ " where rm.rank_num<=2 and hdtj.jysfl = '1' group by rm.ENTERPRISE_ID,TITLE,SUMMARY,URL,DATA_SOURCE,PUBLISH_DATE,content limit '"+pageSize+"' OFFSET '"+(currentPage-1)*pageSize+"'";
 		}
 		
 		
@@ -158,7 +153,9 @@ public class CompanyFeelModel extends Model<CompanyFeelModel>{
 				+ " from(select DISTINCT  ENTERPRISE_ID,TITLE,SUMMARY,URL,DATA_SOURCE,PUBLISH_DATE,content,"
 				+ " regexp_split_to_table(hit_keyword,'\"') as keyword "
 				+ " from public.hub_commerce_meiya_sentiment_news where 1=1";
-		
+		if (StringUtils.isNotBlank(jysIds)) {
+			sql += " and ENTERPRISE_ID in "+jysIds;
+		}
 		if (StringUtils.isNotBlank(startTime)) {
 			sql += " and publish_date >= '"+startTime+"'";
 		}
@@ -173,22 +170,14 @@ public class CompanyFeelModel extends Model<CompanyFeelModel>{
 					+ " )rm left join hub_commerce_ref_jys hcrj "
 					+ " on rm.ENTERPRISE_ID = hcrj.ENTERPRISE_ID "
 					+ " left join hub_dd_tqs_jys hdtj on hcrj.jys = hdtj.jys "
-					+ " where rm.rank_num<=2 and hdtj.jysfl = '4' ";
-			if (StringUtils.isNotBlank(jysIds)) {
-				sql += " and  hdtj.jys  in "+jysIds;
-			}
-					sql+= "group by rm.ENTERPRISE_ID,TITLE,SUMMARY,URL,DATA_SOURCE,PUBLISH_DATE,content";
-					
+					+ " where rm.rank_num<=2 and hdtj.jysfl = '1' group by rm.ENTERPRISE_ID,TITLE,SUMMARY,URL,DATA_SOURCE,PUBLISH_DATE,content"
+					+ " limit 5";
 		}else{
 			sql += " )rx where rx.keyword ~ '[\u4e00-\u9fa5]'"
 					+ " )rm left join hub_commerce_ref_jys hcrj "
 					+ " on rm.ENTERPRISE_ID = hcrj.ENTERPRISE_ID "
 					+ " left join hub_dd_tqs_jys hdtj on hcrj.jys = hdtj.jys "
-					+ " where rm.rank_num<=2 and hdtj.jysfl = '4' ";
-			if (StringUtils.isNotBlank(jysIds)) {
-				sql += " and  hdtj.jys  in "+jysIds;
-			}
-					sql+= "group by rm.ENTERPRISE_ID,TITLE,SUMMARY,URL,DATA_SOURCE,PUBLISH_DATE,content ) as a";
+					+ " where rm.rank_num<=2 and hdtj.jysfl = '1' group by rm.ENTERPRISE_ID,TITLE,SUMMARY,URL,DATA_SOURCE,PUBLISH_DATE,content ) as a";
 		}
 		
 		
