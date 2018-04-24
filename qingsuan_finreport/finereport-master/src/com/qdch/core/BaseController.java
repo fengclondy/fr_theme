@@ -218,7 +218,7 @@ public class BaseController extends Controller{
 			String url="";
 			 if("false".equals(PropKit.get("isDev"))){
 				 //正式发布 正式环境也需要写localhost  服务器设置了外网权限
-				 url="http://localhost/WebReport/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
+				 url=PropKit.get("localSite")+"/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
 			 }else{
 				 url=PropKit.get("webSite")+"/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
 			 }
