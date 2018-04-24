@@ -42,9 +42,9 @@ public class DealplatformController extends BaseController {
 	public void getTotalTranNum(){
 		String jysinfo=getPara("jysinfo");//获取参数：交易市场名称
 		//获取总成交量
-			List totalList = TotalTranNumModel.dao.getTotalTranNumModel(getDataScopeByUserName(),jysinfo);
+			List totalList = TotalTranNumModel.dao.getTotalTranNumModel(getDataScopeByUserNameForP2p(),jysinfo);
 		//获取总成交额
-			List countList = TotalTranNumModel.dao.getCountTranNumModel(getDataScopeByUserName(), jysinfo);
+			List countList = TotalTranNumModel.dao.getCountTranNumModel(getDataScopeByUserNameForP2p(), jysinfo);
 		Map<String,Object> res = new HashMap<String,Object>();
 		res.put("totalList", totalList);
 		res.put("countList", countList);
@@ -53,7 +53,7 @@ public class DealplatformController extends BaseController {
 	//平均满标时间
 	public void getAvgTime(){
 		String jysinfo=getPara("jysinfo");//获取参数：交易市场名称
-		List<AverageTimeModel> avgTime = AverageTimeModel.dao.getAvgTime(getDataScopeByUserName(), jysinfo);
+		List<AverageTimeModel> avgTime = AverageTimeModel.dao.getAvgTime(getDataScopeByUserNameForP2p(), jysinfo);
 		mRenderJson(avgTime);
 	}
 	
@@ -61,9 +61,9 @@ public class DealplatformController extends BaseController {
 	public void getCustNum(){
 		String jysinfo=getPara("jysinfo");//获取参数：交易市场名称
 		//人均借款
-		List loanList = CustNumberModel.dao.getLoanNumber(getDataScopeByUserName(),jysinfo);
+		List loanList = CustNumberModel.dao.getLoanNumber(getDataScopeByUserNameForP2p(),jysinfo);
 		//人均投资
-		List investList = CustNumberModel.dao.getInvestNumber(getDataScopeByUserName(),jysinfo);
+		List investList = CustNumberModel.dao.getInvestNumber(getDataScopeByUserNameForP2p(),jysinfo);
 		Map<String,Object> res = new HashMap<String,Object>();
 		res.put("loanList", loanList);
 		res.put("investList", investList);
@@ -75,23 +75,23 @@ public class DealplatformController extends BaseController {
 	public void getRangeNumber(){
 		String jysinfo = getPara("jysinfo");//获取参数：交易市场名称
 		String ppType = getPara("ppType");//类型：借款人或者投资人
-		List<RangeNumberModel> list = RangeNumberModel.dao.getInvestRangeNumber(getDataScopeByUserName(), jysinfo, ppType);
+		List<RangeNumberModel> list = RangeNumberModel.dao.getInvestRangeNumber(getDataScopeByUserNameForP2p(), jysinfo, ppType);
 		mRenderJson(list);
 	}
 	//获取 借款区间人数
 	public void getLoanRangeNumber(){
 		String jysinfo = getPara("jysinfo");//获取参数：交易市场名称
 		String ppType = getPara("ppType");//类型：借款人或者投资人
-		List<RangeNumberModel> list = RangeNumberModel.dao.getLoanRangeNumber(getDataScopeByUserName(), jysinfo, ppType);
+		List<RangeNumberModel> list = RangeNumberModel.dao.getLoanRangeNumber(getDataScopeByUserNameForP2p(), jysinfo, ppType);
 		mRenderJson(list);
 	}
 	//获取人均借款金额 人均投资金额
 	public void getLoanAndInvestNumber(){
 		String jysinfo=getPara("jysinfo");//获取参数：交易市场名称
 		//人均借款金额 
-		List<TranAmountModel> loanList = TranAmountModel.dao.getLoanNumber(getDataScopeByUserName(),jysinfo);
+		List<TranAmountModel> loanList = TranAmountModel.dao.getLoanNumber(getDataScopeByUserNameForP2p(),jysinfo);
 		//人均投资金额
-		List<TranAmountModel> investList = TranAmountModel.dao.getInvestNumber(getDataScopeByUserName(), jysinfo);
+		List<TranAmountModel> investList = TranAmountModel.dao.getInvestNumber(getDataScopeByUserNameForP2p(), jysinfo);
 		Map<String,Object> res = new HashMap<String,Object>();
 		res.put("loanList", loanList);
 		res.put("investList", investList);
@@ -100,13 +100,13 @@ public class DealplatformController extends BaseController {
 	//资金流入
 	public void getFlowAmount(){
 		String jysinfo = getPara("jysinfo");//获取参数：交易市场名称
-		List<FlowAmountModel> flowAmountList = FlowAmountModel.dao.getFlowAmount(getDataScopeByUserName(), jysinfo);
+		List<FlowAmountModel> flowAmountList = FlowAmountModel.dao.getFlowAmount(getDataScopeByUserNameForP2p(), jysinfo);
 		mRenderJson(flowAmountList);
 	}
 	//代收本金
 	public void getCollectPrincipal(){
 		String jysinfo = getPara("jysinfo");//获取参数：交易市场名称
-		List<CollectPrincipalModel> collectPrincipal = CollectPrincipalModel.dao.getCollectPrincipal(getDataScopeByUserName(), jysinfo);
+		List<CollectPrincipalModel> collectPrincipal = CollectPrincipalModel.dao.getCollectPrincipal(getDataScopeByUserNameForP2p(), jysinfo);
 		mRenderJson(collectPrincipal);
 	}
 }
