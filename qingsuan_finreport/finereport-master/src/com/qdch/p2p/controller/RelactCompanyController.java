@@ -39,7 +39,8 @@ public class RelactCompanyController extends BaseController{
 	 */
 	public  void index(){
 		String name=getPara("name");
-		 List<CompanysInfoModel> basic = CompanysInfoModel.dao.getBasicinfo(getDataScopeByUserName(),name);
+		 String namess=getPara("namess");
+		 List<CompanysInfoModel> basic = CompanysInfoModel.dao.getBasicinfo(getDataScopeByUserName(),namess);
 	     setAttr("basic", basic.get(0));
 		CoCompanyInfoModel company = CoCompanyInfoModel.dao.getInfo(name);
 		 setAttr("company", company);

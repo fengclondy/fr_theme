@@ -46,11 +46,11 @@ public class CommerceController extends BaseController{
 	public void index(){
 		String name=getPara("name");
 		if (name==null||"".equals(name)) {
-			name="青岛国际版权交易中心有限公司";
+			name="青岛鲁金所股权投资基金有限公司";
 		}
 		setAttr("company", name);
-	    List<CompanysInfoModel> info = CompanysInfoModel.dao.getInfo(getDataScopeByUserName(),name);
-	    setAttr("companyName", info);
+	   /* List<CompanysInfoModel> info = CompanysInfoModel.dao.getInfo(getDataScopeByUserName(),name);
+	    setAttr("companyName", info);*/
 	    List<CompanysInfoModel> basic = CompanysInfoModel.dao.getBasicinfo(getDataScopeByUserName(),name);
 	     setAttr("basic", basic);
 	    List<CoShareHolderModel> main = CoShareHolderModel.dao.getMainperson(name);
@@ -128,7 +128,7 @@ public class CommerceController extends BaseController{
 	        setAttr("stockc", stockC);
 	     CoEnterpriseModel cc=CoEnterpriseModel.dao.getid(name);
 	   
-	  List<MarkNewsModel> mark =  MarkNewsModel.dao.getNews(cc.get("id")+"", "", "", "");
+	  List<MarkNewsModel> mark =  MarkNewsModel.dao.getNews2(cc.get("id")+"", "", "", "");
 	     setAttr("marknews", mark);
 	  List<CompanysInfoModel> infoModels= CompanysInfoModel.dao.getCompanybyName(basic.get(0).get("legal_person")+"");
 	      setAttr("comInfo", infoModels);
@@ -139,7 +139,7 @@ public class CommerceController extends BaseController{
 	   RiskTrendDetailedModel risk = RiskTrendDetailedModel.dao.getScore(getDataScopeByUserName(), name);
 	     setAttr("risk", risk);
 	   RiskTrendModel valueList=RiskTrendModel.dao.getFxzs(getDataScopeByUserName(), name);
-	    setAttr("value", valueList);
+	  setAttr("value", valueList);
 	  render("xd/pages/08_01shichanghuaxiang.html");
 	}
 	/**
