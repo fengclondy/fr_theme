@@ -43,7 +43,7 @@
         		<ul>
         		 ##for(menu in user.menus!){
         		 	<li class="">
-		                <a class="dropdown-toggle">${menu.name!}<span class="icon"></span> </a>
+		                <a sort="${menu.sortIndex!}"  class="dropdown-toggle">${menu.name!}<span class="icon"></span> </a>
 		                <ul>
 		                	##for(c in menu.children){
 		                		 <li sort="${c.sortIndex!}" data-id="${contextPath}${c.reportletpath!}" data="${c.desc!}">${c.name!}</li>

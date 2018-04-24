@@ -139,7 +139,11 @@
             width: 100%;
             font-size: 1.2rem;
             
+
         }
+        tbody > tr > td {
+    font-size: 1rem;
+         }
         .blank {
             background: #13789f;
             /* margin-top: 10em; */
@@ -719,7 +723,7 @@
         <div class="inputGroup">
             <label>平台：</label>
             <div class="mySelect" id="jingzhenglizhibiao4">
-                <div class="myOption selected"><span class="text" id="comm"></span><span class="icon"></span>
+                <div class="myOption selected"><span class="text" id="comm" ></span><span class="icon"></span>
                 </div>
                 <ul class="myOptionBox">
                    
@@ -1722,7 +1726,7 @@
 												<span>涉及词:</span><a href="#">${info.string_agg!}</a>
 												<!-- <span class="bgi4"><a href="#">256</a></span> -->
 												<span class="fr bgi2">${info.publish_date!}</span>
-											    <span class="fr kuaizhao"><a href="" onclick="kuaizhao('${info.content}')">快照</ a></span>
+											    <span class="fr kuaizhao"><a href="javascript:void(0)" onclick="kuaizhaoLoad('${info.content}')">快照</a></span>
 											</p>
 										</li>
 										##}
@@ -1756,10 +1760,12 @@
                                 <td class="center faren" >法人</td>
                                 <td class="center" >${info.name!}</td>
                                 <td class="center"><a href="#">${info.company_name}</a></td>
-                                <td class="center">${info.position}</td>
+                                <td class="center">${info.holder_type}</td>
                                 <td class="center">${info.total_num!}</td>
                             </tr>
                             ##}
+                            
+                            
                            
                         </tbody>
 
@@ -1978,39 +1984,101 @@ var end;
 
 }
 
- function kuaizhao(obj){
-	
+ function kuaizhao(index){
+	 var obj=dataMap.get(index);
+	 var p='<html><head><title>舆情信息</title></head><body><div>'+obj.content+'</div></body></html>';
+	 w=window.open('about:blank');
+	 w.document.write(p);
+ }
+ 
+ function kuaizhaoLoad(obj){
 	 var p='<html><head><title>舆情信息</title></head><body><div>'+obj+'</div></body></html>';
 	 w=window.open('about:blank');
 	 w.document.write(p);
  }
 
-//市场画像查询 
+ 
+ /**  
+  * 描述：js实现的map方法 
+  * @returns {Map} 
+  */  
+ function Map(){  
+  var struct = function(key, value) {  
+   this.key = key;  
+   this.value = value;  
+  };  
+ // 添加map键值对  
+  var put = function(key, value){  
+    for (var i = 0; i < this.arr.length; i++) {  
+    if ( this.arr[i].key === key ) {  
+     this.arr[i].value = value;  
+     return;  
+    }  
+   };  
+   this.arr[this.arr.length] = new struct(key, value);  
+  };  
+ //  根据key获取value   
+  var get = function(key) {  
+   for (var i = 0; i < this.arr.length; i++) {  
+    if ( this.arr[i].key === key ) {  
+     return this.arr[i].value;  
+    }  
+   }  
+  return null;  
+  };  
+ //   根据key删除  
+  var remove = function(key) {  
+   var v;  
+   for (var i = 0; i < this.arr.length; i++) {  
+    v = this.arr.pop();  
+    if ( v.key === key ) {  
+     continue;  
+    }  
+    this.arr.unshift(v);  
+   }  
+  };  
+ //   获取map键值对个数  
+  var size = function() {  
+   return this.arr.length;  
+  };  
+ // 判断map是否为空    
+  var isEmpty = function() {  
+   return this.arr.length <= 0;  
+  };  
+  this.arr = new Array();  
+  this.get = get;  
+  this.put = put;  
+  this.remove = remove;  
+  this.size = size;  
+  this.isEmpty = isEmpty;  
+ }  
+var dataMap=new Map();
+ 
 function check(){
 	 name= $("#comm").text();
 	 key= $(".gjz").val();
-    begin=$("#BeginTime").val();
-    end=$("#EndTime").val();
-   $.post("${contextPath}/qdch/commerce/gainNews",{"name":name,"keyword":key,"begin":begin,"end":end},function(data){
-   	  $(".leftBox li").remove();
-   	  
+     begin=$("#BeginTime").val();
+     end=$("#EndTime").val();
+     $.post("${contextPath}/qdch/commerce/gainNews",{"name":name,"keyword":key,"begin":begin,"end":end},function(data){
+     $(".leftBox li").remove();
+   	 dataMap=new Map();
   	    var tr=[];
     	  $.each(data,function(index,item){
+    		  
     		var mTr='';
     		mTr+='<li><div class="fl pic">'
     		+'<img src="${contextPath}/static/img/03_05shengyufengxian/02.png"></div><p class="fr"><a >'
     		+item.title+'</a> <span class="neirong">'+item.summary+'</span><span>来源:</span><a href="#" class="bgi1 source1">'
     		+item.data_source+'</a><span>|</span><span>涉及词:</span><a href="#">'
-  		    +item.string_agg+'</a><span class="fr bgi2">'+item.publish_date+'</span></p></li>'
-    		
+  		    +item.string_agg+'</a><span class="fr bgi2">'+item.publish_date+'</span>';
+  		 	mTr+= "<span class='fr kuaizhao'><a href='javascript:void(0);'  onclick=\"kuaizhao('"+index+"')\">快照</a></span>";
+  			mTr+='</p></li>';
     		tr.push(mTr);
-    	
-    		  });
-    		$(".leftBox").html(tr.join(''));
+    		dataMap.put(index+"",item);
+         });
+    	  $(".leftBox").html(tr.join(''));
       
    })
-	
-
 }
 //弹出框
 $(".legalPerson").click(function () {
@@ -2327,10 +2395,10 @@ var deleteBtn = '';
 
         },
         qyClick:function(obj,str){
-        	
+        	 name= $("#comm").text();
         	var qyName = obj.text();//企业名称
         	
-        	window.location.href="${contextPath}/qdch/relact?name="+qyName;
+        	window.location.href="${contextPath}/qdch/relact?name="+qyName+"&namess="+name;
        }
     }
 
