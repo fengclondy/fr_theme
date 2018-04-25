@@ -46,7 +46,12 @@
 		                <a sort="${menu.sortIndex!}"  class="dropdown-toggle">${menu.name!}<span class="icon"></span> </a>
 		                <ul>
 		                	##for(c in menu.children){
-		                		 <li sort="${c.sortIndex!}" data-id="${contextPath}${c.reportletpath!}" data="${c.desc!}">${c.name!}</li>
+		                		##if(c.name=='平台总览明细'||c.name=='alert'){
+		                			<li style="display:none;" sort="${c.sortIndex!}" data-id="${contextPath}${c.reportletpath!}" data="${c.desc!}">${c.name!}</li>
+		                		##}else{
+		                			<li sort="${c.sortIndex!}" data-id="${contextPath}${c.reportletpath!}" data="${c.desc!}">${c.name!}</li>
+		                		##}
+		                		 
 		                	##}
 		                </ul>
 		            </li>
@@ -155,6 +160,29 @@ function logout(){
 function navigation(){
 	//window.location="http://localhost:8075/WebReport/navigation/navigation.html";
 	window.location="http://144.123.36.214/WebReport/navigation/navigation.html";
+}
+function triggerClick(page){
+	if(page){
+		$("#mainNav li[data='"+page+"']").trigger("click");
+	};
+}
+//带参数跳转
+function triggerClickParam(page,param){
+	if(param){
+		var dataId=$("#mainNav li[data='"+page+"']").attr("data-id");
+		dataId=dataId.split("?")[0];
+		$("#mainNav li[data='"+page+"']").attr("data-id",dataId+param);
+	}
+	if(page){
+		$("#mainNav li[data='"+page+"']").trigger("click");
+		$("div[data-pagename="+ page +"]").children("iframe").attr("src", function () {
+	         var d = new Date();
+	         var _src =dataId+param;  
+	         return _src;
+	    });
+		$("#mainNav li[data='"+page+"']").attr("data-id",dataId);
+	};
+	
 }
 </script>
 </body>

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="${contextPath}/static/css/index.css">
     <link rel="stylesheet" href="${contextPath}/static/css/laydate.css">
     
-    <style>
+   <style>
          .fl {
             float: left;
         }
@@ -137,11 +137,7 @@
             width: 100%;
             font-size: 1.2rem;
             
-
         }
-        tbody > tr > td {
-    font-size: 1rem;
-         }
         .blank {
             background: #13789f;
             /* margin-top: 10em; */
@@ -699,7 +695,7 @@
 		    font-size: 1rem;
 		}
 	</style>
-    </style>
+
 </head>
 <body id="gongshangxinxijiankong" data-title="工商信息监控">
 <div class="container">
@@ -1658,12 +1654,10 @@
                                     <div class="inputGroup fl">
                                         <label class="jiaoyishichang">交易市场：</label>
                                         <div class="mySelect" id="jiaoyishichang" style="width:14rem;">
-                                            <div class="myOption selected" style="width:14rem; border:0.15em solid  #00abde;"><span class="text"></span><span class="icon"></span></div>
+                                            <div class="myOption selected" style="width:14rem;"><span class="text"></span><span class="icon"></span></div>
                                             <ul class="myOptionBox" style="width:14rem;">
-                                                <li class="myOption selected" style="width:14rem;">青岛华银有限公司</li>
-                                                <li class="myOption">青岛华银有限公司</li>
-                                                <li class="myOption">青岛华银有限公司</li>
-                                              
+                                                <li class="myOption selected" style="width:14rem;">${company!}</li>
+                                                
                                             </ul>
                                         </div>
                                     </div>
@@ -1679,7 +1673,7 @@
                                 <div class="customerInformationmiddle fl">
                                     <div class="inputGroup fl">
                                         <label class="guanjianzi">关键字：</label>&nbsp;&nbsp;&nbsp;
-                                        <input type="text" class="gjz" placeholder="青岛华银有限公司">
+                                        <input type="text" class="gjz" placeholder="">
 
                                     </div>
                                     <br>
@@ -1725,7 +1719,7 @@
             </div>
         </div>
         <div class="glqyContent" style="height: 45em;">
-            <div id="div_container" style="text-align:center;position:relative;height: 95%; overflow: auto;display:none;">
+            <div id="div_container" style="text-align:center;position:relative;height: 95%; overflow: auto;">
                 <!-- 固定表头 table外层必须包有一个div  id="my_div"   class="fakeContainer first_div" 引入superTables.js  在页面下面还需要调用 -->
                 <div id="my_div" class="fakeContainer first_div" >
                     <table border="1" id="demoTable" style="width: 96%;margin: 0 auto;">
@@ -1913,11 +1907,11 @@
 </div>
 <!--模态框 start-->
 <div class="model_faren">
-	<div class="header"><h4>项目结构详情</h4><span>X</span></div>
+	<div class="header">项目结构详情<span>X</span></div>
 	<div id="div_container1" style="text-align:center;position:relative;height: 95%; overflow: auto;">
 		<!-- 固定表头 table外层必须包有一个div  id="my_div"   class="fakeContainer first_div" 引入superTables.js  在页面下面还需要调用 -->
 		<div id="my_div1" class="fakeContainer first_div" >
-			<table border="1" id="demoTable1" style="margin:1em auto">
+			<table border="1" id="demoTable1" style="">
 				<tr id="my_tr1">
 					<th class="center" rowspan="1">角色</th>
 					<th class="center" rowspan="1">公司</th>

@@ -221,6 +221,9 @@
 </html>
 <script src="${contextPath}/static/js/jquery.pagination.min.js"></script>
 <script>
+function intentPage(jys){
+	window.parent.triggerClickParam("01_01pingtaizonglanbiaoalert",jys);
+};
     $(function() {
 
 
@@ -284,7 +287,7 @@
             			+'   	<td>'+item.dkje+'</td>'
             			+'    	<td>'+item.ztrs+'</td>'
             			+'   	<td>'+xxpl+'</td>'
-            			+'   	<td class="more"><a href="${contextPath}/qdch/platformalert/index?jysc='+item.jysc+'" data-id="01_01pingtaizonglanalert" data-title="平台总览"> 查看</a></td>'
+            			+'   	<td class="more"><a onclick=intentPage(\'?jysc='+item.jysc+'\') href="javascript:void(0);" data-id="01_01pingtaizonglanalert" data-title="平台总览"> 查看</a></td>'
             			+'    </tr>'
             			+'</tbody>'
             		})
@@ -309,7 +312,7 @@
             	}
             })
 		}
-        
+      
         /* 当点击查询按钮时查询 */
         $("#search").click(function () {
         	start();

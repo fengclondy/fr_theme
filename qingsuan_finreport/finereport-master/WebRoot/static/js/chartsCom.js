@@ -1,22 +1,25 @@
 var bodyScale = parent.bodyScale;
 var colors = [
     '#00adef',
-    '#73d13d',
+    '#91d5ff',
+    '#ffbb96',
     '#b37feb',
+    '#73d13d',
+    
     '#ff7875',
     '#5cdbd3',
     '#ff85c0',
     '#ffd591',
     '#eaff8f',
     '#d3adf7',
-    '#91d5ff',
+    
     '#ffa39e',
     '#87e8de',
     '#ffadd2',
     '#adc6ff',
     '#fffb8f',
     '#b7eb8f',
-    '#ffbb96',
+  
     '#d9f7be',
     '#ffd6e7',
     '#faad14'

@@ -90,11 +90,7 @@
 			display: block;
 		}
 		.top{
-			min-height: 29%;
-			_height:29%;
-			width: 100%;
-			/*position: fixed;*/
-			top:0em;
+			height: 22%
 		}
 		/*重写pageHeader */
 		.pageHeader {
@@ -109,21 +105,28 @@
 			background: #2c467f99;
 			box-shadow: 0px 0px 15px #2c467f;
 			z-index: 1;
-			width: 100%;
-			margin: 0.8em .8em;
+			width: 99%;
+			margin: 0.8em 0 0 0.8rem;
 		}
-		.top li {
-			float:left;
-			width:16.6%;
-			text-align: center;
-			height: 33.3%;
-			margin-top: 1.5em;
-		}
-		.top li a{
-			float: left;
-			width: 100%;
-			font-size: 0.85rem;
-		}
+		.top{
+            height: 22%;
+          
+       
+        } 
+        .top li {
+            float:left;
+            width:16.6%;
+            text-align: center;
+            height: 33.33%;
+             margin: 0.2rem auto; 
+        }
+        .top li a{
+            float: left;
+            width: 100%;
+            font-size: 1.2rem;
+            
+
+        }
 		.blank {
 			background: #13789f;
 			/* margin-top: 10em; */
@@ -138,7 +141,7 @@
 		.tabContent {
 			height: 11%;
 			/* margin: 0 auto; */
-			margin-top: 2%;
+			margin-top: 1%;
 			border-bottom: solid 2px #00adef;
 			/*position: fixed;*/
 			top: 9em;
@@ -211,7 +214,7 @@
 		}
 		.tbbg {
 			background: #33599999;
-			width: 10em;
+			width: 15em;
 			text-align: center;
 		}
 		table td {
@@ -803,6 +806,9 @@
             color: #faad14;
             margin-right: 1rem;
         }
+        tbody > tr > td,tbody > tr > th {
+    font-size: 1rem;
+}
 	</style>
 </head>
 <body id="gongshangxinxijiankong" data-title="工商信息监控">
@@ -1981,11 +1987,11 @@
 								<div id="myStathalf" data-dimension="120" data-width="20" data-text="93分" data-fontsize="13" data-percent="93" data-fgcolor="#00ACF0" data-bgcolor="#064983"></div>
 								<div class="ec003">
 		
-							    <a href="${contextPath}/qdch/operationalcapability"><div id="myStat" data-dimension="90" data-text="98分" data-info="经营能力" data-width="12" data-fontsize="13" data-percent="98" data-fgcolor="#95DF64" data-bgcolor="#115006">	</div></a>
+							    <a onclick="intentPage('04_01jingyingnengli')" href="javascript:void(0);"><div id="myStat" data-dimension="90" data-text="98分" data-info="经营能力" data-width="12" data-fontsize="13" data-percent="98" data-fgcolor="#95DF64" data-bgcolor="#115006">	</div></a>
 									
-								<a href="${contextPath}/qdch/profitability"><div id="myStathalf2" data-dimension="90" data-text="88分" data-info="盈利能力" data-width="12" data-fontsize="13" data-percent="88" data-fontcolor="#fff" data-fgcolor="#FED569" data-bgcolor="#805000" data-icon="fa-task"></div></a>
+								<a onclick="intentPage('04_02yinglinengli')" href="javascript:void(0);"><div id="myStathalf2" data-dimension="90" data-text="88分" data-info="盈利能力" data-width="12" data-fontsize="13" data-percent="88" data-fontcolor="#fff" data-fgcolor="#FED569" data-bgcolor="#805000" data-icon="fa-task"></div></a>
 									
-								<a href="${contextPath}/qdch/developmentcapacity"><div id="myStat2" data-dimension="90" data-text="88分" data-info="发展能力" data-width="12" data-fontsize="13" data-percent="88" data-fgcolor="#FC7B70" data-bgcolor="#520316"></div></a>
+								<a onclick="intentPage('04_03fazhannengli')" href="javascript:void(0);"><div id="myStat2" data-dimension="90" data-text="88分" data-info="发展能力" data-width="12" data-fontsize="13" data-percent="88" data-fgcolor="#FC7B70" data-bgcolor="#520316"></div></a>
 									
 								</div>
 								<div class="line line01"></div>
@@ -2298,19 +2304,24 @@
     	//添加点击事件
 	    fxyq003.on('click', function (params) {
 	        if(params.name.indexOf("信用风险") != -1){ //判断点击文字
-	            window.location.href="${contextPath}/qdch/creditrisk"
+	            //window.location.href="${contextPath}/qdch/creditrisk"
+	            intentPage("03_01xinyongfengxian");
 	        }
 	        else if(params.name.indexOf("管理风险") != -1){ //判断点击文字
-	        	  window.location.href="${contextPath}/qdch/managementrisk"
+	        	 // window.location.href="${contextPath}/qdch/managementrisk"
+	        	intentPage("03_02guanlifengxian");
 	        }
 	        else if(params.name.indexOf("资产风险") != -1){ //判断点击文字
-	        	  window.location.href="${contextPath}/qdch/assetrisk"
+	        	 // window.location.href="${contextPath}/qdch/assetrisk"
+	        	intentPage("03_03zichanfengxian");
 	        }
 	        else if(params.name.indexOf("合规风险") != -1){ //判断点击文字
-	        	  window.location.href="${contextPath}/qdch/compliancerisk"
+	        	  //window.location.href="${contextPath}/qdch/compliancerisk"
+	        	intentPage("03_04heguifengxian");
 	        }
 	        else if(params.name.indexOf("声誉风险") != -1){ //判断点击文字
-	        	  window.location.href="${contextPath}/qdch/reputationrisk"
+	        	 // window.location.href="${contextPath}/qdch/reputationrisk"
+	        	intentPage("03_05shengyufengxian");
 	        }
 	     })
         //当前时间
@@ -2711,6 +2722,9 @@
                 $(this).html("["+ v +"] " + spanContent);
             }
         });
+    }
+    function intentPage(page){
+    	window.parent.triggerClick(page);
     }
 </script>
 </body>
