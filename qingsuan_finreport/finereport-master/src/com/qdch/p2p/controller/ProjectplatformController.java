@@ -70,9 +70,12 @@ public class ProjectplatformController  extends BaseController{
 	public void getInterest(){
 		String jys=getPara("jys");
 		String type=getPara("rangeType");
-		
+		List<CompositeInterestModel> industryinterest=CompositeInterestModel.dao.getIndustryComInterest(getDataScopeByUserNameForP2p(), jys);
 		List<InterestModel> interestmodel=InterestModel.dao.getInterest(getDataScopeByUserNameForP2p(),jys,type);
-		mRenderJson(interestmodel);
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("industryinterest", industryinterest);
+		map.put("interest", interestmodel);
+		mRenderJson(map);
 	}
 	/**
 	 * 获取平台综合利率和行业综合利率
