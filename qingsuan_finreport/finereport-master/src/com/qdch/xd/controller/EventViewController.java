@@ -26,6 +26,7 @@ public class EventViewController extends BaseController {
 	* @TODO 风险事件查看
 	 */
 	public void index() {
+		setAttr("fxlb", getPara("fxlb"));
 		 render("xd/pages/05_02fengxianshijianchakan.html");
 	}
 
