@@ -887,7 +887,7 @@
 		<li class="activeTab">企业信息  <span>${all!}</span></li>
 		<li>经营状态  <span>${allsize!}</span></li>
 		<li>关系图谱<span></span></li>
-		<li>市场画像<span></span></li>
+		<li>企业舆情<span></span></li>
 		<!-- <li>附件查看<span></span></li> -->
 	</div>
 	<!--<div class="seat" style="height: 15.5em;"></div>-->
@@ -2010,7 +2010,7 @@
 					<div class="chartBody">
 						<div class="radarIndexFrame">
 							<div class="icon"><img src="${contextPath}/static/img/08shujuluru/radarIndexFrame.png" alt=""></div>
-							<div class="textContent">指数: <span>${value!}</span></div>
+							<div class="textContent">指数: <span>${value.fvalue!}</span></div>
 						</div>
 						<!--<div class="radarIndexChart">-->
 						<div id="ec002_competitivenessgongshangjiankong2"></div>
@@ -2063,6 +2063,9 @@
 	 w=window.open('about:blank');
 	 w.document.write(p);
  }
+ 
+ 
+ 
  //市场画像查询 
   /**  
      * 描述：js实现的map方法 

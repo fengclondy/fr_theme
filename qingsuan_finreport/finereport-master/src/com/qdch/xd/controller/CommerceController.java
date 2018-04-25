@@ -46,7 +46,7 @@ public class CommerceController extends BaseController{
 	public void index(){
 		String name=getPara("name");
 		if (name==null||"".equals(name)) {
-			name="青岛鲁金所股权投资基金有限公司";
+			name="重庆海尔小额贷款有限公司";
 		}
 		setAttr("company", name);
 	   /* List<CompanysInfoModel> info = CompanysInfoModel.dao.getInfo(getDataScopeByUserName(),name);
