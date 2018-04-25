@@ -111,28 +111,26 @@
 
 
 
-        .top{
-            min-height: 29%;
-            _height:29%;
-            width: 100%;
-            /*position: fixed;*/
-            top:0em;
-        }
+        
 
         .top,.tabContent {
             background: #2c467f99;
             box-shadow: 0px 0px 15px #2c467f;
             z-index: 1;
             width: 99%;
-            margin: 0.8em .8em;
+            margin: 0.8rem auto;
         }
-
+		.top{
+            height: 22%;
+          
+       
+        } 
         .top li {
             float:left;
             width:16.6%;
             text-align: center;
-            height: 33.3%;
-            margin-top: 1.5em;
+            height: 33.33%;
+             margin: 0.2rem auto; 
         }
         .top li a{
             float: left;
@@ -145,9 +143,9 @@
             /* margin-top: 10em; */
             /*position: fixed;*/
             width: 100%;
-            height: 4em;
-            top: 9.5em;
-            left: .5em;
+            height: 4rem;
+            top: 9.5rem;
+            left: .5rem;
             width: 99%;
             z-index: 999;
         }
@@ -155,7 +153,7 @@
         .tabContent {
             height: 11%;
             /* margin: 0 auto; */
-            margin-top: 2%;
+            margin-top: 0.5%;
             border-bottom: solid 2px #00adef;
             /*position: fixed;*/
             top: 9em;
@@ -528,31 +526,8 @@
             z-index: 100;
         }
 
-        .mySelect.open > .myOption.selected,
-        .mySelect > .myOption.selected:hover {
-            box-shadow: 0 0 .3em var(--themeBlue);
-        }
-
-        .mySelect > .myOption.selected:active {
-            box-shadow: 0 0 .5em var(--themeBlue);
-        }
-
-        .mySelect > .myOption.selected > .icon {
-            display: inline-block;
-            position: absolute;
-            top: .5rem;
-            right: .5rem;
-            width: .8rem;
-            height: .4rem;
-            background: url(../img/com/i_arrow_down.png) 50% 40% no-repeat;
-            background-size: contain;
-        }
 
         /*展开状态*/
-        .mySelect.open > .myOption.selected > .icon {
-            transform: rotate(180deg);
-        }
-
         .mySelect > .myOptionBox {
             position: abssolute;
             display: none;
@@ -565,19 +540,11 @@
             transition: all .5s ease;
             z-index:1001;
             box-shadow: 0rem 0.2rem .2rem #1F547E;
+            max-height:6rem;
       
         }
-
-        .mySelect.open > .myOptionBox {
-            display: block;
-        }
-
-        .mySelect > .myOptionBox > .myOption.selected {
-            background-color: #0005;
-        }
-
         .mySelect > .myOptionBox > .myOption:hover {
-            background-color: #0002;
+            background-color: #00adef;
         }
 
         /*企业舆情*/
@@ -699,7 +666,26 @@
 			display: none;
 			z-index: 1002;
 		}
-		
+		.header{
+            position: relative;
+            height: 2rem;
+            line-height:2rem;
+            border-radius: .5rem .5rem 0 0;
+            background-color: #0080ff;
+        }
+        .header span{
+            position: absolute;
+            right: .5rem;
+            top: 0.3rem;
+            width: 1rem;
+            height: 1rem;
+            text-align: center;
+            background-color: #fff;
+            border-radius: 50%;
+            line-height: 1rem;
+            cursor: pointer;
+            color: #00abde;
+        }
 		  .leftBox .kuaizhao a{
             color: #faad14;
             margin-right: 1rem;
@@ -851,17 +837,16 @@
 							<td rowspan="6" style="position: relative;">
 								<img src="${contextPath}/static/img/gsxx/gqjgt.jpg" style="margin-left: 5em;"/>
                                   ##for(st in stockc!){
-								<div style="position: absolute;left: 16em;top: 1.8em;width: 25em;
+								<div style="position: absolute;left: 17em;top: 1.9em;width: 24em;
     height: 2.2em;text-align: center;line-height: 2.2em;background: #004d7d;">${st.company_name!}</div>
 								<div style="position: absolute;
-    left: 7em;
-    eft: 16em;
-    top: 8.2em;
-    width: 18em;
-    height: 3em;
-    text-align: center;
-    line-height: 2.2em;
-    background: #004d7d;">${st.name!}</div>
+								    left: 7em;
+								    top: 9.2em;
+								    width: 18em;
+								    height: 2em;
+								    text-align: center;
+								    line-height: 2em;
+								    background: #004d7d;">${st.name!}</div>
 								<div class="ck">查看详情</div>
 								##}
 							</td>
@@ -1669,11 +1654,12 @@
                                     <div class="inputGroup fl">
                                         <label class="jiaoyishichang">交易市场：</label>
                                         <div class="mySelect" id="jiaoyishichang" style="width:14rem;">
-                                            <div class="myOption selected" style="width:14rem;"><span class="text"></span><span class="icon"></span></div>
+                                            <div class="myOption selected" style="width:14rem; border:0.15em solid  #00abde;"><span class="text"></span><span class="icon"></span></div>
                                             <ul class="myOptionBox" style="width:14rem;">
                                                 <li class="myOption selected" style="width:14rem;">青岛华银有限公司</li>
                                                 <li class="myOption">青岛华银有限公司</li>
                                                 <li class="myOption">青岛华银有限公司</li>
+                                              
                                             </ul>
                                         </div>
                                     </div>
@@ -1735,7 +1721,7 @@
             </div>
         </div>
         <div class="glqyContent" style="height: 45em;">
-            <div id="div_container" style="text-align:center;position:relative;height: 95%; overflow: auto;">
+            <div id="div_container" style="text-align:center;position:relative;height: 95%; overflow: auto;display:none;">
                 <!-- 固定表头 table外层必须包有一个div  id="my_div"   class="fakeContainer first_div" 引入superTables.js  在页面下面还需要调用 -->
                 <div id="my_div" class="fakeContainer first_div" >
                     <table border="1" id="demoTable" style="width: 96%;margin: 0 auto;">
@@ -1921,11 +1907,11 @@
 </div>
 <!--模态框 start-->
 <div class="model_faren">
-	<div class="header">项目结构详情<span>X</span></div>
+	<div class="header"><h4>项目结构详情</h4><span>X</span></div>
 	<div id="div_container1" style="text-align:center;position:relative;height: 95%; overflow: auto;">
 		<!-- 固定表头 table外层必须包有一个div  id="my_div"   class="fakeContainer first_div" 引入superTables.js  在页面下面还需要调用 -->
 		<div id="my_div1" class="fakeContainer first_div" >
-			<table border="1" id="demoTable1" style="">
+			<table border="1" id="demoTable1" style="margin:1em auto">
 				<tr id="my_tr1">
 					<th class="center" rowspan="1">角色</th>
 					<th class="center" rowspan="1">公司</th>

@@ -1,7 +1,6 @@
 var bodyScale = parent.bodyScale;
 var colors = [
     '#00adef',
-    '#faad14',
     '#73d13d',
     '#b37feb',
     '#ff7875',
@@ -19,7 +18,8 @@ var colors = [
     '#b7eb8f',
     '#ffbb96',
     '#d9f7be',
-    '#ffd6e7'
+    '#ffd6e7',
+    '#faad14'
 ];
 var barWidth = 18 * bodyScale;
 var pieLabelOut = {

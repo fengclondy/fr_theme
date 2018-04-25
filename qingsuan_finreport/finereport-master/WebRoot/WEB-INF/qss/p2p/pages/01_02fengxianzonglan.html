@@ -395,6 +395,20 @@
 	
 	
 	function charts(id,yAxisData,seriesData){
+		var fontSize = 0;
+		var parentW = $("#01_02fengxianzonglan", parent.document).width();
+		if(screen.width == 1920){
+			fontSize = 16;
+		}
+		else if(screen.width == 1600){
+			fontSize = 12;
+		}
+		else if(screen.width == 1440){
+			fontSize = 11;
+		}
+		else{
+			fontSize = 10;
+		}
 		var allCharts = [];
         var myChart1 = echarts.init($("#"+id)[0]);
         console.log(myChart1,yAxisData)
@@ -411,7 +425,7 @@
                 name: {
                     textStyle: {
                         color: '#fff',
-                        fontSize:10
+                        fontSize:fontSize
 
                     }
                 },
