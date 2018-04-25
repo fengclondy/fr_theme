@@ -710,6 +710,77 @@
   			
   		})
     }
+	function getInterest(){
+  		
+  		$.post("${contextPath}/qdch/project/getInterest",{"jys":jysCode,"rangeType":rangetype},function(data){
+  			var seriesData1=[];
+    		var seriesData2=[];
+  			var yAxisData=[];
+  			var dataArr=[];
+  			$.each(data.industryinterest,function(index,item){
+  				if(dataArr.indexOf(item.vday_ym)==-1){
+  					dataArr.push(item.vday_ym);
+  				}
+  				
+  			})
+  			$.each(data.interest,function(index,item){
+  				if(dataArr.indexOf(item.vday_ym)==-1){
+  					dataArr.push(item.vday_ym);
+  				}
+  				
+  			})
+  			dataArr.sort();
+  			$.each(data.interest,function(index,item){
+  				var num=dataArr.indexOf(item.vday_ym);
+  				seriesData1[num]=item.interest;
+  				
+  			})
+  			 $.each(data.industryinterest,function(index,item){
+  				var num=dataArr.indexOf(item.vday_ym);
+  				seriesData2[num]=item.interestnum;
+  				
+  			})  
+  			console.log("=========利率========",data)
+  			ec003.clear();
+  			ec003.setOption(opt_line);
+  			ec003.setOption({
+  	            grid: {
+  	                top: "12%",
+  	                right:'5%',
+  	                left:'5%',
+  	                bottom: '15%'
+  	            },
+  	            legend: {
+  	                show: false
+  	            },
+  	            xAxis: {
+  	                name: '月份',
+  	                data: dataArr
+  	            },
+  	            yAxis: {
+  	                name: '平台利率'
+  	            },
+  	            series: [
+  	                {
+  	                    name: '平台利率',
+  	                    type: 'line',
+  	                    symbol: 'circle',
+  	                    data: seriesData1,
+  	                    areaStyle: lineAreaStyle(0)
+
+  	                },
+  	              {
+  	                    name: '行业综合利率',
+  	                    type: 'line',
+  	                    symbol: 'circle',
+  	                    data: seriesData2,
+  	                    areaStyle: lineAreaStyle(0)
+
+  	                }
+  	            ]
+  	        });
+  		})
+  	}
     //获取项目结构
     function getProjectStructure(){
       	 $.post("${contextPath}/qdch/project/getProjectStructure",{"jys":jysCode},function(data){   		
@@ -816,49 +887,7 @@
       		 		
        	});
       } 
-  	function getInterest(){
-  		
-  		$.post("${contextPath}/qdch/project/getInterest",{"jys":jysCode,"rangeType":rangetype},function(data){
-  			var seriesData=[];
-  			var yAxisData=[];
-  			$.each(data,function(index,item){
-  				yAxisData.push(item.vday_ym);
-  				seriesData.push(item.interest);
-  				
-  			})
-  			console.log("=========利率========",data)
-  			ec003.clear();
-  			ec003.setOption(opt_line);
-  			ec003.setOption({
-  	            grid: {
-  	                top: "12%",
-  	                right:'5%',
-  	                left:'5%',
-  	                bottom: '15%'
-  	            },
-  	            legend: {
-  	                show: false
-  	            },
-  	            xAxis: {
-  	                name: '月份',
-  	                data: yAxisData
-  	            },
-  	            yAxis: {
-  	                name: '平台利率'
-  	            },
-  	            series: [
-  	                {
-  	                    name: '平台利率',
-  	                    type: 'line',
-  	                    symbol: 'circle',
-  	                    data: seriesData,
-  	                    areaStyle: lineAreaStyle(0)
-
-  	                }
-  	            ]
-  	        });
-  		})
-  	}
+  
   //获取地区和行业的HHI
   	function getConRateHHI(){
   		$.post("${contextPath}/qdch/project/getconRatioHHI",{"jys":jysCode},function(data){

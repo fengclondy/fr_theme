@@ -21,7 +21,7 @@ public class ManagementRiskListModel extends Model<ManagementRiskListModel>{
 	public static final ManagementRiskListModel dao = new ManagementRiskListModel();
 
 	public List<ManagementRiskListModel> getManagementRiskList(String bigjys,String jys){
-		String sql="select bjsj,fxlb,fxzb,jgmc from hub_fxsj t LEFT JOIN hub_xd_jysc t2 on t.jgmc=t2.jyscmc where 1=1 and fxlb='信用风险' ";
+		String sql="select fxsj_id,bjsj,fxlb,fxzb,jgmc from hub_fxsj t LEFT JOIN hub_xd_jysc t2 on t.jgmc=t2.jyscmc where 1=1 and fxlb='信用风险' ";
 		
 		if(StringUtils.isNotBlank(bigjys)){
 			sql+=" and t2.jysc in "+ bigjys;

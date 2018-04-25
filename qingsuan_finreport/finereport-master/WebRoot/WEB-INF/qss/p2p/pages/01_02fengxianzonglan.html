@@ -315,7 +315,7 @@
 								htmls+="<p><img src='${contextPath}/static/img/up.png' alt='' /><span class='colorUp'>"+riskRanking+"</span></p>"
 								
 							}else if(riskRankingCom*1==0){
-								htmls+="<p><img src='${contextPath}/static/img/just.png' alt='' /><span class='colorJust'>"+riskRanking+"</span></p>"
+								/* htmls+="<p><img src='${contextPath}/static/img/just.png' alt='' /><span class='colorJust'>"+riskRanking+"</span></p>" */
 								
 							}else if(riskRankingCom*1>0){
 								htmls+="<p><img src='${contextPath}/static/img/down.png' alt='' /><span class='colorDown'>"+riskRanking+"</span></p>"
@@ -335,7 +335,7 @@
 						htmls+="<div class='chartBodyRightList fl'>"
 						htmls+="<ul>"	
 						$.each(item.detaildata,function(ind,it){
-				  			yAxisData.push({name:it.fxlb})
+				  			yAxisData.push({name:it.fxlb,max:10})
 				  			seriesData.push(it.detailvalue); 
 							htmls+="<li>"
 							htmls+="<h3>"+it.detailvalue+"</h3>\n"
@@ -379,11 +379,14 @@
 					    
 						seriesDataMap.put(item.keypm,yAxisData);
 						yAxisDataMap.put(item.keypm,seriesData);
+						
 				});
-			
+			console.log("11111111111",seriesDataMap);
+			console.log("2222222222",yAxisDataMap);
 				$(".main").html(htmls);
 				$.each(data,function(index,item){
 					charts("charts"+item.keypm,yAxisDataMap.get(item.keypm),seriesDataMap.get(item.keypm));
+					
 					canvasAll("canvas"+item.keypm+"",item.value); 
 				});
 			});		
@@ -395,6 +398,7 @@
 	
 	
 	function charts(id,yAxisData,seriesData){
+		
 		var allCharts = [];
         var myChart1 = echarts.init($("#"+id)[0]);
         console.log(myChart1,yAxisData)
@@ -436,7 +440,7 @@
                 areaStyle: {normal: {}},
                 data : [
                     {
-                         value :yAxisData , 
+                         value :yAxisData ,
                         name : '预算分配（Allocated Budget）'
                     }
 
