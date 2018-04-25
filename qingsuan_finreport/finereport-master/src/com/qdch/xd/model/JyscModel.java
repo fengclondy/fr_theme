@@ -28,6 +28,7 @@ public class JyscModel extends Model<JyscModel>{
 		if(StringUtils.isNotBlank(dataSql)){
 			sql+=" and jysc in"+ dataSql+"";
 		}
+		sql+="order by jysc";
 		return dao.find(sql);
 	}
 
