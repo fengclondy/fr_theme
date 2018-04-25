@@ -1097,7 +1097,7 @@
         }
         
       //模块框
-        $("#score>th:not(.defen)").click(function () {
+        /* $("#score>th:not(.defen)").click(function () {
             var _number = $(this).text();
             var parentW = $(".chartBox").width();
             var parentH = $(".chartBox").height();
@@ -1112,7 +1112,7 @@
                 "marginLeft": -(parentW * 0.8 / 2),
                 "marginTop": -(parentH * 0.8 / 2)
             });
-        });
+        }); */
         $(".model .header span").click(function (e) {
             e.preventDefault();
             $(".model").hide(500);
@@ -1145,6 +1145,7 @@
     
     function aab(str){
     	var jys=str
+    	$(".model").css('display','none');
     	$('#model_'+jys).css('display','block');
     	/*  new superTable("demoTable", {cssSkin : "sDefault",
              fixedCols : 2, //固定几列
