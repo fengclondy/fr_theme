@@ -143,10 +143,14 @@ public class BaseController extends Controller{
 				//Collections.reverse(cmenus) ;
 				List<RoleMenuModel> f = dealMenu(cmenus);
 				m.setChildren(f);
+				if(f!=null&&f.size()>0){
+					m.setSortIndex(f.get(0).getPindex());
+				}
 				menus.add(m);
 			}
 			
 		}
+		SortListUtil.sort(menus, "sortIndex",SortListUtil.ASC);
 		return menus;
 	}
 	private List<RoleMenuModel> dealMenu(List<RoleMenuModel> cmenus) {
