@@ -97,7 +97,7 @@
                         </thead>
                         <tbody>
                          ##for(risk in show!){
-                        <tr><td id="td1">${risk.bjsj!}</td><td id="td2">${risk.fxlb!}</td><td id="td3">${risk.fxzb!}</td><td id="td4">${risk.jgmc!}</td><td class="more"><a href=""> 查看</a></td></tr>
+                        <tr><td id="td1">${risk.bjsj!}</td><td id="td2">${risk.fxlb!}</td><td id="td3">${risk.fxzb!}</td><td id="td4">${risk.jgmc!}</td><td class="more"><a href="javascript:seeMore('${risk.fxsj_id}');"> 查看</a></td></tr>
                          ##}
             
                         </tbody>
@@ -242,7 +242,7 @@ function initData(){
           var tr=[];
     	  $.each(data,function(index,item){
     		var mTr='';
-    		mTr+='<tr><td>'+item.bjsj+'</td><td>'+item.fxlb+'</td><td>'+item.fxzb+'</td><td>'+item.jgmc+'<td class="more"><a href=""> 查看</a></td></tr>';
+    		mTr+='<tr><td>'+item.bjsj+'</td><td>'+item.fxlb+'</td><td>'+item.fxzb+'</td><td>'+item.jgmc+'<td class="more"><a href="javascript:seeMore('+item.fxsj_id+');"> 查看</a></td></tr>';
     		tr.push(mTr);
     		
     		  });
@@ -251,7 +251,13 @@ function initData(){
     	  })	
       }
       
-      
+      /**
+       * 查看明细
+       */
+      function seeMore(fxsjid) {
+          window.open("eventSeeDetails/index?fxsj_id="+fxsjid)
+      }
+ 
       
     $(function () {
         var ec001 = echarts.init($("#ec001_currentCompetitiveness")[0]);

@@ -656,7 +656,7 @@
         	                bottom: '30%'
         	            },
         	            legend: {
-        	                show: false
+        	                show: true
         	            },
         	            xAxis: {
         	                name: '月份',
@@ -1057,12 +1057,19 @@
 							"                <td>"+item.fxlb+"</td>\n" +
 							"               <td>"+item.fxzb+"</td>\n" +
 							"               <td>"+item.jgmc+"</td>\n" +
-							"                <td><span onclick=intentFxsj()><a href='javascript:void(0);' />查看</a></span></td></tr>  " ;
+							/* "                <td><span onclick=intentFxsj()><a href='javascript:void(0);' />查看</a></span></td></tr>  " ; */
+							"<td class=\"more\"><a href=\"javascript:seeMore("+item.fxsj_id+");\">查看</a></td></tr>"
 		
 			});
 			$('tbody').html(tableList)
 		})
 	}
+   	/**
+     * 查看明细
+     */
+    function seeMore(fxsjid) {
+        window.open("eventSeeDetails/index?fxsj_id="+fxsjid)
+    }
 </script>
 </body>
 </html>
