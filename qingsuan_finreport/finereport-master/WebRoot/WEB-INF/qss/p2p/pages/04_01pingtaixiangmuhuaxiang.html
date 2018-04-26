@@ -476,7 +476,7 @@
 							"  <tr>            <td class='center ziranren'>"+item.xmlx+"</td>\n" +
 							"                 <td class='center left'>"+item.ywlx+"</td>\n" +
 							"                 <td class='center'>"+item.pjlv+"</td>\n" +
-							"               <td class='center'>"+item.je*1/10000+"万</td>\n" +
+							"               <td class='center'>"+item.je*1+"万</td>\n" +
 							"               <td class='center'>"+item.jezb*1+"%</td>\n" +
 							"                <td class='center'>"+item.pjqx+"(月)</td></tr>  " 
 		
@@ -498,7 +498,7 @@
 							"  <tr>            <td class='center ziranren'>"+item.term+"</td>\n" +
 							
 							"                 <td class='center'>"+item.pjlv+"</td>\n" +
-							"               <td class='center'>"+item.je*1/10000+"万</td>\n" +
+							"               <td class='center'>"+item.je*1+"万</td>\n" +
 							"               <td class='center'>"+(item.jezb*1)+"%</td>\n" +
 							"                <td class='center'>"+item.hkfs+"</td></tr>  " 
 		
@@ -867,13 +867,14 @@
           		var dcje=data[0].dcje;
           		var dcbs=data[0].dcbs;
           		
+          		
           		if(yql == null ){
           			yql="/";
           		}
           		if(yqje == null ){
           			yqje="/";
           		}
-          		if(dcje == null ){
+          		if(dcje == null){
           			dcje="/";
           		}
           		if(dcbs == null ){
@@ -969,7 +970,7 @@
   	  	  			            backgroundColor:'rgba(0,0,0,0.2)'
 
   	  	  			        }); 
-  	  						 $('.percentCount').css('display','none');
+  	  						
   	  						}else{
   	  						$('#progressbar1').LineProgressbar({
   	  	  			            percentage: item.iterm_value*100,
@@ -994,7 +995,7 @@
   					            backgroundColor:'rgba(0,0,0,0.2)'
   					           
   					        });	
-  							 $('.percentCount').css('display','none');
+  							 /* $('.percentCount').css('display','none'); */
   						}else{
   							$('#progressbar2').LineProgressbar({
   					            percentage: item.iterm_value*100,

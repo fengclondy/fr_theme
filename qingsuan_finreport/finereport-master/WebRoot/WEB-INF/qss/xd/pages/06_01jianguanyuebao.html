@@ -106,9 +106,11 @@
                     <li class="picture"><span class="icon"></span> 图片</li>
                 </ul>
             </li>
-            <li class="add">
-            	<a href="${contextPath}/qdch/monthlyrepor/addnew">增加</a>
-            </li>
+            ##if(user.activity=='处理'){
+	            <li class="add">
+	            	<a href="${contextPath}/qdch/monthlyrepor/addnew">增加</a>
+	            </li>
+            ##}
         </ul>
     </nav>
     <div class="formBox open">
@@ -332,8 +334,8 @@
 				               "               <td>"+value.upload_user+"</td>\n" +
 				               "               <td>"+value.upload_time+"</td>\n" +
 				               //"                <td><span><a href='/QDCH/pdf/web/viewer.html?file=test.pdf' target='_Blank'>预览</a></span>" +    
-				               "                <td><span onclick='fileView(\""+value.file_name+"\")'>预览</a></span>" +    
-				               "                <span onclick='downFile(\""+value.file_name+"\")'>下载</span></td></tr>  ";
+				               "                <td><a href='javascript:void(0);' onclick='fileView(\""+value.file_name+"\")'>预览</a></span>" +    
+				               "                <a href='javascript:void(0);' onclick='downFile(\""+value.file_name+"\")'>下载</a></td></tr>  ";
 				       });
 			       $('tbody').html(append);
 					                

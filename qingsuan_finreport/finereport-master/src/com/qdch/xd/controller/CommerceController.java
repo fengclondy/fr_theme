@@ -1,5 +1,6 @@
 package com.qdch.xd.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang.ObjectUtils.Null;
@@ -129,15 +130,18 @@ public class CommerceController extends BaseController{
 	     CoEnterpriseModel cc=CoEnterpriseModel.dao.getid(name);
 	   
 	  List<MarkNewsModel> mark =  MarkNewsModel.dao.getNews2(cc.get("id")+"", "", "", "");
-	     setAttr("marknews", mark);
-	  List<CompanysInfoModel> infoModels= CompanysInfoModel.dao.getCompanybyName(basic.get(0).get("legal_person")+"");
-	      setAttr("comInfo", infoModels);
-	      setAttr("all", CoShareHolderModel.dao.getMainSize(name).size()+CoShareHolderModel.dao.getManagerSize(name).size()
+	  List<CompanysInfoModel> infoModels=new ArrayList<CompanysInfoModel>();
+	  setAttr("marknews", mark);
+	  if(basic!=null&&basic.size()>0){
+	    	infoModels=CompanysInfoModel.dao.getCompanybyName(basic.get(0).get("legal_person")+"");
+	   }
+	   setAttr("comInfo", infoModels);
+	   setAttr("all", CoShareHolderModel.dao.getMainSize(name).size()+CoShareHolderModel.dao.getManagerSize(name).size()
 				  +CoShareHolderModel.dao.getDirectSize(name).size()+CoShareHolderModel.dao.getSuperSize(name).size()+stackInfo.size()+
 				  invest.size()+changeLog.size()+branch.size()+liaison.size()+ register.size()+companyType.size());
-	     setAttr("allsize", judgment.size()+announce.size()+exector.size()+businesExeption.size()+penaltv.size()+job.size()); 
+	   setAttr("allsize", judgment.size()+announce.size()+exector.size()+businesExeption.size()+penaltv.size()+job.size()); 
 	   RiskTrendDetailedModel risk = RiskTrendDetailedModel.dao.getScore(getDataScopeByUserName(), name);
-	     setAttr("risk", risk);
+	   setAttr("risk", risk);
 	   RiskTrendModel valueList=RiskTrendModel.dao.getFxzs(getDataScopeByUserName(), name);
 	  setAttr("value", valueList);
 	  render("xd/pages/08_01shichanghuaxiang.html");

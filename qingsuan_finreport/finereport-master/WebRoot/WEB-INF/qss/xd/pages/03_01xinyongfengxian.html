@@ -656,7 +656,7 @@
         	                bottom: '30%'
         	            },
         	            legend: {
-        	                show: false
+        	                show: true
         	            },
         	            xAxis: {
         	                name: '月份',
@@ -1068,7 +1068,8 @@
      * 查看明细
      */
     function seeMore(fxsjid) {
-        window.open("eventSeeDetails/index?fxsj_id="+fxsjid)
+       // window.open("eventSeeDetails/index?fxsj_id="+fxsjid)
+    	 window.parent.triggerClickParam("05_02fengxianshijianchakanmingxi","?fxsj_id="+fxsjid);
     }
 </script>
 </body>

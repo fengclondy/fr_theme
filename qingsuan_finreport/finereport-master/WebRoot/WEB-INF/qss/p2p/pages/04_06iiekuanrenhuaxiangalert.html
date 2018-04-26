@@ -7,21 +7,30 @@
     <link rel="stylesheet" href="${contextPath}/static/asserts/css/normalize.css">
     <link rel="stylesheet" href="${contextPath}/static/css/style.css">
     <link rel="stylesheet" href="${contextPath}/static/css/pageCom.css">
-    <style>
-        .top {
-            display: flex;
-            flex: 3.5;
-        }
-        .top > div {
+   <style>
+        .container > div,
+        .top > div,
+        .bottom > div {
             flex: 1;
         }
-        table {
-            width: 100%
+
+        .top, .bottom {
+            display: flex;
+        }
+
+        .ec003 header{
+            text-align: center;
+        }
+        /*重写button样式*/
+        .btnGroup button{
+            padding: 0.2rem 2rem;
+            margin-left: 2%;
         }
     </style>
 </head>
 <body id="03_03zichanfengxian" data-title="管理风险">
 <div class="container">
+    <h2 hidden>业务总览</h2>
     <div class="top">
         <div class="top-l">
             <div class="chartBox ec001">
@@ -30,70 +39,77 @@
                 </div>
                 <div class="chartContent">
                     <div class="chartBody">
-                        <div id="ec0302_fznl001"></div>
+                        <div id="ec001_currentCompetitiveness"></div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="top-2">
-            <div class="chartBox ec0302">
+        <div class="top-m">
+            <div class="chartBox ec001">
                 <div class="chartTitle">
                     <h3>个人公司占比</h3>
                 </div>
                 <div class="chartContent">
                     <div class="chartBody">
-                        <div id="ec0302_fznl002"></div>
+                        <div id="ec002_competitivenessIndicators"></div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="top-3">
-            <div class="chartBox ec0302">
+        <div class="top-r">
+            <div class="chartBox ec002">
                 <div class="chartTitle">
                     <h3>行业人数分布</h3>
                 </div>
                 <div class="chartContent">
                     <div class="chartBody">
-                        <div id="ec0302_fznl003"></div>
+                        <div id="ec003_competitivenessIndicators"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="top">
-        <div class="top-4">
-            <div class="chartBox ec001">
+    <div class="bottom">
+        <div class="bottom-L">
+            <div class="chartBox ec004">
                 <div class="chartTitle">
                     <h3>个人-各种分布</h3>
                 </div>
                 <div class="chartContent">
-                    <div class="chartBody">
-                        <div id="ec0302_fznl004"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                    <header>
+                        <div class="btnGroup">
+                            <button class="active">性别</button>
+                            <button>年龄</button>
+                            <button>收入</button>
 
-        <div class="top-5">
-            <div class="chartBox ec002">
-                <div class="chartTitle">
-                    <h3>员工数量</h3>
-                </div>
-                <div class="chartContent">
+                        </div>
+                    </header>
                     <div class="chartBody">
-                        <div id="ec0302_fznl005"></div>
+                        <div id="ec004_marketCompetitiveness"></div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="top-6">
-            <div class="chartBox ec0302">
+        <div class="bottom-m">
+            <div class="chartBox ec001">
                 <div class="chartTitle">
-                    <h3>获奖能力</h3>
+                    <h3>企业-成立时间分布</h3>
                 </div>
                 <div class="chartContent">
                     <div class="chartBody">
-                        <div id="ec0302_fznl006"></div>
+                        <div id="ec005_competitiveness"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-r">
+            <div class="chartBox ec001">
+                <div class="chartTitle">
+                    <h3>企业-注册资本分布</h3>
+                </div>
+                <div class="chartContent">
+                    <div class="chartBody">
+                        <div id="ec006_competitiveness"></div>
                     </div>
                 </div>
             </div>
@@ -107,263 +123,220 @@
 <script src="${contextPath}/static/js/chartsCom.js"></script>
 <script>
     var allCharts = [];
-    $(function () {
-//注册资本  模块一
-        var myChart1 = echarts.init($("#ec0302_fznl001")[0]);
-        myChart1.setOption(opt_line);
-        myChart1.setOption(opt_bar_vertical);
-        myChart1.setOption({
+  $(function () {
+        var ec001 = echarts.init($("#ec001_currentCompetitiveness")[0]);
+        ec001.setOption(opt_bar_horizon);
+        ec001.setOption({
             grid: {
-                left: '10%',
-                right: '10%',
-                bottom: '10%',
-                top: '11%'
-            },
-            legend: {
-                show: false
-            },
-            xAxis: [
-                {
-                    name: '年',
-                    type: 'category',
-                    data: ['2012', '2013', '2014', '2015', '2016', '2017']
-                }
-            ],
-            yAxis: [
-                {
-                    type: 'value',
-                    name: '金额',
-                    interval: 15,
-                    nameGap: 4 * bodyScale
-                }
-            ],
-            series: [
-                {
-                    name: '资产',
-                    type: 'bar',
-                    data: [57, 63, 38, 57, 60, 49],
-                    barWidth: 15
-                }
-            ]
-        });
-//资本能力  模块二
-        var myChart2 = echarts.init($("#ec0302_fznl002")[0]);
-        myChart2.setOption(opt_bar_horizon);
-        myChart2.setOption(opt_line);
-        myChart2.setOption({
-            grid: {
-                left: '10%',
-                right: '10%',
-                bottom: '10%',
-                top: '13%'
-            },
-            xAxis: [
-                {
-                    name: '年',
-                    type: 'category',
-                    data: ['2012', '2013', '2014', '2015', '2016', '2017'],
-                    axisTick: {
-                        alignWithLabel: true
-                    }
-                }
-            ],
-            yAxis: [
-                {
-                    name: '金额',
-                    type: 'value',
-                    interval: 15
-                }
-            ],
-            series: [
-                {
-                    name: '总资产',
-                    type: 'bar',
-                    data: [60, 45, 39, 28, 47, 65],
-                    barWidth: 15
-                },
-                {
-                    name: '期末货款余额',
-                    type: 'line',
-                    data: [39, 30, 22, 17, 36, 49],
-                    symbol: 'circle'
-                },
-                {
-                    name: '融资额',
-                    type: 'line',
-                    data: [37, 28, 20, 16, 33, 40],
-                    symbol: 'circle'
-                }
-            ]
-        });
-// 贷款情况  模块三
-        var myChart3 = echarts.init($("#ec0302_fznl003")[0]);
-        myChart3.setOption(opt_bar_horizon);
-        myChart3.setOption(opt_line);
-        myChart3.setOption({
-            grid: {
-                left: '10%',
-                right: '10%',
-                bottom: '10%',
-                top: '13%'
-            },
-            xAxis: [
-                {
-                    name: '年',
-                    type: 'category',
-                    data: ['2012', '2013', '2014', '2015', '2016', '2017']
-                }
-            ],
-            yAxis: [
-                {
-                    name: '金额',
-                    type: 'value',
-                    interval: 15,
-                    right: '15%'
-                }
-            ],
-            series: [
-                {
-                    name: '累计货款余额',
-                    type: 'line',
-                    data: [60, 45, 39, 28, 47, 69],
-                    barWidth: 15,
-                    symbol:'cricle'
-                },
-                {
-                    name: '累计放款额',
-                    type: 'line',
-                    data: [55, 39, 22, 15, 41, 59],
-                    color: '#ffd769',
-                    symbol: 'circle'
-                }
-            ]
-
-        });
-
-//客户数量  模块四
-        var myChart4 = echarts.init($("#ec0302_fznl004")[0]);
-        myChart4.setOption(opt_bar_horizon);
-        myChart4.setOption(opt_line);
-        myChart4.setOption({
-            grid: {
-                left: '10%',
-                right: '10%',
-                bottom: '10%',
-                top: '13%'
-            },
-            xAxis: [
-                {
-                    name: '年',
-                    type: 'category',
-                    data: ['2012', '2013', '2014', '2015', '2016', '2017'],
-                    axisTick: {
-                        alignWithLabel: true
-                    }
-                }
-            ],
-            yAxis: [
-                {
-                    name: '人数',
-                    type: 'value',
-                    interval: 15
-                }
-            ],
-            series: [
-                {
-                    name: '当期累计客户数量',
-                    type: 'bar',
-                    data: [60, 45, 39, 38, 47, 65],
-                    barWidth: 15
-                },
-
-                {
-                    name: '当期活跃客户数量',
-                    type: 'line',
-                    data: [29, 31, 29, 34, 33, 40],
-                    symbol: 'circle'
-                }
-            ]
-
-        });
-//员工数量  模块五
-        var myChart5 = echarts.init($("#ec0302_fznl005")[0]);
-        myChart5.setOption(opt_bar_horizon);
-        myChart5.setOption(opt_line);
-        myChart5.setOption({
-            grid: {
-                left: '10%',
-                right: '10%',
-                bottom: '10%',
-                top: '13%'
-            },
-            xAxis: [
-                {
-                    name: '年',
-                    type: 'category',
-                    data: ['2012', '2013', '2014', '2015', '2016', '2017'],
-                    axisTick: {
-                        alignWithLabel: true
-                    }
-                }
-            ],
-            yAxis: [
-                {
-                    name: '人数',
-                    type: 'value',
-                    interval: 15
-                }
-            ],
-            series: [
-                {
-                    name: '当期累计员工数量',
-                    type: 'bar',
-                    data: [60, 45, 39, 38, 47, 65],
-                    barWidth: 15
-                },
-
-                {
-                    name: '当期流失员工数量',
-                    type: 'line',
-                    data: [29, 31, 29, 34, 33, 40],
-                    symbol: 'circle'
-                }
-            ]
-
-        });
-// 获奖能力  模块六
-        var myChart6 = echarts.init($("#ec0302_fznl006")[0]);
-        myChart6.setOption(opt_bar_horizon);
-        myChart6.setOption(opt_line);
-        myChart6.setOption({
-            legend: {
-                show: false
-            },
-            grid: {
-                left: '10%',
-                right: '10%',
-                bottom: '10%',
-                top: '13%'
+                left: "22%",
+                right: "16%",
+                top: "18%"
             },
             xAxis: {
-                name: '年',
-                type: 'category',
-                data: ['2012', '2013', '2014', '2015', '2016', '2017']
+                type: 'value',
+                name: '个数',
+
+
             },
             yAxis: {
-                name: '分数',
-                type: 'value'
+                name: '借款方',
+                data: ['借款方', '借款方', '借款方', '借款方', '借款方']
             },
-            series: [
+            series: [{
+                data: [1, 3, 5, 7, 10],//
+                type: 'bar',
+                barWidth: 15
+            }]
+        });
+
+        //模块二
+
+        var ec002 = echarts.init($("#ec002_competitivenessIndicators")[0]);
+        ec002.setOption(opt_pie);
+        ec002.setOption({
+            label: {
+                fontSize:12,
+                color: '#fff'
+
+            },
+            legend:{
+                left:10,
+                textStyle:{
+                    fontSize:12
+                }
+            },
+            series : [
                 {
-                    name: '担保方式1',
-                    type: 'line',
-                    data: [32, 34, 36, 38, 40, 43],
-                    symbol:'circle'
+                    name:'高管资质',
+                    type:'pie',
+                    radius : '60%',
+                    center: ['50%', '50%'],
+                    data:[
+                        {value:10, name:'个人'},
+                        {value:14, name:'公司'}
+
+                    ]
+
+
                 }
             ]
         });
-//本页所有图表
-        allCharts = [myChart1, myChart2, myChart3, myChart4, myChart5, myChart6];
+        //模块三
+        var ec003 = echarts.init($("#ec003_competitivenessIndicators")[0]);
+        // ec002.setOption(opt_com);
+        ec003.setOption(opt_bar_vertical);
+        ec003.setOption({
+            legend: {
+                show: false
+            },
+            grid: {
+                left: "10%",
+                right: "10%",
+                top: "14%"
+            },
+            xAxis:
+                {
+                    name: '年份',
+                    type: 'category',
+                    data: ['农业', '工业', '餐饮业', '建筑业', '旅游业', '金融业']
+                },
+            yAxis: {
+                name: '人数',
+                type: 'value',
+                nameGap:15
+            },
+            series: [
+                {
+                    name: '经营能力',
+                    type: 'bar',
+                    data: [2,4,5,7,9,7]
+                },
+                {
+                    name: '盈利能力',
+                    type: 'bar',
+                    data: [1,3,5,7,8,9]
+                }
+            ]
+        });
+
+        var data = [{value:18, name:'男'},{value:14, name:'女'}];
+        threePie(data);
+        $(".btnGroup>button").click(function () {
+            var type = $(".btnGroup .active").text();
+            var data = [];
+            if(type == '性别'){
+                data = [{value:18, name:'男'},{value:14, name:'女'}];
+            }
+            else if(type == '年龄'){
+                data = [{value:3, name:'60后'},{value:6, name:'70后'},{value:16, name:'80后'},{value:20, name:'90后'},{value:10, name:'00后'}];
+            }
+            else{//收入
+                data = [{value:10, name:'A'},{value:15, name:'B'},{value:20, name:'C'},{value:12, name:'D'},{value:18, name:'E'}];
+            }
+            threePie(data);
+        });
+        function threePie(data){
+            var ec004 = echarts.init($("#ec004_marketCompetitiveness")[0]);
+            ec004.setOption(opt_pie);
+            ec004.setOption({
+                label: {
+                    fontSize:12,
+                    color: '#fff'
+
+                },
+                legend:{
+                    left:10,
+                    textStyle:{
+                        fontSize:12
+                    }
+                },
+                series : [
+                    {
+                        name:'高管资质',
+                        type:'pie',
+                        radius : '60%',
+                        center: ['50%', '50%'],
+                        data:data
+
+
+                    }
+                ]
+            });
+        }
+
+        //模块五
+        var ec005 = echarts.init($("#ec005_competitiveness")[0]);
+        ec005.setOption(opt_bar_vertical);
+        ec005.setOption({
+            legend: {
+                show: false
+            },
+            grid: {
+                left: "10%",
+                right: "10%",
+                top: "14%"
+            },
+            xAxis:
+                {
+                    name: '年份',
+                    type: 'category',
+                    data: ['2012', '2013', '2014', '2015', '2016', '2017'],
+
+                },
+            yAxis: {
+                name: '个数',
+                type: 'value',
+                // nameGap:15
+            },
+            series: [
+                {
+                    name: '经营能力',
+                    type: 'bar',
+                    data: [2,4,5,7,9,7],
+                    barWidth: barWidth
+
+                },
+
+            ]
+        });
+
+        var ec006 = echarts.init($("#ec006_competitiveness")[0]);
+        ec006.setOption(opt_pie);
+        ec006.setOption({
+            label: {
+                fontSize:12,
+                color: '#fff'
+
+            },
+            legend:{
+                left:10,
+                textStyle:{
+                    fontSize:12
+                }
+            },
+            series : [
+                {
+                    name:'高管资质',
+                    type:'pie',
+                    radius : '60%',
+                    center: ['50%', '50%'],
+                    data:[
+                        {value:10, name:'A'},
+                        {value:14, name:'B'},
+                        {value:16, name:'C'},
+                        {value:18, name:'D'},
+                        {value:22, name:'E'}
+
+                    ]
+
+
+                }
+            ]
+        });
+
+        //本页所有图表
+        allCharts = [ec001, ec002, ec003, ec004, ec005, ec006];
+
     });
 </script>
 </body>

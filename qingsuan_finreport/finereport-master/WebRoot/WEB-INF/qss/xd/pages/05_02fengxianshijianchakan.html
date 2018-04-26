@@ -526,7 +526,6 @@
                 getTableBody($(this).val(),10)
             }
         });
-
         $('#riskCategories').on('blur',function () {
             var a = $('#riskCategories option:selected').val();
             var str  = "<option value=''></option>";
@@ -537,7 +536,7 @@
             });
             $('#riskIndicators').html("")
             $('#riskIndicators').append(str);
-        })
+        });
         $('#btnCheck').on('click',function () {
             // var eventId = $('#eventId').val();
             // var customerName = $('#customerName').val();
@@ -581,6 +580,9 @@
         var marketName = $('#marketName option:selected').val();
         var processingState = $('#processingState').val();
         var riskCategories = $('#riskCategories option:selected').val();
+        if('${fxlb!}'){
+        	riskCategories='${fxlb!}';
+        }
         var riskIndicators = $('#riskIndicators option:selected').val();
         var alarmTimeStart = $('#alarmTimeStart').val().replace(/-/g,"");
         var alarmTimeEnd = $('#alarmTimeEnd').val().replace(/-/g,"");
@@ -619,7 +621,12 @@
                     exchangeHtml+="<option value='"+value.jysmc+"'>"+value.jysmc+"</option>";
                 });
                 $.each(data.type, function(index, value, array) {
-                    typehtml+="<option value='"+value.fxlb+"'>"+value.fxlb+"</option>";
+                	if('${fxlb!}'&&'${fxlb!}'==value.fxlb){
+                		typehtml+="<option selected value='"+value.fxlb+"'>"+value.fxlb+"</option>";
+                	}else{
+                		typehtml+="<option value='"+value.fxlb+"'>"+value.fxlb+"</option>";
+                	}
+                    
                 });
                 $.each(data.status, function(index, value, array) {
                     statushtml+="<option value='"+value.fvalue+"'>"+value.fvalue+"</option>";

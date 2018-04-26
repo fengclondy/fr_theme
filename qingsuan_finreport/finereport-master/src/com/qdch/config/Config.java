@@ -22,6 +22,7 @@ import com.qdch.core.QdchController;
 import com.qdch.intercept.SecurityInterceptor;
 //github.com/zuoqingbei/qss_code.git
 import com.qdch.model.DemoModel;
+import com.qdch.p2p.controller.AlertController;
 import com.qdch.p2p.controller.BorrowerController;
 import com.qdch.p2p.controller.BorrowerFillController;
 import com.qdch.p2p.controller.BorrowerPhotoController;
@@ -215,6 +216,7 @@ public class Config extends JFinalConfig {
 		me.add("qdch/monthlyrepor", MonthlyReportController.class,"/");	//监管月报
 		me.add("qdch/fileupLoad", FileUpLoadController.class,"/");	//监管月报上传
 		me.add("qdch/commerce",CommerceController.class,"/"); //小贷-工商模块
+		me.add("qdch/alert",AlertController.class,"/");
 		/***小贷doushuihai Controller START***/
 		
 		/***小贷zuoqb Controller START***/

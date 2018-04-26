@@ -178,7 +178,7 @@
         <div class="top-l">
             <div class="chartBox ec005">
                 <div class="chartTitle" id="fxzh">
-                    <h3>风险指数排名</h3>
+                    <h3>风险排名</h3>
                 </div>
                 <div class="chartContent">
                     <!--<header></header>-->
@@ -272,7 +272,7 @@
                         <!-- 右侧上面两盒子 -->
                         <!-- 注意哦~~盒子是从右侧向左侧浮动的！注意顺序 -->
                         <div class="pingtairightup fr">
-                            <div class="uphezi fr">
+                            <div class="uphezi fr" onclick="intentPage('?fxlb=管理风险')">
                                 <div class="heziContent">
                                     <div class="hezitextContent">
                                         <a href="#"> <span id="guanlifengxian" class="zhi error_管理风险">0</span></a><span>个</span>
@@ -283,10 +283,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="uphezi fr">
+                            <div class="uphezi fr" onclick="intentPage('?fxlb=信用风险')">
                                 <div class="heziContent">
                                     <div class="hezitextContent">
-                                        <a href="alert.html"><span id="xinyongfengxian" class="zhi error_信用风险">0</span></a><span>个</span>
+                                        <a href="javascript:void(0);"><span id="xinyongfengxian" class="zhi error_信用风险">0</span></a><span>个</span>
                                     </div>
                                     <div class="hezipic">
                                         <img src="${contextPath}/static/img/01_01fengxianzonglan/xinyong.png" alt="">
@@ -297,7 +297,7 @@
                         </div>
                         <!-- 右侧下面三个盒子 -->
                         <div class="pingtairightdown fr">
-                            <div class="downhezi fr">
+                            <div class="downhezi fr" onclick="intentPage('?fxlb=资产风险')">
                                 <div class="heziContent">
                                     <div class="hezitextContent">
                                         <a href="#"><span id="zichanfengxian" class="zhi error_资产风险">0</span></a><span>个</span>
@@ -308,7 +308,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="downhezi fr">
+                            <div class="downhezi fr"  onclick="intentPage('?fxlb=声誉风险')">
                                 <div class="heziContent">
                                     <div class="hezitextContent">
                                         <a href="#"><span id="shengyufengxian" class="zhi error_声誉风险">0</span></a><span>个</span>
@@ -319,7 +319,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="downhezi fr">
+                            <div class="downhezi fr"  onclick="intentPage('?fxlb=合规风险')">
                                 <div class="heziContent">
                                     <div class="hezitextContent">
                                         <a href="#"><span id="heguifengxian" class="zhi error_合规风险">0</span></a><span>个</span>
@@ -400,7 +400,7 @@
                 top:"12%"
             },
             xAxis: {
-                name:'指数',
+                name:'风险',
                 type: 'value'
             },
             yAxis: {
@@ -443,6 +443,9 @@
     
     //lianjiming
      initData();
+     function intentPage(jys){
+   		window.parent.triggerClickParam("05_02fengxianshijianchakan",jys);
+   	};
     function initData(){
     	getRanking();
     	getRiskCount();
