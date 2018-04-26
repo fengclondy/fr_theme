@@ -25,7 +25,7 @@
        .search{
        width: 100%;
        padding: .5rem 2rem;
-       height: 10%;
+       /* height: 10%; */
       }
         form {
             width: 57rem;
@@ -144,7 +144,8 @@
         .header{
             position: relative;
             height: 2rem;
-            height: 6%;
+            line-height:2rem;
+            font-size:1rem;
             border-radius: .5rem .5rem 0 0;
             background-color: #0080ff;
         }
@@ -828,7 +829,7 @@
            <!--模态框 start-->
       ##for(j in pingtailist!){
       	<div class="model"  id="model_${j.jysinfo!}">
-                <div class="header"><h4>审核资料</h4><span>X</span></div>
+                <div class="header">审核资料<span>X</span></div>
                 <div id="div_container1" style="text-align:center;position:relative;height: 95%; overflow: auto;">
                     <!-- 固定表头 table外层必须包有一个div  id="my_div"   class="fakeContainer first_div" 引入superTables.js  在页面下面还需要调用 -->
                     <div style="height:100%;width: 100%;overflow: auto;" id="my_div1" class="fakeContainer first_div" >
@@ -1097,12 +1098,10 @@
         }
         
       //模块框
-        $("#score>th:not(.defen)").click(function () {
+        /*  $("#score>th:not(.defen)").click(function () {
             var _number = $(this).text();
             var parentW = $(".chartBox").width();
             var parentH = $(".chartBox").height();
-            console.log(parentW);
-            console.log(parentH);
            
             $(".model1").hide(500);
             $('.model').css({
@@ -1112,7 +1111,7 @@
                 "marginLeft": -(parentW * 0.8 / 2),
                 "marginTop": -(parentH * 0.8 / 2)
             });
-        });
+        }); */ 
         $(".model .header span").click(function (e) {
             e.preventDefault();
             $(".model").hide(500);
@@ -1145,19 +1144,23 @@
     
     function aab(str){
     	var jys=str
+    	$(".model").css('display','none');
     	$('#model_'+jys).css('display','block');
-    	/*  new superTable("demoTable", {cssSkin : "sDefault",
-             fixedCols : 2, //固定几列
-             headerRows :2,  //头部固定行数
-             onStart : function () {
-                 this.start = new Date();
-             },
-             onFinish : function () {
-             }
-         }); */
+    	var parentW = $(".chartBox").width();
+        var parentH = $(".chartBox").height();
+       
+        $(".model1").hide(500);
+        $('#model_'+jys).css({
+            "display":"block",
+            "width": (parentW * 0.8),
+            "height": (parentH * 0.8),
+            "marginLeft": -(parentW * 0.8 / 2),
+            "marginTop": -(parentH * 0.8 / 2)
+        });
 
-    	 $(".header span").click(function () {
-             $('.model').css('display','none');
+    	 $(".header span").click(function (e) {
+    		 e.preventDefault();
+             $(".model").hide(500);
          });
     }
     

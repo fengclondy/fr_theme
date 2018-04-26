@@ -580,8 +580,8 @@
         var marketName = $('#marketName option:selected').val();
         var processingState = $('#processingState').val();
         var riskCategories = $('#riskCategories option:selected').val();
-        if('${fxlb}'){
-        	riskCategories='${fxlb}';
+        if('${fxlb!}'){
+        	riskCategories='${fxlb!}';
         }
         var riskIndicators = $('#riskIndicators option:selected').val();
         var alarmTimeStart = $('#alarmTimeStart').val().replace(/-/g,"");
@@ -621,7 +621,7 @@
                     exchangeHtml+="<option value='"+value.jysmc+"'>"+value.jysmc+"</option>";
                 });
                 $.each(data.type, function(index, value, array) {
-                	if('${fxlb}'&&'${fxlb}'==value.fxlb){
+                	if('${fxlb!}'&&'${fxlb!}'==value.fxlb){
                 		typehtml+="<option selected value='"+value.fxlb+"'>"+value.fxlb+"</option>";
                 	}else{
                 		typehtml+="<option value='"+value.fxlb+"'>"+value.fxlb+"</option>";

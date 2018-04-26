@@ -49,8 +49,7 @@
     position: absolute;
     z-index: 2;
     overflow: auto;
-    height:calc(100% - 60px);
-    /*background-color: #336699;*/
+    height: calc(100% - 60px);
 }
 .sData table {
     border-spacing: 0px 0px !important;

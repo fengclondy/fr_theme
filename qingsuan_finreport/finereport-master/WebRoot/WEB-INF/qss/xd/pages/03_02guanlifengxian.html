@@ -255,10 +255,10 @@ function initData(){
        * 查看明细
        */
       function seeMore(fxsjid) {
-          window.open("eventSeeDetails/index?fxsj_id="+fxsjid)
+          //window.open("eventSeeDetails/index?fxsj_id="+fxsjid)
+    	  window.parent.triggerClickParam("05_02fengxianshijianchakanmingxi","?fxsj_id="+fxsjid);
       }
  
-      
     $(function () {
         var ec001 = echarts.init($("#ec001_currentCompetitiveness")[0]);
         ec001.setOption(opt_pie);
