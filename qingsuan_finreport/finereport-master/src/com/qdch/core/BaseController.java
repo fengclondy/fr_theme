@@ -216,6 +216,7 @@ public class BaseController extends Controller{
 		String sessionId=c.getPara("sessionId");
 		if(StringUtils.isNotBlank(roleType)||StringUtils.isNotBlank(userName)){
 			//切换用户或者类型重新认证
+			c.setSession(Constants.SESSION_USER, null);
 			user.setType(roleType);
 			//获取用户信息
 			//String url="http://localhost:8075/WebReport/getAuthorityUserInfo?userName="+userName+"&uid="+uid;
