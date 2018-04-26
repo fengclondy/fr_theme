@@ -532,7 +532,7 @@
 
         $.ajax({
             type: "POST",
-            url: linkstr+querystr,
+            url: "${contextPath}/qdch/eventSeeDetails/"+linkstr+querystr,
             data: {"pageNum":pageNum,"pageSize":pageSize},
             dataType: "json",
             success: function (data) {
@@ -592,7 +592,7 @@
     function getRiskdata(){
         $.ajax({
             type: "POST",
-            url: "getRiskdata",
+            url: "${contextPath}/qdch/eventSeeDetails/getRiskdata",
             data: {'fxsj_id': fxsj_id},
             dataType: "json",
             success: function (data) {
@@ -628,21 +628,21 @@
         var guaranteehtml="";
         $.each(data.list, function(index, guaranteevalue, array) {
             guaranteehtml +=
-                "  <tr>            <td><a href=\"\" class=\"fengxian001\">"+guaranteevalue.assucontno+"</a></td>\n" +
-                "                <td>"+guaranteevalue.assucontkind+"</td>\n" +
-                "                <td>"+guaranteevalue.loanid+"</td>\n" +
-                "               <td>"+guaranteevalue.contno+"</td>\n" +
-                "               <td>"+guaranteevalue.maxassuflag+"</td>\n" +
-                "               <td>"+guaranteevalue.assucustid+"</td>\n" +
-                "               <td>"+guaranteevalue.assucustname+"</td>\n" +
-                "               <td>"+guaranteevalue.regikind+"</td>\n" +
-                "               <td>"+guaranteevalue.assuamt+"</td>\n" +
-                "               <td>"+guaranteevalue.assurate+"</td>\n" +
-                "               <td>"+guaranteevalue.begindate+"</td>\n" +
-                "               <td>"+guaranteevalue.enddate+"</td>\n" +
-                "               <td>"+guaranteevalue.contdate+"</td>\n" +
-                "               <td>"+guaranteevalue.bankidcont+"</td>\n" +
-                "               <td>"+guaranteevalue.validkind+"</td></tr>" ;
+                "  <tr>            <td><a href=\"\" class=\"fengxian001\">"+formatOutput(guaranteevalue.assucontno)+"</a></td>\n" +
+                "                <td>"+formatOutput(guaranteevalue.assucontkind)+"</td>\n" +
+                "                <td>"+formatOutput(guaranteevalue.loanid)+"</td>\n" +
+                "               <td>"+formatOutput(guaranteevalue.contno)+"</td>\n" +
+                "               <td>"+formatOutput(guaranteevalue.maxassuflag)+"</td>\n" +
+                "               <td>"+formatOutput(guaranteevalue.assucustid)+"</td>\n" +
+                "               <td>"+formatOutput(guaranteevalue.assucustname)+"</td>\n" +
+                "               <td>"+formatOutput(guaranteevalue.regikind)+"</td>\n" +
+                "               <td>"+formatOutput(guaranteevalue.assuamt)+"</td>\n" +
+                "               <td>"+formatOutput(guaranteevalue.assurate)+"</td>\n" +
+                "               <td>"+formatOutput(guaranteevalue.begindate)+"</td>\n" +
+                "               <td>"+formatOutput(guaranteevalue.enddate)+"</td>\n" +
+                "               <td>"+formatOutput(guaranteevalue.contdate)+"</td>\n" +
+                "               <td>"+formatOutput(guaranteevalue.bankidcont)+"</td>\n" +
+                "               <td>"+formatOutput(guaranteevalue.validkind)+"</td></tr>" ;
         });
         $('#guarantee').html(guaranteehtml);
 
@@ -651,16 +651,16 @@
         var limithtml=""
         $.each(data.list, function(index, value, array) {
             limithtml +=
-                "  <tr>            <td><a href=\"\" class=\"fengxian001\">"+value.custid+"</a></td>\n" +
-                "                <td>"+value.custname+"</td>\n" +
-                "                <td>"+value.mortamt+"</td>\n" +
-                "               <td>"+value.impaamt+"</td>\n" +
-                "               <td>"+value.assuamt+"</td>\n" +
-                "               <td>"+value.credamt+"</td>\n" + //信用额度
-                "               <td>"+value.leftamt+"</td>\n" + //授信总额度
+                "  <tr>            <td><a href=\"\" class=\"fengxian001\">"+formatOutput(value.custid)+"</a></td>\n" +
+                "                <td>"+formatOutput(value.custname)+"</td>\n" +
+                "                <td>"+formatOutput(value.mortamt)+"</td>\n" +
+                "               <td>"+formatOutput(value.impaamt)+"</td>\n" +
+                "               <td>"+formatOutput(value.assuamt)+"</td>\n" +
+                "               <td>"+formatOutput(value.credamt)+"</td>\n" + //信用额度
+                "               <td>"+formatOutput(value.leftamt)+"</td>\n" + //授信总额度
 
-                "               <td>"+value.currsign+"</td>\n" +
-                "               <td>"+value.assukind+"</td></tr>" ;
+                "               <td>"+formatOutput(value.currsign)+"</td>\n" +
+                "               <td>"+formatOutput(value.assukind)+"</td></tr>" ;
         });
         $('#limit').html(limithtml);
 
@@ -669,16 +669,16 @@
     function personaldata(data) {
         var personalhtml = "";
         $.each(data.list, function(index, value, array) {
-           personalhtml+="<tr><td>"+value.custid+"</td>" +
-               "<td>"+value.custname+"</td>" +
-               "<td>"+value.paperkind+"</td><td>"+value.paperid+"</td>" +
-               "<td>"+value.birtdate+"</td>" +"<td>"+value.sexsign+"</td>"+
-               "<td>"+value.nativeplace+"</td><td>"+value.natiflag+
-               "</td><td>"+value.marrsign+"</td><td>"+value.healsign+"</td><td>"+value.gradschool+
-               "</td><td>"+value.workkind+
-               "</td><td>"+value.educsign+"</td><td>"+value.degreesign+"</td><td>"+value.vocasign+
-               "</td><td>"+value.workcorp+"</td><td>"+value.corpsizesign+"</td><td>"+value.yearinco+
-               "</td><td>"+value.havegjjflag+"</td><td>"+value.havecommflag+
+           personalhtml+="<tr><td>"+formatOutput(value.custid)+"</td>" +
+               "<td>"+formatOutput(value.custname)+"</td>" +
+               "<td>"+formatOutput(value.paperkind)+"</td><td>"+formatOutput(value.paperid)+"</td>" +
+               "<td>"+formatOutput(value.birtdate)+"</td>" +"<td>"+formatOutput(value.sexsign)+"</td>"+
+               "<td>"+formatOutput(value.nativeplace)+"</td><td>"+formatOutput(value.natiflag)+
+               "</td><td>"+formatOutput(value.marrsig)+"</td><td>"+formatOutput(value.healsign)+"</td><td>"+formatOutput(value.gradschool)+
+               "</td><td>"+formatOutput(value.workkind)+
+               "</td><td>"+formatOutput(value.educsign)+"</td><td>"+formatOutput(value.degreesign)+"</td><td>"+formatOutput(value.vocasign)+
+               "</td><td>"+formatOutput(value.workcorp)+"</td><td>"+formatOutput(value.corpsizesign)+"</td><td>"+formatOutput(value.yearinco)+
+               "</td><td>"+formatOutput(value.havegjjflag)+"</td><td>"+formatOutput(value.havecommflag)+
                "</tr>";
 
 
@@ -689,14 +689,14 @@
     function detailsdata(data) {
         var detailshtml=""
         $.each(data.list, function(index, value, array) {
-            detailshtml +="<tr><td>"+value.loanid+"</td><td>"+value.custid+"</td><td>"+value.custname+"</td>" +
-                "<td>"+value.prodid+"</td><td>"+value.prodname+"</td>" +
-                "<td>"+value.assukind+"</td><td>"+value.contno+"</td>" +
-                "<td>"+value.currsign+"</td>"+
-                "<td>"+value.begindate+"</td><td>"+value.enddate+"</td>" +
-                "<td>"+value.retukind+"</td>" +
-                "<td>"+value.intecompkind+"</td><td>"+value.pinterate+"</td><td>"+value.rinterate+"</td>" +
-                "<td>"+value.rintefloatmode+"</td><td>"+value.pfinerate+"</td><td>"+value.rfinerate+"</td>" ;
+            detailshtml +="<tr><td>"+formatOutput(value.loanid)+"</td><td>"+formatOutput(value.custid)+"</td><td>"+formatOutput(value.custname)+"</td>" +
+                "<td>"+formatOutput(value.prodid)+"</td><td>"+formatOutput(value.prodname)+"</td>" +
+                "<td>"+formatOutput(value.assukind)+"</td><td>"+formatOutput(value.contno)+"</td>" +
+                "<td>"+formatOutput(value.currsign)+"</td>"+
+                "<td>"+formatOutput(value.begindate)+"</td><td>"+formatOutput(value.enddate)+"</td>" +
+                "<td>"+formatOutput(value.retukind)+"</td>" +
+                "<td>"+formatOutput(value.intecompkind)+"</td><td>"+formatOutput(value.pinterate)+"</td><td>"+formatOutput(value.rinterate)+"</td>" +
+                "<td>"+formatOutput(value.rintefloatmode)+"</td><td>"+formatOutput(value.pfinerate)+"</td><td>"+formatOutput(value.rfinerate)+"</td>" ;
             detailshtml +="</tr>";
         });
         $('#details').html(detailshtml);
@@ -707,14 +707,14 @@
     function publicdata(data) {
         var publichtml="";
         $.each(data.list, function(index, value, array) {
-            publichtml += " <tr><td>"+value.orgaid+"</td><td>"+value.custid+"</td>" +
-                "<td>"+value.corptype+"</td><td>"+value.licekind+"</td><td>"+value.custname+"</td>" +
-                "<td>"+value.liceid+"</td><td>"+value.comedate+"</td><td>"+value.superdept+"</td>" +
-                "<td>"+value.localarea+"</td><td>"+value.posskind+"</td>" +
-                "<td>"+value.leadcustname+"</td>" +"<td>"+value.regifund+"</td>"+
-                "<td>"+value.currsign+"</td><td>"+value.factcapi+"</td>" +
-                "<td>"+value.corpsizesign+"</td><td>"+value.staffnum+"</td><td>"+value.corpcredsign+"</td>" +
-                "<td>"+value.loanpaperid+"</td><td>"+value.loanpapercheckdate+"</td><td>"+value.contno+"</td>";
+            publichtml += " <tr><td>"+formatOutput(value.orgaid)+"</td><td>"+formatOutput(value.custid)+"</td>" +
+                "<td>"+formatOutput(value.corptype)+"</td><td>"+formatOutput(value.licekind)+"</td><td>"+formatOutput(value.custname)+"</td>" +
+                "<td>"+formatOutput(value.liceid)+"</td><td>"+formatOutput(value.comedate)+"</td><td>"+formatOutput(value.superdept)+"</td>" +
+                "<td>"+formatOutput(value.localarea)+"</td><td>"+formatOutput(value.posskind)+"</td>" +
+                "<td>"+formatOutput(value.leadcustname)+"</td>" +"<td>"+formatOutput(value.regifund)+"</td>"+
+                "<td>"+formatOutput(value.currsign)+"</td><td>"+formatOutput(value.factcapi)+"</td>" +
+                "<td>"+formatOutput(value.corpsizesign)+"</td><td>"+formatOutput(value.staffnum)+"</td><td>"+formatOutput(value.corpcredsign)+"</td>" +
+                "<td>"+formatOutput(value.loanpaperid)+"</td><td>"+formatOutput(value.loanpapercheckdate)+"</td><td>"+formatOutput(value.contno)+"</td>";
             publichtml +="</tr>";
         });
         $('#public').html(publichtml);
@@ -723,14 +723,14 @@
         var customerInfohtml=""
         $.each(data.list, function(index, value, array) {
             customerInfohtml+="<tr>"+
-                "<td>"+value.contno+"</td><td>"+value.contpaperno+"</td><td>"+value.loanid+"</td>" +
-                "<td>"+value.contkind+"</td><td>"+value.custid+"</td><td>"+value.custname+"</td>" +
-                "<td>"+value.currsign+"</td><td>"+value.conttotalamt+"</td>" +
-                "<td>"+value.contterm+"</td>" +"<td>"+value.begindate+"</td>"+
-                "<td>"+value.enddate+"</td><td>"+value.contdate+"</td>" +
-                "<td>"+value.contflag+"</td><td>"+value.payeeackind+"</td><td>"+value.payeeacno+"</td>" +
-            "<td>"+value.payeeacname+"</td><td>"+value.payeebankname+"</td>" +
-            "<td>"+value.fee+"</td><td>"+value.servicerate+"</td>" ;
+                "<td>"+formatOutput(value.contno)+"</td><td>"+formatOutput(value.contpaperno)+"</td><td>"+formatOutput(value.loanid)+"</td>" +
+                "<td>"+formatOutput(value.contkind)+"</td><td>"+formatOutput(value.custid)+"</td><td>"+formatOutput(value.custname)+"</td>" +
+                "<td>"+formatOutput(value.currsign)+"</td><td>"+formatOutput(value.conttotalamt)+"</td>" +
+                "<td>"+formatOutput(value.contterm)+"</td>" +"<td>"+formatOutput(value.begindate)+"</td>"+
+                "<td>"+formatOutput(value.enddate)+"</td><td>"+formatOutput(value.contdate)+"</td>" +
+                "<td>"+formatOutput(value.contflag)+"</td><td>"+formatOutput(value.payeeackind)+"</td><td>"+formatOutput(value.payeeacno)+"</td>" +
+            "<td>"+formatOutput(value.payeeacname)+"</td><td>"+formatOutput(value.payeebankname)+"</td>" +
+            "<td>"+formatOutput(value.fee)+"</td><td>"+formatOutput(value.servicerate)+"</td>" ;
             customerInfohtml +="</tr>";
         });
         $('#customerInfo').html(customerInfohtml);

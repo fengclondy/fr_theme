@@ -19,7 +19,7 @@ public class TermDetailsModel extends Model<TermDetailsModel> {
 	private static final long serialVersionUID = 1L;
 	public static final TermDetailsModel dao=new TermDetailsModel();
 	public List<TermDetailsModel> getTermDetails(String dataSql,String jys){	
-		String sql="select jyscmc,jysc,term,pjlv,je,(jezb::NUMERIC*100) as jezb,hkfs from insight_pp_term_distribute where 1=1  ";		
+		String sql="select jyscmc,jysc,term,pjlv,round((je::NUMERIC/10000),2) as je,(jezb::NUMERIC*100) as jezb,hkfs from insight_pp_term_distribute where 1=1  ";		
 		if(StringUtils.isNotBlank(dataSql)){
 			sql+=" and jysc in"+ dataSql+"";
 		}
