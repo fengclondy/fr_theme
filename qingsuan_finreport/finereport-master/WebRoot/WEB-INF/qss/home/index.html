@@ -112,6 +112,9 @@ $(function(){
     $(".user").mouseleave(function () {
         $('.userNav').css('display','none');
     });
+    $('.collapse').mouseleave(function () {
+        $('.collapse>ul').css('display','none')
+    });
 });
 //获取小信封事件
 function getAllUnRead(){
@@ -184,6 +187,7 @@ function triggerClickParam(page,param){
 	};
 	
 }
+
 </script>
 </body>
 </html>
