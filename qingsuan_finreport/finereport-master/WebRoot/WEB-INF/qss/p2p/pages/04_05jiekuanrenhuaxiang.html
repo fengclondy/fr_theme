@@ -115,19 +115,7 @@
       	#demoTable1{
             border: 1px solid #00abde;
         }
-         #my_tr th:not(.biaoti){
-            color:#00CEFF;
-            cursor: pointer;
-        }
-        .one{
-            height: 94%;
-        }
-        #alertIframe{
-     
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
+      
         /*模态框strat*/
         .model,.model1{
             background: url("${contextPath}/static/img/com/tck_bj.jpg") no-repeat;
@@ -166,10 +154,11 @@
             border: 1px solid #00abde;
         }
         /*模态框  end*/
-        #my_tr th:not(.biaoti){
+        #my_tr>th:not(.biaoti){
             color:#00CEFF;
             cursor: pointer;
         }
+      
         .one{
             height: 94%;
         }
@@ -252,9 +241,9 @@
                 <div style="height:100%;width: 100%;" id="my_div" class="fakeContainer first_div" >
                     <table border="1" id="demoTable" style="border-collapse: collapse;">
                         <tr id="my_tr">
-                            <th class="center" rowspan="2">借款方</th>
-                            <th class="center" rowspan="2">资料类别</th>
-                            <th class="center " rowspan="1" id="pingtai">主要信息</th>
+                            <th class="center" rowspan="2" class="biaoti">借款方</th>
+                            <th class="center" rowspan="2" class="biaoti">资料类别</th>
+                            <th class="center " rowspan="1" id="pingtai" class="biaoti">主要信息</th>
                             
                              ##for(j in pingtailist!){
                                 <th class="center" rowspan="1" >${j.jysinfo!}</th>
