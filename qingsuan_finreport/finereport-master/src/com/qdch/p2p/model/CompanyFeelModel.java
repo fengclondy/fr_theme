@@ -55,7 +55,7 @@ public class CompanyFeelModel extends Model<CompanyFeelModel>{
 				+ " (SELECT jysinfo FROM hub_commerce_ref_jys t where t.company_name = n. NAME) jysinfo,COUNT (1) QTY"
 				+ " FROM PUBLIC .hub_commerce_meiya_sentiment_news M "
 				+ " LEFT JOIN PUBLIC .hub_commerce_enterprise n ON M .ENTERPRISE_ID = n. ID"
-				+ " WHERE n. NAME IN (SELECT company_name FROM hub_commerce_ref_jys t left join public.hub_dd_tqs_jys t1 on t.jysmc=t1.jysmc"
+				+ " WHERE n. NAME IN (SELECT company_name FROM hub_commerce_ref_jys t left join public.hub_dd_tqs_jys t1 on  T .jys = t1.jys"
 				+ " where t1.jysfl=4 ";
 				if (StringUtils.isNotBlank(jysIds)) {
 					sql += " and t.jys in "+jysIds;

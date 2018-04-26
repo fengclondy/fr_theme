@@ -168,7 +168,7 @@ function tabNav() {
 
 
     $navTabUl.on("click", "li>a>.close", function (e) {
-        var selectedId = "00_01home";
+        var selectedId = "";
         if ($(this).parents("li").attr("class").indexOf("active") > -1) {
             $(this).parents("li").removeClass("active");
             // console.log("------",$(this).parents("li").prevAll().length)
@@ -185,10 +185,10 @@ function tabNav() {
 
             pageSwitch(selectedId);
         }
-        $("div[data-pagename='" + $(this).parents("li").data("pagename")+"']").remove();
-        // if ($navTabUl.find("li").length !== 1) {//如果只剩一个则不能关闭
-        $(this).parents("li").remove();
-        // }
+        if ($(this).parents("li").prevAll().length>3) {//如果只剩一个则不能关闭
+        	$("div[data-pagename='" + $(this).parents("li").data("pagename")+"']").remove();
+        	$(this).parents("li").remove();
+        }
         e.stopPropagation();//阻止冒泡
     });
     $(".nav-tabs > ul > li.collapse>button").click(function () {
