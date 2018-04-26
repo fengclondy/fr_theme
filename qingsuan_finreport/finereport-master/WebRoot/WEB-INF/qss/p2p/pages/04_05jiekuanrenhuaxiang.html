@@ -248,6 +248,9 @@
                              ##for(j in pingtailist!){
                                 <th class="center" rowspan="1" >${j.jysinfo!}</th>
                              ##}
+                             <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              
                         </tr>
                         <tr id="score">
                             <th class="center defen">得分</th>
@@ -255,7 +258,8 @@
                           ##for(j in pingtailist!){
                           	<th class="center defen1" onclick='aab("${j.jysinfo!}")' data="${j.jysinfo!}">${j.fscore!}</th>
                           ##}
-
+							 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
                         </tr>
                         <tr>
                             <td class="center ziranren" rowspan="27" style="background:#00568c">自然人</td>
@@ -270,6 +274,8 @@
                           			${j.zrr.pname!}
                      	     </td>
                           ##}
+                          <td class="center" id="name2"> </td>
+                           <td class="center" id="name2"> </td>
                         </tr>
                           <tr id="sfz">
                             <td class="center red">身份证</td>
@@ -281,6 +287,8 @@
                           		
                           	 </td>
                           ##}
+                          	<td class="center"></td>
+                          	<td class="center"></td>
                  		</tr> 
 
                         <tr>
@@ -293,6 +301,8 @@
                           		
                           	 </td>
                           ##}
+                          <td class="center"></td>
+                          <td class="center"></td>
              			 </tr>
 
                         <tr>
@@ -303,6 +313,8 @@
                           		${j.zrr.sex!} 
                           	 </td>
                           ##}
+                          <td class="center"></td>
+                          <td class="center"></td>
 					    </tr>
 
                         <tr>
@@ -313,6 +325,8 @@
                           		${j.zrr.age!}
                           	 </td>
                           ##}
+                          <td class="center"></td>
+                          <td class="center"></td>
                         </tr>
 
                         <tr>
@@ -323,6 +337,8 @@
                           		${j.zrr.xuel!} 
                           	 </td>
                           ##}
+                          <td class="center"></td>
+                          <td class="center"></td>
                         </tr>
 
                         <tr>
@@ -333,6 +349,8 @@
                           		 ${j.zrr.hyzk!} 
                           	 </td>
                           ##}
+                          <td class="center"></td>
+                          <td class="center"></td>
           				 </tr>
 
                         <tr>
@@ -343,6 +361,8 @@
                           		${j.zrr.hjszd!} 
                           	 </td>
                           ##}
+                          <td class="center"></td>
+                          <td class="center"></td>
 					     </tr>
 
                         <tr>
@@ -353,6 +373,8 @@
                           		 ${j.zrr.hkly!} 
                           	 </td>
                           ##}
+                          <td class="center"></td>
+                          <td class="center"></td>
 					    </tr> 
                    
                          
@@ -367,6 +389,8 @@
                           		 ${j.xinyon.yqcs!} 
                           	 </td>
                           ##}
+                          <td class="center"></td>
+                          <td class="center"></td>
                            
                         </tr>
 
@@ -379,6 +403,8 @@
                           		 ${j.xinyon.yqje!} 
                           	 </td>
                           ##}
+                          <td class="center"></td>
+                          <td class="center"></td>
                            
                            
                           
@@ -393,6 +419,8 @@
                           		 ${j.xinyon.zxbg!} 
                           	 </td>
                           ##}
+                          <td class="center"></td>
+                          <td class="center"></td>
                            
                          
                         </tr>
@@ -406,6 +434,8 @@
                           		 ${j.xinyon.qijk!} 
                           	</td>
                             ##}
+                            <td class="center"></td>
+                          <td class="center"></td>
                            
                        
                         </tr>
@@ -419,6 +449,8 @@
                           		 ${j.xinyon.jkbs!} 
                           	</td>
                             ##}
+                            <td class="center"></td>
+                          <td class="center"></td>
                           
                           
                         </tr>
@@ -432,6 +464,8 @@
                           		 ${j.xinyon.jkze!} 
                           	</td>
                             ##}
+                            <td class="center"></td>
+                          <td class="center"></td>
                           
                          
                         </tr>
@@ -445,6 +479,8 @@
                           		 ${j.xinyon.zxcs!} 
                           	 </td>
                             ##}
+                            <td class="center"></td>
+                          <td class="center"></td>
                            
                           
                         </tr>
@@ -459,6 +495,8 @@
                           		 ${j.zichan.srqk!} 
                           	 </td>
                             ##}
+                            <td class="center"></td>
+                          <td class="center"></td>
                            
                         </tr>
 
@@ -471,6 +509,8 @@
                           		 ${j.zichan.gf_flag!} 
                           	 </td>
                             ##}
+                            <td class="center"></td>
+                          <td class="center"></td>
                             
                             
                           
@@ -486,6 +526,8 @@
                           		 ${j.zichan.gc_flag!} 
                           	</td>
                             ##}
+                            <td class="center"></td>
+                          <td class="center"></td>
                             
                            
                         </tr>
@@ -500,6 +542,8 @@
                           		 ${j.zichan.fd_flag!} 
                           	 </td>
                             ##}
+                            <td class="center"></td>
+                          <td class="center"></td>
                             
                            
                         </tr>
@@ -514,6 +558,8 @@
                           		 ${j.zichan.cd_flag!} 
                           	</td>
                             ##}
+                            <td class="center"></td>
+                          <td class="center"></td>
                            
                            
                         </tr>
@@ -529,6 +575,8 @@
                           		 ${j.job.industry!} 
                           	</td>
                             ##}
+                            <td class="center"></td>
+                          <td class="center"></td>
                           
                          
 
@@ -543,7 +591,8 @@
                           		 ${j.job.city!} 
                           	</td>
                             ##}
-                           
+                           <td class="center"></td>
+                          <td class="center"></td>
                         </tr>
 
                         <tr>
@@ -555,7 +604,8 @@
                           		 ${j.job.gsgm!} 
                           	</td>
                             ##}
-                           
+                           <td class="center"></td>
+                          <td class="center"></td>
                           
                         </tr>
 
@@ -568,7 +618,8 @@
                           		 ${j.job.gzgw!} 
                           	</td>
                            ##}
-                           
+                           <td class="center"></td>
+                          <td class="center"></td>
                          
                         </tr>
 
@@ -581,7 +632,8 @@
                           		 ${j.job.gznx!} 
                           	</td>
                             ##}
-                          
+                          <td class="center"></td>
+                          <td class="center"></td>
                          
                         </tr>
                         <!-- 企业 -->
@@ -597,7 +649,8 @@
                           	 </td>
                           ##}
                            
-
+							<td class="center"></td>
+                          <td class="center"></td>
                         </tr>
 
                         <tr>
@@ -609,7 +662,8 @@
                           		 ${j.qjb.frdb!} 
                           	 </td>
                           ##}
-                           
+                           <td class="center"></td>
+                          <td class="center"></td>
                           
                         </tr>
 
@@ -623,7 +677,8 @@
                           	</td>
                             ##}
                           
-                          
+                          <td class="center"></td>
+                          <td class="center"></td>
                         </tr>
 
                         <tr>
@@ -635,7 +690,8 @@
                           		 ${j.qjb.zczb!} 
                           	</td>
                             ##}
-                          
+                          <td class="center"></td>
+                          <td class="center"></td>
                         </tr>
 
                         <tr>
@@ -648,7 +704,8 @@
                           	</td>
                             ##}
                            
-                          
+                          <td class="center"></td>
+                          <td class="center"></td>
                         </tr>
 
                         <tr>
@@ -660,7 +717,8 @@
                           		 ${j.qjb.yyfw!} 
                           	</td>
                            ##}
-                       
+                       <td class="center"></td>
+                          <td class="center"></td>
                         </tr>
 
                         <tr>
@@ -672,7 +730,8 @@
                           		 ${j.qjb.gsgm!} 
                           	 </td>
                             ##}
-                            
+                            <td class="center"></td>
+                          <td class="center"></td>
                           
                         </tr>
 
@@ -685,7 +744,8 @@
                           		 ${j.qjb.zjyt!} 
                           	 </td>
                            ##}
-                           
+                           <td class="center"></td>
+                          <td class="center"></td>
                           
                         </tr>
 
@@ -699,7 +759,8 @@
                           	 </td>
                             ##}
                             
-                        
+                        <td class="center"></td>
+                          <td class="center"></td>
                         </tr>
 
                         <tr>
@@ -712,7 +773,8 @@
                           		 ${j.qqt.srqk!} 
                           	 </td>
                             ##}
-                           
+                           <td class="center"></td>
+                          <td class="center"></td>
                        
                         </tr>
                         <tr>
@@ -723,7 +785,8 @@
                           		 ${j.qqt.fzqk!} 
                           	 </td>
                             ##}
-                            
+                            <td class="center"></td>
+                          <td class="center"></td>
                          
                         </tr>
                         <tr>
@@ -734,7 +797,8 @@
                           		 ${j.qqt.zxbg!} 
                           	 </td>
                             ##}
-                            
+                            <td class="center"></td>
+                          <td class="center"></td>
                          
                         </tr>
                         <tr>
@@ -745,7 +809,8 @@
                           		 ${j.qqt.qijk_flag!} 
                           	</td>
                             ##}
-                          
+                          <td class="center"></td>
+                          <td class="center"></td>
                          
                          
                         </tr>
@@ -757,7 +822,8 @@
                           		 ${j.qqt.gdxx!} 
                           	</td>
                             ##}
-                      
+                      <td class="center"></td>
+                          <td class="center"></td>
                         </tr>
                         <tr>
                             <td class="center left">法人信用信息</td>
@@ -767,7 +833,8 @@
                           		 ${j.qqt.frxyxx!} 
                           	</td>
                             ##}
-                           
+                           <td class="center"></td>
+                          <td class="center"></td>
                             
                          
                         </tr>
@@ -779,7 +846,8 @@
                           		 ${j.qqt.zxcs!} 
                           	</td>
                             ##}
-                           
+                           <td class="center"></td>
+                          <td class="center"></td>
                         </tr>
                         <tr>
                             <td class="center left">涉诉信息</td>
@@ -789,7 +857,8 @@
                           		 ${j.qqt.ssxx!} 
                           	</td>
                             ##}
-                            
+                           <td class="center"></td>
+                          <td class="center"></td> 
                           
                         </tr>
                          <tr>
@@ -800,7 +869,8 @@
                           		 
                           	</td>
                             ##}
-                            
+                            <td class="center"></td>
+                          <td class="center"></td>
                           
                         </tr>
                        
@@ -991,8 +1061,8 @@
                             <tr>
                                 <td class="center left">担保合同</td>
 
-                                <td class="center">${j.diya.dzyht!}</td>
-                                <td class="center">${j.diya.dzyht_flag!}</td>
+                                <td class="center">${j.diya.dbht!}</td>
+                                <td class="center">${j.diya.dbht_flag!}</td>
                             </tr>
 
                         </table>
@@ -1132,7 +1202,7 @@
     }); 
     
     function aab(str){
-    	var jys=str
+    	var jys=str;
     	$(".model").css('display','none');
     	$('#model_'+jys).css('display','block');
     	var parentW = $(".chartBox").width();
