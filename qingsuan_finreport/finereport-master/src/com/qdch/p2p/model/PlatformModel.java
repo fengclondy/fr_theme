@@ -84,9 +84,9 @@ public class PlatformModel extends Model<PlatformModel>{
 			//0：没有银行存管 1:有银行存管
 			if(StringUtils.isNotBlank(cgyh)){
 				if (Integer.valueOf(cgyh) == 0) {
-					sql.append(" and cgyh = '无存管'");
+					sql.append(" and rtrim(cgyh) = '无存管'");
 				}else{
-					sql.append(" and cgyh != '无存管'");
+					sql.append(" and rtrim(cgyh) != '无存管'");
 				}
 			}
 			//根据注册资本查询

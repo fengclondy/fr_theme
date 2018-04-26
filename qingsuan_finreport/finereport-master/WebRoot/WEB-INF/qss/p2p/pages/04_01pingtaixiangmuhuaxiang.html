@@ -729,6 +729,10 @@
   				}
   				
   			})
+  			for(var x=0;x<dataArr.length;x++){
+  				seriesData1.push(0);
+  				seriesData2.push(0);
+  			}
   			dataArr.sort();
   			$.each(data.interest,function(index,item){
   				var num=dataArr.indexOf(item.vday_ym);
@@ -970,7 +974,7 @@
   	  	  			            backgroundColor:'rgba(0,0,0,0.2)'
 
   	  	  			        }); 
-  	  						
+  	  						$('#progressbar1>.progressbar>.percentCount').css('display','none');
   	  						}else{
   	  						$('#progressbar1').LineProgressbar({
   	  	  			            percentage: item.iterm_value*100,
@@ -995,7 +999,7 @@
   					            backgroundColor:'rgba(0,0,0,0.2)'
   					           
   					        });	
-  							 /* $('.percentCount').css('display','none'); */
+  							  $('#progressbar2>.progressbar>.percentCount').css('display','none'); 
   						}else{
   							$('#progressbar2').LineProgressbar({
   					            percentage: item.iterm_value*100,
