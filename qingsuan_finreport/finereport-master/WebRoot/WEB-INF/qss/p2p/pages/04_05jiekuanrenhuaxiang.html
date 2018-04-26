@@ -241,9 +241,9 @@
                 <div style="height:100%;width: 100%;" id="my_div" class="fakeContainer first_div" >
                     <table border="1" id="demoTable" style="border-collapse: collapse;">
                         <tr id="my_tr">
-                            <th class="center" rowspan="2" class="biaoti">借款方</th>
-                            <th class="center" rowspan="2" class="biaoti">资料类别</th>
-                            <th class="center " rowspan="1" id="pingtai" class="biaoti">主要信息</th>
+                            <th class="center biaoti" rowspan="2">借款方</th>
+                            <th class="center biaoti" rowspan="2">资料类别</th>
+                            <th class="center biaoti" rowspan="1" id="pingtai">主要信息</th>
                             
                              ##for(j in pingtailist!){
                                 <th class="center" rowspan="1" >${j.jysinfo!}</th>
@@ -1107,7 +1107,7 @@
         });
 
 
-        $('#my_tr th').click(function () {
+        $('#my_tr>th:not(.biaoti)').click(function () {
             var name = $(this).text();
             var parentW = $(".chartBox").width();
             var parentH = $(".chartBox").height();
