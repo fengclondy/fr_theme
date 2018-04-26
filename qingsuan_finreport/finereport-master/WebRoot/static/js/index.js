@@ -185,7 +185,7 @@ function tabNav() {
 
             pageSwitch(selectedId);
         }
-        if ($(this).parents("li").prevAll().length>3) {//如果只剩一个则不能关闭
+        if ($(this).parents("li").siblings().length>2) {//如果只剩一个则不能关闭
         	$("div[data-pagename='" + $(this).parents("li").data("pagename")+"']").remove();
         	$(this).parents("li").remove();
         }
