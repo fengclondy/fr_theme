@@ -235,7 +235,7 @@
         }
         .tbbg {
             background: #33599999;
-            width: 10em;
+            width: 20em;
             text-align: center;
         }
 
@@ -612,6 +612,13 @@
 			display: none;
 			z-index: 1002;
 		}
+		label{
+		font-size: 1rem;
+		}
+		tbody > tr > td,
+        tbody > tr > th {
+		    font-size: 1rem;
+		}
     </style>
 </head>
 <body id="gongshangxinxijiankong" data-title="工商信息监控">
@@ -735,6 +742,7 @@
                             <td rowspan="6" style="position: relative;">
                                 <img src="${contextPath}/static/img/gsxx/gqjgt.jpg" style="margin-left: 5em;"/>
 
+
                <div style="position: absolute;left: 17em;top: 1.9em;width: 24em;
     height: 2.2em;text-align: center;line-height: 2.2em;background: #004d7d;">${hold.company_name!}</div>
 								<div style="position: absolute;
@@ -745,6 +753,7 @@
 								    text-align: center;
 								    line-height: 2em;
 								    background: #004d7d;">${hold.investor!}</div>
+
                             </td>
                         </tr>
                         <tr>
