@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -66,6 +67,22 @@ public class HlLoadLoginAction extends FSLoadLoginAction {
 			}
 			addServerID(session);
 			//System.out.println("url:" + url);
+			Cookie[] cookies=req.getCookies();
+			int port=req.getLocalPort();
+			ui.removeCookies(res);
+			for(Cookie c:cookies ){
+				Cookie newCookie=new Cookie(c.getName(),c.getValue());
+				if(!"80".equals(port+"")){
+					newCookie.setDomain(c.getDomain()+":"+port);
+					System.out.println(port);
+				}
+				newCookie.setPath(c.getPath());
+				newCookie.setMaxAge(c.getMaxAge());
+				newCookie.setSecure(c.getSecure());
+				newCookie.setComment(c.getComment());
+				newCookie.setValue(c.getValue());
+				res.addCookie(newCookie);
+			}
 			signOnSuccess(req, res, writer, url);
 		} else {
 			signOnFailure(req, writer);
