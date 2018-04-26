@@ -25,7 +25,7 @@
        .search{
        width: 100%;
        padding: .5rem 2rem;
-       height: 10%;
+       /* height: 10%; */
       }
         form {
             width: 57rem;
@@ -1098,12 +1098,10 @@
         }
         
       //模块框
-        /* $("#score>th:not(.defen)").click(function () {
+        /*  $("#score>th:not(.defen)").click(function () {
             var _number = $(this).text();
             var parentW = $(".chartBox").width();
             var parentH = $(".chartBox").height();
-            console.log(parentW);
-            console.log(parentH);
            
             $(".model1").hide(500);
             $('.model').css({
@@ -1113,7 +1111,7 @@
                 "marginLeft": -(parentW * 0.8 / 2),
                 "marginTop": -(parentH * 0.8 / 2)
             });
-        }); */
+        }); */ 
         $(".model .header span").click(function (e) {
             e.preventDefault();
             $(".model").hide(500);
@@ -1148,18 +1146,21 @@
     	var jys=str
     	$(".model").css('display','none');
     	$('#model_'+jys).css('display','block');
-    	/*  new superTable("demoTable", {cssSkin : "sDefault",
-             fixedCols : 2, //固定几列
-             headerRows :2,  //头部固定行数
-             onStart : function () {
-                 this.start = new Date();
-             },
-             onFinish : function () {
-             }
-         }); */
+    	var parentW = $(".chartBox").width();
+        var parentH = $(".chartBox").height();
+       
+        $(".model1").hide(500);
+        $('#model_'+jys).css({
+            "display":"block",
+            "width": (parentW * 0.8),
+            "height": (parentH * 0.8),
+            "marginLeft": -(parentW * 0.8 / 2),
+            "marginTop": -(parentH * 0.8 / 2)
+        });
 
-    	 $(".header span").click(function () {
-             $('.model').css('display','none');
+    	 $(".header span").click(function (e) {
+    		 e.preventDefault();
+             $(".model").hide(500);
          });
     }
     

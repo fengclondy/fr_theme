@@ -424,11 +424,11 @@ td.more:active > a {
 @media all {
     .whitePage .tableBox {
         width: 100%;
-        overflow: hidden;
+         overflow: auto;
     }
 
     .whitePage .tableBox:hover {
-        overflow: auto;
+      /*   overflow: auto; */
     }
 
     .whitePage table {
