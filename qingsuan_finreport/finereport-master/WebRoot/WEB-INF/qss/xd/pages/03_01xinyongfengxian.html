@@ -567,8 +567,16 @@
         		var yAxisData=[];
         		var seriesData=[];
         		$.each(data,function(index,item){
-	        		yAxisData.push(item.name);
-	    			seriesData.push(item.value);
+        			if(item.value==undefined){
+        				
+        				yAxisData.push(item.name);
+        				seriesData.push('');
+        			}else{
+        				yAxisData.push(item.name);
+        				seriesData.push(item.value);
+        			}
+	        		
+	    			
        	 		});
         		ec003.setOption(opt_line);
         	    ec003.setOption({
