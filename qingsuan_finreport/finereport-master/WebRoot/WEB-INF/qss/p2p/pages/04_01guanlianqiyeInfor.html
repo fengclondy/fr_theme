@@ -111,13 +111,7 @@
 
 
 
-        .top{
-            min-height: 29%;
-            _height:29%;
-            width: 100%;
-            /*position: fixed;*/
-            top:0em;
-        }
+        
 
         .top,.tabContent {
             background: #2c467f99;
@@ -127,17 +121,21 @@
             margin: 0.8em .8em;
         }
 
+	.top{
+            height: 22%;
+           
+        }
         .top li {
             float:left;
             width:16.6%;
             text-align: center;
             height: 33.3%;
-            margin-top: 1.5em;
+            margin-top: 0.2rem auto;
         }
         .top li a{
             float: left;
             width: 100%;
-            font-size: 14px;
+            font-size: 1.2rem;
         }
         .blank {
             background: #13789f;
@@ -154,7 +152,7 @@
         .tabContent {
             height: 11%;
             /* margin: 0 auto; */
-            margin-top: 2%;
+            margin-top: 0.5%;
             border-bottom: solid 2px #00adef;
             /*position: fixed;*/
             top: 9em;
@@ -173,7 +171,7 @@
 
         .tabContent span {
             color:#dd0;
-            font-size: 12px;
+            font-size: 1.4rem;
         }
 
         .mainContent{
@@ -223,7 +221,7 @@
             height: 3em;
             line-height: 3em;
             padding-left: 2em;
-            font-size: 14px;
+            font-size: 1.4rem;
         }
         .ltitle>span:nth-child(1) {
             float: left;
@@ -235,7 +233,7 @@
         }
         .tbbg {
             background: #33599999;
-            width: 10em;
+            width: 20em;
             text-align: center;
         }
 
@@ -584,8 +582,8 @@
 		}
 		.deleteBtn{
 		    position: absolute;
-		    top: 5px;
-		    right: 8px;
+		    top: 10px;
+		    right: 14px;
 		    z-index: 101;
 		    cursor: pointer;
 		    font-size: 22px;
@@ -611,6 +609,13 @@
 			color: #fff;
 			display: none;
 			z-index: 1002;
+		}
+		label{
+		font-size: 1.2rem;
+		}
+		tbody > tr > td,
+        tbody > tr > th {
+		    font-size: 1rem;
 		}
     </style>
 </head>
@@ -735,18 +740,18 @@
                             <td rowspan="6" style="position: relative;">
                                 <img src="${contextPath}/static/img/gsxx/gqjgt.jpg" style="margin-left: 5em;"/>
 
-                                <div style="position: absolute;left: 16em;top: 1.8em;width: 22em;
+
+               <div style="position: absolute;left: 17em;top: 1.9em;width: 24em;
     height: 2.2em;text-align: center;line-height: 2.2em;background: #004d7d;">${hold.company_name!}</div>
-                                <div style="position: absolute;
-    left: 7em;
-    eft: 16em;
-    top: 8.2em;
-    width: 18em;
-    height: 2.2em;
-    text-align: center;
-    line-height: 2.2em;
-    background: #004d7d;">${hold.investor!}</div>
-                                <div class="ck">查看详情</div>
+								<div style="position: absolute;
+								    left: 7em;
+								    top: 9.2em;
+								    width: 18em;
+								    height: 2em;
+								    text-align: center;
+								    line-height: 2em;
+								    background: #004d7d;">${hold.investor!}</div>
+
                             </td>
                         </tr>
                         <tr>

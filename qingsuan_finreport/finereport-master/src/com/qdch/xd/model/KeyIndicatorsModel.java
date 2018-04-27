@@ -21,13 +21,11 @@ public class KeyIndicatorsModel extends Model<KeyIndicatorsModel>{
 	public static final KeyIndicatorsModel dao = new KeyIndicatorsModel();
 
 	public List<KeyIndicatorsModel> getByYeamount(String bigjys){
-		String sql="select t.jyscmc as name,round(sum(t.fvalue)/100000000,2) as value from insight_xd_yeamount t where vday=(select max(vday) from insight_xd_yeamount)";
+		String sql="select t.jyscmc as name,t.jysc,round(sum(t.fvalue)/100000000,2) as value from insight_xd_yeamount t where vday=(select max(vday) from insight_xd_yeamount where jysc=t.jysc)";
 		if(StringUtils.isNotBlank(bigjys)){
 			sql+="  and jysc in "+bigjys;
 		} 
-		//sql+=" and vday=(select max(vday) from insight_pp_iterm_struct where jysc ='"+jys+"')";
-		sql+=" group by t.jyscmc order by value,t.jyscmc";
-		//return dao.find(Db.getSqlPara("index.getByDBFS"));
+		sql+=" group by t.jyscmc,t.jysc order by value,t.jyscmc";
 		return dao.find(sql);
 	}
 	public List<KeyIndicatorsModel> getByAmount(String bigjys){
@@ -48,7 +46,7 @@ public class KeyIndicatorsModel extends Model<KeyIndicatorsModel>{
 		return dao.find(sql);
 	}
 	public List<KeyIndicatorsModel> getByThreeRuralIssue(String bigjys){
-		String sql="SELECT t1.vday,t1.jysc,t1.jyscmc,round(SUM(CASE WHEN loanobject='410003' THEN fvalue ELSE 0 END)/SUM(fvalue),4)*100  AS nums FROM insight_xd_yeamount t1 WHERE vday=(SELECT max(vday) FROM insight_xd_yeamount) ";
+		String sql="SELECT t1.vday,t1.jysc,t1.jyscmc,round(SUM(CASE WHEN loanobject='410003' THEN fvalue ELSE 0 END)/SUM(fvalue),4)*100  AS nums FROM insight_xd_yeamount t1 WHERE vday=(SELECT max(vday) FROM insight_xd_yeamount where jysc=t1.jysc) ";
 		if(StringUtils.isNotBlank(bigjys)){
 			sql+="and jysc in "+bigjys;
 		} 

@@ -27,5 +27,14 @@ public class PpjyscModel extends Model<PpjyscModel> {
 		sql+="order by jysc";
 		return dao.find(sql);
 	}
+	public List<PpjyscModel> getJyscGs(String dataSql){	
+		String sql="select jysc ,jyscmc as company_name,jysinfo,jyscfl,zt,djrq from hub_pp_jysc where 1=1 ";
+		
+		if(StringUtils.isNotBlank(dataSql)){
+			sql+=" and jysc in"+ dataSql+"";
+		}
+		sql+="order by jysc";
+		return dao.find(sql);
+	}
 
 }
