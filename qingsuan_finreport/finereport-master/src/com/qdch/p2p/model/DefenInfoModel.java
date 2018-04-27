@@ -34,7 +34,7 @@ public class DefenInfoModel extends Model<DefenInfoModel>{
 				} 
 				sql+= "and coalesce(p1.vday,'~')=coalesce((SELECT max(vday) from insight_pp_score_info where jysc=p1.jysc),'~')"
 				+ " GROUP BY pp1.jysc,pp1.jyscmc,pp1.jysinfo,p1.vday) t1"
-				+ " order by t1.fscore desc";
+				+ " order by t1.fscore desc,t1.jysinfo";
 		 return	dao.find(sql);
 	}	
 	/**
