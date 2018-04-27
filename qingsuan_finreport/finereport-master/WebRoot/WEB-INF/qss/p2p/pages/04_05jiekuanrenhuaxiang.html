@@ -246,10 +246,13 @@
                             <th class="center " rowspan="1" id="pingtai" class="biaoti">主要信息</th>
                             
                              ##for(j in pingtailist!){
+              
                                 <th class="center" rowspan="1" >${j.jysinfo!}</th>
                              ##}
+                             ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
                              <th class="center" rowspan="1" ></th>
-                             <th class="center" rowspan="1" ></th>
+                          ##}
                               
                         </tr>
                         <tr id="score">
@@ -258,8 +261,11 @@
                           ##for(j in pingtailist!){
                           	<th class="center defen1" onclick='aab("${j.jysinfo!}")' data="${j.jysinfo!}">${j.fscore!}</th>
                           ##}
-							 <th class="center" rowspan="1" ></th>
+                          
+                          	 <th class="center" rowspan="1" ></th>
                              <th class="center" rowspan="1" ></th>
+                        
+							
                         </tr>
                         <tr>
                             <td class="center ziranren" rowspan="27" style="background:#00568c">自然人</td>
