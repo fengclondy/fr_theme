@@ -107,7 +107,7 @@
                             <div class="inputGroup">
                                 <label>筛选条件:</label>
                                 <div class="mySelect" >
-                                    <div class="myOption selected"><span class="text"></span><span class="icon"></span>
+                                    <div class="myOption selected"><span class="text" id="show_type"></span><span class="icon"></span>
                                     </div>
                                     <ul class="myOptionBox" id="defrate">
                                         <li class="myOption selected" data="dbfs">担保方式</li>
@@ -133,7 +133,7 @@
                             <div class="inputGroup">
                                 <label>筛选条件:</label>
                                 <div class="mySelect" >
-                                    <div class="myOption selected"><span class="text"></span><span class="icon"></span>
+                                    <div class="myOption selected"><span class="text" id="show_type2"></span><span class="icon"></span>
                                     </div>
                                     <ul class="myOptionBox" id="migrationrrate">
                                         <li class="myOption selected" data="m1">M1</li>
@@ -160,9 +160,9 @@
                             <div class="inputGroup">
                                 <label>筛选条件:</label>
                                 <div class="mySelect" id="jingzhenglizhibiao4">
-                                    <div class="myOption selected"><span class="text"></span><span class="icon"></span>
+                                    <div class="myOption selected"><span class="text" id="show_type3"></span><span class="icon"></span>
                                     </div>
-                                    <ul class="myOptionBox" >
+                                    <ul class="myOptionBox"  id="conratio">
                                         <li class="myOption selected" id="conratioByCustCount">开户人数集中度</li>
                                         <li class="myOption" id="conratioByTime">时间集中度</li>
                                         <li class="myOption" id="conratioByAge">年龄集中度</li>
@@ -326,7 +326,17 @@
 	 }
 	//初始化
 	function initData(){
-		
+		//切换市场时下拉框相应变化
+		$("#defrate>li").removeClass("selected");
+    	$("#defrate>li").eq(0).addClass("selected");
+    	$("#show_type").html("担保方式");
+    	$("#migrationrrate>li").removeClass("selected");
+    	$("#migrationrrate>li").eq(0).addClass("selected");
+    	$("#show_type2").html("M1");
+    	$("#conratio>li").removeClass("selected");
+    	$("#conratio>li").eq(0).addClass("selected");
+    	$("#show_type3").html("开户人数集中度");
+    	$("#dkcs").addClass("active").siblings().removeClass("active");
 		getRanking();
 		getDefrate("dbfs")
         getMigrationRrate("m1");
