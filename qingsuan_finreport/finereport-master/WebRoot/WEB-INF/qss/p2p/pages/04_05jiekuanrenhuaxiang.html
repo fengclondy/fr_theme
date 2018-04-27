@@ -175,7 +175,7 @@
     <div class="main">
         <div class="chartBox ec002">
             <div class="chartTitle">
-                <h3>平台总览表</h3>
+                <h3>借款人总览</h3>
             </div>
             <div class="search">
                 <form action="${contextPath}/qdch/borrower"  method="post">
@@ -239,20 +239,24 @@
             <div id="div_container" style="text-align:center;position:relative;">
                 <!-- 固定表头 table外层必须包有一个div  id="my_div"   class="fakeContainer first_div" 引入superTables.js  在页面下面还需要调用 -->
                 <div style="height:100%;width: 100%;" id="my_div" class="fakeContainer first_div" >
-                    <table border="1" id="demoTable" style="border-collapse: collapse;">
+                    <table border="1" id="demoTable"  style="border-collapse: collapse;">
                         <tr id="my_tr">
-                            <th class="center biaoti" rowspan="2">借款方</th>
-                            <th class="center biaoti" rowspan="2">资料类别</th>
-                            <th class="center biaoti" rowspan="1" id="pingtai">主要信息</th>
+                        
+                        		 <th class="center biaoti" rowspan="2">借款方</th>
+                            	 <th class="center biaoti" rowspan="2">资料类别</th>
+                           		 <th class="center biaoti" rowspan="1" id="pingtai">主要信息</th>
+                        	
+                            
                             
                              ##for(j in pingtailist!){
               
                                 <th class="center" rowspan="1" >${j.jysinfo!}</th>
                              ##}
-                             ##if(single>1){
+                              ##if(single>1){
                           	 <th class="center" rowspan="1" ></th>
                              <th class="center" rowspan="1" ></th>
-                          ##}
+                             <th class="center" rowspan="1" ></th>
+                          ##} 
                               
                         </tr>
                         <tr id="score">
@@ -262,9 +266,12 @@
                           	<th class="center defen1" onclick='aab("${j.jysinfo!}")' data="${j.jysinfo!}">${j.fscore!}</th>
                           ##}
                           
+                      
+                          ##if(single>1){
                           	 <th class="center" rowspan="1" ></th>
                              <th class="center" rowspan="1" ></th>
-                        
+                              <th class="center" rowspan="1" ></th>
+                          ##}
 							
                         </tr>
                         <tr>
@@ -280,8 +287,11 @@
                           			${j.zrr.pname!}
                      	     </td>
                           ##}
-                          <td class="center" id="name2"> </td>
-                           <td class="center" id="name2"> </td>
+                            ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                         </tr>
                           <tr id="sfz">
                             <td class="center red">身份证</td>
@@ -293,8 +303,11 @@
                           		
                           	 </td>
                           ##}
-                          	<td class="center"></td>
-                          	<td class="center"></td>
+                          	  ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                  		</tr> 
 
                         <tr>
@@ -307,8 +320,11 @@
                           		
                           	 </td>
                           ##}
-                          <td class="center"></td>
-                          <td class="center"></td>
+                            ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
              			 </tr>
 
                         <tr>
@@ -319,8 +335,11 @@
                           		${j.zrr.sex!} 
                           	 </td>
                           ##}
-                          <td class="center"></td>
-                          <td class="center"></td>
+                            ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
 					    </tr>
 
                         <tr>
@@ -331,8 +350,11 @@
                           		${j.zrr.age!}
                           	 </td>
                           ##}
-                          <td class="center"></td>
-                          <td class="center"></td>
+                            ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                         </tr>
 
                         <tr>
@@ -343,8 +365,11 @@
                           		${j.zrr.xuel!} 
                           	 </td>
                           ##}
-                          <td class="center"></td>
-                          <td class="center"></td>
+                            ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                         </tr>
 
                         <tr>
@@ -355,8 +380,11 @@
                           		 ${j.zrr.hyzk!} 
                           	 </td>
                           ##}
-                          <td class="center"></td>
-                          <td class="center"></td>
+                            ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
           				 </tr>
 
                         <tr>
@@ -367,8 +395,11 @@
                           		${j.zrr.hjszd!} 
                           	 </td>
                           ##}
-                          <td class="center"></td>
-                          <td class="center"></td>
+                           ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
 					     </tr>
 
                         <tr>
@@ -379,8 +410,11 @@
                           		 ${j.zrr.hkly!} 
                           	 </td>
                           ##}
-                          <td class="center"></td>
-                          <td class="center"></td>
+                            ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
 					    </tr> 
                    
                          
@@ -395,8 +429,11 @@
                           		 ${j.xinyon.yqcs!} 
                           	 </td>
                           ##}
-                          <td class="center"></td>
-                          <td class="center"></td>
+                            ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                            
                         </tr>
 
@@ -409,8 +446,11 @@
                           		 ${j.xinyon.yqje!} 
                           	 </td>
                           ##}
-                          <td class="center"></td>
-                          <td class="center"></td>
+                           ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                            
                            
                           
@@ -425,8 +465,11 @@
                           		 ${j.xinyon.zxbg!} 
                           	 </td>
                           ##}
-                          <td class="center"></td>
-                          <td class="center"></td>
+                           ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                            
                          
                         </tr>
@@ -440,8 +483,11 @@
                           		 ${j.xinyon.qijk!} 
                           	</td>
                             ##}
-                            <td class="center"></td>
-                          <td class="center"></td>
+                           ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                            
                        
                         </tr>
@@ -455,8 +501,11 @@
                           		 ${j.xinyon.jkbs!} 
                           	</td>
                             ##}
-                            <td class="center"></td>
-                          <td class="center"></td>
+                            ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                           
                           
                         </tr>
@@ -470,8 +519,11 @@
                           		 ${j.xinyon.jkze!} 
                           	</td>
                             ##}
-                            <td class="center"></td>
-                          <td class="center"></td>
+                           ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                           
                          
                         </tr>
@@ -485,8 +537,11 @@
                           		 ${j.xinyon.zxcs!} 
                           	 </td>
                             ##}
-                            <td class="center"></td>
-                          <td class="center"></td>
+                            ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                            
                           
                         </tr>
@@ -501,9 +556,11 @@
                           		 ${j.zichan.srqk!} 
                           	 </td>
                             ##}
-                            <td class="center"></td>
-                          <td class="center"></td>
-                           
+                            ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                         </tr>
 
                         <tr>
@@ -515,8 +572,11 @@
                           		 ${j.zichan.gf_flag!} 
                           	 </td>
                             ##}
-                            <td class="center"></td>
-                          <td class="center"></td>
+                            ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                             
                             
                           
@@ -532,8 +592,11 @@
                           		 ${j.zichan.gc_flag!} 
                           	</td>
                             ##}
-                            <td class="center"></td>
-                          <td class="center"></td>
+                           ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                             
                            
                         </tr>
@@ -548,9 +611,11 @@
                           		 ${j.zichan.fd_flag!} 
                           	 </td>
                             ##}
-                            <td class="center"></td>
-                          <td class="center"></td>
-                            
+                          ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                            
                         </tr>
 
@@ -564,8 +629,11 @@
                           		 ${j.zichan.cd_flag!} 
                           	</td>
                             ##}
-                            <td class="center"></td>
-                          <td class="center"></td>
+                           ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                            
                            
                         </tr>
@@ -581,8 +649,11 @@
                           		 ${j.job.industry!} 
                           	</td>
                             ##}
-                            <td class="center"></td>
-                          <td class="center"></td>
+                           ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                           
                          
 
@@ -597,8 +668,11 @@
                           		 ${j.job.city!} 
                           	</td>
                             ##}
-                           <td class="center"></td>
-                          <td class="center"></td>
+                           ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                         </tr>
 
                         <tr>
@@ -610,8 +684,11 @@
                           		 ${j.job.gsgm!} 
                           	</td>
                             ##}
-                           <td class="center"></td>
-                          <td class="center"></td>
+                           ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                           
                         </tr>
 
@@ -624,8 +701,11 @@
                           		 ${j.job.gzgw!} 
                           	</td>
                            ##}
-                           <td class="center"></td>
-                          <td class="center"></td>
+                           ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                          
                         </tr>
 
@@ -638,8 +718,11 @@
                           		 ${j.job.gznx!} 
                           	</td>
                             ##}
-                          <td class="center"></td>
-                          <td class="center"></td>
+                           ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                          
                         </tr>
                         <!-- 企业 -->
@@ -655,8 +738,11 @@
                           	 </td>
                           ##}
                            
-							<td class="center"></td>
-                          <td class="center"></td>
+						  ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                         </tr>
 
                         <tr>
@@ -668,8 +754,11 @@
                           		 ${j.qjb.frdb!} 
                           	 </td>
                           ##}
-                           <td class="center"></td>
-                          <td class="center"></td>
+                           ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                           
                         </tr>
 
@@ -683,8 +772,11 @@
                           	</td>
                             ##}
                           
-                          <td class="center"></td>
-                          <td class="center"></td>
+                          ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                         </tr>
 
                         <tr>
@@ -696,8 +788,11 @@
                           		 ${j.qjb.zczb!} 
                           	</td>
                             ##}
-                          <td class="center"></td>
-                          <td class="center"></td>
+                            ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                         </tr>
 
                         <tr>
@@ -710,8 +805,11 @@
                           	</td>
                             ##}
                            
-                          <td class="center"></td>
-                          <td class="center"></td>
+                            ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                         </tr>
 
                         <tr>
@@ -723,8 +821,11 @@
                           		 ${j.qjb.yyfw!} 
                           	</td>
                            ##}
-                       <td class="center"></td>
-                          <td class="center"></td>
+                        ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                         </tr>
 
                         <tr>
@@ -736,8 +837,11 @@
                           		 ${j.qjb.gsgm!} 
                           	 </td>
                             ##}
-                            <td class="center"></td>
-                          <td class="center"></td>
+                             ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                           
                         </tr>
 
@@ -750,8 +854,11 @@
                           		 ${j.qjb.zjyt!} 
                           	 </td>
                            ##}
-                           <td class="center"></td>
-                          <td class="center"></td>
+                          ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                           
                         </tr>
 
@@ -765,8 +872,11 @@
                           	 </td>
                             ##}
                             
-                        <td class="center"></td>
-                          <td class="center"></td>
+                          ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                         </tr>
 
                         <tr>
@@ -779,8 +889,11 @@
                           		 ${j.qqt.srqk!} 
                           	 </td>
                             ##}
-                           <td class="center"></td>
-                          <td class="center"></td>
+                           ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                        
                         </tr>
                         <tr>
@@ -791,8 +904,11 @@
                           		 ${j.qqt.fzqk!} 
                           	 </td>
                             ##}
-                            <td class="center"></td>
-                          <td class="center"></td>
+                            ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                          
                         </tr>
                         <tr>
@@ -803,8 +919,11 @@
                           		 ${j.qqt.zxbg!} 
                           	 </td>
                             ##}
-                            <td class="center"></td>
-                          <td class="center"></td>
+                           ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                          
                         </tr>
                         <tr>
@@ -815,8 +934,11 @@
                           		 ${j.qqt.qijk_flag!} 
                           	</td>
                             ##}
-                          <td class="center"></td>
-                          <td class="center"></td>
+                          ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                          
                          
                         </tr>
@@ -828,6 +950,11 @@
                           		 ${j.qqt.gdxx!} 
                           	</td>
                             ##}
+                              ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                       <td class="center"></td>
                           <td class="center"></td>
                         </tr>
@@ -839,8 +966,11 @@
                           		 ${j.qqt.frxyxx!} 
                           	</td>
                             ##}
-                           <td class="center"></td>
-                          <td class="center"></td>
+                           ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                             
                          
                         </tr>
@@ -852,8 +982,11 @@
                           		 ${j.qqt.zxcs!} 
                           	</td>
                             ##}
-                           <td class="center"></td>
-                          <td class="center"></td>
+                            ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                         </tr>
                         <tr>
                             <td class="center left">涉诉信息</td>
@@ -863,8 +996,11 @@
                           		 ${j.qqt.ssxx!} 
                           	</td>
                             ##}
-                           <td class="center"></td>
-                          <td class="center"></td> 
+                           ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                           
                         </tr>
                          <tr>
@@ -875,8 +1011,11 @@
                           		 
                           	</td>
                             ##}
-                            <td class="center"></td>
-                          <td class="center"></td>
+                            ##if(single>1){
+                          	 <th class="center" rowspan="1" ></th>
+                             <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
+                          ##}
                           
                         </tr>
                        
@@ -1133,7 +1272,7 @@
     	   
     // window.onload=function(){
         new superTable("demoTable", {cssSkin : "sDefault",
-            fixedCols : 2, //固定几列
+            fixedCols : 3, //固定几列
             headerRows :2,  //头部固定行数
             onStart : function () {
                 this.start = new Date();
