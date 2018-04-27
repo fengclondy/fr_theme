@@ -792,7 +792,7 @@
         <!-- <li>关系图谱<span></span></li> -->
         <li>企业舆情<span></span></li>
         <li>关联企业<span></span></li>
-        <li>借款企业<span></span></li>
+       <!--  <li>借款企业<span></span></li> -->
         <li>担保企业<span></span></li>
     </div>
 
@@ -1760,9 +1760,9 @@
             </div>
 
         </div>
-        <div class="jkqyContent" style="height: 45em;">
+       <!--  <div class="jkqyContent" style="height: 45em;">
             <div id="div_container2" style="text-align:center;position:relative;height: 95%; overflow: auto;">
-                <!-- 固定表头 table外层必须包有一个div  id="my_div"   class="fakeContainer first_div" 引入superTables.js  在页面下面还需要调用 -->
+                固定表头 table外层必须包有一个div  id="my_div"   class="fakeContainer first_div" 引入superTables.js  在页面下面还需要调用
                 <div id="my_div2" class="fakeContainer first_div" >
                     <table border="1" id="demoTable2" style="width: 96%;margin: 0 auto;">
                         <thead>
@@ -1827,7 +1827,7 @@
                     </table>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="dbqyContent" style="height: 45em;">
             <div id="div_container3" style="text-align:center;position:relative;height: 95%; overflow: auto;">
                 <!-- 固定表头 table外层必须包有一个div  id="my_div"   class="fakeContainer first_div" 引入superTables.js  在页面下面还需要调用 -->
@@ -2132,11 +2132,6 @@ var deleteBtn = '';
                             document.getElementsByClassName(txt)[0].scrollIntoView(false);
                             break;
                         case 5:
-                            $(".jkqyContent").css("display","block").siblings().css("display","none");
-                            $($(".tabContent").children("li")[3]).addClass("activeTab").siblings().removeClass("activeTab");
-                            document.getElementsByClassName(txt)[0].scrollIntoView(false);
-                            break;
-                        case 6:
                             $(".dbqyContent").css("display","block").siblings().css("display","none");
                             $($(".tabContent").children("li")[4]).addClass("activeTab").siblings().removeClass("activeTab");
                             document.getElementsByClassName(txt)[0].scrollIntoView(false);
@@ -2190,12 +2185,7 @@ var deleteBtn = '';
                         		that.qyClick(_this,".glqyContent table tbody tr td a");
     						});
                         }
-                        if($(lis[i]).text() == "借款企业") {
-    						$(".jkqyContent table tbody tr td a").click(function(){
-    							var _this = $(this);
-                        		that.qyClick(_this,".jkqyContent table tbody tr td a");
-    						});
-                        }
+                       
                         if($(lis[i]).text() == "担保企业") {
     						$(".dbqyContent table tbody tr td a").click(function(){
     							var _this = $(this);
