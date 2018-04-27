@@ -895,7 +895,7 @@
 	<div class="tabContent">
 		<li class="activeTab">企业信息  <span>${all!}</span></li>
 		<li>经营状态  <span>${allsize!}</span></li>
-		<li>关系图谱<span></span></li>
+		<!-- <li>关系图谱<span></span></li> -->
 		<li>企业舆情<span></span></li>
 		<!-- <li>附件查看<span></span></li> -->
 	</div>
@@ -1639,7 +1639,7 @@
 				</table>
 			</div>
 		</div>
-		<div class="qyfxContent">
+		<!-- <div class="qyfxContent">
 			<a class="qytp ltitle" name="qytp"><span></span>企业图谱<span></span></a>
 
 			<div id="box" style="height:100%;width:100%"></div>
@@ -1770,7 +1770,7 @@
 			<a class="gqjgt ltitle" name="gqjgt"><span></span>股权结构图<span></span></a>
 			<div id="menuTree" class="menuTree"></div>
 
-		</div>
+		</div> -->
 		<div class="schxContent" >
 			<div class="left-top">
 				<div class="chartBox ec001">
@@ -1844,7 +1844,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="fjckContent">
+		<!-- <div class="fjckContent">
 			<a class="qyzz ltitle" name="qyzz"><span></span>企业资质类<span></span></a>
 			<div class="qyzzContent oneTable">
 				<table width="98%" height="100%" border="1" cellspacing="0" cellpadding="0">
@@ -1945,7 +1945,7 @@
 					</tr>
 				</table>
 			</div>
-		</div>
+		</div> -->
 	</div>
 
 </div>
@@ -2028,7 +2028,7 @@
 					<div class="chartBody">
 						<div class="radarIndexFrame">
 							<div class="icon"><img src="${contextPath}/static/img/08shujuluru/radarIndexFrame.png" alt=""></div>
-							<div class="textContent">风险: <span>${value.fvalue!}</span></div>
+							<div class="textContent">指数: <span>${value.fvalue!}</span></div>
 						</div>
 						<!--<div class="radarIndexChart">-->
 						<div id="ec002_competitivenessgongshangjiankong2"></div>
@@ -2389,21 +2389,13 @@
                             $($(".tabContent").children("li")[1]).addClass("activeTab").siblings().removeClass("activeTab");
                             document.getElementsByClassName(txt)[0].scrollIntoView(false);
                             break;
+                        
                         case 3:
-                            $(".qyfxContent").css("display","block").siblings().css("display","none");
-                            $($(".tabContent").children("li")[2]).addClass("activeTab").siblings().removeClass("activeTab");
-                            document.getElementsByClassName(txt)[0].scrollIntoView(false);
-                            break;
-                        case 4:
                             $(".schxContent").css("display","block").siblings().css("display","none");
                             $($(".tabContent").children("li")[3]).addClass("activeTab").siblings().removeClass("activeTab");
                             document.getElementsByClassName(txt)[0].scrollIntoView(false);
                             break;
-                        case 5:
-                            $(".fjckContent").css("display","block").siblings().css("display","none");
-                            $($(".tabContent").children("li")[4]).addClass("activeTab").siblings().removeClass("activeTab");
-                            document.getElementsByClassName(txt)[0].scrollIntoView(false);
-                            break;
+                      
                     }
                 });
             }
