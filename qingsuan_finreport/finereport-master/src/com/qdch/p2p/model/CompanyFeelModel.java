@@ -124,7 +124,7 @@ public class CompanyFeelModel extends Model<CompanyFeelModel>{
 					if (StringUtils.isNotBlank(jysIds)) {
 						sql += " and  hdtj.jys  in "+jysIds;
 					}
-					sql+= "group by rm.ENTERPRISE_ID,TITLE,SUMMARY,URL,DATA_SOURCE,PUBLISH_DATE,content limit '"+pageSize+"' OFFSET '"+currentPage+"'";
+					sql+= "group by rm.ENTERPRISE_ID,TITLE,SUMMARY,URL,DATA_SOURCE,PUBLISH_DATE,content limit '"+pageSize+"' OFFSET '"+(currentPage-1)*pageSize+"'";
 		}else{
 			sql += " )rx where rx.keyword ~ '[\u4e00-\u9fa5]'"
 					+ " )rm left join hub_commerce_ref_jys hcrj "
@@ -177,7 +177,7 @@ public class CompanyFeelModel extends Model<CompanyFeelModel>{
 			if (StringUtils.isNotBlank(jysIds)) {
 				sql += " and  hdtj.jys  in "+jysIds;
 			}
-					sql+= "group by rm.ENTERPRISE_ID,TITLE,SUMMARY,URL,DATA_SOURCE,PUBLISH_DATE,content";
+					sql+= "group by rm.ENTERPRISE_ID,TITLE,SUMMARY,URL,DATA_SOURCE,PUBLISH_DATE,content ) as a";
 					
 		}else{
 			sql += " )rx where rx.keyword ~ '[\u4e00-\u9fa5]'"

@@ -109,7 +109,7 @@
 			margin: 0.8em auto;
 		}
 		.top{
-            height: 22%;
+            height: auto;
           
        
         } 
@@ -118,7 +118,7 @@
             width:16.6%;
             text-align: center;
             height: 33.33%;
-             margin: 0.2rem auto; 
+             margin: 1rem auto; 
         }
         .top li a{
             float: left;
@@ -139,7 +139,7 @@
 			z-index: 999;
 		}
 		.tabContent {
-			height: 11%;
+			/* height: 11%; */
 			/* margin: 0 auto; */
 			margin-top: 1%;
 			border-bottom: solid 2px #00adef;
@@ -202,7 +202,7 @@
 			height: 3em;
 			line-height: 3em;
 			padding-left: 2em;
-			font-size: 14px;
+			font-size: 1.4rem;
 		}
 		.ltitle>span:nth-child(1) {
 			float: left;
@@ -943,8 +943,8 @@
 						<tr>
 							<td rowspan="3" class="textCenter">法人姓名</td>
 							<td rowspan="2"  colspan="2" class="textCenter">注册资本（万元）：${info.register_money!}</td>
-							<td rowspan="6" style="position: relative;">
-								<img src="${contextPath}/static/img/gsxx/gqjgt.jpg" style="margin-left: 5em;"/>
+							<td rowspan="6" style="position: relative;background:#004d7d;">
+								<!-- <img src="${contextPath}/static/img/gsxx/gqjgt.jpg" style="margin-left: 5em;"/>
                         
 								<div style="position: absolute;left: 17em;top: 1.9em;width: 24em;
     height: 2.2em;text-align: center;line-height: 2.2em;background: #004d7d;">重庆海尔小额贷款有限公司</div>
@@ -955,8 +955,18 @@
 								    height: 2em;
 								    text-align: center;
 								    line-height: 2em;
-								    background: #004d7d;">海尔集团（青岛）金融控股有限公司</div>
-								
+								    background: #004d7d;">海尔集团（青岛）金融控股有限公司</div> -->
+								<div class="" style="width:100%;height:100%;">
+									<div style="border:1px solid #488DC6; width:60%;margin-left:20%;line-height: 2em;">重庆海尔小额贷款有限公司</div>
+									<div style="width:60%;margin-left:20%;">
+										<div style="border:1px solid #488DC6; width:1px;margin-left: 50%;border-right: none;height:2em;"></div>
+									</div>
+									<div style="border:1px solid #488DC6; width:60%;margin-left:20%; border-bottom:none;height: 2em;"></div>
+									<div style="">
+										<div style="width:48%; border:1px solid #488DC6;float: left;line-height: 2em;">海尔集团（青岛）金融控股有限公司</div>
+										<div style="width:48%; border:1px solid #488DC6;float: right;line-height: 2em;">......</div>
+									</div>
+								</div>
 								
 							</td>
 						</tr>
@@ -2018,7 +2028,7 @@
 					<div class="chartBody">
 						<div class="radarIndexFrame">
 							<div class="icon"><img src="${contextPath}/static/img/08shujuluru/radarIndexFrame.png" alt=""></div>
-							<div class="textContent">指数: <span>${value.fvalue!}</span></div>
+							<div class="textContent">风险: <span>${value.fvalue!}</span></div>
 						</div>
 						<!--<div class="radarIndexChart">-->
 						<div id="ec002_competitivenessgongshangjiankong2"></div>
