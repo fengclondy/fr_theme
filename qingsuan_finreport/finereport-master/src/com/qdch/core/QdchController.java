@@ -24,7 +24,7 @@ public class QdchController extends BaseController {
 		 if(user!=null&&StringUtils.isNotBlank(user.getId())){
 			 //认证成功
 			 String type=getPara("type");//认证类型 2-P2P  3-小贷
-			 if("true".equals(PropKit.get("isDev"))){
+			 if("false".equals(PropKit.get("isDev"))){
 				 //不是开发模式 进入真正首页
 				 redirect("/qdch/auth/home");
 			 }else{
