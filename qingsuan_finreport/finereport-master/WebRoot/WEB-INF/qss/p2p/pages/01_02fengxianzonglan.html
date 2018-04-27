@@ -338,7 +338,7 @@
 				  			yAxisData.push({name:it.fxlb,max:10})
 				  			seriesData.push(it.detailvalue); 
 							htmls+="<li>"
-							htmls+="<h3>"+it.detailvalue+"</h3>\n"
+							htmls+="<h3>"+parseFloat(it.detailvalue).toFixed(2)+"</h3>\n"
 							htmls+="<div>"
 							htmls+="<span class='liContent'>"+it.fxlb+"</span>\n"
 							htmls+="<em>排名：<span>"+it.detailpm+"</span></em>\n"
