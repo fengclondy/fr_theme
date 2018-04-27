@@ -97,7 +97,9 @@
             text-align: left;
         }
     
-       
+       .biaoTitle{
+       background:#00568c;
+       }
         .del{
             position: absolute;
             top: 5px;
@@ -256,6 +258,7 @@
                           	 <th class="center" rowspan="1" ></th>
                              <th class="center" rowspan="1" ></th>
                              <th class="center" rowspan="1" ></th>
+                              <th class="center" rowspan="1" ></th>
                           ##} 
                               
                         </tr>
@@ -275,8 +278,8 @@
 							
                         </tr>
                         <tr>
-                            <td class="center ziranren" rowspan="27" style="background:#00568c">自然人</td>
-                            <td class="center" rowspan="10" style="background:#00568c">基础信息</td>
+                            <td class="center ziranren biaoTitle" rowspan="27">自然人</td>
+                            <td class="center biaoTitle" rowspan="10">基础信息</td>
                          </tr>
                          
                         <tr id="name1">
@@ -420,7 +423,7 @@
                          
 
                         <tr>
-                            <td class="center" rowspan="7" style="background:#00568c">信用信息</td>
+                            <td class="center biaoTitle" rowspan="7">信用信息</td>
 
                             <td class="center red">在平台逾期次数</td>
                             ##for(j in pingtailist!){
@@ -547,7 +550,7 @@
                         </tr>
 
                         <tr>
-                            <td class="center" rowspan="5" style="background:#00568c">资产信息</td>
+                            <td class="center biaoTitle" rowspan="5">资产信息</td>
 
                             <td class="center left">收入情况</td>
                              ##for(j in pingtailist!){
@@ -639,7 +642,7 @@
                         </tr>
 
                         <tr>
-                            <td class="center" rowspan="5" style="background:#00568c">工作信息</td>
+                            <td class="center biaoTitle" rowspan="5">工作信息</td>
 						
                             <td class="center red">从事行业</td>
                            
@@ -727,9 +730,9 @@
                         </tr>
                         <!-- 企业 -->
                         <tr>
-                            <td class="center jiekuanfang" rowspan="18" style="background:#00568c">企业</td>
+                            <td class="center jiekuanfang biaoTitle" rowspan="18">企业</td>
 
-                            <td class="center" rowspan="9" style="background:#00568c">基本信息</td>
+                            <td class="center biaoTitle" rowspan="9">基本信息</td>
                             <td class="center red">公司名称</td>
                              ##for(j in pingtailist!){
                            
@@ -880,7 +883,7 @@
                         </tr>
 
                         <tr>
-                            <td class="center" rowspan="9" style="background:#00568c">其他信息</td>
+                            <td class="center biaoTitle" rowspan="9">其它信息</td>
 
                             <td class="center red">借款企业收入情况</td>
                             ##for(j in pingtailist!){
