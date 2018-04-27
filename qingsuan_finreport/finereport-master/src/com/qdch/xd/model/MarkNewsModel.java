@@ -39,7 +39,7 @@ public class MarkNewsModel extends Model<MarkNewsModel> {
 		}
 		   sql+=")rx";
 		if(StringUtils.isNotBlank(keyword)){
-			sql+=" WHERE rx.keyword ~ '"+keyword+"'";
+			sql+=" WHERE rx.keyword ~ '[\u4e00-\u9fa5]' and  SUMMARY like  '%"+keyword+"%' ";
 		}
 
     sql+=" )rm left join hub_commerce_ref_jys hcrj"
