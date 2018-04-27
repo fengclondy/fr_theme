@@ -237,6 +237,7 @@
 }
 
 .laydate_body .laydate_ym label {
+	display: none;
     right: 28px;
 }
 
