@@ -37,7 +37,7 @@ public class MonthlyReportListModel extends Model<MonthlyReportListModel> {
 
 
 
-			sb.append(" order by upload_time desc");
+			sb.append(" and t.jysfl='3' order by upload_time desc");
 
 
 		} catch (Exception e) {
