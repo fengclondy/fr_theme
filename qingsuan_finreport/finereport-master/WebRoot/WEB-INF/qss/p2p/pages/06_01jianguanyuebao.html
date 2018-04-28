@@ -106,9 +106,11 @@
                     <li class="picture"><span class="icon"></span> 图片</li>
                 </ul>
             </li>
-            <li class="add">
-            	<a href="${contextPath}/qdch/supervise/addnew">增加</a>
-            </li>
+              ##if(user.activity=='处理'||user.id=='-999'){
+	            <li class="add">
+	            	<a href="${contextPath}/qdch/supervise/addnew">增加</a>
+	            </li>
+            ##}
         </ul>
     </nav>
     <div class="formBox open">
