@@ -79,7 +79,7 @@ public class HlLoadLoginAction extends FSLoadLoginAction {
 				newCookie.setPath(c.getPath());
 				newCookie.setMaxAge(c.getMaxAge());
 				newCookie.setSecure(c.getSecure());
-				newCookie.setComment(c.getComment());
+				newCookie.setComment(c.getComment()+"ahhaha");
 				newCookie.setValue(c.getValue());
 				res.addCookie(newCookie);
 			}
