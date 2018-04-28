@@ -36,7 +36,7 @@ public class MonthlyReportListModelp2p extends Model<MonthlyReportListModelp2p>{
 				sb.append(sql);
 			}
 
-			sb.append(" order by upload_time desc");
+			sb.append(" and t.jysfl='4' order by upload_time desc");
 
 		} catch (Exception e) {
 			e.printStackTrace();
