@@ -476,7 +476,7 @@
 							"  <tr>            <td class='center ziranren'>"+item.xmlx+"</td>\n" +
 							"                 <td class='center left'>"+item.ywlx+"</td>\n" +
 							"                 <td class='center'>"+item.pjlv+"</td>\n" +
-							"               <td class='center'>"+item.je*1/10000+"万</td>\n" +
+							"               <td class='center'>"+item.je*1+"万</td>\n" +
 							"               <td class='center'>"+item.jezb*1+"%</td>\n" +
 							"                <td class='center'>"+item.pjqx+"(月)</td></tr>  " 
 		
@@ -498,7 +498,7 @@
 							"  <tr>            <td class='center ziranren'>"+item.term+"</td>\n" +
 							
 							"                 <td class='center'>"+item.pjlv+"</td>\n" +
-							"               <td class='center'>"+item.je*1/10000+"万</td>\n" +
+							"               <td class='center'>"+item.je*1+"万</td>\n" +
 							"               <td class='center'>"+(item.jezb*1)+"%</td>\n" +
 							"                <td class='center'>"+item.hkfs+"</td></tr>  " 
 		
@@ -729,6 +729,10 @@
   				}
   				
   			})
+  			for(var x=0;x<dataArr.length;x++){
+  				seriesData1.push(0);
+  				seriesData2.push(0);
+  			}
   			dataArr.sort();
   			$.each(data.interest,function(index,item){
   				var num=dataArr.indexOf(item.vday_ym);
@@ -900,7 +904,7 @@
   								var val=0;
   		  						var w =$('.progress_inner').width();
   		  			            (function progressBar3(){
-  		  			                $("#proc").animate({width:val*(w*1)},200).css('background','#73d13d');
+  		  			                $("#proc").animate({width:val*(w*1)},200).css('background','#95de64');
   		  			                $("#progressWord").text("");
   		  			            })();	
   							}
@@ -908,7 +912,7 @@
   								var val=item.hhi_value*1;
   		  						var w =$('.progress_inner').width();
   		  			            (function progressBar3(){
-  		  			                $("#proc").animate({width:val*(w*1)},200).css('background','#73d13d');
+  		  			                $("#proc").animate({width:val*(w*1)},200).css('background','#95de64');
   		  			                $("#progressWord").text(val);
   		  			            })();	
   							}
@@ -919,7 +923,7 @@
   							var h=0;
   				            var w =$('.progress_inner').width();
   				            (function progressBar3(){
-  				                $("#proc4").animate({width:h*(w*1)},200).css('background','#b37feb');
+  				                $("#proc4").animate({width:h*(w*1)},200).css('background','#00adef');
   				                $("#progressWord4").text("");
   				            })();
   							
@@ -927,7 +931,7 @@
   							var h=item.hhi_value*1;
   				            var w =$('.progress_inner').width();
   				            (function progressBar3(){
-  				                $("#proc4").animate({width:h*(w*1)},200).css('background','#b37feb');
+  				                $("#proc4").animate({width:h*(w*1)},200).css('background','#00adef');
   				                $("#progressWord4").text(h);
   				            })();
   						}
@@ -964,17 +968,17 @@
   	  						
   	  						  $('#progressbar1').LineProgressbar({
   	  							percentage: 0,
-  	  	  			            fillBackgroundColor: '#00adef',
+  	  	  			            fillBackgroundColor: '#ff9c6e',
   	  	  			            height: '15px',
   	  	  			            radius: '20px',
   	  	  			            backgroundColor:'rgba(0,0,0,0.2)'
 
   	  	  			        }); 
-  	  						 $('.percentCount').css('display','none');
+  	  						$('#progressbar1>.progressbar>.percentCount').css('display','none');
   	  						}else{
   	  						$('#progressbar1').LineProgressbar({
   	  	  			            percentage: item.iterm_value*100,
-  	  	  			            fillBackgroundColor: '#00adef',
+  	  	  			            fillBackgroundColor: '#ff9c6e',
   	  	  			            height: '15px',
   	  	  			            radius: '20px',
   	  	  			            backgroundColor:'rgba(0,0,0,0.2)'
@@ -989,17 +993,17 @@
   							
   							$('#progressbar2').LineProgressbar({
   								percentage: 0,
-  					            fillBackgroundColor: '#5cdbd3',
+  					            fillBackgroundColor: '#ffd666',
   					            height: '15px',
   					            radius: '20px',
   					            backgroundColor:'rgba(0,0,0,0.2)'
   					           
   					        });	
-  							 $('.percentCount').css('display','none');
+  							  $('#progressbar2>.progressbar>.percentCount').css('display','none'); 
   						}else{
   							$('#progressbar2').LineProgressbar({
   					            percentage: item.iterm_value*100,
-  					            fillBackgroundColor: '#5cdbd3',
+  					            fillBackgroundColor: '#ffd666',
   					            height: '15px',
   					            radius: '20px',
   					            backgroundColor:'rgba(0,0,0,0.2)'

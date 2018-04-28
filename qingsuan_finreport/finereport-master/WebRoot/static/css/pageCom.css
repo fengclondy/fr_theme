@@ -180,8 +180,9 @@ td.more:active > a {
 }
 /* 修改滚动条样式 */
 .myOptionBox::-webkit-scrollbar {/*滚动条整体样式*/
-            width: 4px;     /*高宽分别对应横竖滚动条的尺寸*/
+            width: 10px;     /*高宽分别对应横竖滚动条的尺寸*/
             height: 4px;
+            
         }
 .myOptionBox::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
      border-radius: 5px;
@@ -424,11 +425,11 @@ td.more:active > a {
 @media all {
     .whitePage .tableBox {
         width: 100%;
-        overflow: hidden;
+         overflow: auto;
     }
 
     .whitePage .tableBox:hover {
-        overflow: auto;
+      /*   overflow: auto; */
     }
 
     .whitePage table {

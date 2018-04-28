@@ -46,7 +46,7 @@
 		                <a sort="${menu.sortIndex!}"  class="dropdown-toggle">${menu.name!}<span class="icon"></span> </a>
 		                <ul>
 		                	##for(c in menu.children){
-		                		##if(c.name=='平台总览明细'||c.name=='alert'){
+		                		##if(c.name=='平台总览明细'||c.name=='alert'||c.name=='风险事件明细'){
 		                			<li style="display:none;" sort="${c.sortIndex!}" data-id="${contextPath}${c.reportletpath!}" data="${c.desc!}">${c.name!}</li>
 		                		##}else{
 		                			<li sort="${c.sortIndex!}" data-id="${contextPath}${c.reportletpath!}" data="${c.desc!}">${c.name!}</li>
@@ -111,6 +111,9 @@ $(function(){
 
     $(".user").mouseleave(function () {
         $('.userNav').css('display','none');
+    });
+    $('.collapse').mouseleave(function () {
+        $('.collapse>ul').css('display','none')
     });
 });
 //获取小信封事件
@@ -184,6 +187,7 @@ function triggerClickParam(page,param){
 	};
 	
 }
+
 </script>
 </body>
 </html>

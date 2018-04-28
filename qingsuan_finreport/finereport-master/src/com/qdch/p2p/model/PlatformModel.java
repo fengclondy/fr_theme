@@ -36,20 +36,20 @@ public class PlatformModel extends Model<PlatformModel>{
 			//0：没有银行存管 1:有银行存管
 			if(StringUtils.isNotBlank(cgyh)){
 				if (Integer.valueOf(cgyh) == 0) {
-					sql.append(" and cgyh = '无存管'");
+					sql.append(" and rtrim(cgyh) = '无存管'");
 				}else{
-					sql.append(" and cgyh != '无存管'");
+					sql.append(" and rtrim(cgyh) != '无存管'");
 				}
 			}
 			//根据注册资本查询
 			//0：1000万以下 1：1000万~5000万 2：5000万以上
 			if (StringUtils.isNotBlank(zczb)) {
 				if (Integer.valueOf(zczb) == 0) {
-					sql.append(" and zczb < 1000");
+					sql.append(" and zczb::numeric < 1000");
 				}else if(Integer.valueOf(zczb) == 1){
-					sql.append(" and zczb between 1000 and 5000");
+					sql.append(" and zczb::numeric between 1000 and 5000");
 				}else{
-					sql.append(" and zczb > 5000");
+					sql.append(" and zczb::numeric > 5000");
 				}
 			}
 			//根据等保查询
@@ -84,20 +84,20 @@ public class PlatformModel extends Model<PlatformModel>{
 			//0：没有银行存管 1:有银行存管
 			if(StringUtils.isNotBlank(cgyh)){
 				if (Integer.valueOf(cgyh) == 0) {
-					sql.append(" and cgyh = '无存管'");
+					sql.append(" and rtrim(cgyh) = '无存管'");
 				}else{
-					sql.append(" and cgyh != '无存管'");
+					sql.append(" and rtrim(cgyh) != '无存管'");
 				}
 			}
 			//根据注册资本查询
 			//0：1000万以下 1：1000万~5000万 2：5000万以上
 			if (StringUtils.isNotBlank(zczb)) {
 				if (Integer.valueOf(zczb) == 0) {
-					sql.append(" and zczb < 1000");
+					sql.append(" and zczb::numeric < 1000");
 				}else if(Integer.valueOf(zczb) == 1){
-					sql.append(" and zczb between 1000 and 5000");
+					sql.append(" and zczb::numeric between 1000 and 5000");
 				}else{
-					sql.append(" and zczb > 5000");
+					sql.append(" and zczb::numeric > 5000");
 				}
 			}
 			//根据等保查询

@@ -90,11 +90,7 @@
 			display: block;
 		}
 		.top{
-			min-height: 29%;
-			_height:29%;
-			width: 100%;
-			/*position: fixed;*/
-			top:0em;
+			height: 22%
 		}
 		/*重写pageHeader */
 		.pageHeader {
@@ -109,21 +105,28 @@
 			background: #2c467f99;
 			box-shadow: 0px 0px 15px #2c467f;
 			z-index: 1;
-			width: 100%;
-			margin: 0.8em .8em;
+			width: 99%;
+			margin: 0.8em auto;
 		}
-		.top li {
-			float:left;
-			width:16.6%;
-			text-align: center;
-			height: 33.3%;
-			margin-top: 1.5em;
-		}
-		.top li a{
-			float: left;
-			width: 100%;
-			font-size: 0.85rem;
-		}
+		.top{
+            height: auto;
+          
+       
+        } 
+        .top li {
+            float:left;
+            width:16.6%;
+            text-align: center;
+            height: 33.33%;
+             margin: 1rem auto; 
+        }
+        .top li a{
+            float: left;
+            width: 100%;
+            font-size: 1.2rem;
+            
+
+        }
 		.blank {
 			background: #13789f;
 			/* margin-top: 10em; */
@@ -136,9 +139,9 @@
 			z-index: 999;
 		}
 		.tabContent {
-			height: 11%;
+			/* height: 11%; */
 			/* margin: 0 auto; */
-			margin-top: 2%;
+			margin-top: 1%;
 			border-bottom: solid 2px #00adef;
 			/*position: fixed;*/
 			top: 9em;
@@ -199,7 +202,7 @@
 			height: 3em;
 			line-height: 3em;
 			padding-left: 2em;
-			font-size: 14px;
+			font-size: 1.4rem;
 		}
 		.ltitle>span:nth-child(1) {
 			float: left;
@@ -211,7 +214,7 @@
 		}
 		.tbbg {
 			background: #33599999;
-			width: 10em;
+			width: 15em;
 			text-align: center;
 		}
 		table td {
@@ -501,6 +504,7 @@
 			margin-right: 0.3rem;
 			font-size: 1.2rem;
 			color: red;
+			font-weight: 600;
 		}
 		.radarIndexChart{
 			width: 100%;
@@ -541,6 +545,7 @@
 			width: 14%;
 			height: 14%;
 			margin: 1%;
+			display:none;
 		}
 		.left > ul > li > div > img {
 			width: 100%;
@@ -548,7 +553,7 @@
 			margin-left: 0.5rem;
 		}
 		.left > ul > li > p {
-			width: 78%;
+			width: 99%;
 			margin-top: 1%;
 			padding: 0.3rem 0.2rem;
 		}
@@ -796,13 +801,19 @@
 		    right: 44px;
 		}
 		.pageHeader .selected,.pageHeader .myOptionBox{
-   width:15rem
-  }
+   			width:15rem
+  		}
   
-  .leftBox .kuaizhao a{
+  		.leftBox .kuaizhao a{
             color: #faad14;
             margin-right: 1rem;
         }
+        tbody > tr > td,tbody > tr > th {
+		    font-size: 1rem;
+		}
+		.mySelect > .myOption.selected{
+			height:auto;
+		}
 	</style>
 </head>
 <body id="gongshangxinxijiankong" data-title="工商信息监控">
@@ -886,7 +897,7 @@
 	<div class="tabContent">
 		<li class="activeTab">企业信息  <span>${all!}</span></li>
 		<li>经营状态  <span>${allsize!}</span></li>
-		<li>关系图谱<span></span></li>
+		<!-- <li>关系图谱<span></span></li> -->
 		<li>企业舆情<span></span></li>
 		<!-- <li>附件查看<span></span></li> -->
 	</div>
@@ -934,22 +945,31 @@
 						<tr>
 							<td rowspan="3" class="textCenter">法人姓名</td>
 							<td rowspan="2"  colspan="2" class="textCenter">注册资本（万元）：${info.register_money!}</td>
-							<td rowspan="6" style="position: relative;">
-								<img src="${contextPath}/static/img/gsxx/gqjgt.jpg" style="margin-left: 5em;"/>
-                                  ##for(st in stockc!){
-								<div style="position: absolute;left: 16em;top: 1.8em;width: 25em;
-    height: 2.2em;text-align: center;line-height: 2.2em;background: #004d7d;">${st.company_name!}</div>
+							<td rowspan="6" style="position: relative;background:#004d7d;">
+								<!-- <img src="${contextPath}/static/img/gsxx/gqjgt.jpg" style="margin-left: 5em;"/>
+                        
+								<div style="position: absolute;left: 17em;top: 1.9em;width: 24em;
+    height: 2.2em;text-align: center;line-height: 2.2em;background: #004d7d;">重庆海尔小额贷款有限公司</div>
 								<div style="position: absolute;
-    left: 7em;
-    eft: 16em;
-    top: 8.2em;
-    width: 18em;
-    height: 3em;
-    text-align: center;
-    line-height: 2.2em;
-    background: #004d7d;">${st.name!}</div>
-								<div class="ck">查看详情</div>
-								##}
+								    left: 7em;
+								    top: 9.2em;
+								    width: 18em;
+								    height: 2em;
+								    text-align: center;
+								    line-height: 2em;
+								    background: #004d7d;">海尔集团（青岛）金融控股有限公司</div> -->
+								<div class="" style="width:100%;height:100%;">
+									<div style="border:1px solid #488DC6; width:60%;margin-left:20%;line-height: 2em;">重庆海尔小额贷款有限公司</div>
+									<div style="width:60%;margin-left:20%;">
+										<div style="border:1px solid #488DC6; width:1px;margin-left: 50%;border-right: none;height:2em;"></div>
+									</div>
+									<div style="border:1px solid #488DC6; width:60%;margin-left:20%; border-bottom:none;height: 2em;"></div>
+									<div style="">
+										<div style="width:48%; border:1px solid #488DC6;float: left;line-height: 2em;">海尔集团（青岛）金融控股有限公司</div>
+										<div style="width:48%; border:1px solid #488DC6;float: right;line-height: 2em;">......</div>
+									</div>
+								</div>
+								
 							</td>
 						</tr>
 						<tr>
@@ -1621,7 +1641,7 @@
 				</table>
 			</div>
 		</div>
-		<div class="qyfxContent">
+		<!-- <div class="qyfxContent">
 			<a class="qytp ltitle" name="qytp"><span></span>企业图谱<span></span></a>
 
 			<div id="box" style="height:100%;width:100%"></div>
@@ -1752,7 +1772,7 @@
 			<a class="gqjgt ltitle" name="gqjgt"><span></span>股权结构图<span></span></a>
 			<div id="menuTree" class="menuTree"></div>
 
-		</div>
+		</div> -->
 		<div class="schxContent" >
 			<div class="left-top">
 				<div class="chartBox ec001">
@@ -1805,7 +1825,7 @@
 									<ul class="leftBox">
 									##for(info in marknews){
 										<li>
-											<div class="fl pic"><img src="${contextPath}/static/img/03_05shengyufengxian/02.png"></div>
+											<!-- <div class="fl pic"><img src="${contextPath}/static/img/03_05shengyufengxian/02.png"></div> -->
 											<p class="fr">
 												<a href="${info.url}" target="_black">${info.title!}</a>
 												<span class="neirong">${info.summary!}</span>
@@ -1826,7 +1846,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="fjckContent">
+		<!-- <div class="fjckContent">
 			<a class="qyzz ltitle" name="qyzz"><span></span>企业资质类<span></span></a>
 			<div class="qyzzContent oneTable">
 				<table width="98%" height="100%" border="1" cellspacing="0" cellpadding="0">
@@ -1927,7 +1947,7 @@
 					</tr>
 				</table>
 			</div>
-		</div>
+		</div> -->
 	</div>
 
 </div>
@@ -1981,7 +2001,7 @@
 								<div id="myStathalf" data-dimension="120" data-width="20" data-text="93分" data-fontsize="13" data-percent="93" data-fgcolor="#00ACF0" data-bgcolor="#064983"></div>
 								<div class="ec003">
 		
-							    <a onclick="intentPage('04_01jingyingnengli')" href="javascript:void(0);"><div id="myStat" data-dimension="90" data-text="98分" data-info="经营能力" data-width="12" data-fontsize="13" data-percent="98" data-fgcolor="#95DF64" data-bgcolor="#115006">	</div></a>
+							      <a onclick="intentPage('04_01jingyingnengli')" href="javascript:void(0);"><div id="myStat" data-dimension="90" data-text="98分" data-info="经营能力" data-width="12" data-fontsize="13" data-percent="98" data-fgcolor="#95DF64" data-bgcolor="#115006">	</div></a>
 									
 								<a onclick="intentPage('04_02yinglinengli')" href="javascript:void(0);"><div id="myStathalf2" data-dimension="90" data-text="88分" data-info="盈利能力" data-width="12" data-fontsize="13" data-percent="88" data-fontcolor="#fff" data-fgcolor="#FED569" data-bgcolor="#805000" data-icon="fa-task"></div></a>
 									
@@ -2010,7 +2030,7 @@
 					<div class="chartBody">
 						<div class="radarIndexFrame">
 							<div class="icon"><img src="${contextPath}/static/img/08shujuluru/radarIndexFrame.png" alt=""></div>
-							<div class="textContent">指数: <span>${value.fvalue!}</span></div>
+							<div class="textContent">风险: <span>${value.fvalue!}</span></div>
 						</div>
 						<!--<div class="radarIndexChart">-->
 						<div id="ec002_competitivenessgongshangjiankong2"></div>
@@ -2295,7 +2315,7 @@
 				],
 			}]
     	});
-    	//添加点击事件
+      //添加点击事件
 	    fxyq003.on('click', function (params) {
 	        if(params.name.indexOf("信用风险") != -1){ //判断点击文字
 	            //window.location.href="${contextPath}/qdch/creditrisk"
@@ -2371,21 +2391,13 @@
                             $($(".tabContent").children("li")[1]).addClass("activeTab").siblings().removeClass("activeTab");
                             document.getElementsByClassName(txt)[0].scrollIntoView(false);
                             break;
+                        
                         case 3:
-                            $(".qyfxContent").css("display","block").siblings().css("display","none");
-                            $($(".tabContent").children("li")[2]).addClass("activeTab").siblings().removeClass("activeTab");
-                            document.getElementsByClassName(txt)[0].scrollIntoView(false);
-                            break;
-                        case 4:
                             $(".schxContent").css("display","block").siblings().css("display","none");
                             $($(".tabContent").children("li")[3]).addClass("activeTab").siblings().removeClass("activeTab");
                             document.getElementsByClassName(txt)[0].scrollIntoView(false);
                             break;
-                        case 5:
-                            $(".fjckContent").css("display","block").siblings().css("display","none");
-                            $($(".tabContent").children("li")[4]).addClass("activeTab").siblings().removeClass("activeTab");
-                            document.getElementsByClassName(txt)[0].scrollIntoView(false);
-                            break;
+                      
                     }
                 });
             }

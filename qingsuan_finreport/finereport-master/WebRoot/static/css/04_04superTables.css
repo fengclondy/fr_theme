@@ -40,7 +40,6 @@
 .sFHeader table {
     border-spacing: 0px 0px !important;
     border-collapse: collapse !important;
-    width: 1px !important;
     table-layout: fixed !important;
     /*background-color: #ffffff; !* Here b/c of Opera 9.25 :( *!*/
 }
@@ -49,8 +48,7 @@
     position: absolute;
     z-index: 2;
     overflow: auto;
-    height:calc(100% - 60px);
-    /*background-color: #336699;*/
+    height: calc(100% - 60px);
 }
 .sData table {
     border-spacing: 0px 0px !important;
@@ -176,7 +174,7 @@
 
 
 
-/*ͨ����ʽ*/
+/*通锟斤拷锟斤拷式*/
 * {
     margin: 0;
     padding: 0
@@ -246,7 +244,7 @@ p{
     margin:0 auto;
 
 }
-/*����Ϸ���ѯ�ȹ��ܵ���ʽ*/
+/*锟斤拷锟斤拷戏锟斤拷锟窖拷裙锟斤拷艿锟斤拷锟绞�*/
 .radius{
     border-radius:8px;
 }

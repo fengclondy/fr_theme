@@ -63,6 +63,11 @@ public class BorrowerController extends BaseController {
 			/*DefenInfoModel defen=DefenInfoModel.dao.getScoreList(getDataScopeByUserNameForP2p(),model.getStr("jysc"),hasInfo);
 			model.put("defen",defen);*/
 		}
+		if(ptList!=null&&ptList.size()==1){
+			setAttr("single",1);
+		}else{
+			setAttr("single",ptList.size());
+		}
 		setAttr("pingtailist",ptList);
 		setAttr("jys",ptType);
 		setAttr("hasInfo",hasInfo);

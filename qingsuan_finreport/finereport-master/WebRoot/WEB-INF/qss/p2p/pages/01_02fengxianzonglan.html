@@ -327,7 +327,7 @@
 						htmls+="<div class='chartBodyRightCircle fl'>"
 						htmls+="<canvas id='canvas"+item.keypm+"'>当前浏览器不支持canvas 请升级！</canvas>"
 						htmls+="<div class='chartBodyNumber'>"
-						htmls+="<p>风险指数</p>"
+						htmls+="<p>未然指数</p>"
 						htmls+="<div></div>"
 						htmls+="</div>"
 						htmls+="</div>"
@@ -338,7 +338,7 @@
 				  			yAxisData.push({name:it.fxlb,max:10})
 				  			seriesData.push(it.detailvalue); 
 							htmls+="<li>"
-							htmls+="<h3>"+it.detailvalue+"</h3>\n"
+							htmls+="<h3>"+parseFloat(it.detailvalue).toFixed(2)+"</h3>\n"
 							htmls+="<div>"
 							htmls+="<span class='liContent'>"+it.fxlb+"</span>\n"
 							htmls+="<em>排名：<span>"+it.detailpm+"</span></em>\n"

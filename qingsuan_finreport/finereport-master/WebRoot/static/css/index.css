@@ -3,11 +3,6 @@ html, body {
     height: 100%;
 }
 
-body {
-    background: url("../img/com/bg_main.jpg") no-repeat;
-    background-size: 100% 100%;
-}
-
 /*header------*/
 @media all {
     body > header {
