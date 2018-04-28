@@ -504,6 +504,7 @@
 			margin-right: 0.3rem;
 			font-size: 1.2rem;
 			color: red;
+			font-weight: 600;
 		}
 		.radarIndexChart{
 			width: 100%;
@@ -544,6 +545,7 @@
 			width: 14%;
 			height: 14%;
 			margin: 1%;
+			display:none;
 		}
 		.left > ul > li > div > img {
 			width: 100%;
@@ -551,7 +553,7 @@
 			margin-left: 0.5rem;
 		}
 		.left > ul > li > p {
-			width: 78%;
+			width: 99%;
 			margin-top: 1%;
 			padding: 0.3rem 0.2rem;
 		}
@@ -1823,7 +1825,7 @@
 									<ul class="leftBox">
 									##for(info in marknews){
 										<li>
-											<div class="fl pic"><img src="${contextPath}/static/img/03_05shengyufengxian/02.png"></div>
+											<!-- <div class="fl pic"><img src="${contextPath}/static/img/03_05shengyufengxian/02.png"></div> -->
 											<p class="fr">
 												<a href="${info.url}" target="_black">${info.title!}</a>
 												<span class="neirong">${info.summary!}</span>
@@ -2028,7 +2030,7 @@
 					<div class="chartBody">
 						<div class="radarIndexFrame">
 							<div class="icon"><img src="${contextPath}/static/img/08shujuluru/radarIndexFrame.png" alt=""></div>
-							<div class="textContent">指数: <span>${value.fvalue!}</span></div>
+							<div class="textContent">风险: <span>${value.fvalue!}</span></div>
 						</div>
 						<!--<div class="radarIndexChart">-->
 						<div id="ec002_competitivenessgongshangjiankong2"></div>
