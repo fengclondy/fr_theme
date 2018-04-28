@@ -1,9 +1,9 @@
-/*全局变量*/
+/*鍏ㄥ眬鍙橀噺*/
 :root{
     --themeBlue: #00adef;
 }
 
-/*全局设置-----start*/
+/*鍏ㄥ眬璁剧疆-----start*/
 @media all {
     * {
         /*font-family: PingFang SC, microsoft yahei, sans-serif;*/
@@ -50,7 +50,7 @@
     */
 
 }
-/*自定义样式*/
+/*鑷畾涔夋牱寮�*/
 @media all {
     .chartContent>header{
         padding-top: .6rem;
@@ -62,13 +62,13 @@
         padding: .4rem .6rem;
         margin: .5rem .5rem 0;
     }
-    /*输入组框*/
+    /*杈撳叆缁勬*/
     .inputGroup {
         display: inline-block;
         margin-left: 1rem;
         font-size: .72rem;
     }
-    /*按钮组*/
+    /*鎸夐挳缁�*/
     .btnGroup {
         text-align: center;
         font-size: .72rem;
