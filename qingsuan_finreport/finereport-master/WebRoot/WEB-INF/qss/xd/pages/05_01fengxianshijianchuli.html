@@ -73,7 +73,7 @@
         }
         .model_content .modelTop{
             width: 100%;
-            height: 40%;
+            overflow:hidden;
             border-bottom: 1px solid #00abde;
         }
         .modelTop li{
@@ -621,55 +621,59 @@
 
 
                 var checkhtml = "";
-                $.each(data.history, function(index, value, array) {
 
-                    checkhtml+=" <ul>\n" +
-                        "                        <li>\n" +
-                        "                            <label >处理人: <span class=\"processingPerson\">"+value.checker+"</span></label>\n" +
-                        "\n" +
-                        "                        </li>\n" +
-                        "                        <li>\n" +
-                        "                            <label >处理状态: <span class=\"processState\">"+value.checkstatus+"</span></label>\n" +
-                        "\n" +
-                        "                        </li>\n" +
-                        "                        <li>\n" +
-                        "                            <a >处理时间: <span class=\"processData\">"+value.checktime+"</span> </a>\n" +
-                        "                        </li>\n" +
-                        "                        <li style=\"width: 100%;\">\n" +
-                        "                            <label >备注: <span>"+value.remarks+"</span></label>\n" +
-                        "\n" +
-                        "                        </li>\n" +
-                        "                    </ul>";
+                if(data.history.length == 0){
+                	$('.modelMiddle').hide();
+                }
+                else{
+                	$.each(data.history, function(index, value, array) {
+                        // checkhtml +=" <li>\n" +
+                        //     "                        <div class=\"\">\n" +
+                        //     "                            <span class=\"\">审核人:</span>\n" +
+                        //     "                            <span id=\"checker\" class=\"Auditor\">"+value.checker+"</span>\n" +
+                        //     "                        </div>\n" +
+                        //     "                    </li>\n" +
+                        //     "                    <li>\n" +
+                        //     "                        <div class=\"\">\n" +
+                        //     "                            <span class=\"\">处理状态:</span>\n" +
+                        //     "                            <span id=\"checkstatus\" class=\"HandleState\">"+value.checkstatus+"</span>\n" +
+                        //     "                        </div>\n" +
+                        //     "                    </li>\n" +
+                        //     "                    <li>\n" +
+                        //     "                        <div class=\"\">\n" +
+                        //     "                            <span class=\"Auditor\">处理时间:</span>\n" +
+                        //     "                            <span id=\"checktime\" class=\"AuditorData\">"+value.checktime+"</span>\n" +
+                        //     "                        </div>\n" +
+                        //     "                    </li>\n" +
+                        //     "                    <br>\n" +
+                        //     "                    <li>\n" +
+                        //     "                        <div class=\"\">\n" +
+                        //     "                            <span class=\"Auditor\">备&nbsp;&nbsp;&nbsp;注:</span>\n" +
+                        //     "                            <span id=\"remarks\">"+value.remarks+"</span>\n" +
+                        //     "                        </div>\n" +
+                        //     "                    </li>";
 
-                    // checkhtml +=" <li>\n" +
-                    //     "                        <div class=\"\">\n" +
-                    //     "                            <span class=\"\">审核人:</span>\n" +
-                    //     "                            <span id=\"checker\" class=\"Auditor\">"+value.checker+"</span>\n" +
-                    //     "                        </div>\n" +
-                    //     "                    </li>\n" +
-                    //     "                    <li>\n" +
-                    //     "                        <div class=\"\">\n" +
-                    //     "                            <span class=\"\">处理状态:</span>\n" +
-                    //     "                            <span id=\"checkstatus\" class=\"HandleState\">"+value.checkstatus+"</span>\n" +
-                    //     "                        </div>\n" +
-                    //     "                    </li>\n" +
-                    //     "                    <li>\n" +
-                    //     "                        <div class=\"\">\n" +
-                    //     "                            <span class=\"Auditor\">处理时间:</span>\n" +
-                    //     "                            <span id=\"checktime\" class=\"AuditorData\">"+value.checktime+"</span>\n" +
-                    //     "                        </div>\n" +
-                    //     "                    </li>\n" +
-                    //     "                    <br>\n" +
-                    //     "                    <li>\n" +
-                    //     "                        <div class=\"\">\n" +
-                    //     "                            <span class=\"Auditor\">备&nbsp;&nbsp;&nbsp;注:</span>\n" +
-                    //     "                            <span id=\"remarks\">"+value.remarks+"</span>\n" +
-                    //     "                        </div>\n" +
-                    //     "                    </li>";
-                });
-                $('.modelMiddleContent ').html(checkhtml);
-
-
+                        checkhtml+="<div class=\"one\">\n" +
+                            "                        <ul>\n" +
+                            "                            <li>\n" +
+                            "                                <label >处理人: <span>"+value.checker+"</span></label>\n" +
+                            "                            </li>\n" +
+                            "                            <li>\n" +
+                            "                                <label >处理状态: <span>"+value.checkstatus+"</span></label>\n" +
+                            "                            </li>\n" +
+                            "                            <li>\n" +
+                            "                                <label >处理时间: <span>"+value.checktime+"</span></label>\n" +
+                            "                            </li>\n" +
+                            "                            <li>\n" +
+                            "                                <label >备注: <span>"+value.remarks+"</span></label>\n" +
+                            "                            </li>\n" +
+                            "                        </ul>\n" +
+                            "                    </div>\n" +
+                            "                    <div class=\"clear\"></div>"
+                    });
+                    $('.modelMiddle .modelMiddleContent').html(checkhtml);
+                	$('.modelMiddle').show();
+                }
             }
         });
 

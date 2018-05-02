@@ -54,10 +54,11 @@ public class LoginUserInfoServlet extends BaseServlet {
 	 * @return_type   void
 	 */
 	private void getLoginUserInfo(HttpServletRequest request, HttpServletResponse response) {
-		JSONObject r = new JSONObject();
 		try {
 			User  user = RoleUtil.getCurrentUser(request);
-			user.setEmail(request.getSession().getId());
+			if(request.getSession()!=null){
+				user.setEmail(request.getSession().getId());
+			}
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("application/json; charset=utf-8");
 			PrintWriter out = null;
@@ -74,7 +75,6 @@ public class LoginUserInfoServlet extends BaseServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		responseOutWithJson(response, r);
 	}
 
 	public void init() throws ServletException {
