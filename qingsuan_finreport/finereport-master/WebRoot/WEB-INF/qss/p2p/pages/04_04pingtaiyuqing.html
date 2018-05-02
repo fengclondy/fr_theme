@@ -642,7 +642,7 @@
         	   $.each(data,function(index,item){
         		   if (item.news != null) {
         			   content = content
-            		   +' <li><a href="#68.html">'+item.news+'</a></li>'
+            		   +' <li><a href="'+item.url+'" target="_blank">'+item.news+'</a></li>'
 					}  
         	   })
         	 $(".myscroll1").find("ul").html(content);
