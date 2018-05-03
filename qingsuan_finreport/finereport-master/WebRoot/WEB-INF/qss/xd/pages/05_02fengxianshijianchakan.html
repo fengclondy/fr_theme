@@ -523,7 +523,7 @@
         $('#pageCurrent').bind('keypress',function(event){
             console.log(11,event.keyCode)
             if(event.keyCode == 13){
-                getTableBody($(this).val(),7)
+                getTableBody($(this).val(),10)
             }
         });
         $('#riskCategories').on('blur',function () {
@@ -649,7 +649,7 @@
         $.ajax({
             type: "POST",
             url: "eventprocessing/getListSee"+appenddata,
-            data: {"pageNum":pageNum,"pageSize":pageSize},
+            data: {"pageNum":pageNum,"pageSize":7},
             dataType: "json",
             success: function(data){
                 var  append = "";
