@@ -147,7 +147,7 @@ public class RoleUtil {
            List<RoleModel>  roles=getUserRoles(user.getId(), userName,roleName,isSuperAdmin);
            user.setRoles(roles);
            //查询数据权限 交易所
-           String jysStr=UserDataFromRoleService.getJysForP2pXd(userName,isSuperAdmin);
+           String jysStr=UserDataFromRoleService.getJysForP2pXd(userName,roleName,isSuperAdmin);
            if(jysStr!=null&&!"".equals(jysStr)&&jysStr.length()>0){
         	   user.setJysList(Arrays.asList(jysStr.split(",")));
         	   user.setDataScope(jysStr);

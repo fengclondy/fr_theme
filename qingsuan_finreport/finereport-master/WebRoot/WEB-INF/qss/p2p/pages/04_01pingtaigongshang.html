@@ -639,7 +639,7 @@
 		}
 		.left > ul > li > p > .neirong {
 		    margin: 0.5rem auto;
-		    color: #00b0f4;
+		    color: #fff;
 		    font-size: 1rem;
 		}
 		.left > ul > li > p > span {
@@ -792,7 +792,7 @@
         <li class="activeTab">企业信息  <span>${all!}</span></li>
         <li>经营状态  <span>${allsize!}</span></li>
         <!-- <li>关系图谱<span></span></li> -->
-        <li>企业舆情<span></span></li>
+        <li>企业舆情  <span>${marksize!}</span></li>
         <li>关联企业<span></span></li>
        <!--  <li>借款企业<span></span></li> -->
         <li>担保企业<span></span></li>
@@ -856,18 +856,6 @@
 									</div>
 									##}
 								</div>
-								<!-- <img src="${contextPath}/static/img/gsxx/gqjgt.jpg" style="margin-left: 5em;"/>
-                                  ##for(st in stockc!){
-								<div style="position: absolute;left: 17em;top: 1.9em;width: 24em;
-    height: 2.2em;text-align: center;line-height: 2.2em;background: #004d7d;">${st.company_name!}</div>
-								<div style="position: absolute;
-								    left: 7em;
-								    top: 9.2em;
-								    width: 18em;
-								    height: 2em;
-								    text-align: center;
-								    line-height: 2em;
-								    background: #004d7d;">${st.name!}</div> -->
 								
 								
 							</td>
@@ -2067,8 +2055,7 @@ function check(){
     	  $.each(data,function(index,item){
     		  
     		var mTr='';
-    		mTr+='<li><div class="fl pic">'
-    		+'<img src="${contextPath}/static/img/03_05shengyufengxian/02.png"></div><p class="fr"><a >'
+    		mTr+='<li><p class="fr"><a >'
     		+item.title+'</a> <span class="neirong">'+item.summary+'</span><span>来源:</span><a href="#" class="bgi1 source1">'
     		+item.data_source+'</a><span>|</span><span>涉及词:</span><a href="#">'
   		    +item.string_agg+'</a><span class="fr bgi2">'+item.publish_date+'</span>';

@@ -60,6 +60,19 @@ public class CompanysInfoModel extends Model<CompanysInfoModel> {
 		String sql="select * from hub_commerce_company_info  where legal_person='"+name+"'";
 		return dao.find(sql);
 	}
-	
+	/**
+	 * 关联 图谱查询
+	 * @author lixiaoyi
+	 * @date 2018年5月2日 下午1:55:43
+	 * @TODO
+	 */
+	public  List<CompanysInfoModel> getRelationMap(String name){
+		 String sql="SELECT * from hub_commerce_company_info  where company_name in( select branch_name from hub_commerce_co_branch where 1=1 ";
+		 		if (StringUtils.isNotBlank(name)) {
+		 	   sql+="company_name='"+name+"'";
+				}
+				sql+=");";
+				return dao.find(sql);
+	}
 
 }
