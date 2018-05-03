@@ -1,6 +1,6 @@
 ::-webkit-scrollbar {/*滚动条整体样式*/
-    width: 4px;     /*高宽分别对应横竖滚动条的尺寸*/
-    height: 4px;
+    width: 7px;     /*高宽分别对应横竖滚动条的尺寸*/
+    height: 7px;
 }
 ::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
     border-radius: 5px;
@@ -17,7 +17,7 @@
     --themeBlue: #00adef;
 }
 
-/*全局设置-----start*/
+/*鍏ㄥ眬璁剧疆-----start*/
 @media all {
     * {
         /*font-family: PingFang SC, microsoft yahei, sans-serif;*/
@@ -64,7 +64,7 @@
     */
 
 }
-/*自定义样式*/
+/*鑷畾涔夋牱寮�*/
 @media all {
     .chartContent>header{
         padding-top: .6rem;
@@ -76,13 +76,13 @@
         padding: .4rem .6rem;
         margin: .5rem .5rem 0;
     }
-    /*输入组框*/
+    /*杈撳叆缁勬*/
     .inputGroup {
         display: inline-block;
         margin-left: 1rem;
         font-size: .72rem;
     }
-    /*按钮组*/
+    /*鎸夐挳缁�*/
     .btnGroup {
         text-align: center;
         font-size: .72rem;

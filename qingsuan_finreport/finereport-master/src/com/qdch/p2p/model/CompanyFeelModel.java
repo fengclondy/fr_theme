@@ -78,7 +78,7 @@ public class CompanyFeelModel extends Model<CompanyFeelModel>{
 				if (StringUtils.isNotBlank(jysinfo)) {
 					sql += " and jysinfo = '"+jysinfo+"'";
 				}
-				sql +=") news"
+				sql +=") news , t.url as url"
 				+ " FROM hub_commerce_meiya_sentiment_news T"
 				+ " where t.enterprise_id in (SELECT enterprise_id FROM hub_commerce_ref_jys t left join public.hub_dd_tqs_jys t1"
 				+ " on t.jysmc=t1.jysmc where t1.jysfl=4";
@@ -86,7 +86,7 @@ public class CompanyFeelModel extends Model<CompanyFeelModel>{
 					sql += " and t.jys in "+jysIds;
 				}
 				sql+= ")"
-					+ " ORDER BY T .publish_date DESC LIMIT 7";
+					+ " ORDER BY T .publish_date DESC LIMIT 5";
 		
 		return dao.find(sql);
 	}

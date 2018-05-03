@@ -157,6 +157,7 @@ public class IndustryCommController extends BaseController {
 		List<MarkNewsModel> mark = MarkNewsModel.dao.getNews(cc.get("id") + "",
 				"", "", "");
 		setAttr("marknews", mark);
+		setAttr("marksize", mark.size());
 		List<CompanysInfoModel> infoModels = new ArrayList<CompanysInfoModel>();
 		if (basic != null && basic.size() > 0) {
 			infoModels = CompanysInfoModel.dao.getCompanybyName(basic.get(0)

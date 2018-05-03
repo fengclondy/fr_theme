@@ -50,7 +50,7 @@ public class CommerceController extends BaseController{
 			name="重庆海尔小额贷款有限公司";
 		}
 		setAttr("company", name);
-	   /* List<CompanysInfoModel> info = CompanysInfoModel.dao.getInfo(getDataScopeByUserName(),name);
+	 /*  List<CompanysInfoModel> info = CompanysInfoModel.dao.getInfo(getDataScopeByUserName(),name);
 	    setAttr("companyName", info);*/
 	    List<CompanysInfoModel> basic = CompanysInfoModel.dao.getBasicinfo(getDataScopeByUserName(),name);
 	     setAttr("basic", basic);
@@ -132,6 +132,7 @@ public class CommerceController extends BaseController{
 	  List<MarkNewsModel> mark =  MarkNewsModel.dao.getNews2(cc.get("id")+"", "", "", "");
 	  List<CompanysInfoModel> infoModels=new ArrayList<CompanysInfoModel>();
 	  setAttr("marknews", mark);
+	  setAttr("marksize", mark.size());
 	  if(basic!=null&&basic.size()>0){
 	    	infoModels=CompanysInfoModel.dao.getCompanybyName(basic.get(0).get("legal_person")+"");
 	   }
@@ -467,5 +468,17 @@ public class CommerceController extends BaseController{
 		String name=getPara("name");
 		RiskTrendDetailedModel risk = RiskTrendDetailedModel.dao.getScore(getDataScopeByUserName(), name);
 	    mRenderJson(risk);
+	}
+	/**
+	 * 关系图谱
+	 * @author lixiaoyi
+	 * @date 2018年5月2日 下午1:42:24
+	 * 
+	 * @TODO
+	 */
+	public void gainRelationMap(){
+        String name	=	getPara("name");
+	    List<CompanysInfoModel>  map = CompanysInfoModel.dao.getRelationMap(name);
+	    mRenderJson(map);
 	}
 }

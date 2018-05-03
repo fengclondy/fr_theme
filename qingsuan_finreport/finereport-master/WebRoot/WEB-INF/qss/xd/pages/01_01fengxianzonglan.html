@@ -247,8 +247,8 @@
                     <div class="chartBody">
                         <ul id="con">
                             <li class="show" id="ec007_zhishupaiming"></li>
-                            <li id="ec008_zhishupaiming">内容二</li>
-                            <li id="ec009_zhishupaiming">内容三</li>
+                            <li id="ec008_zhishupaiming"></li>
+                            <li id="ec009_zhishupaiming"></li>
                         </ul>
                     </div>
                 </div>
@@ -406,10 +406,10 @@
             yAxis: {
                 name:'平台',
                 type: 'category',
-                data: ['互帮贷', '大家投', '中金所', '好易贷', '鲁金宝']
+                //data: ['互帮贷', '大家投', '中金所', '好易贷', '鲁金宝']
             },
             series: [{
-                data: [1, 3, 5, 7.2, 10],
+               // data: [1, 3, 5, 7.2, 10],
                 type: 'bar',
                 barWidth:barWidth
             }]
@@ -639,7 +639,7 @@
                             normal:{
                                 label:{
                                     show:true,
-                                    textStyle:{color:'#fff',fontSize:"18"},
+                                    textStyle:{color:'#fff',fontSize:"15"},
                                     formatter:function(val){   //让series 中的文字进行换行
                                         return val.name.split("-").join("\n");}
                                 }
