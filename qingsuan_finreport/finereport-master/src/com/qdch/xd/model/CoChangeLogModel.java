@@ -53,7 +53,7 @@ public class CoChangeLogModel extends Model<CoChangeLogModel>{
 	 * @TODO
 	 */
 	public List<CoChangeLogModel> getNamechange(String name){
-		String sql="SELECT T .change_date,T .guid,T .old_log,T .new_log FROM hub_commerce_co_change_log T "
+		String sql="SELECT ROW_NUMBER() over(ORDER BY T.company_name asc) as num, T .change_date,T .guid,T .old_log,T .new_log FROM hub_commerce_co_change_log T "
 				+ "LEFT JOIN hub_commerce_enterprise n ON T .company_name = n. NAME ";
 		if(StringUtils.isNotBlank(name)){
 			sql+="WHERE T .company_name ='"+ name+"' and T.change_object like '%名称变更%'";
@@ -67,7 +67,7 @@ public class CoChangeLogModel extends Model<CoChangeLogModel>{
 	 * @TODO
 	 */
 	public List<CoChangeLogModel> getInvestchange(String name){
-		String sql="SELECT T .change_date,T .guid,T .old_log,T .new_log FROM hub_commerce_co_change_log T "
+		String sql="SELECT ROW_NUMBER() over(ORDER BY T.company_name asc) as num, T .change_date,T .guid,T .old_log,T .new_log FROM hub_commerce_co_change_log T "
 				+ "LEFT JOIN hub_commerce_enterprise n ON T .company_name = n. NAME ";
 		if(StringUtils.isNotBlank(name)){
 			sql+="WHERE T .company_name ='"+ name+"' and T.change_object like '%投资人（股权）%'";
@@ -81,7 +81,7 @@ public class CoChangeLogModel extends Model<CoChangeLogModel>{
 	 * @TODO
 	 */
 	public List<CoChangeLogModel> getLiaisonchange(String name){
-		String sql="SELECT T .change_date,T .guid,T .old_log,T .new_log FROM hub_commerce_co_change_log T "
+		String sql="SELECT ROW_NUMBER() over(ORDER BY T.company_name asc) as num, T .change_date,T .guid,T .old_log,T .new_log FROM hub_commerce_co_change_log T "
 				+ "LEFT JOIN hub_commerce_enterprise n ON T .company_name = n. NAME ";
 		if(StringUtils.isNotBlank(name)){
 			sql+="WHERE T .company_name ='"+ name+"' and T.change_object like '%联络员%'";
@@ -95,7 +95,7 @@ public class CoChangeLogModel extends Model<CoChangeLogModel>{
 	 * @TODO
 	 */
 	public List<CoChangeLogModel> getBuinesschange(String name){
-		String sql="SELECT T .change_date,T .guid,T .old_log,T .new_log FROM hub_commerce_co_change_log T "
+		String sql="SELECT ROW_NUMBER() over(ORDER BY T.company_name asc) as num, T .change_date,T .guid,T .old_log,T .new_log FROM hub_commerce_co_change_log T "
 				+ "LEFT JOIN hub_commerce_enterprise n ON T .company_name = n. NAME ";
 		if(StringUtils.isNotBlank(name)){
 			sql+="WHERE T .company_name ='"+ name+"' and T.change_object like '%经营范围%'";
@@ -109,7 +109,7 @@ public class CoChangeLogModel extends Model<CoChangeLogModel>{
 	 * @TODO
 	 */
 	public List<CoChangeLogModel> getComtypechange(String name){
-		String sql="SELECT T .change_date,T .guid,T .old_log,T .new_log FROM hub_commerce_co_change_log T "
+		String sql="SELECT ROW_NUMBER() over(ORDER BY T.company_name asc) as num, T .change_date,T .guid,T .old_log,T .new_log FROM hub_commerce_co_change_log T "
 				+ "LEFT JOIN hub_commerce_enterprise n ON T .company_name = n. NAME ";
 		if(StringUtils.isNotBlank(name)){
 			sql+="WHERE T .company_name ='"+ name+"' and T.change_object like '%企业类型%'";
@@ -123,7 +123,7 @@ public class CoChangeLogModel extends Model<CoChangeLogModel>{
 	 * @TODO
 	 */
 	public List<CoChangeLogModel> getRegisterchange(String name){
-		String sql="SELECT T .change_date,T .guid,T .old_log,T .new_log FROM hub_commerce_co_change_log T "
+		String sql="SELECT ROW_NUMBER() over(ORDER BY T.company_name asc) as num, T .change_date,T .guid,T .old_log,T .new_log FROM hub_commerce_co_change_log T "
 				+ "LEFT JOIN hub_commerce_enterprise n ON T .company_name = n. NAME ";
 		if(StringUtils.isNotBlank(name)){
 			sql+="WHERE T .company_name ='"+ name+"' and T.change_object like '%注册资本%'";
