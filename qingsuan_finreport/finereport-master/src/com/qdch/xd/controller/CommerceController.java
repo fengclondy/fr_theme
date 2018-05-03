@@ -50,8 +50,8 @@ public class CommerceController extends BaseController{
 			name="重庆海尔小额贷款有限公司";
 		}
 		setAttr("company", name);
-	 /*  List<CompanysInfoModel> info = CompanysInfoModel.dao.getInfo(getDataScopeByUserName(),name);
-	    setAttr("companyName", info);*/
+	  List<CompanysInfoModel> info = CompanysInfoModel.dao.getInfo(getDataScopeByUserName(),name);
+	    setAttr("companyName", info);
 	    List<CompanysInfoModel> basic = CompanysInfoModel.dao.getBasicinfo(getDataScopeByUserName(),name);
 	     setAttr("basic", basic);
 	    List<CoShareHolderModel> main = CoShareHolderModel.dao.getMainperson(name);
