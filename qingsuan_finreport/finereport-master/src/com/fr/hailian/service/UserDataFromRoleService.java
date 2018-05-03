@@ -287,7 +287,7 @@ public class UserDataFromRoleService {
 	 * @return 数据权限 获取交易所信息
 	 * @throws SQLException
 	 */
-	public static String getJysForP2pXd(String userName,boolean isSuperAdmin){
+	public static String getJysForP2pXd(String userName,String roleName,boolean isSuperAdmin){
 		if(userName==null||StringUtils.isBlank(userName)){
 			return null;
 		}
@@ -300,6 +300,9 @@ public class UserDataFromRoleService {
             sql+=" where 1=1  ";
             if(!"".equals(userName)&&userName!=null&&!isSuperAdmin){
             	sql+="  and u.username ='"+userName+"' ";
+            }
+            if(!"".equals(roleName)&&roleName!=null){
+            	sql+="  and p.postname like '%"+roleName+"%' ";
             }
             System.out.println(sql);
             PreparedStatement ps = con.prepareStatement(sql);
