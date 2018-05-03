@@ -41,9 +41,11 @@
                 <div class="myOption selected"><span class="text"></span><span class="icon"></span>
                 </div>
                 <ul class="myOptionBox">
-                    <li class="myOption selected">鲁金宝1</li>
-                    <li class="myOption">鲁金宝2</li>
-                    <li class="myOption">鲁金宝3</li>
+                    <li class="myOption selected">海尔小额贷款</li>
+                    <li class="myOption">蚂蚁小额贷款</li>
+                    <li class="myOption">汇金小额贷款</li>
+                    <li class="myOption">西岸小额贷款</li>
+                    <li class="myOption">中鸿小额贷款</li>
                 </ul>
             </div>
         </div>
@@ -68,7 +70,7 @@
                 </div>
                 <div class="chartContent">
                     <div class="chartBody">
-                        <div id="ec003_currentCompetitiveness"></div>
+                        <div id="ec002_currentCompetitiveness"></div>
                     </div>
                 </div>
             </div>
@@ -80,7 +82,7 @@
                 </div>
                 <div class="chartContent">
                     <div class="chartBody">
-                        <div id="ec002_currentCompetitiveness"></div>
+                        <div id="ec003_currentCompetitiveness"></div>
                     </div>
                 </div>
             </div>
@@ -113,35 +115,15 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>20180307 11:28:01</td>
-                        <td>信用风险</td>
-                        <td>借款集中度</td>
-                        <td>鲁金宝</td>
-                        <td class="more"><a href=""> 查看</a></td>
-                    </tr>
-                    <tr>
-                        <td>20180307 11:28:01</td>
-                        <td>信用风险</td>
-                        <td>借款集中度</td>
-                        <td>鲁金宝</td>
-                        <td class="more"><a href=""> 查看</a></td>
-                    </tr>
-                    <tr>
-                        <td>20180307 11:28:01</td>
-                        <td>信用风险</td>
-                        <td>借款集中度</td>
-                        <td>鲁金宝</td>
-                        <td class="more"><a href=""> 查看</a></td>
-                    </tr>
-                    <tr>
-                        <td>20180307 11:28:01</td>
-                        <td>信用风险</td>
-                        <td>借款集中度</td>
-                        <td>鲁金宝</td>
-                        <td class="more"><a href=""> 查看</a></td>
-                    </tr>
-                    <!-- <tr><td>20180307 11:28:01</td><td>信用风险</td><td>借款集中度</td><td>鲁金宝</td><td class="more"><a href=""> 查看</a></td></tr> -->
+                    <tr><td>20180307 11:28:01</td><td>信用风险</td><td>借款集中度</td><td>小贷A</td><td class="more"><a href=""> 查看</a></td></tr>
+                    <tr><td>20180307 11:28:01</td><td>信用风险</td><td>借款集中度</td><td>小贷A</td><td class="more"><a href=""> 查看</a></td></tr>
+                    <tr><td>20180307 11:28:01</td><td>信用风险</td><td>借款集中度</td><td>小贷A</td><td class="more"><a href=""> 查看</a></td></tr>
+                    <tr><td>20180307 11:28:01</td><td>信用风险</td><td>借款集中度</td><td>小贷A</td><td class="more"><a href=""> 查看</a></td></tr>
+                    <tr><td>20180307 11:28:01</td><td>信用风险</td><td>借款集中度</td><td>小贷A</td><td class="more"><a href=""> 查看</a></td></tr>
+                    <tr><td>20180307 11:28:01</td><td>信用风险</td><td>借款集中度</td><td>小贷A</td><td class="more"><a href=""> 查看</a></td></tr>
+                    <tr><td>20180307 11:28:01</td><td>信用风险</td><td>借款集中度</td><td>小贷A</td><td class="more"><a href=""> 查看</a></td></tr>
+                    <tr><td>20180307 11:28:01</td><td>信用风险</td><td>借款集中度</td><td>小贷A</td><td class="more"><a href=""> 查看</a></td></tr>
+
                     </tbody>
                 </table>
             </div>
@@ -167,13 +149,10 @@
                     name:'融资渠道',
                     type:'pie',
                     radius : '60%',
-                    center: ['36%', '50%'],
+                    center: ['40%', '50%'],
                     data:[
-                        {value:10, name:'渠道1'},
-                        {value:14, name:'渠道2'},
-                        {value:16, name:'渠道3'},
-                        {value:18, name:'渠道4'},
-                        {value:22, name:'渠道5'}
+                        {value:80, name:'股东'},
+                        {value:20, name:'银行'}
                     ]
                 }
             ]
@@ -188,13 +167,10 @@
                     name:'货款用途',
                     type:'pie',
                     radius : '60%',
-                    center: ['36%', '50%'],
+                    center: ['40%', '50%'],
                     data:[
-                        {value:10, name:'渠道1'},
-                        {value:14, name:'渠道2'},
-                        {value:16, name:'渠道3'},
-                        {value:18, name:'渠道4'},
-                        {value:22, name:'渠道5'}
+                        {value:10, name:'消费类'},
+                        {value:14, name:'经营类'}
                     ]
                 }
             ]
@@ -211,11 +187,12 @@
                     radius : '60%',
                     center: ['36%', '50%'],
                     data:[
-                        {value:10, name:'渠道1'},
-                        {value:14, name:'渠道2'},
-                        {value:16, name:'渠道3'},
-                        {value:18, name:'渠道4'},
-                        {value:22, name:'渠道5'}
+                        {value:10, name:'四川'},
+                        {value:14, name:'重庆'},
+                        {value:16, name:'广东'},
+                        {value:18, name:'山东'},
+                        {value:22, name:'湖北'},
+                        {value:22, name:'其他'}
                     ]
                 }
             ]
@@ -242,7 +219,7 @@
                 },
                 yAxis: {
                     type: 'value',
-                    name: '利率'
+                    name: '%'
                 },
                 series: [{
                     name: '1990',

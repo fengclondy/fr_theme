@@ -26,9 +26,11 @@
             <div class="mySelect" id="jiaoyishichang">
                 <div class="myOption selected"><span class="text"></span><span class="icon"></span> </div>
                 <ul class="myOptionBox">
-                    <li class="myOption selected">鲁金宝</li>
-                    <li class="myOption">鲁金宝2</li>
-                    <li class="myOption">鲁金宝3</li>
+                    <li class="myOption selected">海尔小额贷款</li>
+                    <li class="myOption">蚂蚁小额贷款</li>
+                    <li class="myOption">汇金小额贷款</li>
+                    <li class="myOption">西岸小额贷款</li>
+                    <li class="myOption">中鸿小额贷款</li>
                 </ul>
             </div>
         </div>
@@ -87,23 +89,22 @@
         var ec001 = echarts.init($("#ec001_taxRevenue")[0]);
         ec001.setOption(opt_line);
         ec001.setOption({
-            legend: {
-                show: false
-            },
             xAxis: {
                 name: '月份',
-                data: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+                data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
             },
             yAxis: {
-                name: '利率'
+                name: '%'
             },
             series: [
                 {
+                    name: '资产收益率',
                     type: 'line',
                     symbol: 'circle',
-                    data: [2, 5, 5, 3, 2, 6, 4, 7, 8, 8, 2, 3],
+                    data: [5.2, 5.5, 5.5, 5.3, 5.2, 5.6, 5.8, 5.7, 5.6, 5.8, 5.5, 5.3],
                     areaStyle: lineAreaStyle(0)
                 }
+
             ]
         });
         var ec002 = echarts.init($("#ec002_rateOfReturn")[0]);
@@ -114,21 +115,21 @@
                 data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
             },
             yAxis: {
-                name: '利率'
+                name: '%'
             },
             series: [
                 {
-                    name: '资产收益率',
+                    name: '税收',
                     type: 'line',
                     symbol: 'circle',
-                    data: [2, 5, 5, 3, 2, 6, 8, 7, 6, 8, 5, 3],
+                    data: [10.2, 10.5, 10.5, 10.3, 10.2, 10.6, 10.8, 10.7, 10.6, 10.8, 10.5, 10.3],
                     areaStyle: lineAreaStyle(0)
                 },
                 {
                     name: '贷款收益率',
                     type: 'line',
                     symbol: 'circle',
-                    data: [0, 2, 2, 4, 3, 3, 4, 6, 5, 8, 4, 3],
+                    data: [11, 12.3, 12.4, 12.9, 13.1, 13.4, 14.2, 14.6, 14.5, 14.8, 14.4, 14.3],
                     areaStyle: lineAreaStyle(1)
                 }
 
@@ -137,21 +138,19 @@
         var ec003 = echarts.init($("#ec003_interest")[0]);
         ec003.setOption(opt_line);
         ec003.setOption({
-            legend: {
-                show: false
-            },
             xAxis: {
-                name: '增长率',
+                name: '时间',
                 data: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
             },
             yAxis: {
-                name: '利率'
+                name: '%'
             },
             series: [
                 {
+                    name:'利息收入',
                     type: 'line',
                     symbol: 'circle',
-                    data: [2, 5, 5, 3, 2, 6, 4, 7, 8, 8, 2, 3],
+                    data: [5.2, 5.5, 5.5, 5.3, 5.2, 5.6, 5.8, 5.7, 5.6, 5.8, 5.5, 5.3],
                     areaStyle: lineAreaStyle(0)
                 }
             ]

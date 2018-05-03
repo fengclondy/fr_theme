@@ -10,18 +10,29 @@
     <style>
         .top {
             display: flex;
-            flex: 3;
+            flex: 2.5;
         }
         .top > div {
             flex: 1;
         }
         .bottom {
-            flex: 2.4;
+            flex: 2.5;
             display: flex;
         }
         .bottom>.chartBox{
             flex: 1;
         }
+        .chartContent {
+            height: 120px;
+            overflow: auto;
+        }
+        /*表格*/
+        #table tbody tr td{
+            width: 20%;
+            text-align: center;
+        }
+
+
     </style>
 </head>
 <body id="03_03zichanfengxian" data-title="管理风险">
@@ -33,9 +44,11 @@
             <div class="mySelect" id="pingtai">
                 <div class="myOption selected"><span class="text"></span><span class="icon"></span></div>
                 <ul class="myOptionBox">
-                    <li class="myOption selected">鲁金宝</li>
-                    <li class="myOption">鲁金宝1</li>
-                    <li class="myOption">鲁金宝2</li>
+                    <li class="myOption selected">海尔小额贷款</li>
+                    <li class="myOption">蚂蚁小额贷款</li>
+                    <li class="myOption">汇金小额贷款</li>
+                    <li class="myOption">西岸小额贷款</li>
+                    <li class="myOption">中鸿小额贷款</li>
                 </ul>
             </div>
         </div>
@@ -105,10 +118,12 @@
                             <div class="mySelect" id="danbaofangsi">
                                 <div class="myOption selected"><span class="text"></span><span class="icon"></span>
                                 </div>
-                                <ul class="myOptionBox">
+                                <ul class="myOptionBox" style="height: 4.5rem;overflow: auto">
                                     <li class="myOption selected">担保方式</li>
-                                    <li class="myOption">担保方式1</li>
-                                    <li class="myOption">担保方式2</li>
+                                    <li class="myOption">货款期限</li>
+                                    <li class="myOption">企业规模</li>
+                                    <li class="myOption">货款用途</li>
+                                    <li class="myOption">客户进件年龄</li>
                                 </ul>
                             </div>
                         </div>
@@ -131,10 +146,12 @@
                             <div class="mySelect" id="fangkuanedu">
                                 <div class="myOption selected"><span class="text"></span><span class="icon"></span>
                                 </div>
-                                <ul class="myOptionBox">
+                                <ul class="myOptionBox" style="height: 4.5rem;overflow: auto">
                                     <li class="myOption selected">担保方式</li>
-                                    <li class="myOption">担保方式1</li>
-                                    <li class="myOption">担保方式2</li>
+                                    <li class="myOption">货款期限</li>
+                                    <li class="myOption">企业规模</li>
+                                    <li class="myOption">货款用途</li>
+                                    <li class="myOption">客户进件年龄</li>
                                 </ul>
                             </div>
                         </div>
@@ -149,20 +166,33 @@
     <div class="bottom">
         <div class="chartBox ec002">
             <div class="chartTitle">
-                <h3>管理风险列示</h3>
+                <h3>资产风险列示</h3>
             </div>
-            <div class="chartContent">
-						<table>
-							<thead>
-							<tr><th>报警时间</th><th>预警指标</th><th>预警原因</th><th>平台名称</th><th>业务详述</th></tr>
-							</thead>
-							<tbody>
-							<tr><td>20180307 11:28:01</td><td>信用风险</td><td>借款集中度</td><td>鲁金宝</td><td class="more"><a href="javascript:void(0);"> 查看</a></td></tr>
-							<tr><td>20180307 11:28:01</td><td>信用风险</td><td>借款集中度</td><td>鲁金宝</td><td class="more"><a href="javascript:void(0);"> 查看</a></td></tr>
-							<tr><td>20180307 11:28:01</td><td>信用风险</td><td>借款集中度</td><td>鲁金宝</td><td class="more"><a href="javascript:void(0);"> 查看</a></td></tr>
-							</tbody>
-						</table>
-					</div>
+                <div class="chartContent">
+                    <table id="table1" align="center" width="100%">
+                        <thead style="background: #00abde;font-size: 0.9rem">
+                        <tr><td>报警时间</td><td>预警指标</td><td>预警原因</td><td>平台名称</td><td>业务详述</td></tr>
+                        </thead>
+                    </table>
+                    <div style="overflow-x: auto; overflow-y: auto; height: 180px; width:100%;">
+                        <table id="table" width="100%" height="180px">
+                            <tbody>
+                            <tr><td>2017-5-1</td><td>1</td><td>12</td><td>小贷A</td><td>小贷A</td></tr>
+                            <tr><td>2017-5-1</td><td>1</td><td>12</td><td>小贷A</td><td>小贷A</td></tr>
+                            <tr><td>2017-5-1</td><td>1</td><td>12</td><td>小贷A</td><td>小贷A</td></tr>
+                            <tr><td>2017-5-1</td><td>1</td><td>12</td><td>小贷A</td><td>小贷A</td></tr>
+                            <tr><td>2017-5-1</td><td>1</td><td>12</td><td>小贷A</td><td>小贷A</td></tr>
+                            <tr><td>2017-5-1</td><td>1</td><td>12</td><td>小贷A</td><td>小贷A</td></tr>
+                            <tr><td>2017-5-1</td><td>1</td><td>12</td><td>小贷A</td><td>小贷A</td></tr>
+                            <tr><td>2017-5-1</td><td>1</td><td>12</td><td>小贷A</td><td>小贷A</td></tr>
+                            <tr><td>2017-5-1</td><td>1</td><td>12</td><td>小贷A</td><td>小贷A</td></tr>
+                            <tr><td>2017-5-1</td><td>1</td><td>12</td><td>小贷A</td><td>小贷A</td></tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
 			</div>
     </div>
 </div>
@@ -179,7 +209,7 @@
         myChart1.setOption(opt_bar_vertical);
         myChart1.setOption({
             grid: {
-                left: '10%',
+                left: '15%',
                 right: '15%',
                 bottom: '18%',
                 top: '30%'
@@ -192,25 +222,16 @@
                     nameGap: 18 * bodyScale
                 }
             ],
-             tooltip:{
-		        position: function (pos, params, dom, rect, size) {
-		            // 鼠标在左侧时 tooltip 显示到右侧，鼠标在右侧时 tooltip 显示到左侧。
-		            var obj = {top: 5};
-		            obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
-		            return obj;
-		        }
-		
-		    },
             yAxis: [
                 {
                     type: 'value',
-                    name: '金额',
-                    interval: 15,
+                    name: '亿元',
+                    interval:300000,
                     nameGap: 4 * bodyScale
                 },
-                {
+                {   show:false,
                     type: 'value',
-                    name: '利率',
+                    name: '百分比',
                     axisLine: { //坐标轴
                         lineStyle: {
                             color: "#369"
@@ -222,33 +243,34 @@
                         }
                     },
                     nameGap:3
-                }
+                },
+
             ],
             series: [
                 {
                     name: '资产',
                     type: 'bar',
-                    data: [57, 60, 38, 57, 60, 65],
+                    data: [552069.91, 592069.91, 622069.91, 652069.91, 712069.91, 732069.91],
                     barWidth: barWidth
                 },
                 {
                     name: '负债金额',
                     type: 'line',
-                    data: [53, 48, 51, 55, 59, 58],
+                    data: [449874.28, 469874.28, 499874.28, 519874.28, 549874.28, 579874.28],
                     symbol: 'circle'
 
                 },
                 {
                     name: '对外担保额',
                     type: 'line',
-                    data: [35, 35, 39, 43, 45, 48],
+                    data: [349874.28, 369874.28, 399874.28, 419874.28, 449874.28, 479874.28],
                     // color:'#ffd769',
                     symbol: 'circle'
                 },
                 {
                     name: '资金充足率',
                     type: 'line',
-                    data: [34, 39, 41, 47, 53, 62],
+                    data: [249874.28, 269874.28, 299874.28, 319874.28, 349874.28, 279874.28],
                     symbol: 'circle',
                     yAxisIndex: 1
                 }
@@ -277,16 +299,16 @@
             ],
             yAxis: [
                 {
-                    name: '金额',
+                    name: '万元',
                     type: 'value',
-                    interval: 15
+                    interval: 200
                 }
             ],
             series: [
                 {
                     name: '风险货款额',
                     type: 'bar',
-                    data: [60, 45, 39, 28, 47, 65],
+                    data: [600, 450, 390, 280, 470, 650],
                     barWidth: barWidth
                 },
                 {
@@ -304,7 +326,7 @@
         myChart3.setOption(opt_line);
         myChart3.setOption({
             grid: {
-                left: '10%',
+                left: '15%',
                 right: '15%',
                 bottom: '18%',
                 top: '20%'
@@ -318,7 +340,7 @@
             ],
             yAxis: [
                 {
-                    name: '金额',
+                    name: '万元',
                     type: 'value',
                     right: '15%'
                 }
@@ -327,13 +349,13 @@
                 {
                     name: '本月货款发生额',
                     type: 'bar',
-                    data: [60, 45, 39, 28, 47, 65],
+                    data: [6000, 4500, 3900, 2800, 4700, 6500],
                     barWidth: barWidth
                 },
                 {
                     name: '本期展期货款额度',
                     type: 'line',
-                    data: [55, 39, 22, 17, 45, 59],
+                    data: [2800, 2100, 1700, 1200, 2200, 3000],
                     color: '#ffd769',
                     symbol: 'circle'
                 }
@@ -362,7 +384,7 @@
             ],
             yAxis: [
                 {
-                    name: '金额',
+                    name: '万元',
                     type: 'value',
                 }
             ],
@@ -370,7 +392,7 @@
                 {
                     name: '资本额',
                     type: 'bar',
-                    data: [60, 45, 39, 38, 47, 65],
+                    data: [600, 380, 390, 365, 470, 650],
                     barWidth: barWidth
                 },
                 {
@@ -399,11 +421,8 @@
                     radius: '65%',
                     center: ['50%', '54%'],
                     data: [
-                        {value: 335, name: '担保方式1'},
-                        {value: 310, name: '担保方式2'},
-                        {value: 234, name: '担保方式3'},
-                        {value: 135, name: '担保方式4'},
-                        {value: 135, name: '担保方式5'}
+                        {value: 335, name: '抵质押'},
+                        {value: 310, name: '担保'}
                     ]
                 }
             ]
@@ -418,6 +437,8 @@
         myChart6.setOption({
             legend: {
                 // orient: 'vertical',
+                top:0,
+                right:0
             },
             grid: {
                 left: '10%',
@@ -428,16 +449,16 @@
             xAxis: {
                 name: '月份',
                 type: 'category',
-                data: ['1', '2', '3', '4', '5', '6']
+                data: ['14', '20', '33', '45', '57', '65']
 
             },
             yAxis: {
-                name: '金额',
+                name: '万元',
                 type: 'value'
             },
             series: [
                 {
-                    name: '担保方式1',
+                    name: '抵质押',
                     type: 'bar',
                     stack: '总量',
                     itemStyle: {
@@ -449,7 +470,7 @@
                     data: [120, 102, 101, 134, 190, 130]
                 },
                 {
-                    name: '担保方式2',
+                    name: '担保',
                     type: 'bar',
                     stack: '总量',
                     itemStyle: {
@@ -459,17 +480,7 @@
                     },
                     data: [120, 132, 101, 134, 90, 230]
                 },
-                {
-                    name: '担保方式3',
-                    type: 'bar',
-                    stack: '总量',
-                    itemStyle: {
-                        normal: {
-                            color: '#73d13d'
-                        }
-                    },
-                    data: [120, 182, 191, 134, 190, 130]
-                }
+
             ]
         });
 //本页所有图表
