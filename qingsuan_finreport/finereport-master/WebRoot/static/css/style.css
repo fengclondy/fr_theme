@@ -204,7 +204,7 @@
 	 }
 }
 @media screen and (max-width: 1189px){
-	.chartBodyRight .chartBodyRightList ul li{
+	.chartBodyRight .chartBodyRightList ul li{ 
         padding-left: 0.5%;
 	}
 	.chartBodyCharts .chartsAll{
