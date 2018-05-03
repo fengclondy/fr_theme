@@ -34,7 +34,7 @@ public class CoChangeModel extends Model<CoChangeModel> {
 	 * @TODO
 	 */
 	public List<CoChangeModel> getName(String name){
-		String sql="SELECT * from hub_static_change_log  where change_info like '%名称%' ";
+		String sql="SELECT  ROW_NUMBER() over(ORDER BY company_name asc) as num, * from hub_static_change_log  where change_info like '%名称%' ";
 		if(StringUtils.isNotBlank(name)){
 			sql+="and company_name='+"+name+"'";
 		}
@@ -51,7 +51,7 @@ public class CoChangeModel extends Model<CoChangeModel> {
 	 * @TODO
 	 */
 	public List<CoChangeModel> getStock(String name){
-		String sql="SELECT * from hub_static_change_log  where change_info like '%投资人股权%' ";
+		String sql="SELECT ROW_NUMBER() over(ORDER BY company_name asc) as num, * from hub_static_change_log  where change_info like '%投资人股权%' ";
 		if(StringUtils.isNotBlank(name)){
 			sql+="and company_name='+"+name+"'";
 		}
@@ -66,7 +66,7 @@ public class CoChangeModel extends Model<CoChangeModel> {
 	 * @TODO
 	 */
 	public List<CoChangeModel> getliain(String name){
-		String sql="SELECT * from hub_static_change_log  where change_info like '%联络员%' ";
+		String sql="SELECT ROW_NUMBER() over(ORDER BY company_name asc) as num, * from hub_static_change_log  where change_info like '%联络员%' ";
 		if(StringUtils.isNotBlank(name)){
 			sql+="and company_name='+"+name+"'";
 		}
@@ -81,7 +81,7 @@ public class CoChangeModel extends Model<CoChangeModel> {
 	 * @TODO
 	 */
 	public List<CoChangeModel> getBusiness(String name){
-		String sql="SELECT * from hub_static_change_log  where change_info like '%经营范围%' ";
+		String sql="SELECT ROW_NUMBER() over(ORDER BY company_name asc) as num, * from hub_static_change_log  where change_info like '%经营范围%' ";
 		if(StringUtils.isNotBlank(name)){
 			sql+="and company_name='+"+name+"'";
 		}
@@ -96,7 +96,7 @@ public class CoChangeModel extends Model<CoChangeModel> {
 	 * @TODO
 	 */
 	public List<CoChangeModel> getType(String name){
-		String sql="SELECT * from hub_static_change_log  where change_info like '%企业类型%' ";
+		String sql="SELECT ROW_NUMBER() over(ORDER BY company_name asc) as num, * from hub_static_change_log  where change_info like '%企业类型%' ";
 		if(StringUtils.isNotBlank(name)){
 			sql+="and company_name='+"+name+"'";
 		}
@@ -111,7 +111,7 @@ public class CoChangeModel extends Model<CoChangeModel> {
 	 * @TODO
 	 */
 	public List<CoChangeModel> getRegist(String name){
-		String sql="SELECT * from hub_static_change_log  where change_info like '%注册资本%' ";
+		String sql="SELECT ROW_NUMBER() over(ORDER BY company_name asc) as num, * from hub_static_change_log  where change_info like '%注册资本%' ";
 		if(StringUtils.isNotBlank(name)){
 			sql+="and company_name='+"+name+"'";
 		}

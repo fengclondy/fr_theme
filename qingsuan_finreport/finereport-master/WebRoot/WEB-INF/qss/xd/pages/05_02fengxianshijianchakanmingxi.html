@@ -500,7 +500,7 @@
         $.ajax({
             type: "POST",
             url: "getContent",
-            data: {"pageNum":pageNum,"pageSize":pageSize,'fxsj_id':fxsj_id},
+            data: {"pageNum":pageNum,"pageSize":7,'fxsj_id':fxsj_id},
             dataType: "json",
             success: function (data) {
                 console.log(data)
@@ -533,7 +533,7 @@
         $.ajax({
             type: "POST",
             url: "${contextPath}/qdch/eventSeeDetails/"+linkstr+querystr,
-            data: {"pageNum":pageNum,"pageSize":pageSize},
+            data: {"pageNum":pageNum,"pageSize":7},
             dataType: "json",
             success: function (data) {
                 console.log(data)

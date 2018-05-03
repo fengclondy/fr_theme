@@ -24,7 +24,7 @@ public class CoReportModel extends Model<CoReportModel>{
 	 */
 	public List<CoReportModel> getReport(String name){
 		String sql="SELECT T.asset_num,T.turnover,T.main_income,T.tax_num,T.employee_num,T.owner_interest,T.profit_num,T.retained_profit,T.debt_num, "
-				+ "m.REGISTER_CODE,m.WEBSITES FROM hub_commerce_co_finance_state T "
+				+ "m.REGISTER_CODE,m.WEBSITE FROM hub_commerce_co_finance_state T "
 				+ "LEFT JOIN hub_commerce_enterprise n ON T .company_name = n. NAME "
 				+ "LEFT JOIN hub_commerce_company_info m ON ";
 		   if(StringUtils.isNotBlank(name)){
