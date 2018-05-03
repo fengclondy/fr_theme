@@ -203,3 +203,12 @@
  	    margin-top: -65px;
 	 }
 }
+@media screen and (max-width: 1189px){
+	.chartBodyRight .chartBodyRightList ul li{ 
+        padding-left: 0.5%;
+	}
+	.chartBodyCharts .chartsAll{
+	 	height:120px;
+ 	    margin-top: -60px;
+	 }
+}
