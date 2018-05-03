@@ -108,6 +108,7 @@ import com.qdch.xd.controller.EventProcessingController;
 import com.qdch.xd.controller.EventSeeDetailsController;
 import com.qdch.xd.controller.EventViewController;
 import com.qdch.xd.controller.FileUpLoadController;
+import com.qdch.xd.controller.JiaoyiliangController;
 import com.qdch.xd.controller.ManagementRiskController;
 import com.qdch.xd.controller.MonthlyReportController;
 import com.qdch.xd.controller.OperationalCapabilityController;
@@ -217,6 +218,7 @@ public class Config extends JFinalConfig {
 		me.add("qdch/fileupLoad", FileUpLoadController.class,"/");	//监管月报上传
 		me.add("qdch/commerce",CommerceController.class,"/"); //小贷-工商模块
 		me.add("qdch/alert",AlertController.class,"/");
+		me.add("qdch/jyl",JiaoyiliangController.class,"/");
 		/***小贷doushuihai Controller START***/
 		
 		/***小贷zuoqb Controller START***/
