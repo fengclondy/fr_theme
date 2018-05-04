@@ -95,6 +95,7 @@ import com.qdch.p2p.model.XinYongInfoModel;
 import com.qdch.p2p.model.ZiChanInfoModel;
 import com.qdch.p2p.model.ZiRanRenJiChuInfoMoDel;
 import com.qdch.util.TemplteLayoutTag;
+import com.qdch.xd.controller.AddController;
 import com.qdch.xd.controller.AssetRiskController;
 import com.qdch.xd.controller.BusinessOverviewController;
 import com.qdch.xd.controller.CommerceController;
@@ -218,7 +219,8 @@ public class Config extends JFinalConfig {
 		me.add("qdch/fileupLoad", FileUpLoadController.class,"/");	//监管月报上传
 		me.add("qdch/commerce",CommerceController.class,"/"); //小贷-工商模块
 		me.add("qdch/alert",AlertController.class,"/");
-		me.add("qdch/jyl",JiaoyiliangController.class,"/");
+		me.add("qdch/jyl",JiaoyiliangController.class,"/");//交易量
+		me.add("qdch/jyl/addnew",AddController.class,"/");//交易量增加
 		/***小贷doushuihai Controller START***/
 		
 		/***小贷zuoqb Controller START***/
