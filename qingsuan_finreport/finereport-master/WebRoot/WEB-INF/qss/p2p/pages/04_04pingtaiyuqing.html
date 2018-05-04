@@ -102,7 +102,7 @@
             padding:0rem 2rem;
             background: #00abde;
             border: 2px solid #00abde;
-            margin-top: 50%;
+            margin-top: 62%;
             border-radius: 0.1rem;
         }
 
@@ -121,13 +121,13 @@
         /*舆情详情 输入框*/
         .customerInformation {
             width: 100%;
-            height:24%;
+            height:27%;
             overflow: hidden;
-            padding: 0.8rem 0;
+            padding: 0.3rem 0;
             border-bottom: 2px solid #00adef;
         }
         .customerInformationleft,.customerInformationmiddle{
-        	padding-top: 0.5rem;
+        	margin-top:0.5rem;
             width: 33.33%;
             height: 100%;
         }
@@ -136,7 +136,7 @@
             width: 9rem;
         }
         .mySelect > .myOptionBox{
-        	height:3.5rem;
+        	height:2.5rem;
         }
         /*关键字输入框*/
         .gjz{
@@ -211,7 +211,7 @@
         }
         .infomationContent > ul > li > p > .neirong {
             margin: 0.1rem 0 0.5rem 0;
-            color: #00b0f4;
+            color: #fff;
             font-size: 0.8rem;
         }
         .infomationContent > ul > li > p > span {
@@ -250,6 +250,9 @@
         .page .pageItemDisable, 
         .page .pageItemActive{
 		    font-size: 0.7rem;
+		}
+		.inputGroup{
+			margin-bottom:10%;
 		}
     </style>
 </head>
@@ -374,8 +377,7 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    <br>
-                                    <br>
+                                    
                                     <div class="inputGroup fl">
                                         <label for="BeginTime">开始时间：</label>
                                         <input placeholder="请输入开始日期" id="BeginTime" class="laydate-icon timeUstyle stateUTime"
@@ -389,8 +391,7 @@
                                         <input type="text" class="gjz">
 
                                     </div>
-                                    <br>
-                                    <br>
+                                   
                                     <div class="inputGroup fl">
                                         <label for="EndTime">结束时间：</label>
                                         <input placeholder="请输入开始日期" id="EndTime" class="laydate-icon timeUstyle stateUTime"
@@ -569,7 +570,7 @@
                            name:'',
                            type: 'pie',
                            radius: '50%',
-                           center: ['50%', '50%'],
+                           center: ['50%', '30%'],
                            data: seriesData
                        }
                    ]
