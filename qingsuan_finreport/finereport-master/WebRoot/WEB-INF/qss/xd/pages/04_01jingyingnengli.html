@@ -34,9 +34,11 @@
                     <div class="mySelect" id="jiaoyishichang">
                         <div class="myOption selected"><span class="text"></span><span class="icon"></span> </div>
                         <ul class="myOptionBox">
-                            <li class="myOption selected">鲁金宝</li>
-                            <li class="myOption">鲁金宝2</li>
-                            <li class="myOption">鲁金宝3</li>
+                            <li class="myOption selected">海尔小额贷款</li>
+                            <li class="myOption">蚂蚁小额贷款</li>
+                            <li class="myOption">汇金小额贷款</li>
+                            <li class="myOption">西岸小额贷款</li>
+                            <li class="myOption">中鸿小额贷款</li>
                         </ul>
                     </div>
                 </div>
@@ -132,14 +134,14 @@
                 {
                     name: '当月平均',
                     type: 'bar',
-                    data: [2, 5, 5, 3, 2, 6, 4, 7, 8, 8, 2, 3],
+                    data: [200, 500, 500, 300, 600, 600, 400, 700, 800, 800, 600, 500],
                     barWidth: "60%"
                 },
                 {
                     name: '当月平均贷款余额',
                     type: 'line',
                     symbol: 'circle',
-                    data: [1, 3, 4, 2, 1, 4, 2, 5, 5, 2, 1, 2]
+                    data: [100, 150, 200, 250, 300, 400, 300, 450, 600, 600, 400, 350]
                 }
             ]
         });
@@ -165,14 +167,14 @@
                     name: '平均单笔贷款',
                     type: 'line',
                     symbol: 'circle',
-                    data: [2, 5, 5, 3, 2, 6, 4, 7, 8, 8, 2, 3],
+                    data: [5, 5.1, 5.3, 5.5, 5.5, 5.7, 5.8, 6, 5.9, 5.8, 5.2, 5.3],
                     areaStyle: lineAreaStyle(0)
                 },
                 {
                     name: '所在地人均GDP',
                     type: 'line',
                     symbol: 'circle',
-                    data: [1, 3, 4, 5, 6, 7, 2, 5, 5, 2, 1, 2],
+                    data: [5.0, 5.3, 5.4, 5.5, 5.6, 5.7, 5.2, 5.5, 5.5, 5.2, 5.1, 5.2],
                     areaStyle: lineAreaStyle(1)
                 }
             ]
@@ -195,33 +197,33 @@
                 {
                     name: '贷款余额',
                     type: 'bar',
-                    data: [2, 5, 5, 3, 2, 6, 4, 7, 8, 8, 2, 3],
+                    data: [200, 500, 500, 420, 400, 600, 400, 700, 800, 800, 350, 300],
                     barWidth: "60%"
                 },
                 {
                     name: '小微贷款余额',
                     type: 'line',
                     symbol: 'circle',
-                    data: [0, 3, 1, 6, 1, 4, 2, 7, 5, 2, 8, 2],
+                    data: [100, 200, 200, 290, 300, 400, 270, 500, 620, 630, 230, 170],
                 },
                 {
                     name: '三农贷款余额',
                     type: 'line',
                     symbol: 'circle',
-                    data: [3, 5, 2, 3, 2, 3, 3, 5, 6, 8, 9, 3],
+                    data: [140, 290, 300, 360, 370, 510, 330, 590, 680, 690, 310, 210],
                     barWidth: "60%"
                 },
                 {
                     name: '委托贷款余额',
                     type: 'line',
                     symbol: 'circle',
-                    data: [1, 3, 4, 2, 1, 4, 2, 4, 5, 2, 1, 9],
+                    data: [150, 270, 280, 340, 350, 500, 310, 560, 660, 670, 280, 190],
                 },
                 {
                     name: '股东及关系人贷款余额',
                     type: 'line',
                     symbol: 'circle',
-                    data: [6, 3, 4, 8, 1, 2, 2, 5, 5, 2, 1, 2],
+                    data: [190, 470, 280, 340, 350, 500, 310, 560, 660, 670, 280, 190],
                 }
 
             ]
@@ -249,7 +251,7 @@
                     name: '当月平均',
                     type: 'line',
                     symbol: 'circle',
-                    data: [2, 5, 5, 3, 2, 6, 4, 7, 8, 8, 2, 3],
+                    data: [4, 5, 5, 3, 3.7, 6, 4, 7, 8, 8, 9, 11],
                     areaStyle: lineAreaStyle(0)
                 }
             ]
@@ -269,14 +271,14 @@
                 data: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
             },
             yAxis: {
-                name: '金额/万元',
+                name: '人数',
             },
             series: [
                 {
                     name: '当月平均',
                     type: 'line',
                     symbol: 'circle',
-                    data: [2, 5, 5, 3, 2, 6, 4, 7, 8, 8, 2, 3],
+                    data: [50, 51, 55, 53, 52, 56, 54, 57, 58, 58, 52, 53],
                     areaStyle: lineAreaStyle(0)
                 }
             ]
