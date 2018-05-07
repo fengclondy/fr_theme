@@ -22,7 +22,7 @@ insight_pwd=insight@2017
 #driver = org.postgresql.Driver
 
 #是否开发环境
-isDev=false
+isDev=true
 
 uploadPath=D:/apache-tomcat-7.0.78/webapps/WebReport/pdf-files
 uploadMaxSize=104857600

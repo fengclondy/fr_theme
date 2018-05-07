@@ -24,6 +24,7 @@ public class PingTaiXinXiModel extends Model<PingTaiXinXiModel>{
 	 */
 	public List<PingTaiXinXiModel> getPtxx(String jysIds){
 		String sql = "select * from hub_pp_jysc where 1=1";
+		
 		if (StringUtils.isNotBlank(jysIds)) {
 			sql += " and jysc in "+jysIds+"";
 		}
