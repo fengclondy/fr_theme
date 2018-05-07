@@ -37,6 +37,7 @@ import com.qdch.p2p.controller.ProjectplatformController;
 import com.qdch.p2p.controller.RelactCompanyController;
 import com.qdch.p2p.controller.RiskController;
 import com.qdch.p2p.controller.SuperviseController;
+import com.qdch.p2p.controller.TradeCountController;
 import com.qdch.p2p.model.AverageTimeModel;
 import com.qdch.p2p.model.AvgTermTimeModel;
 import com.qdch.p2p.model.CoBusinessTypeModel;
@@ -88,6 +89,7 @@ import com.qdch.p2p.model.ShenHeZiLiaoZiRanRenModel;
 import com.qdch.p2p.model.StructuralDetailsModel;
 import com.qdch.p2p.model.TermDetailsModel;
 import com.qdch.p2p.model.TotalTranNumModel;
+import com.qdch.p2p.model.TradeCountModel;
 import com.qdch.p2p.model.TranAmountModel;
 import com.qdch.p2p.model.WorkInfoModel;
 import com.qdch.p2p.model.XinXiPiLouModel;
@@ -234,8 +236,15 @@ public class Config extends JFinalConfig {
 		me.add("qdch/eventSeeDetails", EventSeeDetailsController.class,"/");	//监管月报
 		me.add("qdch/eventinput", EventInputController.class,"/");	//风险事件填报
 		
+		/***p2p gaozhao Controller START***/
+		me.add("qdch/borrower",BorrowerController.class,"/");//p2p-借款人总览
+		me.add("qdch/tradeCount",TradeCountController.class,"/");   //p2p-交易量
+		
+		
+		
+		
 		/***p2p lixiaoyi Controller START ***/
-		me.add("qdch/borrower",BorrowerController.class,"/");    //p2p-借款人总览
+		
 		me.add("qdch/platform",PlatformController.class,"/");    //p2p-平台总览
 		me.add("qdch/risk",RiskController.class,"/");  // p2p-风险总览
 		me.add("qdch/project",ProjectplatformController.class,"/"); //p2p-平台项目
@@ -344,6 +353,7 @@ public class Config extends JFinalConfig {
 		insight_arp.addMapping("insight_pp_person_audit",ShenHeZiLiaoZiRanRenModel.class);//自然人审核资料
 		insight_arp.addMapping("insight_pp_corp_audit", ShenHeQiYeModel.class);//企业审核资料
 		insight_arp.addMapping("insight_pp_pledge_audit", DiYaShenHeModel.class);//审核抵押物
+		insight_arp.addMapping("insight_pp_tran_number", TradeCountModel.class);//交易量
 		
 		/***小贷zuoqb insight层 Model START***/
 		
