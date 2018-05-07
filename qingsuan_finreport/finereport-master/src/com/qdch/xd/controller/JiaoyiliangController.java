@@ -11,7 +11,7 @@ public class JiaoyiliangController extends BaseController {
 	
 	public  void  index(){
 		
-		render("xd/pages/08_02jiaoyiliang.html");
+		render("p2p/pages/08_02jiaoyiliang.html");
 	}
 
 }
