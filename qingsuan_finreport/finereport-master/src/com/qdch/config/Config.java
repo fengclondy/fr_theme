@@ -342,7 +342,7 @@ public class Config extends JFinalConfig {
 		arp.addMapping("hub_pp_fxzs", RiskOverviewModel.class);//用于p2p风险总览
 		/***doushuiahi Model START p2p***/
 		
-		/***p2p 高照  insight层Model p2p***/
+		/***p2p gaozhao  insight层Model p2p***/
 		insight_arp.addMapping("insight_pp_score_info", DefenInfoModel.class);//根据得分降序查找平台简称和得分
 		insight_arp.addMapping("insight_pp_person_info", ZiRanRenJiChuInfoMoDel.class);//查询自然人基本信息
 		insight_arp.addMapping("insight_pp_credit_info",XinYongInfoModel.class);//自然人信用信息

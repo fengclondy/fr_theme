@@ -11,6 +11,6 @@ public class AddController extends BaseController{
 
 	public void index(){
 		
-		render("xd/pages/08_02_01jiaoyiliangAdd.html");
+		render("p2p/pages/08_02_01jiaoyiliangAdd.html");
 	}
 }

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="${contextPath}/static/img/com/logo.png">
+    <link rel="stylesheet" href="${contextPath}/static/asserts/css/normalize.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/style.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/pageCom.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/data.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/jqTable.css">
+    <style>
+    	.whitePage .container{
+    		overflow: hidden;
+    	}
+    	.c-table th {
+		    text-align: center;
+		}
+    </style>
+</head>
+<body class="whitePage" id="08_02jiaoyiliang" data-title="交易量">
+	<div class="container">
+		<div>
+			<nav class="pagination">
+		        <ul>
+		            <li class="home" id="pagehome">首页</li>
+		            <li class="split">|</li>
+		            <li class="prev" id="pageprev">上一页</li>
+		            <li class="split">|</li>
+		            <li class="pageNumber">
+		                <label for="pageCurrent" hidden></label>
+		                <input id="pageCurrent" type="number" >&nbsp;/
+		                <span class="pageTotal"></span>
+		            </li>
+		            <li class="split">|</li>
+		            <li class="next" id="pagenext">下一页</li>
+		            <li class="split">|</li>
+		            <li class="end" id="pageend">末页</li>
+		            <li class="add">
+		            	<a href="${contextPath}/qdch/jyl/addnew" class="addLayer">增加</a>
+		            </li>
+		            <li class="input" style="position:relative;">
+		            	<input type="file" id="excel-file" style="display:none;">
+		            	<p id="fileClick">excel导入</p>
+		            </li>
+		        </ul>
+		    </nav>
+		    <div class="ptName">
+		    	<label>平台名称：</label>
+		    	<select class="ptNameSelect">
+		    		<!-- <option value="1">平台1</option>
+		    		<option value="2">平台2平台2平台2</option>
+		    		<option value="3">平台3</option> -->
+		    	</select>
+		    </div>
+		    <p class="queryResult">此次为您查询数据<span class="number"></span>条</p>
+		</div>
+	    <div class="tableBox c-table c-table--border">
+	        <table cellspacing="0" cellpadding="0" border="0" class="" role="c-table">
+	            <colgroup>
+	              <col name="" width="">
+	              <col name="" width="">
+	              <col name="" width="">
+	              <col name="" width="">
+	            </colgroup>
+	            <thead>
+		            <tr>
+		                <th>时间</th>
+		                <th>平台名称</th>
+		                <th>类型</th>
+		                <th>数量</th>
+		            </tr>
+	            </thead>
+	            <tbody class="tradeList">
+	          		
+	          		##for(j in tradeList!){
+	           			 	<tr> <td>${j.vday!}</td>
+	            			<td>${j.jysinfo!}</td>
+	            			<td>${j.tran_type!}</td>
+	            			<td>${j.tran_num!}</td></tr>
+	           			##}
+	           	 	
+	            	
+	            </tbody>
+	        </table>
+	    </div>
+	</div>
+	
+	<script src="${contextPath}/static/asserts/js/echarts-4.0.js"></script>
+	<script src="${contextPath}/static/asserts/js/jquery-2.2.4.js"></script>
+	<script src="${contextPath}/static/js/pageCom.js"></script>
+	<script src="${contextPath}/static/js/chartsCom.js"></script>
+	<script src="${contextPath}/static/js/jqTable.all.min.js"></script>
+	<script src="${contextPath}/static/js/xlsx.core.min.js"></script>
+	
+<script>
+var ptmc="";
+
+//动态设置table高度
+var parentH = $(".container").height();
+var firstDivH = $(".container div:first-child").height();
+var tableH = parentH - firstDivH;
+$(".tableBox table").attr("data-height",tableH);
+
+//模拟input:file click事件
+var fileSelect = document.getElementById("fileClick"),
+    fileElem = document.getElementById("excel-file");
+
+fileSelect.addEventListener("click", function (e) {
+  if (fileElem) {
+    fileElem.click();
+  }
+  e.preventDefault(); // prevent navigation to "#"
+}, false);
+//excel文件导入
+$('#excel-file').change(function(e) {
+    var files = e.target.files;
+
+    var fileReader = new FileReader();
+    fileReader.onload = function(ev) {
+        try {
+            var data = ev.target.result,
+                workbook = XLSX.read(data, {
+                    type: 'binary'
+                }), // 以二进制流方式读取得到整份excel表格对象
+                persons = []; // 存储获取到的数据
+        } catch (e) {
+            alert('文件类型不正确');
+            return;
+        }
+
+        // 表格的表格范围，可用于判断表头是否数量是否正确
+        var fromTo = '';
+        // 遍历每张表读取
+        for (var sheet in workbook.Sheets) {
+            if (workbook.Sheets.hasOwnProperty(sheet)) {
+                fromTo = workbook.Sheets[sheet]['!ref'];
+                console.log(fromTo);
+                persons = persons.concat(XLSX.utils.sheet_to_json(workbook.Sheets[sheet]));
+                // break; // 如果只取第一张表，就取消注释这行
+            }
+        }
+        console.log(persons);//获取json格式数据
+        //后台接口
+        
+    };
+
+    // 以二进制方式打开文件
+    fileReader.readAsBinaryString(files[0]);
+});
+//table实例化
+$('[role="c-table"]').jqTable({});
+
+//
+    var totalPage,totalNum,pageNumber;
+    var riskIndex;
+
+    $(function () {
+        //getTableBody(); //表格内容
+       getPullDown(); //下拉框
+        //第一页
+        $('#pagehome').on('click',function(){
+            getTableBody()
+        })
+        //最后一页
+        $('#pageend').on('click',function(){
+            getTableBody(totalPage)
+        })
+        //上一页
+        $('#pageprev').on('click',function(){
+            if(pageNumber==1){
+                alert("已经是第一页了")
+            }else{
+                getTableBody(pageNumber-1)
+            }
+
+        })
+        //下一页
+        $('#pagenext').on('click',function(){
+            console.log(pageNumber,totalPage)
+            if(pageNumber== totalPage){
+                alert("已经是最后一页了")
+            }else{
+                getTableBody(pageNumber+1)
+            }
+
+        })
+        $('#pageCurrent').bind('keypress',function(event){
+            console.log(11,event.keyCode)
+            if(event.keyCode == 13){
+                getTableBody($(this).val(),10)
+            }
+        });
+    });
+    /**
+     * 下拉框
+     */
+    function getPullDown() {
+        $.ajax({
+            type: "POST",
+            url: "${contextPath}/qdch/tradeCount/tradePt",
+            data: {},
+            dataType: "json",
+            success: function(data){
+                riskIndex = data.risk;
+                var exchangeHtml = "<option ></option>";
+                $.each(data, function(index, value) {
+                    exchangeHtml+="<option  value='"+value.jysc+"'>"+value.jyscmc+"</option>";
+                });
+                $('.ptNameSelect').html(exchangeHtml);
+       
+
+            }
+        });
+
+    }
+    
+    /**
+     * 表格内容
+     */
+    
+    function getTableBody() {
+        $.ajax({
+            type: "POST",
+            url: "${contextPath}/qdch/tradeCount/tradeInfo",
+            data: {"ptmc":ptmc},
+            dataType: "json",
+            success: function(data){
+                var  append = "";
+               
+                $(".number").text(data.totalRow);
+                $('#pageCurrent').val(data.pageNumber);
+                $('.pageTotal').text(data.totalPage);
+                totalPage = data.totalPage;
+                pageNumber = data.pageNumber;
+                $.each(data, function(index, value) {
+                    append +=
+                 
+                        " <tr><td>"+value.vday+"</td>\n" +
+                        " <td>"+value.jysinfo+"</td>\n" +
+                        " <td>"+value.tran_type+"</td>\n" +
+                        " <td>"+value.tran_num+"</td></tr>";
+                });
+           
+                $('tbody').html(append);
+
+            } 
+
+        }) 
+    }
+    $("option").click(function () {
+    	ptmc = $(this).attr('value');
+    	alert(ptmc);
+    	getTableBody();
+    })
+   
+</script>
+</body>
+</html>
