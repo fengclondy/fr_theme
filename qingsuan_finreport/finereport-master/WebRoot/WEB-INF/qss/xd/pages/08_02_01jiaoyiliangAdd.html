@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" name="viewport"  content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="${contextPath}/static/img/com/logo.png">
+    <link rel="stylesheet" href="${contextPath}/static/asserts/css/normalize.css">
+    <link rel="stylesheet" href="${contextPath}/static/css/style.css">
+    <style>
+    	*{
+    		color:#000;
+    	}
+		.inforContainer{
+			width:60%;
+			margin:0 auto;
+			padding:50px 80px;
+			text-align: center;
+			position: relative;
+		}
+		.inforContainer ul{
+			list-style: none;
+			position: absolute;
+			top:50%;
+			left:50%;
+		}
+		.inforContainer ul li{
+		    margin: 40px 0;
+		}
+		.inforContainer ul li span{				
+			margin-right: 30px;
+		}
+		.inforContainer ul li select, #number, #layDate{
+			min-width:260px;
+			height:30px;
+		}
+		#number, #layDate{
+		    border: 1px solid rgb(169,169,169);
+    		padding: 0px 4px;
+		}
+		.inforContainer ul li:last-child input{
+			width:100px;
+			padding:6px 12px;
+			background: #07729F;
+		    border: none;
+		    color: #fff;
+		    border-radius:15px;
+		}
+		#inforBtn{
+			margin-left: 60px;
+		}
+		.inforContainer{
+			display: none;
+			width:100%;
+			height:100%;
+			background: #fff;
+			position: absolute;
+			top:0;
+			left:0;
+			z-index: 10;
+			color:#000;
+		}
+    </style>
+ 	
+</head>
+<form id="myform" name="myform"  method="post" enctype="multipart/form-data">
+	<body class="whitePage" id="06_02yuebaoshangchuan" data-title="监管报告">
+		<div id="" class="inforContainer">
+				<ul>
+					<li>
+						<span>平台名称：</span>
+						<select id="selectReport" name="bglx">
+							<option value="1">平台1</option>
+							<option value="2">平台2平台2</option>
+							<option value="3">平台3</option>
+						</select>
+					</li>
+					<li>
+						<span>类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型：</span>
+						<select id="selectType" name="bglx">
+							<option value="1">总成交量1</option>
+							<option value="2">总成交量2</option>
+							<option value="3">总成交量3</option>
+						</select>
+					</li>
+					<li>
+						<span>数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：</span>
+						<input type="number" id="number" placeholder="请输入" onblur="blurIf(this)">
+					</li>
+					<li>
+						<span>时&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;间：</span>
+						<input type="text" id="layDate" placeholder="请选择日期">
+					</li>
+					<li>
+						<input id="inforSub" type="submit" value="保存"/>
+						<input id="inforBtn" type="button" value="取消"/>
+					</li>
+				</ul>
+		</div>
+	</body>
+</form>
+
+<script src="${contextPath}/static/asserts/js/jquery-2.2.4.js"></script>
+<script src="${contextPath}/static/asserts/js/jquery-form.js"></script>
+<script src="${contextPath}/static/js/pageCom.js"></script>
+<script src="${contextPath}/static/js/chartsCom.js"></script>
+<script src="${contextPath}/static/layDate/laydate.js"></script>
+
+<script type="text/javascript">
+laydate.render({
+  elem: '#layDate', //指定元素
+  format:"dd/MM/yyyy"
+});
+function blurIf(obj){
+	var r = /^[1-9]\d*|[1-9]\d*\.\d*|0\.\d*[1-9]\d*|0$/; //整数、小数、0
+	var val = obj.value;
+	if(!r.test(val)){
+		obj.value = '';
+	}
+}
+$(".inforContainer").show();
+
+var ulH = $(".inforContainer ul").height();
+var ulW = $(".inforContainer ul").width();
+$(".inforContainer ul").css({
+	"marginTop":- (ulH / 2),
+	"marginLeft":-(ulW / 2)
+});
+
+//保存
+	$("#inforSub").click(function(){
+		var ptName = $("#selectReport option:selected").val();
+		var type = $("#selectType option:selected").val();
+		var number = $("#number").val();
+		var time = $("#layDate").val();
+		
+		if(number == ''){
+			alert("请输入数量！");
+			return false;
+		}
+		else if(time == ''){
+			alert("请选择日期！");
+			return false;
+		}
+		else {
+			$(".inforContainer").hide();
+		}
+		
+		initUploadForm();  
+		function initUploadForm () {  
+		        var url = "${contextPath}/qdch/fileupLoad/upload";  
+		        var options = {   
+		                    type: 'post',  
+		                    url: url,
+		                    data:{"ptName":ptName,"type":type,"number":number,"time":time},
+						    success:function(data) {   
+								window.location.href = "${contextPath}/qdch/monthlyrepor"
+				            }
+		        };   
+		        $('#myform').ajaxForm(options);  
+		      
+		} 
+	}) 
+	
+	//取消
+	$("#inforBtn").click(function(){
+		window.location.href = "${contextPath}/qdch/jyl"
+	})
+</script>
+
+</html>
