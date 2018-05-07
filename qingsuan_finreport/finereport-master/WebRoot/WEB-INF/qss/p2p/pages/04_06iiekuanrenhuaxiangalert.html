@@ -115,6 +115,7 @@
             </div>
         </div>
     </div>
+    <input type="hidden" id="name" value="${name!}">
 </div>
 
 <script src="${contextPath}/static/asserts/js/echarts-4.0.js"></script>
@@ -122,10 +123,20 @@
 <script src="${contextPath}/static/js/main.js"></script>
 <script src="${contextPath}/static/js/chartsCom.js"></script>
 <script>
+var name=$("#name").val();
     var allCharts = [];
   $(function () {
+	  person();
         var ec001 = echarts.init($("#ec001_currentCompetitiveness")[0]);
         ec001.setOption(opt_bar_horizon);
+      	 $.post("${contextPath}/qdch/alert/getProvince",{"name":name},function(data){
+      		var yAxisdata=[];
+      		var seriesdata=[]; 
+      	 $.each(data,function(index,item){
+      		yAxisdata.push(item.provice );
+      		seriesdata.push(item.nums);
+      	 });
+
         ec001.setOption({
             grid: {
                 left: "22%",
@@ -139,52 +150,28 @@
 
             },
             yAxis: {
-                name: '借款方',
-                data: ['借款方', '借款方', '借款方', '借款方', '借款方']
+                name: '省份',
+                data: yAxisdata
             },
             series: [{
-                data: [1, 3, 5, 7, 10],//
+                data: seriesdata,//
                 type: 'bar',
                 barWidth: 15
             }]
         });
-
-        //模块二
-
-        var ec002 = echarts.init($("#ec002_competitivenessIndicators")[0]);
-        ec002.setOption(opt_pie);
-        ec002.setOption({
-            label: {
-                fontSize:12,
-                color: '#fff'
-
-            },
-            legend:{
-                left:10,
-                textStyle:{
-                    fontSize:12
-                }
-            },
-            series : [
-                {
-                    name:'高管资质',
-                    type:'pie',
-                    radius : '60%',
-                    center: ['50%', '50%'],
-                    data:[
-                        {value:10, name:'个人'},
-                        {value:14, name:'公司'}
-
-                    ]
-
-
-                }
-            ]
-        });
+      	 });
+       
         //模块三
         var ec003 = echarts.init($("#ec003_competitivenessIndicators")[0]);
         // ec002.setOption(opt_com);
         ec003.setOption(opt_bar_vertical);
+        $.post("${contextPath}/qdch/alert/getTradenum",{"name":name},function(data){
+      		var yAxisdata=[];
+      		var seriesdata=[]; 
+      	 $.each(data,function(index,item){
+      		yAxisdata.push(item.indust);
+      		seriesdata.push(item.nums);
+      	 });
         ec003.setOption({
             legend: {
                 show: false
@@ -198,7 +185,7 @@
                 {
                     name: '年份',
                     type: 'category',
-                    data: ['农业', '工业', '餐饮业', '建筑业', '旅游业', '金融业']
+                    data: yAxisdata
                 },
             yAxis: {
                 name: '人数',
@@ -207,18 +194,14 @@
             },
             series: [
                 {
-                    name: '经营能力',
+                	barWidth: 15,
                     type: 'bar',
-                    data: [2,4,5,7,9,7]
+                    data: seriesdata
                 },
-                {
-                    name: '盈利能力',
-                    type: 'bar',
-                    data: [1,3,5,7,8,9]
-                }
+                
             ]
         });
-
+        });
         var data = [{value:18, name:'男'},{value:14, name:'女'}];
         threePie(data);
         $(".btnGroup>button").click(function () {
@@ -267,6 +250,13 @@
         //模块五
         var ec005 = echarts.init($("#ec005_competitiveness")[0]);
         ec005.setOption(opt_bar_vertical);
+        $.post("${contextPath}/qdch/alert/getCompanytime",{"name":name},function(data){
+      		var yAxisdata=[];
+      		var seriesdata=[]; 
+      	 $.each(data,function(index,item){
+      		yAxisdata.push(item.vday_ym );
+      		seriesdata.push(item.nums);
+      	 });
         ec005.setOption({
             legend: {
                 show: false
@@ -280,7 +270,7 @@
                 {
                     name: '年份',
                     type: 'category',
-                    data: ['2012', '2013', '2014', '2015', '2016', '2017'],
+                    data: yAxisdata,
 
                 },
             yAxis: {
@@ -290,14 +280,15 @@
             },
             series: [
                 {
-                    name: '经营能力',
+                   
                     type: 'bar',
-                    data: [2,4,5,7,9,7],
+                    data: seriesdata,
                     barWidth: barWidth
 
                 },
 
             ]
+        });
         });
 
         var ec006 = echarts.init($("#ec006_competitiveness")[0]);
@@ -336,8 +327,52 @@
 
         //本页所有图表
         allCharts = [ec001, ec002, ec003, ec004, ec005, ec006];
-
+      
+      
     });
+  
+  function person(){
+	  //模块二
+	   $.post("${contextPath}/qdch/alert/getProvince",{"name":name},function(data){
+      	
+      		var seriesdata=[]; 
+      	 $.each(data,function(index,item){
+      		
+      		seriesdata.push({value:item.qty,name:item.jysinfo});
+      	 });
+
+      var ec002 = echarts.init($("#ec002_competitivenessIndicators")[0]);
+      ec002.setOption(opt_pie);
+      ec002.setOption({
+          label: {
+              fontSize:12,
+              color: '#fff'
+
+          },
+          legend:{
+              left:10,
+              textStyle:{
+                  fontSize:12
+              }
+          },
+          series : [
+              {
+                  name:'个人公司占比',
+                  type:'pie',
+                  radius : '60%',
+                  center: ['50%', '50%'],
+                  data:[
+                      {value:10, name:'个人'},
+                      {value:14, name:'公司'}
+
+                  ]
+
+
+              }
+          ]
+      });
+	   });
+  }
 </script>
 </body>
 </html>

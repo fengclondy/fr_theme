@@ -37,6 +37,14 @@ import com.qdch.p2p.controller.ProjectplatformController;
 import com.qdch.p2p.controller.RelactCompanyController;
 import com.qdch.p2p.controller.RiskController;
 import com.qdch.p2p.controller.SuperviseController;
+import com.qdch.p2p.model.AlertCompanyRegisterModel;
+import com.qdch.p2p.model.AlertCompanyTimeModel;
+import com.qdch.p2p.model.AlertPersonAgeModel;
+import com.qdch.p2p.model.AlertPersonCompanyModel;
+import com.qdch.p2p.model.AlertPersonIncomeModel;
+import com.qdch.p2p.model.AlertPersonSexModel;
+import com.qdch.p2p.model.AlertProvinceModel;
+import com.qdch.p2p.model.AlertTradePersonnumModel;
 import com.qdch.p2p.model.AverageTimeModel;
 import com.qdch.p2p.model.AvgTermTimeModel;
 import com.qdch.p2p.model.CoBusinessTypeModel;
@@ -418,6 +426,20 @@ public class Config extends JFinalConfig {
 		/***小贷 李晓依 insight层 Model START ***/
 		insight_arp.addMapping("insight_xd_jysc_info", ProportionModel.class);//小贷-管理风险-占比
 		insight_arp.addMapping("insight_xd_scability", CoScabilityModel.class);//小贷-市场画像得分
+		insight_arp.addMapping("insight_pp_jkf_count", AlertProvinceModel.class);//借款人总览弹出--省份借款方数量
+		insight_arp.addMapping("insight_pp_jkf_rate", AlertPersonCompanyModel.class);//借款人总览弹出--个人公司占比
+		insight_arp.addMapping("insight_pp_indust_count", AlertTradePersonnumModel.class);//借款人总览弹出--行业人数分布
+		insight_arp.addMapping("insight_pp_sex_count", AlertPersonSexModel.class);//借款人总览弹出-个人性别占比
+		insight_arp.addMapping("insight_pp_age_count", AlertPersonAgeModel.class);//借款人总览弹出——个人年龄
+		insight_arp.addMapping("insight_pp_income_count", AlertPersonIncomeModel.class);//借款人总览--个人收入分布
+		insight_arp.addMapping("insight_pp_create_count", AlertCompanyTimeModel.class);//借款人总览弹出--公司成立时间
+		insight_arp.addMapping("insight_pp_zczb_count", AlertCompanyRegisterModel.class);//借款人总览弹出--公司注册分布
+		
+		
+		
+		
+		
+		
 		/***小贷 李晓依 hub层 Model START***/
 		arp.addMapping("hub_commerce_company_info", CompanysInfoModel.class);//工商-企业信息获取
 		arp.addMapping("hub_commerce_co_shareholder", CoShareHolderModel.class);//工商-股东/对外投资人信息
