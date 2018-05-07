@@ -28,3 +28,4 @@ uploadPath=D:/apache-tomcat-7.0.78/webapps/WebReport/pdf-files
 uploadMaxSize=104857600
 webSite=http://144.123.36.214/WebReport
 localSite=http://localhost/WebReport
+loginUrl=http://144.123.36.214/WebReport/QDCH/login.html

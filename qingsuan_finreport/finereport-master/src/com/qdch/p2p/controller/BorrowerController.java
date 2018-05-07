@@ -18,14 +18,14 @@ import com.qdch.p2p.model.ZiChanInfoModel;
 import com.qdch.p2p.model.ZiRanRenJiChuInfoMoDel;
 /**
  * 
- * @author lixiaoyi
+ * @author 高照
  * @date 2018年4月8日
  * @TODO 借款人总览
  */
 public class BorrowerController extends BaseController {
 	/**
 	 * 
-	 * @author 高照
+	 * @author gaozhao
 	 * @date 2018年4月10日
 	 * @TODO 借款人总览首页
 	 */
