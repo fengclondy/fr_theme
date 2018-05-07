@@ -37,7 +37,8 @@ public class QdchController extends BaseController {
 			 }
 		 }else{
 			 //认证失败
-			 renderText("认证失败!");
+			 //renderText("认证失败!");
+			 redirect(PropKit.get("loginUrl"));
 		 }
 	 }
 	 /**
