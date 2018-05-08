@@ -205,12 +205,15 @@ function pageSwitch(selectedId) {
 }
 
 function currentPageChartsResize() {
-    var currentPageCharts = $(".current.pageContent>iframe")[0].contentWindow.allCharts;
-    if (currentPageCharts) {
-        currentPageCharts.forEach(function (item) {
-            item.resize();
-        })
-    }
+    try {
+    	var currentPageCharts = $(".current.pageContent>iframe")[0].contentWindow.allCharts;
+        if (currentPageCharts) {
+            currentPageCharts.forEach(function (item) {
+                item.resize();
+            })
+        }
+	} catch (e) {
+	}
 }
 function navTabsCollapseClick(index){//事件单独绑定
 	$(".nav-tabs > ul > li.collapse>ul>li").eq(index).click(function () {
