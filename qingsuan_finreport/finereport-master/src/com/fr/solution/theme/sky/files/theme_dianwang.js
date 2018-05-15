@@ -4,8 +4,6 @@
         mwidth: 230,
         cheight: 0,
         initSize: function () {
-            $("#fs-frame-reg").remove();
-            console.log("init-----------------------------")
             $("#fs-frame-body").css({ "z-index": "20px", "top": "0","background-color":"#323a6e" });
             $("#fs-frame-header").css({ "z-index": "25px" ,"position":"relitive","float":"right"});
             $("#fs-frame-search").css({ "top": "15px", "right": "8px", "width": "200px" });
@@ -15,30 +13,18 @@
             //$("#fs-frame-menu").append('<div class="fs-menu-hide"></div>');
            // $("#fs-frame-content").append('<div class="fs-menu-show"></div>');
             $(".fs-menu-show").hide();
-            //$(".fs-tab-menu-item.nav-btn").eq(0).hide();
-           /* $(".fs-menu-hide").css("top","50%").bind("click", function () {
-                $("#fs-frame-header,#fs-frame-menu,#fs-navi-admin,#fs-navi-favorite,#fs-frame-search").hide();
-                $("#fs-frame-content").width($("#fs-frame-content").width() + FS.TMP.mwidth).css("left", "0px");
-                $(".fs-tab-content").width($("#fs-frame-content").width());
-                $(".fs-menu-show").show();
-            });
-            $(".fs-menu-show").bind("click", function () {
-                $("#fs-frame-header,#fs-frame-menu,#fs-navi-admin,#fs-navi-favorite,#fs-frame-search").show();
-                $("#fs-frame-content").width($("#fs-frame-content").width() - FS.TMP.mwidth).css("left", FS.TMP.mwidth + "px");
-                $(".fs-tab-content").width($("#fs-frame-content").width());
-                $(".fs-menu-show").hide();
-            });*/
             //$("#fs-frame-banner,#fs-navi-message").remove();
             $("#fs-frame-body").css("top", "0px").height(FS.TMP.cheight + topHeight);
             $("#fs-frame-menu").height(FS.TMP.cheight).css({"background-color":"#323a6e"});
            // $("#fs-frame-content").height(FS.TMP.cheight + topHeight);
             $(".fs-tab-content").height(FS.TMP.cheight + topHeight/2);
             $(".fs-tab-content").css({"top":"0px"});
-            $("#fs-frame-search").remove();
             $("#fs-frame-content").css("top",topHeight+"px");
             $("#fs-navi-admin").css({"background-color":"#323a6e"});
             $("#fs-navi-favorite").css({"background-color":"#323a6e"});
             $(".fs-tag-pane").remove();
+            $("#fs-frame-search").remove();
+            $("#fs-frame-reg").remove();
         }
     };
     var _initFrameNavigationBar = function(){
@@ -68,7 +54,6 @@
         $.when(ajax1,ajax2).done(function(){
             var nodes = nav.report.res.concat(nav.module.res);
             _createFrameNavigationBar(nodes);//这个是关键
-            //console.log(nodes)
         });
     };
     //生成菜单
@@ -99,13 +84,13 @@
     				}
     				//三级
     				if(it2.hasChildren||it2.hasChildren=="true"){
-    					var third='<div class="threeM" style="display:none" id="third_ul_'+it2.id+'"><ul>';
+    					var third='<li class="threeM" style="display:none" id="third_ul_'+it2.id+'"><ul>';
     					$.each(it2.ChildNodes,function(ind3,it3){
     						//菜单明细
     						_menu_detail(it3,"third_menu_id_"+it3.id);
     						third+='<li   id="third_menu_id_'+it3.id+'" haschildren="'+it3.hasChildren+'" data="'+it3.id+'" pid="third_menu_id_'+it3.parentId+'">'+it3.text+'</li>';
     					});
-    					third+='</ul></div>';
+    					third+='</ul></li>';
     					thirdArr.push(third);
     				}else{
     					//二级不需要查询访问路径
@@ -143,11 +128,9 @@
     //获取菜单详情
     var _menu_detail=function(node,ids){
     	if(node.hasChildren=="false"||node.hasChildren==undefined){
-    		//console.log(ids,node)
     		//没有子节点
     		var menuId=node.id.substr(1);
     		$.post("/WebReport/getMenuDetail",{menuId: menuId},function(data){
-    			//console.log(data,menuId)
     			var m=eval("("+data.menu+")");
     			$("#"+ids).attr("reportletpath",m.reportletpath);
     		});
@@ -220,13 +203,30 @@
      */
     var Index = {
     	    init: function () {
-    	        // var $leftNav = $(".leftNav");
-    	        // var $menu1 = $leftNav.find(".ful>li");
     	        this.time();
     	        this.menuAction();
-    	        // this.titleShowContent();
-    	        //this.clock();
-
+    	        this.repairStyle();
+    	    },
+    	    repairStyle:function(){
+    	    	/*$(".fs_ltabpane_content_selected.fr-absolutelayout.ui-state-enabled").children()
+    	    	.eq(0).css({
+    	    		width: "30%",
+    	        	height: "100%"
+    	    		
+	    		}).next().css({
+	    			width: "66%",
+		    	    height: "100%",
+		    	    left: "33%"
+	    		});*/
+    	    	$("#fs-frame-header").css("background","#323a6e");
+    	    	$("#mine_title nav").css("left","12%");
+    	    	//目录管理中让滚动条恢复到顶部
+    	    	$("[id^=senond_menu_id]").click(function(){
+	    			setTimeout(function(){
+	    				$("body").scrollTop(0);
+	    			},100)
+	    		})
+    	    		
     	    },
     	    clock: function () {
     	        var clock = new Clock('#clock', {
@@ -255,6 +255,12 @@
     	            $(".ful").hide();
     	            //有下一级
     	            $("#senond_ul_"+$(this).attr("data")).show().siblings().hide();
+    	            //钟表位置
+    	            if($("#senond_ul_"+$(this).attr("data")).children().length>8){
+    	            	$(".timer").addClass("relative")
+    	            }else{
+    	            	$(".timer").removeClass("relative")
+    	            }
     	           // $(".leftNav>.mine_menu").children("ul").eq($(this).index() + 1).show().siblings().hide();
     	            $breadcrumbItem.eq(1).text($(this).children().text());
     	            if($(this).attr("haschildren")=="false"||$(this).attr("haschildren")=="undefined"){
@@ -278,7 +284,7 @@
     	        $(".secondM>li:not(.resBox,.threeM)").on('mouseenter',function () {
     	            //$(this).addClass("activeLi").nextAll(".threeM").css("top", +4.5 * $(this).index() + .2 + "rem");
     	            $(".threeM").removeClass("activeLi").hide();
-    	            $("#third_ul_"+$(this).attr("data")).addClass("activeLi").css("top", +4.5 * $(this).index() + .2 + "rem").show();
+    	            $("#third_ul_"+$(this).attr("data")).addClass("activeLi").css("top", +4.5 * $(this).index() + 8.2 + "rem").show();
     	            $("#third_ul_"+$(this).attr("data")).find("ul").show();
     	            $(this).siblings().removeClass("activeLi");
     	        });
@@ -293,7 +299,8 @@
     	            $breadcrumbItem.eq(2).text(textMenu2)
     	                .end().eq(3).text($(this).text());
     	            $(".myTitle").text($(this).text());
-    	            console.log($(this).attr("reportletpath"));
+    	           // console.log($(this).attr("reportletpath"));
+    	            //系统设置切换后会多出额外代码 并且iframe隐藏 在切换其他菜单需要重置
     	            $(".fs_design_container").remove();
     	            $("iframe").show();
     	            $("iframe").attr("src","/WebReport/ReportServer?formlet="+encodeURIComponent($(this).attr("reportletpath")));

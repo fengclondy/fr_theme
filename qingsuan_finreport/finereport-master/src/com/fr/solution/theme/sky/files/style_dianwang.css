@@ -3,7 +3,7 @@
 }
 
 a {
-    /* color: #fff; */
+    color: #fff;
 }
 
 .container {
@@ -56,7 +56,12 @@ a {
 
 .leftNav ul li span {
     float: left;
-}
+/*以下让超出宽度的字用三个点代替*/
+     white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 6rem;
+ }
 
 .mine_menu li>i{
     position: absolute;
@@ -67,6 +72,43 @@ a {
     left: 2.5rem;
     background: url('${servletURL}?op=resource&resource=/com/fr/solution/theme/sky/files/image/36line.png') no-repeat;
     background-size: contain;
+}
+
+.mine_menu li>i{
+    position: absolute;
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    top: 1.5rem;
+    left: 2.5rem;
+    /*background: url('${servletURL}?op=resource&resource=/com/fr/solution/theme/sky/files/image/36line.png') no-repeat;*/
+    background: url('${servletURL}?op=resource&resource=/com/fr/solution/theme/sky/files/image/1-shudian.png') no-repeat;
+    background-size: contain;
+}
+/*平台管理下面的菜单图标*/
+#senond_ul_1 li:nth-of-type(2) i{
+	background-image: url('${servletURL}?op=resource&resource=/com/fr/solution/theme/sky/files/image/1-shudian.png');
+}
+#senond_ul_1 li:nth-of-type(3) i{
+	background-image: url('${servletURL}?op=resource&resource=/com/fr/solution/theme/sky/files/image/2-shebei.png');
+}
+#senond_ul_1 li:nth-of-type(4) i{
+	background-image: url('${servletURL}?op=resource&resource=/com/fr/solution/theme/sky/files/image/3-yunxing.png');
+}
+#senond_ul_1 li:nth-of-type(5) i{
+	background-image: url('${servletURL}?op=resource&resource=/com/fr/solution/theme/sky/files/image/4-yunwei.png');
+}
+#senond_ul_1 li:nth-of-type(6) i{
+	background-image: url('${servletURL}?op=resource&resource=/com/fr/solution/theme/sky/files/image/5-xianlu.png');
+}
+#senond_ul_1 li:nth-of-type(7) i{
+	background-image: url('${servletURL}?op=resource&resource=/com/fr/solution/theme/sky/files/image/6-tongdao.png');
+}
+#senond_ul_1 li:nth-of-type(8) i{
+	background-image: url('${servletURL}?op=resource&resource=/com/fr/solution/theme/sky/files/image/7-yingji.png');
+}
+.full > li > span {
+    letter-spacing: 29px;
 }
 
 .full > li > span {
@@ -81,12 +123,22 @@ a {
 .timer {
     height: 130px;
     position: absolute;
-    bottom: 11rem;
+    bottom: 5rem;
     text-align: center;
     transform: translateX(-50%);
     left: 50%;
 }
+.timer.relative{
+	position: relative;
+    transform: initial;
+    left: 0px;
+    bottom: 0;
 
+	}
+.timer.relative canvas{
+	margin-left: 23%;
+}
+	
 .timer span {
     width: 100%;
     display: block;
@@ -128,7 +180,7 @@ canvas {
     cursor: pointer;
     overflow: hidden;
     margin-bottom: .5em;
-    padding-left: .6rem;
+    padding-left: 1rem;
     text-align: center;
 }
 
@@ -151,6 +203,7 @@ canvas {
     text-align: center;
     margin-top: 3.25rem;
     font-size: 1.375rem;
+    width: 90%;
 }
 
 .leftNav > ul > li:hover {
@@ -160,22 +213,24 @@ canvas {
 /*三级菜单*/
  .threeM {
     position: absolute;
-    left: 16.87%;
+    /*left: 16.87%;*/
     top: 55px;
     padding-left: 0;
     width: auto;
     height: auto;
     z-index:9999;
+    
+    left: 12%;
 }
 
 .threeM > ul {
     writing-mode: vertical-lr;
     position: relative;
     display: none;
-    top: 45px;
+    /*top: 45px;*/
     padding: 10px;
     height: 270px;
-    /*max-height: 275px;*/
+    max-height: 360px;
     background: var(--green);
 }
 
@@ -184,13 +239,12 @@ canvas {
     display: inline-block;
     border: solid 1px var(--green);
     background: #00a694;
-    width: 6.5em;
-    padding-left: 1em;
-    padding-right: 3em;
+    width: 7em;
+    padding-left: 2em;
+    padding-right: 2em;
     margin: -.0625rem .0625rem;
     line-height: 4.5rem;
     font-size: 1.125rem;
-    padding-left: 5rem;
     cursor: pointer;
 }
 
@@ -265,4 +319,10 @@ html,body {
 	background: #323a6e;
 	height:100%;
 	color:#fff;
+}
+
+
+/* 帆软嵌入后补充 */
+[id^=senond_menu_id]:hover{
+	background: var(--green);
 }
