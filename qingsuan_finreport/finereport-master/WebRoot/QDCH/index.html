@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+    <title>地方金融风险防控预警平台</title>
+     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="author" content="FineReport">
+    <meta name="Copyright" content="FineReport">
+    <meta name="description" content="FineReport--Web Reporting Tool">
+  <script type="text/javascript" src="/QDCH/js/finereport.js"></script>
+<script type="text/javascript" src="/WebReport/QDCH/js/finereport.js"></script>
+<script>
+
+    var dynamicLoading = {
+        css: function(path){
+            if(!path || path.length === 0){
+                throw new Error('argument "path" is required !');
+            }
+            var head = document.getElementsByTagName('head')[0];
+            var link = document.createElement('link');
+            link.href = path;
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            head.appendChild(link);
+        },
+        js: function(path){
+            if(!path || path.length === 0){
+                throw new Error('argument "path" is required !');
+            }
+            var head = document.getElementsByTagName('head')[0];
+            var script = document.createElement('script');
+            script.src = path;
+            script.type = 'text/javascript';
+            head.appendChild(script);
+        }
+    }
+    var domain=FR.serverURL+FR.servletURL;
+     domain=domain.replace("/ReportServer","");
+     
+     
+     dynamicLoading.js(domain+"/QDCH/js/jquery-2.2.4.js");
+     
+    
+</script>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+var type=getQueryString("type");
+$(function(){
+ 
+ getLoginUser();
+});
+function intent(){
+	
+	 if(type==0){
+		 window.location.href='/WebReport/ReportServer?formlet=zhibiaoduibi-gov.frm';
+	 }else{
+		 window.location.href='/WebReport/ReportServer?formlet=QY/QYzhibiaoduibi-gov.frm';
+	 }
+}
+function getLoginUser(){
+		$.post("/WebReport/getLoginUserInfo",function(data){
+			if(data.id=='-999'){
+				//超级管理员
+				intent();
+			}else{
+				//查询角色
+				getRoleNameByUserName();
+			}
+		});
+	};
+function getRoleNameByUserName() {
+    var domain =  '/WebReport/getRole';
+   // console.log(domain);
+	$.ajax({  
+		type: "POST",  
+		url: domain,  
+		dataType:"json", 
+		success: function(data){ 
+			roleName = data.roleName;
+			if(roleName){
+				if(type==0&&roleName.indexOf("大宗")!=-1){
+					intent();
+				}else if(type==1&&roleName.indexOf("权益")!=-1){
+					intent();
+				}
+			}
+			
+		//	console.log(roleName);
+			/*alert('调取成功')*/
+		}
+	}); 
+};
+function getQueryString(name) {  
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");  
+        var r = window.parent.location.search.substr(1).match(reg);  
+        if (r != null) return unescape(r[2]);  
+        return null;  
+    }  
+</script>
