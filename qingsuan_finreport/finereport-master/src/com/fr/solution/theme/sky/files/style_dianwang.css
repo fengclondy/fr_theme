@@ -3,8 +3,8 @@
 }
 
 a {
-    color: #fff;
-}
+/*     color: #fff;
+ */}
 
 .container {
     height: 100%;
@@ -38,7 +38,13 @@ a {
     padding-left: 5rem;
     cursor: pointer;
 }
-
+.leftNav ul.ful li {
+	padding-left: 4rem;
+}
+.leftNav ul.ful{
+	padding-top: 1rem;
+}
+    
 .leftNav ul.ful>li:hover{
 /*.leftNav ul.secondM>li:not(.resBox):hover {*/
     background: var(--green);
@@ -82,29 +88,28 @@ a {
     top: 1.5rem;
     left: 2.5rem;
     /*background: url('${servletURL}?op=resource&resource=/com/fr/solution/theme/sky/files/image/36line.png') no-repeat;*/
-    background: url('${servletURL}?op=resource&resource=/com/fr/solution/theme/sky/files/image/1-shudian.png') no-repeat;
     background-size: contain;
 }
 /*平台管理下面的菜单图标*/
-#senond_ul_1 li:nth-of-type(2) i{
+.secondM li:nth-of-type(2) i{
 	background-image: url('${servletURL}?op=resource&resource=/com/fr/solution/theme/sky/files/image/1-shudian.png');
 }
-#senond_ul_1 li:nth-of-type(3) i{
+.secondM li:nth-of-type(3) i{
 	background-image: url('${servletURL}?op=resource&resource=/com/fr/solution/theme/sky/files/image/2-shebei.png');
 }
-#senond_ul_1 li:nth-of-type(4) i{
+.secondM li:nth-of-type(4) i{
 	background-image: url('${servletURL}?op=resource&resource=/com/fr/solution/theme/sky/files/image/3-yunxing.png');
 }
-#senond_ul_1 li:nth-of-type(5) i{
+.secondM li:nth-of-type(5) i{
 	background-image: url('${servletURL}?op=resource&resource=/com/fr/solution/theme/sky/files/image/4-yunwei.png');
 }
-#senond_ul_1 li:nth-of-type(6) i{
+.secondM li:nth-of-type(6) i{
 	background-image: url('${servletURL}?op=resource&resource=/com/fr/solution/theme/sky/files/image/5-xianlu.png');
 }
-#senond_ul_1 li:nth-of-type(7) i{
+.secondM li:nth-of-type(7) i{
 	background-image: url('${servletURL}?op=resource&resource=/com/fr/solution/theme/sky/files/image/6-tongdao.png');
 }
-#senond_ul_1 li:nth-of-type(8) i{
+.secondM li:nth-of-type(8) i{
 	background-image: url('${servletURL}?op=resource&resource=/com/fr/solution/theme/sky/files/image/7-yingji.png');
 }
 .full > li > span {
@@ -122,18 +127,18 @@ a {
 
 .timer {
     height: 130px;
-    position: absolute;
-    bottom: 5rem;
+    position: fixed;
+    bottom: 9rem;
     text-align: center;
     transform: translateX(-50%);
-    left: 50%;
+    left: 7rem;
 }
 .timer.relative{
 	position: relative;
     transform: initial;
     left: 0px;
     bottom: 0;
-
+    top: 1.5rem;
 	}
 .timer.relative canvas{
 	margin-left: 23%;
@@ -174,7 +179,10 @@ canvas {
     display: none;
     position: relative;
 }
-
+.secondM li.hover,
+.secondM li.active{
+	background: var(--green);
+}
 .secondM li.resBox {
     height: 7rem;
     cursor: pointer;
@@ -238,13 +246,16 @@ canvas {
     writing-mode: rl;
     display: inline-block;
     border: solid 1px var(--green);
-    background: #00a694;
-    width: 7em;
-    padding-left: 2em;
-    padding-right: 2em;
+    width: 9em;
     margin: -.0625rem .0625rem;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
     line-height: 4.5rem;
     font-size: 1.125rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    background: #00a694;
     cursor: pointer;
 }
 
@@ -305,6 +316,9 @@ nav[aria-label]{
     html{
         font-size: 12px;
     }
+    #mine_title>nav{
+    	left: 19rem;
+    }
 }
 html,body,ul,li,ol,dl,dd,dt,p,h1,h2,h3,h4,h5,h6,form,fieldset,legend,img{ margin:0; padding:0; font-family: "微软雅黑";}
 ul,ol,li{list-style:none;}
@@ -326,3 +340,7 @@ html,body {
 [id^=senond_menu_id]:hover{
 	background: var(--green);
 }
+#fs-frame-banner{
+	background-color: rgb(50, 58, 110);
+}
+
